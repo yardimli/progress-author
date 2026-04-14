@@ -2,582 +2,980 @@
   "The Business of Writing": {
     "type": "fame",
     "elements": [
-      { "type": "class", "value": "The Business of Writing" }
+      {
+        "type": "class",
+        "value": "The Business of Writing"
+      }
     ],
     "requirements": [
-      { "requirement": 1 }
+      {
+        "requirement": 1
+      }
     ]
   },
   "Shop": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "shopTabButton" }
+      {
+        "type": "id",
+        "value": "shopTabButton"
+      }
     ],
     "requirements": [
-      { "requirement": 0 }
+      {
+        "requirement": 0
+      }
     ]
   },
   "Rebirth tab": {
     "type": "age",
     "elements": [
-      { "type": "id", "value": "rebirthTabButton" }
+      {
+        "type": "id",
+        "value": "rebirthTabButton"
+      }
     ],
     "requirements": [
-      { "requirement": 25 }
+      {
+        "requirement": 25
+      }
     ]
   },
   "Rebirth note 1": {
     "type": "age",
     "elements": [
-      { "type": "id", "value": "rebirthNote1" }
+      {
+        "type": "id",
+        "value": "rebirthNote1"
+      }
     ],
     "requirements": [
-      { "requirement": 45 }
+      {
+        "requirement": 45
+      }
     ]
   },
   "Rebirth note 2": {
     "type": "age",
     "elements": [
-      { "type": "id", "value": "rebirthNote2" }
+      {
+        "type": "id",
+        "value": "rebirthNote2"
+      }
     ],
     "requirements": [
-      { "requirement": 65 }
+      {
+        "requirement": 65
+      }
     ]
   },
   "Rebirth note 3": {
     "type": "age",
     "elements": [
-      { "type": "id", "value": "rebirthNote3" }
+      {
+        "type": "id",
+        "value": "rebirthNote3"
+      }
     ],
     "requirements": [
-      { "requirement": 200 }
+      {
+        "requirement": 200
+      }
     ]
   },
   "Fame info": {
     "type": "fame",
     "elements": [
-      { "type": "id", "value": "fameInfo" }
+      {
+        "type": "id",
+        "value": "fameInfo"
+      }
     ],
     "requirements": [
-      { "requirement": 1 }
+      {
+        "requirement": 1
+      }
     ]
   },
   "Flow State info": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "timeWarping" }
+      {
+        "type": "id",
+        "value": "timeWarping"
+      }
     ],
     "requirements": [
-      { "task": "Senior Agent", "requirement": 10 }
+      {
+        "task": "Senior Agent",
+        "requirement": 10
+      }
     ]
   },
   "Automation": {
     "type": "age",
     "elements": [
-      { "type": "id", "value": "automation" }
+      {
+        "type": "id",
+        "value": "automation"
+      }
     ],
     "requirements": [
-      { "requirement": 20 }
+      {
+        "requirement": 20
+      }
     ]
   },
   "Quick task display": {
     "type": "age",
     "elements": [
-      { "type": "id", "value": "quickTaskDisplay" }
+      {
+        "type": "id",
+        "value": "quickTaskDisplay"
+      }
     ],
     "requirements": [
-      { "requirement": 20 }
+      {
+        "requirement": 20
+      }
     ]
   },
   "Gig Worker": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Gig Worker" }
+      {
+        "type": "id",
+        "value": "row Gig Worker"
+      }
     ],
     "requirements": []
   },
   "Food Service": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Food Service" }
+      {
+        "type": "id",
+        "value": "row Food Service"
+      }
     ],
     "requirements": [
-      { "task": "Gig Worker", "requirement": 10 }
+      {
+        "task": "Gig Worker",
+        "requirement": 10
+      }
     ]
   },
   "Delivery Driver": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Delivery Driver" }
+      {
+        "type": "id",
+        "value": "row Delivery Driver"
+      }
     ],
     "requirements": [
-      { "task": "Food Service", "requirement": 10 }
+      {
+        "task": "Food Service",
+        "requirement": 10
+      }
     ]
   },
   "Warehouse Worker": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Warehouse Worker" }
+      {
+        "type": "id",
+        "value": "row Warehouse Worker"
+      }
     ],
     "requirements": [
-      { "task": "Delivery Driver", "requirement": 10 },
-      { "task": "Focus", "requirement": 10 }
+      {
+        "task": "Delivery Driver",
+        "requirement": 10
+      },
+      {
+        "task": "Focus",
+        "requirement": 10
+      }
     ]
   },
   "Office Temp": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Office Temp" }
+      {
+        "type": "id",
+        "value": "row Office Temp"
+      }
     ],
     "requirements": [
-      { "task": "Warehouse Worker", "requirement": 10 },
-      { "task": "Focus", "requirement": 30 }
+      {
+        "task": "Warehouse Worker",
+        "requirement": 10
+      },
+      {
+        "task": "Focus",
+        "requirement": 30
+      }
     ]
   },
   "Personal Assistant": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Personal Assistant" }
+      {
+        "type": "id",
+        "value": "row Personal Assistant"
+      }
     ],
     "requirements": [
-      { "task": "Office Temp", "requirement": 10 },
-      { "task": "Frugality", "requirement": 50 }
+      {
+        "task": "Office Temp",
+        "requirement": 10
+      },
+      {
+        "task": "Frugality",
+        "requirement": 50
+      }
     ]
   },
   "Intern": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Intern" }
+      {
+        "type": "id",
+        "value": "row Intern"
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 5 }
+      {
+        "task": "Focus",
+        "requirement": 5
+      }
     ]
   },
   "Blogger": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Blogger" }
+      {
+        "type": "id",
+        "value": "row Blogger"
+      }
     ],
     "requirements": [
-      { "task": "Intern", "requirement": 10 },
-      { "task": "Typing Speed", "requirement": 20 }
+      {
+        "task": "Intern",
+        "requirement": 10
+      },
+      {
+        "task": "Typing Speed",
+        "requirement": 20
+      }
     ]
   },
   "Content Creator": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Content Creator" }
+      {
+        "type": "id",
+        "value": "row Content Creator"
+      }
     ],
     "requirements": [
-      { "task": "Blogger", "requirement": 10 },
-      { "task": "Grammar & Prose", "requirement": 40 }
+      {
+        "task": "Blogger",
+        "requirement": 10
+      },
+      {
+        "task": "Grammar & Prose",
+        "requirement": 40
+      }
     ]
   },
   "Copy Editor": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Copy Editor" }
+      {
+        "type": "id",
+        "value": "row Copy Editor"
+      }
     ],
     "requirements": [
-      { "task": "Content Creator", "requirement": 10 },
-      { "task": "Typing Speed", "requirement": 100 }
+      {
+        "task": "Content Creator",
+        "requirement": 10
+      },
+      {
+        "task": "Typing Speed",
+        "requirement": 100
+      }
     ]
   },
   "Staff Writer": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Staff Writer" }
+      {
+        "type": "id",
+        "value": "row Staff Writer"
+      }
     ],
     "requirements": [
-      { "task": "Copy Editor", "requirement": 10 },
-      { "task": "Grammar & Prose", "requirement": 150 }
+      {
+        "task": "Copy Editor",
+        "requirement": 10
+      },
+      {
+        "task": "Grammar & Prose",
+        "requirement": 150
+      }
     ]
   },
   "Senior Editor": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Senior Editor" }
+      {
+        "type": "id",
+        "value": "row Senior Editor"
+      }
     ],
     "requirements": [
-      { "task": "Staff Writer", "requirement": 10 },
-      { "task": "Typing Speed", "requirement": 300 }
+      {
+        "task": "Staff Writer",
+        "requirement": 10
+      },
+      {
+        "task": "Typing Speed",
+        "requirement": 300
+      }
     ]
   },
   "Ghostwriter": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Ghostwriter" }
+      {
+        "type": "id",
+        "value": "row Ghostwriter"
+      }
     ],
     "requirements": [
-      { "task": "Senior Editor", "requirement": 10 },
-      { "task": "Plotting", "requirement": 500 }
+      {
+        "task": "Senior Editor",
+        "requirement": 10
+      },
+      {
+        "task": "Plotting",
+        "requirement": 500
+      }
     ]
   },
   "Full-Time Author": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Full-Time Author" }
+      {
+        "type": "id",
+        "value": "row Full-Time Author"
+      }
     ],
     "requirements": [
-      { "task": "Ghostwriter", "requirement": 10 },
-      { "task": "Plotting", "requirement": 1000 },
-      { "task": "Grammar & Prose", "requirement": 1000 }
+      {
+        "task": "Ghostwriter",
+        "requirement": 10
+      },
+      {
+        "task": "Plotting",
+        "requirement": 1000
+      },
+      {
+        "task": "Grammar & Prose",
+        "requirement": 1000
+      }
     ]
   },
   "C.W. Student": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row C.W. Student" }
+      {
+        "type": "id",
+        "value": "row C.W. Student"
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 200 },
-      { "task": "Meditation", "requirement": 200 }
+      {
+        "task": "Focus",
+        "requirement": 200
+      },
+      {
+        "task": "Meditation",
+        "requirement": 200
+      }
     ]
   },
   "Junior Agent": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Junior Agent" }
+      {
+        "type": "id",
+        "value": "row Junior Agent"
+      }
     ],
     "requirements": [
-      { "task": "C.W. Student", "requirement": 10 },
-      { "task": "Plotting", "requirement": 400 }
+      {
+        "task": "C.W. Student",
+        "requirement": 10
+      },
+      {
+        "task": "Plotting",
+        "requirement": 400
+      }
     ]
   },
   "Senior Agent": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Senior Agent" }
+      {
+        "type": "id",
+        "value": "row Senior Agent"
+      }
     ],
     "requirements": [
-      { "task": "Junior Agent", "requirement": 10 },
-      { "task": "Plotting", "requirement": 700 }
+      {
+        "task": "Junior Agent",
+        "requirement": 10
+      },
+      {
+        "task": "Plotting",
+        "requirement": 700
+      }
     ]
   },
   "Publisher": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Publisher" }
+      {
+        "type": "id",
+        "value": "row Publisher"
+      }
     ],
     "requirements": [
-      { "task": "Senior Agent", "requirement": 10 },
-      { "task": "Plotting", "requirement": 1000 }
+      {
+        "task": "Senior Agent",
+        "requirement": 10
+      },
+      {
+        "task": "Plotting",
+        "requirement": 1000
+      }
     ]
   },
   "Literary Titan": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Literary Titan" }
+      {
+        "type": "id",
+        "value": "row Literary Titan"
+      }
     ],
     "requirements": [
-      { "task": "Publisher", "requirement": 10 },
-      { "task": "Plotting", "requirement": 1500 }
+      {
+        "task": "Publisher",
+        "requirement": 10
+      },
+      {
+        "task": "Plotting",
+        "requirement": 1500
+      }
     ]
   },
   "Head of Publishing": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Head of Publishing" }
+      {
+        "type": "id",
+        "value": "row Head of Publishing"
+      }
     ],
     "requirements": [
-      { "task": "Literary Titan", "requirement": 10 },
-      { "task": "Plotting", "requirement": 2000 }
+      {
+        "task": "Literary Titan",
+        "requirement": 10
+      },
+      {
+        "task": "Plotting",
+        "requirement": 2000
+      }
     ]
   },
   "Focus": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Focus" }
+      {
+        "type": "id",
+        "value": "row Focus"
+      }
     ],
     "requirements": []
   },
   "Time Management": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Time Management" }
+      {
+        "type": "id",
+        "value": "row Time Management"
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 5 }
+      {
+        "task": "Focus",
+        "requirement": 5
+      }
     ]
   },
   "Frugality": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Frugality" }
+      {
+        "type": "id",
+        "value": "row Frugality"
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 20 }
+      {
+        "task": "Focus",
+        "requirement": 20
+      }
     ]
   },
   "Meditation": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Meditation" }
+      {
+        "type": "id",
+        "value": "row Meditation"
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 30 },
-      { "task": "Time Management", "requirement": 20 }
+      {
+        "task": "Focus",
+        "requirement": 30
+      },
+      {
+        "task": "Time Management",
+        "requirement": 20
+      }
     ]
   },
   "Typing Speed": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Typing Speed" }
+      {
+        "type": "id",
+        "value": "row Typing Speed"
+      }
     ],
     "requirements": []
   },
   "Grammar & Prose": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Grammar & Prose" }
+      {
+        "type": "id",
+        "value": "row Grammar & Prose"
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 20 }
+      {
+        "task": "Focus",
+        "requirement": 20
+      }
     ]
   },
   "Plotting": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Plotting" }
+      {
+        "type": "id",
+        "value": "row Plotting"
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 200 },
-      { "task": "Meditation", "requirement": 200 }
+      {
+        "task": "Focus",
+        "requirement": 200
+      },
+      {
+        "task": "Meditation",
+        "requirement": 200
+      }
     ]
   },
   "Character Dev.": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Character Dev." }
+      {
+        "type": "id",
+        "value": "row Character Dev."
+      }
     ],
     "requirements": [
-      { "task": "Focus", "requirement": 30 },
-      { "task": "Typing Speed", "requirement": 30 }
+      {
+        "task": "Focus",
+        "requirement": 30
+      },
+      {
+        "task": "Typing Speed",
+        "requirement": 30
+      }
     ]
   },
   "Healthy Lifestyle": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Healthy Lifestyle" }
+      {
+        "type": "id",
+        "value": "row Healthy Lifestyle"
+      }
     ],
     "requirements": [
-      { "task": "Junior Agent", "requirement": 10 }
+      {
+        "task": "Junior Agent",
+        "requirement": 10
+      }
     ]
   },
   "Flow State": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Flow State" }
+      {
+        "type": "id",
+        "value": "row Flow State"
+      }
     ],
     "requirements": [
-      { "task": "Senior Agent", "requirement": 10 }
+      {
+        "task": "Senior Agent",
+        "requirement": 10
+      }
     ]
   },
   "Longevity Secrets": {
     "type": "task",
     "elements": [
-      { "type": "id", "value": "row Longevity Secrets" }
+      {
+        "type": "id",
+        "value": "row Longevity Secrets"
+      }
     ],
     "requirements": [
-      { "task": "Head of Publishing", "requirement": 1000 }
+      {
+        "task": "Head of Publishing",
+        "requirement": 1000
+      }
     ]
   },
   "Brand Management": {
     "type": "fame",
     "elements": [
-      { "type": "id", "value": "row Brand Management" }
+      {
+        "type": "id",
+        "value": "row Brand Management"
+      }
     ],
     "requirements": [
-      { "requirement": 1 }
+      {
+        "requirement": 1
+      }
     ]
   },
   "Networking": {
     "type": "fame",
     "elements": [
-      { "type": "id", "value": "row Networking" }
+      {
+        "type": "id",
+        "value": "row Networking"
+      }
     ],
     "requirements": [
-      { "requirement": 1 }
+      {
+        "requirement": 1
+      }
     ]
   },
   "Public Speaking": {
     "type": "fame",
     "elements": [
-      { "type": "id", "value": "row Public Speaking" }
+      {
+        "type": "id",
+        "value": "row Public Speaking"
+      }
     ],
     "requirements": [
-      { "requirement": 1 }
+      {
+        "requirement": 1
+      }
     ]
   },
   "Personal Brand": {
     "type": "fame",
     "elements": [
-      { "type": "id", "value": "row Personal Brand" }
+      {
+        "type": "id",
+        "value": "row Personal Brand"
+      }
     ],
     "requirements": [
-      { "requirement": 25 }
+      {
+        "requirement": 25
+      }
     ]
   },
   "Media Tours": {
     "type": "fame",
     "elements": [
-      { "type": "id", "value": "row Media Tours" }
+      {
+        "type": "id",
+        "value": "row Media Tours"
+      }
     ],
     "requirements": [
-      { "requirement": 75 }
+      {
+        "requirement": 75
+      }
     ]
   },
   "Royalty Negotiation": {
     "type": "fame",
     "elements": [
-      { "type": "id", "value": "row Royalty Negotiation" }
+      {
+        "type": "id",
+        "value": "row Royalty Negotiation"
+      }
     ],
     "requirements": [
-      { "requirement": 500 }
+      {
+        "requirement": 500
+      }
     ]
   },
   "Homeless": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Homeless" }
+      {
+        "type": "id",
+        "value": "row Homeless"
+      }
     ],
     "requirements": [
-      { "requirement": 0 }
+      {
+        "requirement": 0
+      }
     ]
   },
   "Rented Room": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Rented Room" }
+      {
+        "type": "id",
+        "value": "row Rented Room"
+      }
     ],
     "requirements": [
-      { "requirement": 0 }
+      {
+        "requirement": 0
+      }
     ]
   },
   "Studio Apartment": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Studio Apartment" }
+      {
+        "type": "id",
+        "value": "row Studio Apartment"
+      }
     ],
     "requirements": [
-      { "requirement": 10000 }
+      {
+        "requirement": 10000
+      }
     ]
   },
   "Suburban House": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Suburban House" }
+      {
+        "type": "id",
+        "value": "row Suburban House"
+      }
     ],
     "requirements": [
-      { "requirement": 50000 }
+      {
+        "requirement": 50000
+      }
     ]
   },
   "Large House": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Large House" }
+      {
+        "type": "id",
+        "value": "row Large House"
+      }
     ],
     "requirements": [
-      { "requirement": 150000 }
+      {
+        "requirement": 150000
+      }
     ]
   },
   "City Penthouse": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row City Penthouse" }
+      {
+        "type": "id",
+        "value": "row City Penthouse"
+      }
     ],
     "requirements": [
-      { "requirement": 1000000 }
+      {
+        "requirement": 1000000
+      }
     ]
   },
   "Private Villa": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Private Villa" }
+      {
+        "type": "id",
+        "value": "row Private Villa"
+      }
     ],
     "requirements": [
-      { "requirement": 5000000 }
+      {
+        "requirement": 5000000
+      }
     ]
   },
   "Mansion Estate": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Mansion Estate" }
+      {
+        "type": "id",
+        "value": "row Mansion Estate"
+      }
     ],
     "requirements": [
-      { "requirement": 20000000 }
+      {
+        "requirement": 20000000
+      }
     ]
   },
   "Library Card": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Library Card" }
+      {
+        "type": "id",
+        "value": "row Library Card"
+      }
     ],
     "requirements": [
-      { "requirement": 0 }
+      {
+        "requirement": 0
+      }
     ]
   },
   "Used Laptop": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Used Laptop" }
+      {
+        "type": "id",
+        "value": "row Used Laptop"
+      }
     ],
     "requirements": [
-      { "requirement": 2000 }
+      {
+        "requirement": 2000
+      }
     ]
   },
   "Editor": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Editor" }
+      {
+        "type": "id",
+        "value": "row Editor"
+      }
     ],
     "requirements": [
-      { "requirement": 15000 }
+      {
+        "requirement": 15000
+      }
     ]
   },
   "Style Guide": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Style Guide" }
+      {
+        "type": "id",
+        "value": "row Style Guide"
+      }
     ],
     "requirements": [
-      { "requirement": 30000 }
+      {
+        "requirement": 30000
+      }
     ]
   },
   "Ergonomic Chair": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Ergonomic Chair" }
+      {
+        "type": "id",
+        "value": "row Ergonomic Chair"
+      }
     ],
     "requirements": [
-      { "requirement": 100000 }
+      {
+        "requirement": 100000
+      }
     ]
   },
   "Pro Writing Software": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Pro Writing Software" }
+      {
+        "type": "id",
+        "value": "row Pro Writing Software"
+      }
     ],
     "requirements": [
-      { "requirement": 250000 }
+      {
+        "requirement": 250000
+      }
     ]
   },
   "Home Office": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Home Office" }
+      {
+        "type": "id",
+        "value": "row Home Office"
+      }
     ],
     "requirements": [
-      { "requirement": 1000000 }
+      {
+        "requirement": 1000000
+      }
     ]
   },
   "Home Library": {
     "type": "coins",
     "elements": [
-      { "type": "id", "value": "row Home Library" }
+      {
+        "type": "id",
+        "value": "row Home Library"
+      }
     ],
     "requirements": [
-      { "requirement": 5000000 }
+      {
+        "requirement": 5000000
+      }
     ]
   }
 }

@@ -1,22 +1,155 @@
 {
-  "Focus": {"name": "Focus", "maxXp": 100, "effect": 0.01, "description": "Skill xp"},
-  "Time Management": {"name": "Time Management", "maxXp": 100, "effect": 0.01, "description": "Job xp"},
-  "Frugality": {"name": "Frugality", "maxXp": 100, "effect": -0.01, "description": "Expenses"},
-  "Meditation": {"name": "Meditation", "maxXp": 100, "effect": 0.01, "description": "Inspiration"},
-
-  "Typing Speed": {"name": "Typing Speed", "maxXp": 100, "effect": 0.01, "description": "Writing Speed"},
-  "Grammar & Prose": {"name": "Grammar & Prose", "maxXp": 100, "effect": 0.01, "description": "Creative Ind. xp"},
-  "Plotting": {"name": "Plotting", "maxXp": 100, "effect": 0.01, "description": "Literary Elite xp"},
-  "Character Dev.": {"name": "Character Dev.", "maxXp": 100, "effect": 0.01, "description": "Typing Speed xp"},
-
-  "Healthy Lifestyle": {"name": "Healthy Lifestyle", "maxXp": 100, "effect": 0.01, "description": "Longer lifespan"},
-  "Flow State": {"name": "Flow State", "maxXp": 100, "effect": 0.01, "description": "Gamespeed"},
-  "Longevity Secrets": {"name": "Longevity Secrets", "maxXp": 100, "effect": 0.01, "description": "Longer lifespan"},
-
-  "Brand Management": {"name": "Brand Management", "maxXp": 100, "effect": 0.01, "description": "All xp"},
-  "Networking": {"name": "Networking", "maxXp": 100, "effect": 0.01, "description": "Fame gain"},
-  "Public Speaking": {"name": "Public Speaking", "maxXp": 100, "effect": -0.01, "description": "Expenses"},
-  "Personal Brand": {"name": "Personal Brand", "maxXp": 100, "effect": 0.01, "description": "All xp"},
-  "Media Tours": {"name": "Media Tours", "maxXp": 100, "effect": 0.01, "description": "Fame gain"},
-  "Royalty Negotiation": {"name": "Royalty Negotiation", "maxXp": 100, "effect": 0.002, "description": "Job pay"}
+  "Focus": {
+    "name": "Focus",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Skill xp",
+    "filename": "focus.png",
+    "filefolder": "skills",
+    "imageprompt": "A tight, detailed etching of a human eye staring intently at a piece of parchment. The dark brown ink and sepia tones create a moody, academic atmosphere. The woodblock print style emphasizes intense concentration and mental clarity."
+  },
+  "Time Management": {
+    "name": "Time Management",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Job xp",
+    "filename": "time_management.png",
+    "filefolder": "skills",
+    "imageprompt": "A classic, ornate pocket watch resting on a stack of manuscript pages, drawn in vintage newspaper style. The intricate gears and hands are detailed with precise, dark brown ink crosshatching. It symbolizes the careful, deliberate pacing of a writer's life."
+  },
+  "Frugality": {
+    "name": "Frugality",
+    "maxXp": 100,
+    "effect": -0.01,
+    "description": "Expenses",
+    "filename": "frugality.png",
+    "filefolder": "skills",
+    "imageprompt": "A worn leather coin purse with a few scattered coins, illustrated in a humble woodblock print style. The monochromatic sepia tones highlight the texture of the old leather and rough wooden table. It captures the essence of saving pennies during the struggling artist phase."
+  },
+  "Meditation": {
+    "name": "Meditation",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Inspiration",
+    "filename": "meditation.png",
+    "filefolder": "skills",
+    "imageprompt": "A serene figure sitting cross-legged in a dimly lit, vintage study, surrounded by floating pages. The dark brown ink creates soft, ethereal shadows in a classic academic setting. The illustration evokes a deep, peaceful connection to inner inspiration."
+  },
+  "Typing Speed": {
+    "name": "Typing Speed",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Writing Speed",
+    "filename": "typing_speed.png",
+    "filefolder": "skills",
+    "imageprompt": "A blur of motion over the keys of a classic 1920s typewriter, rendered in dynamic sepia linework. The woodblock style captures the mechanical energy and rapid-fire rhythm of the printing press era. It feels frantic yet highly skilled and precise."
+  },
+  "Grammar & Prose": {
+    "name": "Grammar & Prose",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Creative Ind. xp",
+    "filename": "grammar_and_prose.png",
+    "filefolder": "skills",
+    "imageprompt": "An elegant, vintage fountain pen resting on a beautifully handwritten parchment letter. The dark brown ink detailing showcases classic calligraphy and academic rigor. It represents the foundational, timeless rules of beautiful literary construction."
+  },
+  "Plotting": {
+    "name": "Plotting",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Literary Elite xp",
+    "filename": "plotting.png",
+    "filefolder": "skills",
+    "imageprompt": "A complex, wall-mounted corkboard connected with strings and pinned notes, drawn in an old newspaper etching style. The sepia-toned illustration feels like a detective's evidence board applied to storytelling. It captures the intricate, structural planning of a grand narrative."
+  },
+  "Character Dev.": {
+    "name": "Character Dev.",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Typing Speed xp",
+    "filename": "character_dev.png",
+    "filefolder": "skills",
+    "imageprompt": "A series of expressive, vintage portrait sketches layered over one another in dark brown ink. The woodblock print style highlights the different facets of human emotion and personality. It evokes the deep psychological study required to create lifelike literary figures."
+  },
+  "Healthy Lifestyle": {
+    "name": "Healthy Lifestyle",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Longer lifespan",
+    "filename": "healthy_lifestyle.png",
+    "filefolder": "skills",
+    "imageprompt": "A classic illustration of a 1920s figure engaging in morning calisthenics by an open window. The sepia tones and clean linework reflect the era's approach to vitality and wellness. It symbolizes the physical endurance needed for a long, productive life."
+  },
+  "Flow State": {
+    "name": "Flow State",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Gamespeed",
+    "filename": "flow_state.png",
+    "filefolder": "skills",
+    "imageprompt": "An abstract, swirling vortex of ink and parchment pages, drawn with mesmerizing dark brown crosshatching. The woodblock print style bends reality, showing a writer completely consumed by their work. It captures the magical, time-warping experience of deep creative focus."
+  },
+  "Longevity Secrets": {
+    "name": "Longevity Secrets",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Longer lifespan",
+    "filename": "longevity_secrets.png",
+    "filefolder": "skills",
+    "imageprompt": "An ancient, glowing hourglass resting on an ornate pedestal, illustrated with striking Art Deco elements. Subtle gold foil accents highlight the falling sand against the sepia background. It represents the mystical, prestigious mastery over time and lifespan."
+  },
+  "Brand Management": {
+    "name": "Brand Management",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "All xp",
+    "filename": "brand_management.png",
+    "filefolder": "skills",
+    "imageprompt": "A grand, vintage wax seal stamping a prestigious emblem onto a leather-bound book. The dark brown ink is elevated with elegant gold foil linework, symbolizing a powerful authorial identity. It exudes the Great Gatsby-era prestige of a carefully crafted public image."
+  },
+  "Networking": {
+    "name": "Networking",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Fame gain",
+    "filename": "networking.png",
+    "filefolder": "skills",
+    "imageprompt": "A sophisticated 1920s cocktail party scene, rendered in a classic newspaper illustration style. Figures in sharp suits and flapper dresses converse under glowing chandeliers in sepia tones. It captures the essential, high-society connections of the literary elite."
+  },
+  "Public Speaking": {
+    "name": "Public Speaking",
+    "maxXp": 100,
+    "effect": -0.01,
+    "description": "Expenses",
+    "filename": "public_speaking.png",
+    "filefolder": "skills",
+    "imageprompt": "A charismatic orator standing at a classic wooden podium, bathed in a dramatic spotlight. The woodblock print uses heavy dark brown ink to create a powerful, commanding presence. It evokes the academic and political prestige of a master rhetorician."
+  },
+  "Personal Brand": {
+    "name": "Personal Brand",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "All xp",
+    "filename": "personal_brand.png",
+    "filefolder": "skills",
+    "imageprompt": "A towering, stylized silhouette of an author overlooking a city, drawn in a bold Art Deco style. Brilliant gold foil accents outline the figure against a sepia-toned sky. It represents the monumental, larger-than-life status of a legendary literary icon."
+  },
+  "Media Tours": {
+    "name": "Media Tours",
+    "maxXp": 100,
+    "effect": 0.01,
+    "description": "Fame gain",
+    "filename": "media_tours.png",
+    "filefolder": "skills",
+    "imageprompt": "A vintage 1920s radio microphone surrounded by flashing press cameras, illustrated with dynamic linework. The dark brown ink captures the chaotic, glamorous energy of a nationwide publicity campaign. It feels like a historic snapshot of skyrocketing fame."
+  },
+  "Royalty Negotiation": {
+    "name": "Royalty Negotiation",
+    "maxXp": 100,
+    "effect": 0.002,
+    "description": "Job pay",
+    "filename": "royalty_negotiation.png",
+    "filefolder": "skills",
+    "imageprompt": "Two hands firmly shaking over a heavily drafted contract, depicted in a refined academic etching. The sepia tones and subtle gold foil details on the pen highlight the high-stakes nature of the deal. It symbolizes the shrewd, lucrative business side of elite publishing."
+  }
 }
