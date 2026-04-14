@@ -28,67 +28,64 @@ function createEntity(data, entity) {
 	data[entity.name].id = "row " + entity.name;
 }
 
-function createRequiredRow(categoryName) {
-	let requiredRow = document.getElementsByClassName("requiredRowTemplate")[0].content.firstElementChild.cloneNode(true);
-	requiredRow.classList.add("requiredRow");
-	requiredRow.classList.add(removeSpaces(categoryName));
-	requiredRow.id = categoryName;
-	return requiredRow;
-}
-
-function createHeaderRow(templates, categoryType, categoryName) {
-	let headerRow = templates.headerRow.content.firstElementChild.cloneNode(true);
-	headerRow.getElementsByClassName("category")[0].textContent = categoryName;
-	if (categoryType != itemCategories) {
-		headerRow.getElementsByClassName("valueType")[0].textContent = categoryType == jobCategories ? "Income/day" : "Effect";
-	}
+// Refactored to build the new grid and list layouts
+function createAllRows(categoryType, containerId) {
+	let container = document.getElementById(containerId);
+	container.innerHTML = ''; // Clear existing content
 	
-	headerRow.style.backgroundColor = headerRowColors[categoryName];
-	headerRow.style.color = "#ffffff";
-	headerRow.classList.add(removeSpaces(categoryName));
-	headerRow.classList.add("headerRow");
-	
-	return headerRow;
-}
-
-function createRow(templates, name, categoryName, categoryType) {
-	let row = templates.row.content.firstElementChild.cloneNode(true);
-	row.getElementsByClassName("name")[0].textContent = name;
-	
-	if (categoryType != itemCategories) {
-		// Tasks use the nested structure for tooltips to support max level info
-		row.getElementsByClassName("baseTooltip")[0].textContent = tooltips[name];
-		row.getElementsByClassName("progressBar")[0].onclick = function() { setTask(name); };
-	} else {
-		// Items use the standard tooltip structure
-		row.getElementsByClassName("tooltipText")[0].textContent = tooltips[name];
-		row.getElementsByClassName("button")[0].onclick = categoryName == "Properties" ? function() { setProperty(name); } : function() { setMisc(name); };
-	}
-	
-	row.id = "row " + name;
-	return row;
-}
-
-function createAllRows(categoryType, tableId) {
-	let templates = {
-		headerRow: document.getElementsByClassName(categoryType == itemCategories ? "headerRowItemTemplate" : "headerRowTaskTemplate")[0],
-		row: document.getElementsByClassName(categoryType == itemCategories ? "rowItemTemplate" : "rowTaskTemplate")[0],
-	};
-	
-	let table = document.getElementById(tableId);
+	let isJob = categoryType === jobCategories;
+	let isSkill = categoryType === skillCategories;
+	let isItem = categoryType === itemCategories;
 	
 	for (let categoryName in categoryType) {
-		let headerRow = createHeaderRow(templates, categoryType, categoryName);
-		table.appendChild(headerRow);
+		// Create Category Header
+		let headerTemplate = document.getElementById("categoryHeaderTemplate");
+		let headerClone = headerTemplate.content.cloneNode(true);
+		let categoryDiv = headerClone.querySelector('.category-section');
+		categoryDiv.querySelector('.category-header').textContent = categoryName;
+		
+		let contentDiv = categoryDiv.querySelector('.category-content');
+		
+		// Determine layout type (grid for jobs/properties, list for skills/misc)
+		if (isJob || (isItem && categoryName === "Properties")) {
+			contentDiv.classList.add('grid');
+		} else {
+			contentDiv.classList.add('list');
+		}
 		
 		let category = categoryType[categoryName];
 		category.forEach(function(name) {
-			let row = createRow(templates, name, categoryName, categoryType);
-			table.appendChild(row);
+			let templateId;
+			if (isJob) templateId = "jobCardTemplate";
+			else if (isSkill) templateId = "skillRowTemplate";
+			else if (isItem && categoryName === "Properties") templateId = "propertyCardTemplate";
+			else templateId = "miscRowTemplate";
+			
+			let template = document.getElementById(templateId);
+			let rowClone = template.content.cloneNode(true);
+			let element = rowClone.firstElementChild;
+			
+			element.id = "row " + name;
+			element.querySelector('.name').textContent = name;
+			
+			// Set tooltip text based on entity type
+			if (isJob || isSkill) {
+				element.querySelector('.baseTooltip').textContent = tooltips[name];
+			} else {
+				element.querySelector('.tooltipText').textContent = tooltips[name];
+			}
+			
+			// Attach click handlers
+			if (isJob || isSkill) {
+				element.onclick = function() { setTask(name); };
+			} else if (isItem) {
+				element.onclick = categoryName === "Properties" ? function() { setProperty(name); } : function() { setMisc(name); };
+			}
+			
+			contentDiv.appendChild(element);
 		});
 		
-		let requiredRow = createRequiredRow(categoryName);
-		table.append(requiredRow);
+		container.appendChild(categoryDiv);
 	}
 }
 
@@ -100,134 +97,136 @@ function updateQuickTaskDisplay(taskType) {
 	progressBar.getElementsByClassName("progressFill")[0].style.width = currentTask.xp / currentTask.getMaxXp() * 100 + "%";
 }
 
+// Refactored to apply locks directly to the cards/rows
 function updateRequiredRows(data, categoryType) {
-	let requiredRows = document.getElementsByClassName("requiredRow");
-	for (let requiredRow of requiredRows) {
-		let nextEntity = null;
-		let category = categoryType[requiredRow.id];
-		if (category == null) { continue; }
+	for (let categoryName in categoryType) {
+		let category = categoryType[categoryName];
+		let nextEntityFound = false;
+		
 		for (let i = 0; i < category.length; i++) {
 			let entityName = category[i];
-			if (i >= category.length - 1) break;
+			let element = document.getElementById("row " + entityName);
+			if (!element) continue;
+			
 			let requirements = gameData.requirements[entityName];
-			if (requirements && i == 0) {
-				if (!requirements.isCompleted()) {
-					nextEntity = data[entityName];
-					break;
-				}
-			}
 			
-			let nextIndex = i + 1;
-			if (nextIndex >= category.length) { break; }
-			let nextEntityName = category[nextIndex];
-			let nextEntityRequirements = gameData.requirements[nextEntityName];
-			
-			if (!nextEntityRequirements.isCompleted()) {
-				nextEntity = data[nextEntityName];
-				break;
-			}
-		}
-		
-		if (nextEntity == null) {
-			requiredRow.classList.add("hiddenTask");
-		} else {
-			requiredRow.classList.remove("hiddenTask");
-			let requirementObject = gameData.requirements[nextEntity.name];
-			let requirements = requirementObject.requirements;
-			
-			let coinElement = requiredRow.getElementsByClassName("coins")[0];
-			let levelElement = requiredRow.getElementsByClassName("levels")[0];
-			let fameElement = requiredRow.getElementsByClassName("fame")[0];
-			
-			coinElement.classList.add("hiddenTask");
-			levelElement.classList.add("hiddenTask");
-			fameElement.classList.add("hiddenTask");
-			
-			let finalText = "";
-			if (data == gameData.taskData) {
-				if (requirementObject instanceof FameRequirement) {
-					fameElement.classList.remove("hiddenTask");
-					fameElement.textContent = format(requirements[0].requirement) + " fame";
-				} else {
-					levelElement.classList.remove("hiddenTask");
-					for (let requirement of requirements) {
-						let task = gameData.taskData[requirement.task];
-						if (task.level >= requirement.requirement) continue;
-						let text = " " + requirement.task + " level " + format(task.level) + "/" + format(requirement.requirement) + ",";
-						finalText += text;
+			if (!requirements || requirements.isCompleted()) {
+				// Unlocked
+				element.classList.remove("locked", "hiddenTask");
+				let overlay = element.querySelector('.locked-overlay');
+				if (overlay) overlay.style.display = 'none';
+			} else if (!nextEntityFound) {
+				// Next to unlock
+				element.classList.remove("hiddenTask");
+				element.classList.add("locked");
+				let overlay = element.querySelector('.locked-overlay');
+				if (overlay) {
+					overlay.style.display = 'flex';
+					let reqText = overlay.querySelector('.req-text');
+					
+					let finalText = "";
+					if (requirements instanceof FameRequirement) {
+						finalText = format(requirements.requirements[0].requirement) + " fame";
+					} else if (requirements instanceof CoinRequirement) {
+						finalText = "$" + format(requirements.requirements[0].requirement);
+					} else if (requirements instanceof TaskRequirement) {
+						for (let req of requirements.requirements) {
+							let task = gameData.taskData[req.task];
+							finalText += req.task + " " + format(task.level) + "/" + format(req.requirement) + "<br>";
+						}
+					} else if (requirements instanceof AgeRequirement) {
+						finalText = "Age " + format(requirements.requirements[0].requirement);
 					}
-					finalText = finalText.substring(0, finalText.length - 1);
-					levelElement.textContent = finalText;
+					reqText.innerHTML = finalText;
 				}
-			} else if (data == gameData.itemData) {
-				coinElement.classList.remove("hiddenTask");
-				formatMoney(requirements[0].requirement, coinElement);
+				nextEntityFound = true;
+			} else {
+				// Hidden (too far down the tree)
+				element.classList.add("hiddenTask");
 			}
 		}
 	}
 }
 
+// Refactored to update the new DOM structure
 function updateTaskRows() {
 	for (let key in gameData.taskData) {
 		let task = gameData.taskData[key];
 		let row = document.getElementById("row " + task.name);
-		row.getElementsByClassName("level")[0].textContent = task.level;
+		if (!row) continue;
+		
+		let levelElement = row.querySelector(".level");
+		if (levelElement) levelElement.textContent = "LVL. " + task.level;
 		
 		// Update max level tooltip dynamically if player has past lives
-		let maxLevelTooltip = row.getElementsByClassName("maxLevelTooltip")[0];
-		if (gameData.rebirthOneCount > 0) {
-			maxLevelTooltip.style.display = "block";
-			let multi = 1 + (task.maxLevel / 20);
-			let formattedMulti = parseFloat(multi.toFixed(2));
-			let text = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
-			if (maxLevelTooltip.textContent !== text) {
-				maxLevelTooltip.textContent = text;
+		let maxLevelTooltip = row.querySelector(".maxLevelTooltip");
+		if (maxLevelTooltip) {
+			if (gameData.rebirthOneCount > 0) {
+				maxLevelTooltip.style.display = "block";
+				let multi = 1 + (task.maxLevel / 20);
+				let formattedMulti = parseFloat(multi.toFixed(2));
+				let text = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
+				if (maxLevelTooltip.textContent !== text) {
+					maxLevelTooltip.textContent = text;
+				}
+			} else {
+				maxLevelTooltip.style.display = "none";
 			}
-		} else {
-			maxLevelTooltip.style.display = "none";
 		}
 		
-		let progressFill = row.getElementsByClassName("progressFill")[0];
-		progressFill.style.width = task.xp / task.getMaxXp() * 100 + "%";
-		task == gameData.currentJob || task == gameData.currentSkill ? progressFill.classList.add("current") : progressFill.classList.remove("current");
+		let progressFill = row.querySelector(".progressFill");
+		if (progressFill) progressFill.style.width = (task.xp / task.getMaxXp() * 100) + "%";
 		
-		let valueElement = row.getElementsByClassName("value")[0];
-		valueElement.getElementsByClassName("income")[0].style.display = task instanceof Job ? "block" : "none";
-		valueElement.getElementsByClassName("effect")[0].style.display = task instanceof Skill ? "block" : "none";
-		
-		let skipSkillElement = row.getElementsByClassName("skipSkill")[0];
-		skipSkillElement.style.display = task instanceof Skill && autoLearnElement.checked ? "block" : "none";
+		if (task === gameData.currentJob || task === gameData.currentSkill) {
+			row.classList.add("active");
+		} else {
+			row.classList.remove("active");
+		}
 		
 		if (task instanceof Job) {
-			formatMoney(task.getIncome(), valueElement.getElementsByClassName("income")[0]);
+			let incomeElement = row.querySelector(".income");
+			if (incomeElement) {
+				incomeElement.innerHTML = `<span style="color: #ffd700">● ${format(task.getIncome())}</span> <span style="color: #a8d08d">/ day</span>`;
+			}
 		} else {
-			valueElement.getElementsByClassName("effect")[0].textContent = task.getEffectDescription();
+			let effectElement = row.querySelector(".effect");
+			if (effectElement) {
+				effectElement.textContent = task.getEffectDescription();
+			}
 		}
 	}
 }
 
+// Refactored to update the new DOM structure
 function updateItemRows() {
 	for (let key in gameData.itemData) {
 		let item = gameData.itemData[key];
 		let row = document.getElementById("row " + item.name);
-		let button = row.getElementsByClassName("button")[0];
-		button.disabled = gameData.coins < item.getExpense();
-		let active = row.getElementsByClassName("active")[0];
-		let color = itemCategories["Properties"].includes(item.name) ? headerRowColors["Properties"] : headerRowColors["Misc"];
-		active.style.backgroundColor = gameData.currentMisc.includes(item) || item == gameData.currentProperty ? color : "white";
-		row.getElementsByClassName("effect")[0].textContent = item.getEffectDescription();
-		formatMoney(item.getExpense(), row.getElementsByClassName("expense")[0]);
+		if (!row) continue;
+		
+		if (gameData.currentProperty === item || gameData.currentMisc.includes(item)) {
+			row.classList.add("active");
+		} else {
+			row.classList.remove("active");
+		}
+		
+		let effectElement = row.querySelector(".effect");
+		if (effectElement) {
+			effectElement.textContent = item.getEffectDescription();
+		}
+		
+		let expenseElement = row.querySelector(".expense");
+		if (expenseElement) {
+			expenseElement.innerHTML = `<span style="color: #ffd700">● -${format(item.getExpense())}</span> <span style="color: #ff4c4c">/ day</span>`;
+		}
 	}
 }
 
+// Refactored to toggle the skip checkboxes in the list layout
 function updateHeaderRows(categories) {
-	for (let categoryName in categories) {
-		let className = removeSpaces(categoryName);
-		let headerRow = document.getElementsByClassName(className)[0];
-		// Removed maxLevelElement logic
-		let skipSkillElement = headerRow.getElementsByClassName("skipSkill")[0];
-		skipSkillElement.style.display = categories == skillCategories && autoLearnElement.checked ? "block" : "none";
-	}
+	let skipElements = document.querySelectorAll('.skipSkill');
+	let display = autoLearnElement.checked ? "block" : "none";
+	skipElements.forEach(el => el.style.display = display);
 }
 
 // Function to handle speed multiplier buttons

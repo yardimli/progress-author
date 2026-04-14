@@ -104,91 +104,98 @@
 		</div>
 		
 		<div class="panel w3-margin-left w3-margin-top w3-padding" style="width: 900px; height: auto; float: left">
-			<template class="headerRowTaskTemplate">
-				<tr>
-					<th class="category" style="width: 250px">Job</th>
-					<th>Level</th>
-					<th class="valueType">Value type</th>
-					<!-- Removed Max level column -->
-					<th class="skipSkill">Skip</th>
-				</tr>
+			
+			<!-- New UI Templates -->
+			<template id="categoryHeaderTemplate">
+				<div class="category-section">
+					<div class="category-header"></div>
+					<div class="category-content"></div>
+				</div>
 			</template>
 			
-			<template class="headerRowItemTemplate">
-				<tr>
-					<th class="category" style="width: 250px">Item</th>
-					<th style="width: 100px">Active</th>
-					<th style="width: 250px">Effect</th>
-					<th>Expense/day</th>
-				</tr>
+			<template id="jobCardTemplate">
+				<div class="ui-card tooltip">
+					<div class="card-image-placeholder"></div>
+					<div class="card-title name"></div>
+					<div class="card-value income"></div>
+					<div class="level-badge">
+						<div class="badge-fill progressFill"></div>
+						<span class="badge-text level"></span>
+					</div>
+					<div class="locked-overlay hiddenTask">
+						<div class="locked-text">🔒 REQUIRED<br><span class="req-text"></span></div>
+					</div>
+					<span class="tooltipText">
+						<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
+						<span class="maxLevelTooltip" style="display: none; color: #4CAF50; margin-top: 8px; padding: 0 5px;"></span>
+					</span>
+				</div>
 			</template>
 			
-			<template class="rowTaskTemplate">
-				<tr>
-					<td>
-						<div class="progress-bar progressBar tooltip">
-							<div class="progress-fill progressFill"></div>
-							<div class="progress-text name">Task</div>
-							<!-- Updated tooltip to support base text and max level info -->
-							<span class="tooltipText">
-								<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
-								<span class="maxLevelTooltip" style="display: none; color: #4CAF50; margin-top: 8px; padding: 0 5px;"></span>
-							</span>
-						</div>
-					</td>
-					<td class="level">Level</td>
-					<td class="value">
-						<div class="effect"></div>
-						<div class="income"><span></span></div>
-					</td>
-					<!-- Removed Max level column -->
-					<td class="skipSkill">
-						<input class="checkbox" type="checkbox" />
-					</td>
-				</tr>
+			<template id="skillRowTemplate">
+				<div class="ui-row tooltip">
+					<div class="row-image-placeholder"></div>
+					<div class="row-info">
+						<div class="row-title name"></div>
+						<div class="row-value effect"></div>
+					</div>
+					<div class="level-badge">
+						<div class="badge-fill progressFill"></div>
+						<span class="badge-text level"></span>
+					</div>
+					<div class="skip-container skipSkill" style="margin-left: 15px;">
+						<input type="checkbox" class="checkbox" onclick="event.stopPropagation();">
+					</div>
+					<div class="locked-overlay hiddenTask">
+						<div class="locked-text">🔒 REQUIRED: <span class="req-text"></span></div>
+					</div>
+					<span class="tooltipText">
+						<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
+						<span class="maxLevelTooltip" style="display: none; color: #4CAF50; margin-top: 8px; padding: 0 5px;"></span>
+					</span>
+				</div>
 			</template>
 			
-			<template class="rowItemTemplate">
-				<tr>
-					<td>
-						<button class="button item-button tooltip">
-							<span class="name"></span>
-							<span class="tooltipText">tooltip</span>
-						</button>
-					</td>
-					<td>
-						<div class="w3-border w3-circle" style="width: 40px; height: 40px; padding: 7px">
-							<div class="active w3-circle" style="width: 24px; height: 24px;"></div>
-						</div>
-					</td>
-					<td class="effect"></td>
-					<td class="expense"><span></span></td>
-				</tr>
+			<template id="propertyCardTemplate">
+				<div class="ui-card tooltip">
+					<div class="card-image-placeholder"></div>
+					<div class="card-title name"></div>
+					<div class="card-value effect"></div>
+					<div class="card-expense expense"></div>
+					<div class="locked-overlay hiddenTask">
+						<div class="locked-text">🔒 REQUIRED<br><span class="req-text"></span></div>
+					</div>
+					<span class="tooltipText"></span>
+				</div>
 			</template>
 			
-			<template class="requiredRowTemplate">
-				<tr>
-					<td class="w3-text-gray" style="padding-left: 16px" colspan="5">
-						Required:
-						<span class="value">
-                                <span class="levels"></span>
-                                <span class="coins"><span></span></span>
-                                <span style="color: rgb(200, 0, 0)" class="fame"></span>
-                            </span>
-					</td>
-				</tr>
+			<template id="miscRowTemplate">
+				<div class="ui-row tooltip">
+					<div class="row-image-placeholder"></div>
+					<div class="row-info">
+						<div class="row-title name"></div>
+						<div class="row-value effect"></div>
+					</div>
+					<div class="row-expense expense"></div>
+					<div class="locked-overlay hiddenTask">
+						<div class="locked-text">🔒 REQUIRED: <span class="req-text"></span></div>
+					</div>
+					<span class="tooltipText"></span>
+				</div>
 			</template>
 			
 			<div class="tab" id="jobs">
-				<table id="jobTable" class="w3-table w3-bordered"></table>
+				<div class="tab-description">Select a job to earn money. You can switch at any time.</div>
+				<div id="jobTable"></div> <!-- Changed from table to div -->
 			</div>
 			
 			<div class="tab" id="skills">
-				<table id="skillTable" class="w3-table w3-bordered"></table>
+				<div class="tab-description">Select a skill to progress. All earned bonuses apply, even if not selected.</div>
+				<div id="skillTable"></div> <!-- Changed from table to div -->
 			</div>
 			
 			<div class="tab" id="shop">
-				<table id="itemTable" class="w3-table w3-bordered"></table>
+				<div id="itemTable"></div> <!-- Changed from table to div -->
 			</div>
 			
 			<div class="tab" id="log" style="display: none;">
