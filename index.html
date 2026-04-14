@@ -110,12 +110,14 @@
 				<div class="category-section">
 					<div class="category-header"></div>
 					<div class="category-content"></div>
+					<!-- New div for requirements -->
+					<div class="category-requirements" style="display: none;"></div>
 				</div>
 			</template>
 			
 			<template id="jobCardTemplate">
 				<div class="ui-card tooltip">
-					<div class="card-image-placeholder"></div>
+					<img class="card-image" src="" alt="">
 					<div class="card-title name"></div>
 					<div class="card-value income"></div>
 					<div class="level-badge">
@@ -123,7 +125,7 @@
 						<span class="badge-text level"></span>
 					</div>
 					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 REQUIRED<br><span class="req-text"></span></div>
+						<div class="locked-text">🔒 LOCKED</div>
 					</div>
 					<span class="tooltipText">
 						<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
@@ -134,7 +136,7 @@
 			
 			<template id="skillRowTemplate">
 				<div class="ui-row tooltip">
-					<div class="row-image-placeholder"></div>
+					<img class="row-image" src="" alt="">
 					<div class="row-info">
 						<div class="row-title name"></div>
 						<div class="row-value effect"></div>
@@ -147,7 +149,7 @@
 						<input type="checkbox" class="checkbox" onclick="event.stopPropagation();">
 					</div>
 					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 REQUIRED: <span class="req-text"></span></div>
+						<div class="locked-text">🔒 LOCKED</div>
 					</div>
 					<span class="tooltipText">
 						<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
@@ -158,12 +160,12 @@
 			
 			<template id="propertyCardTemplate">
 				<div class="ui-card tooltip">
-					<div class="card-image-placeholder"></div>
+					<img class="card-image" src="" alt="">
 					<div class="card-title name"></div>
 					<div class="card-value effect"></div>
 					<div class="card-expense expense"></div>
 					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 REQUIRED<br><span class="req-text"></span></div>
+						<div class="locked-text">🔒 LOCKED</div>
 					</div>
 					<span class="tooltipText"></span>
 				</div>
@@ -171,14 +173,14 @@
 			
 			<template id="miscRowTemplate">
 				<div class="ui-row tooltip">
-					<div class="row-image-placeholder"></div>
+					<img class="row-image" src="" alt="">
 					<div class="row-info">
 						<div class="row-title name"></div>
 						<div class="row-value effect"></div>
 					</div>
 					<div class="row-expense expense"></div>
 					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 REQUIRED: <span class="req-text"></span></div>
+						<div class="locked-text">🔒 LOCKED</div>
 					</div>
 					<span class="tooltipText"></span>
 				</div>

@@ -3,160 +3,160 @@
     "name": "Gig Worker",
     "maxXp": 50,
     "income": 40.00,
-    "filename": "gig_worker.png",
-    "filefolder": "jobs",
+    "filename": "gig_worker.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A weary worker carrying a heavy load down a cobblestone street, drawn in a gritty woodblock print style. The dark brown ink and sepia tones emphasize the struggle of early 1900s labor. It captures the exhausting, unglamorous reality of making ends meet."
   },
   "Food Service": {
     "name": "Food Service",
     "maxXp": 100,
     "income": 70.00,
-    "filename": "food_service.png",
-    "filefolder": "jobs",
+    "filename": "food_service.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A bustling 1920s diner scene illustrated like a vintage newspaper etching. A tired server balances a tray of coffee cups, rendered in heavy sepia linework. The atmosphere is frantic and steeped in working-class struggles."
   },
   "Delivery Driver": {
     "name": "Delivery Driver",
     "maxXp": 200,
     "income": 100.00,
-    "filename": "delivery_driver.png",
-    "filefolder": "jobs",
+    "filename": "delivery_driver.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A classic bicycle messenger navigating a crowded, sepia-toned city intersection. The dark brown ink captures the motion and urgency of the era's delivery services. It feels like an authentic, historical snapshot of urban life."
   },
   "Warehouse Worker": {
     "name": "Warehouse Worker",
     "maxXp": 400,
     "income": 130.00,
-    "filename": "warehouse_worker.png",
-    "filefolder": "jobs",
+    "filename": "warehouse_worker.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A towering, dimly lit industrial warehouse depicted with intense crosshatching and dark shadows. Workers lift heavy wooden crates in a scene reminiscent of early 20th-century labor prints. The woodblock style highlights the physical toll of the job."
   },
   "Office Temp": {
     "name": "Office Temp",
     "maxXp": 800,
     "income": 160.00,
-    "filename": "office_temp.png",
-    "filefolder": "jobs",
+    "filename": "office_temp.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "Rows of wooden desks in a cramped, vintage office space, drawn in dark brown ink. A solitary figure files papers under the glow of a hanging pendant light. The illustration evokes the monotonous, bureaucratic side of classic academia and business."
   },
   "Personal Assistant": {
     "name": "Personal Assistant",
     "maxXp": 1600,
     "income": 200.00,
-    "filename": "personal_assistant.png",
-    "filefolder": "jobs",
+    "filename": "personal_assistant.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A sharply dressed assistant managing a chaotic desk full of ringing rotary phones and scattered papers. The sepia-toned etching captures the fast-paced, demanding nature of supporting an executive. It features clean, classic linework typical of 1920s illustrations."
   },
   "Intern": {
     "name": "Intern",
     "maxXp": 100,
     "income": 40.00,
-    "filename": "intern.png",
-    "filefolder": "jobs",
+    "filename": "intern.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A young, eager apprentice carrying a stack of manuscripts through a grand publishing house. The woodblock print style uses dark brown ink to detail the towering bookshelves and classic architecture. It represents the humble beginnings within the prestigious literary world."
   },
   "Blogger": {
     "name": "Blogger",
     "maxXp": 1000,
     "income": 80.00,
-    "filename": "blogger.png",
-    "filefolder": "jobs",
+    "filename": "blogger.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A dedicated writer furiously typing on a classic typewriter, surrounded by crumpled parchment. The sepia-toned illustration mimics an old newspaper sketch with heavy ink contrast. It captures the solitary, grassroots effort of independent publishing."
   },
   "Content Creator": {
     "name": "Content Creator",
     "maxXp": 10000,
     "income": 150.00,
-    "filename": "content_creator.png",
-    "filefolder": "jobs",
+    "filename": "content_creator.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A charismatic storyteller presenting their work to a small, captivated audience in a vintage parlor. The dark brown ink and classic etching style highlight the growing connection with readers. Subtle Art Deco elements begin to appear in the background decor."
   },
   "Copy Editor": {
     "name": "Copy Editor",
     "maxXp": 100000,
     "income": 220.00,
-    "filename": "copy_editor.png",
-    "filefolder": "jobs",
+    "filename": "copy_editor.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A meticulous editor hunched over a manuscript with a red ink pen, rendered in monochromatic sepia. The academic vibe is strong, with magnifying glasses and reference books scattered around. The woodblock print style emphasizes precision and literary standards."
   },
   "Staff Writer": {
     "name": "Staff Writer",
     "maxXp": 1000000,
     "income": 300.00,
-    "filename": "staff_writer.png",
-    "filefolder": "jobs",
+    "filename": "staff_writer.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A confident journalist sitting at a bustling newsroom desk, illustrated with sharp, classic linework. The dark brown ink details the chaotic energy of an old printing press environment. It feels like a respected, established role in a 1920s publication."
   },
   "Senior Editor": {
     "name": "Senior Editor",
     "maxXp": 7500000,
     "income": 450.00,
-    "filename": "senior_editor.png",
-    "filefolder": "jobs",
+    "filename": "senior_editor.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "An imposing figure reviewing a manuscript in a luxurious, wood-paneled office. The sepia-toned etching features early hints of gold foil accents on the desk accessories. It radiates authority and deep academic prestige within the publishing industry."
   },
   "Ghostwriter": {
     "name": "Ghostwriter",
     "maxXp": 40000000,
     "income": 700.00,
-    "filename": "ghostwriter.png",
-    "filefolder": "jobs",
+    "filename": "ghostwriter.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A shadowy, anonymous figure writing by candlelight in a hidden, vintage study. The woodblock print uses heavy dark brown ink to obscure the writer's face, emphasizing secrecy. It captures the mysterious, behind-the-scenes nature of writing for the elite."
   },
   "Full-Time Author": {
     "name": "Full-Time Author",
     "maxXp": 150000000,
     "income": 0,
-    "filename": "full_time_author.png",
-    "filefolder": "jobs",
+    "filename": "full_time_author.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A triumphant writer holding their freshly bound novel, bathed in warm sepia light. The illustration features elegant Art Deco borders and striking gold foil details. It symbolizes the ultimate achievement and prestige of a dedicated literary career."
   },
   "C.W. Student": {
     "name": "C.W. Student",
     "maxXp": 100000,
     "income": 30.00,
-    "filename": "cw_student.png",
-    "filefolder": "jobs",
+    "filename": "cw_student.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A young scholar surrounded by towering stacks of classic literature in a grand university library. The dark brown ink and woodblock style evoke a deep sense of old-world academia. It captures the foundational, studious beginnings of a literary elite."
   },
   "Junior Agent": {
     "name": "Junior Agent",
     "maxXp": 1000000,
     "income": 180.00,
-    "filename": "junior_agent.png",
-    "filefolder": "jobs",
+    "filename": "junior_agent.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A sharply dressed professional negotiating over a vintage wooden desk, drawn in a classic newspaper style. The sepia tones highlight the bustling, competitive nature of the literary agency. It represents the first step into the business side of publishing."
   },
   "Senior Agent": {
     "name": "Senior Agent",
     "maxXp": 10000000,
     "income": 350.00,
-    "filename": "senior_agent.png",
-    "filefolder": "jobs",
+    "filename": "senior_agent.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A confident power-broker sealing a deal in an upscale, 1920s lounge. The illustration is enhanced with elegant Art Deco geometric patterns and subtle gold foil accents. It exudes the prestige and influence of a major player in the literary world."
   },
   "Publisher": {
     "name": "Publisher",
     "maxXp": 100000000,
     "income": 600.00,
-    "filename": "publisher.png",
-    "filefolder": "jobs",
+    "filename": "publisher.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A commanding executive standing before a massive, roaring vintage printing press. The dark brown ink is contrasted with brilliant gold foil highlights on the machinery. It captures the immense power and industrial scale of a publishing empire."
   },
   "Literary Titan": {
     "name": "Literary Titan",
     "maxXp": 10000000000,
     "income": 1500.00,
-    "filename": "literary_titan.png",
-    "filefolder": "jobs",
+    "filename": "literary_titan.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "A legendary figure sitting on a metaphorical throne of classic books, rendered in stunning Art Deco style. Lavish gold foil linework weaves through the sepia-toned woodblock print. It embodies the Great Gatsby-esque pinnacle of literary fame and influence."
   },
   "Head of Publishing": {
     "name": "Head of Publishing",
     "maxXp": 1000000000000,
     "income": 3000.00,
-    "filename": "head_of_publishing.png",
-    "filefolder": "jobs",
+    "filename": "head_of_publishing.jpg",
+    "filefolder": "jobs256",
     "imageprompt": "An omnipotent industry leader overlooking a sprawling 1920s metropolis from a grand penthouse. The illustration is dripping with prestige, featuring intricate gold foil Art Deco designs and dark brown ink. It represents the absolute zenith of the literary business world."
   }
 }

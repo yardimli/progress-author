@@ -28,7 +28,7 @@ function createEntity(data, entity) {
 	data[entity.name].id = "row " + entity.name;
 }
 
-// Refactored to build the new grid and list layouts
+// Refactored to build the new grid and list layouts and load images dynamically
 function createAllRows(categoryType, containerId) {
 	let container = document.getElementById(containerId);
 	container.innerHTML = ''; // Clear existing content
@@ -37,12 +37,19 @@ function createAllRows(categoryType, containerId) {
 	let isSkill = categoryType === skillCategories;
 	let isItem = categoryType === itemCategories;
 	
+	// Determine base data to fetch image paths
+	let baseData = isJob ? jobBaseData : (isSkill ? skillBaseData : itemBaseData);
+	
 	for (let categoryName in categoryType) {
 		// Create Category Header
 		let headerTemplate = document.getElementById("categoryHeaderTemplate");
 		let headerClone = headerTemplate.content.cloneNode(true);
 		let categoryDiv = headerClone.querySelector('.category-section');
 		categoryDiv.querySelector('.category-header').textContent = categoryName;
+		
+		// Assign an ID to the requirements footer so we can target it later
+		let reqDiv = categoryDiv.querySelector('.category-requirements');
+		reqDiv.id = "req-category-" + categoryName.replace(/\s+/g, '-');
 		
 		let contentDiv = categoryDiv.querySelector('.category-content');
 		
@@ -68,6 +75,16 @@ function createAllRows(categoryType, containerId) {
 			element.id = "row " + name;
 			element.querySelector('.name').textContent = name;
 			
+			// Set image source from baseData
+			let entityData = baseData[name];
+			if (entityData && entityData.filefolder && entityData.filename) {
+				let imgElement = element.querySelector('.card-image, .row-image');
+				if (imgElement) {
+					imgElement.src = `img/${entityData.filefolder}/${entityData.filename}`;
+					imgElement.alt = name;
+				}
+			}
+			
 			// Set tooltip text based on entity type
 			if (isJob || isSkill) {
 				element.querySelector('.baseTooltip').textContent = tooltips[name];
@@ -75,11 +92,15 @@ function createAllRows(categoryType, containerId) {
 				element.querySelector('.tooltipText').textContent = tooltips[name];
 			}
 			
-			// Attach click handlers
+			// Attach click handlers with a check to prevent clicking locked cards
 			if (isJob || isSkill) {
-				element.onclick = function() { setTask(name); };
+				element.onclick = function() {
+					if (!element.classList.contains("locked")) setTask(name);
+				};
 			} else if (isItem) {
-				element.onclick = categoryName === "Properties" ? function() { setProperty(name); } : function() { setMisc(name); };
+				element.onclick = categoryName === "Properties" ?
+					function() { if (!element.classList.contains("locked")) setProperty(name); } :
+					function() { if (!element.classList.contains("locked")) setMisc(name); };
 			}
 			
 			contentDiv.appendChild(element);
@@ -115,6 +136,9 @@ function updateRequiredRows(data, categoryType) {
 		let category = categoryType[categoryName];
 		let nextEntityFound = false;
 		
+		let categoryReqDiv = document.getElementById("req-category-" + categoryName.replace(/\s+/g, '-'));
+		let categoryReqText = ""; // To store the text to display at the bottom
+		
 		for (let i = 0; i < category.length; i++) {
 			let entityName = category[i];
 			let element = document.getElementById("row " + entityName);
@@ -136,31 +160,40 @@ function updateRequiredRows(data, categoryType) {
 				let overlay = element.querySelector('.locked-overlay');
 				if (overlay) {
 					if (overlay.style.display !== 'flex') overlay.style.display = 'flex';
-					let reqText = overlay.querySelector('.req-text');
-					
-					let finalText = "";
-					if (requirements instanceof FameRequirement) {
-						finalText = format(requirements.requirements[0].requirement) + " fame";
-					} else if (requirements instanceof CoinRequirement) {
-						finalText = "$" + format(requirements.requirements[0].requirement);
-					} else if (requirements instanceof TaskRequirement) {
-						for (let req of requirements.requirements) {
-							let task = gameData.taskData[req.task];
-							finalText += req.task + " " + format(task.level) + "/" + format(req.requirement) + "<br>";
-						}
-					} else if (requirements instanceof AgeRequirement) {
-						finalText = "Age " + format(requirements.requirements[0].requirement);
-					}
-					
-					// Only update innerHTML if it has changed to prevent repaints
-					if (reqText.innerHTML !== finalText) {
-						reqText.innerHTML = finalText;
-					}
 				}
+				
+				// Build the requirement text for the category footer
+				let finalText = `<span style="color: #fff;">🔒 To unlock <b>${entityName}</b>:</span><br>`;
+				if (requirements instanceof FameRequirement) {
+					finalText += format(requirements.requirements[0].requirement) + " fame";
+				} else if (requirements instanceof CoinRequirement) {
+					finalText += "$" + format(requirements.requirements[0].requirement);
+				} else if (requirements instanceof TaskRequirement) {
+					let reqStrings = [];
+					for (let req of requirements.requirements) {
+						let task = gameData.taskData[req.task];
+						reqStrings.push(req.task + " LVL " + format(task.level) + " / " + format(req.requirement));
+					}
+					finalText += reqStrings.join("<br>");
+				} else if (requirements instanceof AgeRequirement) {
+					finalText += "Age " + format(requirements.requirements[0].requirement);
+				}
+				
+				categoryReqText = finalText;
 				nextEntityFound = true;
 			} else {
 				// Hidden (too far down the tree)
 				if (!element.classList.contains("hiddenTask")) element.classList.add("hiddenTask");
+			}
+		}
+		
+		// Update the category footer
+		if (categoryReqDiv) {
+			if (categoryReqText !== "") {
+				if (categoryReqDiv.style.display !== 'block') categoryReqDiv.style.display = 'block';
+				if (categoryReqDiv.innerHTML !== categoryReqText) categoryReqDiv.innerHTML = categoryReqText;
+			} else {
+				if (categoryReqDiv.style.display !== 'none') categoryReqDiv.style.display = 'none';
 			}
 		}
 	}
@@ -384,6 +417,13 @@ function hideEntities() {
 		let requirement = gameData.requirements[key];
 		let completed = requirement.isCompleted();
 		for (let element of requirement.elements) {
+			
+			// Skip row elements. Their visibility is managed entirely by updateRequiredRows()
+			// This prevents the "next" card from being completely hidden.
+			if (element.id && element.id.startsWith("row ")) {
+				continue;
+			}
+			
 			if (completed) {
 				if (element.classList.contains("hidden")) {
 					element.classList.remove("hidden");
