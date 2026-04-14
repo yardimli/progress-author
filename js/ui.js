@@ -54,13 +54,18 @@ function createHeaderRow(templates, categoryType, categoryName) {
 function createRow(templates, name, categoryName, categoryType) {
 	let row = templates.row.content.firstElementChild.cloneNode(true);
 	row.getElementsByClassName("name")[0].textContent = name;
-	row.getElementsByClassName("tooltipText")[0].textContent = tooltips[name];
-	row.id = "row " + name;
+	
 	if (categoryType != itemCategories) {
+		// Tasks use the nested structure for tooltips to support max level info
+		row.getElementsByClassName("baseTooltip")[0].textContent = tooltips[name];
 		row.getElementsByClassName("progressBar")[0].onclick = function() { setTask(name); };
 	} else {
+		// Items use the standard tooltip structure
+		row.getElementsByClassName("tooltipText")[0].textContent = tooltips[name];
 		row.getElementsByClassName("button")[0].onclick = categoryName == "Properties" ? function() { setProperty(name); } : function() { setMisc(name); };
 	}
+	
+	row.id = "row " + name;
 	return row;
 }
 
@@ -168,11 +173,19 @@ function updateTaskRows() {
 		let row = document.getElementById("row " + task.name);
 		row.getElementsByClassName("level")[0].textContent = task.level;
 		
-		// Removed Xp/day and Xp left column updates
-		
-		let maxLevel = row.getElementsByClassName("maxLevel")[0];
-		maxLevel.textContent = task.maxLevel;
-		gameData.rebirthOneCount > 0 ? maxLevel.classList.remove("hidden") : maxLevel.classList.add("hidden");
+		// Update max level tooltip dynamically if player has past lives
+		let maxLevelTooltip = row.getElementsByClassName("maxLevelTooltip")[0];
+		if (gameData.rebirthOneCount > 0) {
+			maxLevelTooltip.style.display = "block";
+			let multi = 1 + (task.maxLevel / 20);
+			let formattedMulti = parseFloat(multi.toFixed(2));
+			let text = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
+			if (maxLevelTooltip.textContent !== text) {
+				maxLevelTooltip.textContent = text;
+			}
+		} else {
+			maxLevelTooltip.style.display = "none";
+		}
 		
 		let progressFill = row.getElementsByClassName("progressFill")[0];
 		progressFill.style.width = task.xp / task.getMaxXp() * 100 + "%";
@@ -211,20 +224,19 @@ function updateHeaderRows(categories) {
 	for (let categoryName in categories) {
 		let className = removeSpaces(categoryName);
 		let headerRow = document.getElementsByClassName(className)[0];
-		let maxLevelElement = headerRow.getElementsByClassName("maxLevel")[0];
-		gameData.rebirthOneCount > 0 ? maxLevelElement.classList.remove("hidden") : maxLevelElement.classList.add("hidden");
+		// Removed maxLevelElement logic
 		let skipSkillElement = headerRow.getElementsByClassName("skipSkill")[0];
 		skipSkillElement.style.display = categories == skillCategories && autoLearnElement.checked ? "block" : "none";
 	}
 }
 
-// New function to handle speed multiplier buttons
+// Function to handle speed multiplier buttons
 function setGameSpeedMultiplier(multiplier) {
 	gameData.speedMultiplier = multiplier;
 	updateSpeedButtons();
 }
 
-// New function to update speed buttons UI
+// Function to update speed buttons UI
 function updateSpeedButtons() {
 	let buttons = document.getElementsByClassName("speed-btn");
 	for (let btn of buttons) {
@@ -321,5 +333,5 @@ function updateUI() {
 	updateQuickTaskDisplay("skill");
 	hideEntities();
 	updateText();
-	updateSpeedButtons(); // Ensure speed buttons are styled correctly
+	updateSpeedButtons();
 }

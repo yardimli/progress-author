@@ -109,8 +109,7 @@
 					<th class="category" style="width: 250px">Job</th>
 					<th>Level</th>
 					<th class="valueType">Value type</th>
-					<!-- Removed Xp/day and Xp left columns -->
-					<th class="maxLevel">Max level</th>
+					<!-- Removed Max level column -->
 					<th class="skipSkill">Skip</th>
 				</tr>
 			</template>
@@ -130,7 +129,11 @@
 						<div class="progress-bar progressBar tooltip">
 							<div class="progress-fill progressFill"></div>
 							<div class="progress-text name">Task</div>
-							<span class="tooltipText"></span>
+							<!-- Updated tooltip to support base text and max level info -->
+							<span class="tooltipText">
+								<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
+								<span class="maxLevelTooltip" style="display: none; color: #4CAF50; margin-top: 8px; padding: 0 5px;"></span>
+							</span>
 						</div>
 					</td>
 					<td class="level">Level</td>
@@ -138,8 +141,7 @@
 						<div class="effect"></div>
 						<div class="income"><span></span></div>
 					</td>
-					<!-- Removed Xp/day and Xp left columns -->
-					<td class="maxLevel">Max level</td>
+					<!-- Removed Max level column -->
 					<td class="skipSkill">
 						<input class="checkbox" type="checkbox" />
 					</td>
@@ -265,7 +267,7 @@
 	</div>
 </div>
 
-<!-- Modified section: Scripts loaded in dependency order -->
+<!-- Scripts loaded in dependency order -->
 <!-- 1. Classes and State first -->
 <script type="text/javascript" src="js/classes.js"></script>
 <script type="text/javascript" src="js/state.js"></script>
