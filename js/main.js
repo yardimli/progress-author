@@ -709,8 +709,8 @@ function updateWritingProcess() {
     while (gameData.wordsWritten >= target) {
         let quality = getBookQuality();
         let fame = gameData.fame;
-        // Multiplied base sales by 1000 to match modern day economy scaling
-        let sales = (quality / 100) * (fame + 10) * 5000;
+        // Adjusted base sales to match realistic 2020 average economy scaling
+        let sales = (quality / 100) * (fame + 10) * 5;
         let royalty = sales * 0.1;
         
         gameData.royalties += royalty;
