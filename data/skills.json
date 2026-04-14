@@ -1,0 +1,22 @@
+{
+  "Focus": {"name": "Focus", "maxXp": 100, "effect": 0.01, "description": "Skill xp"},
+  "Time Management": {"name": "Time Management", "maxXp": 100, "effect": 0.01, "description": "Job xp"},
+  "Frugality": {"name": "Frugality", "maxXp": 100, "effect": -0.01, "description": "Expenses"},
+  "Meditation": {"name": "Meditation", "maxXp": 100, "effect": 0.01, "description": "Inspiration"},
+
+  "Typing Speed": {"name": "Typing Speed", "maxXp": 100, "effect": 0.01, "description": "Writing Speed"},
+  "Grammar & Prose": {"name": "Grammar & Prose", "maxXp": 100, "effect": 0.01, "description": "Creative Ind. xp"},
+  "Plotting": {"name": "Plotting", "maxXp": 100, "effect": 0.01, "description": "Literary Elite xp"},
+  "Character Dev.": {"name": "Character Dev.", "maxXp": 100, "effect": 0.01, "description": "Typing Speed xp"},
+
+  "Healthy Lifestyle": {"name": "Healthy Lifestyle", "maxXp": 100, "effect": 0.01, "description": "Longer lifespan"},
+  "Flow State": {"name": "Flow State", "maxXp": 100, "effect": 0.01, "description": "Gamespeed"},
+  "Longevity Secrets": {"name": "Longevity Secrets", "maxXp": 100, "effect": 0.01, "description": "Longer lifespan"},
+
+  "Brand Management": {"name": "Brand Management", "maxXp": 100, "effect": 0.01, "description": "All xp"},
+  "Networking": {"name": "Networking", "maxXp": 100, "effect": 0.01, "description": "Fame gain"},
+  "Public Speaking": {"name": "Public Speaking", "maxXp": 100, "effect": -0.01, "description": "Expenses"},
+  "Personal Brand": {"name": "Personal Brand", "maxXp": 100, "effect": 0.01, "description": "All xp"},
+  "Media Tours": {"name": "Media Tours", "maxXp": 100, "effect": 0.01, "description": "Fame gain"},
+  "Royalty Negotiation": {"name": "Royalty Negotiation", "maxXp": 100, "effect": 0.002, "description": "Job pay"}
+}
