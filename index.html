@@ -259,7 +259,23 @@
 	</div>
 </div>
 
+<!-- Modified section: Scripts loaded in dependency order -->
+<!-- 1. Classes and State first -->
 <script type="text/javascript" src="js/classes.js"></script>
+<script type="text/javascript" src="js/state.js"></script>
+
+<!-- 2. Utilities and Formulas -->
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/formulas.js"></script>
+
+<!-- 3. UI and Save/Load -->
+<script type="text/javascript" src="js/ui.js"></script>
+<script type="text/javascript" src="js/save.js"></script>
+
+<!-- 4. Game Mechanics -->
+<script type="text/javascript" src="js/mechanics.js"></script>
+
+<!-- 5. Main Engine (Init & Loop) last -->
 <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

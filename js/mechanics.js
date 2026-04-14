@@ -1,0 +1,235 @@
+// Writing process, automation, rebirth, death
+
+function applyExpenses() {
+	let coins = applySpeed(getExpense());
+	gameData.coins -= coins;
+	if (gameData.coins < 0) {
+		goBankrupt();
+	}
+}
+
+function goBankrupt() {
+	gameData.coins = 0;
+	gameData.currentProperty = gameData.itemData["Homeless"];
+	gameData.currentMisc = [];
+	logEvent("Ran out of money and went bankrupt! Lost all housing and equipment.");
+}
+
+function setPause() {
+	gameData.paused = !gameData.paused;
+}
+
+function setTimeWarping() {
+	gameData.timeWarpingEnabled = !gameData.timeWarpingEnabled;
+}
+
+function setTask(taskName) {
+	let task = gameData.taskData[taskName];
+	task instanceof Job ? gameData.currentJob = task : gameData.currentSkill = task;
+}
+
+function setProperty(propertyName) {
+	let property = gameData.itemData[propertyName];
+	gameData.currentProperty = property;
+}
+
+function setMisc(miscName) {
+	let misc = gameData.itemData[miscName];
+	if (gameData.currentMisc.includes(misc)) {
+		for (let i = 0; i < gameData.currentMisc.length; i++) {
+			if (gameData.currentMisc[i] == misc) {
+				gameData.currentMisc.splice(i, 1);
+			}
+		}
+	} else {
+		gameData.currentMisc.push(misc);
+	}
+}
+
+function doCurrentTask(task) {
+	if (!task) return;
+	task.increaseXp();
+	if (task instanceof Job) {
+		increaseCoins();
+	}
+}
+
+function increaseCoins() {
+	let coins = applySpeed(getIncome());
+	gameData.coins += coins;
+}
+
+function getCategoryFromEntityName(categoryType, entityName) {
+	for (let categoryName in categoryType) {
+		let category = categoryType[categoryName];
+		if (category.includes(entityName)) {
+			return category;
+		}
+	}
+}
+
+function getNextEntity(data, categoryType, entityName) {
+	let category = getCategoryFromEntityName(categoryType, entityName);
+	let nextIndex = category.indexOf(entityName) + 1;
+	if (nextIndex > category.length - 1) return null;
+	let nextEntityName = category[nextIndex];
+	let nextEntity = data[nextEntityName];
+	return nextEntity;
+}
+
+function autoPromote() {
+	if (!autoPromoteElement.checked) return;
+	let nextEntity = getNextEntity(gameData.taskData, jobCategories, gameData.currentJob.name);
+	if (nextEntity == null) return;
+	let requirement = gameData.requirements[nextEntity.name];
+	if (requirement.isCompleted()) gameData.currentJob = nextEntity;
+}
+
+function checkSkillSkipped(skill) {
+	let row = document.getElementById("row " + skill.name);
+	return row.getElementsByClassName("checkbox")[0].checked;
+}
+
+function setSkillWithLowestMaxXp() {
+	let xpDict = {};
+	
+	for (let skillName in gameData.taskData) {
+		let skill = gameData.taskData[skillName];
+		let requirement = gameData.requirements[skillName];
+		if (skill instanceof Skill && requirement.isCompleted() && !checkSkillSkipped(skill)) {
+			xpDict[skill.name] = skill.level;
+		}
+	}
+	
+	if (Object.keys(xpDict).length === 0) {
+		skillWithLowestMaxXp = gameData.taskData["Focus"];
+		return;
+	}
+	
+	let skillName = getKeyOfLowestValueFromDict(xpDict);
+	skillWithLowestMaxXp = gameData.taskData[skillName];
+}
+
+function autoLearn() {
+	if (!autoLearnElement.checked || !skillWithLowestMaxXp) return;
+	gameData.currentSkill = skillWithLowestMaxXp;
+}
+
+function increaseDays() {
+	let increase = applySpeed(1);
+	gameData.days += increase;
+}
+
+function getWritingSpeed() {
+	let baseSpeed = 10;
+	let typingSpeed = gameData.taskData["Typing Speed"] ? gameData.taskData["Typing Speed"].getEffect() : 1;
+	let focus = gameData.taskData["Focus"] ? gameData.taskData["Focus"].getEffect() : 1;
+	let inspiration = getInspiration();
+	let fullTimeBonus = (gameData.currentJob && gameData.currentJob.name === "Full-Time Author") ? 5 : 1;
+	
+	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus;
+}
+
+function getBookLength() {
+	let plottingLvl = gameData.taskData["Plotting"] ? gameData.taskData["Plotting"].level : 0;
+	return (50 + (plottingLvl * 2)) * 250;
+}
+
+function getBookQuality() {
+	let grammar = gameData.taskData["Grammar & Prose"] ? gameData.taskData["Grammar & Prose"].level : 0;
+	let plotting = gameData.taskData["Plotting"] ? gameData.taskData["Plotting"].level : 0;
+	let charDev = gameData.taskData["Character Dev."] ? gameData.taskData["Character Dev."].level : 0;
+	return (grammar + plotting + charDev) / 3;
+}
+
+function updateWritingProcess() {
+	let speed = applySpeed(getWritingSpeed());
+	gameData.wordsWritten += speed;
+	
+	let target = getBookLength();
+	
+	while (gameData.wordsWritten >= target) {
+		let quality = getBookQuality();
+		let fame = gameData.fame;
+		let sales = (quality / 100) * (fame + 10) * 5;
+		let royalty = sales * 0.1;
+		
+		gameData.royalties += royalty;
+		gameData.booksPublished += 1;
+		gameData.wordsWritten -= target;
+		
+		logEvent(`Published Book #${gameData.booksPublished}! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
+		target = getBookLength();
+	}
+}
+
+function rebirthOne() {
+	gameData.rebirthOneCount += 1;
+	logEvent("Retired and started a new chapter. Legacy bonuses updated.");
+	rebirthReset();
+}
+
+function rebirthTwo() {
+	gameData.rebirthTwoCount += 1;
+	let fameGain = getFameGain();
+	gameData.fame += fameGain;
+	logEvent(`Retired as a Legend. Gained ${fameGain.toFixed(1)} Fame!`);
+	
+	rebirthReset();
+	
+	for (let taskName in gameData.taskData) {
+		let task = gameData.taskData[taskName];
+		task.maxLevel = 0;
+	}
+}
+
+function rebirthReset() {
+	setTab(jobTabButton, "jobs");
+	
+	gameData.coins = 0;
+	gameData.days = 365 * 18;
+	gameData.wordsWritten = 0;
+	gameData.booksPublished = 0;
+	gameData.royalties = 0;
+	gameData.currentJob = gameData.taskData["Gig Worker"];
+	gameData.currentSkill = gameData.taskData["Focus"];
+	gameData.currentProperty = gameData.itemData["Homeless"];
+	gameData.currentMisc = [];
+	
+	for (let taskName in gameData.taskData) {
+		let task = gameData.taskData[taskName];
+		if (task.level > task.maxLevel) task.maxLevel = task.level;
+		task.level = 0;
+		task.xp = 0;
+	}
+	
+	for (let key in gameData.requirements) {
+		let requirement = gameData.requirements[key];
+		if (requirement.completed && permanentUnlocks.includes(key)) continue;
+		requirement.completed = false;
+	}
+}
+
+function getLifespan() {
+	let healthy = gameData.taskData["Healthy Lifestyle"] ? gameData.taskData["Healthy Lifestyle"].getEffect() : 1;
+	let longevity = gameData.taskData["Longevity Secrets"] ? gameData.taskData["Longevity Secrets"].getEffect() : 1;
+	return baseLifespan * healthy * longevity;
+}
+
+function isAlive() {
+	let condition = gameData.days < getLifespan();
+	let deathText = document.getElementById("deathText");
+	if (!condition) {
+		gameData.days = getLifespan();
+		deathText.classList.remove("hidden");
+		if (!gameData.loggedDeath) {
+			logEvent("You have reached the end of your lifespan. It's time to retire.");
+			gameData.loggedDeath = true;
+		}
+	}
+	else {
+		deathText.classList.add("hidden");
+		gameData.loggedDeath = false;
+	}
+	return condition;
+}
