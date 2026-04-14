@@ -30,7 +30,11 @@ function setTask(taskName) {
 
 function setProperty(propertyName) {
 	let property = gameData.itemData[propertyName];
-	gameData.currentProperty = property;
+	// Only log if moving into a new property
+	if (gameData.currentProperty !== property) {
+		gameData.currentProperty = property;
+		logEvent(`Moved into ${property.name}.`); // Log property change
+	}
 }
 
 function setMisc(miscName) {
@@ -39,10 +43,12 @@ function setMisc(miscName) {
 		for (let i = 0; i < gameData.currentMisc.length; i++) {
 			if (gameData.currentMisc[i] == misc) {
 				gameData.currentMisc.splice(i, 1);
+				logEvent(`Stopped using ${misc.name}.`); // Log item removal
 			}
 		}
 	} else {
 		gameData.currentMisc.push(misc);
+		logEvent(`Started using ${misc.name}.`); // Log item usage
 	}
 }
 

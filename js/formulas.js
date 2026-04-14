@@ -114,7 +114,8 @@ function getFameGain() {
 function getGameSpeed() {
 	let flowState = gameData.taskData["Flow State"];
 	let flowStateSpeed = gameData.timeWarpingEnabled && flowState ? flowState.getEffect() : 1;
-	return baseGameSpeed * +!gameData.paused * +isAlive() * flowStateSpeed;
+	// Added gameData.speedMultiplier to the calculation
+	return baseGameSpeed * +!gameData.paused * +isAlive() * flowStateSpeed * (gameData.speedMultiplier || 1);
 }
 
 function getIncome() {

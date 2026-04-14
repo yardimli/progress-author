@@ -167,8 +167,8 @@ function updateTaskRows() {
 		let task = gameData.taskData[key];
 		let row = document.getElementById("row " + task.name);
 		row.getElementsByClassName("level")[0].textContent = task.level;
-		row.getElementsByClassName("xpGain")[0].textContent = format(task.getXpGain());
-		row.getElementsByClassName("xpLeft")[0].textContent = format(task.getXpLeft());
+		
+		// Removed Xp/day and Xp left column updates
 		
 		let maxLevel = row.getElementsByClassName("maxLevel")[0];
 		maxLevel.textContent = task.maxLevel;
@@ -215,6 +215,24 @@ function updateHeaderRows(categories) {
 		gameData.rebirthOneCount > 0 ? maxLevelElement.classList.remove("hidden") : maxLevelElement.classList.add("hidden");
 		let skipSkillElement = headerRow.getElementsByClassName("skipSkill")[0];
 		skipSkillElement.style.display = categories == skillCategories && autoLearnElement.checked ? "block" : "none";
+	}
+}
+
+// New function to handle speed multiplier buttons
+function setGameSpeedMultiplier(multiplier) {
+	gameData.speedMultiplier = multiplier;
+	updateSpeedButtons();
+}
+
+// New function to update speed buttons UI
+function updateSpeedButtons() {
+	let buttons = document.getElementsByClassName("speed-btn");
+	for (let btn of buttons) {
+		if (parseInt(btn.textContent) === (gameData.speedMultiplier || 1)) {
+			btn.classList.add("w3-blue-gray");
+		} else {
+			btn.classList.remove("w3-blue-gray");
+		}
 	}
 }
 
@@ -303,4 +321,5 @@ function updateUI() {
 	updateQuickTaskDisplay("skill");
 	hideEntities();
 	updateText();
+	updateSpeedButtons(); // Ensure speed buttons are styled correctly
 }

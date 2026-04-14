@@ -29,11 +29,18 @@ class Task {
         this.xp += applySpeed(this.getXpGain());
         if (this.xp >= this.getMaxXp()) {
             let excess = this.xp - this.getMaxXp();
+            let leveledUp = false; // Track if we leveled up
             while (excess >= 0) {
                 this.level += 1;
                 excess -= this.getMaxXp();
+                leveledUp = true;
             }
             this.xp = this.getMaxXp() + excess;
+            
+            // Log the final level reached to prevent log spam
+            if (leveledUp && typeof logEvent === "function") {
+                logEvent(`Leveled up ${this.name} to level ${this.level}!`);
+            }
         }
     }
 }

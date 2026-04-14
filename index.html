@@ -21,6 +21,14 @@
 			<div class="" style="font-size: large">Age <span id="ageDisplay">18</span> Day <span id="dayDisplay">0</span></div>
 			<div class="sidebar-element" style="color: gray">Lifespan: <span id="lifespanDisplay">70</span> years</div>
 			
+			<!-- Added game speed multiplier buttons -->
+			<div class="sidebar-element" id="speedButtons">
+				<button class="w3-button button small-margin speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(1)">1x</button>
+				<button class="w3-button button small-margin speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(2)">2x</button>
+				<button class="w3-button button small-margin speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(4)">4x</button>
+				<button class="w3-button button small-margin speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(8)">8x</button>
+			</div>
+			
 			<button id="pauseButton" class="w3-button button sidebar-element" onClick="setPause()">Pause</button>
 			
 			<span id="automation" class="inline" style="margin-left: 8px">
@@ -101,8 +109,7 @@
 					<th class="category" style="width: 250px">Job</th>
 					<th>Level</th>
 					<th class="valueType">Value type</th>
-					<th>Xp/day</th>
-					<th>Xp left</th>
+					<!-- Removed Xp/day and Xp left columns -->
 					<th class="maxLevel">Max level</th>
 					<th class="skipSkill">Skip</th>
 				</tr>
@@ -131,8 +138,7 @@
 						<div class="effect"></div>
 						<div class="income"><span></span></div>
 					</td>
-					<td class="xpGain">Xp/day</td>
-					<td class="xpLeft">Xp left</td>
+					<!-- Removed Xp/day and Xp left columns -->
 					<td class="maxLevel">Max level</td>
 					<td class="skipSkill">
 						<input class="checkbox" type="checkbox" />
