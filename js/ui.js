@@ -93,11 +93,23 @@ function updateQuickTaskDisplay(taskType) {
 	let currentTask = taskType == "job" ? gameData.currentJob : gameData.currentSkill;
 	let quickTaskDisplayElement = document.getElementById("quickTaskDisplay");
 	let progressBar = quickTaskDisplayElement.getElementsByClassName(taskType)[0];
-	progressBar.getElementsByClassName("name")[0].textContent = currentTask.name + " lvl " + currentTask.level;
-	progressBar.getElementsByClassName("progressFill")[0].style.width = currentTask.xp / currentTask.getMaxXp() * 100 + "%";
+	
+	// Added check to only update DOM if text content has changed
+	let nameElement = progressBar.getElementsByClassName("name")[0];
+	let newNameText = currentTask.name + " lvl " + currentTask.level;
+	if (nameElement.textContent !== newNameText) {
+		nameElement.textContent = newNameText;
+	}
+	
+	// Added check to only update DOM if width has changed
+	let progressFill = progressBar.getElementsByClassName("progressFill")[0];
+	let newWidth = (currentTask.xp / currentTask.getMaxXp() * 100) + "%";
+	if (progressFill.style.width !== newWidth) {
+		progressFill.style.width = newWidth;
+	}
 }
 
-// Refactored to apply locks directly to the cards/rows
+// Refactored to apply locks directly to the cards/rows and only update when changed
 function updateRequiredRows(data, categoryType) {
 	for (let categoryName in categoryType) {
 		let category = categoryType[categoryName];
@@ -112,16 +124,18 @@ function updateRequiredRows(data, categoryType) {
 			
 			if (!requirements || requirements.isCompleted()) {
 				// Unlocked
-				element.classList.remove("locked", "hiddenTask");
+				if (element.classList.contains("locked")) element.classList.remove("locked");
+				if (element.classList.contains("hiddenTask")) element.classList.remove("hiddenTask");
 				let overlay = element.querySelector('.locked-overlay');
-				if (overlay) overlay.style.display = 'none';
+				if (overlay && overlay.style.display !== 'none') overlay.style.display = 'none';
 			} else if (!nextEntityFound) {
 				// Next to unlock
-				element.classList.remove("hiddenTask");
-				element.classList.add("locked");
+				if (element.classList.contains("hiddenTask")) element.classList.remove("hiddenTask");
+				if (!element.classList.contains("locked")) element.classList.add("locked");
+				
 				let overlay = element.querySelector('.locked-overlay');
 				if (overlay) {
-					overlay.style.display = 'flex';
+					if (overlay.style.display !== 'flex') overlay.style.display = 'flex';
 					let reqText = overlay.querySelector('.req-text');
 					
 					let finalText = "";
@@ -137,18 +151,22 @@ function updateRequiredRows(data, categoryType) {
 					} else if (requirements instanceof AgeRequirement) {
 						finalText = "Age " + format(requirements.requirements[0].requirement);
 					}
-					reqText.innerHTML = finalText;
+					
+					// Only update innerHTML if it has changed to prevent repaints
+					if (reqText.innerHTML !== finalText) {
+						reqText.innerHTML = finalText;
+					}
 				}
 				nextEntityFound = true;
 			} else {
 				// Hidden (too far down the tree)
-				element.classList.add("hiddenTask");
+				if (!element.classList.contains("hiddenTask")) element.classList.add("hiddenTask");
 			}
 		}
 	}
 }
 
-// Refactored to update the new DOM structure
+// Refactored to update the new DOM structure only when data changes
 function updateTaskRows() {
 	for (let key in gameData.taskData) {
 		let task = gameData.taskData[key];
@@ -156,77 +174,120 @@ function updateTaskRows() {
 		if (!row) continue;
 		
 		let levelElement = row.querySelector(".level");
-		if (levelElement) levelElement.textContent = "LVL. " + task.level;
+		if (levelElement) {
+			let newLevelText = "LVL. " + task.level;
+			// Only update if changed
+			if (levelElement.textContent !== newLevelText) {
+				levelElement.textContent = newLevelText;
+			}
+		}
 		
 		// Update max level tooltip dynamically if player has past lives
 		let maxLevelTooltip = row.querySelector(".maxLevelTooltip");
 		if (maxLevelTooltip) {
 			if (gameData.rebirthOneCount > 0) {
-				maxLevelTooltip.style.display = "block";
+				// Only update display if changed
+				if (maxLevelTooltip.style.display !== "block") {
+					maxLevelTooltip.style.display = "block";
+				}
 				let multi = 1 + (task.maxLevel / 20);
 				let formattedMulti = parseFloat(multi.toFixed(2));
 				let text = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
+				// Only update text if changed
 				if (maxLevelTooltip.textContent !== text) {
 					maxLevelTooltip.textContent = text;
 				}
 			} else {
-				maxLevelTooltip.style.display = "none";
+				// Only update display if changed
+				if (maxLevelTooltip.style.display !== "none") {
+					maxLevelTooltip.style.display = "none";
+				}
 			}
 		}
 		
 		let progressFill = row.querySelector(".progressFill");
-		if (progressFill) progressFill.style.width = (task.xp / task.getMaxXp() * 100) + "%";
+		if (progressFill) {
+			let newWidth = (task.xp / task.getMaxXp() * 100) + "%";
+			// Only update width if changed
+			if (progressFill.style.width !== newWidth) {
+				progressFill.style.width = newWidth;
+			}
+		}
 		
-		if (task === gameData.currentJob || task === gameData.currentSkill) {
+		let isActive = (task === gameData.currentJob || task === gameData.currentSkill);
+		// Only toggle class if state doesn't match
+		if (isActive && !row.classList.contains("active")) {
 			row.classList.add("active");
-		} else {
+		} else if (!isActive && row.classList.contains("active")) {
 			row.classList.remove("active");
 		}
 		
 		if (task instanceof Job) {
 			let incomeElement = row.querySelector(".income");
 			if (incomeElement) {
-				incomeElement.innerHTML = `<span style="color: #ffd700">● ${format(task.getIncome())}</span> <span style="color: #a8d08d">/ day</span>`;
+				let newIncomeHTML = `<span style="color: #ffd700">● ${format(task.getIncome())}</span> <span style="color: #a8d08d">/ day</span>`;
+				// Only update HTML if changed
+				if (incomeElement.innerHTML !== newIncomeHTML) {
+					incomeElement.innerHTML = newIncomeHTML;
+				}
 			}
 		} else {
 			let effectElement = row.querySelector(".effect");
 			if (effectElement) {
-				effectElement.textContent = task.getEffectDescription();
+				let newEffectText = task.getEffectDescription();
+				// Only update text if changed
+				if (effectElement.textContent !== newEffectText) {
+					effectElement.textContent = newEffectText;
+				}
 			}
 		}
 	}
 }
 
-// Refactored to update the new DOM structure
+// Refactored to update the new DOM structure only when data changes
 function updateItemRows() {
 	for (let key in gameData.itemData) {
 		let item = gameData.itemData[key];
 		let row = document.getElementById("row " + item.name);
 		if (!row) continue;
 		
-		if (gameData.currentProperty === item || gameData.currentMisc.includes(item)) {
+		let isActive = (gameData.currentProperty === item || gameData.currentMisc.includes(item));
+		// Only toggle class if state doesn't match
+		if (isActive && !row.classList.contains("active")) {
 			row.classList.add("active");
-		} else {
+		} else if (!isActive && row.classList.contains("active")) {
 			row.classList.remove("active");
 		}
 		
 		let effectElement = row.querySelector(".effect");
 		if (effectElement) {
-			effectElement.textContent = item.getEffectDescription();
+			let newEffectText = item.getEffectDescription();
+			// Only update text if changed
+			if (effectElement.textContent !== newEffectText) {
+				effectElement.textContent = newEffectText;
+			}
 		}
 		
 		let expenseElement = row.querySelector(".expense");
 		if (expenseElement) {
-			expenseElement.innerHTML = `<span style="color: #ffd700">● -${format(item.getExpense())}</span> <span style="color: #ff4c4c">/ day</span>`;
+			let newExpenseHTML = `<span style="color: #ffd700">● -${format(item.getExpense())}</span> <span style="color: #ff4c4c">/ day</span>`;
+			// Only update HTML if changed
+			if (expenseElement.innerHTML !== newExpenseHTML) {
+				expenseElement.innerHTML = newExpenseHTML;
+			}
 		}
 	}
 }
 
-// Refactored to toggle the skip checkboxes in the list layout
+// Refactored to toggle the skip checkboxes in the list layout only when changed
 function updateHeaderRows(categories) {
 	let skipElements = document.querySelectorAll('.skipSkill');
 	let display = autoLearnElement.checked ? "block" : "none";
-	skipElements.forEach(el => el.style.display = display);
+	skipElements.forEach(el => {
+		if (el.style.display !== display) {
+			el.style.display = display;
+		}
+	});
 }
 
 // Function to handle speed multiplier buttons
@@ -235,58 +296,86 @@ function setGameSpeedMultiplier(multiplier) {
 	updateSpeedButtons();
 }
 
-// Function to update speed buttons UI
+// Function to update speed buttons UI only when changed
 function updateSpeedButtons() {
 	let buttons = document.getElementsByClassName("speed-btn");
 	for (let btn of buttons) {
-		if (parseInt(btn.textContent) === (gameData.speedMultiplier || 1)) {
+		let isActive = parseInt(btn.textContent) === (gameData.speedMultiplier || 1);
+		if (isActive && !btn.classList.contains("w3-blue-gray")) {
 			btn.classList.add("w3-blue-gray");
-		} else {
+		} else if (!isActive && btn.classList.contains("w3-blue-gray")) {
 			btn.classList.remove("w3-blue-gray");
 		}
 	}
 }
 
 function updateText() {
-	document.getElementById("ageDisplay").textContent = daysToYears(gameData.days);
-	document.getElementById("dayDisplay").textContent = getDay();
-	document.getElementById("lifespanDisplay").textContent = daysToYears(getLifespan());
-	document.getElementById("pauseButton").textContent = gameData.paused ? "Play" : "Pause";
+	// Helper function to update text content only if changed
+	const updateIfChanged = (id, newText) => {
+		let el = document.getElementById(id);
+		if (el && el.textContent !== String(newText)) {
+			el.textContent = newText;
+		}
+	};
 	
-	formatMoney(gameData.coins, document.getElementById("coinDisplay"));
+	updateIfChanged("ageDisplay", daysToYears(gameData.days));
+	updateIfChanged("dayDisplay", getDay());
+	updateIfChanged("lifespanDisplay", daysToYears(getLifespan()));
+	updateIfChanged("pauseButton", gameData.paused ? "Play" : "Pause");
+	
+	// Helper function to update money format only if changed
+	const updateMoneyIfChanged = (money, id) => {
+		let el = document.getElementById(id);
+		if (!el) return;
+		let newHTML = `<span>$${format(money)}</span>`;
+		if (el.innerHTML !== newHTML) {
+			formatMoney(money, el);
+		}
+	};
+	
+	updateMoneyIfChanged(gameData.coins, "coinDisplay");
 	setSignDisplay();
-	formatMoney(getNet(), document.getElementById("netDisplay"));
-	formatMoney(getIncome(), document.getElementById("incomeDisplay"));
-	formatMoney(getExpense(), document.getElementById("expenseDisplay"));
+	updateMoneyIfChanged(getNet(), "netDisplay");
+	updateMoneyIfChanged(getIncome(), "incomeDisplay");
+	updateMoneyIfChanged(getExpense(), "expenseDisplay");
 	
-	document.getElementById("inspirationDisplay").textContent = getInspiration().toFixed(1);
+	updateIfChanged("inspirationDisplay", getInspiration().toFixed(1));
 	
-	document.getElementById("fameDisplay").textContent = gameData.fame.toFixed(1);
-	document.getElementById("fameGainDisplay").textContent = getFameGain().toFixed(1);
+	updateIfChanged("fameDisplay", gameData.fame.toFixed(1));
+	updateIfChanged("fameGainDisplay", getFameGain().toFixed(1));
 	
-	document.getElementById("timeWarpingDisplay").textContent = "x" + gameData.taskData["Flow State"].getEffect().toFixed(2);
-	document.getElementById("timeWarpingButton").textContent = gameData.timeWarpingEnabled ? "Disable flow" : "Enable flow";
+	updateIfChanged("timeWarpingDisplay", "x" + gameData.taskData["Flow State"].getEffect().toFixed(2));
+	updateIfChanged("timeWarpingButton", gameData.timeWarpingEnabled ? "Disable flow" : "Enable flow");
 	
 	// Writing Process
-	document.getElementById("wordsWrittenDisplay").textContent = format(gameData.wordsWritten);
-	document.getElementById("bookLengthDisplay").textContent = format(getBookLength());
-	document.getElementById("writingSpeedDisplay").textContent = format(getWritingSpeed());
-	document.getElementById("bookQualityDisplay").textContent = getBookQuality().toFixed(1);
-	document.getElementById("booksPublishedDisplay").textContent = gameData.booksPublished;
-	document.getElementById("royaltiesDisplay").textContent = format(gameData.royalties);
+	updateIfChanged("wordsWrittenDisplay", format(gameData.wordsWritten));
+	updateIfChanged("bookLengthDisplay", format(getBookLength()));
+	updateIfChanged("writingSpeedDisplay", format(getWritingSpeed()));
+	updateIfChanged("bookQualityDisplay", getBookQuality().toFixed(1));
+	updateIfChanged("booksPublishedDisplay", gameData.booksPublished);
+	updateIfChanged("royaltiesDisplay", format(gameData.royalties));
 }
 
 function setSignDisplay() {
 	let signDisplay = document.getElementById("signDisplay");
-	if (getIncome() > getExpense()) {
-		signDisplay.textContent = "+";
-		signDisplay.style.color = "green";
-	} else if (getExpense() > getIncome()) {
-		signDisplay.textContent = "-";
-		signDisplay.style.color = "red";
-	} else {
-		signDisplay.textContent = "";
-		signDisplay.style.color = "gray";
+	let income = getIncome();
+	let expense = getExpense();
+	
+	let newText = "";
+	let newColor = "gray";
+	
+	if (income > expense) {
+		newText = "+";
+		newColor = "green";
+	} else if (expense > income) {
+		newText = "-";
+		newColor = "red";
+	}
+	
+	// Only update DOM if text or color has changed
+	if (signDisplay.textContent !== newText) {
+		signDisplay.textContent = newText;
+		signDisplay.style.color = newColor;
 	}
 }
 
@@ -296,9 +385,13 @@ function hideEntities() {
 		let completed = requirement.isCompleted();
 		for (let element of requirement.elements) {
 			if (completed) {
-				element.classList.remove("hidden");
+				if (element.classList.contains("hidden")) {
+					element.classList.remove("hidden");
+				}
 			} else {
-				element.classList.add("hidden");
+				if (!element.classList.contains("hidden")) {
+					element.classList.add("hidden");
+				}
 			}
 		}
 	}
