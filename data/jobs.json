@@ -1,24 +1,102 @@
 {
-  "Gig Worker": {"name": "Gig Worker", "maxXp": 50, "income": 0.05},
-  "Food Service": {"name": "Food Service", "maxXp": 100, "income": 0.09},
-  "Delivery Driver": {"name": "Delivery Driver", "maxXp": 200, "income": 0.15},
-  "Warehouse Worker": {"name": "Warehouse Worker", "maxXp": 400, "income": 0.40},
-  "Office Temp": {"name": "Office Temp", "maxXp": 800, "income": 0.80},
-  "Personal Assistant": {"name": "Personal Assistant", "maxXp": 1600, "income": 1.50},
-
-  "Intern": {"name": "Intern", "maxXp": 100, "income": 0.05},
-  "Blogger": {"name": "Blogger", "maxXp": 1000, "income": 0.50},
-  "Content Creator": {"name": "Content Creator", "maxXp": 10000, "income": 1.20},
-  "Copy Editor": {"name": "Copy Editor", "maxXp": 100000, "income": 3.00},
-  "Staff Writer": {"name": "Staff Writer", "maxXp": 1000000, "income": 10.00},
-  "Senior Editor": {"name": "Senior Editor", "maxXp": 7500000, "income": 30.00},
-  "Ghostwriter": {"name": "Ghostwriter", "maxXp": 40000000, "income": 150.00},
-  "Full-Time Author": {"name": "Full-Time Author", "maxXp": 150000000, "income": 0},
-
-  "C.W. Student": {"name": "C.W. Student", "maxXp": 100000, "income": 1.00},
-  "Junior Agent": {"name": "Junior Agent", "maxXp": 1000000, "income": 10.00},
-  "Senior Agent": {"name": "Senior Agent", "maxXp": 10000000, "income": 75.00},
-  "Publisher": {"name": "Publisher", "maxXp": 100000000, "income": 500.00},
-  "Literary Titan": {"name": "Literary Titan", "maxXp": 10000000000, "income": 2500.00},
-  "Head of Publishing": {"name": "Head of Publishing", "maxXp": 1000000000000, "income": 10000.00}
+  "Gig Worker": {
+    "name": "Gig Worker",
+    "maxXp": 50,
+    "income": 40.00
+  },
+  "Food Service": {
+    "name": "Food Service",
+    "maxXp": 100,
+    "income": 70.00
+  },
+  "Delivery Driver": {
+    "name": "Delivery Driver",
+    "maxXp": 200,
+    "income": 100.00
+  },
+  "Warehouse Worker": {
+    "name": "Warehouse Worker",
+    "maxXp": 400,
+    "income": 130.00
+  },
+  "Office Temp": {
+    "name": "Office Temp",
+    "maxXp": 800,
+    "income": 160.00
+  },
+  "Personal Assistant": {
+    "name": "Personal Assistant",
+    "maxXp": 1600,
+    "income": 200.00
+  },
+  "Intern": {
+    "name": "Intern",
+    "maxXp": 100,
+    "income": 40.00
+  },
+  "Blogger": {
+    "name": "Blogger",
+    "maxXp": 1000,
+    "income": 80.00
+  },
+  "Content Creator": {
+    "name": "Content Creator",
+    "maxXp": 10000,
+    "income": 150.00
+  },
+  "Copy Editor": {
+    "name": "Copy Editor",
+    "maxXp": 100000,
+    "income": 220.00
+  },
+  "Staff Writer": {
+    "name": "Staff Writer",
+    "maxXp": 1000000,
+    "income": 300.00
+  },
+  "Senior Editor": {
+    "name": "Senior Editor",
+    "maxXp": 7500000,
+    "income": 450.00
+  },
+  "Ghostwriter": {
+    "name": "Ghostwriter",
+    "maxXp": 40000000,
+    "income": 700.00
+  },
+  "Full-Time Author": {
+    "name": "Full-Time Author",
+    "maxXp": 150000000,
+    "income": 0
+  },
+  "C.W. Student": {
+    "name": "C.W. Student",
+    "maxXp": 100000,
+    "income": 30.00
+  },
+  "Junior Agent": {
+    "name": "Junior Agent",
+    "maxXp": 1000000,
+    "income": 180.00
+  },
+  "Senior Agent": {
+    "name": "Senior Agent",
+    "maxXp": 10000000,
+    "income": 350.00
+  },
+  "Publisher": {
+    "name": "Publisher",
+    "maxXp": 100000000,
+    "income": 600.00
+  },
+  "Literary Titan": {
+    "name": "Literary Titan",
+    "maxXp": 10000000000,
+    "income": 1500.00
+  },
+  "Head of Publishing": {
+    "name": "Head of Publishing",
+    "maxXp": 1000000000000,
+    "income": 3000.00
+  }
 }

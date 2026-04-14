@@ -26,15 +26,21 @@ var skillWithLowestMaxXp = null;
 const autoPromoteElement = document.getElementById("autoPromote");
 const autoLearnElement = document.getElementById("autoLearn");
 
-const updateSpeed = 20;
 const baseLifespan = 365 * 70;
 const baseGameSpeed = 4;
 const permanentUnlocks = ["Shop", "Automation", "Quick task display"];
 
+// Added variables for requestAnimationFrame loop
+let lastTime = performance.now();
+let deltaTime = 0;
+let saveTimer = 0;
+let skillTimer = 0;
+
 // JSON Data containers
 let jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
 
-const units = ["", "k", "M", "B", "T", "q", "Q", "Sx", "Sp", "Oc"];
+// Updated units array to match requested suffixes
+const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 const jobTabButton = document.getElementById("jobTabButton");
 
 function getBaseLog(x, y) {
@@ -143,7 +149,8 @@ function applyMultipliers(value, multipliers) {
 }
 
 function applySpeed(value) {
-    return value * getGameSpeed() / updateSpeed;
+    // Modified to use deltaTime instead of updateSpeed for frame-rate independence
+    return value * getGameSpeed() * deltaTime;
 }
 
 function getFameGain() {
@@ -457,7 +464,7 @@ function updateText() {
     document.getElementById("writingSpeedDisplay").textContent = format(getWritingSpeed());
     document.getElementById("bookQualityDisplay").textContent = getBookQuality().toFixed(1);
     document.getElementById("booksPublishedDisplay").textContent = gameData.booksPublished;
-    document.getElementById("royaltiesDisplay").textContent = gameData.royalties.toFixed(2);
+    document.getElementById("royaltiesDisplay").textContent = format(gameData.royalties);
 }
 
 function setSignDisplay() {
@@ -595,14 +602,48 @@ function increaseDays() {
     gameData.days += increase;
 }
 
-// Formatting
-function format(number) {
-    let tier = Math.log10(number) / 3 | 0;
-    if(tier == 0) return (number % 1 !== 0) ? number.toFixed(1) : number;
-    let suffix = units[tier];
-    let scale = Math.pow(10, tier * 3);
-    let scaled = number / scale;
-    return scaled.toFixed(1) + suffix;
+// Format numbers with thousand separators up to 10,000, then use suffixes
+function format(number, decimals = 1) {
+    // Fast, non-regex helper to add commas and drop trailing zeros
+    const formatWithCommas = (num) => {
+        // Convert to string and cleanly drop trailing zeros
+        const numStr = Number(num.toFixed(decimals)).toString();
+        let parts = numStr.split('.');
+        let intPart = parts[0];
+        const fracPart = parts.length > 1 ? '.' + parts[1] : '';
+        
+        // Handle negatives
+        let sign = '';
+        if (intPart[0] === '-') {
+            sign = '-';
+            intPart = intPart.slice(1);
+        }
+        
+        // Insert commas manually using string slicing
+        let formattedInt = '';
+        while (intPart.length > 3) {
+            formattedInt = ',' + intPart.slice(-3) + formattedInt;
+            intPart = intPart.slice(0, -3);
+        }
+        
+        return sign + intPart + formattedInt + fracPart;
+    };
+    
+    if (number < 10000) {
+        // Use thousand separator for numbers under 10k
+        return formatWithCommas(number);
+    }
+    
+    const tier = Math.floor(Math.log10(number) / 3);
+    
+    if (tier === 0) return formatWithCommas(number);
+    
+    const suffix = units[tier];
+    const scale = Math.pow(10, tier * 3);
+    const scaled = number / scale;
+    
+    // Uses the decimals parameter instead of the hardcoded 1
+    return scaled.toFixed(decimals) + suffix;
 }
 
 function formatMoney(money, element) {
@@ -663,17 +704,21 @@ function updateWritingProcess() {
     gameData.wordsWritten += speed;
     
     let target = getBookLength();
-    if (gameData.wordsWritten >= target) {
+    
+    // Changed to a while loop to handle large deltaTime jumps (background progress)
+    while (gameData.wordsWritten >= target) {
         let quality = getBookQuality();
         let fame = gameData.fame;
-        let sales = (quality / 100) * (fame + 10) * 5;
+        // Multiplied base sales by 1000 to match modern day economy scaling
+        let sales = (quality / 100) * (fame + 10) * 5000;
         let royalty = sales * 0.1;
         
         gameData.royalties += royalty;
         gameData.booksPublished += 1;
         gameData.wordsWritten -= target; // carry over excess
         
-        logEvent(`Published Book #${gameData.booksPublished}! Quality: ${quality.toFixed(1)}%. Earned $${royalty.toFixed(2)}/day in royalties.`);
+        logEvent(`Published Book #${gameData.booksPublished}! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
+        target = getBookLength(); // Update target for next iteration
     }
 }
 
@@ -863,6 +908,32 @@ function update() {
     updateUI();
 }
 
+// New game loop using requestAnimationFrame
+function gameLoop(currentTime) {
+    deltaTime = (currentTime - lastTime) / 1000; // Convert ms to seconds
+    lastTime = currentTime;
+    
+    // Cap deltaTime to 1 day (86400 seconds) to prevent extreme freezes after long offline periods
+    if (deltaTime > 86400) deltaTime = 86400;
+    
+    update();
+    
+    // Handle timers that were previously setIntervals
+    saveTimer += deltaTime;
+    if (saveTimer >= 3) {
+        saveGameData();
+        saveTimer = 0;
+    }
+    
+    skillTimer += deltaTime;
+    if (skillTimer >= 1) {
+        setSkillWithLowestMaxXp();
+        skillTimer = 0;
+    }
+    
+    requestAnimationFrame(gameLoop);
+}
+
 function resetGameData() {
     localStorage.removeItem("authorsJourneySave");
     location.reload();
@@ -911,23 +982,33 @@ function setupRequirements(reqData) {
 // Init
 async function init() {
     try {
-        const [jobsRes, skillsRes, itemsRes, miscRes] = await Promise.all([
+        const [
+            jobsRes, skillsRes, itemsRes,
+            jobCatRes, skillCatRes, itemCatRes,
+            colorsRes, tooltipsRes, reqRes
+        ] = await Promise.all([
             fetch('data/jobs.json'),
             fetch('data/skills.json'),
             fetch('data/items.json'),
-            fetch('data/misc.json')
+            fetch('data/jobCategories.json'),
+            fetch('data/skillCategories.json'),
+            fetch('data/itemCategories.json'),
+            fetch('data/headerRowColors.json'),
+            fetch('data/tooltips.json'),
+            fetch('data/requirements.json')
         ]);
         
         jobBaseData = await jobsRes.json();
         skillBaseData = await skillsRes.json();
         itemBaseData = await itemsRes.json();
         
-        const miscData = await miscRes.json();
-        jobCategories = miscData.jobCategories;
-        skillCategories = miscData.skillCategories;
-        itemCategories = miscData.itemCategories;
-        headerRowColors = miscData.headerRowColors;
-        tooltips = miscData.tooltips;
+        // Modified section: Assign data from the newly split files
+        jobCategories = await jobCatRes.json();
+        skillCategories = await skillCatRes.json();
+        itemCategories = await itemCatRes.json();
+        headerRowColors = await colorsRes.json();
+        tooltips = await tooltipsRes.json();
+        const requirementsData = await reqRes.json();
         
         createAllRows(jobCategories, "jobTable");
         createAllRows(skillCategories, "skillTable");
@@ -942,7 +1023,8 @@ async function init() {
         gameData.currentProperty = gameData.itemData["Homeless"];
         gameData.currentMisc = [];
         
-        setupRequirements(miscData.requirements);
+        // Modified section: Pass the split requirements data
+        setupRequirements(requirementsData);
         
         tempData["requirements"] = {};
         for (let key in gameData.requirements) {
@@ -958,9 +1040,10 @@ async function init() {
         setTab(jobTabButton, "jobs");
         
         update();
-        setInterval(update, 1000 / updateSpeed);
-        setInterval(saveGameData, 3000);
-        setInterval(setSkillWithLowestMaxXp, 1000);
+        
+        // Initialize lastTime before starting the loop
+        lastTime = performance.now();
+        requestAnimationFrame(gameLoop);
         
         logEvent("Started a new game. Welcome to Author's Journey!");
     } catch (error) {

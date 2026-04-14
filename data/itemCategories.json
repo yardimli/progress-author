@@ -1,0 +1,22 @@
+{
+  "Properties": [
+    "Homeless",
+    "Rented Room",
+    "Studio Apartment",
+    "Suburban House",
+    "Large House",
+    "City Penthouse",
+    "Private Villa",
+    "Mansion Estate"
+  ],
+  "Misc": [
+    "Library Card",
+    "Used Laptop",
+    "Editor",
+    "Style Guide",
+    "Ergonomic Chair",
+    "Pro Writing Software",
+    "Home Office",
+    "Home Library"
+  ]
+}
