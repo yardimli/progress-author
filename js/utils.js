@@ -12,18 +12,19 @@ function getDay() {
 	return Math.floor(gameData.days - daysToYears(gameData.days) * 365);
 }
 
-// Format numbers with thousand separators up to 10,000, then use suffixes
-function format(number, decimals = 1) {
-	// 1. Handle numbers below 1000 (no decimals should be shown)
+// Format numbers with thousand separators up to 1000, then use suffixes
+function format(number, decimals = 2) {
+	// 1. Handle numbers below 1000 (now showing decimals)
 	if (Math.abs(number) < 1000) {
-		const rounded = Math.round(number);
+		// Check if rounding to the specified decimals bumps it up to 1000
+		const fixedNum = Number(Math.abs(number).toFixed(decimals));
 		
-		// If rounding didn't bump it up to 1000, just return the whole number
-		if (Math.abs(rounded) < 1000) {
-			return rounded.toString();
+		if (fixedNum < 1000) {
+			// Returns with exact decimals (e.g., 5 becomes "5,00")
+			return number.toFixed(decimals).replace('.', ',');
 		}
-		// If it rounded to 1000 (e.g., 999.6), let it fall through to become "1K"
-		number = rounded;
+		// If it rounded to 1000 (e.g., 999.996), let it fall through to become "1,00K"
+		number = number < 0 ? -fixedNum : fixedNum;
 	}
 	
 	const tier = Math.floor(Math.log10(Math.abs(number)) / 3);
@@ -31,21 +32,12 @@ function format(number, decimals = 1) {
 	const scale = Math.pow(10, tier * 3);
 	const scaled = number / scale;
 	
-	let formattedScaled;
-	
-	// 2. Pad with zeros if decimals > 1, otherwise strip trailing zeros
-	if (decimals > 1) {
-		// Keeps the zeros (e.g., "1.00", "1.20")
-		formattedScaled = scaled.toFixed(decimals);
-	} else {
-		// Strips trailing zeros for 1 or 0 decimals (e.g., "1", "1.2")
-		formattedScaled = Number(scaled.toFixed(decimals)).toString();
-	}
+	// 2. Format with fixed decimals (keeps the zeros, e.g., "1.00" or "5.00")
+	const formattedScaled = scaled.toFixed(decimals);
 	
 	// 3. Replace dot with comma
 	return formattedScaled.replace('.', ',') + suffix;
 }
-
 
 function formatMoney(money, element) {
 	element.innerHTML = `<span>$${format(money)}</span>`;

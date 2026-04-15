@@ -476,7 +476,7 @@ function updateText() {
 	updateIfChanged("timeWarpingButton", gameData.timeWarpingEnabled ? "Disable flow" : "Enable flow");
 	
 	updateIfChanged("wordsWrittenDisplay", format(gameData.wordsWritten));
-	updateIfChanged("bookLengthDisplay", format(getBookLength()));
+	updateIfChanged("bookLengthDisplay", format(getBookLength(),0));
 	
 	updateIfChanged("writingSpeedDisplayTab", format(getWritingSpeed()));
 	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(1));
