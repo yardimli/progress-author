@@ -72,7 +72,7 @@ function increaseDays() {
 	gameData.days += increase;
 }
 
-// NEW: Calculates the raw writing speed before the 1000 words/day cap
+// Calculates the raw writing speed before the 1000 words/day cap
 function getRawWritingSpeed() {
 	let baseSpeed = 100;
 	let typingSpeed = gameData.taskData["Typing Speed"] ? gameData.taskData["Typing Speed"].getEffect() : 1;
@@ -83,15 +83,16 @@ function getRawWritingSpeed() {
 	// Apply writing percentage from the slider
 	let writingPercentage = gameData.workWritingBalance / 100;
 	
-	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage;
+	// MODIFIED: Apply the global writing multiplier
+	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier;
 }
 
-// MODIFIED: Caps writing speed at 1000 words/day
+// Caps writing speed at 1000 words/day
 function getWritingSpeed() {
 	return Math.min(1000, getRawWritingSpeed());
 }
 
-// NEW: Converts excess writing speed into a quality multiplier (Max x10)
+// Converts excess writing speed into a quality multiplier (Max x10)
 function getQualityMultiplier() {
 	let rawSpeed = getRawWritingSpeed();
 	if (rawSpeed > 1000) {
@@ -136,7 +137,7 @@ function updateWritingProcess() {
 	let target = getBookLength();
 	
 	while (gameData.wordsWritten >= target) {
-		// MODIFIED: Apply quality multiplier and enforce minimum royalty
+		// Apply quality multiplier and enforce minimum royalty
 		let baseQuality = getBookQuality();
 		let multiplier = getQualityMultiplier();
 		let quality = baseQuality * multiplier;

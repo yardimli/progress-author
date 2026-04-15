@@ -14,8 +14,13 @@ var gameData = {
 	currentProperty: null,
 	currentMisc: null,
 	
-	// NEW: Track the work vs writing balance (0 = 100% work, 100 = 100% writing)
+	// Track the work vs writing balance (0 = 100% work, 100 = 100% writing)
 	workWritingBalance: 0,
+	
+	// NEW: Multipliers for work, skill, and writing (1 is default)
+	workMultiplier: 0.5,
+	skillMultiplier: 0.5,
+	writingMultiplier: 0.5,
 	
 	// Potions state
 	potions: {
