@@ -132,7 +132,8 @@
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
 				<div class="ui-row" style="margin-bottom: 20px; cursor: default;">
-					<img id="currentBookImage" src="" alt="Book Cover" class="row-image" style="width: 120px; height: 180px; object-fit: cover; border-radius: 4px;">
+					<!-- MODIFIED: Added cursor: pointer and onclick to trigger the book modal for the current book -->
+					<img id="currentBookImage" src="" alt="Book Cover" class="row-image" style="width: 120px; height: 180px; object-fit: cover; border-radius: 4px; cursor: pointer;" onclick="showBookModal(gameData.currentBook)">
 					<div class="row-info">
 						<div class="row-title" id="currentBookTitle" style="font-size: 1.5em;">Book Title</div>
 						<div style="margin-top: 10px;">
@@ -247,13 +248,31 @@
 	</div>
 </div>
 
-<!-- Modal Container -->
+<!-- Info Modal Container -->
 <div id="infoModal" class="modal" style="display: none;">
 	<div class="modal-content">
 		<img id="modalImage" src="" alt="" style="width: 128px; height: 128px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
 		<div id="modalTitle" class="modal-title"></div>
 		<div id="modalDescription" class="modal-description"></div>
 		<div id="modalMaxLevel" style="color: #4CAF50; display: none; font-size: 0.95em; margin-top: 10px;"></div>
+	</div>
+</div>
+
+<!-- Book Modal Container -->
+<div id="bookModal" class="modal" style="display: none;">
+	<div class="modal-content book-modal-content">
+		<div class="book-modal-left">
+			<img id="bookModalImage" src="" alt="Book Cover">
+		</div>
+		<div class="book-modal-right">
+			<h2 id="bookModalTitle" style="margin-top: 0; margin-bottom: 5px;">Title</h2>
+			<h4 id="bookModalSubtitle" style="margin-top: 0; color: #666; margin-bottom: 15px;">Subtitle</h4>
+			<p id="bookModalInfo" style="color: #888; font-size: 0.95em; margin-bottom: 15px;"></p>
+			<div class="word-app-container" id="wordAppContainer">
+				<div id="bookModalFirstPage"></div>
+			</div>
+			<button class="btn" style="margin-top: 15px; align-self: flex-end;" onclick="closeBookModal()">Close</button>
+		</div>
 	</div>
 </div>
 

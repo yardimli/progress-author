@@ -1,5 +1,7 @@
 // DOM manipulation, table creation, updating text
 
+let typingTimeout = null;
+
 function setTab(element, selectedTab) {
 	let tabs = Array.prototype.slice.call(document.getElementsByClassName("tab"));
 	tabs.forEach(function(tab) {
@@ -127,7 +129,7 @@ function createAllRows(categoryType, containerId) {
 			let freeItemsDiv = document.createElement("div");
 			freeItemsDiv.className = "category-section";
 			freeItemsDiv.innerHTML = `
-				<div class="category-header" style="margin-top: 25px;">Free Items</div>
+				<div class="category-header" style="margin-top: 25px;">Cheat Items</div>
 				<div class="category-content list">
 					<!-- Inspiration Potion -->
 					<div class="ui-row" style="cursor: default;">
@@ -403,7 +405,11 @@ function updateBookHistory() {
 		let div = document.createElement("div");
 		div.className = "ui-row";
 		div.style.marginBottom = "10px";
-		div.style.cursor = "default";
+		// MODIFIED: Changed cursor and added click listener to open book modal
+		div.style.cursor = "pointer";
+		div.onclick = function() {
+			showBookModal(bookId);
+		};
 		div.innerHTML = `
 			<img src="img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}" class="row-image" style="width: 60px; height: 90px; object-fit: cover; border-radius: 4px;">
 			<div class="row-info">
@@ -615,9 +621,105 @@ function closeIntroModal() {
 	saveGameData();
 }
 
-window.addEventListener('click', function (e) {
+// NEW: Book Modal Functions
+function showBookModal(bookId) {
+	let book = booksBaseData[bookId];
+	if (!book) return;
+	
+	let modal = document.getElementById('bookModal');
+	let modalImg = document.getElementById('bookModalImage');
+	let modalTitle = document.getElementById('bookModalTitle');
+	let modalSubtitle = document.getElementById('bookModalSubtitle');
+	let modalInfo = document.getElementById('bookModalInfo');
+	
+	let filefolder = book.filefolder + '256';
+	let filename = book.filename.replace('.png', '.jpg');
+	modalImg.src = `img/${filefolder}/${filename}`;
+	
+	modalTitle.textContent = book.title;
+	modalSubtitle.textContent = book.subtitle;
+	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
+	
+	modal.style.display = "flex";
+	
+	let firstPageText = book.firstPage || "Chapter 1\n\nThe beginning of a new journey...";
+	startTypingEffect(firstPageText, "bookModalFirstPage");
+}
+
+function closeBookModal() {
+	if (typingTimeout) clearTimeout(typingTimeout);
+	let modal = document.getElementById('bookModal');
+	if (modal) modal.style.display = 'none';
+}
+
+function startTypingEffect(fullText, elementId) {
+	if (typingTimeout) clearTimeout(typingTimeout);
+	
+	let container = document.getElementById(elementId);
+	if (!container) return;
+	
+	container.innerHTML = '<span class="blinking-cursor">|</span>';
+	
+	let currentIndex = 0;
+	let currentHTML = "";
+	let isCorrecting = false;
+	
+	const getRandomChar = () => {
+		const chars = "abcdefghijklmnopqrstuvwxyz";
+		return chars.charAt(Math.floor(Math.random() * chars.length));
+	};
+	
+	function typeNext() {
+		if (currentIndex >= fullText.length && !isCorrecting) {
+			container.innerHTML = currentHTML + '<span class="blinking-cursor">|</span>';
+			return;
+		}
+		
+		let delay = Math.random() * 40 + 20; // 20-60ms typing speed
+		
+		if (isCorrecting) {
+			currentHTML = currentHTML.slice(0, -1);
+			isCorrecting = false;
+			delay = 100; // Pause after deleting
+		} else {
+			let char = fullText[currentIndex];
+			
+			// 2% chance to make a typo if it's a letter
+			if (/[a-zA-Z]/.test(char) && Math.random() < 0.02) {
+				currentHTML += getRandomChar();
+				isCorrecting = true;
+				delay = 150; // Pause before realizing the mistake
+			} else {
+				if (char === '\n') {
+					currentHTML += '<br>';
+				} else {
+					currentHTML += char;
+				}
+				currentIndex++;
+			}
+		}
+		
+		container.innerHTML = currentHTML + '<span class="blinking-cursor">|</span>';
+		
+		let wordApp = document.getElementById("wordAppContainer");
+		if (wordApp) wordApp.scrollTop = wordApp.scrollHeight;
+		
+		typingTimeout = setTimeout(typeNext, delay);
+	}
+	
+	// Start typing after a short initial delay
+	typingTimeout = setTimeout(typeNext, 500);
+}
+
+// MODIFIED: Updated global click listener to handle both modals
+window.addEventListener('click', function (event) {
 	let infoModal = document.getElementById('infoModal');
-	if (infoModal && infoModal.style.display === 'flex' && e.target === infoModal) {
+	if (infoModal && infoModal.style.display === 'flex' && event.target === infoModal) {
 		infoModal.style.display = 'none';
+	}
+	
+	let bookModal = document.getElementById('bookModal');
+	if (bookModal && bookModal.style.display === 'flex' && event.target === bookModal) {
+		closeBookModal();
 	}
 });
