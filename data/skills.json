@@ -3,7 +3,7 @@
     "name": "Focus",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Skill xp",
+    "description": "Skill experience",
     "filename": "focus.png",
     "filefolder": "skills",
     "imageprompt": "A tight, detailed etching of a human eye staring intently at a piece of parchment. The dark brown ink and sepia tones create a moody, academic atmosphere. The woodblock print style emphasizes intense concentration and mental clarity."
@@ -12,7 +12,7 @@
     "name": "Time Management",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Job xp",
+    "description": "Job experience",
     "filename": "time_management.png",
     "filefolder": "skills",
     "imageprompt": "A classic, ornate pocket watch resting on a stack of manuscript pages, drawn in vintage newspaper style. The intricate gears and hands are detailed with precise, dark brown ink crosshatching. It symbolizes the careful, deliberate pacing of a writer's life."
@@ -48,7 +48,7 @@
     "name": "Grammar & Prose",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Creative Industry xp",
+    "description": "Creative Industry experience",
     "filename": "grammar_and_prose.png",
     "filefolder": "skills",
     "imageprompt": "An elegant, vintage fountain pen resting on a beautifully handwritten parchment letter. The dark brown ink detailing showcases classic calligraphy and academic rigor. It represents the foundational, timeless rules of beautiful literary construction."
@@ -57,7 +57,7 @@
     "name": "Plotting",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Literary Elite xp",
+    "description": "Literary Elite experience",
     "filename": "plotting.png",
     "filefolder": "skills",
     "imageprompt": "A complex, wall-mounted corkboard connected with strings and pinned notes, drawn in an old newspaper etching style. The sepia-toned illustration feels like a detective's evidence board applied to storytelling. It captures the intricate, structural planning of a grand narrative."
@@ -66,7 +66,7 @@
     "name": "Character Dev.",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Typing Speed xp",
+    "description": "Typing Speed experience",
     "filename": "character_dev.png",
     "filefolder": "skills",
     "imageprompt": "A series of expressive, vintage portrait sketches layered over one another in dark brown ink. The woodblock print style highlights the different facets of human emotion and personality. It evokes the deep psychological study required to create lifelike literary figures."
@@ -75,7 +75,7 @@
     "name": "Healthy Lifestyle",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Longer lifespan",
+    "description": "Later retirement age",
     "filename": "healthy_lifestyle.png",
     "filefolder": "skills",
     "imageprompt": "A classic illustration of a 1920s figure engaging in morning calisthenics by an open window. The sepia tones and clean linework reflect the era's approach to vitality and wellness. It symbolizes the physical endurance needed for a long, productive life."
@@ -93,7 +93,7 @@
     "name": "Longevity Secrets",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Longer lifespan",
+    "description": "Later retirement age",
     "filename": "longevity_secrets.png",
     "filefolder": "skills",
     "imageprompt": "An ancient, glowing hourglass resting on an ornate pedestal, illustrated with striking Art Deco elements. Subtle gold foil accents highlight the falling sand against the sepia background. It represents the mystical, prestigious mastery over time and lifespan."
@@ -102,7 +102,7 @@
     "name": "Brand Management",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "All xp",
+    "description": "All experience",
     "filename": "brand_management.png",
     "filefolder": "skills",
     "imageprompt": "A grand, vintage wax seal stamping a prestigious emblem onto a leather-bound book. The dark brown ink is elevated with elegant gold foil linework, symbolizing a powerful authorial identity. It exudes the Great Gatsby-era prestige of a carefully crafted public image."
@@ -129,7 +129,7 @@
     "name": "Personal Brand",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "All xp",
+    "description": "All experience",
     "filename": "personal_brand.png",
     "filefolder": "skills",
     "imageprompt": "A towering, stylized silhouette of an author overlooking a city, drawn in a bold Art Deco style. Brilliant gold foil accents outline the figure against a sepia-toned sky. It represents the monumental, larger-than-life status of a legendary literary icon."

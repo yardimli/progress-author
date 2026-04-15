@@ -67,7 +67,7 @@
     "name": "Library Card",
     "expense": 1,
     "effect": 1.5,
-    "description": "Skill xp",
+    "description": "Skill experience",
     "filename": "library_card.png",
     "filefolder": "items",
     "imageprompt": "A vintage, dog-eared library card stamped with faded dates in a classic sepia tone. The woodblock print style highlights the textured parchment paper and elegant cursive handwriting. It represents the humble, academic roots of a writer's quest for knowledge."
@@ -76,7 +76,7 @@
     "name": "Used Laptop",
     "expense": 3,
     "effect": 1.5,
-    "description": "Typing Speed xp",
+    "description": "Typing Speed experience",
     "filename": "used_laptop.png",
     "filefolder": "items",
     "imageprompt": "A heavy, early-model typewriter sketched in dark brown ink to represent a classic writing machine. The illustration mimics an old newspaper advertisement with meticulous crosshatching on the mechanical keys. It feels like a reliable, time-tested tool for a dedicated wordsmith."
@@ -85,7 +85,7 @@
     "name": "Editor",
     "expense": 50,
     "effect": 2,
-    "description": "Job xp",
+    "description": "Job experience",
     "filename": "editor.png",
     "filefolder": "items",
     "imageprompt": "A stern, bespectacled editor sitting behind a towering stack of manuscripts in a sepia-toned etching. The scene is filled with old printing press elements and academia vibes, drawn with heavy ink strokes. It captures the rigorous, classic editorial process of the 1920s."
@@ -94,7 +94,7 @@
     "name": "Style Guide",
     "expense": 2,
     "effect": 2,
-    "description": "Creative Industry xp",
+    "description": "Creative Industry experience",
     "filename": "style_guide.png",
     "filefolder": "items",
     "imageprompt": "A thick, leather-bound grammar tome resting on a wooden desk, illustrated in vintage woodblock style. The dark brown ink details the embossed lettering and worn pages of the academic text. It evokes the strict, classical standards of literary excellence."
@@ -112,7 +112,7 @@
     "name": "Pro Writing Software",
     "expense": 10,
     "effect": 3,
-    "description": "Writing Craft xp",
+    "description": "Writing Craft experience",
     "filename": "pro_writing_software.png",
     "filefolder": "items",
     "imageprompt": "An intricate, brass-fitted mechanical writing contraption depicted in dark brown ink. The vintage blueprint style features precise, academic crosshatching and interlocking gears. It symbolizes cutting-edge literary technology of a bygone era."
@@ -121,7 +121,7 @@
     "name": "Home Office",
     "expense": 40,
     "effect": 2,
-    "description": "Skill xp",
+    "description": "Skill experience",
     "filename": "home_office.png",
     "filefolder": "items",
     "imageprompt": "A sophisticated, wood-paneled study illustrated with classic academic charm and sepia tones. The scene includes a grand oak desk, a glowing desk lamp, and walls lined with books. Subtle Art Deco geometric patterns hint at a writer's growing prestige."
@@ -130,7 +130,7 @@
     "name": "Home Library",
     "expense": 100,
     "effect": 1.5,
-    "description": "Skill xp",
+    "description": "Skill experience",
     "filename": "home_library.png",
     "filefolder": "items",
     "imageprompt": "A magnificent, multi-tiered personal library rendered with stunning Art Deco elegance. Dark brown ink contrasts with striking gold foil accents along the bookshelves and rolling ladder. It is the ultimate sanctuary for a legendary author, dripping with Gatsby-era luxury."

@@ -223,7 +223,8 @@ function isAlive() {
 		gameData.days = getLifespan();
 		deathText.classList.remove("hidden");
 		if (!gameData.loggedDeath) {
-			logEvent("You have reached the end of your lifespan. It's time to retire.");
+			// MODIFIED: Replaced lifespan with retirement age
+			logEvent("You have reached your retirement age. It's time to retire.");
 			gameData.loggedDeath = true;
 		}
 	}

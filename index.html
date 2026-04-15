@@ -16,9 +16,11 @@
 			<img id="authorImage" src="" alt="Author" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee;">
 			
 			<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
-				<div id="deathText" class="hidden" style="color: red; font-weight: bold;">Age has caught up to you. Use the Golden Pen to retire.</div>
+				<!-- MODIFIED: Changed death/age text to retirement -->
+				<div id="deathText" class="hidden" style="color: red; font-weight: bold;">You have reached retirement age. Use the Golden Pen to retire.</div>
 				<div style="font-size: 1.2em;"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden" style="font-size: 0.8em; color: #d32f2f; margin-left: 10px;">Fame: <span id="fameDisplay">0</span></span></div>
-				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Lifespan <span id="lifespanDisplay">70</span> years</div>
+				<!-- MODIFIED: Changed Lifespan to Retirement Age -->
+				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
 				<div>Balance: <span id="coinDisplay" style="font-weight:bold;">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
 				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn" style="padding: 2px 8px; margin-left: 5px;" onClick="setTimeWarping()">Enable flow</button></span></div>
@@ -182,8 +184,9 @@
 							to see what happens.
 						</div>
 						<i style="color: grey">
+							<!-- MODIFIED: Changed xp to experience -->
 							By clicking the pen, you will retire and have to restart your career, losing all your levels and money.
-							However, you will gain <b>xp multipliers</b> for your jobs and skills equivalent to: <b>1 + the max level of the skill or job / 20.</b>
+							However, you will gain <b>experience multipliers</b> for your jobs and skills equivalent to: <b>1 + the max level of the skill or job / 20.</b>
 							This means you will learn everything again much more quickly than you did in your previous life. <span style="color: rgb(200, 0, 0)">
 								Something tells you that the pen might transform even further after living for <b>2 whole centuries</b>...</span>
 						</i>
