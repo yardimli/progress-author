@@ -1,5 +1,6 @@
 body {
     background-color: rgb(243, 243, 243);
+    color: black;
 }
 
 .w3-bar-item {
@@ -21,7 +22,7 @@ td {
     top: 0px;
     bottom: 0px;
     padding: 5px;
-    color: white
+    color: white;
 }
 
 .progress-bar {
@@ -33,7 +34,7 @@ td {
 
 .progress-fill {
     height: 30px;
-    background-color: rgb(46, 148, 231)
+    background-color: rgb(46, 148, 231);
 }
 
 .hidden {
@@ -46,6 +47,8 @@ td {
 
 .button {
     border: 1px solid black !important;
+    background-color: white;
+    color: black;
 }
 
 .item-button {
@@ -152,28 +155,35 @@ button:focus {
     margin-bottom: 2px;
 }
 
+#logContainer {
+    height: 500px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+}
+
 .log-entry {
     margin-bottom: 8px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #494949;
+    border-bottom: 1px solid #ccc;
     font-size: 0.95em;
 }
 
-/* --- New UI Styles --- */
+/* --- New UI Styles (Light Mode Base) --- */
 
 .tab-description {
-    color: #aaa;
+    color: #666;
     margin-bottom: 15px;
     font-size: 1.05em;
 }
 
 .category-header {
     text-transform: uppercase;
-    color: #888;
+    color: #555;
     margin: 25px 0 15px;
     font-size: 1.1em;
     letter-spacing: 1px;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #ccc;
     padding-bottom: 5px;
 }
 
@@ -191,15 +201,14 @@ button:focus {
 
 /* Card Style (Jobs, Properties) */
 .ui-card {
-    background-color: #1a1a1a;
-    border: 2px solid transparent;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
     border-radius: 8px;
     padding: 12px;
     width: 140px;
     text-align: center;
     cursor: pointer;
     position: relative;
-    /* overflow: hidden; REMOVED to allow tooltips to show */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,73 +216,74 @@ button:focus {
 }
 
 .ui-card:hover {
-    background-color: #252525;
+    background-color: #f5f5f5;
+    border-color: #d0d0d0;
 }
 
 .ui-card.active {
-    border-color: #a8d08d;
+    border-color: #4CAF50;
+    background-color: #f0f8f0;
 }
 
-/* Replaced .card-image-placeholder with .card-image for actual images */
 .card-image {
     width: 128px;
     height: 128px;
-    background-color: #333;
+    background-color: #eee;
     margin-bottom: 12px;
-    object-fit: cover; /* Ensures the image scales correctly within the bounds */
+    object-fit: cover;
 }
 
 .card-title {
     font-weight: bold;
     font-size: 0.95em;
     margin-bottom: 6px;
-    color: #fff;
+    color: #333;
     text-transform: uppercase;
 }
 
 .card-value {
     font-size: 0.9em;
-    color: #ffd700;
+    color: #b8860b;
     margin-bottom: 6px;
     font-weight: bold;
 }
 
 .card-expense {
     font-size: 0.9em;
-    color: #ff4c4c;
+    color: #d32f2f;
     margin-bottom: 6px;
 }
 
 /* Row Style (Skills, Misc) */
 .ui-row {
-    background-color: #1a1a1a;
-    border: 2px solid transparent;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
     border-radius: 8px;
     padding: 12px 15px;
     display: flex;
     align-items: center;
     cursor: pointer;
     position: relative;
-    /* overflow: hidden; REMOVED to allow tooltips to show */
     transition: background-color 0.2s, border-color 0.2s;
 }
 
 .ui-row:hover {
-    background-color: #252525;
+    background-color: #f5f5f5;
+    border-color: #d0d0d0;
 }
 
 .ui-row.active {
-    border-color: #a8d08d;
+    border-color: #4CAF50;
+    background-color: #f0f8f0;
 }
 
-/* Replaced .row-image-placeholder with .row-image for actual images */
 .row-image {
     width: 76px;
     height: 76px;
-    background-color: #333;
+    background-color: #eee;
     margin-right: 15px;
     flex-shrink: 0;
-    object-fit: cover; /* Ensures the image scales correctly within the bounds */
+    object-fit: cover;
 }
 
 .row-info {
@@ -285,26 +295,26 @@ button:focus {
 .row-title {
     font-weight: bold;
     font-size: 1.1em;
-    color: #fff;
+    color: #333;
     margin-bottom: 4px;
 }
 
 .row-value {
     font-size: 0.9em;
-    color: #aaa;
+    color: #666;
 }
 
 .row-expense {
     font-size: 0.95em;
-    color: #ffd700;
+    color: #b8860b;
     margin-right: 15px;
     font-weight: bold;
 }
 
 /* Level Badge */
 .level-badge {
-    background-color: #333;
-    color: #fff;
+    background-color: #eee;
+    color: #333;
     border-radius: 4px;
     font-size: 0.85em;
     font-weight: bold;
@@ -312,7 +322,7 @@ button:focus {
     overflow: hidden;
     width: 90%;
     margin: auto 0 0 0;
-    border: 1px solid #444;
+    border: 1px solid #ccc;
 }
 
 .ui-row .level-badge {
@@ -337,66 +347,22 @@ button:focus {
     z-index: 2;
     padding: 3px 5px;
     display: block;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    text-shadow: none;
 }
 
-/* Locked Overlay */
-.locked-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Adjusted background opacity so the blur is more visible */
-    background-color: rgba(15, 15, 15, 0.6);
-    /* Added backdrop-filter to blur the card content underneath */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-    text-align: center;
-    border-radius: 8px;
-}
-
-.locked-text {
-    color: #888;
-    font-size: 0.85em;
-    font-weight: bold;
-    line-height: 1.4;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8); /* Added text shadow for better readability over blur */
-}
-
-.locked-text .req-text {
-    color: #aaa;
-    font-weight: normal;
-}
-
-/* --- New Rules for Locked Cards --- */
-.ui-card.locked, .ui-row.locked {
-    cursor: default;
-    border-color: transparent !important;
-}
-
-/* Prevent hover highlight on locked cards */
-.ui-card.locked:hover, .ui-row.locked:hover {
-    background-color: #1a1a1a;
-}
-
-/* Hide tooltips for locked items so they don't get in the way */
-.ui-card.locked .tooltipText, .ui-row.locked .tooltipText {
-    display: none !important;
-}
-
-/* --- Category Requirements Footer --- */
+/* Category Requirements Footer */
 .category-requirements {
     margin-top: 15px;
     padding: 10px;
-    background-color: #1a1a1a;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    color: #aaa;
+    color: #555;
     font-size: 0.95em;
     text-align: center;
-    border: 1px solid #333;
+    border: 1px solid #ddd;
 }
+
+/* Dynamic Text Colors for JS Injection */
+.color-income-val, .color-expense-val { color: #b8860b; }
+.color-income-lbl { color: #2e7d32; }
+.color-expense-lbl { color: #d32f2f; }

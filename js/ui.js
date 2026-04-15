@@ -92,15 +92,15 @@ function createAllRows(categoryType, containerId) {
 				element.querySelector('.tooltipText').textContent = tooltips[name];
 			}
 			
-			// Attach click handlers with a check to prevent clicking locked cards
+			// Attach click handlers (Removed locked check since locked cards are now completely hidden)
 			if (isJob || isSkill) {
 				element.onclick = function() {
-					if (!element.classList.contains("locked")) setTask(name);
+					setTask(name);
 				};
 			} else if (isItem) {
 				element.onclick = categoryName === "Properties" ?
-					function() { if (!element.classList.contains("locked")) setProperty(name); } :
-					function() { if (!element.classList.contains("locked")) setMisc(name); };
+					function() { setProperty(name); } :
+					function() { setMisc(name); };
 			}
 			
 			contentDiv.appendChild(element);
@@ -130,7 +130,7 @@ function updateQuickTaskDisplay(taskType) {
 	}
 }
 
-// Refactored to apply locks directly to the cards/rows and only update when changed
+// Refactored to hide locked cards completely and simplify requirement text
 function updateRequiredRows(data, categoryType) {
 	for (let categoryName in categoryType) {
 		let category = categoryType[categoryName];
@@ -147,43 +147,38 @@ function updateRequiredRows(data, categoryType) {
 			let requirements = gameData.requirements[entityName];
 			
 			if (!requirements || requirements.isCompleted()) {
-				// Unlocked
-				if (element.classList.contains("locked")) element.classList.remove("locked");
+				// Unlocked - ensure it is visible
 				if (element.classList.contains("hiddenTask")) element.classList.remove("hiddenTask");
-				let overlay = element.querySelector('.locked-overlay');
-				if (overlay && overlay.style.display !== 'none') overlay.style.display = 'none';
-			} else if (!nextEntityFound) {
-				// Next to unlock
-				if (element.classList.contains("hiddenTask")) element.classList.remove("hiddenTask");
-				if (!element.classList.contains("locked")) element.classList.add("locked");
-				
-				let overlay = element.querySelector('.locked-overlay');
-				if (overlay) {
-					if (overlay.style.display !== 'flex') overlay.style.display = 'flex';
-				}
-				
-				// Build the requirement text for the category footer
-				let finalText = `<span style="color: #fff;">🔒 To unlock <b>${entityName}</b>:</span><br>`;
-				if (requirements instanceof FameRequirement) {
-					finalText += format(requirements.requirements[0].requirement) + " fame";
-				} else if (requirements instanceof CoinRequirement) {
-					finalText += "$" + format(requirements.requirements[0].requirement);
-				} else if (requirements instanceof TaskRequirement) {
-					let reqStrings = [];
-					for (let req of requirements.requirements) {
-						let task = gameData.taskData[req.task];
-						reqStrings.push(req.task + " LVL " + format(task.level) + " / " + format(req.requirement));
-					}
-					finalText += reqStrings.join("<br>");
-				} else if (requirements instanceof AgeRequirement) {
-					finalText += "Age " + format(requirements.requirements[0].requirement);
-				}
-				
-				categoryReqText = finalText;
-				nextEntityFound = true;
 			} else {
-				// Hidden (too far down the tree)
+				// Locked - hide the card entirely instead of showing an overlay
 				if (!element.classList.contains("hiddenTask")) element.classList.add("hiddenTask");
+				
+				// If this is the first locked entity in the category, show its requirements
+				if (!nextEntityFound) {
+					let finalText = "";
+					
+					// Format: one on one line, centered, lock icon, skills and levels, no target name
+					if (requirements instanceof FameRequirement) {
+						finalText += "" + format(requirements.requirements[0].requirement) + " fame";
+					} else if (requirements instanceof CoinRequirement) {
+						finalText += "$" + format(requirements.requirements[0].requirement);
+					} else if (requirements instanceof TaskRequirement) {
+						let reqStrings = [];
+						for (let req of requirements.requirements) {
+							let task = gameData.taskData[req.task];
+							reqStrings.push(req.task + " LVL " + format(task.level) + " / " + format(req.requirement));
+						}
+						finalText += reqStrings.join(", ");
+					} else if (requirements instanceof AgeRequirement) {
+						finalText += "Age " + format(requirements.requirements[0].requirement);
+					}
+					
+					if (finalText !== "") {
+						finalText = "🔒 " + finalText;
+					}
+					categoryReqText = finalText;
+					nextEntityFound = true;
+				}
 			}
 		}
 		

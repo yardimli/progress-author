@@ -115,6 +115,7 @@
 				</div>
 			</template>
 			
+			<!-- Removed locked-overlay from templates since locked cards are now completely hidden -->
 			<template id="jobCardTemplate">
 				<div class="ui-card tooltip">
 					<img class="card-image" src="" alt="">
@@ -123,9 +124,6 @@
 					<div class="level-badge">
 						<div class="badge-fill progressFill"></div>
 						<span class="badge-text level"></span>
-					</div>
-					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 LOCKED</div>
 					</div>
 					<span class="tooltipText">
 						<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
@@ -148,9 +146,6 @@
 					<div class="skip-container skipSkill" style="margin-left: 15px;">
 						<input type="checkbox" class="checkbox" onclick="event.stopPropagation();">
 					</div>
-					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 LOCKED</div>
-					</div>
 					<span class="tooltipText">
 						<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
 						<span class="maxLevelTooltip" style="display: none; color: #4CAF50; margin-top: 8px; padding: 0 5px;"></span>
@@ -164,9 +159,6 @@
 					<div class="card-title name"></div>
 					<div class="card-value effect"></div>
 					<div class="card-expense expense"></div>
-					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 LOCKED</div>
-					</div>
 					<span class="tooltipText"></span>
 				</div>
 			</template>
@@ -179,9 +171,6 @@
 						<div class="row-value effect"></div>
 					</div>
 					<div class="row-expense expense"></div>
-					<div class="locked-overlay hiddenTask">
-						<div class="locked-text">🔒 LOCKED</div>
-					</div>
 					<span class="tooltipText"></span>
 				</div>
 			</template>
