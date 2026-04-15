@@ -61,7 +61,8 @@ class Job extends Task {
     getXpGain() {
         let baseGain = super.getXpGain();
         let workPercentage = (100 - gameData.workWritingBalance) / 100;
-        return baseGain * gameData.workMultiplier * workPercentage;
+        // MODIFIED: Added gameData.workXpMultiplier to speed up or slow down leveling
+        return baseGain * gameData.workMultiplier * gameData.workXpMultiplier * workPercentage;
     }
 }
 
@@ -81,7 +82,8 @@ class Skill extends Task {
     
     getXpGain() {
         let baseGain = super.getXpGain();
-        return baseGain * gameData.skillMultiplier;
+        // MODIFIED: Added gameData.skillXpMultiplier to speed up or slow down leveling
+        return baseGain * gameData.skillMultiplier * gameData.skillXpMultiplier;
     }
 }
 

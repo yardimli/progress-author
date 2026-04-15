@@ -22,6 +22,11 @@ var gameData = {
 	skillMultiplier: 0.5,
 	writingMultiplier: 0.5,
 	
+	// NEW: XP gain multipliers for each category to adjust leveling speed independently
+	workXpMultiplier: 0.25,
+	skillXpMultiplier: 0.25,
+	writingXpMultiplier: 0.25,
+	
 	// Potions state
 	potions: {
 		inspiration: 0,

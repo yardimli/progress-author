@@ -94,8 +94,8 @@ function getRawWritingSpeed() {
 		}
 	}
 	
-	// MODIFIED: Apply the global writing multiplier and item multipliers
-	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * itemWritingMultiplier;
+	// MODIFIED: Apply the global writing multiplier, item multipliers, and the new writingXpMultiplier
+	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier;
 }
 
 // Caps writing speed at 1000 words/day
