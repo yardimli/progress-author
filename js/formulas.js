@@ -86,7 +86,9 @@ function setCustomEffects() {
 function getInspiration() {
 	let meditationEffect = getBindedTaskEffect("Meditation");
 	let chairEffect = getBindedItemEffect("Ergonomic Chair");
-	return meditationEffect() * chairEffect() * gameData.currentProperty.getEffect();
+	// NEW: Apply Inspiration Potion multiplier
+	let potionMultiplier = gameData.potions.inspiration > 0 ? 2.0 : 1.0;
+	return meditationEffect() * chairEffect() * gameData.currentProperty.getEffect() * potionMultiplier;
 }
 
 function getFame() {
@@ -114,8 +116,10 @@ function getFameGain() {
 function getGameSpeed() {
 	let flowState = gameData.taskData["Flow State"];
 	let flowStateSpeed = gameData.timeWarpingEnabled && flowState ? flowState.getEffect() : 1;
-	// Added gameData.speedMultiplier to the calculation
-	return baseGameSpeed * +!gameData.paused * +isAlive() * flowStateSpeed * (gameData.speedMultiplier || 1);
+	// NEW: Apply Acceleration Potion multiplier
+	let potionMultiplier = gameData.potions.acceleration > 0 ? 2.0 : 1.0;
+	// MODIFIED: Removed paused and speedMultiplier logic
+	return baseGameSpeed * +isAlive() * flowStateSpeed * potionMultiplier;
 }
 
 function getIncome() {

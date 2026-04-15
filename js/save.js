@@ -84,7 +84,11 @@ function loadGameData() {
 		
 		gameData = gameDataSave;
 		
-		// NEW: Migrate completedBooks from string array to object array (backward compatibility)
+		// NEW: Backward compatibility for potions
+		if (!gameData.potions) {
+			gameData.potions = { inspiration: 0, acceleration: 0 };
+		}
+		
 		if (gameData.completedBooks && gameData.completedBooks.length > 0) {
 			if (typeof gameData.completedBooks[0] === 'string') {
 				gameData.completedBooks = gameData.completedBooks.map(id => ({

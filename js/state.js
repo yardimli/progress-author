@@ -6,8 +6,7 @@ var gameData = {
 	coins: 0,
 	days: 365 * 18, // Starts at 18
 	fame: 0,
-	speedMultiplier: 1, // Added game speed multiplier
-	paused: false,
+	// MODIFIED: Removed speedMultiplier and paused
 	timeWarpingEnabled: true,
 	rebirthOneCount: 0,
 	rebirthTwoCount: 0,
@@ -15,6 +14,12 @@ var gameData = {
 	currentSkill: null,
 	currentProperty: null,
 	currentMisc: null,
+	
+	// NEW: Potions state
+	potions: {
+		inspiration: 0,
+		acceleration: 0
+	},
 	
 	// Writing Process variables
 	wordsWritten: 0,

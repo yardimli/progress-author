@@ -17,6 +17,16 @@ function gameLoop(currentTime) {
     
     if (deltaTime > 86400) deltaTime = 86400;
     
+    // NEW: Update potion timers (real-time)
+    if (gameData.potions.inspiration > 0) {
+        gameData.potions.inspiration -= deltaTime;
+        if (gameData.potions.inspiration < 0) gameData.potions.inspiration = 0;
+    }
+    if (gameData.potions.acceleration > 0) {
+        gameData.potions.acceleration -= deltaTime;
+        if (gameData.potions.acceleration < 0) gameData.potions.acceleration = 0;
+    }
+    
     update();
     
     saveTimer += deltaTime;
@@ -40,7 +50,7 @@ async function init() {
             jobsRes, skillsRes, itemsRes,
             jobCatRes, skillCatRes, itemCatRes,
             colorsRes, tooltipsRes, reqRes,
-            authorsRes, booksRes // Added fetches for new JSONs
+            authorsRes, booksRes
         ] = await Promise.all([
             fetch('data/jobs.json'),
             fetch('data/skills.json'),
@@ -51,8 +61,8 @@ async function init() {
             fetch('data/headerRowColors.json'),
             fetch('data/tooltips.json'),
             fetch('data/requirements.json'),
-            fetch('data/authors.json'), // Fetch authors
-            fetch('data/books.json')    // Fetch books
+            fetch('data/authors.json'),
+            fetch('data/books.json')
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -66,8 +76,8 @@ async function init() {
         tooltips = await tooltipsRes.json();
         const requirementsData = await reqRes.json();
         
-        authorsBaseData = await authorsRes.json(); // Assign authors data
-        booksBaseData = await booksRes.json();     // Assign books data
+        authorsBaseData = await authorsRes.json();
+        booksBaseData = await booksRes.json();
         
         createAllRows(jobCategories, "jobTable");
         createAllRows(skillCategories, "skillTable");
@@ -92,13 +102,11 @@ async function init() {
         
         loadGameData();
         
-        // Initialize Author if not set
         if (!gameData.currentAuthor) {
             let authorKeys = Object.keys(authorsBaseData);
             gameData.currentAuthor = authorKeys[Math.floor(Math.random() * authorKeys.length)];
         }
         
-        // Initialize Book if not set
         if (!gameData.currentBook) {
             pickNextBook();
         }

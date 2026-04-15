@@ -15,9 +15,7 @@ function goBankrupt() {
 	logEvent("Ran out of money and went bankrupt! Lost all housing and equipment.");
 }
 
-function setPause() {
-	gameData.paused = !gameData.paused;
-}
+// MODIFIED: Removed setPause()
 
 function setTimeWarping() {
 	gameData.timeWarpingEnabled = !gameData.timeWarpingEnabled;
@@ -48,6 +46,14 @@ function setMisc(miscName) {
 	} else {
 		gameData.currentMisc.push(misc);
 		logEvent(`Started using ${misc.name}.`);
+	}
+}
+
+// NEW: Potion logic
+function drinkPotion(type) {
+	if (gameData.potions[type] <= 0) {
+		gameData.potions[type] = 600; // 10 minutes in seconds
+		logEvent(`Drank ${type === 'inspiration' ? 'Inspiration' : 'Acceleration'} Potion!`);
 	}
 }
 
@@ -184,7 +190,6 @@ function updateWritingProcess() {
 		let bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : "Unknown Book";
 		logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
 		
-		// NEW: Save the book as an object with age, day, and royalties
 		let bookAge = daysToYears(gameData.days);
 		let bookDay = getDay();
 		

@@ -9,10 +9,8 @@ function setTab(element, selectedTab) {
 	
 	let tabButtons = document.getElementsByClassName("tabButton");
 	for (let tabButton of tabButtons) {
-		// MODIFIED: Replaced w3-blue-gray with btn-active
 		tabButton.classList.remove("btn-active");
 	}
-	// MODIFIED: Replaced w3-blue-gray with btn-active
 	element.classList.add("btn-active");
 }
 
@@ -82,12 +80,11 @@ function createAllRows(categoryType, containerId) {
 					imgElement.src = `img/${filefolder}/${filename}`;
 					imgElement.alt = name;
 					
-					// Setup image to trigger modal
 					imgElement.setAttribute('data-name', name);
 					imgElement.setAttribute('data-type', isJob ? 'job' : (isSkill ? 'skill' : 'item'));
 					imgElement.style.cursor = 'pointer';
 					imgElement.onclick = function (e) {
-						e.stopPropagation(); // Prevent row click from firing
+						e.stopPropagation();
 						showModal(this);
 					};
 				}
@@ -107,6 +104,40 @@ function createAllRows(categoryType, containerId) {
 		});
 		
 		container.appendChild(categoryDiv);
+		
+		// NEW: Inject Free Items section after Properties
+		if (isItem && categoryName === "Properties") {
+			let freeItemsDiv = document.createElement("div");
+			freeItemsDiv.className = "category-section";
+			freeItemsDiv.innerHTML = `
+				<div class="category-header" style="margin-top: 25px;">Free Items</div>
+				<div class="category-content list">
+					<!-- Inspiration Potion -->
+					<div class="ui-row" style="cursor: default;">
+						<div class="row-image" style="background-color: #9c27b0; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; border-radius: 4px;">🧪</div>
+						<div class="row-info">
+							<div class="row-title">Inspiration Potion</div>
+							<div class="row-value">x2.0 Inspiration</div>
+						</div>
+						<div class="potion-action" id="action-inspiration" style="width: 120px; text-align: right; flex-shrink: 0;">
+							<button class="btn" onclick="drinkPotion('inspiration')">Drink</button>
+						</div>
+					</div>
+					<!-- Acceleration Potion -->
+					<div class="ui-row" style="cursor: default;">
+						<div class="row-image" style="background-color: #ff9800; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; border-radius: 4px;">⚡</div>
+						<div class="row-info">
+							<div class="row-title">Acceleration Potion</div>
+							<div class="row-value">x2.0 Game Speed</div>
+						</div>
+						<div class="potion-action" id="action-acceleration" style="width: 120px; text-align: right; flex-shrink: 0;">
+							<button class="btn" onclick="drinkPotion('acceleration')">Drink</button>
+						</div>
+					</div>
+				</div>
+			`;
+			container.appendChild(freeItemsDiv);
+		}
 	}
 }
 
@@ -255,23 +286,7 @@ function updateHeaderRows(categories) {
 	});
 }
 
-function setGameSpeedMultiplier(multiplier) {
-	gameData.speedMultiplier = multiplier;
-	updateSpeedButtons();
-}
-
-function updateSpeedButtons() {
-	let buttons = document.getElementsByClassName("speed-btn");
-	for (let btn of buttons) {
-		let isActive = parseInt(btn.textContent) === (gameData.speedMultiplier || 1);
-		// MODIFIED: Replaced w3-blue-gray with btn-active
-		if (isActive && !btn.classList.contains("btn-active")) {
-			btn.classList.add("btn-active");
-		} else if (!isActive && btn.classList.contains("btn-active")) {
-			btn.classList.remove("btn-active");
-		}
-	}
-}
+// MODIFIED: Removed setGameSpeedMultiplier and updateSpeedButtons
 
 function updateAuthorAndBookUI() {
 	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
@@ -309,7 +324,6 @@ function updateAuthorAndBookUI() {
 	}
 }
 
-// Update the tab buttons with icons and stats without destroying innerHTML
 function updateTabButtons() {
 	const updateImg = (imgId, entity) => {
 		let imgEl = document.getElementById(imgId);
@@ -325,7 +339,6 @@ function updateTabButtons() {
 		}
 	};
 	
-	// Work Tab
 	updateImg("jobTabImg", gameData.currentJob);
 	let jobTabText = document.getElementById("jobTabText");
 	if (jobTabText) {
@@ -333,7 +346,6 @@ function updateTabButtons() {
 		if (jobTabText.textContent !== jobIncomeText) jobTabText.textContent = jobIncomeText;
 	}
 	
-	// Skills Tab
 	updateImg("skillTabImg", gameData.currentSkill);
 	let skillTabText = document.getElementById("skillTabText");
 	if (skillTabText) {
@@ -341,7 +353,6 @@ function updateTabButtons() {
 		if (skillTabText.textContent !== skillLvlText) skillTabText.textContent = skillLvlText;
 	}
 	
-	// Writing Tab
 	let writingImgEl = document.getElementById("writingTabImg");
 	if (writingImgEl) {
 		if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
@@ -356,7 +367,6 @@ function updateTabButtons() {
 		}
 	}
 	
-	// Shop Tab
 	updateImg("shopTabImg", gameData.currentProperty);
 	let shopTabText = document.getElementById("shopTabText");
 	if (shopTabText) {
@@ -403,6 +413,33 @@ function updateBookHistory() {
 	}
 }
 
+// NEW: Update Potions UI
+function updatePotionsUI() {
+	const types = ['inspiration', 'acceleration'];
+	types.forEach(type => {
+		let actionContainer = document.getElementById(`action-${type}`);
+		if (!actionContainer) return;
+		
+		let timeLeft = gameData.potions[type];
+		if (timeLeft > 0) {
+			let minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+			let seconds = Math.floor(timeLeft % 60).toString().padStart(2, '0');
+			let percentage = (timeLeft / 600) * 100;
+			
+			actionContainer.innerHTML = `
+				<div class="progress-bar" style="width: 100%; height: 30px; background-color: #ddd; border-radius: 4px; position: relative; overflow: hidden;">
+					<div style="height: 100%; background-color: #4CAF50; width: ${percentage}%;"></div>
+					<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); font-size: 14px;">${minutes}:${seconds}</div>
+				</div>
+			`;
+		} else {
+			if (!actionContainer.querySelector('button')) {
+				actionContainer.innerHTML = `<button class="btn" onclick="drinkPotion('${type}')">Drink</button>`;
+			}
+		}
+	});
+}
+
 function updateText() {
 	const updateIfChanged = (id, newText) => {
 		let el = document.getElementById(id);
@@ -412,11 +449,10 @@ function updateText() {
 	};
 	
 	updateIfChanged("ageDisplay", daysToYears(gameData.days));
-	// Format day with leading zeros up to 3 digits (e.g. 050)
 	let dayStr = String(getDay()).padStart(3, '0');
 	updateIfChanged("dayDisplay", dayStr);
 	updateIfChanged("lifespanDisplay", daysToYears(getLifespan()));
-	updateIfChanged("pauseButton", gameData.paused ? "Play" : "Pause");
+	// MODIFIED: Removed pauseButton update
 	
 	const updateMoneyIfChanged = (money, id) => {
 		let el = document.getElementById(id);
@@ -442,7 +478,6 @@ function updateText() {
 	updateIfChanged("wordsWrittenDisplay", format(gameData.wordsWritten));
 	updateIfChanged("bookLengthDisplay", format(getBookLength()));
 	
-	// Writing Tab Specific Updates
 	updateIfChanged("writingSpeedDisplayTab", format(getWritingSpeed()));
 	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(1));
 	
@@ -526,12 +561,12 @@ function updateUI() {
 	hideEntities();
 	updateAuthorAndBookUI();
 	updateText();
-	updateSpeedButtons();
+	// MODIFIED: Removed updateSpeedButtons()
 	updateTabButtons();
 	updateBookHistory();
+	// NEW: Update Potions UI
+	updatePotionsUI();
 }
-
-// --- Modal Logic ---
 
 function showModal (imgElement) {
 	let name = imgElement.getAttribute('data-name');
@@ -546,7 +581,6 @@ function showModal (imgElement) {
 	modalTitle.textContent = name;
 	modalDesc.textContent = tooltips[name] || "";
 	
-	// Add max levels in past lives text for work and skills
 	if ((type === 'job' || type === 'skill') && gameData.rebirthOneCount > 0) {
 		let task = gameData.taskData[name];
 		if (task) {
@@ -564,7 +598,6 @@ function showModal (imgElement) {
 	modal.style.display = "flex";
 }
 
-// Close modal when clicking anywhere (including the modal itself)
 window.addEventListener('click', function () {
 	let modal = document.getElementById('infoModal');
 	if (modal && modal.style.display === 'flex') {
