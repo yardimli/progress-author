@@ -89,10 +89,29 @@
     text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
 
-.dark .category-requirements {
-    background-color: #1a1a1a;
-    border-color: #333;
-    color: #aaa;
+/* MODIFIED: Removed .dark .category-requirements */
+
+/* NEW: Locked Card and Row Styles for Dark Mode */
+.dark .locked-card, .dark .locked-row {
+    background-color: #111;
+    border-color: transparent;
+}
+
+.dark .locked-card:hover, .dark .locked-row:hover {
+    background-color: #111;
+    border-color: transparent;
+}
+
+.dark .locked-icon {
+    color: #444;
+}
+
+.dark .locked-title {
+    color: #666;
+}
+
+.dark .locked-text {
+    color: #777;
 }
 
 /* Dynamic Text Colors for JS Injection */

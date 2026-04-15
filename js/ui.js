@@ -44,8 +44,7 @@ function createAllRows(categoryType, containerId) {
 		let categoryDiv = headerClone.querySelector('.category-section');
 		categoryDiv.querySelector('.category-header').textContent = categoryName;
 		
-		let reqDiv = categoryDiv.querySelector('.category-requirements');
-		reqDiv.id = "req-category-" + categoryName.replace(/\s+/g, '-');
+		// MODIFIED: Removed category-requirements logic
 		
 		let contentDiv = categoryDiv.querySelector('.category-content');
 		
@@ -103,6 +102,28 @@ function createAllRows(categoryType, containerId) {
 			contentDiv.appendChild(element);
 		});
 		
+		// NEW: Inject locked placeholder card/row
+		let lockedPlaceholder = document.createElement("div");
+		lockedPlaceholder.id = "locked-" + categoryName.replace(/\s+/g, '-');
+		if (isJob || (isItem && categoryName === "Properties")) {
+			lockedPlaceholder.className = "ui-card locked-card hiddenTask";
+			lockedPlaceholder.innerHTML = `
+				<div class="locked-icon">🔒</div>
+				<div class="locked-title">Required</div>
+				<div class="locked-text"></div>
+			`;
+		} else {
+			lockedPlaceholder.className = "ui-row locked-row hiddenTask";
+			lockedPlaceholder.innerHTML = `
+				<div class="locked-icon">🔒</div>
+				<div class="row-info">
+					<div class="locked-title">Required</div>
+					<div class="locked-text"></div>
+				</div>
+			`;
+		}
+		contentDiv.appendChild(lockedPlaceholder);
+		
 		container.appendChild(categoryDiv);
 		
 		// NEW: Inject Free Items section after Properties
@@ -146,7 +167,8 @@ function updateRequiredRows(data, categoryType) {
 		let category = categoryType[categoryName];
 		let nextEntityFound = false;
 		
-		let categoryReqDiv = document.getElementById("req-category-" + categoryName.replace(/\s+/g, '-'));
+		// MODIFIED: Target the locked placeholder instead of the old categoryReqDiv
+		let lockedPlaceholder = document.getElementById("locked-" + categoryName.replace(/\s+/g, '-'));
 		let categoryReqText = "";
 		
 		for (let i = 0; i < category.length; i++) {
@@ -167,30 +189,31 @@ function updateRequiredRows(data, categoryType) {
 					if (requirements instanceof FameRequirement) {
 						finalText += format(requirements.requirements[0].requirement) + " fame";
 					} else if (requirements instanceof CoinRequirement) {
-						finalText += "$" + format(requirements.requirements[0].requirement);
+						finalText += "$" + format(requirements.requirements[0].requirement,0);
 					} else if (requirements instanceof TaskRequirement) {
 						let reqStrings = [];
 						for (let req of requirements.requirements) {
 							let task = gameData.taskData[req.task];
-							reqStrings.push(req.task + " LVL " + format(task.level) + " / " + format(req.requirement));
+							reqStrings.push(req.task + " LVL " + format(task.level,0) + " / " + format(req.requirement,0));
 						}
 						finalText += reqStrings.join(", ");
 					} else if (requirements instanceof AgeRequirement) {
-						finalText += "Age " + format(requirements.requirements[0].requirement);
+						finalText += "Age " + format(requirements.requirements[0].requirement,0);
 					}
 					
-					categoryReqText = "🔒 " + finalText;
+					categoryReqText = finalText;
 					nextEntityFound = true;
 				}
 			}
 		}
 		
-		if (categoryReqDiv) {
+		if (lockedPlaceholder) {
 			if (categoryReqText !== "") {
-				if (categoryReqDiv.style.display !== 'block') categoryReqDiv.style.display = 'block';
-				if (categoryReqDiv.innerHTML !== categoryReqText) categoryReqDiv.innerHTML = categoryReqText;
+				if (lockedPlaceholder.classList.contains("hiddenTask")) lockedPlaceholder.classList.remove("hiddenTask");
+				let textEl = lockedPlaceholder.querySelector('.locked-text');
+				if (textEl.innerHTML !== categoryReqText) textEl.innerHTML = categoryReqText;
 			} else {
-				if (categoryReqDiv.style.display !== 'none') categoryReqDiv.style.display = 'none';
+				if (!lockedPlaceholder.classList.contains("hiddenTask")) lockedPlaceholder.classList.add("hiddenTask");
 			}
 		}
 	}
