@@ -127,7 +127,7 @@ function increaseDays() {
 }
 
 function getWritingSpeed() {
-	let baseSpeed = 10;
+	let baseSpeed = 100;
 	let typingSpeed = gameData.taskData["Typing Speed"] ? gameData.taskData["Typing Speed"].getEffect() : 1;
 	let focus = gameData.taskData["Focus"] ? gameData.taskData["Focus"].getEffect() : 1;
 	let inspiration = getInspiration();
@@ -136,7 +136,28 @@ function getWritingSpeed() {
 	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus;
 }
 
+// Picks a random book from the pool that hasn't been written yet
+function pickNextBook() {
+	if (!booksBaseData) return;
+	let allBooks = Object.keys(booksBaseData);
+	let availableBooks = allBooks.filter(id => !gameData.completedBooks.includes(id));
+	
+	// Reset the pool if all books have been completed
+	if (availableBooks.length === 0) {
+		gameData.completedBooks = [];
+		availableBooks = allBooks;
+	}
+	
+	let randomIndex = Math.floor(Math.random() * availableBooks.length);
+	gameData.currentBook = availableBooks[randomIndex];
+}
+
+// Now returns the specific word count of the randomly selected book
 function getBookLength() {
+	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+		return booksBaseData[gameData.currentBook].wordCount;
+	}
+	// Fallback just in case
 	let plottingLvl = gameData.taskData["Plotting"] ? gameData.taskData["Plotting"].level : 0;
 	return (50 + (plottingLvl * 2)) * 250;
 }
@@ -164,7 +185,16 @@ function updateWritingProcess() {
 		gameData.booksPublished += 1;
 		gameData.wordsWritten -= target;
 		
-		logEvent(`Published Book #${gameData.booksPublished}! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
+		// Log the book title
+		let bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : "Unknown Book";
+		logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
+		
+		// Mark current book as completed and pick a new one
+		if (!gameData.completedBooks.includes(gameData.currentBook)) {
+			gameData.completedBooks.push(gameData.currentBook);
+		}
+		pickNextBook();
+		
 		target = getBookLength();
 	}
 }
@@ -201,6 +231,16 @@ function rebirthReset() {
 	gameData.currentSkill = gameData.taskData["Focus"];
 	gameData.currentProperty = gameData.itemData["Homeless"];
 	gameData.currentMisc = [];
+	
+	// Reset author and books on rebirth
+	gameData.currentAuthor = null;
+	gameData.currentBook = null;
+	gameData.completedBooks = [];
+	if (authorsBaseData) {
+		let authorKeys = Object.keys(authorsBaseData);
+		gameData.currentAuthor = authorKeys[Math.floor(Math.random() * authorKeys.length)];
+	}
+	pickNextBook();
 	
 	for (let taskName in gameData.taskData) {
 		let task = gameData.taskData[taskName];

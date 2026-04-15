@@ -13,10 +13,17 @@
 	<h1>Author's Journey</h1>
 	<div style="width: 1220px; height: 600px">
 		<div class="panel w3-padding" style="width: 300px; height: auto; float: left">
-                <span id="deathText" class="hidden">
-                    <div style="font-size: large; color: red">Age has caught up to you</div>
-                    <div class="sidebar-element" style="color: gray">Your age has met your lifespan, use the Golden Pen to retire before you pass away.</div>
-                </span>
+			
+			<!-- NEW AUTHOR PANEL -->
+			<div class="sidebar-element" style="text-align: center; border-bottom: 1px solid #494949; padding-bottom: 10px; margin-bottom: 10px;">
+				<img id="authorImage" src="" alt="Author" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; background-color: #eee;">
+				<h3 id="authorNameDisplay" style="margin: 0; font-size: 1.2em;">Author Name</h3>
+			</div>
+			
+			<span id="deathText" class="hidden">
+				<div style="font-size: large; color: red">Age has caught up to you</div>
+				<div class="sidebar-element" style="color: gray">Your age has met your lifespan, use the Golden Pen to retire before you pass away.</div>
+			</span>
 			
 			<div class="" style="font-size: large">Age <span id="ageDisplay">18</span> Day <span id="dayDisplay">0</span></div>
 			<div class="sidebar-element" style="color: gray">Lifespan: <span id="lifespanDisplay">70</span> years</div>
@@ -32,16 +39,16 @@
 			<button id="pauseButton" class="w3-button button sidebar-element" onClick="setPause()">Pause</button>
 			
 			<span id="automation" class="inline" style="margin-left: 8px">
-                    <span>
-                        <div class="inline">Auto-promote</div>
-                        <input type="checkbox" class="inline" id="autoPromote">
-                    </span>
-                    <br/>
-                    <span>
-                        <div class="inline">Auto-learn</div>
-                        <input type="checkbox" class="inline sidebar-element" id="autoLearn">
-                    </span>
-                </span>
+				<span>
+					<div class="inline">Auto-promote</div>
+					<input type="checkbox" class="inline" id="autoPromote">
+				</span>
+				<br/>
+				<span>
+					<div class="inline">Auto-learn</div>
+					<input type="checkbox" class="inline sidebar-element" id="autoLearn">
+				</span>
+			</span>
 			
 			<div style="font-size: large" id="coinDisplay">
 				<span>$0.00</span>
@@ -55,37 +62,44 @@
 			</ul>
 			
 			<span id="quickTaskDisplay">
-                    <div style="width: 230px" class="small-margin inline job progress-bar progressBar">
-                        <div class="progress-fill progressFill" style="background-color:rgb(225, 165, 0)"></div>
-                        <div class="progress-text name">Task</div>
-                    </div>
-                    <div class="sidebar-element" style="color: gray">Current job</div>
+				<div style="width: 230px" class="small-margin inline job progress-bar progressBar">
+					<div class="progress-fill progressFill" style="background-color:rgb(225, 165, 0)"></div>
+					<div class="progress-text name">Task</div>
+				</div>
+				<div class="sidebar-element" style="color: gray">Current job</div>
 
-                    <div style="width: 230px" class="small-margin skill progress-bar progressBar">
-                        <div class="progress-fill progressFill" style="background-color:rgb(225, 165, 0)"></div>
-                        <div class="progress-text name">Task</div>
-                    </div>
-                    <div class="sidebar-element" style="color: gray">Current skill</div>
-                </span>
+				<div style="width: 230px" class="small-margin skill progress-bar progressBar">
+					<div class="progress-fill progressFill" style="background-color:rgb(225, 165, 0)"></div>
+					<div class="progress-text name">Task</div>
+				</div>
+				<div class="sidebar-element" style="color: gray">Current skill</div>
+			</span>
 			
 			<div style="font-size: large"><span style="color: rgb(15, 105, 207)">Inspiration: </span><span id="inspirationDisplay"></span></div>
 			<div style="color: gray" class="sidebar-element">Affects all xp gain and writing speed</div>
 			
 			<span id="fameInfo">
-                    <div style="font-size: large"><span style="color: rgb(200, 0, 0)">Fame: </span><span id="fameDisplay"></span></div>
-                    <div style="color: gray" class="sidebar-element">Affects book sales and business skills</div>
-                </span>
+				<div style="font-size: large"><span style="color: rgb(200, 0, 0)">Fame: </span><span id="fameDisplay"></span></div>
+				<div style="color: gray" class="sidebar-element">Affects book sales and business skills</div>
+			</span>
 			
 			<span id="timeWarping">
-                    <div style="font-size: large"><span style="color: rgb(204, 34, 219)">Flow State: </span><span id="timeWarpingDisplay"></span></div>
-                    <div style="color: gray">Affects game speed</div>
-                    <button id="timeWarpingButton" class="w3-button button sidebar-element" style="margin-top: 5px; width:150px" onClick="setTimeWarping()">Enable flow</button>
-                </span>
+				<div style="font-size: large"><span style="color: rgb(204, 34, 219)">Flow State: </span><span id="timeWarpingDisplay"></span></div>
+				<div style="color: gray">Affects game speed</div>
+				<button id="timeWarpingButton" class="w3-button button sidebar-element" style="margin-top: 5px; width:150px" onClick="setTimeWarping()">Enable flow</button>
+			</span>
 			
 			<!-- The Writing Process Mechanic -->
 			<div class="panel w3-padding sidebar-element" style="margin-top: 16px; border: 1px solid #494949;">
 				<div style="font-size: large; color: #875F9A">The Writing Process</div>
 				<div class="sidebar-element" style="color: gray; font-size: 0.9em;">Write and publish books to earn royalties and fame.</div>
+				
+				<!-- NEW BOOK DISPLAY -->
+				<div style="text-align: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #494949;">
+					<img id="currentBookImage" src="" alt="Book Cover" style="width: 80px; height: 120px; object-fit: cover; border: 1px solid #ccc; background-color: #eee;">
+					<div id="currentBookTitle" style="font-weight: bold; margin-top: 5px; font-size: 0.95em;">Book Title</div>
+				</div>
+				
 				<div><b>Words Written:</b><br> <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
 				<div><b>Writing Speed:</b> <span id="writingSpeedDisplay">0</span> words/day</div>
 				<div><b>Book Quality:</b> <span id="bookQualityDisplay">0</span>%</div>
@@ -219,7 +233,7 @@
 							By clicking the pen, you will retire and have to restart your career, losing all your levels and money.
 							However, you will gain <b>xp multipliers</b> for your jobs and skills equivalent to: <b>1 + the max level of the skill or job / 20.</b>
 							This means you will learn everything again much more quickly than you did in your previous life. <span style="color: rgb(200, 0, 0)">
-                                Something tells you that the pen might transform even further after living for <b>2 whole centuries</b>...</span>
+								Something tells you that the pen might transform even further after living for <b>2 whole centuries</b>...</span>
 						</i>
 						<br/>
 						<button class="w3-button button" style="margin-bottom: 8px; margin-top: 8px" onClick="rebirthOne()">Start a New Chapter</button>

@@ -80,7 +80,10 @@ function createAllRows(categoryType, containerId) {
 			if (entityData && entityData.filefolder && entityData.filename) {
 				let imgElement = element.querySelector('.card-image, .row-image');
 				if (imgElement) {
-					imgElement.src = `img/${entityData.filefolder}/${entityData.filename}`;
+					let filefolder = entityData.filefolder + '256';
+					let filename = entityData.filename;
+					filename = filename.replace('.png', '.jpg'); // Ensure we load the 256px version
+					imgElement.src = `img/${filefolder}/${filename}`;
 					imgElement.alt = name;
 				}
 			}
@@ -336,6 +339,45 @@ function updateSpeedButtons() {
 	}
 }
 
+// Updates the author and book information in the sidebar
+function updateAuthorAndBookUI() {
+	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
+		let author = authorsBaseData[gameData.currentAuthor];
+		let authorImg = document.getElementById("authorImage");
+		let authorName = document.getElementById("authorNameDisplay");
+		
+		let filefolder = author.filefolder + '256';
+		let filename = author.filename;
+		filename = filename.replace('.png', '.jpg'); // Ensure we load the 256px version
+		let imgSrc = `img/${filefolder}/${filename}`;
+		
+		if (authorImg && authorImg.src !== imgSrc && !authorImg.src.includes(imgSrc)) {
+			authorImg.src = imgSrc;
+		}
+		if (authorName && authorName.textContent !== author.name) {
+			authorName.textContent = author.name;
+		}
+	}
+	
+	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+		let book = booksBaseData[gameData.currentBook];
+		let bookImg = document.getElementById("currentBookImage");
+		let bookTitle = document.getElementById("currentBookTitle");
+
+		let filefolder = book.filefolder + '256';
+		let filename = book.filename;
+		filename = filename.replace('.png', '.jpg'); // Ensure we load the 256px version
+		let imgSrc = `img/${filefolder}/${filename}`;
+		
+		if (bookImg && bookImg.src !== imgSrc && !bookImg.src.includes(imgSrc)) {
+			bookImg.src = imgSrc;
+		}
+		if (bookTitle && bookTitle.textContent !== book.title) {
+			bookTitle.textContent = book.title;
+		}
+	}
+}
+
 function updateText() {
 	// Helper function to update text content only if changed
 	const updateIfChanged = (id, newText) => {
@@ -458,6 +500,7 @@ function updateUI() {
 	updateQuickTaskDisplay("job");
 	updateQuickTaskDisplay("skill");
 	hideEntities();
+	updateAuthorAndBookUI(); // Update the new Author and Book elements
 	updateText();
 	updateSpeedButtons();
 }

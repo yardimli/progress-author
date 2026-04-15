@@ -1,0 +1,122 @@
+{
+  "author1": {
+    "name": "Arthur Pendelton",
+    "filename": "arthur_pendelton.png",
+    "filefolder": "authors",
+    "imageprompt": "A portrait of a thoughtful male author in his 20s wearing a modern jacket over a hoodie, rendered in a contemporary, high-contrast woodblock print style."
+  },
+  "author2": {
+    "name": "James Sterling",
+    "filename": "james_sterling.png",
+    "filefolder": "authors",
+    "imageprompt": "A young male writer in his 20s with trendy round spectacles, looking out a modern apartment window, captured in a clean, dark ink etching style."
+  },
+  "author3": {
+    "name": "Elias Thorne",
+    "filename": "elias_thorne.png",
+    "filefolder": "authors",
+    "imageprompt": "A rugged male author in his 20s with messy hair, wearing a worn t-shirt, drawn in an aggressive heavy crosshatching style, exuding a modern neo-noir vibe."
+  },
+  "author4": {
+    "name": "William Vance",
+    "filename": "william_vance.png",
+    "filefolder": "authors",
+    "imageprompt": "A studious male author in his 20s with a sharp haircut and a short beard, holding a coffee mug, rendered in a precise, contemporary etching style."
+  },
+  "author5": {
+    "name": "Thomas Blackwood",
+    "filename": "thomas_blackwood.png",
+    "filefolder": "authors",
+    "imageprompt": "A sharp-featured male author in his 20s with a slicked-back undercut, wearing a stylish modern blazer, illustrated in dark ink with subtle digital gold foil accents."
+  },
+  "author6": {
+    "name": "Henry Caldwell",
+    "filename": "henry_caldwell.png",
+    "filefolder": "authors",
+    "imageprompt": "A bright-eyed, ambitious male writer in his 20s typing on a laptop, drawn in a clean, monochromatic graphic novel illustration style."
+  },
+  "author7": {
+    "name": "Oliver Finch",
+    "filename": "oliver_finch.png",
+    "filefolder": "authors",
+    "imageprompt": "A male author in his 20s wearing a comfortable sweater, sitting in a modern armchair with a laptop, rendered in a contemporary linocut print style with a warm color palette."
+  },
+  "author8": {
+    "name": "Samuel Reed",
+    "filename": "samuel_reed.png",
+    "filefolder": "authors",
+    "imageprompt": "A stern-looking male author in his 20s with a strong jawline, illuminated by a laptop screen in a dark room, drawn in a dramatic, high-contrast neo-noir ink style."
+  },
+  "author9": {
+    "name": "Charles Mercer",
+    "filename": "charles_mercer.png",
+    "filefolder": "authors",
+    "imageprompt": "An eccentric male author in his 20s with wild, colorful hair and quirky glasses, sketching on a tablet, illustrated in a whimsical fine-line ink style."
+  },
+  "author10": {
+    "name": "Edward Locke",
+    "filename": "edward_locke.png",
+    "filefolder": "authors",
+    "imageprompt": "A sophisticated male author in his 20s, looking confidently at the camera, rendered in a bold, minimalist graphic style with geometric background elements."
+  },
+  "author11": {
+    "name": "Clara Hughes",
+    "filename": "clara_hughes.png",
+    "filefolder": "authors",
+    "imageprompt": "A portrait of a brilliant female author in her 20s wearing a modern beanie, looking intensely focused, rendered in a contemporary, high-contrast woodblock print style."
+  },
+  "author12": {
+    "name": "Evelyn Vance",
+    "filename": "evelyn_vance.png",
+    "filefolder": "authors",
+    "imageprompt": "An elegant female writer in her 20s with minimalist jewelry and a sharp, confident gaze, captured in a clean, dark ink etching style, exuding modern intelligence."
+  },
+  "author13": {
+    "name": "Margaret Sterling",
+    "filename": "margaret_sterling.png",
+    "filefolder": "authors",
+    "imageprompt": "A determined female author in her 20s with her hair in a messy bun, leaning over a laptop, drawn in an energetic, heavy crosshatching comic book style."
+  },
+  "author14": {
+    "name": "Rosemary Thorne",
+    "filename": "rosemary_thorne.png",
+    "filefolder": "authors",
+    "imageprompt": "An intelligent female author in her 20s with stylish glasses, reading from a tablet, rendered in a precise, contemporary etching style."
+  },
+  "author15": {
+    "name": "Beatrice Blackwood",
+    "filename": "beatrice_blackwood.png",
+    "filefolder": "authors",
+    "imageprompt": "A glamorous female author in her 20s wearing a chic, modern dress at a book launch, illustrated in dark ink with striking digital gold foil accents."
+  },
+  "author16": {
+    "name": "Alice Caldwell",
+    "filename": "alice_caldwell.png",
+    "filefolder": "authors",
+    "imageprompt": "A dreamy female writer in her 20s looking out the window of a modern cafe, holding a coffee cup, rendered in a soft, light-filled digital illustration style."
+  },
+  "author17": {
+    "name": "Eleanor Finch",
+    "filename": "eleanor_finch.png",
+    "filefolder": "authors",
+    "imageprompt": "A focused female author in her 20s wearing a tailored blazer, working at a clean, minimalist desk, captured in a contemporary linocut print style with a bold color palette."
+  },
+  "author18": {
+    "name": "Josephine Reed",
+    "filename": "josephine_reed.png",
+    "filefolder": "authors",
+    "imageprompt": "A mysterious female author in her 20s, the hood of her sweatshirt casting a deep shadow over her face, illuminated only by her phone screen, in a high-contrast neo-noir ink style."
+  },
+  "author19": {
+    "name": "Lydia Mercer",
+    "filename": "lydia_mercer.png",
+    "filefolder": "authors",
+    "imageprompt": "An avant-garde female author in her 20s with a sharp, asymmetric haircut, illustrated in a bold, confident graphic style with clean lines and flat colors."
+  },
+  "author20": {
+    "name": "Victoria Locke",
+    "filename": "victoria_locke.png",
+    "filefolder": "authors",
+    "imageprompt": "A commanding female author in her 20s proudly holding her newly published book, rendered as a sleek vector portrait with elegant linework and a vibrant background."
+  }
+}

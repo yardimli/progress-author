@@ -20,7 +20,12 @@ var gameData = {
 	wordsWritten: 0,
 	booksPublished: 0,
 	royalties: 0,
-	loggedDeath: false
+	loggedDeath: false,
+	
+	// New Author and Book properties
+	currentAuthor: null,
+	currentBook: null,
+	completedBooks: []
 };
 
 var tempData = {};
@@ -45,3 +50,4 @@ var skillTimer = 0;
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
+var authorsBaseData, booksBaseData; // Added for new Author and Book data

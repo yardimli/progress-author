@@ -39,7 +39,8 @@ async function init() {
         const [
             jobsRes, skillsRes, itemsRes,
             jobCatRes, skillCatRes, itemCatRes,
-            colorsRes, tooltipsRes, reqRes
+            colorsRes, tooltipsRes, reqRes,
+            authorsRes, booksRes // Added fetches for new JSONs
         ] = await Promise.all([
             fetch('data/jobs.json'),
             fetch('data/skills.json'),
@@ -49,7 +50,9 @@ async function init() {
             fetch('data/itemCategories.json'),
             fetch('data/headerRowColors.json'),
             fetch('data/tooltips.json'),
-            fetch('data/requirements.json')
+            fetch('data/requirements.json'),
+            fetch('data/authors.json'), // Fetch authors
+            fetch('data/books.json')    // Fetch books
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -62,6 +65,9 @@ async function init() {
         headerRowColors = await colorsRes.json();
         tooltips = await tooltipsRes.json();
         const requirementsData = await reqRes.json();
+        
+        authorsBaseData = await authorsRes.json(); // Assign authors data
+        booksBaseData = await booksRes.json();     // Assign books data
         
         createAllRows(jobCategories, "jobTable");
         createAllRows(skillCategories, "skillTable");
@@ -85,6 +91,17 @@ async function init() {
         }
         
         loadGameData();
+        
+        // Initialize Author if not set
+        if (!gameData.currentAuthor) {
+            let authorKeys = Object.keys(authorsBaseData);
+            gameData.currentAuthor = authorKeys[Math.floor(Math.random() * authorKeys.length)];
+        }
+        
+        // Initialize Book if not set
+        if (!gameData.currentBook) {
+            pickNextBook();
+        }
         
         setCustomEffects();
         addMultipliers();
