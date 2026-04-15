@@ -5,15 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="stylesheet" type="text/css" href="css/dark.css">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<!-- MODIFIED: Removed w3.css external stylesheet -->
 	<title>Author's Journey</title>
 </head>
 <body id="body" class="dark">
 
-<!-- NEW: Fixed Header Wrapper -->
+<!-- Fixed Header Wrapper -->
 <div class="fixed-header-wrapper">
 	<div class="fixed-header-content">
-		<div id="topPanel" class="panel w3-padding w3-margin-bottom top-panel">
+		<!-- MODIFIED: Replaced w3-padding and w3-margin-bottom with internal classes -->
+		<div id="topPanel" class="panel panel-padding margin-bottom top-panel">
 			<img id="authorImage" src="" alt="Author" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee;">
 			
 			<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
@@ -22,54 +23,60 @@
 				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Lifespan <span id="lifespanDisplay">70</span> years</div>
 				<div>Balance: <span id="coinDisplay" style="font-weight:bold;">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
-				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="w3-button button" style="padding: 2px 8px; margin-left: 5px;" onClick="setTimeWarping()">Enable flow</button></span></div>
+				<!-- MODIFIED: Replaced w3-button button with btn -->
+				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn" style="padding: 2px 8px; margin-left: 5px;" onClick="setTimeWarping()">Enable flow</button></span></div>
 				
 				<div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
-					<button id="pauseButton" class="w3-button button" style="padding: 4px 12px;" onClick="setPause()">Pause</button>
+					<!-- MODIFIED: Replaced w3-button button with btn -->
+					<button id="pauseButton" class="btn" style="padding: 4px 12px;" onClick="setPause()">Pause</button>
 					<span id="automation" class="hidden" style="display: flex; gap: 10px;">
 						<label><input type="checkbox" id="autoPromote"> Auto-promote</label>
 						<label><input type="checkbox" id="autoLearn"> Auto-learn</label>
 					</span>
 					<div id="speedButtons" style="margin-left: auto;">
-						<button class="w3-button button speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(1)">1x</button>
-						<button class="w3-button button speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(2)">2x</button>
-						<button class="w3-button button speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(4)">4x</button>
-						<button class="w3-button button speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(8)">8x</button>
+						<!-- MODIFIED: Replaced w3-button button with btn -->
+						<button class="btn speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(1)">1x</button>
+						<button class="btn speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(2)">2x</button>
+						<button class="btn speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(4)">4x</button>
+						<button class="btn speed-btn" style="padding: 4px 8px;" onclick="setGameSpeedMultiplier(8)">8x</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<!-- TABS -->
-		<div class="panel tabs-container w3-margin-bottom">
-			<div class="w3-button tabButton" id="jobTabButton" onClick="setTab(this, 'jobs')">
+		<!-- MODIFIED: Replaced w3-margin-bottom with margin-bottom -->
+		<div class="panel tabs-container margin-bottom">
+			<!-- MODIFIED: Removed w3-button, tabButton handles styling -->
+			<div class="tabButton" id="jobTabButton" onClick="setTab(this, 'jobs')">
 				<img id="jobTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Work <span id="jobTabText" style="color:#4CAF50;margin-left:8px;"></span>
 			</div>
-			<div class="w3-button tabButton" id="skillTabButton" onClick="setTab(this, 'skills')">
+			<div class="tabButton" id="skillTabButton" onClick="setTab(this, 'skills')">
 				<img id="skillTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Skills <span id="skillTabText" style="margin-left:8px;font-weight:bold;"></span>
 			</div>
-			<div class="w3-button tabButton" id="writingTabButton" onClick="setTab(this, 'writing')">
+			<div class="tabButton" id="writingTabButton" onClick="setTab(this, 'writing')">
 				<img id="writingTabImg" src="" style="width:24px;height:24px;border-radius:4px;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Writing
 			</div>
-			<div class="w3-button tabButton" id="shopTabButton" onClick="setTab(this, 'shop')">
+			<div class="tabButton" id="shopTabButton" onClick="setTab(this, 'shop')">
 				<img id="shopTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Shop <span id="shopTabText" style="color:#f44336;margin-left:8px;"></span>
 			</div>
-			<div class="w3-button tabButton" id="rebirthTabButton" onClick="setTab(this, 'rebirth')">Golden Pen</div>
-			<div class="w3-button tabButton" id="logTabButton" onClick="setTab(this, 'log')">Log</div>
-			<div class="w3-button tabButton" id="settingsTabButton" onClick="setTab(this, 'settings')" style="margin-left: auto;">Settings</div>
+			<div class="tabButton" id="rebirthTabButton" onClick="setTab(this, 'rebirth')">Golden Pen</div>
+			<div class="tabButton" id="logTabButton" onClick="setTab(this, 'log')">Log</div>
+			<div class="tabButton" id="settingsTabButton" onClick="setTab(this, 'settings')" style="margin-left: auto;">Settings</div>
 		</div>
 	</div>
 </div>
 
-<!-- NEW: Main Layout Wrapper for Scrollable Content -->
+<!-- Main Layout Wrapper for Scrollable Content -->
 <div class="main-layout-wrapper">
 	<div class="scroll-container">
 		<!-- CONTENT AREA -->
-		<div class="panel w3-padding" style="min-height: 400px;">
+		<!-- MODIFIED: Replaced w3-padding with panel-padding -->
+		<div class="panel panel-padding" style="min-height: 400px;">
 			
 			<!-- Templates -->
 			<template id="categoryHeaderTemplate">
@@ -200,7 +207,8 @@
 								Something tells you that the pen might transform even further after living for <b>2 whole centuries</b>...</span>
 						</i>
 						<br/>
-						<button class="w3-button button" style="margin-bottom: 8px; margin-top: 8px" onClick="rebirthOne()">Start a New Chapter</button>
+						<!-- MODIFIED: Replaced w3-button button with btn -->
+						<button class="btn" style="margin-bottom: 8px; margin-top: 8px" onClick="rebirthOne()">Start a New Chapter</button>
 						<br/>
 					</li>
 					<li style="margin: 8px;" id="rebirthNote3">
@@ -214,7 +222,8 @@
 							<b><span id="fameGainDisplay"></span> Fame</b>, which will heavily impact your future lives and book sales.
 						</i>
 						<br/>
-						<button class="w3-button button" style="margin-bottom: 8px; margin-top: 8px" onClick="rebirthTwo()">Become a Legend</button>
+						<!-- MODIFIED: Replaced w3-button button with btn -->
+						<button class="btn" style="margin-bottom: 8px; margin-top: 8px" onClick="rebirthTwo()">Become a Legend</button>
 						<br/>
 					</li>
 				</ul>
@@ -224,19 +233,22 @@
 				<ul>
 					<li>
 						<h2>Import/export save</h2>
-						<button class="w3-button button" onClick="importGameData()">Import</button>
-						<button class="w3-button button" onClick="exportGameData()">Export</button>
+						<!-- MODIFIED: Replaced w3-button button with btn -->
+						<button class="btn" onClick="importGameData()">Import</button>
+						<button class="btn" onClick="exportGameData()">Export</button>
 						<form style="margin-top: 16px">
 							<input id="importExportBox" type="text" style="width:300px; height:30px" />
 						</form>
 					</li>
 					<li>
 						<h2>Toggle light/dark mode</h2>
-						<button class="w3-button button" onClick="setLightDarkMode()">Toggle</button>
+						<!-- MODIFIED: Replaced w3-button button with btn -->
+						<button class="btn" onClick="setLightDarkMode()">Toggle</button>
 					</li>
 					<li>
 						<h2>Hard reset game</h2>
-						<button class="w3-button button w3-red" onClick="resetGameData()">Reset</button>
+						<!-- MODIFIED: Replaced w3-button button w3-red with btn btn-danger -->
+						<button class="btn btn-danger" onClick="resetGameData()">Reset</button>
 					</li>
 				</ul>
 			</div>

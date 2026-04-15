@@ -6,11 +6,64 @@ body {
     margin: 0;
 }
 
-.w3-bar-item {
-    width: 100px;
-    height: 40px;
-    text-align: center;
+html, body {
+    font-family: Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 1.5
 }
+
+html {
+    overflow-x: hidden
+}
+
+
+/* --- NEW: Internal Utility Classes (Replacing w3.css) --- */
+.panel-padding {
+    padding: 16px;
+}
+
+.margin-bottom {
+    margin-bottom: 16px !important;
+}
+
+.btn {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    padding: 8px 16px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn-active {
+    background-color: #607d8b !important;
+    color: #fff !important;
+    border-color: #607d8b !important;
+}
+
+.btn-danger {
+    background-color: #f44336 !important;
+    color: #fff !important;
+    border-color: #f44336 !important;
+}
+
+.btn-danger:hover {
+    background-color: #d32f2f !important;
+}
+
+/* --- End Internal Utility Classes --- */
 
 td {
     vertical-align: middle !important;
@@ -46,12 +99,6 @@ td {
 
 .hiddenTask {
     display: none !important;
-}
-
-.button {
-    border: 1px solid black !important;
-    background-color: white;
-    color: black;
 }
 
 .item-button {
@@ -125,7 +172,7 @@ button:focus {
     background-color: white;
 }
 
-.small-margin  {
+.small-margin {
     margin-bottom: 2px;
 }
 
@@ -337,21 +384,27 @@ button:focus {
 }
 
 /* Dynamic Text Colors for JS Injection */
-.color-income-val, .color-expense-val { color: #b8860b; }
-.color-income-lbl { color: #2e7d32; }
-.color-expense-lbl { color: #d32f2f; }
+.color-income-val, .color-expense-val {
+    color: #b8860b;
+}
 
-/* MODIFIED: Removed sticky positioning, added fixed 200px height */
+.color-income-lbl {
+    color: #2e7d32;
+}
+
+.color-expense-lbl {
+    color: #d32f2f;
+}
+
 .top-panel {
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     height: 200px;
     box-sizing: border-box;
 }
 
-/* MODIFIED: Added fixed 44px height */
 .tabs-container {
     display: flex;
     overflow-x: auto;
@@ -371,6 +424,7 @@ button:focus {
     background: none;
     font-size: 16px;
     transition: background-color 0.2s;
+    border-radius: 4px;
 }
 
 .tabButton:hover {
@@ -381,7 +435,7 @@ button:focus {
     background-color: #444;
 }
 
-/* --- NEW: Fixed Header and Scroll Container Styles --- */
+/* --- Fixed Header and Scroll Container Styles --- */
 
 .fixed-header-wrapper {
     position: fixed;
@@ -453,7 +507,7 @@ button:focus {
     border-radius: 8px;
     max-width: 400px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .modal-title {

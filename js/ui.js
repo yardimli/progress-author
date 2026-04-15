@@ -9,9 +9,11 @@ function setTab(element, selectedTab) {
 	
 	let tabButtons = document.getElementsByClassName("tabButton");
 	for (let tabButton of tabButtons) {
-		tabButton.classList.remove("w3-blue-gray");
+		// MODIFIED: Replaced w3-blue-gray with btn-active
+		tabButton.classList.remove("btn-active");
 	}
-	element.classList.add("w3-blue-gray");
+	// MODIFIED: Replaced w3-blue-gray with btn-active
+	element.classList.add("btn-active");
 }
 
 function createData(data, baseData) {
@@ -80,7 +82,7 @@ function createAllRows(categoryType, containerId) {
 					imgElement.src = `img/${filefolder}/${filename}`;
 					imgElement.alt = name;
 					
-					// NEW: Setup image to trigger modal
+					// Setup image to trigger modal
 					imgElement.setAttribute('data-name', name);
 					imgElement.setAttribute('data-type', isJob ? 'job' : (isSkill ? 'skill' : 'item'));
 					imgElement.style.cursor = 'pointer';
@@ -262,10 +264,11 @@ function updateSpeedButtons() {
 	let buttons = document.getElementsByClassName("speed-btn");
 	for (let btn of buttons) {
 		let isActive = parseInt(btn.textContent) === (gameData.speedMultiplier || 1);
-		if (isActive && !btn.classList.contains("w3-blue-gray")) {
-			btn.classList.add("w3-blue-gray");
-		} else if (!isActive && btn.classList.contains("w3-blue-gray")) {
-			btn.classList.remove("w3-blue-gray");
+		// MODIFIED: Replaced w3-blue-gray with btn-active
+		if (isActive && !btn.classList.contains("btn-active")) {
+			btn.classList.add("btn-active");
+		} else if (!isActive && btn.classList.contains("btn-active")) {
+			btn.classList.remove("btn-active");
 		}
 	}
 }
@@ -528,7 +531,7 @@ function updateUI() {
 	updateBookHistory();
 }
 
-// --- NEW: Modal Logic ---
+// --- Modal Logic ---
 
 function showModal (imgElement) {
 	let name = imgElement.getAttribute('data-name');
