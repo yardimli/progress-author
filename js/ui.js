@@ -28,32 +28,27 @@ function createEntity(data, entity) {
 	data[entity.name].id = "row " + entity.name;
 }
 
-// Refactored to build the new grid and list layouts and load images dynamically
 function createAllRows(categoryType, containerId) {
 	let container = document.getElementById(containerId);
-	container.innerHTML = ''; // Clear existing content
+	container.innerHTML = '';
 	
 	let isJob = categoryType === jobCategories;
 	let isSkill = categoryType === skillCategories;
 	let isItem = categoryType === itemCategories;
 	
-	// Determine base data to fetch image paths
 	let baseData = isJob ? jobBaseData : (isSkill ? skillBaseData : itemBaseData);
 	
 	for (let categoryName in categoryType) {
-		// Create Category Header
 		let headerTemplate = document.getElementById("categoryHeaderTemplate");
 		let headerClone = headerTemplate.content.cloneNode(true);
 		let categoryDiv = headerClone.querySelector('.category-section');
 		categoryDiv.querySelector('.category-header').textContent = categoryName;
 		
-		// Assign an ID to the requirements footer so we can target it later
 		let reqDiv = categoryDiv.querySelector('.category-requirements');
 		reqDiv.id = "req-category-" + categoryName.replace(/\s+/g, '-');
 		
 		let contentDiv = categoryDiv.querySelector('.category-content');
 		
-		// Determine layout type (grid for jobs/properties, list for skills/misc)
 		if (isJob || (isItem && categoryName === "Properties")) {
 			contentDiv.classList.add('grid');
 		} else {
@@ -75,27 +70,24 @@ function createAllRows(categoryType, containerId) {
 			element.id = "row " + name;
 			element.querySelector('.name').textContent = name;
 			
-			// Set image source from baseData
 			let entityData = baseData[name];
 			if (entityData && entityData.filefolder && entityData.filename) {
 				let imgElement = element.querySelector('.card-image, .row-image');
 				if (imgElement) {
 					let filefolder = entityData.filefolder + '256';
 					let filename = entityData.filename;
-					filename = filename.replace('.png', '.jpg'); // Ensure we load the 256px version
+					filename = filename.replace('.png', '.jpg');
 					imgElement.src = `img/${filefolder}/${filename}`;
 					imgElement.alt = name;
 				}
 			}
 			
-			// Set tooltip text based on entity type
 			if (isJob || isSkill) {
 				element.querySelector('.baseTooltip').textContent = tooltips[name];
 			} else {
 				element.querySelector('.tooltipText').textContent = tooltips[name];
 			}
 			
-			// Attach click handlers (Removed locked check since locked cards are now completely hidden)
 			if (isJob || isSkill) {
 				element.onclick = function() {
 					setTask(name);
@@ -113,34 +105,13 @@ function createAllRows(categoryType, containerId) {
 	}
 }
 
-function updateQuickTaskDisplay(taskType) {
-	let currentTask = taskType == "job" ? gameData.currentJob : gameData.currentSkill;
-	let quickTaskDisplayElement = document.getElementById("quickTaskDisplay");
-	let progressBar = quickTaskDisplayElement.getElementsByClassName(taskType)[0];
-	
-	// Added check to only update DOM if text content has changed
-	let nameElement = progressBar.getElementsByClassName("name")[0];
-	let newNameText = currentTask.name + " lvl " + currentTask.level;
-	if (nameElement.textContent !== newNameText) {
-		nameElement.textContent = newNameText;
-	}
-	
-	// Added check to only update DOM if width has changed
-	let progressFill = progressBar.getElementsByClassName("progressFill")[0];
-	let newWidth = (currentTask.xp / currentTask.getMaxXp() * 100) + "%";
-	if (progressFill.style.width !== newWidth) {
-		progressFill.style.width = newWidth;
-	}
-}
-
-// Refactored to hide locked cards completely and simplify requirement text
 function updateRequiredRows(data, categoryType) {
 	for (let categoryName in categoryType) {
 		let category = categoryType[categoryName];
 		let nextEntityFound = false;
 		
 		let categoryReqDiv = document.getElementById("req-category-" + categoryName.replace(/\s+/g, '-'));
-		let categoryReqText = ""; // To store the text to display at the bottom
+		let categoryReqText = "";
 		
 		for (let i = 0; i < category.length; i++) {
 			let entityName = category[i];
@@ -150,17 +121,13 @@ function updateRequiredRows(data, categoryType) {
 			let requirements = gameData.requirements[entityName];
 			
 			if (!requirements || requirements.isCompleted()) {
-				// Unlocked - ensure it is visible
 				if (element.classList.contains("hiddenTask")) element.classList.remove("hiddenTask");
 			} else {
-				// Locked - hide the card entirely instead of showing an overlay
 				if (!element.classList.contains("hiddenTask")) element.classList.add("hiddenTask");
 				
-				// If this is the first locked entity in the category, show its requirements
 				if (!nextEntityFound) {
 					let finalText = "";
 					
-					// Format: one on one line, centered, lock icon, skills and levels, no target name
 					if (requirements instanceof FameRequirement) {
 						finalText += format(requirements.requirements[0].requirement) + " fame";
 					} else if (requirements instanceof CoinRequirement) {
@@ -182,7 +149,6 @@ function updateRequiredRows(data, categoryType) {
 			}
 		}
 		
-		// Update the category footer
 		if (categoryReqDiv) {
 			if (categoryReqText !== "") {
 				if (categoryReqDiv.style.display !== 'block') categoryReqDiv.style.display = 'block';
@@ -194,7 +160,6 @@ function updateRequiredRows(data, categoryType) {
 	}
 }
 
-// Refactored to update the new DOM structure only when data changes
 function updateTaskRows() {
 	for (let key in gameData.taskData) {
 		let task = gameData.taskData[key];
@@ -204,29 +169,24 @@ function updateTaskRows() {
 		let levelElement = row.querySelector(".level");
 		if (levelElement) {
 			let newLevelText = "LVL. " + task.level;
-			// Only update if changed
 			if (levelElement.textContent !== newLevelText) {
 				levelElement.textContent = newLevelText;
 			}
 		}
 		
-		// Update max level tooltip dynamically if player has past lives
 		let maxLevelTooltip = row.querySelector(".maxLevelTooltip");
 		if (maxLevelTooltip) {
 			if (gameData.rebirthOneCount > 0) {
-				// Only update display if changed
 				if (maxLevelTooltip.style.display !== "block") {
 					maxLevelTooltip.style.display = "block";
 				}
 				let multi = 1 + (task.maxLevel / 20);
 				let formattedMulti = parseFloat(multi.toFixed(2));
 				let text = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
-				// Only update text if changed
 				if (maxLevelTooltip.textContent !== text) {
 					maxLevelTooltip.textContent = text;
 				}
 			} else {
-				// Only update display if changed
 				if (maxLevelTooltip.style.display !== "none") {
 					maxLevelTooltip.style.display = "none";
 				}
@@ -236,14 +196,12 @@ function updateTaskRows() {
 		let progressFill = row.querySelector(".progressFill");
 		if (progressFill) {
 			let newWidth = (task.xp / task.getMaxXp() * 100) + "%";
-			// Only update width if changed
 			if (progressFill.style.width !== newWidth) {
 				progressFill.style.width = newWidth;
 			}
 		}
 		
 		let isActive = (task === gameData.currentJob || task === gameData.currentSkill);
-		// Only toggle class if state doesn't match
 		if (isActive && !row.classList.contains("active")) {
 			row.classList.add("active");
 		} else if (!isActive && row.classList.contains("active")) {
@@ -253,9 +211,7 @@ function updateTaskRows() {
 		if (task instanceof Job) {
 			let incomeElement = row.querySelector(".income");
 			if (incomeElement) {
-				// Replaced hardcoded styles with CSS classes for light/dark mode support
 				let newIncomeHTML = `<span class="color-income-val">● ${format(task.getIncome())}</span> <span class="color-income-lbl">/ day</span>`;
-				// Only update HTML if changed
 				if (incomeElement.innerHTML !== newIncomeHTML) {
 					incomeElement.innerHTML = newIncomeHTML;
 				}
@@ -264,7 +220,6 @@ function updateTaskRows() {
 			let effectElement = row.querySelector(".effect");
 			if (effectElement) {
 				let newEffectText = task.getEffectDescription();
-				// Only update text if changed
 				if (effectElement.textContent !== newEffectText) {
 					effectElement.textContent = newEffectText;
 				}
@@ -273,7 +228,6 @@ function updateTaskRows() {
 	}
 }
 
-// Refactored to update the new DOM structure only when data changes
 function updateItemRows() {
 	for (let key in gameData.itemData) {
 		let item = gameData.itemData[key];
@@ -281,7 +235,6 @@ function updateItemRows() {
 		if (!row) continue;
 		
 		let isActive = (gameData.currentProperty === item || gameData.currentMisc.includes(item));
-		// Only toggle class if state doesn't match
 		if (isActive && !row.classList.contains("active")) {
 			row.classList.add("active");
 		} else if (!isActive && row.classList.contains("active")) {
@@ -291,7 +244,6 @@ function updateItemRows() {
 		let effectElement = row.querySelector(".effect");
 		if (effectElement) {
 			let newEffectText = item.getEffectDescription();
-			// Only update text if changed
 			if (effectElement.textContent !== newEffectText) {
 				effectElement.textContent = newEffectText;
 			}
@@ -299,9 +251,7 @@ function updateItemRows() {
 		
 		let expenseElement = row.querySelector(".expense");
 		if (expenseElement) {
-			// Replaced hardcoded styles with CSS classes for light/dark mode support
 			let newExpenseHTML = `<span class="color-expense-val">● -${format(item.getExpense())}</span> <span class="color-expense-lbl">/ day</span>`;
-			// Only update HTML if changed
 			if (expenseElement.innerHTML !== newExpenseHTML) {
 				expenseElement.innerHTML = newExpenseHTML;
 			}
@@ -309,7 +259,6 @@ function updateItemRows() {
 	}
 }
 
-// Refactored to toggle the skip checkboxes in the list layout only when changed
 function updateHeaderRows(categories) {
 	let skipElements = document.querySelectorAll('.skipSkill');
 	let display = autoLearnElement.checked ? "block" : "none";
@@ -320,13 +269,11 @@ function updateHeaderRows(categories) {
 	});
 }
 
-// Function to handle speed multiplier buttons
 function setGameSpeedMultiplier(multiplier) {
 	gameData.speedMultiplier = multiplier;
 	updateSpeedButtons();
 }
 
-// Function to update speed buttons UI only when changed
 function updateSpeedButtons() {
 	let buttons = document.getElementsByClassName("speed-btn");
 	for (let btn of buttons) {
@@ -339,7 +286,6 @@ function updateSpeedButtons() {
 	}
 }
 
-// Updates the author and book information in the sidebar
 function updateAuthorAndBookUI() {
 	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
 		let author = authorsBaseData[gameData.currentAuthor];
@@ -347,8 +293,7 @@ function updateAuthorAndBookUI() {
 		let authorName = document.getElementById("authorNameDisplay");
 		
 		let filefolder = author.filefolder + '256';
-		let filename = author.filename;
-		filename = filename.replace('.png', '.jpg'); // Ensure we load the 256px version
+		let filename = author.filename.replace('.png', '.jpg');
 		let imgSrc = `img/${filefolder}/${filename}`;
 		
 		if (authorImg && authorImg.src !== imgSrc && !authorImg.src.includes(imgSrc)) {
@@ -363,10 +308,9 @@ function updateAuthorAndBookUI() {
 		let book = booksBaseData[gameData.currentBook];
 		let bookImg = document.getElementById("currentBookImage");
 		let bookTitle = document.getElementById("currentBookTitle");
-
+		
 		let filefolder = book.filefolder + '256';
-		let filename = book.filename;
-		filename = filename.replace('.png', '.jpg'); // Ensure we load the 256px version
+		let filename = book.filename.replace('.png', '.jpg');
 		let imgSrc = `img/${filefolder}/${filename}`;
 		
 		if (bookImg && bookImg.src !== imgSrc && !bookImg.src.includes(imgSrc)) {
@@ -378,8 +322,101 @@ function updateAuthorAndBookUI() {
 	}
 }
 
+// Update the tab buttons with icons and stats without destroying innerHTML
+function updateTabButtons() {
+	const updateImg = (imgId, entity) => {
+		let imgEl = document.getElementById(imgId);
+		if (!imgEl) return;
+		if (entity && entity.baseData) {
+			let src = `img/${entity.baseData.filefolder}256/${entity.baseData.filename.replace('.png', '.jpg')}`;
+			if (imgEl.src !== src && !imgEl.src.includes(src)) {
+				imgEl.src = src;
+				imgEl.style.display = "inline-block";
+			}
+		} else {
+			if (imgEl.style.display !== "none") imgEl.style.display = "none";
+		}
+	};
+	
+	// Work Tab
+	updateImg("jobTabImg", gameData.currentJob);
+	let jobTabText = document.getElementById("jobTabText");
+	if (jobTabText) {
+		let jobIncomeText = `+${format(getIncome())}/day`;
+		if (jobTabText.textContent !== jobIncomeText) jobTabText.textContent = jobIncomeText;
+	}
+	
+	// Skills Tab
+	updateImg("skillTabImg", gameData.currentSkill);
+	let skillTabText = document.getElementById("skillTabText");
+	if (skillTabText) {
+		let skillLvlText = gameData.currentSkill ? `Lvl ${gameData.currentSkill.level}` : "";
+		if (skillTabText.textContent !== skillLvlText) skillTabText.textContent = skillLvlText;
+	}
+	
+	// Writing Tab
+	let writingImgEl = document.getElementById("writingTabImg");
+	if (writingImgEl) {
+		if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+			let book = booksBaseData[gameData.currentBook];
+			let src = `img/${book.filefolder}256/${book.filename.replace('.png', '.jpg')}`;
+			if (writingImgEl.src !== src && !writingImgEl.src.includes(src)) {
+				writingImgEl.src = src;
+				writingImgEl.style.display = "inline-block";
+			}
+		} else {
+			if (writingImgEl.style.display !== "none") writingImgEl.style.display = "none";
+		}
+	}
+	
+	// Shop Tab
+	updateImg("shopTabImg", gameData.currentProperty);
+	let shopTabText = document.getElementById("shopTabText");
+	if (shopTabText) {
+		let shopExpenseText = `-${format(getExpense())}/day`;
+		if (shopTabText.textContent !== shopExpenseText) shopTabText.textContent = shopExpenseText;
+	}
+}
+
+function updateBookHistory() {
+	let container = document.getElementById("bookHistoryContainer");
+	if (!container) return;
+	
+	if (container.dataset.count == gameData.completedBooks.length) return;
+	container.dataset.count = gameData.completedBooks.length;
+	
+	container.innerHTML = "";
+	for (let i = gameData.completedBooks.length - 1; i >= 0; i--) {
+		let bookRecord = gameData.completedBooks[i];
+		let bookId = bookRecord.id;
+		let bookData = booksBaseData[bookId];
+		if (!bookData) continue;
+		
+		let age = bookRecord.age || "?";
+		let day = String(bookRecord.day || 0).padStart(3, '0');
+		let royalties = bookRecord.royalties || 0;
+		let yearlyRoyalties = royalties * 365;
+		
+		let div = document.createElement("div");
+		div.className = "ui-row";
+		div.style.marginBottom = "10px";
+		div.style.cursor = "default";
+		div.innerHTML = `
+			<img src="img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}" class="row-image" style="width: 60px; height: 90px; object-fit: cover; border-radius: 4px;">
+			<div class="row-info">
+				<div class="row-title">${bookData.title}</div>
+				<div class="row-value">Published: Age ${age}.${day} days</div>
+			</div>
+			<div class="row-expense" style="text-align: right;">
+				<span style="color: #4CAF50; font-weight: bold;">+$${format(royalties)}/day</span><br>
+				<span style="font-size: 0.85em; color: #888;">+$${format(yearlyRoyalties)}/yr</span>
+			</div>
+		`;
+		container.appendChild(div);
+	}
+}
+
 function updateText() {
-	// Helper function to update text content only if changed
 	const updateIfChanged = (id, newText) => {
 		let el = document.getElementById(id);
 		if (el && el.textContent !== String(newText)) {
@@ -388,45 +425,51 @@ function updateText() {
 	};
 	
 	updateIfChanged("ageDisplay", daysToYears(gameData.days));
-	updateIfChanged("dayDisplay", getDay());
+	// Format day with leading zeros up to 3 digits (e.g. 050)
+	let dayStr = String(getDay()).padStart(3, '0');
+	updateIfChanged("dayDisplay", dayStr);
 	updateIfChanged("lifespanDisplay", daysToYears(getLifespan()));
 	updateIfChanged("pauseButton", gameData.paused ? "Play" : "Pause");
 	
-	// Helper function to update money format only if changed
 	const updateMoneyIfChanged = (money, id) => {
 		let el = document.getElementById(id);
 		if (!el) return;
-		let newHTML = `<span>$${format(money)}</span>`;
+		let newHTML = `$${format(money)}`;
 		if (el.innerHTML !== newHTML) {
-			formatMoney(money, el);
+			el.innerHTML = newHTML;
 		}
 	};
 	
 	updateMoneyIfChanged(gameData.coins, "coinDisplay");
 	setSignDisplay();
 	updateMoneyIfChanged(getNet(), "netDisplay");
-	updateMoneyIfChanged(getIncome(), "incomeDisplay");
-	updateMoneyIfChanged(getExpense(), "expenseDisplay");
 	
 	updateIfChanged("inspirationDisplay", getInspiration().toFixed(1));
 	
-	updateIfChanged("fameDisplay", gameData.fame.toFixed(1));
-	updateIfChanged("fameGainDisplay", getFameGain().toFixed(1));
+	updateIfChanged("fameDisplay", format(gameData.fame));
+	updateIfChanged("fameGainDisplay", format(getFameGain()));
 	
-	updateIfChanged("timeWarpingDisplay", "x" + gameData.taskData["Flow State"].getEffect().toFixed(2));
+	updateIfChanged("timeWarpingDisplay", gameData.taskData["Flow State"].getEffect().toFixed(2));
 	updateIfChanged("timeWarpingButton", gameData.timeWarpingEnabled ? "Disable flow" : "Enable flow");
 	
-	// Writing Process
 	updateIfChanged("wordsWrittenDisplay", format(gameData.wordsWritten));
 	updateIfChanged("bookLengthDisplay", format(getBookLength()));
-	updateIfChanged("writingSpeedDisplay", format(getWritingSpeed()));
-	updateIfChanged("bookQualityDisplay", getBookQuality().toFixed(1));
-	updateIfChanged("booksPublishedDisplay", gameData.booksPublished);
-	updateIfChanged("royaltiesDisplay", format(gameData.royalties));
+	
+	// Writing Tab Specific Updates
+	updateIfChanged("writingSpeedDisplayTab", format(getWritingSpeed()));
+	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(1));
+	
+	let writingProgress = Math.min(100, (gameData.wordsWritten / getBookLength()) * 100);
+	let writingProgressBar = document.getElementById("writingProgressBar");
+	if (writingProgressBar && writingProgressBar.style.width !== writingProgress + "%") {
+		writingProgressBar.style.width = writingProgress + "%";
+	}
+	updateIfChanged("writingProgressDisplay", writingProgress.toFixed(1) + "%");
 }
 
 function setSignDisplay() {
 	let signDisplay = document.getElementById("signDisplay");
+	if (!signDisplay) return;
 	let income = getIncome();
 	let expense = getExpense();
 	
@@ -435,13 +478,12 @@ function setSignDisplay() {
 	
 	if (income > expense) {
 		newText = "+";
-		newColor = "green";
+		newColor = "#4CAF50";
 	} else if (expense > income) {
 		newText = "-";
-		newColor = "red";
+		newColor = "#f44336";
 	}
 	
-	// Only update DOM if text or color has changed
 	if (signDisplay.textContent !== newText) {
 		signDisplay.textContent = newText;
 		signDisplay.style.color = newColor;
@@ -453,9 +495,6 @@ function hideEntities() {
 		let requirement = gameData.requirements[key];
 		let completed = requirement.isCompleted();
 		for (let element of requirement.elements) {
-			
-			// Skip row elements. Their visibility is managed entirely by updateRequiredRows()
-			// This prevents the "next" card from being completely hidden.
 			if (element.id && element.id.startsWith("row ")) {
 				continue;
 			}
@@ -484,8 +523,8 @@ function logEvent(message) {
 	let entry = document.createElement("div");
 	entry.className = "log-entry";
 	let age = daysToYears(gameData.days);
-	let day = getDay();
-	entry.innerHTML = `<b style="color: #875F9A">[Age ${age} Day ${day}]</b> ${message}`;
+	let day = String(getDay()).padStart(3, '0');
+	entry.innerHTML = `<b style="color: #875F9A">[Age ${age}.${day} days]</b> ${message}`;
 	logContainer.prepend(entry);
 }
 
@@ -497,10 +536,10 @@ function updateUI() {
 	updateRequiredRows(gameData.itemData, itemCategories);
 	updateHeaderRows(jobCategories);
 	updateHeaderRows(skillCategories);
-	updateQuickTaskDisplay("job");
-	updateQuickTaskDisplay("skill");
 	hideEntities();
-	updateAuthorAndBookUI(); // Update the new Author and Book elements
+	updateAuthorAndBookUI();
 	updateText();
 	updateSpeedButtons();
+	updateTabButtons();
+	updateBookHistory();
 }

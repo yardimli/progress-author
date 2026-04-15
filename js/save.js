@@ -83,6 +83,18 @@ function loadGameData() {
 		replaceSaveDict(gameData.itemData, gameDataSave.itemData);
 		
 		gameData = gameDataSave;
+		
+		// NEW: Migrate completedBooks from string array to object array (backward compatibility)
+		if (gameData.completedBooks && gameData.completedBooks.length > 0) {
+			if (typeof gameData.completedBooks[0] === 'string') {
+				gameData.completedBooks = gameData.completedBooks.map(id => ({
+					id: id,
+					age: "?",
+					day: "?",
+					royalties: 0
+				}));
+			}
+		}
 	}
 	
 	assignMethods();

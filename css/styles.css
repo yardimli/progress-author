@@ -204,8 +204,8 @@ button:focus {
     background-color: #fff;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
-    padding: 12px;
-    width: 140px;
+    padding: 0px;
+    width: 128px;
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -229,14 +229,14 @@ button:focus {
     width: 128px;
     height: 128px;
     background-color: #eee;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     object-fit: cover;
 }
 
 .card-title {
     font-weight: bold;
     font-size: 0.95em;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     color: #333;
     text-transform: uppercase;
 }
@@ -244,7 +244,7 @@ button:focus {
 .card-value {
     font-size: 0.9em;
     color: #b8860b;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
     font-weight: bold;
 }
 
@@ -366,3 +366,39 @@ button:focus {
 .color-income-val, .color-expense-val { color: #b8860b; }
 .color-income-lbl { color: #2e7d32; }
 .color-expense-lbl { color: #d32f2f; }
+
+.top-panel {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.tabs-container {
+    display: flex;
+    overflow-x: auto;
+}
+
+.tabButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+    background: none;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.tabButton:hover {
+    background-color: #ddd;
+}
+
+.dark .tabButton:hover {
+    background-color: #444;
+}
