@@ -55,11 +55,9 @@ class Job extends Task {
     
     getIncome() {
         let income = applyMultipliers(this.baseData.income, this.incomeMultipliers);
-        // MODIFIED: Apply global work multiplier to job income
         return income * gameData.workMultiplier;
     }
     
-    // MODIFIED: Override getXpGain to apply the global work multiplier and slider percentage
     getXpGain() {
         let baseGain = super.getXpGain();
         let workPercentage = (100 - gameData.workWritingBalance) / 100;
@@ -81,7 +79,6 @@ class Skill extends Task {
         return "x" + String(this.getEffect().toFixed(2)) + " " + description;
     }
     
-    // MODIFIED: Override getXpGain to apply the global skill multiplier
     getXpGain() {
         let baseGain = super.getXpGain();
         return baseGain * gameData.skillMultiplier;
@@ -100,10 +97,18 @@ class Item {
         return this.baseData.effect;
     }
     
+    // MODIFIED: Appends the writing multiplier to the description if the item has one defined
     getEffectDescription() {
         let description = this.baseData.description;
         if (itemCategories["Properties"].includes(this.name)) description = "Inspiration";
-        return "x" + this.baseData.effect.toFixed(1) + " " + description;
+        
+        let effectText = "x" + this.baseData.effect.toFixed(1) + " " + description;
+        
+        if (this.baseData.writingMultiplier) {
+            effectText += " | x" + this.baseData.writingMultiplier.toFixed(1) + " Writing Speed";
+        }
+        
+        return effectText;
     }
     
     getExpense() {

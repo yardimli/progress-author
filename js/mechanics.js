@@ -83,8 +83,19 @@ function getRawWritingSpeed() {
 	// Apply writing percentage from the slider
 	let writingPercentage = gameData.workWritingBalance / 100;
 	
-	// MODIFIED: Apply the global writing multiplier
-	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier;
+	// MODIFIED: Calculate combined item writing multipliers
+	let itemWritingMultiplier = 1;
+	if (gameData.currentProperty && gameData.currentProperty.baseData.writingMultiplier) {
+		itemWritingMultiplier *= gameData.currentProperty.baseData.writingMultiplier;
+	}
+	for (let misc of gameData.currentMisc) {
+		if (misc.baseData.writingMultiplier) {
+			itemWritingMultiplier *= misc.baseData.writingMultiplier;
+		}
+	}
+	
+	// MODIFIED: Apply the global writing multiplier and item multipliers
+	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * itemWritingMultiplier;
 }
 
 // Caps writing speed at 1000 words/day
