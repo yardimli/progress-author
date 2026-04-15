@@ -34,24 +34,24 @@ var gameData = {
 };
 
 var tempData = {};
-var skillWithLowestMaxXp = null;
+// MODIFIED: Removed skillWithLowestMaxXp
 
 // DOM Elements
-var autoPromoteElement = document.getElementById("autoPromote");
-var autoLearnElement = document.getElementById("autoLearn");
+// MODIFIED: Removed autoPromoteElement and autoLearnElement
 var jobTabButton = document.getElementById("jobTabButton");
 
 // Constants
 const baseLifespan = 365 * 70;
 const baseGameSpeed = 4;
-const permanentUnlocks = ["Shop", "Automation", "Quick task display"];
+// MODIFIED: Removed "Automation" from permanent unlocks
+const permanentUnlocks = ["Shop", "Quick task display"];
 const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 
 // Variables for requestAnimationFrame loop
 var lastTime = performance.now();
 var deltaTime = 0;
 var saveTimer = 0;
-var skillTimer = 0;
+// MODIFIED: Removed skillTimer
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;

@@ -1,4 +1,4 @@
-// Writing process, automation, rebirth, death
+// Writing process, rebirth, death
 
 function applyExpenses() {
 	let coins = applySpeed(getExpense());
@@ -70,61 +70,7 @@ function increaseCoins() {
 	gameData.coins += coins;
 }
 
-function getCategoryFromEntityName(categoryType, entityName) {
-	for (let categoryName in categoryType) {
-		let category = categoryType[categoryName];
-		if (category.includes(entityName)) {
-			return category;
-		}
-	}
-}
-
-function getNextEntity(data, categoryType, entityName) {
-	let category = getCategoryFromEntityName(categoryType, entityName);
-	let nextIndex = category.indexOf(entityName) + 1;
-	if (nextIndex > category.length - 1) return null;
-	let nextEntityName = category[nextIndex];
-	let nextEntity = data[nextEntityName];
-	return nextEntity;
-}
-
-function autoPromote() {
-	if (!autoPromoteElement.checked) return;
-	let nextEntity = getNextEntity(gameData.taskData, jobCategories, gameData.currentJob.name);
-	if (nextEntity == null) return;
-	let requirement = gameData.requirements[nextEntity.name];
-	if (requirement.isCompleted()) gameData.currentJob = nextEntity;
-}
-
-function checkSkillSkipped(skill) {
-	let row = document.getElementById("row " + skill.name);
-	return row.getElementsByClassName("checkbox")[0].checked;
-}
-
-function setSkillWithLowestMaxXp() {
-	let xpDict = {};
-	
-	for (let skillName in gameData.taskData) {
-		let skill = gameData.taskData[skillName];
-		let requirement = gameData.requirements[skillName];
-		if (skill instanceof Skill && requirement.isCompleted() && !checkSkillSkipped(skill)) {
-			xpDict[skill.name] = skill.level;
-		}
-	}
-	
-	if (Object.keys(xpDict).length === 0) {
-		skillWithLowestMaxXp = gameData.taskData["Focus"];
-		return;
-	}
-	
-	let skillName = getKeyOfLowestValueFromDict(xpDict);
-	skillWithLowestMaxXp = gameData.taskData[skillName];
-}
-
-function autoLearn() {
-	if (!autoLearnElement.checked || !skillWithLowestMaxXp) return;
-	gameData.currentSkill = skillWithLowestMaxXp;
-}
+// MODIFIED: Removed getCategoryFromEntityName, getNextEntity, autoPromote, checkSkillSkipped, setSkillWithLowestMaxXp, and autoLearn
 
 function increaseDays() {
 	let increase = applySpeed(1);

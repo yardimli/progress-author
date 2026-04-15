@@ -188,7 +188,7 @@ function updateRequiredRows(data, categoryType) {
 		if (categoryReqDiv) {
 			if (categoryReqText !== "") {
 				if (categoryReqDiv.style.display !== 'block') categoryReqDiv.style.display = 'block';
-				if (categoryReqDiv.innerHTML !== categoryReqText) categoryReqDiv.innerHTML = categoryReqText;
+				if (categoryReqDiv.innerHTML !== categoryReqText) categoryReqText;
 			} else {
 				if (categoryReqDiv.style.display !== 'none') categoryReqDiv.style.display = 'none';
 			}
@@ -276,15 +276,7 @@ function updateItemRows() {
 	}
 }
 
-function updateHeaderRows(categories) {
-	let skipElements = document.querySelectorAll('.skipSkill');
-	let display = autoLearnElement.checked ? "block" : "none";
-	skipElements.forEach(el => {
-		if (el.style.display !== display) {
-			el.style.display = display;
-		}
-	});
-}
+// MODIFIED: Removed updateHeaderRows()
 
 // MODIFIED: Removed setGameSpeedMultiplier and updateSpeedButtons
 
@@ -556,8 +548,7 @@ function updateUI() {
 	updateRequiredRows(gameData.taskData, jobCategories);
 	updateRequiredRows(gameData.taskData, skillCategories);
 	updateRequiredRows(gameData.itemData, itemCategories);
-	updateHeaderRows(jobCategories);
-	updateHeaderRows(skillCategories);
+	// MODIFIED: Removed updateHeaderRows calls
 	hideEntities();
 	updateAuthorAndBookUI();
 	updateText();

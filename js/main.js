@@ -2,8 +2,7 @@
 
 function update() {
     increaseDays();
-    autoPromote();
-    autoLearn();
+    // MODIFIED: Removed autoPromote() and autoLearn()
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     updateWritingProcess();
@@ -35,11 +34,7 @@ function gameLoop(currentTime) {
         saveTimer = 0;
     }
     
-    skillTimer += deltaTime;
-    if (skillTimer >= 1) {
-        setSkillWithLowestMaxXp();
-        skillTimer = 0;
-    }
+    // MODIFIED: Removed skillTimer logic
     
     requestAnimationFrame(gameLoop);
 }
