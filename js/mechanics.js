@@ -15,8 +15,6 @@ function goBankrupt() {
 	logEvent("Ran out of money and went bankrupt! Lost all housing and equipment.");
 }
 
-// MODIFIED: Removed setPause()
-
 function setTimeWarping() {
 	gameData.timeWarpingEnabled = !gameData.timeWarpingEnabled;
 }
@@ -49,7 +47,6 @@ function setMisc(miscName) {
 	}
 }
 
-// NEW: Potion logic
 function drinkPotion(type) {
 	if (gameData.potions[type] <= 0) {
 		gameData.potions[type] = 600; // 10 minutes in seconds
@@ -70,27 +67,42 @@ function increaseCoins() {
 	gameData.coins += coins;
 }
 
-// MODIFIED: Removed getCategoryFromEntityName, getNextEntity, autoPromote, checkSkillSkipped, setSkillWithLowestMaxXp, and autoLearn
-
 function increaseDays() {
 	let increase = applySpeed(1);
 	gameData.days += increase;
 }
 
-function getWritingSpeed() {
+// NEW: Calculates the raw writing speed before the 1000 words/day cap
+function getRawWritingSpeed() {
 	let baseSpeed = 100;
 	let typingSpeed = gameData.taskData["Typing Speed"] ? gameData.taskData["Typing Speed"].getEffect() : 1;
 	let focus = gameData.taskData["Focus"] ? gameData.taskData["Focus"].getEffect() : 1;
 	let inspiration = getInspiration();
 	let fullTimeBonus = (gameData.currentJob && gameData.currentJob.name === "Full-Time Author") ? 5 : 1;
 	
-	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus;
+	// Apply writing percentage from the slider
+	let writingPercentage = gameData.workWritingBalance / 100;
+	
+	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage;
+}
+
+// MODIFIED: Caps writing speed at 1000 words/day
+function getWritingSpeed() {
+	return Math.min(1000, getRawWritingSpeed());
+}
+
+// NEW: Converts excess writing speed into a quality multiplier (Max x10)
+function getQualityMultiplier() {
+	let rawSpeed = getRawWritingSpeed();
+	if (rawSpeed > 1000) {
+		return Math.min(10, rawSpeed / 1000);
+	}
+	return 1;
 }
 
 function pickNextBook() {
 	if (!booksBaseData) return;
 	let allBooks = Object.keys(booksBaseData);
-	// Map objects to IDs to filter out already completed books
 	let completedIds = gameData.completedBooks.map(b => b.id);
 	let availableBooks = allBooks.filter(id => !completedIds.includes(id));
 	
@@ -124,10 +136,17 @@ function updateWritingProcess() {
 	let target = getBookLength();
 	
 	while (gameData.wordsWritten >= target) {
-		let quality = getBookQuality();
+		// MODIFIED: Apply quality multiplier and enforce minimum royalty
+		let baseQuality = getBookQuality();
+		let multiplier = getQualityMultiplier();
+		let quality = baseQuality * multiplier;
 		let fame = gameData.fame;
 		let sales = (quality / 100) * (fame + 10) * 5;
 		let royalty = sales * 0.1;
+		
+		if (royalty < 0.10) {
+			royalty = 0.10;
+		}
 		
 		gameData.royalties += royalty;
 		gameData.booksPublished += 1;
@@ -145,7 +164,8 @@ function updateWritingProcess() {
 				id: gameData.currentBook,
 				age: bookAge,
 				day: bookDay,
-				royalties: royalty
+				royalties: royalty,
+				quality: quality // Save the final quality for the UI
 			});
 		}
 		
@@ -205,7 +225,6 @@ function rebirthReset() {
 	
 	for (let key in gameData.requirements) {
 		let requirement = gameData.requirements[key];
-		// MODIFIED: Removed permanentUnlocks check, all requirements just reset
 		requirement.completed = false;
 	}
 }
@@ -223,7 +242,6 @@ function isAlive() {
 		gameData.days = getLifespan();
 		deathText.classList.remove("hidden");
 		if (!gameData.loggedDeath) {
-			// MODIFIED: Replaced lifespan with retirement age
 			logEvent("You have reached your retirement age. It's time to retire.");
 			gameData.loggedDeath = true;
 		}

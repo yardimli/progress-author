@@ -14,6 +14,9 @@ var gameData = {
 	currentProperty: null,
 	currentMisc: null,
 	
+	// NEW: Track the work vs writing balance (0 = 100% work, 100 = 100% writing)
+	workWritingBalance: 0,
+	
 	// Potions state
 	potions: {
 		inspiration: 0,
@@ -31,7 +34,7 @@ var gameData = {
 	currentBook: null,
 	completedBooks: [],
 	
-	// NEW: Track if the player has seen the intro tutorial
+	// Track if the player has seen the intro tutorial
 	introSeen: false
 };
 

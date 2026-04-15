@@ -23,6 +23,13 @@
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
 				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn" style="padding: 2px 8px; margin-left: 5px;" onClick="setTimeWarping()">Enable flow</button></span></div>
 				
+				<!-- NEW: Slider for Work/Writing balance -->
+				<div style="display: flex; align-items: center; gap: 10px; margin-top: 2px;">
+					<span style="font-size: 0.9em; font-weight: bold; color: #4CAF50;">Work: <span id="workPercentage">100</span>%</span>
+					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider" style="width: 150px; margin: 0;">
+					<span style="font-size: 0.9em; font-weight: bold; color: #219ebc;">Writing: <span id="writingPercentage">0</span>%</span>
+				</div>
+				
 				<div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
 				</div>
 			</div>
@@ -132,7 +139,6 @@
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
 				<div class="ui-row" style="margin-bottom: 20px; cursor: default;">
-					<!-- MODIFIED: Added cursor: pointer and onclick to trigger the book modal for the current book -->
 					<img id="currentBookImage" src="" alt="Book Cover" class="row-image" style="width: 120px; height: 180px; object-fit: cover; border-radius: 4px; cursor: pointer;" onclick="showBookModal(gameData.currentBook)">
 					<div class="row-info">
 						<div class="row-title" id="currentBookTitle" style="font-size: 1.5em;">Book Title</div>
@@ -142,7 +148,8 @@
 								<div id="writingProgressBar" style="height: 100%; background-color: #4CAF50; width: 0%; transition: width 0.1s;"></div>
 							</div>
 							<div style="margin-top: 15px; font-size: 1.1em;"><b>Writing Speed:</b> <span id="writingSpeedDisplayTab">0</span> words/day</div>
-							<div style="font-size: 1.1em;"><b>Expected Quality:</b> <span id="bookQualityDisplayTab">0</span>%</div>
+							<!-- MODIFIED: Added quality multiplier display -->
+							<div style="font-size: 1.1em;"><b>Expected Quality:</b> <span id="bookQualityDisplayTab">0</span>%<span id="bookQualityMultiplierDisplay"></span></div>
 						</div>
 					</div>
 				</div>
@@ -229,7 +236,7 @@
 	</div>
 </div>
 
-<!-- NEW: Intro Modal -->
+<!-- Intro Modal -->
 <div id="introModal" class="modal" style="display: none;">
 	<div class="modal-content" style="max-width: 600px; text-align: left;">
 		<h2 style="text-align: center; margin-top: 0;">Welcome to Author's Journey</h2>

@@ -16,6 +16,14 @@ function setTab(element, selectedTab) {
 	element.classList.add("btn-active");
 }
 
+// NEW: Function to handle slider updates
+function updateWorkWritingBalance(value) {
+	gameData.workWritingBalance = parseInt(value);
+	document.getElementById("workPercentage").textContent = 100 - gameData.workWritingBalance;
+	document.getElementById("writingPercentage").textContent = gameData.workWritingBalance;
+	updateUI();
+}
+
 function createData(data, baseData) {
 	for (let key in baseData) {
 		let entity = baseData[key];
@@ -402,10 +410,12 @@ function updateBookHistory() {
 		let royalties = bookRecord.royalties || 0;
 		let yearlyRoyalties = royalties * 365;
 		
+		// MODIFIED: Display the book's quality in the history list
+		let qualityText = bookRecord.quality ? ` | Quality: ${bookRecord.quality.toFixed(1)}%` : "";
+		
 		let div = document.createElement("div");
 		div.className = "ui-row";
 		div.style.marginBottom = "10px";
-		// MODIFIED: Changed cursor and added click listener to open book modal
 		div.style.cursor = "pointer";
 		div.onclick = function() {
 			showBookModal(bookId);
@@ -414,7 +424,7 @@ function updateBookHistory() {
 			<img src="img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}" class="row-image" style="width: 60px; height: 90px; object-fit: cover; border-radius: 4px;">
 			<div class="row-info">
 				<div class="row-title">${bookData.title}</div>
-				<div class="row-value">Published: Age ${age}.${day} days</div>
+				<div class="row-value">Published: Age ${age}.${day} days${qualityText}</div>
 			</div>
 			<div class="row-expense" style="text-align: right;">
 				<span style="color: #4CAF50; font-weight: bold;">+$${format(royalties)}/day</span><br>
@@ -490,6 +500,26 @@ function updateText() {
 	
 	updateIfChanged("writingSpeedDisplayTab", format(getWritingSpeed()));
 	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(1));
+	
+	// MODIFIED: Display the quality multiplier if applicable
+	let qualityMultiplier = getQualityMultiplier();
+	let multiplierDisplay = document.getElementById("bookQualityMultiplierDisplay");
+	if (multiplierDisplay) {
+		if (qualityMultiplier > 1) {
+			multiplierDisplay.textContent = ` (x${qualityMultiplier.toFixed(2)})`;
+			multiplierDisplay.style.color = "#4CAF50";
+		} else {
+			multiplierDisplay.textContent = "";
+		}
+	}
+	
+	// MODIFIED: Ensure slider text and value are in sync
+	updateIfChanged("workPercentage", 100 - gameData.workWritingBalance);
+	updateIfChanged("writingPercentage", gameData.workWritingBalance);
+	let slider = document.getElementById("workWritingSlider");
+	if (slider && slider.value !== String(gameData.workWritingBalance)) {
+		slider.value = gameData.workWritingBalance;
+	}
 	
 	let writingProgress = Math.min(100, (gameData.wordsWritten / getBookLength()) * 100);
 	let writingProgressBar = document.getElementById("writingProgressBar");
@@ -604,7 +634,6 @@ function showModal (imgElement) {
 	modal.style.display = "flex";
 }
 
-// NEW: Show and hide intro modal functions
 function showIntroModal() {
 	let introModal = document.getElementById('introModal');
 	if (introModal) {
@@ -621,7 +650,6 @@ function closeIntroModal() {
 	saveGameData();
 }
 
-// NEW: Book Modal Functions
 function showBookModal(bookId) {
 	let book = booksBaseData[bookId];
 	if (!book) return;
@@ -684,7 +712,6 @@ function startTypingEffect(fullText, elementId) {
 		} else {
 			let char = fullText[currentIndex];
 			
-			// 2% chance to make a typo if it's a letter
 			if (/[a-zA-Z]/.test(char) && Math.random() < 0.02) {
 				currentHTML += getRandomChar();
 				isCorrecting = true;
@@ -707,11 +734,9 @@ function startTypingEffect(fullText, elementId) {
 		typingTimeout = setTimeout(typeNext, delay);
 	}
 	
-	// Start typing after a short initial delay
 	typingTimeout = setTimeout(typeNext, 500);
 }
 
-// MODIFIED: Updated global click listener to handle both modals
 window.addEventListener('click', function (event) {
 	let infoModal = document.getElementById('infoModal');
 	if (infoModal && infoModal.style.display === 'flex' && event.target === infoModal) {

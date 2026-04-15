@@ -460,7 +460,7 @@ button:focus {
     align-items: center;
     gap: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    height: 170px;
+    height: 185px;
     box-sizing: border-box;
     background-color: #e2e8f0; /* Distinct slate-gray background for light mode */
     border-bottom: 2px solid #cbd5e1;
@@ -522,13 +522,13 @@ button:focus {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-    /* 170px (topPanel) + 44px (tabs) = 224px offset */
-    padding-top: 214px;
+    /* 185px (topPanel) + 44px (tabs) = 224px offset */
+    padding-top: 229px;
 }
 
 .scroll-container {
     /* Viewport height minus the 224px fixed header offset */
-    height: calc(100vh - 214px);
+    height: calc(100vh - 229px);
     overflow-y: overlay; /* Overlays scrollbar on content */
     scrollbar-width: thin; /* Firefox support */
     padding-bottom: 0px; /* Breathing room at the bottom */
