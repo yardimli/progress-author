@@ -79,13 +79,16 @@ function createAllRows(categoryType, containerId) {
 					filename = filename.replace('.png', '.jpg');
 					imgElement.src = `img/${filefolder}/${filename}`;
 					imgElement.alt = name;
+					
+					// NEW: Setup image to trigger modal
+					imgElement.setAttribute('data-name', name);
+					imgElement.setAttribute('data-type', isJob ? 'job' : (isSkill ? 'skill' : 'item'));
+					imgElement.style.cursor = 'pointer';
+					imgElement.onclick = function (e) {
+						e.stopPropagation(); // Prevent row click from firing
+						showModal(this);
+					};
 				}
-			}
-			
-			if (isJob || isSkill) {
-				element.querySelector('.baseTooltip').textContent = tooltips[name];
-			} else {
-				element.querySelector('.tooltipText').textContent = tooltips[name];
 			}
 			
 			if (isJob || isSkill) {
@@ -171,25 +174,6 @@ function updateTaskRows() {
 			let newLevelText = "LVL. " + task.level;
 			if (levelElement.textContent !== newLevelText) {
 				levelElement.textContent = newLevelText;
-			}
-		}
-		
-		let maxLevelTooltip = row.querySelector(".maxLevelTooltip");
-		if (maxLevelTooltip) {
-			if (gameData.rebirthOneCount > 0) {
-				if (maxLevelTooltip.style.display !== "block") {
-					maxLevelTooltip.style.display = "block";
-				}
-				let multi = 1 + (task.maxLevel / 20);
-				let formattedMulti = parseFloat(multi.toFixed(2));
-				let text = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
-				if (maxLevelTooltip.textContent !== text) {
-					maxLevelTooltip.textContent = text;
-				}
-			} else {
-				if (maxLevelTooltip.style.display !== "none") {
-					maxLevelTooltip.style.display = "none";
-				}
 			}
 		}
 		
@@ -543,3 +527,44 @@ function updateUI() {
 	updateTabButtons();
 	updateBookHistory();
 }
+
+// --- NEW: Modal Logic ---
+
+function showModal (imgElement) {
+	let name = imgElement.getAttribute('data-name');
+	let type = imgElement.getAttribute('data-type');
+	let modal = document.getElementById('infoModal');
+	let modalImg = document.getElementById('modalImage');
+	let modalTitle = document.getElementById('modalTitle');
+	let modalDesc = document.getElementById('modalDescription');
+	let modalMax = document.getElementById('modalMaxLevel');
+	
+	modalImg.src = imgElement.src;
+	modalTitle.textContent = name;
+	modalDesc.textContent = tooltips[name] || "";
+	
+	// Add max levels in past lives text for work and skills
+	if ((type === 'job' || type === 'skill') && gameData.rebirthOneCount > 0) {
+		let task = gameData.taskData[name];
+		if (task) {
+			let multi = 1 + (task.maxLevel / 20);
+			let formattedMulti = parseFloat(multi.toFixed(2));
+			modalMax.textContent = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
+			modalMax.style.display = "block";
+		} else {
+			modalMax.style.display = "none";
+		}
+	} else {
+		modalMax.style.display = "none";
+	}
+	
+	modal.style.display = "flex";
+}
+
+// Close modal when clicking anywhere (including the modal itself)
+window.addEventListener('click', function () {
+	let modal = document.getElementById('infoModal');
+	if (modal && modal.style.display === 'flex') {
+		modal.style.display = 'none';
+	}
+});

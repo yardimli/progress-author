@@ -96,3 +96,13 @@
 .dark .color-income-val, .dark .color-expense-val { color: #ffd700; }
 .dark .color-income-lbl { color: #a8d08d; }
 .dark .color-expense-lbl { color: #ff4c4c; }
+
+/* --- NEW: Dark mode for Modal --- */
+.dark .modal-content {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #444;
+}
+.dark .modal-description {
+    color: #aaa;
+}

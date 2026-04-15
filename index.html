@@ -9,7 +9,7 @@
 	<title>Author's Journey</title>
 </head>
 <body id="body" class="dark">
-<div style="max-width: 1200px; margin: 20px auto !important; padding: 0 15px;">
+<div style="max-width: 1200px; margin: 0px auto !important; padding: 0 15px;">
 	<div id="topPanel" class="panel w3-padding w3-margin-bottom top-panel">
 		<img id="authorImage" src="" alt="Author" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee;">
 		
@@ -73,7 +73,7 @@
 		</template>
 		
 		<template id="jobCardTemplate">
-			<div class="ui-card tooltip">
+			<div class="ui-card">
 				<img class="card-image" src="" alt="">
 				<div class="card-title name"></div>
 				<div class="card-value income"></div>
@@ -81,15 +81,11 @@
 					<div class="badge-fill progressFill"></div>
 					<span class="badge-text level"></span>
 				</div>
-				<span class="tooltipText">
-					<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
-					<span class="maxLevelTooltip" style="display: none; color: #4CAF50; margin-top: 8px; padding: 0 5px;"></span>
-				</span>
 			</div>
 		</template>
 		
 		<template id="skillRowTemplate">
-			<div class="ui-row tooltip">
+			<div class="ui-row">
 				<img class="row-image" src="" alt="">
 				<div class="row-info">
 					<div class="row-title name"></div>
@@ -102,32 +98,26 @@
 				<div class="skip-container skipSkill" style="margin-left: 15px;">
 					<input type="checkbox" class="checkbox" onclick="event.stopPropagation();">
 				</div>
-				<span class="tooltipText">
-					<span class="baseTooltip" style="display: block; padding: 0 5px;"></span>
-					<span class="maxLevelTooltip" style="display: none; color: #4CAF50; margin-top: 8px; padding: 0 5px;"></span>
-				</span>
 			</div>
 		</template>
 		
 		<template id="propertyCardTemplate">
-			<div class="ui-card tooltip">
+			<div class="ui-card">
 				<img class="card-image" src="" alt="">
 				<div class="card-title name"></div>
 				<div class="card-value effect"></div>
 				<div class="card-expense expense"></div>
-				<span class="tooltipText"></span>
 			</div>
 		</template>
 		
 		<template id="miscRowTemplate">
-			<div class="ui-row tooltip">
+			<div class="ui-row">
 				<img class="row-image" src="" alt="">
 				<div class="row-info">
 					<div class="row-title name"></div>
 					<div class="row-value effect"></div>
 				</div>
 				<div class="row-expense expense"></div>
-				<span class="tooltipText"></span>
 			</div>
 		</template>
 		
@@ -243,6 +233,16 @@
 				</li>
 			</ul>
 		</div>
+	</div>
+</div>
+
+<!-- NEW: Modal Container -->
+<div id="infoModal" class="modal" style="display: none;">
+	<div class="modal-content">
+		<img id="modalImage" src="" alt="" style="width: 128px; height: 128px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+		<div id="modalTitle" class="modal-title"></div>
+		<div id="modalDescription" class="modal-description"></div>
+		<div id="modalMaxLevel" style="color: #4CAF50; display: none; font-size: 0.95em; margin-top: 10px;"></div>
 	</div>
 </div>
 
