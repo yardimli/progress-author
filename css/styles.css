@@ -1,6 +1,9 @@
+/* MODIFIED: Added overflow hidden and removed margin to prevent document scrollbar */
 body {
     background-color: rgb(243, 243, 243);
     color: black;
+    overflow: hidden;
+    margin: 0;
 }
 
 .w3-bar-item {
@@ -338,19 +341,23 @@ button:focus {
 .color-income-lbl { color: #2e7d32; }
 .color-expense-lbl { color: #d32f2f; }
 
+/* MODIFIED: Removed sticky positioning, added fixed 200px height */
 .top-panel {
-    position: sticky;
-    top: 0;
-    z-index: 100;
     display: flex;
     align-items: center;
     gap: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    height: 200px;
+    box-sizing: border-box;
 }
 
+/* MODIFIED: Added fixed 44px height */
 .tabs-container {
     display: flex;
     overflow-x: auto;
+    height: 44px;
+    box-sizing: border-box;
+    align-items: center;
 }
 
 .tabButton {
@@ -374,7 +381,59 @@ button:focus {
     background-color: #444;
 }
 
-/* --- NEW: Modal Styles --- */
+/* --- NEW: Fixed Header and Scroll Container Styles --- */
+
+.fixed-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(243, 243, 243); /* Match light theme body background */
+}
+
+.fixed-header-content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 15px;
+}
+
+.main-layout-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    /* 200px (topPanel) + 16px (margin) + 44px (tabs) + 16px (margin) = 276px offset */
+    padding-top: 276px;
+}
+
+.scroll-container {
+    /* Viewport height minus the 276px fixed header offset */
+    height: calc(100vh - 276px);
+    overflow-y: overlay; /* Overlays scrollbar on content */
+    scrollbar-width: thin; /* Firefox support */
+    padding-bottom: 20px; /* Breathing room at the bottom */
+}
+
+/* WebKit (Chrome, Safari, Edge) Customization */
+.scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Faded out by default */
+    border-radius: 10px;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.scroll-container:hover::-webkit-scrollbar-thumb,
+.scroll-container:active::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3); /* Fades in on hover/touch */
+}
+
+/* --- Modal Styles --- */
 .modal {
     position: fixed;
     top: 0;
