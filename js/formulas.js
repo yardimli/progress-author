@@ -25,20 +25,14 @@ function addMultipliers() {
 		if (task instanceof Job) {
 			task.incomeMultipliers.push(task.getLevelMultiplier.bind(task));
 			task.incomeMultipliers.push(getBindedTaskEffect("Royalty Negotiation"));
-			// NEW: Apply global work multiplier to job income
-			task.incomeMultipliers.push(() => gameData.workMultiplier);
 			
 			task.xpMultipliers.push(getBindedTaskEffect("Time Management"));
 			task.xpMultipliers.push(getBindedItemEffect("Editor"));
-			// NEW: Apply global work multiplier to job XP
-			task.xpMultipliers.push(() => gameData.workMultiplier);
 		} else if (task instanceof Skill) {
 			task.xpMultipliers.push(getBindedTaskEffect("Focus"));
 			task.xpMultipliers.push(getBindedItemEffect("Library Card"));
 			task.xpMultipliers.push(getBindedItemEffect("Home Office"));
 			task.xpMultipliers.push(getBindedItemEffect("Home Library"));
-			// NEW: Apply global skill multiplier to skill XP
-			task.xpMultipliers.push(() => gameData.skillMultiplier);
 		}
 		
 		if (jobCategories["Creative Industry"].includes(task.name)) {

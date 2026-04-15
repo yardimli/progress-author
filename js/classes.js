@@ -17,7 +17,6 @@ class Task {
     }
     
     getMaxLevelMultiplier() {
-        // Changed to 20 per GDD formula
         return 1 + this.maxLevel / 20;
     }
     
@@ -29,7 +28,7 @@ class Task {
         this.xp += applySpeed(this.getXpGain());
         if (this.xp >= this.getMaxXp()) {
             let excess = this.xp - this.getMaxXp();
-            let leveledUp = false; // Track if we leveled up
+            let leveledUp = false;
             while (excess >= 0) {
                 this.level += 1;
                 excess -= this.getMaxXp();
@@ -37,7 +36,6 @@ class Task {
             }
             this.xp = this.getMaxXp() + excess;
             
-            // Log the final level reached to prevent log spam
             if (leveledUp && typeof logEvent === "function") {
                 logEvent(`Leveled up ${this.name} to level ${this.level}!`);
             }
@@ -56,7 +54,16 @@ class Job extends Task {
     }
     
     getIncome() {
-        return applyMultipliers(this.baseData.income, this.incomeMultipliers);
+        let income = applyMultipliers(this.baseData.income, this.incomeMultipliers);
+        // MODIFIED: Apply global work multiplier to job income
+        return income * gameData.workMultiplier;
+    }
+    
+    // MODIFIED: Override getXpGain to apply the global work multiplier and slider percentage
+    getXpGain() {
+        let baseGain = super.getXpGain();
+        let workPercentage = (100 - gameData.workWritingBalance) / 100;
+        return baseGain * gameData.workMultiplier * workPercentage;
     }
 }
 
@@ -72,6 +79,12 @@ class Skill extends Task {
     getEffectDescription() {
         let description = this.baseData.description;
         return "x" + String(this.getEffect().toFixed(2)) + " " + description;
+    }
+    
+    // MODIFIED: Override getXpGain to apply the global skill multiplier
+    getXpGain() {
+        let baseGain = super.getXpGain();
+        return baseGain * gameData.skillMultiplier;
     }
 }
 
@@ -150,7 +163,6 @@ class AgeRequirement extends Requirement {
     }
 }
 
-// Renamed EvilRequirement to FameRequirement
 class FameRequirement extends Requirement {
     constructor(elements, requirements) {
         super(elements, requirements);
