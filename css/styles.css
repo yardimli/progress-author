@@ -371,8 +371,6 @@ button:focus {
     text-shadow: none;
 }
 
-/* MODIFIED: Removed Category Requirements Footer */
-
 /* NEW: Locked Card and Row Styles */
 .locked-card, .locked-row {
     background-color: #f5f5f5;
@@ -449,13 +447,16 @@ button:focus {
     color: #d32f2f;
 }
 
-.top-panel {
+/* MODIFIED: Added specific background color to top-panel to contrast with tab contents */
+.panel.top-panel {
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     height: 180px;
     box-sizing: border-box;
+    background-color: #e2e8f0; /* Distinct slate-gray background for light mode */
+    border-bottom: 2px solid #cbd5e1;
 }
 
 .tabs-container {
@@ -512,12 +513,12 @@ button:focus {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-    /* 200px (topPanel) + 16px (margin) + 44px (tabs) + 16px (margin) = 276px offset */
+    /* 180px (topPanel) + 44px (tabs) = 224px offset */
     padding-top: 224px;
 }
 
 .scroll-container {
-    /* Viewport height minus the 276px fixed header offset */
+    /* Viewport height minus the 224px fixed header offset */
     height: calc(100vh - 224px);
     overflow-y: overlay; /* Overlays scrollbar on content */
     scrollbar-width: thin; /* Firefox support */

@@ -7,6 +7,12 @@
     background-color: rgb(46, 46, 46);
 }
 
+/* MODIFIED: Distinct background for top-panel in dark mode */
+.dark .panel.top-panel {
+    background-color: #18181b; /* Deep dark color, distinct from the #2e2e2e tab panels */
+    border-bottom: 2px solid #000;
+}
+
 /* MODIFIED: Replaced .button with .btn for dark mode */
 .dark .btn {
     background-color: rgb(31, 31, 31);
@@ -88,8 +94,6 @@
 .dark .badge-text {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
-
-/* MODIFIED: Removed .dark .category-requirements */
 
 /* NEW: Locked Card and Row Styles for Dark Mode */
 .dark .locked-card, .dark .locked-row {
