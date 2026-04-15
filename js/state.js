@@ -18,14 +18,14 @@ var gameData = {
 	workWritingBalance: 0,
 	
 	// MODIFIED: Multipliers for work, skill, and writing (1 is default)
-	workMultiplier: 0.5,
-	skillMultiplier: 0.5,
-	writingMultiplier: 0.5,
+	workMultiplier: 1,
+	skillMultiplier: 1,
+	writingMultiplier: 1,
 	
 	// NEW: XP gain multipliers for each category to adjust leveling speed independently
-	workXpMultiplier: 0.25,
-	skillXpMultiplier: 0.25,
-	writingXpMultiplier: 0.25,
+	workXpMultiplier: 0.4,
+	skillXpMultiplier: 0.4,
+	writingXpMultiplier: 0.4,
 	
 	// Potions state
 	potions: {
