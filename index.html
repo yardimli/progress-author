@@ -16,18 +16,14 @@
 			<img id="authorImage" src="" alt="Author" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee;">
 			
 			<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
-				<!-- MODIFIED: Changed death/age text to retirement -->
 				<div id="deathText" class="hidden" style="color: red; font-weight: bold;">You have reached retirement age. Use the Golden Pen to retire.</div>
 				<div style="font-size: 1.2em;"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden" style="font-size: 0.8em; color: #d32f2f; margin-left: 10px;">Fame: <span id="fameDisplay">0</span></span></div>
-				<!-- MODIFIED: Changed Lifespan to Retirement Age -->
 				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
 				<div>Balance: <span id="coinDisplay" style="font-weight:bold;">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
 				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn" style="padding: 2px 8px; margin-left: 5px;" onClick="setTimeWarping()">Enable flow</button></span></div>
 				
 				<div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
-					<!-- MODIFIED: Removed Pause and Speed buttons -->
-					<!-- MODIFIED: Removed automation span with autoPromote and autoLearn checkboxes -->
 				</div>
 			</div>
 		</div>
@@ -68,7 +64,6 @@
 				<div class="category-section">
 					<div class="category-header"></div>
 					<div class="category-content"></div>
-					<!-- MODIFIED: Removed category-requirements div -->
 				</div>
 			</template>
 			
@@ -95,7 +90,6 @@
 						<div class="badge-fill progressFill"></div>
 						<span class="badge-text level"></span>
 					</div>
-					<!-- MODIFIED: Removed skip-container -->
 				</div>
 			</template>
 			
@@ -184,7 +178,6 @@
 							to see what happens.
 						</div>
 						<i style="color: grey">
-							<!-- MODIFIED: Changed xp to experience -->
 							By clicking the pen, you will retire and have to restart your career, losing all your levels and money.
 							However, you will gain <b>experience multipliers</b> for your jobs and skills equivalent to: <b>1 + the max level of the skill or job / 20.</b>
 							This means you will learn everything again much more quickly than you did in your previous life. <span style="color: rgb(200, 0, 0)">
@@ -231,6 +224,25 @@
 					</li>
 				</ul>
 			</div>
+		</div>
+	</div>
+</div>
+
+<!-- NEW: Intro Modal -->
+<div id="introModal" class="modal" style="display: none;">
+	<div class="modal-content" style="max-width: 600px; text-align: left;">
+		<h2 style="text-align: center; margin-top: 0;">Welcome to Author's Journey</h2>
+		<p>In this game, you will live through the lives of aspiring authors. Each time you reset, a new author takes up the mantle, inheriting the legacy and knowledge of those who came before.</p>
+		<p>You will start from the bottom, struggling to balance menial jobs with your passion for writing. Here is how to navigate your journey:</p>
+		<ul style="line-height: 1.6;">
+			<li><b>Work:</b> Work jobs to earn money. You need funds to survive and invest in your career.</li>
+			<li><b>Skills:</b> Practice your craft and life skills. These improve your writing speed, quality, and work efficiency.</li>
+			<li><b>Shop:</b> Buy better living conditions and equipment. Comfort and good tools drastically improve your inspiration and experience gains.</li>
+			<li><b>Writing:</b> The core of your journey. Write and publish books. High-quality books earn you royalties and Fame, eventually allowing you to quit your day job.</li>
+		</ul>
+		<p><i>Hint:</i> Time is fleeting. You will eventually reach retirement age and rest. However, as you progress, you may discover secrets to extending your career, or even achieving legendary status through the mysterious <b>Golden Pen</b>.</p>
+		<div style="text-align: center; margin-top: 20px;">
+			<button class="btn" onclick="closeIntroModal()">Start Journey</button>
 		</div>
 	</div>
 </div>

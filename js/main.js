@@ -2,7 +2,6 @@
 
 function update() {
     increaseDays();
-    // MODIFIED: Removed autoPromote() and autoLearn()
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     updateWritingProcess();
@@ -16,7 +15,7 @@ function gameLoop(currentTime) {
     
     if (deltaTime > 86400) deltaTime = 86400;
     
-    // NEW: Update potion timers (real-time)
+    // Update potion timers (real-time)
     if (gameData.potions.inspiration > 0) {
         gameData.potions.inspiration -= deltaTime;
         if (gameData.potions.inspiration < 0) gameData.potions.inspiration = 0;
@@ -33,8 +32,6 @@ function gameLoop(currentTime) {
         saveGameData();
         saveTimer = 0;
     }
-    
-    // MODIFIED: Removed skillTimer logic
     
     requestAnimationFrame(gameLoop);
 }
@@ -117,6 +114,12 @@ async function init() {
         requestAnimationFrame(gameLoop);
         
         logEvent("Started a new game. Welcome to Author's Journey!");
+        
+        // NEW: Show intro modal if it hasn't been seen yet
+        if (!gameData.introSeen) {
+            showIntroModal();
+        }
+        
     } catch (error) {
         console.error("Failed to load game data:", error);
         alert("Failed to load game data. Ensure you are running this on a local web server to allow fetch API to work.");

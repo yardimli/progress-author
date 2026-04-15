@@ -44,8 +44,6 @@ function createAllRows(categoryType, containerId) {
 		let categoryDiv = headerClone.querySelector('.category-section');
 		categoryDiv.querySelector('.category-header').textContent = categoryName;
 		
-		// MODIFIED: Removed category-requirements logic
-		
 		let contentDiv = categoryDiv.querySelector('.category-content');
 		
 		if (isJob || (isItem && categoryName === "Properties")) {
@@ -102,7 +100,6 @@ function createAllRows(categoryType, containerId) {
 			contentDiv.appendChild(element);
 		});
 		
-		// NEW: Inject locked placeholder card/row
 		let lockedPlaceholder = document.createElement("div");
 		lockedPlaceholder.id = "locked-" + categoryName.replace(/\s+/g, '-');
 		if (isJob || (isItem && categoryName === "Properties")) {
@@ -126,7 +123,6 @@ function createAllRows(categoryType, containerId) {
 		
 		container.appendChild(categoryDiv);
 		
-		// NEW: Inject Free Items section after Properties
 		if (isItem && categoryName === "Properties") {
 			let freeItemsDiv = document.createElement("div");
 			freeItemsDiv.className = "category-section";
@@ -167,7 +163,6 @@ function updateRequiredRows(data, categoryType) {
 		let category = categoryType[categoryName];
 		let nextEntityFound = false;
 		
-		// MODIFIED: Target the locked placeholder instead of the old categoryReqDiv
 		let lockedPlaceholder = document.getElementById("locked-" + categoryName.replace(/\s+/g, '-'));
 		let categoryReqText = "";
 		
@@ -299,10 +294,6 @@ function updateItemRows() {
 	}
 }
 
-// MODIFIED: Removed updateHeaderRows()
-
-// MODIFIED: Removed setGameSpeedMultiplier and updateSpeedButtons
-
 function updateAuthorAndBookUI() {
 	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
 		let author = authorsBaseData[gameData.currentAuthor];
@@ -428,7 +419,6 @@ function updateBookHistory() {
 	}
 }
 
-// NEW: Update Potions UI
 function updatePotionsUI() {
 	const types = ['inspiration', 'acceleration'];
 	types.forEach(type => {
@@ -467,7 +457,6 @@ function updateText() {
 	let dayStr = String(getDay()).padStart(3, '0');
 	updateIfChanged("dayDisplay", dayStr);
 	updateIfChanged("lifespanDisplay", daysToYears(getLifespan()));
-	// MODIFIED: Removed pauseButton update
 	
 	const updateMoneyIfChanged = (money, id) => {
 		let el = document.getElementById(id);
@@ -571,14 +560,11 @@ function updateUI() {
 	updateRequiredRows(gameData.taskData, jobCategories);
 	updateRequiredRows(gameData.taskData, skillCategories);
 	updateRequiredRows(gameData.itemData, itemCategories);
-	// MODIFIED: Removed updateHeaderRows calls
 	hideEntities();
 	updateAuthorAndBookUI();
 	updateText();
-	// MODIFIED: Removed updateSpeedButtons()
 	updateTabButtons();
 	updateBookHistory();
-	// NEW: Update Potions UI
 	updatePotionsUI();
 }
 
@@ -612,9 +598,26 @@ function showModal (imgElement) {
 	modal.style.display = "flex";
 }
 
-window.addEventListener('click', function () {
-	let modal = document.getElementById('infoModal');
-	if (modal && modal.style.display === 'flex') {
-		modal.style.display = 'none';
+// NEW: Show and hide intro modal functions
+function showIntroModal() {
+	let introModal = document.getElementById('introModal');
+	if (introModal) {
+		introModal.style.display = 'flex';
+	}
+}
+
+function closeIntroModal() {
+	let introModal = document.getElementById('introModal');
+	if (introModal) {
+		introModal.style.display = 'none';
+	}
+	gameData.introSeen = true;
+	saveGameData();
+}
+
+window.addEventListener('click', function (e) {
+	let infoModal = document.getElementById('infoModal');
+	if (infoModal && infoModal.style.display === 'flex' && e.target === infoModal) {
+		infoModal.style.display = 'none';
 	}
 });

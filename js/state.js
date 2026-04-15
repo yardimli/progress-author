@@ -6,7 +6,6 @@ var gameData = {
 	coins: 0,
 	days: 365 * 18, // Starts at 18
 	fame: 0,
-	// MODIFIED: Removed speedMultiplier and paused
 	timeWarpingEnabled: true,
 	rebirthOneCount: 0,
 	rebirthTwoCount: 0,
@@ -15,7 +14,7 @@ var gameData = {
 	currentProperty: null,
 	currentMisc: null,
 	
-	// NEW: Potions state
+	// Potions state
 	potions: {
 		inspiration: 0,
 		acceleration: 0
@@ -27,31 +26,30 @@ var gameData = {
 	royalties: 0,
 	loggedDeath: false,
 	
-	// New Author and Book properties
+	// Author and Book properties
 	currentAuthor: null,
 	currentBook: null,
-	completedBooks: []
+	completedBooks: [],
+	
+	// NEW: Track if the player has seen the intro tutorial
+	introSeen: false
 };
 
 var tempData = {};
-// MODIFIED: Removed skillWithLowestMaxXp
 
 // DOM Elements
-// MODIFIED: Removed autoPromoteElement and autoLearnElement
 var jobTabButton = document.getElementById("jobTabButton");
 
 // Constants
 const baseLifespan = 365 * 70;
 const baseGameSpeed = 4;
-// MODIFIED: Removed permanentUnlocks array entirely
 const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 
 // Variables for requestAnimationFrame loop
 var lastTime = performance.now();
 var deltaTime = 0;
 var saveTimer = 0;
-// MODIFIED: Removed skillTimer
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
-var authorsBaseData, booksBaseData; // Added for new Author and Book data
+var authorsBaseData, booksBaseData;
