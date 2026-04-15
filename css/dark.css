@@ -142,3 +142,15 @@
 .dark .modal-description {
     color: #aaa;
 }
+
+.dark .tabs-container {
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #444;
+}
+
+
+.dark .btn-active {
+    background-color: #2e2e2e !important;
+    /*color: #fff !important;*/
+    /*border-color: #607d8b !important;*/
+}

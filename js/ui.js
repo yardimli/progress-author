@@ -196,7 +196,7 @@ function updateRequiredRows(data, categoryType) {
 							let task = gameData.taskData[req.task];
 							reqStrings.push(req.task + " LVL " + format(task.level,0) + " / " + format(req.requirement,0));
 						}
-						finalText += reqStrings.join(", ");
+						finalText += reqStrings.join("<br>");
 					} else if (requirements instanceof AgeRequirement) {
 						finalText += "Age " + format(requirements.requirements[0].requirement,0);
 					}
@@ -357,7 +357,7 @@ function updateTabButtons() {
 	updateImg("jobTabImg", gameData.currentJob);
 	let jobTabText = document.getElementById("jobTabText");
 	if (jobTabText) {
-		let jobIncomeText = `+${format(getIncome())}/day`;
+		let jobIncomeText = `+$${format(getIncome(),0)}/day`;
 		if (jobTabText.textContent !== jobIncomeText) jobTabText.textContent = jobIncomeText;
 	}
 	
@@ -385,7 +385,7 @@ function updateTabButtons() {
 	updateImg("shopTabImg", gameData.currentProperty);
 	let shopTabText = document.getElementById("shopTabText");
 	if (shopTabText) {
-		let shopExpenseText = `-${format(getExpense())}/day`;
+		let shopExpenseText = `-$${format(getExpense(),0)}/day`;
 		if (shopTabText.textContent !== shopExpenseText) shopTabText.textContent = shopExpenseText;
 	}
 }

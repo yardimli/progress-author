@@ -17,7 +17,10 @@ html {
 }
 
 
-/* --- NEW: Internal Utility Classes (Replacing w3.css) --- */
+.panel-padding-sm {
+    padding: 8px;
+}
+
 .panel-padding {
     padding: 16px;
 }
@@ -342,13 +345,13 @@ button:focus {
     position: relative;
     overflow: hidden;
     width: 90%;
-    margin: auto 0 0 0;
+    margin: auto 10px 10px 10px;
     border: 1px solid #ccc;
 }
 
 .ui-row .level-badge {
     width: 80px;
-    margin: 0;
+    margin: 20px;
     text-align: center;
 }
 
@@ -369,6 +372,10 @@ button:focus {
     padding: 3px 5px;
     display: block;
     text-shadow: none;
+}
+
+.potion-action {
+    margin: 20px;
 }
 
 /* NEW: Locked Card and Row Styles */
@@ -453,7 +460,7 @@ button:focus {
     align-items: center;
     gap: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    height: 180px;
+    height: 170px;
     box-sizing: border-box;
     background-color: #e2e8f0; /* Distinct slate-gray background for light mode */
     border-bottom: 2px solid #cbd5e1;
@@ -465,6 +472,8 @@ button:focus {
     height: 44px;
     box-sizing: border-box;
     align-items: center;
+    background-color: #f8f9fa; /* Light background for tabs */
+    border-bottom: 1px solid #ddd;
 }
 
 .tabButton {
@@ -513,13 +522,13 @@ button:focus {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-    /* 180px (topPanel) + 44px (tabs) = 224px offset */
-    padding-top: 224px;
+    /* 170px (topPanel) + 44px (tabs) = 224px offset */
+    padding-top: 214px;
 }
 
 .scroll-container {
     /* Viewport height minus the 224px fixed header offset */
-    height: calc(100vh - 224px);
+    height: calc(100vh - 214px);
     overflow-y: overlay; /* Overlays scrollbar on content */
     scrollbar-width: thin; /* Firefox support */
     padding-bottom: 0px; /* Breathing room at the bottom */

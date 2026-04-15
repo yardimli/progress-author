@@ -48,7 +48,7 @@
     "name": "Grammar & Prose",
     "maxXp": 100,
     "effect": 0.01,
-    "description": "Creative Ind. xp",
+    "description": "Creative Industry xp",
     "filename": "grammar_and_prose.png",
     "filefolder": "skills",
     "imageprompt": "An elegant, vintage fountain pen resting on a beautifully handwritten parchment letter. The dark brown ink detailing showcases classic calligraphy and academic rigor. It represents the foundational, timeless rules of beautiful literary construction."

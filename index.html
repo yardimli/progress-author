@@ -12,7 +12,7 @@
 <!-- Fixed Header Wrapper -->
 <div class="fixed-header-wrapper">
 	<div class="fixed-header-content">
-		<div id="topPanel" class="panel panel-padding top-panel">
+		<div id="topPanel" class="panel panel-padding-sm top-panel">
 			<img id="authorImage" src="" alt="Author" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee;">
 			
 			<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
@@ -40,13 +40,13 @@
 				<img id="skillTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Skills <span id="skillTabText" style="margin-left:8px;font-weight:bold;"></span>
 			</div>
-			<div class="tabButton" id="writingTabButton" onClick="setTab(this, 'writing')">
-				<img id="writingTabImg" src="" style="width:24px;height:24px;border-radius:4px;object-fit:cover;margin-right:8px;display:none;" alt="">
-				Writing
-			</div>
 			<div class="tabButton" id="shopTabButton" onClick="setTab(this, 'shop')">
 				<img id="shopTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Shop <span id="shopTabText" style="color:#f44336;margin-left:8px;"></span>
+			</div>
+			<div class="tabButton" id="writingTabButton" onClick="setTab(this, 'writing')">
+				<img id="writingTabImg" src="" style="width:24px;height:24px;border-radius:4px;object-fit:cover;margin-right:8px;display:none;" alt="">
+				Writing
 			</div>
 			<div class="tabButton" id="rebirthTabButton" onClick="setTab(this, 'rebirth')">Golden Pen</div>
 			<div class="tabButton" id="logTabButton" onClick="setTab(this, 'log')">Log</div>
@@ -123,12 +123,16 @@
 				<div id="jobTable"></div>
 			</div>
 			
-			<div class="tab" id="skills" style="display: none;">
+			<div class="tab" id="skills">
 				<div class="tab-description">Select a skill to progress. All earned bonuses apply, even if not selected.</div>
 				<div id="skillTable"></div>
 			</div>
 			
-			<div class="tab" id="writing" style="display: none;">
+			<div class="tab" id="shop">
+				<div id="itemTable"></div>
+			</div>
+			
+			<div class="tab" id="writing">
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
 				<div class="ui-row" style="margin-bottom: 20px; cursor: default;">
@@ -150,10 +154,6 @@
 				<div id="bookHistoryContainer" class="category-content list">
 					<!-- Books dynamically added here -->
 				</div>
-			</div>
-			
-			<div class="tab" id="shop" style="display: none;">
-				<div id="itemTable"></div>
 			</div>
 			
 			<div class="tab" id="log" style="display: none;">
