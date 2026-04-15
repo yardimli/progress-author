@@ -14,41 +14,38 @@ function getDay() {
 
 // Format numbers with thousand separators up to 10,000, then use suffixes
 function format(number, decimals = 1) {
-	const formatWithCommas = (num) => {
-		const numStr = Number(num.toFixed(decimals)).toString();
-		let parts = numStr.split('.');
-		let intPart = parts[0];
-		const fracPart = parts.length > 1 ? '.' + parts[1] : '';
+	// 1. Handle numbers below 1000 (no decimals should be shown)
+	if (Math.abs(number) < 1000) {
+		const rounded = Math.round(number);
 		
-		let sign = '';
-		if (intPart[0] === '-') {
-			sign = '-';
-			intPart = intPart.slice(1);
+		// If rounding didn't bump it up to 1000, just return the whole number
+		if (Math.abs(rounded) < 1000) {
+			return rounded.toString();
 		}
-		
-		let formattedInt = '';
-		while (intPart.length > 3) {
-			formattedInt = ',' + intPart.slice(-3) + formattedInt;
-			intPart = intPart.slice(0, -3);
-		}
-		
-		return sign + intPart + formattedInt + fracPart;
-	};
-	
-	if (number < 10000) {
-		return formatWithCommas(number);
+		// If it rounded to 1000 (e.g., 999.6), let it fall through to become "1K"
+		number = rounded;
 	}
 	
-	const tier = Math.floor(Math.log10(number) / 3);
-	
-	if (tier === 0) return formatWithCommas(number);
-	
-	const suffix = units[tier];
+	const tier = Math.floor(Math.log10(Math.abs(number)) / 3);
+	const suffix = units[tier] || '';
 	const scale = Math.pow(10, tier * 3);
 	const scaled = number / scale;
 	
-	return scaled.toFixed(decimals) + suffix;
+	let formattedScaled;
+	
+	// 2. Pad with zeros if decimals > 1, otherwise strip trailing zeros
+	if (decimals > 1) {
+		// Keeps the zeros (e.g., "1.00", "1.20")
+		formattedScaled = scaled.toFixed(decimals);
+	} else {
+		// Strips trailing zeros for 1 or 0 decimals (e.g., "1", "1.2")
+		formattedScaled = Number(scaled.toFixed(decimals)).toString();
+	}
+	
+	// 3. Replace dot with comma
+	return formattedScaled.replace('.', ',') + suffix;
 }
+
 
 function formatMoney(money, element) {
 	element.innerHTML = `<span>$${format(money)}</span>`;

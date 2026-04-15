@@ -159,7 +159,7 @@ function updateRequiredRows(data, categoryType) {
 					
 					// Format: one on one line, centered, lock icon, skills and levels, no target name
 					if (requirements instanceof FameRequirement) {
-						finalText += "" + format(requirements.requirements[0].requirement) + " fame";
+						finalText += format(requirements.requirements[0].requirement) + " fame";
 					} else if (requirements instanceof CoinRequirement) {
 						finalText += "$" + format(requirements.requirements[0].requirement);
 					} else if (requirements instanceof TaskRequirement) {
@@ -173,10 +173,7 @@ function updateRequiredRows(data, categoryType) {
 						finalText += "Age " + format(requirements.requirements[0].requirement);
 					}
 					
-					if (finalText !== "") {
-						finalText = "🔒 " + finalText;
-					}
-					categoryReqText = finalText;
+					categoryReqText = "🔒 " + finalText;
 					nextEntityFound = true;
 				}
 			}
@@ -253,7 +250,8 @@ function updateTaskRows() {
 		if (task instanceof Job) {
 			let incomeElement = row.querySelector(".income");
 			if (incomeElement) {
-				let newIncomeHTML = `<span style="color: #ffd700">● ${format(task.getIncome())}</span> <span style="color: #a8d08d">/ day</span>`;
+				// Replaced hardcoded styles with CSS classes for light/dark mode support
+				let newIncomeHTML = `<span class="color-income-val">● ${format(task.getIncome())}</span> <span class="color-income-lbl">/ day</span>`;
 				// Only update HTML if changed
 				if (incomeElement.innerHTML !== newIncomeHTML) {
 					incomeElement.innerHTML = newIncomeHTML;
@@ -298,7 +296,8 @@ function updateItemRows() {
 		
 		let expenseElement = row.querySelector(".expense");
 		if (expenseElement) {
-			let newExpenseHTML = `<span style="color: #ffd700">● -${format(item.getExpense())}</span> <span style="color: #ff4c4c">/ day</span>`;
+			// Replaced hardcoded styles with CSS classes for light/dark mode support
+			let newExpenseHTML = `<span class="color-expense-val">● -${format(item.getExpense())}</span> <span class="color-expense-lbl">/ day</span>`;
 			// Only update HTML if changed
 			if (expenseElement.innerHTML !== newExpenseHTML) {
 				expenseElement.innerHTML = newExpenseHTML;
