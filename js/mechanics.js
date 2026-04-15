@@ -126,6 +126,21 @@ function pickNextBook() {
 	gameData.currentBook = availableBooks[randomIndex];
 }
 
+function getLifeExperiences() {
+	let exp = { hardship: 0, observation: 0, escapism: 0, exposure: 0, social: 0 };
+	for (let key in gameData.taskData) {
+		let task = gameData.taskData[key];
+		if (task instanceof Job && task.level > 0) {
+			exp.hardship += task.level * task.hardship;
+			exp.observation += task.level * task.observation;
+			exp.escapism += task.level * task.escapism;
+			exp.exposure += task.level * task.exposure;
+			exp.social += task.level * task.social;
+		}
+	}
+	return exp;
+}
+
 function getBookLength() {
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
 		return booksBaseData[gameData.currentBook].wordCount;
@@ -134,11 +149,27 @@ function getBookLength() {
 	return (50 + (plottingLvl * 2)) * 250;
 }
 
+// Factored in the 5 Life Experiences to heavily boost book quality
 function getBookQuality() {
 	let grammar = gameData.taskData["Grammar & Prose"] ? gameData.taskData["Grammar & Prose"].level : 0;
 	let plotting = gameData.taskData["Plotting"] ? gameData.taskData["Plotting"].level : 0;
 	let charDev = gameData.taskData["Character Dev."] ? gameData.taskData["Character Dev."].level : 0;
-	return (grammar + plotting + charDev) / 3;
+	
+	let baseSkillQuality = (grammar + plotting + charDev) / 3;
+	if (baseSkillQuality === 0) {
+		baseSkillQuality = 0.3;
+	}
+	
+	// Calculate multiplier based on accumulated life experiences (diminishing returns via log10)
+	let lifeExp = getLifeExperiences();
+	let expMultiplier = 1
+		+ (Math.log10(lifeExp.hardship + 1) * 0.1)
+		+ (Math.log10(lifeExp.observation + 1) * 0.1)
+		+ (Math.log10(lifeExp.escapism + 1) * 0.1)
+		+ (Math.log10(lifeExp.exposure + 1) * 0.1)
+		+ (Math.log10(lifeExp.social + 1) * 0.1);
+	
+	return baseSkillQuality * expMultiplier;
 }
 
 function updateWritingProcess() {

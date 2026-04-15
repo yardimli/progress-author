@@ -6,6 +6,12 @@ class Task {
         this.maxLevel = 0;
         this.xp = 0;
         this.xpMultipliers = [];
+        // Load life experience multipliers from JSON
+        this.hardship = baseData.hardship || 0;
+        this.observation = baseData.observation || 0;
+        this.escapism = baseData.escapism || 0;
+        this.exposure = baseData.exposure || 0;
+        this.social = baseData.social || 0;
     }
     
     getMaxXp() {

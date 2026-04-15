@@ -16,8 +16,7 @@
 			<img id="authorImage" src="" alt="Author" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee;">
 			
 			<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
-				<div id="deathText" class="hidden" style="color: red; font-weight: bold;">You have reached retirement age. Use the Golden Pen to retire.</div>
-				<div style="font-size: 1.2em;"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden" style="font-size: 0.8em; color: #d32f2f; margin-left: 10px;">Fame: <span id="fameDisplay">0</span></span></div>
+				<div style="font-size: 1.2em;"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden" style="font-size: 0.8em; color: #d32f2f; margin-left: 10px;">Fame: <span id="fameDisplay">0</span></span> <span id="deathText" class="hidden" style="color: red; font-weight: bold;">You have reached retirement age. Use the Golden Pen to retire.</span></div>
 				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
 				<div>Balance: <span id="coinDisplay" style="font-weight:bold;">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
@@ -148,9 +147,38 @@
 								<div id="writingProgressBar" style="height: 100%; background-color: #4CAF50; width: 0%; transition: width 0.1s;"></div>
 							</div>
 							<div style="margin-top: 15px; font-size: 1.1em;"><b>Writing Speed:</b> <span id="writingSpeedDisplayTab">0</span> words/day</div>
-							<!-- MODIFIED: Added quality multiplier display -->
 							<div style="font-size: 1.1em;"><b>Expected Quality:</b> <span id="bookQualityDisplayTab">0</span>%<span id="bookQualityMultiplierDisplay"></span></div>
 						</div>
+					</div>
+				</div>
+				
+				<!-- NEW: Life Experiences Section -->
+				<div class="category-header">Life Experiences (Quality Multipliers)</div>
+				<div class="ui-row" style="margin-bottom: 20px; cursor: default; padding: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; background-color: rgba(0,0,0,0.02);">
+					<div style="text-align: center; flex: 1; min-width: 80px;">
+						<div style="font-size: 1.5em; margin-bottom: 5px;">🌧️</div>
+						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Hardship</div>
+						<div id="expHardshipDisplay" style="color: #b8860b; font-weight: bold;">0</div>
+					</div>
+					<div style="text-align: center; flex: 1; min-width: 80px;">
+						<div style="font-size: 1.5em; margin-bottom: 5px;">👁️</div>
+						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Observation</div>
+						<div id="expObservationDisplay" style="color: #b8860b; font-weight: bold;">0</div>
+					</div>
+					<div style="text-align: center; flex: 1; min-width: 80px;">
+						<div style="font-size: 1.5em; margin-bottom: 5px;">💭</div>
+						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Escapism</div>
+						<div id="expEscapismDisplay" style="color: #b8860b; font-weight: bold;">0</div>
+					</div>
+					<div style="text-align: center; flex: 1; min-width: 80px;">
+						<div style="font-size: 1.5em; margin-bottom: 5px;">📚</div>
+						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Exposure</div>
+						<div id="expExposureDisplay" style="color: #b8860b; font-weight: bold;">0</div>
+					</div>
+					<div style="text-align: center; flex: 1; min-width: 80px;">
+						<div style="font-size: 1.5em; margin-bottom: 5px;">🗣️</div>
+						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Social</div>
+						<div id="expSocialDisplay" style="color: #b8860b; font-weight: bold;">0</div>
 					</div>
 				</div>
 				

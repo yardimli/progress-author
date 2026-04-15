@@ -499,9 +499,16 @@ function updateText() {
 	updateIfChanged("bookLengthDisplay", format(getBookLength(),0));
 	
 	updateIfChanged("writingSpeedDisplayTab", format(getWritingSpeed()));
-	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(1));
+	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(2));
 	
-	// MODIFIED: Display the quality multiplier if applicable
+	// NEW: Update Life Experiences UI
+	let lifeExp = getLifeExperiences();
+	updateIfChanged("expHardshipDisplay", format(lifeExp.hardship, 1));
+	updateIfChanged("expObservationDisplay", format(lifeExp.observation, 1));
+	updateIfChanged("expEscapismDisplay", format(lifeExp.escapism, 1));
+	updateIfChanged("expExposureDisplay", format(lifeExp.exposure, 1));
+	updateIfChanged("expSocialDisplay", format(lifeExp.social, 1));
+	
 	let qualityMultiplier = getQualityMultiplier();
 	let multiplierDisplay = document.getElementById("bookQualityMultiplierDisplay");
 	if (multiplierDisplay) {
@@ -513,7 +520,6 @@ function updateText() {
 		}
 	}
 	
-	// MODIFIED: Ensure slider text and value are in sync
 	updateIfChanged("workPercentage", 100 - gameData.workWritingBalance);
 	updateIfChanged("writingPercentage", gameData.workWritingBalance);
 	let slider = document.getElementById("workWritingSlider");
@@ -615,7 +621,23 @@ function showModal (imgElement) {
 	
 	modalImg.src = imgElement.src;
 	modalTitle.textContent = name;
-	modalDesc.textContent = tooltips[name] || "";
+	
+	// MODIFIED: Append the job's Life Experience yields to the description
+	let descriptionText = tooltips[name] || "";
+	if (type === 'job') {
+		let task = gameData.taskData[name];
+		if (task) {
+			descriptionText += `<br><br><b style="color:#888;">Writing Experience Bonuses</b><br>
+            <span style="font-size: 0.9em; color: #aaa;">
+            Hardship: +${task.hardship},
+            Observation: +${task.observation},
+            Escapism: +${task.escapism},
+            Exposure: +${task.exposure},
+            Social: +${task.social}
+            </span>`;
+		}
+	}
+	modalDesc.innerHTML = descriptionText;
 	
 	if ((type === 'job' || type === 'skill') && gameData.rebirthOneCount > 0) {
 		let task = gameData.taskData[name];
