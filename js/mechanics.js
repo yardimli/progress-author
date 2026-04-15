@@ -205,7 +205,7 @@ function rebirthReset() {
 	
 	for (let key in gameData.requirements) {
 		let requirement = gameData.requirements[key];
-		if (requirement.completed && permanentUnlocks.includes(key)) continue;
+		// MODIFIED: Removed permanentUnlocks check, all requirements just reset
 		requirement.completed = false;
 	}
 }

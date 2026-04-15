@@ -13,20 +13,6 @@
       }
     ]
   },
-  "Shop": {
-    "type": "coins",
-    "elements": [
-      {
-        "type": "id",
-        "value": "shopTabButton"
-      }
-    ],
-    "requirements": [
-      {
-        "requirement": 0
-      }
-    ]
-  },
   "Rebirth tab": {
     "type": "age",
     "elements": [
@@ -109,34 +95,6 @@
       {
         "task": "Senior Agent",
         "requirement": 10
-      }
-    ]
-  },
-  "Automation": {
-    "type": "age",
-    "elements": [
-      {
-        "type": "id",
-        "value": "automation"
-      }
-    ],
-    "requirements": [
-      {
-        "requirement": 20
-      }
-    ]
-  },
-  "Quick task display": {
-    "type": "age",
-    "elements": [
-      {
-        "type": "id",
-        "value": "quickTaskDisplay"
-      }
-    ],
-    "requirements": [
-      {
-        "requirement": 20
       }
     ]
   },

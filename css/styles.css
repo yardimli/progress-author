@@ -401,7 +401,7 @@ button:focus {
     align-items: center;
     gap: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    height: 200px;
+    height: 180px;
     box-sizing: border-box;
 }
 
@@ -460,15 +460,15 @@ button:focus {
     margin: 0 auto;
     padding: 0 15px;
     /* 200px (topPanel) + 16px (margin) + 44px (tabs) + 16px (margin) = 276px offset */
-    padding-top: 276px;
+    padding-top: 224px;
 }
 
 .scroll-container {
     /* Viewport height minus the 276px fixed header offset */
-    height: calc(100vh - 276px);
+    height: calc(100vh - 224px);
     overflow-y: overlay; /* Overlays scrollbar on content */
     scrollbar-width: thin; /* Firefox support */
-    padding-bottom: 20px; /* Breathing room at the bottom */
+    padding-bottom: 0px; /* Breathing room at the bottom */
 }
 
 /* WebKit (Chrome, Safari, Edge) Customization */

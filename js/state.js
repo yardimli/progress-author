@@ -43,8 +43,7 @@ var jobTabButton = document.getElementById("jobTabButton");
 // Constants
 const baseLifespan = 365 * 70;
 const baseGameSpeed = 4;
-// MODIFIED: Removed "Automation" from permanent unlocks
-const permanentUnlocks = ["Shop", "Quick task display"];
+// MODIFIED: Removed permanentUnlocks array entirely
 const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 
 // Variables for requestAnimationFrame loop

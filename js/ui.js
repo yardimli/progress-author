@@ -188,7 +188,7 @@ function updateRequiredRows(data, categoryType) {
 		if (categoryReqDiv) {
 			if (categoryReqText !== "") {
 				if (categoryReqDiv.style.display !== 'block') categoryReqDiv.style.display = 'block';
-				if (categoryReqDiv.innerHTML !== categoryReqText) categoryReqText;
+				if (categoryReqDiv.innerHTML !== categoryReqText) categoryReqDiv.innerHTML = categoryReqText;
 			} else {
 				if (categoryReqDiv.style.display !== 'none') categoryReqDiv.style.display = 'none';
 			}
