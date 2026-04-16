@@ -129,6 +129,7 @@ function getQualityMultiplier() {
 function startWritingBook() {
 	if (!gameData.selectedGenre) return;
 	pickNextBook(gameData.selectedGenre);
+	buildSceneButtons(); // Rebuild buttons to match the new book's genre
 	updateUI();
 	
 	// Reset manual writing state
@@ -281,8 +282,10 @@ function getCompositionMultiplier() {
 	if (totalWords === 0) return 0.1;
 	
 	let distance = 0;
-	// Check all scene types
-	for (let sceneType in sceneTypesBaseData) {
+	// Check all scene types present in either the composition or the ideals
+	let allSceneTypes = new Set([...Object.keys(gameData.currentBookComposition), ...Object.keys(ideals)]);
+	
+	for (let sceneType of allSceneTypes) {
 		let actualPct = (gameData.currentBookComposition[sceneType] || 0) / totalWords;
 		let idealPct = ideals[sceneType] || 0;
 		distance += Math.abs(actualPct - idealPct);

@@ -182,6 +182,8 @@
 					<img id="currentBookImage" src="" alt="Book Cover" class="row-image book-cover-image" onclick="showBookModal(gameData.currentBook)">
 					<div class="row-info">
 						<div class="row-title book-title-large" id="currentBookTitle">Book Title</div>
+						<!-- Added Book Genre Display -->
+						<div id="currentBookGenre" style="font-size: 0.9em; color: #888; margin-bottom: 5px; font-weight: bold;">Genre</div>
 						<div class="book-stats-container">
 							<div><b>Progress:</b> <span id="writingProgressDisplay">0.0%</span></div>
 							<div class="progress-bar writing-progress-bar-container">
@@ -193,10 +195,12 @@
 					</div>
 				</div>
 				
-				<!-- Life Experiences Section (Dynamically populated) -->
-				<div class="category-header">Life Experiences (Quality Multipliers)</div>
-				<div id="lifeExperiencesContainer" class="ui-row life-experiences-container">
-					<!-- Dynamically populated by initLifeExperiencesUI() -->
+				<!-- Wrapped Life Experiences Section so it can be toggled -->
+				<div id="lifeExperiencesSection">
+					<div class="category-header">Life Experiences (Quality Multipliers)</div>
+					<div id="lifeExperiencesContainer" class="ui-row life-experiences-container">
+						<!-- Dynamically populated by initLifeExperiencesUI() -->
+					</div>
 				</div>
 				
 				<div class="category-header">Published Books</div>

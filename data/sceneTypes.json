@@ -1,122 +1,446 @@
 {
-  "Romance Scene": [
-    "Their eyes met across the crowded room.",
-    "A gentle touch sent shivers down her spine.",
-    "He leaned in, the distance between them vanishing.",
-    "She couldn't deny the fluttering in her chest anymore.",
-    "The rain poured, but wrapped in his arms, she felt only warmth.",
-    "A stolen glance was all it took to unravel her resolve.",
-    "He whispered her name like it was a sacred prayer.",
-    "Their fingers brushed, igniting a spark neither could ignore.",
-    "She realized, in that quiet moment, that she loved him.",
-    "The kiss was desperate, a collision of years of unspoken longing."
-  ],
-  "Action": [
-    "The explosion shattered the glass into a million pieces.",
-    "He dodged the incoming blade just in the nick of time.",
-    "Gunfire echoed through the narrow, smoke-filled alleyway.",
-    "She vaulted over the barricade without breaking stride.",
-    "The impact threw him backwards into the concrete wall.",
-    "Adrenaline surged as the countdown reached its final seconds.",
-    "Swords clashed, ringing out a deadly metallic symphony.",
-    "He slammed the accelerator, tires screeching against the asphalt.",
-    "The beast lunged, its jaws snapping inches from her face.",
-    "She pulled the pin and hurled the grenade into the trench."
-  ],
-  "Mystery": [
-    "The bloody footprint was the only clue left behind.",
-    "She knew he was lying, but couldn't prove it yet.",
-    "The safe was empty, save for a single black rose.",
-    "He stared at the encrypted file, searching for a pattern.",
-    "The victim's watch had stopped exactly at midnight.",
-    "A shadow moved in the corner of the grainy security footage.",
-    "The anonymous letter contained a secret only they knew.",
-    "She found the hidden compartment beneath the floorboards.",
-    "The detective's eyes narrowed at the glaring inconsistency.",
-    "Someone had wiped the fingerprints clean off the weapon."
-  ],
-  "Worldbuilding": [
-    "The twin suns set over the jagged, crimson mountains.",
-    "Neon signs flickered in the smog-choked, towering metropolis.",
-    "Floating islands drifted lazily through the violet sky.",
-    "The ancient citadel was carved entirely from a single glacier.",
-    "Steam hissed from the brass pipes lining the cobblestone streets.",
-    "The forest canopy was so thick that noon looked like midnight.",
-    "Hover-cars zipped along the magnetic rails above the city.",
-    "The desert sands glowed with a faint, eerie luminescence.",
-    "Grand statues of forgotten kings flanked the valley entrance.",
-    "The marketplace was a chaotic blend of a hundred alien species."
-  ],
-  "Dialogue": [
-    "\"I can't believe you did that,\" she whispered, voice trembling.",
-    "\"Tell me the truth,\" he demanded, slamming his fist on the table.",
-    "\"It was never about the money,\" the stranger replied coolly.",
-    "\"We have to leave, now!\" she screamed over the sirens.",
-    "\"You're exactly like your father,\" the old man muttered.",
-    "\"I thought I could trust you,\" he said, turning away.",
-    "\"Don't make a sound,\" she hissed, covering his mouth.",
-    "\"Are you sure this is going to work?\" he asked nervously.",
-    "\"I've been waiting a long time for this,\" the villain sneered.",
-    "\"Let's go home,\" she said softly, taking his hand."
-  ],
-  "Internal Monologue": [
-    "Why do I always mess things up, he thought bitterly.",
-    "She wondered if anyone would ever truly understand her.",
-    "Fear gripped his heart, but he forced himself to breathe.",
-    "I can't keep running forever, she realized with a heavy sigh.",
-    "He questioned every decision that had led him to this moment.",
-    "A sense of profound emptiness washed over her.",
-    "I have to be strong, for their sake, he reminded himself.",
-    "She couldn't shake the feeling that she was being watched.",
-    "Doubt gnawed at the edges of his fragile confidence.",
-    "This is my only chance, she thought, steeling her nerves."
-  ],
-  "Comedy": [
-    "He slipped on the polished floor with a cartoonish thud.",
-    "The parrot repeated the secret password to the bewildered guards.",
-    "She tried to look intimidating, but sneezed violently instead.",
-    "The overly dramatic cape got caught in the revolving door.",
-    "He confidently pushed the door that clearly said 'Pull'.",
-    "The disguise consisted entirely of a fake mustache and sunglasses.",
-    "She dropped the priceless artifact, catching it with her foot.",
-    "The menacing warlord had a surprisingly high-pitched voice.",
-    "He spent ten minutes arguing with a highly advanced toaster.",
-    "The escape plan was ruined by a flock of angry geese."
-  ],
-  "Drama": [
-    "Tears streamed down her face as she read the final letter.",
-    "The betrayal stung worse than any physical wound ever could.",
-    "He stood at the grave, the weight of his regrets crushing him.",
-    "She packed her bags in silence, the argument still echoing.",
-    "The family dinner descended into a bitter shouting match.",
-    "He watched the train pull away, taking his heart with it.",
-    "The diagnosis hung in the air, changing everything instantly.",
-    "She realized that some bridges were burned beyond repair.",
-    "He confessed his sins, hoping for a forgiveness that never came.",
-    "The silence between them was louder than any scream."
-  ],
-  "Horror": [
-    "A cold, unnatural breath grazed the back of his neck.",
-    "The shadows in the corner seemed to twist and reach for her.",
-    "The scratching sound came from inside the locked closet.",
-    "He saw his own reflection blink, a second after he did.",
-    "The doll's glass eyes seemed to follow her across the room.",
-    "A bloodcurdling scream shattered the dead silence of the woods.",
-    "The walls pulsed slightly, as if the house itself was breathing.",
-    "She found a photograph of herself sleeping, taken last night.",
-    "The radio turned on by itself, playing a distorted lullaby.",
-    "Something wet and heavy dropped onto his shoulder from above."
-  ],
-  "Exposition": [
-    "The war had ravaged the continent for three bloody decades.",
-    "Magic was strictly outlawed after the great cataclysm of the First Era.",
-    "The corporation controlled everything from the water supply to the media.",
-    "He was born into a caste that forbade him from ever holding a sword.",
-    "The treaty was a fragile agreement, held together by mutual fear.",
-    "The virus wiped out half the population in a matter of months.",
-    "The ancient prophecy spoke of a child born under a blood moon.",
-    "The city was divided into distinct sectors, each ruled by a different gang.",
-    "The technology relied on a rare crystal found only on the outer rim.",
-    "The monarchy had stood unchallenged for over a thousand years."
-  ]
+  "Romance": {
+    "Romance Scene": [
+      "Their eyes met across the crowded, dimly lit room, and in that fleeting moment, the rest of the world simply melted away into nothingness.",
+      "A gentle, hesitant touch upon her shoulder sent a cascade of unexpected shivers racing down her spine, awakening feelings she thought were long buried.",
+      "He leaned in closer, the agonizing distance between them vanishing as their shared breaths mingled in the cool evening air.",
+      "She realized, in that profound and quiet moment of vulnerability, that she had loved him since the very first day they met.",
+      "The rain poured relentlessly outside, but wrapped securely in his warm embrace, she felt entirely safe from the storm.",
+      "A stolen, lingering glance across the dinner table was all it took to completely unravel her carefully constructed resolve."
+    ],
+    "Dialogue": [
+      "\"I simply cannot believe you would do something so incredibly reckless,\" she whispered, her voice trembling slightly with suppressed emotion.",
+      "\"Tell me the absolute truth right now,\" he demanded fiercely, slamming his heavy fist onto the sturdy wooden table.",
+      "\"I thought I could finally trust you with my heart,\" he said softly, turning away to hide the tears welling in his eyes.",
+      "\"Let us just go home and forget this ever happened,\" she said gently, reaching out to take his trembling hand in hers.",
+      "\"Are you entirely sure this is going to work out for us?\" he asked nervously, pacing back and forth across the room.",
+      "\"I have been waiting a very long time to finally tell you this,\" he confessed, his gaze locked intensely on hers."
+    ],
+    "Drama": [
+      "Tears streamed uncontrollably down her face as she read the final, heartbreaking letter he had left behind on the desk.",
+      "The bitter betrayal by her closest confidant stung far worse than any physical wound she had ever endured in her life.",
+      "She packed her bags in complete silence, the echoes of their devastating argument still ringing loudly in her ears.",
+      "The tense family dinner rapidly descended into a bitter, unforgiving shouting match that ruined the entire holiday evening.",
+      "He watched the midnight train pull away from the station, taking his only true love and his fragile heart with it.",
+      "The heavy silence that lingered between them was infinitely louder and more painful than any scream could ever be."
+    ],
+    "Internal Monologue": [
+      "Why do I always manage to completely sabotage the best things in my life, he thought bitterly to himself as he walked away.",
+      "She wondered, in the quiet solitude of her room, if anyone would ever truly understand her deepest, most guarded fears.",
+      "I simply cannot keep running away from my problems forever, she realized with a heavy, exhausted sigh that shook her shoulders.",
+      "He questioned every single minor decision that had ultimately led him to this disastrous and heartbreaking moment in time.",
+      "A profound, overwhelming sense of emptiness washed over her as she stared blankly at the completely empty apartment.",
+      "Doubt gnawed relentlessly at the fragile edges of his newfound confidence, threatening to tear down everything he had built."
+    ],
+    "Comedy": [
+      "He confidently pushed the heavy glass door that clearly said 'Pull', embarrassing himself thoroughly in front of the entire cafe.",
+      "She tried her absolute best to look intimidating and fierce, but ended up sneezing violently and ruining the dramatic moment.",
+      "His elaborate, supposedly foolproof disguise consisted entirely of a fake, oversized mustache and a pair of cheap plastic sunglasses.",
+      "The overly dramatic, flowing cape got hopelessly caught in the revolving door, trapping the would-be hero for ten awkward minutes.",
+      "She dropped the priceless, antique artifact, miraculously catching it with her foot just inches before it hit the hard tile floor.",
+      "The grand, romantic escape plan was completely derailed by a surprisingly aggressive flock of angry, honking geese."
+    ],
+    "Mystery": [
+      "She found a strange, unlabeled brass key hidden deep within his coat pocket, sparking a flurry of unanswered questions.",
+      "The anonymous love letter arrived without a return address, leaving her desperately wondering who her secret admirer could be.",
+      "He stared at the cryptic text message on her phone, a cold knot of suspicion slowly forming in the pit of his stomach.",
+      "The old, dusty diary she uncovered in the attic contained secrets about his past that he had sworn to keep hidden forever.",
+      "A shadowy figure lingered outside her apartment building every night, watching her window with an unsettling intensity.",
+      "She couldn't shake the creeping feeling that their supposedly chance encounter at the coffee shop was actually carefully orchestrated."
+    ],
+    "Action": [
+      "He grabbed her hand tightly and they sprinted desperately through the pouring rain to catch the departing midnight train.",
+      "She swerved the car violently to avoid the sudden obstacle, her heart pounding as she raced to stop his wedding.",
+      "The glass shattered as he broke through the locked door, determined to rescue her from the burning building before it collapsed.",
+      "Adrenaline surged through her veins as she sprinted across the crowded airport terminal to confess her love before his flight.",
+      "He tackled the mugger to the hard pavement, fiercely protecting the antique engagement ring he had just purchased for her.",
+      "They leaped off the sinking boat into the freezing water, clinging to each other tightly as the violent waves crashed around them."
+    ],
+    "Exposition": [
+      "The small, picturesque coastal town was famous for its annual summer festival and generations of successful, lifelong matchmaking.",
+      "Their families had been locked in a bitter, unforgiving feud for over a century, making any relationship between them strictly forbidden.",
+      "She worked tirelessly at the struggling independent bookstore, surrounded by classic romance novels but entirely devoid of her own.",
+      "The grand, opulent estate had been in his wealthy family for generations, a sprawling monument to their immense power and influence.",
+      "In a world where soulmates were identified by matching birthmarks, she had spent her entire life hiding hers under long sleeves.",
+      "The prestigious, highly competitive culinary academy demanded absolute perfection, leaving the students with zero time for personal relationships."
+    ],
+    "Worldbuilding": [
+      "Cobblestone streets wound lazily around the historic district, lined with blooming cherry blossoms and quaint, warmly lit cafes.",
+      "The grand ballroom was a breathtaking sea of swirling silk gowns, sparkling crystal chandeliers, and the intoxicating scent of expensive perfume.",
+      "Snow fell softly over the quiet mountain cabin, blanketing the surrounding pine forest in a pristine, undisturbed layer of shimmering white.",
+      "The bustling, vibrant farmer's market was a chaotic blend of colorful fresh produce, street musicians, and the smell of roasted coffee.",
+      "Fairy lights twinkled magically in the branches of the ancient oak tree, illuminating the secluded garden where they first met.",
+      "The sun dipped below the ocean horizon, painting the evening sky in brilliant, sweeping strokes of vibrant pink and deep purple."
+    ]
+  },
+  "Mystery/Thriller": {
+    "Mystery": [
+      "The bloody, smeared footprint near the shattered window was the only tangible clue left behind by the elusive, phantom-like killer.",
+      "She knew deep down that he was lying through his teeth, but she simply couldn't prove it without the missing documents.",
+      "The heavy steel safe was completely empty, save for a single, perfectly preserved black rose resting on the velvet bottom.",
+      "He stared intently at the highly encrypted data file, desperately searching for a hidden pattern in the chaotic strings of code.",
+      "The unfortunate victim's expensive gold watch had stopped ticking at exactly midnight, freezing the time of the gruesome murder.",
+      "A dark, indistinct shadow moved swiftly in the upper corner of the grainy, black-and-white security camera footage."
+    ],
+    "Action": [
+      "The deafening explosion shattered the glass into a million jagged pieces, sending everyone in the lobby diving for immediate cover.",
+      "He dodged the incoming, razor-sharp blade just in the nick of time, feeling the cold steel slice through the air near his throat.",
+      "Rapid gunfire echoed terrifyingly through the narrow, smoke-filled alleyway as they scrambled desperately toward the waiting getaway car.",
+      "She vaulted gracefully over the concrete barricade without breaking her stride, her heart pounding furiously against her ribs.",
+      "The brutal impact threw him violently backwards, slamming his aching body into the unforgiving, solid brick wall.",
+      "Adrenaline surged powerfully through her veins as the digital countdown timer reached its final, agonizing three seconds."
+    ],
+    "Dialogue": [
+      "\"I simply cannot believe you would do something so incredibly reckless,\" she whispered, her voice trembling slightly with suppressed emotion.",
+      "\"Tell me the absolute truth right now,\" he demanded fiercely, slamming his heavy fist onto the sturdy wooden table.",
+      "\"It was never really about the money or the power,\" the mysterious stranger replied coolly from the dark corner of the room.",
+      "\"We have to evacuate the building immediately!\" she screamed frantically over the blaring, red emergency sirens.",
+      "\"I thought I could finally trust you with this secret,\" he said softly, turning away to hide his profound disappointment.",
+      "\"Don't make a single sound or we are both dead,\" she hissed urgently, clamping her hand tightly over his mouth."
+    ],
+    "Internal Monologue": [
+      "Fear gripped his racing heart, but he forced himself to take a deep breath and analyze the dangerous situation calmly.",
+      "She couldn't shake the terrifying, creeping feeling that she was being closely watched from the shadows across the street.",
+      "I simply cannot keep running away from these relentless pursuers forever, she realized with a heavy, exhausted sigh.",
+      "He questioned every single minor decision that had ultimately led him to this disastrous and life-threatening moment in time.",
+      "This is my one and only chance to uncover the truth, she thought to herself, steeling her nerves for the confrontation.",
+      "Doubt gnawed relentlessly at the fragile edges of his confidence, threatening to paralyze him when he needed to act most."
+    ],
+    "Exposition": [
+      "The sprawling, corrupt corporation controlled absolutely everything in the city, from the fresh water supply to the mainstream media.",
+      "The fragile peace treaty was a desperate agreement, held together entirely by mutual fear and the threat of total annihilation.",
+      "The deadly, airborne virus had wiped out nearly half of the global population in a matter of just a few terrifying months.",
+      "The sprawling, neon-lit city was strictly divided into distinct, heavily guarded sectors, each ruled by a different ruthless gang.",
+      "The advanced, experimental technology relied entirely on a rare, volatile crystal found only deep within the Earth's crust.",
+      "The secretive, underground organization had operated in the shadows completely unchallenged for over a hundred years."
+    ],
+    "Romance Scene": [
+      "Despite the looming, ever-present danger, they shared a brief, desperate kiss in the dark shadows of the abandoned safehouse.",
+      "He gently bandaged her wounded arm, his touch surprisingly tender for a man who had spent his entire life surrounded by violence.",
+      "She realized, as they hid together in the cramped closet, that the frantic beating of her heart wasn't just from the fear.",
+      "A stolen, lingering glance across the chaotic crime scene was all it took to completely unravel his carefully constructed professional resolve.",
+      "He whispered her name softly, treating it like a sacred prayer as the sound of approaching sirens echoed in the distance.",
+      "Their fingers brushed accidentally while examining the evidence, igniting a sudden spark that neither of them could safely ignore."
+    ],
+    "Drama": [
+      "The devastating, unexpected betrayal by her own trusted partner left her completely isolated and questioning everything she knew.",
+      "Tears streamed uncontrollably down his face as he stared at the lifeless body of the only witness who could have cleared his name.",
+      "She packed her bags in complete silence, the echoes of their devastating argument about the dangerous case still ringing loudly.",
+      "The tense interrogation rapidly descended into a bitter, unforgiving shouting match that threatened to ruin the entire investigation.",
+      "He stood silently at the fresh, unmarked grave, the immense weight of his past mistakes slowly crushing his weary spirit.",
+      "The heavy, oppressive silence that lingered in the precinct after the chief's resignation was infinitely louder than any gunshot."
+    ],
+    "Comedy": [
+      "The hardened, cynical detective attempted to smoothly vault the chain-link fence, only to get his trench coat embarrassingly snagged.",
+      "She tried her absolute best to look intimidating during the interrogation, but ended up sneezing violently and ruining the dramatic moment.",
+      "His elaborate, supposedly foolproof undercover disguise consisted entirely of a fake, oversized mustache and a pair of cheap sunglasses.",
+      "The overly dramatic, menacing suspect confidently pushed the heavy glass door that clearly said 'Pull', embarrassing himself thoroughly.",
+      "He spent ten frustrating minutes arguing with a highly advanced, voice-activated security system before realizing it was unplugged.",
+      "The grand, stealthy infiltration plan was completely derailed by a surprisingly aggressive flock of angry, honking geese in the courtyard."
+    ],
+    "Worldbuilding": [
+      "The sprawling, rain-slicked metropolis was a labyrinth of neon-lit alleys, towering, oppressive skyscrapers, and perpetual, suffocating smog.",
+      "The ancient, crumbling gothic asylum loomed menacingly on the edge of town, its shattered windows staring blindly into the dense fog.",
+      "Thick steam hissed loudly from the rusted grates lining the narrow, uneven cobblestone streets of the city's forgotten, decaying industrial sector.",
+      "The opulent, high-security penthouse offered a breathtaking, panoramic view of the glittering city, completely isolated from the grime below.",
+      "The bustling, chaotic underground black market was a colorful blend of a hundred different criminals trading illegal, untraceable weapons.",
+      "Massive, imposing concrete walls surrounded the entire maximum-security facility, offering a terrifying sense of absolute, inescapable isolation."
+    ]
+  },
+  "Fantasy": {
+    "Worldbuilding": [
+      "The twin, radiant suns slowly set over the jagged, crimson mountains, casting long, eerie shadows across the peaceful valley.",
+      "Massive, floating islands drifted lazily through the vibrant violet sky, tethered to the ground by ancient, glowing magical chains.",
+      "The ancient, imposing citadel was carved entirely from a single, massive glacier that never melted, even in the heat of summer.",
+      "The dense forest canopy was so incredibly thick that the middle of the day looked exactly like the dead of night.",
+      "Grand, weathered statues of long-forgotten kings flanked the narrow entrance to the hidden, sacred valley of the elves.",
+      "The bustling, chaotic marketplace was a colorful blend of a hundred different magical species trading exotic, enchanted goods."
+    ],
+    "Action": [
+      "Swords clashed violently in the courtyard, ringing out a deadly, metallic symphony that echoed through the ancient castle walls.",
+      "The massive, scaly beast lunged forward with terrifying speed, its razor-sharp jaws snapping mere inches from her face.",
+      "He dodged the incoming, glowing magical projectile just in the nick of time, feeling the intense heat singe his cloak.",
+      "She vaulted gracefully over the crumbling stone barricade without breaking her stride, her heart pounding furiously against her ribs.",
+      "The brutal impact of the warhammer threw him violently backwards, slamming his armored body into the unforgiving brick wall.",
+      "Adrenaline surged powerfully through her veins as she drew her enchanted blade and charged headlong into the goblin horde."
+    ],
+    "Exposition": [
+      "Ancient, powerful magic was strictly outlawed across the entire realm after the devastating cataclysm of the forgotten First Era.",
+      "He was unfortunately born into a lowly, oppressed caste that strictly forbade him from ever holding a sword or learning to read.",
+      "The ancient, cryptic prophecy spoke of a chosen child born under a blood moon who would finally restore balance to the world.",
+      "The grand, opulent monarchy had stood completely unchallenged and absolute for well over a thousand prosperous years.",
+      "The brutal, unforgiving war between the elves and the dwarves had completely ravaged the continent for three bloody decades.",
+      "The fragile peace treaty was a desperate agreement, held together entirely by mutual fear of the awakening dragon."
+    ],
+    "Dialogue": [
+      "\"Are you entirely sure this dangerous spell is actually going to work?\" he asked nervously, clutching his wooden staff.",
+      "\"Tell me the absolute truth right now,\" the elven king demanded fiercely, slamming his heavy fist onto the stone table.",
+      "\"I thought I could finally trust you with this sacred relic,\" he said softly, turning away to hide his profound disappointment.",
+      "\"We have to evacuate the village immediately!\" she screamed frantically over the blaring, warning horns of the approaching army.",
+      "\"You are acting exactly like your stubborn, foolish father,\" the old wizard muttered bitterly, turning his gaze to the fire.",
+      "\"I have been waiting a very long time to finally exact my revenge,\" the dark sorcerer sneered from his elevated throne."
+    ],
+    "Drama": [
+      "The bitter betrayal by his closest, most trusted ally stung far worse than any physical wound he had ever endured in battle.",
+      "Tears streamed uncontrollably down her face as she read the final, heartbreaking message delivered by the exhausted raven.",
+      "He stood silently at the fresh, unmarked grave, the immense weight of his past regrets slowly crushing his warrior's spirit.",
+      "The tense council meeting rapidly descended into a bitter, unforgiving shouting match that threatened to tear the alliance apart.",
+      "She packed her meager belongings in complete silence, the echoes of their devastating argument still ringing loudly in her ears.",
+      "The heavy, oppressive silence that lingered between the two estranged brothers was infinitely louder than any battle cry."
+    ],
+    "Romance Scene": [
+      "Under the ethereal light of the twin moons, the elven prince gently took her calloused, battle-scarred hand in his.",
+      "Despite the looming threat of the dark lord, they shared a brief, desperate kiss in the quiet shadows of the ancient sanctuary.",
+      "He gently brushed a stray lock of hair from her face, his touch surprisingly tender for a warrior forged in endless, brutal combat.",
+      "She realized, as they rode together on the back of the majestic gryphon, that she trusted him with far more than just her life.",
+      "A stolen, lingering glance across the grand banquet hall was all it took to completely unravel her carefully constructed royal composure.",
+      "He whispered her name softly, treating it like a sacred, powerful incantation as the magical barrier slowly collapsed around them."
+    ],
+    "Internal Monologue": [
+      "I simply cannot let the creeping darkness consume my soul, the young mage thought, desperately clinging to his fading, fragile hope.",
+      "Why do I always manage to completely sabotage my own magical training just when I am finally starting to master the difficult spells?",
+      "She wondered, in the quiet solitude of the ancient library, if anyone would ever truly understand the heavy burden of her prophecy.",
+      "I cannot keep running away from my royal destiny forever, she realized with a heavy, exhausted sigh that shook her armored shoulders.",
+      "He questioned every single minor decision that had ultimately led him to this disastrous and life-threatening confrontation with the dragon.",
+      "Doubt gnawed relentlessly at the fragile edges of his newfound courage, threatening to paralyze him when the kingdom needed him most."
+    ],
+    "Comedy": [
+      "The clumsy, heavily armored dwarf accidentally dropped his massive warhammer directly onto the sleeping dragon's highly sensitive tail.",
+      "She tried her absolute best to look intimidating and fierce, but ended up accidentally turning the threatening goblin into a harmless toad.",
+      "His elaborate, supposedly foolproof magical disguise consisted entirely of a fake, oversized beard and a pair of cheap, glowing spectacles.",
+      "The overly dramatic, flowing wizard's cape got hopelessly caught in the heavy tavern door, trapping the would-be hero for ten awkward minutes.",
+      "He confidently pushed the massive, enchanted stone gate that clearly said 'Pull' in ancient runes, embarrassing himself before the entire guild.",
+      "The grand, heroic quest was completely derailed for three days by a surprisingly aggressive flock of magically enhanced, angry geese."
+    ],
+    "Mystery": [
+      "The ancient, heavily guarded magical vault was completely empty, save for a single, cryptic rune etched deeply into the stone floor.",
+      "The bloody, smeared footprint near the shattered stained-glass window was the only tangible clue left behind by the elusive assassin.",
+      "She knew deep down that the high priest was lying through his teeth, but she simply couldn't prove it without the missing sacred text.",
+      "He stared intently at the highly encrypted magical scroll, desperately searching for a hidden pattern in the chaotic, glowing symbols.",
+      "The unfortunate king's enchanted pocket watch had stopped ticking at exactly midnight, freezing the time of the gruesome, unnatural murder.",
+      "A dark, indistinct shadow moved swiftly in the upper corner of the grainy, magical scrying orb's terrifyingly clear vision."
+    ]
+  },
+  "Sci-Fi": {
+    "Worldbuilding": [
+      "Vibrant neon signs flickered relentlessly in the smog-choked, towering metropolis, illuminating the damp, crowded streets below.",
+      "Sleek hover-cars zipped effortlessly along the invisible magnetic rails suspended high above the sprawling, futuristic city.",
+      "The barren, desert sands of the alien planet glowed with a faint, eerie blue luminescence under the light of three moons.",
+      "Thick steam hissed loudly from the polished brass pipes lining the narrow, uneven metallic walkways of the lower sectors.",
+      "The massive, orbital space station slowly rotated against the breathtaking backdrop of a swirling, colorful distant nebula.",
+      "The bustling, chaotic spaceport was a colorful blend of a hundred different alien species trading exotic, smuggled goods."
+    ],
+    "Mystery": [
+      "He stared intently at the highly encrypted data file, desperately searching for a hidden pattern in the chaotic strings of code.",
+      "The bloody, smeared footprint near the shattered airlock was the only tangible clue left behind by the elusive saboteur.",
+      "She knew deep down that the android was lying through its teeth, but she simply couldn't prove it without its memory core.",
+      "The heavy steel containment unit was completely empty, save for a single, perfectly preserved black rose resting inside.",
+      "The unfortunate crew member's vital monitor had flatlined at exactly midnight, freezing the time of the gruesome murder.",
+      "A dark, indistinct shadow moved swiftly in the upper corner of the grainy, black-and-white security camera footage."
+    ],
+    "Action": [
+      "He slammed the accelerator hard, tires screeching violently against the asphalt as the hover-car shot forward into the night.",
+      "The deafening explosion shattered the reinforced glass into a million jagged pieces, sending everyone diving for immediate cover.",
+      "Rapid laser fire echoed terrifyingly through the narrow, smoke-filled corridor as they scrambled desperately toward the escape pods.",
+      "She vaulted gracefully over the metallic barricade without breaking her stride, her heart pounding furiously against her ribs.",
+      "The brutal impact of the kinetic blast threw him violently backwards, slamming his armored body into the unforgiving bulkhead.",
+      "Adrenaline surged powerfully through her veins as the digital countdown timer for the reactor meltdown reached three seconds."
+    ],
+    "Exposition": [
+      "The advanced, experimental technology relied entirely on a rare, volatile crystal found only deep within the dangerous outer rim.",
+      "The sprawling, corrupt mega-corporation controlled absolutely everything in the colony, from the oxygen supply to the media.",
+      "The deadly, engineered virus had wiped out nearly half of the planetary population in a matter of just a few terrifying months.",
+      "The sprawling, neon-lit city was strictly divided into distinct, heavily guarded sectors, each ruled by a different ruthless syndicate.",
+      "The fragile peace treaty between the two warring star systems was held together entirely by the threat of total annihilation.",
+      "The secretive, underground resistance had operated in the shadows completely unchallenged for over a hundred solar cycles."
+    ],
+    "Dialogue": [
+      "\"We have to evacuate the space station immediately!\" she screamed frantically over the blaring, red emergency sirens.",
+      "\"Are you entirely sure this dangerous hyper-jump is actually going to work?\" he asked nervously, clutching his harness.",
+      "\"Tell me the absolute truth right now,\" the captain demanded fiercely, slamming his heavy fist onto the navigation console.",
+      "\"It was never really about the credits or the power,\" the rogue smuggler replied coolly from the dark corner of the bridge.",
+      "\"I thought I could finally trust you with the launch codes,\" he said softly, turning away to hide his profound disappointment.",
+      "\"Don't make a single sound or the security drones will find us,\" she hissed urgently, clamping her hand over his mouth."
+    ],
+    "Romance Scene": [
+      "In the quiet, soothing hum of the observation deck, their fingers brushed accidentally against the breathtaking backdrop of a billion stars.",
+      "Despite the looming threat of the alien invasion, they shared a brief, desperate kiss in the dark shadows of the cramped escape pod.",
+      "He gently bandaged her wounded arm, his touch surprisingly tender for a cyborg who had spent his entire life suppressing his human emotions.",
+      "She realized, as they floated together in the zero-gravity chamber, that the frantic beating of her heart wasn't just from the lack of oxygen.",
+      "A stolen, lingering glance across the chaotic bridge was all it took to completely unravel his carefully constructed, logical command protocols.",
+      "He whispered her name softly over the private comms channel, treating it like a sacred prayer as the enemy fleet slowly surrounded them."
+    ],
+    "Drama": [
+      "Watching the final escape pod launch into the void without him, she collapsed to the cold metal deck in a fit of uncontrollable sobbing.",
+      "The devastating, unexpected betrayal by her own android companion left her completely isolated and questioning the nature of consciousness.",
+      "Tears streamed uncontrollably down his face as he stared at the lifeless body of the only scientist who could have cured the alien plague.",
+      "The tense council meeting rapidly descended into a bitter, unforgiving shouting match that threatened to tear the fragile galactic alliance apart.",
+      "He stood silently at the airlock, the immense weight of his past command decisions slowly crushing his weary, battle-hardened spirit.",
+      "The heavy, oppressive silence that lingered on the ship after the captain's sacrifice was infinitely louder than any exploding supernova."
+    ],
+    "Internal Monologue": [
+      "If this experimental hyper-drive fails, we are all completely dead, the captain realized with a cold, sinking feeling in his gut.",
+      "I simply cannot let the rogue AI consume my mind, the hacker thought, desperately clinging to her fading, fragile sense of humanity.",
+      "She wondered, in the quiet solitude of her cryo-chamber, if anyone back on Earth would ever truly understand the sacrifices she had made.",
+      "I cannot keep running away from the galactic federation forever, she realized with a heavy, exhausted sigh that fogged her helmet visor.",
+      "He questioned every single minor calculation that had ultimately led him to this disastrous and life-threatening navigation error.",
+      "Doubt gnawed relentlessly at the fragile edges of his logical programming, threatening to paralyze him when the crew needed him most."
+    ],
+    "Comedy": [
+      "The highly advanced, sentient maintenance robot spent ten frustrating minutes stubbornly arguing with a completely malfunctioning vending machine.",
+      "She tried her absolute best to look intimidating to the alien warlord, but ended up sneezing violently inside her sealed space suit.",
+      "His elaborate, supposedly foolproof holographic disguise flickered wildly, revealing his true identity to the entire bewildered cantina.",
+      "The overly dramatic, flowing ceremonial cape got hopelessly caught in the automatic sliding doors, trapping the ambassador for ten awkward minutes.",
+      "He confidently pushed the heavy airlock door that clearly displayed the alien symbol for 'Pull', embarrassing himself in front of the crew.",
+      "The grand, stealthy infiltration of the enemy mothership was completely derailed by a surprisingly aggressive flock of space-faring, angry geese."
+    ]
+  },
+  "Historical Fiction": {
+    "Exposition": [
+      "The brutal, unforgiving war had completely ravaged the entire continent for three long, bloody, and exhausting decades.",
+      "The grand, opulent monarchy had stood completely unchallenged and absolute for well over a thousand prosperous years.",
+      "He was unfortunately born into a lowly, oppressed social class that strictly forbade him from ever owning property or voting.",
+      "The fragile peace treaty was a desperate, last-minute agreement, held together entirely by mutual fear and political marriages.",
+      "The deadly, sweeping plague had wiped out nearly half of the city's population in a matter of just a few terrifying months.",
+      "The secretive, underground rebellion had operated in the shadows completely unchallenged since the turn of the century."
+    ],
+    "Drama": [
+      "He stood silently at the fresh, unmarked grave, the immense weight of his past regrets slowly crushing his weary spirit.",
+      "The bitter betrayal by his closest, most trusted confidant stung far worse than any physical wound he had ever endured.",
+      "Tears streamed uncontrollably down her face as she read the final, heartbreaking letter delivered by the exhausted messenger.",
+      "The tense family dinner rapidly descended into a bitter, unforgiving shouting match that threatened to tear their legacy apart.",
+      "She packed her meager belongings in complete silence, the echoes of their devastating argument still ringing loudly in her ears.",
+      "The heavy, oppressive silence that lingered between the two estranged brothers was infinitely louder than any battlefield cannon."
+    ],
+    "Dialogue": [
+      "\"You are acting exactly like your stubborn, foolish father,\" the old man muttered bitterly, turning his gaze to the hearth.",
+      "\"I simply cannot believe you would do something so incredibly scandalous,\" she whispered, her voice trembling slightly.",
+      "\"Tell me the absolute truth right now,\" the general demanded fiercely, slamming his heavy fist onto the wooden map table.",
+      "\"I thought I could finally trust you with our family's honor,\" he said softly, turning away to hide his profound disappointment.",
+      "\"We have to flee the city immediately before the army arrives!\" she screamed frantically over the ringing church bells.",
+      "\"I have been waiting a very long time to finally exact my revenge on your house,\" the disgraced nobleman sneered."
+    ],
+    "Worldbuilding": [
+      "Thick steam hissed loudly from the polished brass pipes lining the narrow, uneven cobblestone streets of the industrial district.",
+      "The bustling, chaotic marketplace was a colorful blend of a hundred different merchants trading exotic spices and fine silks.",
+      "Grand, weathered statues of long-forgotten emperors flanked the narrow entrance to the ancient, sprawling capital city.",
+      "The dense, untamed forest canopy was so incredibly thick that the middle of the day looked exactly like the dead of night.",
+      "The twin, radiant suns slowly set over the jagged, crimson mountains, casting long, eerie shadows across the peaceful valley.",
+      "Massive, imposing stone walls surrounded the entire settlement, offering a fragile sense of security against the looming threat."
+    ],
+    "Romance Scene": [
+      "He whispered her name softly, treating it like a sacred prayer in the quiet, intimate darkness of the horse-drawn carriage.",
+      "Their eyes met across the crowded, opulent ballroom, and in that fleeting moment, the rest of the world simply melted away.",
+      "A gentle, hesitant touch upon her gloved hand sent a cascade of unexpected shivers racing down her spine.",
+      "He leaned in closer, the agonizing distance between them vanishing as their shared breaths mingled in the cool evening air.",
+      "She realized, in that profound and quiet moment of vulnerability, that she had loved him since the very first day they met.",
+      "A stolen, lingering glance across the grand dining table was all it took to completely unravel her carefully constructed resolve."
+    ],
+    "Mystery": [
+      "The sealed wax letter contained a complex cipher that completely contradicted the official, widely accepted accounts of the king's sudden death.",
+      "The bloody, smeared footprint near the shattered stained-glass window was the only tangible clue left behind by the elusive, phantom-like assassin.",
+      "She knew deep down that the charming duke was lying through his teeth, but she simply couldn't prove it without the missing ledgers.",
+      "The heavy iron safe was completely empty, save for a single, perfectly preserved black rose resting on the dusty velvet bottom.",
+      "The unfortunate nobleman's expensive pocket watch had stopped ticking at exactly midnight, freezing the time of the gruesome, unsolved murder.",
+      "A dark, indistinct shadow moved swiftly in the upper corner of the grainy, early photograph taken just moments before the tragic explosion."
+    ],
+    "Action": [
+      "Deafening cannon fire erupted across the misty, blood-soaked battlefield as the heavy cavalry charged headlong into the terrified enemy ranks.",
+      "He dodged the incoming, razor-sharp bayonet just in the nick of time, feeling the cold steel slice through the air near his throat.",
+      "Rapid musket fire echoed terrifyingly through the narrow, smoke-filled cobblestone streets as they scrambled desperately toward the barricades.",
+      "She vaulted gracefully over the crumbling stone wall without breaking her stride, her heart pounding furiously beneath her corseted dress.",
+      "The brutal impact of the explosion threw him violently backwards, slamming his aching body into the unforgiving, solid brick wall of the tavern.",
+      "Adrenaline surged powerfully through her veins as she drew her hidden dagger and charged headlong into the chaotic, swirling melee."
+    ],
+    "Internal Monologue": [
+      "I must absolutely uphold the pristine honor of my family name, he reminded himself sternly, even as deep doubt clouded his weary mind.",
+      "Why do I always manage to completely sabotage my own political standing just when I am finally starting to gain the queen's favor?",
+      "She wondered, in the quiet solitude of her lavish bedchamber, if anyone would ever truly understand the heavy burden of her arranged marriage.",
+      "I simply cannot keep running away from my aristocratic responsibilities forever, she realized with a heavy, exhausted sigh.",
+      "He questioned every single minor tactical decision that had ultimately led him to this disastrous and life-threatening moment on the battlefield.",
+      "Doubt gnawed relentlessly at the fragile edges of his newfound courage, threatening to paralyze him when the revolution needed him most."
+    ],
+    "Comedy": [
+      "The pompous, overly dressed duke slipped comically on a discarded apple core, tumbling spectacularly into the muddy, crowded courtyard.",
+      "She tried her absolute best to look intimidating and fierce, but ended up tripping over the massive hem of her elaborate ballgown.",
+      "His elaborate, supposedly foolproof disguise consisted entirely of a fake, oversized mustache and a pair of cheap, unconvincing spectacles.",
+      "The overly dramatic, flowing velvet cape got hopelessly caught in the heavy carriage door, trapping the nobleman for ten awkward minutes.",
+      "He confidently pushed the heavy oak door that clearly said 'Pull' in elegant calligraphy, embarrassing himself before the entire royal court.",
+      "The grand, romantic elopement plan was completely derailed by a surprisingly aggressive flock of angry, honking geese near the estate pond."
+    ]
+  },
+  "Self-Help": {
+    "Exposition": [
+      "Establishing a consistent, healthy morning routine is absolutely essential for maximizing your daily productivity and overall mental well-being.",
+      "The modern, fast-paced corporate world often demands far more from us than we can reasonably give without sacrificing our health.",
+      "True, lasting happiness is rarely found in the relentless pursuit of material wealth or superficial, fleeting social status.",
+      "Building strong, resilient habits requires a tremendous amount of patience, dedication, and a willingness to forgive your own mistakes.",
+      "The human brain is incredibly adaptable, meaning it is never truly too late to learn a new skill or change your mindset.",
+      "Effective communication is the fundamental cornerstone of any successful, long-lasting relationship, whether personal or professional."
+    ],
+    "Internal Monologue": [
+      "I must constantly remind myself to remain strong and focused, not just for my own personal growth, but for their sake as well.",
+      "Why do I always manage to completely sabotage my own progress just when I am finally starting to see real results?",
+      "She wondered, in the quiet solitude of her meditation space, if she would ever truly overcome her deep-seated anxieties.",
+      "I simply cannot keep running away from my responsibilities forever, she realized with a heavy, exhausted sigh of acceptance.",
+      "He questioned every single minor decision that had ultimately led him to this frustrating plateau in his career development.",
+      "Doubt gnawed relentlessly at the fragile edges of his newfound confidence, threatening to tear down everything he had built."
+    ],
+    "Dialogue": [
+      "\"It was never really about the money or the fame,\" the successful entrepreneur explained coolly to the eager, listening audience.",
+      "\"I simply cannot believe you would give up on your dreams so easily,\" she whispered, her voice trembling slightly with emotion.",
+      "\"Tell yourself the absolute truth right now,\" the life coach demanded gently, leaning forward across the small wooden table.",
+      "\"I thought I could finally trust the process,\" he said softly, turning away to hide the tears of frustration welling in his eyes.",
+      "\"Are you entirely sure this new strategy is actually going to work for you?\" he asked nervously, pacing back and forth.",
+      "\"Let us just take a deep breath and start over from the very beginning,\" she said gently, reaching out to offer her support."
+    ],
+    "Drama": [
+      "The sudden, unexpected medical diagnosis hung heavily in the air, instantly changing her entire perspective on what truly mattered.",
+      "The bitter realization of his own self-destructive behavior stung far worse than any criticism he had ever received from others.",
+      "Tears streamed uncontrollably down her face as she finally confronted the painful trauma she had been avoiding for years.",
+      "The tense intervention rapidly descended into a bitter, unforgiving shouting match that threatened to ruin their friendship forever.",
+      "He stood silently at the crossroads of his life, the immense weight of his past regrets slowly crushing his motivation.",
+      "The heavy, oppressive silence that lingered after her confession was infinitely louder and more terrifying than any scream."
+    ],
+    "Comedy": [
+      "He spent ten frustrating minutes arguing with a highly advanced, voice-activated toaster before realizing it was completely unplugged.",
+      "She tried her absolute best to look confident and professional, but ended up tripping over her own feet during the presentation.",
+      "His elaborate, supposedly foolproof plan for organizing his entire life fell apart the moment he lost his favorite planner.",
+      "The overly dramatic, motivational poster on the wall suddenly fell down and hit him squarely on the head during his meditation.",
+      "He confidently pushed the heavy glass door that clearly said 'Pull', embarrassing himself thoroughly in front of his new clients.",
+      "The grand, ambitious goal to wake up at 5 AM every single day was completely derailed by a surprisingly comfortable blanket."
+    ],
+    "Romance Scene": [
+      "Learning to truly, deeply love yourself is the absolute first and most crucial step before you can ever fully open your heart to another person.",
+      "Healthy, lasting relationships are built entirely upon a solid foundation of mutual respect, open communication, and unwavering emotional support.",
+      "When you finally let go of your toxic past, you create the necessary, beautiful space to invite genuine, unconditional love into your life.",
+      "True intimacy requires a tremendous amount of vulnerability, forcing you to bravely lower your carefully constructed emotional walls.",
+      "A successful partnership is not about finding someone to complete you, but rather finding someone who inspires you to complete yourself.",
+      "Embrace the beautiful, messy reality of human connection, understanding that perfection is merely an illusion that hinders true romance."
+    ],
+    "Mystery": [
+      "The hidden, elusive root cause of your chronic procrastination often lies buried deep within forgotten, unresolved childhood memories.",
+      "Unlocking the profound mystery of your own subconscious mind is the absolute key to breaking free from destructive, repetitive behavioral patterns.",
+      "She knew deep down that she was lying to herself about her true passions, but she simply couldn't prove it without serious introspection.",
+      "The heavy, emotional baggage you carry is often completely invisible, save for a single, lingering feeling of profound, unexplained anxiety.",
+      "He stared intently at his daily journal entries, desperately searching for a hidden pattern in the chaotic, overwhelming strings of negative thoughts.",
+      "A dark, indistinct shadow of self-doubt moves swiftly in the corners of your mind, quietly sabotaging your progress when you least expect it."
+    ],
+    "Action": [
+      "Take immediate, decisive, and aggressive action today to completely conquer your paralyzing fears and finally seize control of your own destiny.",
+      "You must actively dodge the incoming, toxic negativity of your environment just in the nick of time to protect your fragile mental peace.",
+      "Rapid, overwhelming challenges will echo terrifyingly through your life, but you must scramble desperately toward your ultimate goals regardless.",
+      "Vault gracefully over the massive, imposing barricades of your own self-doubt without ever breaking your stride or losing your focus.",
+      "The brutal impact of unexpected failure may throw you violently backwards, but you must always choose to stand back up and fight.",
+      "Let adrenaline surge powerfully through your veins as you draw your inner strength and charge headlong into the chaotic, swirling unknown."
+    ],
+    "Worldbuilding": [
+      "Imagine a peaceful, perfectly organized, and harmonious workspace where every single item serves a specific, meaningful, and productive purpose.",
+      "The sprawling, complex landscape of your own mind is a labyrinth of deeply ingrained habits, towering aspirations, and perpetual growth.",
+      "Visualize a vibrant, supportive community that acts as a colorful blend of a hundred different perspectives, all striving for personal excellence.",
+      "Thick steam hisses loudly from the metaphorical pressure cooker of modern society, reminding you of the absolute necessity of self-care.",
+      "The opulent, high-achieving mindset offers a breathtaking, panoramic view of your limitless potential, completely isolated from past failures.",
+      "Massive, imposing boundaries must surround your personal time and energy, offering a crucial sense of absolute, inescapable security."
+    ]
+  }
 }

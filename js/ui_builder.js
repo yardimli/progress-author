@@ -229,13 +229,25 @@ function selectGenre (genre) {
 	if (typeof updateUI === 'function') updateUI(); // Refresh expected quality
 }
 
-// Build the manual writing scene buttons
+// Build the manual writing scene buttons dynamically based on the current genre
 function buildSceneButtons() {
 	const container = document.getElementById('sceneButtonsContainer');
 	if (!container || typeof sceneTypesBaseData === 'undefined') return;
 	container.innerHTML = '';
 	
-	for (let sceneType in sceneTypesBaseData) {
+	// Determine current genre to pull appropriate scene types
+	let currentGenre = "Romance";
+	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+		currentGenre = booksBaseData[gameData.currentBook].genre;
+	} else if (gameData.selectedGenre) {
+		currentGenre = gameData.selectedGenre;
+	}
+	
+	// Pull all available scenes for the current genre, allowing the player to make mistakes
+	let availableScenes = sceneTypesBaseData[currentGenre];
+	if (!availableScenes) return;
+	
+	for (let sceneType in availableScenes) {
 		let btn = document.createElement('button');
 		btn.className = 'btn scene-btn';
 		btn.textContent = sceneType;

@@ -165,15 +165,18 @@ function updateAuthorAndBookUI () {
 	const bookSelectionContainer = document.getElementById('bookSelectionContainer');
 	const bookStatusRow = document.getElementById('bookStatusRow');
 	const manualWritingContainer = document.getElementById('manualWritingContainer');
+	const lifeExpSection = document.getElementById('lifeExperiencesSection');
 	
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
 		if (bookSelectionContainer) bookSelectionContainer.style.display = 'none';
 		if (bookStatusRow) bookStatusRow.style.display = 'flex';
 		if (manualWritingContainer) manualWritingContainer.style.display = 'flex';
+		if (lifeExpSection) lifeExpSection.style.display = 'none'; // Hide when actively writing
 		
 		const book = booksBaseData[gameData.currentBook];
 		const bookImg = document.getElementById('currentBookImage');
 		const bookTitle = document.getElementById('currentBookTitle');
+		const bookGenre = document.getElementById('currentBookGenre');
 		
 		const filefolder = book.filefolder + '256';
 		const filename = book.filename.replace('.png', '.jpg');
@@ -185,10 +188,14 @@ function updateAuthorAndBookUI () {
 		if (bookTitle && bookTitle.textContent !== book.title) {
 			bookTitle.textContent = book.title;
 		}
+		if (bookGenre && bookGenre.textContent !== book.genre) {
+			bookGenre.textContent = book.genre;
+		}
 	} else {
 		if (bookSelectionContainer) bookSelectionContainer.style.display = 'flex';
 		if (bookStatusRow) bookStatusRow.style.display = 'none';
 		if (manualWritingContainer) manualWritingContainer.style.display = 'none';
+		if (lifeExpSection) lifeExpSection.style.display = 'block'; // Show when selecting genre
 	}
 }
 
@@ -517,9 +524,18 @@ function updateTypewriter(deltaTime) {
 			typewriterText = ""; // Clear the line
 			typewriterIndex = 0;
 			
-			// Fetch new sentence using the queued scene type (allows finishing last sentence before switching)
+			// Fetch new sentence using the queued scene type and current genre
 			let sceneToUse = nextSceneType || "Action";
-			let sentences = sceneTypesBaseData ? sceneTypesBaseData[sceneToUse] : null;
+			let currentGenre = "Romance";
+			if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+				currentGenre = booksBaseData[gameData.currentBook].genre;
+			} else if (gameData.selectedGenre) {
+				currentGenre = gameData.selectedGenre;
+			}
+			
+			// Access nested scene types by genre
+			let sentences = (sceneTypesBaseData && sceneTypesBaseData[currentGenre]) ? sceneTypesBaseData[currentGenre][sceneToUse] : null;
+			
 			if (sentences && sentences.length > 0) {
 				currentTypewriterSentence = sentences[Math.floor(Math.random() * sentences.length)] + " ";
 			} else {
