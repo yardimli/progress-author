@@ -164,10 +164,12 @@ function updateAuthorAndBookUI () {
 	
 	const bookSelectionContainer = document.getElementById('bookSelectionContainer');
 	const bookStatusRow = document.getElementById('bookStatusRow');
+	const manualWritingContainer = document.getElementById('manualWritingContainer');
 	
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
 		if (bookSelectionContainer) bookSelectionContainer.style.display = 'none';
 		if (bookStatusRow) bookStatusRow.style.display = 'flex';
+		if (manualWritingContainer) manualWritingContainer.style.display = 'flex';
 		
 		const book = booksBaseData[gameData.currentBook];
 		const bookImg = document.getElementById('currentBookImage');
@@ -186,6 +188,7 @@ function updateAuthorAndBookUI () {
 	} else {
 		if (bookSelectionContainer) bookSelectionContainer.style.display = 'flex';
 		if (bookStatusRow) bookStatusRow.style.display = 'none';
+		if (manualWritingContainer) manualWritingContainer.style.display = 'none';
 	}
 }
 
@@ -385,6 +388,17 @@ function updateText () {
 		}
 	}
 	
+	const compMultiplier = getCompositionMultiplier();
+	const compMultiplierDisplay = document.getElementById('compMultiplierDisplay');
+	if (compMultiplierDisplay) {
+		if (compMultiplier !== 1) {
+			compMultiplierDisplay.textContent = ` (x${compMultiplier.toFixed(2)} Comp)`;
+			compMultiplierDisplay.style.color = compMultiplier > 1 ? '#4CAF50' : '#ff4c4c';
+		} else {
+			compMultiplierDisplay.textContent = '';
+		}
+	}
+	
 	updateIfChanged('workPercentage', 100 - gameData.workWritingBalance);
 	updateIfChanged('writingPercentage', gameData.workWritingBalance);
 	const slider = document.getElementById('workWritingSlider');
@@ -451,6 +465,81 @@ function hideEntities () {
 	}
 }
 
+// Updates the composition statistics UI
+function updateCompositionUI() {
+	const container = document.getElementById('compositionStats');
+	if (!container || !gameData.currentBookComposition) return;
+	
+	let totalWords = 0;
+	for (let key in gameData.currentBookComposition) {
+		totalWords += gameData.currentBookComposition[key];
+	}
+	
+	if (totalWords === 0) {
+		container.innerHTML = '<i>Start writing to see composition...</i>';
+		return;
+	}
+	
+	let html = '<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.85em;">';
+	for (let sceneType in gameData.currentBookComposition) {
+		let words = gameData.currentBookComposition[sceneType];
+		let pct = (words / totalWords * 100).toFixed(1);
+		html += `<div style="background: rgba(0,0,0,0.05); padding: 5px 10px; border-radius: 4px;"><b>${sceneType}:</b> ${pct}%</div>`;
+	}
+	html += '</div>';
+	container.innerHTML = html;
+}
+
+// Handles the realistic typewriter effect for the manual writing interface
+function updateTypewriter(deltaTime) {
+	if (pendingTypewriterChars <= 0) return;
+	
+	liveTypingDelay -= deltaTime * 1000;
+	if (liveTypingDelay > 0) return;
+	
+	if (isLiveCorrecting) {
+		typewriterText = typewriterText.slice(0, -1);
+		isLiveCorrecting = false;
+		liveTypingDelay = 75; // Pause after deleting
+	} else {
+		if (typewriterIndex >= currentTypewriterSentence.length) {
+			let sentences = sceneTypesBaseData ? sceneTypesBaseData[lastSceneType] : null;
+			if (sentences && sentences.length > 0) {
+				currentTypewriterSentence = sentences[Math.floor(Math.random() * sentences.length)] + " ";
+			} else {
+				currentTypewriterSentence = "Writing... ";
+			}
+			typewriterIndex = 0;
+		}
+		
+		let char = currentTypewriterSentence[typewriterIndex];
+		
+		if (/[a-zA-Z]/.test(char) && Math.random() < 0.03) { // 3% chance for typo
+			const chars = 'abcdefghijklmnopqrstuvwxyz';
+			typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
+			isLiveCorrecting = true;
+			liveTypingDelay = 125; // Pause before realizing mistake
+		} else {
+			typewriterText += char;
+			typewriterIndex++;
+			pendingTypewriterChars--;
+			// Delay between 167ms and 500ms (averages 20-40 chars per second)
+			liveTypingDelay = Math.random() * 16 + 33;
+		}
+	}
+	
+	// Keep text length manageable to prevent lag
+	if (typewriterText.length > 500) {
+		typewriterText = typewriterText.substring(typewriterText.length - 500);
+	}
+	
+	const displayEl = document.getElementById('liveWritingText');
+	if (displayEl) {
+		displayEl.innerHTML = typewriterText + '<span class="blinking-cursor">|</span>';
+		displayEl.scrollTop = displayEl.scrollHeight;
+	}
+}
+
 // Main UI Update loop
 function updateUI () {
 	updateTaskRows();
@@ -464,4 +553,5 @@ function updateUI () {
 	updateTabButtons();
 	updateBookHistory();
 	updatePotionsUI();
+	updateCompositionUI();
 }

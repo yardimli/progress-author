@@ -1,5 +1,3 @@
-// js/state.js
-
 // Global state variables for pausing and queuing modals
 var isPaused = false;
 var isInitialized = false;
@@ -59,6 +57,7 @@ var gameData = {
 	currentAuthor: null,
 	currentBook: null,
 	completedBooks: [],
+	currentBookComposition: {}, // Tracks words written per scene type
 	selectedGenre: null, // Track the currently selected genre for new books
 	
 	// Track if the player has seen the intro tutorial
@@ -82,4 +81,14 @@ var saveTimer = 0;
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
-var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData;
+var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData, sceneTypesBaseData, genreIdealsBaseData;
+
+// Manual Writing State
+var activeSceneType = null;
+var pendingTypewriterChars = 0;
+var currentTypewriterSentence = "";
+var typewriterIndex = 0;
+var typewriterText = "";
+var lastSceneType = "Action";
+var isLiveCorrecting = false; // Tracks if the typewriter is currently fixing a typo
+var liveTypingDelay = 0;      // Timer for the next keystroke

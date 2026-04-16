@@ -1,12 +1,9 @@
-// js/main.js
-
 // Init function, game loop, core update function
 
 function update() {
     increaseDays();
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
-    updateWritingProcess();
     applyExpenses();
     checkUnlocks();
     updateUI();
@@ -41,6 +38,14 @@ function gameLoop(currentTime) {
             if (gameData.potions.acceleration < 0) gameData.potions.acceleration = 0;
         }
         
+        // Handle manual writing continuous hold
+        if (activeSceneType) {
+            writeProgress(activeSceneType, deltaTime);
+        }
+        
+        // Process the visual typewriter effect independently of game speed
+        updateTypewriter(deltaTime);
+        
         update();
     }
     
@@ -60,7 +65,8 @@ async function init() {
             jobCatRes, skillCatRes, itemCatRes,
             colorsRes, tooltipsRes, reqRes,
             authorsRes, booksRes,
-            potionsRes, lifeExpRes, genresRes // Added genres fetch
+            potionsRes, lifeExpRes, genresRes,
+            sceneTypesRes, genreIdealsRes
         ] = await Promise.all([
             fetch('data/jobs.json?' + gameData.version), // Cache busting with version query param
             fetch('data/skills.json?' + gameData.version),
@@ -75,7 +81,9 @@ async function init() {
             fetch('data/books.json?' + gameData.version),
             fetch('data/potions.json?' + gameData.version),
             fetch('data/lifeExperiences.json?' + gameData.version),
-            fetch('data/genres.json?' + gameData.version)
+            fetch('data/genres.json?' + gameData.version),
+            fetch('data/sceneTypes.json?' + gameData.version),
+            fetch('data/genreIdeals.json?' + gameData.version)
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -94,6 +102,8 @@ async function init() {
         potionsBaseData = await potionsRes.json();
         lifeExperiencesBaseData = await lifeExpRes.json();
         genresBaseData = await genresRes.json(); // Assign genres data
+        sceneTypesBaseData = await sceneTypesRes.json();
+        genreIdealsBaseData = await genreIdealsRes.json();
         
         createAllRows(jobCategories, "jobTable");
         createAllRows(skillCategories, "skillTable");
@@ -136,6 +146,7 @@ async function init() {
 // Continues initialization after an author is selected or loaded
 function continueInit() {
     populateGenres(); // Populate the genre dropdown
+    buildSceneButtons(); // Build the manual writing buttons
     
     setCustomEffects();
     addMultipliers();

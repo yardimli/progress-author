@@ -228,3 +228,30 @@ function selectGenre (genre) {
 	populateGenres(); // Update active button classes
 	if (typeof updateUI === 'function') updateUI(); // Refresh expected quality
 }
+
+// Build the manual writing scene buttons
+function buildSceneButtons() {
+	const container = document.getElementById('sceneButtonsContainer');
+	if (!container || typeof sceneTypesBaseData === 'undefined') return;
+	container.innerHTML = '';
+	
+	for (let sceneType in sceneTypesBaseData) {
+		let btn = document.createElement('button');
+		btn.className = 'btn scene-btn';
+		btn.textContent = sceneType;
+		
+		// Mouse events
+		btn.addEventListener('mousedown', () => handleSceneHoldStart(sceneType));
+		btn.addEventListener('mouseup', () => handleSceneHoldEnd());
+		btn.addEventListener('mouseleave', () => handleSceneHoldEnd());
+		
+		// Touch events for mobile
+		btn.addEventListener('touchstart', (e) => { e.preventDefault(); handleSceneHoldStart(sceneType); });
+		btn.addEventListener('touchend', (e) => { e.preventDefault(); handleSceneHoldEnd(); });
+		
+		// Click event (3 seconds progress)
+		btn.addEventListener('click', () => handleSceneClick(sceneType));
+		
+		container.appendChild(btn);
+	}
+}

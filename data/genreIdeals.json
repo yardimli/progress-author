@@ -1,0 +1,44 @@
+{
+  "Romance": {
+    "Romance Scene": 0.4,
+    "Dialogue": 0.3,
+    "Drama": 0.15,
+    "Internal Monologue": 0.1,
+    "Comedy": 0.05
+  },
+  "Mystery/Thriller": {
+    "Mystery": 0.4,
+    "Action": 0.2,
+    "Dialogue": 0.2,
+    "Internal Monologue": 0.1,
+    "Exposition": 0.1
+  },
+  "Fantasy": {
+    "Worldbuilding": 0.3,
+    "Action": 0.2,
+    "Exposition": 0.2,
+    "Dialogue": 0.15,
+    "Drama": 0.15
+  },
+  "Sci-Fi": {
+    "Worldbuilding": 0.3,
+    "Mystery": 0.15,
+    "Action": 0.2,
+    "Exposition": 0.2,
+    "Dialogue": 0.15
+  },
+  "Historical Fiction": {
+    "Exposition": 0.3,
+    "Drama": 0.25,
+    "Dialogue": 0.2,
+    "Worldbuilding": 0.15,
+    "Romance Scene": 0.1
+  },
+  "Self-Help": {
+    "Exposition": 0.4,
+    "Internal Monologue": 0.3,
+    "Dialogue": 0.1,
+    "Drama": 0.1,
+    "Comedy": 0.1
+  }
+}

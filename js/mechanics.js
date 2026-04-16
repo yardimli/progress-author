@@ -1,5 +1,3 @@
-// js/mechanics.js
-
 // Writing process, rebirth, death
 
 function applyExpenses() {
@@ -132,6 +130,11 @@ function startWritingBook() {
 	if (!gameData.selectedGenre) return;
 	pickNextBook(gameData.selectedGenre);
 	updateUI();
+	
+	// Reset manual writing state
+	gameData.currentBookComposition = {};
+	typewriterText = "";
+	pendingTypewriterChars = 0;
 }
 
 function pickNextBook(genre) {
@@ -252,50 +255,125 @@ function getBookQuality() {
 	return baseSkillQuality * expMultiplier * itemQualityMultiplier;
 }
 
-function updateWritingProcess() {
-	if (!gameData.currentBook) return; // Do not write if no book is selected
+// Calculate the composition multiplier based on how close the player matched the genre ideals
+function getCompositionMultiplier() {
+	if (!gameData.currentBookComposition) return 1;
 	
-	let speed = applySpeed(getWritingSpeed());
-	gameData.wordsWritten += speed;
+	let currentGenre = "Romance";
+	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+		currentGenre = booksBaseData[gameData.currentBook].genre;
+	} else if (gameData.selectedGenre) {
+		currentGenre = gameData.selectedGenre;
+	}
+	
+	let ideals = genreIdealsBaseData ? genreIdealsBaseData[currentGenre] : null;
+	if (!ideals) return 1;
+	
+	let totalWords = 0;
+	for (let key in gameData.currentBookComposition) {
+		totalWords += gameData.currentBookComposition[key];
+	}
+	
+	if (totalWords === 0) return 0.1;
+	
+	let distance = 0;
+	// Check all scene types
+	for (let sceneType in sceneTypesBaseData) {
+		let actualPct = (gameData.currentBookComposition[sceneType] || 0) / totalWords;
+		let idealPct = ideals[sceneType] || 0;
+		distance += Math.abs(actualPct - idealPct);
+	}
+	
+	// Max distance is 2.0. Map distance 0 -> 2.0 multiplier, distance 2.0 -> 0.1 multiplier
+	let multiplier = 2.0 - (distance * 0.95);
+	if (multiplier < 0.1) multiplier = 0.1;
+	if (multiplier > 2.0) multiplier = 2.0;
+	
+	return multiplier;
+}
+
+// Manual Writing Progress Function
+function writeProgress(sceneType, timeInSeconds) {
+	if (!gameData.currentBook) return;
+	
+	let speedPerSecond = getWritingSpeed();
+	let words = speedPerSecond * getGameSpeed() * timeInSeconds;
+	
+	if (words <= 0) return;
+	
+	gameData.wordsWritten += words;
+	
+	if (!gameData.currentBookComposition) {
+		gameData.currentBookComposition = {};
+	}
+	if (!gameData.currentBookComposition[sceneType]) {
+		gameData.currentBookComposition[sceneType] = 0;
+	}
+	gameData.currentBookComposition[sceneType] += words;
+	
+	pendingTypewriterChars += words * 5; // roughly 5 chars per word
+	lastSceneType = sceneType;
 	
 	let target = getBookLength();
-	
 	if (gameData.wordsWritten >= target) {
-		let baseQuality = getBookQuality();
-		let multiplier = getQualityMultiplier();
-		let quality = baseQuality * multiplier;
-		let fame = gameData.fame;
-		let sales = (quality / 100) * (fame + 10) * 5;
-		let royalty = sales * 0.1;
-		
-		if (royalty < 0.10) {
-			royalty = 0.10;
-		}
-		
-		gameData.royalties += royalty;
-		gameData.booksPublished += 1;
-		
-		let bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : "Unknown Book";
-		logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
-		
-		let bookAge = daysToYears(gameData.days);
-		let bookDay = getDay();
-		
-		let alreadyCompleted = gameData.completedBooks.some(b => b.id === gameData.currentBook);
-		if (!alreadyCompleted) {
-			gameData.completedBooks.push({
-				id: gameData.currentBook,
-				age: bookAge,
-				day: bookDay,
-				royalties: royalty,
-				quality: quality
-			});
-		}
-		
-		// Stop writing and wait for the player to select the next genre
-		gameData.currentBook = null;
-		gameData.wordsWritten = 0;
+		finishBook();
 	}
+}
+
+// Interaction Handlers
+function handleSceneClick(sceneType) {
+	writeProgress(sceneType, 3); // 3 seconds of game time progress
+	if (typeof updateUI === 'function') updateUI();
+}
+
+function handleSceneHoldStart(sceneType) {
+	activeSceneType = sceneType;
+}
+
+function handleSceneHoldEnd() {
+	activeSceneType = null;
+}
+
+function finishBook() {
+	let baseQuality = getBookQuality();
+	let qualityMultiplier = getQualityMultiplier();
+	let compMultiplier = getCompositionMultiplier();
+	
+	let quality = baseQuality * qualityMultiplier * compMultiplier;
+	let fame = gameData.fame;
+	let sales = (quality / 100) * (fame + 10) * 5;
+	let royalty = sales * 0.1;
+	
+	if (royalty < 0.10) {
+		royalty = 0.10;
+	}
+	
+	gameData.royalties += royalty;
+	gameData.booksPublished += 1;
+	
+	let bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : "Unknown Book";
+	logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
+	
+	let bookAge = daysToYears(gameData.days);
+	let bookDay = getDay();
+	
+	let alreadyCompleted = gameData.completedBooks.some(b => b.id === gameData.currentBook);
+	if (!alreadyCompleted) {
+		gameData.completedBooks.push({
+			id: gameData.currentBook,
+			age: bookAge,
+			day: bookDay,
+			royalties: royalty,
+			quality: quality
+		});
+	}
+	
+	// Stop writing and wait for the player to select the next genre
+	gameData.currentBook = null;
+	gameData.wordsWritten = 0;
+	gameData.currentBookComposition = {};
+	typewriterText = "";
+	document.getElementById('liveWritingText').innerHTML = '<span class="blinking-cursor">|</span>';
 }
 
 function rebirthOne() {
