@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0">
-	<link rel="stylesheet" type="text/css" href="css/dark.css?v=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.1">
+	<link rel="stylesheet" type="text/css" href="css/styles.css?v=1.1">
+	<link rel="stylesheet" type="text/css" href="css/dark.css?v=1.1">
 	<title>Author's Journey</title>
 </head>
 <body id="body" class="dark">
@@ -131,6 +131,8 @@
 			</div>
 			
 			<div class="tab" id="shop">
+				<!-- Added help text for Properties/Shop at the top -->
+				<div class="tab-description">Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.</div>
 				<div id="itemTable"></div>
 			</div>
 			
@@ -289,6 +291,8 @@
 <div id="infoModal" class="modal" style="display: none; z-index: 2004;">
 	<div class="modal-content">
 		<img id="modalImage" src="" alt="" style="width: 192px; height: 192px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+		<!-- Added category label for modal identification -->
+		<div id="modalCategory" style="color: #888; font-size: 0.9em; text-transform: uppercase; margin-bottom: 5px; font-weight: bold;"></div>
 		<div id="modalTitle" class="modal-title"></div>
 		<div id="modalDescription" class="modal-description"></div>
 		<div id="modalMaxLevel" style="color: #4CAF50; display: none; font-size: 0.95em; margin-top: 10px;"></div>
@@ -335,13 +339,13 @@
 </div>
 
 <!-- Scripts loaded in dependency order -->
-<script type="text/javascript" src="js/classes.js?v=1.0"></script>
-<script type="text/javascript" src="js/state.js?v=1.0"></script>
-<script type="text/javascript" src="js/utils.js?v=1.0"></script>
-<script type="text/javascript" src="js/formulas.js?v=1.0"></script>
-<script type="text/javascript" src="js/ui.js?v=1.0"></script>
-<script type="text/javascript" src="js/save.js?v=1.0"></script>
-<script type="text/javascript" src="js/mechanics.js?v=1.0"></script>
-<script type="text/javascript" src="js/main.js?v=1.0"></script>
+<script type="text/javascript" src="js/classes.js?v=1.1"></script>
+<script type="text/javascript" src="js/state.js?v=1.1"></script>
+<script type="text/javascript" src="js/utils.js?v=1.1"></script>
+<script type="text/javascript" src="js/formulas.js?v=1.1"></script>
+<script type="text/javascript" src="js/ui.js?v=1.1"></script>
+<script type="text/javascript" src="js/save.js?v=1.1"></script>
+<script type="text/javascript" src="js/mechanics.js?v=1.1"></script>
+<script type="text/javascript" src="js/main.js?v=1.1"></script>
 </body>
 </html>

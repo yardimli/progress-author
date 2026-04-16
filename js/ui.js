@@ -78,6 +78,16 @@ function createAllRows(categoryType, containerId) {
 		
 		let contentDiv = categoryDiv.querySelector('.category-content');
 		
+		// Added help text for Misc items as requested
+		if (isItem && categoryName === "Misc") {
+			let miscHelp = document.createElement("div");
+			miscHelp.className = "tab-description";
+			miscHelp.style.marginBottom = "15px";
+			miscHelp.style.fontSize = "0.95em";
+			miscHelp.textContent = "You can acquire every item here and also give them up. They all influence work, skills, and writing in different ways.";
+			categoryDiv.insertBefore(miscHelp, contentDiv);
+		}
+		
 		if (isJob || (isItem && categoryName === "Properties")) {
 			contentDiv.classList.add('grid');
 		} else {
@@ -160,7 +170,9 @@ function createAllRows(categoryType, containerId) {
 			freeItemsDiv.className = "category-section";
 			
 			// Dynamically generate Cheat Items (Potions) using JSON data
-			let headerHTML = `<div class="category-header" style="margin-top: 25px;">Cheat Items</div>`;
+			// Added help text for cheat items as requested
+			let headerHTML = `<div class="category-header" style="margin-top: 25px;">Cheat Items</div>
+							  <div class="tab-description" style="margin-bottom: 15px; font-size: 0.95em;">Get a helping hand to progress faster.</div>`;
 			let contentDivPotions = document.createElement("div");
 			contentDivPotions.className = "category-content list";
 			
@@ -721,12 +733,34 @@ function showModal (imgElement) {
 	let type = imgElement.getAttribute('data-type');
 	let modal = document.getElementById('infoModal');
 	let modalImg = document.getElementById('modalImage');
+	let modalCategory = document.getElementById('modalCategory'); // Added modal category reference
 	let modalTitle = document.getElementById('modalTitle');
 	let modalDesc = document.getElementById('modalDescription');
 	let modalMax = document.getElementById('modalMaxLevel');
 	
 	modalImg.src = imgElement.src;
 	modalTitle.textContent = name;
+	
+	// Added logic to display what the modal is for (Work, Skill, Shop, etc.)
+	let categoryText = "";
+	if (type === 'job') {
+		categoryText = "Work";
+	} else if (type === 'skill') {
+		categoryText = "Skill";
+	} else if (type === 'item') {
+		if (itemCategories["Properties"] && itemCategories["Properties"].includes(name)) {
+			categoryText = "Shop - Property";
+		} else {
+			categoryText = "Shop - Misc Item";
+		}
+	} else if (type === 'potion') {
+		categoryText = "Cheat Item";
+	} else if (type === 'experience') {
+		categoryText = "Life Experience";
+	}
+	if (modalCategory) {
+		modalCategory.textContent = categoryText;
+	}
 	
 	let descriptionText = tooltips[name] || "";
 	if (type === 'job') {
