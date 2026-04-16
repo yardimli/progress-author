@@ -74,10 +74,25 @@ function saveGameData() {
 }
 
 function loadGameData() {
-	let gameDataSave = JSON.parse(localStorage.getItem("authorsJourneySave"));
+	let gameDataSave;
+	
+	// Wrap JSON.parse in try-catch to handle corrupted localstorage data
+	try {
+		gameDataSave = JSON.parse(localStorage.getItem("authorsJourneySave"));
+	} catch (error) {
+		console.error("Corrupted save data detected, resetting game.", error);
+		resetGameData();
+		return;
+	}
 	
 	if (gameDataSave !== null) {
-		// Check if the saved version matches the current game version
+		// Auto-reset immediately if the save data doesn't have a version at all (legacy saves)
+		if (!gameDataSave.version) {
+			resetGameData();
+			return;
+		}
+		
+		// Check if the saved version exists but does not match the current game version
 		if (gameDataSave.version !== GAME_VERSION) {
 			// Show the version mismatch modal
 			let versionModal = document.getElementById('versionModal');
