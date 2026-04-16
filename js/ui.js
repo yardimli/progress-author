@@ -254,7 +254,7 @@ function updateRequiredRows(data, categoryType) {
 					// Queue info modal if newly unlocked
 					if (requirements && !previouslyCompleted && isInitialized) {
 						let imgEl = element.querySelector('.card-image, .row-image');
-						if (imgEl) queueInfoModal(imgEl);
+						if (imgEl) queueInfoModal(imgEl, true); // Added true flag for new unlocks
 					}
 				}
 			} else {
@@ -709,8 +709,9 @@ function queueTutorialModal(title, text) {
 	popupQueue.push({ type: 'tutorial', title: title, text: text });
 }
 
-function queueInfoModal(imgEl) {
-	popupQueue.push({ type: 'info', imgEl: imgEl });
+// Added isNewUnlock flag to track if it's a first-time unlock
+function queueInfoModal(imgEl, isNewUnlock = false) {
+	popupQueue.push({ type: 'info', imgEl: imgEl, isNewUnlock: isNewUnlock });
 }
 
 // Show Tutorial Modal
@@ -728,7 +729,8 @@ function closeTutorialModal() {
 	updatePauseState();
 }
 
-function showModal (imgElement) {
+// Added isNewUnlock parameter to handle styling and text for newly unlocked items
+function showModal (imgElement, isNewUnlock = false) {
 	let name = imgElement.getAttribute('data-name');
 	let type = imgElement.getAttribute('data-type');
 	let modal = document.getElementById('infoModal');
@@ -737,29 +739,48 @@ function showModal (imgElement) {
 	let modalTitle = document.getElementById('modalTitle');
 	let modalDesc = document.getElementById('modalDescription');
 	let modalMax = document.getElementById('modalMaxLevel');
+	let modalUnlockMessage = document.getElementById('modalUnlockMessage'); // Reference to the unlock message container
+	let modalContent = modal.querySelector('.modal-content'); // Reference to the modal content wrapper
 	
 	modalImg.src = imgElement.src;
 	modalTitle.textContent = name;
 	
 	// Added logic to display what the modal is for (Work, Skill, Shop, etc.)
 	let categoryText = "";
+	let actionWord = ""; // Action word for the unlock message
 	if (type === 'job') {
 		categoryText = "Work";
+		actionWord = "work";
 	} else if (type === 'skill') {
 		categoryText = "Skill";
+		actionWord = "learn";
 	} else if (type === 'item') {
 		if (itemCategories["Properties"] && itemCategories["Properties"].includes(name)) {
 			categoryText = "Shop - Property";
 		} else {
 			categoryText = "Shop - Misc Item";
 		}
+		actionWord = "purchase";
 	} else if (type === 'potion') {
 		categoryText = "Cheat Item";
+		actionWord = "use";
 	} else if (type === 'experience') {
 		categoryText = "Life Experience";
+		actionWord = "gain";
 	}
 	if (modalCategory) {
 		modalCategory.textContent = categoryText;
+	}
+	
+	// Handle new unlock styling and text
+	if (isNewUnlock && modalUnlockMessage) {
+		let entityType = type === 'job' ? 'job' : (type === 'skill' ? 'skill' : 'item');
+		modalUnlockMessage.textContent = `You have unlocked a new ${entityType} to ${actionWord}!`;
+		modalUnlockMessage.style.display = "block";
+		modalContent.classList.add("modal-new-unlock");
+	} else if (modalUnlockMessage) {
+		modalUnlockMessage.style.display = "none";
+		modalContent.classList.remove("modal-new-unlock");
 	}
 	
 	let descriptionText = tooltips[name] || "";

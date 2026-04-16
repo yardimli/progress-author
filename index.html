@@ -13,23 +13,23 @@
 <div class="fixed-header-wrapper">
 	<div class="fixed-header-content">
 		<div id="topPanel" class="panel panel-padding-sm top-panel">
-			<img id="authorImage" src="" alt="Author" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee;">
+			<img id="authorImage" src="" alt="Author" class="author-image">
 			
-			<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 5px;">
-				<div style="font-size: 1.2em;"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden" style="font-size: 0.8em; color: #d32f2f; margin-left: 10px;">Fame: <span id="fameDisplay">0</span></span> <span id="deathText" class="hidden" style="color: red; font-weight: bold;">You have reached retirement age. Use the Golden Pen to retire.</span></div>
+			<div class="header-stats-container">
+				<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span> <span id="deathText" class="hidden death-text">You have reached retirement age. Use the Golden Pen to retire.</span></div>
 				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
-				<div>Balance: <span id="coinDisplay" style="font-weight:bold;">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
+				<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
-				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn" style="padding: 2px 8px; margin-left: 5px;" onClick="setTimeWarping()">Enable flow</button></span></div>
+				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
 				
 				<!-- Slider for Work/Writing balance -->
-				<div id="workWritingSliderContainer" class="hidden" style="display: flex; align-items: center; gap: 10px; margin-top: 2px;">
-					<span style="font-size: 0.9em; font-weight: bold; color: #4CAF50;">Work: <span id="workPercentage">100</span>%</span>
-					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider" style="width: 150px; margin: 0;">
-					<span style="font-size: 0.9em; font-weight: bold; color: #219ebc;">Writing: <span id="writingPercentage">0</span>%</span>
+				<div id="workWritingSliderContainer" class="hidden slider-container">
+					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
+					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
+					<span class="writing-percentage-label">Writing: <span id="writingPercentage">0</span>%</span>
 				</div>
 				
-				<div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+				<div class="header-actions">
 				</div>
 			</div>
 		</div>
@@ -37,24 +37,24 @@
 		<!-- TABS -->
 		<div class="panel tabs-container">
 			<div class="tabButton" id="jobTabButton" onClick="setTab(this, 'jobs')">
-				<img id="jobTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
-				Work <span id="jobTabText" style="color:#4CAF50;margin-left:8px;"></span>
+				<img id="jobTabImg" src="" class="tab-icon" style="display:none;" alt="">
+				Work <span id="jobTabText" class="tab-text-job"></span>
 			</div>
 			<div class="tabButton hidden" id="skillTabButton" onClick="setTab(this, 'skills')">
-				<img id="skillTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
-				Skills <span id="skillTabText" style="margin-left:8px;font-weight:bold;"></span>
+				<img id="skillTabImg" src="" class="tab-icon" style="display:none;" alt="">
+				Skills <span id="skillTabText" class="tab-text-skill"></span>
 			</div>
 			<div class="tabButton hidden" id="shopTabButton" onClick="setTab(this, 'shop')">
-				<img id="shopTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
-				Shop <span id="shopTabText" style="color:#f44336;margin-left:8px;"></span>
+				<img id="shopTabImg" src="" class="tab-icon" style="display:none;" alt="">
+				Shop <span id="shopTabText" class="tab-text-shop"></span>
 			</div>
 			<div class="tabButton hidden" id="writingTabButton" onClick="setTab(this, 'writing')">
-				<img id="writingTabImg" src="" style="width:24px;height:24px;border-radius:4px;object-fit:cover;margin-right:8px;display:none;" alt="">
+				<img id="writingTabImg" src="" class="tab-icon-square" style="display:none;" alt="">
 				Writing
 			</div>
 			<div class="tabButton" id="rebirthTabButton" onClick="setTab(this, 'rebirth')">Golden Pen</div>
 			<div class="tabButton" id="logTabButton" onClick="setTab(this, 'log')">Log</div>
-			<div class="tabButton" id="settingsTabButton" onClick="setTab(this, 'settings')" style="margin-left: auto;">Settings</div>
+			<div class="tabButton tab-button-right" id="settingsTabButton" onClick="setTab(this, 'settings')">Settings</div>
 		</div>
 	</div>
 </div>
@@ -63,7 +63,7 @@
 <div class="main-layout-wrapper">
 	<div class="scroll-container">
 		<!-- CONTENT AREA -->
-		<div class="panel panel-padding" style="min-height: 100px;">
+		<div class="panel panel-padding main-content-panel">
 			
 			<!-- Templates -->
 			<template id="categoryHeaderTemplate">
@@ -125,38 +125,38 @@
 				<div id="jobTable"></div>
 			</div>
 			
-			<div class="tab" id="skills">
+			<div class="tab" id="skills" style="display: none;">
 				<div class="tab-description">Select a skill to progress. All earned bonuses apply, even if not selected.</div>
 				<div id="skillTable"></div>
 			</div>
 			
-			<div class="tab" id="shop">
+			<div class="tab" id="shop" style="display: none;">
 				<!-- Added help text for Properties/Shop at the top -->
 				<div class="tab-description">Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.</div>
 				<div id="itemTable"></div>
 			</div>
 			
-			<div class="tab" id="writing">
+			<div class="tab" id="writing" style="display: none;">
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
-				<div class="ui-row" style="margin-bottom: 20px; cursor: default;">
-					<img id="currentBookImage" src="" alt="Book Cover" class="row-image" style="width: 120px; height: 180px; object-fit: cover; border-radius: 4px; cursor: pointer;" onclick="showBookModal(gameData.currentBook)">
+				<div class="ui-row book-status-row">
+					<img id="currentBookImage" src="" alt="Book Cover" class="row-image book-cover-image" onclick="showBookModal(gameData.currentBook)">
 					<div class="row-info">
-						<div class="row-title" id="currentBookTitle" style="font-size: 1.5em;">Book Title</div>
-						<div style="margin-top: 10px;">
+						<div class="row-title book-title-large" id="currentBookTitle">Book Title</div>
+						<div class="book-stats-container">
 							<div><b>Progress:</b> <span id="writingProgressDisplay">0.0%</span></div>
-							<div class="progress-bar" style="width: 100%; height: 20px; background-color: #ddd; margin-top: 5px; border-radius: 4px; overflow: hidden;">
-								<div id="writingProgressBar" style="height: 100%; background-color: #4CAF50; width: 0%; transition: width 0.1s;"></div>
+							<div class="progress-bar writing-progress-bar-container">
+								<div id="writingProgressBar" class="writing-progress-bar-fill" style="width: 0%;"></div>
 							</div>
-							<div style="margin-top: 15px; font-size: 1.1em;"><b>Writing Speed:</b> <span id="writingSpeedDisplayTab">0</span> words/day</div>
-							<div style="font-size: 1.1em;"><b>Expected Quality:</b> <span id="bookQualityDisplayTab">0</span>%<span id="bookQualityMultiplierDisplay"></span></div>
+							<div class="writing-stat-text"><b>Writing Speed:</b> <span id="writingSpeedDisplayTab">0</span> words/day</div>
+							<div class="writing-stat-text-sm"><b>Expected Quality:</b> <span id="bookQualityDisplayTab">0</span>%<span id="bookQualityMultiplierDisplay"></span></div>
 						</div>
 					</div>
 				</div>
 				
 				<!-- Life Experiences Section (Dynamically populated) -->
 				<div class="category-header">Life Experiences (Quality Multipliers)</div>
-				<div id="lifeExperiencesContainer" class="ui-row" style="margin-bottom: 20px; cursor: default; padding: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; background-color: rgba(0,0,0,0.02);">
+				<div id="lifeExperiencesContainer" class="ui-row life-experiences-container">
 					<!-- Dynamically populated by initLifeExperiencesUI() -->
 				</div>
 				
@@ -174,45 +174,45 @@
 			
 			<div class="tab" id="rebirth" style="display: none;">
 				<ul>
-					<li style="margin: 8px;">
+					<li class="rebirth-list-item">
 						You stumble across a strange looking Golden Pen on your 25th birthday. It does not look like
 						it has any worth on the market given that it's made from cheap-looking brass. However, you
 						feel a weird urge to keep the pen, so you slip it into your pocket for safekeeping.
 					</li>
-					<li style="margin: 8px;" id="rebirthNote1">
+					<li class="rebirth-list-item" id="rebirthNote1">
 						On your 45th birthday, you feel the pen shiver uncontrollably in your pocket. You take it
 						out and the constant shivering suddenly stops. More to your bizarre surprise, you notice
 						a strange etching on the side of the pen.
 					</li>
-					<li style="margin: 8px;" id="rebirthNote2">
-						<div style="margin-bottom: 8px">
+					<li class="rebirth-list-item" id="rebirthNote2">
+						<div class="rebirth-note-text">
 							On your 65th birthday, you once again encounter the strange, unexplained shivering from your
 							pen. But this time, it begins to glow. Although terribly frightened,
 							you realise you do not have many years to live left anyway so you consider clicking the pen
 							to see what happens.
 						</div>
-						<i style="color: grey">
+						<i class="rebirth-lore-text">
 							By clicking the pen, you will retire and have to restart your career, losing all your levels and money.
 							However, you will gain <b>experience multipliers</b> for your jobs and skills equivalent to: <b>1 + the max level of the skill or job / 20.</b>
-							This means you will learn everything again much more quickly than you did in your previous life. <span style="color: rgb(200, 0, 0)">
+							This means you will learn everything again much more quickly than you did in your previous life. <span class="rebirth-warning-text">
 								Something tells you that the pen might transform even further after living for <b>2 whole centuries</b>...</span>
 						</i>
 						<br/>
-						<button class="btn" style="margin-bottom: 8px; margin-top: 8px" onClick="rebirthOne()">Start a New Chapter</button>
+						<button class="btn rebirth-btn" onClick="rebirthOne()">Start a New Chapter</button>
 						<br/>
 					</li>
-					<li style="margin: 8px;" id="rebirthNote3">
-						<div style="margin-bottom: 8px;">
+					<li class="rebirth-list-item" id="rebirthNote3">
+						<div class="rebirth-note-text">
 							Your gut instinct was right. The moment you hit the grand age of 200, you hear an ominous hum coming from the pen.
 							It begins to write on its own, spelling out: "So you've made it this far... Are you ready to become a legend?"
 						</div>
-						<i style="color: rgb(200, 0, 0)">
+						<i class="rebirth-warning-text">
 							If you decide to become a legend, all of your levels, money and even max levels will be reset.
 							You will be reborn as a fresh slate. However, you will unlock a new line of skills and gain
 							<b><span id="fameGainDisplay"></span> Fame</b>, which will heavily impact your future lives and book sales.
 						</i>
 						<br/>
-						<button class="btn" style="margin-bottom: 8px; margin-top: 8px" onClick="rebirthTwo()">Become a Legend</button>
+						<button class="btn rebirth-btn" onClick="rebirthTwo()">Become a Legend</button>
 						<br/>
 					</li>
 				</ul>
@@ -223,14 +223,14 @@
 					<!-- Display Game Version -->
 					<li>
 						<h2>Game Version</h2>
-						<p id="gameVersionDisplay" style="color: #888; font-weight: bold;"></p>
+						<p id="gameVersionDisplay" class="version-display"></p>
 					</li>
 					<li>
 						<h2>Import/export save</h2>
 						<button class="btn" onClick="importGameData()">Import</button>
 						<button class="btn" onClick="exportGameData()">Export</button>
-						<form style="margin-top: 16px">
-							<input id="importExportBox" type="text" style="width:300px; height:30px" />
+						<form class="settings-form">
+							<input id="importExportBox" type="text" class="import-export-box" />
 						</form>
 					</li>
 					<li>
@@ -248,32 +248,32 @@
 </div>
 
 <!-- Author Selection Screen -->
-<div id="authorSelectionScreen" class="modal" style="display: none; z-index: 2000;">
-	<div class="modal-content" style="max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 30px;">
-		<h1 style="text-align: center; margin-top: 0;">Choose Your Author</h1>
-		<p style="text-align: center; color: #888; font-size: 1.1em; margin-bottom: 30px;">Select the protagonist for your journey. Click an image to read their biography.</p>
-		<div id="authorSelectionGrid" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+<div id="authorSelectionScreen" class="modal modal-overlay-high" style="display: none;">
+	<div class="modal-content modal-content-large">
+		<h1 class="modal-header-center">Choose Your Author</h1>
+		<p class="modal-subtitle-center">Select the protagonist for your journey. Click an image to read their biography.</p>
+		<div id="authorSelectionGrid" class="author-grid">
 			<!-- Populated dynamically by JS -->
 		</div>
 	</div>
 </div>
 
 <!-- Author Bio Modal -->
-<div id="authorBioModal" class="modal" style="display: none; z-index: 2001;">
-	<div class="modal-content" style="max-width: 800px; text-align: left;">
-		<h2 id="bioModalName" style="margin-top: 0;"></h2>
-		<p id="bioModalText" style="color: #888; line-height: 1.6; font-size: 1.05em;"></p>
-		<button class="btn" onclick="closeAuthorBio()" style="margin-top: 20px; width: 100%;">Close</button>
+<div id="authorBioModal" class="modal modal-overlay-higher" style="display: none;">
+	<div class="modal-content modal-content-medium">
+		<h2 id="bioModalName" class="modal-title-nomargin"></h2>
+		<p id="bioModalText" class="bio-text"></p>
+		<button class="btn btn-full-width" onclick="closeAuthorBio()">Close</button>
 	</div>
 </div>
 
 <!-- Intro Modal -->
-<div id="introModal" class="modal" style="display: none; z-index: 2002;">
-	<div class="modal-content" style="max-width: 600px; text-align: left;">
-		<h2 style="text-align: center; margin-top: 0;">Welcome to Author's Journey</h2>
+<div id="introModal" class="modal modal-overlay-intro" style="display: none;">
+	<div class="modal-content modal-content-standard">
+		<h2 class="modal-header-center">Welcome to Author's Journey</h2>
 		<p>In this game, you will live through the lives of aspiring authors. Each time you reset, a new author takes up the mantle, inheriting the legacy and knowledge of those who came before.</p>
 		<p>You will start from the bottom, struggling to balance menial jobs with your passion for writing. Here is how to navigate your journey:</p>
-		<ul style="line-height: 1.6;">
+		<ul class="intro-list">
 			<li><b>Work:</b> Work jobs to earn money. You need funds to survive and invest in your career.</li>
 			<li><b>Skills:</b> Practice your craft and life skills. These improve your writing speed, quality, and work efficiency.</li>
 			<li><b>Shop:</b> Buy better living conditions and equipment. Comfort and good tools drastically improve your inspiration and experience gains.</li>
@@ -281,59 +281,61 @@
 		</ul>
 		<p><i>Hint:</i> You can learn more about things when clicking on the images.</p>
 		<p><i>Hint:</i> Time is fleeting. You will eventually reach retirement age and rest. However, as you progress, you may discover secrets to extending your career, or even achieving legendary status through the mysterious <b>Golden Pen</b>.</p>
-		<div style="text-align: center; margin-top: 20px;">
+		<div class="modal-footer-center">
 			<button class="btn" onclick="closeIntroModal()">Start Journey</button>
 		</div>
 	</div>
 </div>
 
 <!-- Info Modal Container -->
-<div id="infoModal" class="modal" style="display: none; z-index: 2004;">
+<div id="infoModal" class="modal modal-overlay-info" style="display: none;">
 	<div class="modal-content">
-		<div id="modalCategory" style="color: #888; font-size: 1.2em; text-transform: uppercase; margin-bottom: 10px; font-weight: bold;"></div>
-		<img id="modalImage" src="" alt="" style="width: 192px; height: 192px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+		<div id="modalCategory" class="modal-category-text"></div>
+		<!-- Added unlock message container -->
+		<div id="modalUnlockMessage" class="unlock-message" style="display: none;"></div>
+		<img id="modalImage" src="" alt="" class="modal-main-image">
 		<div id="modalTitle" class="modal-title"></div>
 		<div id="modalDescription" class="modal-description"></div>
-		<div id="modalMaxLevel" style="color: #4CAF50; display: none; font-size: 0.95em; margin-top: 10px;"></div>
-		<button class="btn" style="margin-top: 15px; width: 100%;" onclick="closeInfoModal()">Close</button>
+		<div id="modalMaxLevel" class="modal-max-level" style="display: none;"></div>
+		<button class="btn btn-full-width-mt15" onclick="closeInfoModal()">Close</button>
 	</div>
 </div>
 
 <!-- Tutorial Modal -->
-<div id="tutorialModal" class="modal" style="display: none; z-index: 2005;">
-	<div class="modal-content" style="max-width: 500px; text-align: left;">
-		<h2 id="tutorialModalTitle" style="text-align: center; margin-top: 0;"></h2>
+<div id="tutorialModal" class="modal modal-overlay-tutorial" style="display: none;">
+	<div class="modal-content modal-content-small">
+		<h2 id="tutorialModalTitle" class="modal-header-center"></h2>
 		<p id="tutorialModalText" class="tutorial-text"></p>
-		<div style="text-align: center; margin-top: 20px;">
+		<div class="modal-footer-center">
 			<button class="btn" onclick="closeTutorialModal()">Continue</button>
 		</div>
 	</div>
 </div>
 
 <!-- Book Modal Container -->
-<div id="bookModal" class="modal" style="display: none; z-index: 2003;">
+<div id="bookModal" class="modal modal-overlay-book" style="display: none;">
 	<div class="modal-content book-modal-content">
 		<div class="book-modal-left">
 			<img id="bookModalImage" src="" alt="Book Cover">
 		</div>
 		<div class="book-modal-right">
-			<h2 id="bookModalTitle" style="margin-top: 0; margin-bottom: 5px;">Title</h2>
-			<h4 id="bookModalSubtitle" style="margin-top: 0; color: #666; margin-bottom: 15px;">Subtitle</h4>
-			<p id="bookModalInfo" style="color: #888; font-size: 0.95em; margin-bottom: 15px;"></p>
+			<h2 id="bookModalTitle" class="book-modal-title">Title</h2>
+			<h4 id="bookModalSubtitle" class="book-modal-subtitle">Subtitle</h4>
+			<p id="bookModalInfo" class="book-modal-info"></p>
 			<div class="word-app-container" id="wordAppContainer">
 				<div id="bookModalFirstPage"></div>
 			</div>
-			<button class="btn" style="margin-top: 15px; align-self: flex-end;" onclick="closeBookModal()">Close</button>
+			<button class="btn btn-align-right" onclick="closeBookModal()">Close</button>
 		</div>
 	</div>
 </div>
 
 <!-- Version Mismatch Modal -->
-<div id="versionModal" class="modal" style="display: none; z-index: 3000;">
-	<div class="modal-content" style="max-width: 400px; text-align: center;">
-		<h2 style="margin-top: 0;">Game Updated!</h2>
+<div id="versionModal" class="modal modal-overlay-version" style="display: none;">
+	<div class="modal-content modal-content-xs">
+		<h2 class="modal-title-nomargin">Game Updated!</h2>
 		<p>The game has evolved to a new version. To ensure everything works correctly, your save will auto-reset to the beginning.</p>
-		<button class="btn btn-danger" style="margin-top: 15px; width: 100%;" onclick="resetGameData()">Reset Game</button>
+		<button class="btn btn-danger btn-full-width-mt15" onclick="resetGameData()">Reset Game</button>
 	</div>
 </div>
 

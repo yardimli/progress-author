@@ -22,7 +22,8 @@ function gameLoop(currentTime) {
         if (popup.type === 'tutorial') {
             showTutorialModal(popup.title, popup.text);
         } else if (popup.type === 'info') {
-            showModal(popup.imgEl);
+            // Pass the isNewUnlock flag to showModal
+            showModal(popup.imgEl, popup.isNewUnlock);
         }
     }
     
