@@ -158,34 +158,64 @@ function createAllRows(categoryType, containerId) {
 		if (isItem && categoryName === "Properties") {
 			let freeItemsDiv = document.createElement("div");
 			freeItemsDiv.className = "category-section";
-			freeItemsDiv.innerHTML = `
-				<div class="category-header" style="margin-top: 25px;">Cheat Items</div>
-				<div class="category-content list">
-					<!-- Inspiration Potion -->
-					<div class="ui-row" style="cursor: default;">
-						<div class="row-image" style="background-color: #9c27b0; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; border-radius: 4px;">🧪</div>
+			
+			// Dynamically generate Cheat Items (Potions) using JSON data
+			let headerHTML = `<div class="category-header" style="margin-top: 25px;">Cheat Items</div>`;
+			let contentDivPotions = document.createElement("div");
+			contentDivPotions.className = "category-content list";
+			
+			if (typeof potionsBaseData !== 'undefined') {
+				for (let key in potionsBaseData) {
+					let potion = potionsBaseData[key];
+					let row = document.createElement("div");
+					row.className = "ui-row";
+					row.style.cursor = "default";
+					
+					let imgSrc = `img/${potion.filefolder}256/${potion.filename.replace('.png', '.jpg')}`;
+					
+					row.innerHTML = `
+						<img src="${imgSrc}" class="row-image" alt="${potion.name}" data-name="${potion.name}" data-type="potion" style="cursor: pointer; object-fit: cover;" onclick="showModal(this)">
 						<div class="row-info">
-							<div class="row-title">Inspiration Potion</div>
-							<div class="row-value">x2.0 Inspiration</div>
+							<div class="row-title">${potion.name}</div>
+							<div class="row-value">x${potion.effect.toFixed(1)} ${potion.type === 'inspiration' ? 'Inspiration' : 'Game Speed'}</div>
 						</div>
-						<div class="potion-action" id="action-inspiration" style="width: 120px; text-align: right; flex-shrink: 0;">
-							<button class="btn" onclick="drinkPotion('inspiration')">Drink</button>
+						<div class="potion-action" id="action-${potion.type}" style="width: 120px; text-align: right; flex-shrink: 0;">
+							<button class="btn" onclick="drinkPotion('${potion.type}')">Drink</button>
 						</div>
-					</div>
-					<!-- Acceleration Potion -->
-					<div class="ui-row" style="cursor: default;">
-						<div class="row-image" style="background-color: #ff9800; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; border-radius: 4px;">⚡</div>
-						<div class="row-info">
-							<div class="row-title">Acceleration Potion</div>
-							<div class="row-value">x2.0 Game Speed</div>
-						</div>
-						<div class="potion-action" id="action-acceleration" style="width: 120px; text-align: right; flex-shrink: 0;">
-							<button class="btn" onclick="drinkPotion('acceleration')">Drink</button>
-						</div>
-					</div>
-				</div>
-			`;
+					`;
+					contentDivPotions.appendChild(row);
+				}
+			}
+			
+			freeItemsDiv.innerHTML = headerHTML;
+			freeItemsDiv.appendChild(contentDivPotions);
 			container.appendChild(freeItemsDiv);
+		}
+	}
+}
+
+// Function to dynamically generate the Life Experiences UI
+function initLifeExperiencesUI() {
+	let container = document.getElementById("lifeExperiencesContainer");
+	if (!container) return;
+	container.innerHTML = "";
+	
+	if (typeof lifeExperiencesBaseData !== 'undefined') {
+		for (let key in lifeExperiencesBaseData) {
+			let exp = lifeExperiencesBaseData[key];
+			let div = document.createElement("div");
+			div.style.textAlign = "center";
+			div.style.flex = "1";
+			div.style.minWidth = "80px";
+			
+			let imgSrc = `img/${exp.filefolder}256/${exp.filename.replace('.png', '.jpg')}`;
+			
+			div.innerHTML = `
+				<img src="${imgSrc}" alt="${exp.name}" data-name="${exp.name}" data-type="experience" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%; margin-bottom: 5px; cursor: pointer;" onclick="showModal(this)">
+				<div style="font-size: 0.85em; font-weight: bold; color: #666;">${exp.name}</div>
+				<div id="exp${exp.name}Display" style="color: #b8860b; font-weight: bold;">0</div>
+			`;
+			container.appendChild(div);
 		}
 	}
 }
@@ -531,11 +561,15 @@ function updateText() {
 	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(2));
 	
 	let lifeExp = getLifeExperiences();
-	updateIfChanged("expHardshipDisplay", format(lifeExp.hardship, 1));
-	updateIfChanged("expObservationDisplay", format(lifeExp.observation, 1));
-	updateIfChanged("expEscapismDisplay", format(lifeExp.escapism, 1));
-	updateIfChanged("expExposureDisplay", format(lifeExp.exposure, 1));
-	updateIfChanged("expSocialDisplay", format(lifeExp.social, 1));
+	
+	// Dynamically update Life Experiences text using JSON data
+	if (typeof lifeExperiencesBaseData !== 'undefined') {
+		for (let key in lifeExperiencesBaseData) {
+			let expName = lifeExperiencesBaseData[key].name;
+			let expValue = lifeExp[key.toLowerCase()] || 0;
+			updateIfChanged(`exp${expName}Display`, format(expValue, 1));
+		}
+	}
 	
 	let qualityMultiplier = getQualityMultiplier();
 	let multiplierDisplay = document.getElementById("bookQualityMultiplierDisplay");

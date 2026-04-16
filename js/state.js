@@ -77,4 +77,4 @@ var saveTimer = 0;
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
-var authorsBaseData, booksBaseData;
+var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData; // Added potions and lifeExperiences

@@ -1,0 +1,18 @@
+{
+  "Inspiration Potion": {
+    "name": "Inspiration Potion",
+    "effect": 2.0,
+    "type": "inspiration",
+    "filename": "inspiration_potion.png",
+    "filefolder": "potions",
+    "imageprompt": "A glowing purple potion in a vintage glass vial, emitting ethereal sparkles, drawn in a classic woodblock print style."
+  },
+  "Acceleration Potion": {
+    "name": "Acceleration Potion",
+    "effect": 2.0,
+    "type": "acceleration",
+    "filename": "acceleration_potion.png",
+    "filefolder": "potions",
+    "imageprompt": "A vibrant orange potion in a sleek flask, with lightning motifs, rendered in a striking Art Deco style."
+  }
+}

@@ -56,7 +56,8 @@ async function init() {
             jobsRes, skillsRes, itemsRes,
             jobCatRes, skillCatRes, itemCatRes,
             colorsRes, tooltipsRes, reqRes,
-            authorsRes, booksRes
+            authorsRes, booksRes,
+            potionsRes, lifeExpRes // Added new fetch requests
         ] = await Promise.all([
             fetch('data/jobs.json'),
             fetch('data/skills.json'),
@@ -68,7 +69,9 @@ async function init() {
             fetch('data/tooltips.json'),
             fetch('data/requirements.json'),
             fetch('data/authors.json'),
-            fetch('data/books.json')
+            fetch('data/books.json'),
+            fetch('data/potions.json'), // Added new fetch
+            fetch('data/lifeExperiences.json') // Added new fetch
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -84,10 +87,13 @@ async function init() {
         
         authorsBaseData = await authorsRes.json();
         booksBaseData = await booksRes.json();
+        potionsBaseData = await potionsRes.json(); // Assign potions data
+        lifeExperiencesBaseData = await lifeExpRes.json(); // Assign life experiences data
         
         createAllRows(jobCategories, "jobTable");
         createAllRows(skillCategories, "skillTable");
         createAllRows(itemCategories, "itemTable");
+        initLifeExperiencesUI(); // Initialize dynamic Life Experiences UI
         
         createData(gameData.taskData, jobBaseData);
         createData(gameData.taskData, skillBaseData);

@@ -20,7 +20,7 @@ function checkUnlocks() {
 		queueTutorialModal("Skills Unlocked", "With a roof over your head and more experience under your belt, you can now focus on self-improvement. The <b>Skills</b> tab is now available!");
 		applyUnlocksUI();
 	}
-	if (!gameData.unlocks.writing && gameData.coins >= 10000 && gameData.unlocks.shop && gameData.unlocks.skills) {
+	if (!gameData.unlocks.writing && gameData.coins >= 20000 && gameData.unlocks.shop && gameData.unlocks.skills) {
 		gameData.unlocks.writing = true;
 		queueTutorialModal("Writing Unlocked", "You've saved up a substantial amount of money. It's time to pursue your true passion. The <b>Writing</b> tab and Work/Writing balance slider are now available!");
 		applyUnlocksUI();
@@ -186,12 +186,24 @@ function getBookQuality() {
 	}
 	
 	let lifeExp = getLifeExperiences();
-	let expMultiplier = 1
-		+ (Math.log10(lifeExp.hardship + 1) * 0.1)
-		+ (Math.log10(lifeExp.observation + 1) * 0.1)
-		+ (Math.log10(lifeExp.escapism + 1) * 0.1)
-		+ (Math.log10(lifeExp.exposure + 1) * 0.1)
-		+ (Math.log10(lifeExp.social + 1) * 0.1);
+	let expMultiplier = 1;
+	
+	// Dynamically calculate the multiplier using JSON data
+	if (typeof lifeExperiencesBaseData !== 'undefined') {
+		for (let key in lifeExperiencesBaseData) {
+			let expData = lifeExperiencesBaseData[key];
+			let expValue = lifeExp[key.toLowerCase()] || 0;
+			let multValue = expData.multiplier || 0.1;
+			expMultiplier += Math.log10(expValue + 1) * multValue;
+		}
+	} else {
+		// Fallback in case JSON failed to load
+		expMultiplier += (Math.log10(lifeExp.hardship + 1) * 0.1)
+			+ (Math.log10(lifeExp.observation + 1) * 0.1)
+			+ (Math.log10(lifeExp.escapism + 1) * 0.1)
+			+ (Math.log10(lifeExp.exposure + 1) * 0.1)
+			+ (Math.log10(lifeExp.social + 1) * 0.1);
+	}
 	
 	let itemQualityMultiplier = 1;
 	if (gameData.currentProperty && gameData.currentProperty.baseData.writingQuality) {

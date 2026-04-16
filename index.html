@@ -152,34 +152,10 @@
 					</div>
 				</div>
 				
-				<!-- Life Experiences Section -->
+				<!-- Life Experiences Section (Dynamically populated) -->
 				<div class="category-header">Life Experiences (Quality Multipliers)</div>
-				<div class="ui-row" style="margin-bottom: 20px; cursor: default; padding: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; background-color: rgba(0,0,0,0.02);">
-					<div style="text-align: center; flex: 1; min-width: 80px;">
-						<div style="font-size: 1.5em; margin-bottom: 5px;">🌧️</div>
-						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Hardship</div>
-						<div id="expHardshipDisplay" style="color: #b8860b; font-weight: bold;">0</div>
-					</div>
-					<div style="text-align: center; flex: 1; min-width: 80px;">
-						<div style="font-size: 1.5em; margin-bottom: 5px;">👁️</div>
-						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Observation</div>
-						<div id="expObservationDisplay" style="color: #b8860b; font-weight: bold;">0</div>
-					</div>
-					<div style="text-align: center; flex: 1; min-width: 80px;">
-						<div style="font-size: 1.5em; margin-bottom: 5px;">💭</div>
-						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Escapism</div>
-						<div id="expEscapismDisplay" style="color: #b8860b; font-weight: bold;">0</div>
-					</div>
-					<div style="text-align: center; flex: 1; min-width: 80px;">
-						<div style="font-size: 1.5em; margin-bottom: 5px;">📚</div>
-						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Exposure</div>
-						<div id="expExposureDisplay" style="color: #b8860b; font-weight: bold;">0</div>
-					</div>
-					<div style="text-align: center; flex: 1; min-width: 80px;">
-						<div style="font-size: 1.5em; margin-bottom: 5px;">🗣️</div>
-						<div style="font-size: 0.85em; font-weight: bold; color: #666;">Social</div>
-						<div id="expSocialDisplay" style="color: #b8860b; font-weight: bold;">0</div>
-					</div>
+				<div id="lifeExperiencesContainer" class="ui-row" style="margin-bottom: 20px; cursor: default; padding: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; background-color: rgba(0,0,0,0.02);">
+					<!-- Dynamically populated by initLifeExperiencesUI() -->
 				</div>
 				
 				<div class="category-header">Published Books</div>
@@ -277,7 +253,7 @@
 
 <!-- Author Bio Modal -->
 <div id="authorBioModal" class="modal" style="display: none; z-index: 2001;">
-	<div class="modal-content" style="max-width: 500px; text-align: left;">
+	<div class="modal-content" style="max-width: 800px; text-align: left;">
 		<h2 id="bioModalName" style="margin-top: 0;"></h2>
 		<p id="bioModalText" style="color: #888; line-height: 1.6; font-size: 1.05em;"></p>
 		<button class="btn" onclick="closeAuthorBio()" style="margin-top: 20px; width: 100%;">Close</button>

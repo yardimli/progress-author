@@ -1,0 +1,37 @@
+{
+  "Hardship": {
+    "name": "Hardship",
+    "multiplier": 0.1,
+    "filename": "hardship.png",
+    "filefolder": "experiences",
+    "imageprompt": "A dark, stormy cloud raining over a cobblestone street, sepia-toned etching."
+  },
+  "Observation": {
+    "name": "Observation",
+    "multiplier": 0.1,
+    "filename": "observation.png",
+    "filefolder": "experiences",
+    "imageprompt": "A detailed, piercing eye looking through a vintage magnifying glass, dark brown ink."
+  },
+  "Escapism": {
+    "name": "Escapism",
+    "multiplier": 0.1,
+    "filename": "escapism.png",
+    "filefolder": "experiences",
+    "imageprompt": "A thought bubble filled with fantastical castles and dragons, classic woodblock print."
+  },
+  "Exposure": {
+    "name": "Exposure",
+    "multiplier": 0.1,
+    "filename": "exposure.png",
+    "filefolder": "experiences",
+    "imageprompt": "A towering stack of classic literature glowing with knowledge, Art Deco style."
+  },
+  "Social": {
+    "name": "Social",
+    "multiplier": 0.1,
+    "filename": "social.png",
+    "filefolder": "experiences",
+    "imageprompt": "Two silhouetted figures engaged in deep conversation over coffee, 1920s newspaper style."
+  }
+}
