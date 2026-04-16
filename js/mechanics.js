@@ -134,7 +134,11 @@ function startWritingBook() {
 	// Reset manual writing state
 	gameData.currentBookComposition = {};
 	typewriterText = "";
-	pendingTypewriterChars = 0;
+	currentTypewriterSentence = "";
+	typewriterIndex = 0;
+	isHoldingSceneButton = false;
+	clickTypingTimer = 0;
+	activeSceneType = null;
 }
 
 function pickNextBook(genre) {
@@ -311,9 +315,6 @@ function writeProgress(sceneType, timeInSeconds) {
 	}
 	gameData.currentBookComposition[sceneType] += words;
 	
-	pendingTypewriterChars += words * 5; // roughly 5 chars per word
-	lastSceneType = sceneType;
-	
 	let target = getBookLength();
 	if (gameData.wordsWritten >= target) {
 		finishBook();
@@ -322,15 +323,22 @@ function writeProgress(sceneType, timeInSeconds) {
 
 // Interaction Handlers
 function handleSceneClick(sceneType) {
-	writeProgress(sceneType, 3); // 3 seconds of game time progress
+	activeSceneType = sceneType;
+	nextSceneType = sceneType; // Queue the genre for the typewriter
+	clickTypingTimer = 1.0; // 1 second of typing/progress
 	if (typeof updateUI === 'function') updateUI();
 }
 
 function handleSceneHoldStart(sceneType) {
+	isHoldingSceneButton = true;
 	activeSceneType = sceneType;
+	nextSceneType = sceneType; // Queue the genre for the typewriter
+	clickTypingTimer = 0; // Override click timer
 }
 
 function handleSceneHoldEnd() {
+	isHoldingSceneButton = false;
+	clickTypingTimer = 0; // Clear click timer to stop instantly on release
 	activeSceneType = null;
 }
 
@@ -373,6 +381,11 @@ function finishBook() {
 	gameData.wordsWritten = 0;
 	gameData.currentBookComposition = {};
 	typewriterText = "";
+	currentTypewriterSentence = ""; // Reset sentence
+	typewriterIndex = 0; // Reset index
+	isHoldingSceneButton = false; // Reset hold state
+	clickTypingTimer = 0; // Reset click timer
+	activeSceneType = null; // Clear active scene
 	document.getElementById('liveWritingText').innerHTML = '<span class="blinking-cursor">|</span>';
 }
 

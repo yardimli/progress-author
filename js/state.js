@@ -85,10 +85,11 @@ var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, ge
 
 // Manual Writing State
 var activeSceneType = null;
-var pendingTypewriterChars = 0;
+var nextSceneType = "Action"; // Track the next scene type to transition to
+var isHoldingSceneButton = false; // Tracks manual hold
+var clickTypingTimer = 0; // Tracks the 1-second click duration
 var currentTypewriterSentence = "";
 var typewriterIndex = 0;
 var typewriterText = "";
-var lastSceneType = "Action";
 var isLiveCorrecting = false; // Tracks if the typewriter is currently fixing a typo
 var liveTypingDelay = 0;      // Timer for the next keystroke

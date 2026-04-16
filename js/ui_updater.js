@@ -475,24 +475,34 @@ function updateCompositionUI() {
 		totalWords += gameData.currentBookComposition[key];
 	}
 	
+	let html = '';
 	if (totalWords === 0) {
-		container.innerHTML = '<i>Start writing to see composition...</i>';
-		return;
+		html = '<i>Start writing to see composition...</i>';
+	} else {
+		html = '<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.85em;">';
+		for (let sceneType in gameData.currentBookComposition) {
+			let words = gameData.currentBookComposition[sceneType];
+			let pct = (words / totalWords * 100).toFixed(1);
+			html += `<div style="background: rgba(0,0,0,0.05); padding: 5px 10px; border-radius: 4px;"><b>${sceneType}:</b> ${pct}%</div>`;
+		}
+		html += '</div>';
 	}
 	
-	let html = '<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.85em;">';
-	for (let sceneType in gameData.currentBookComposition) {
-		let words = gameData.currentBookComposition[sceneType];
-		let pct = (words / totalWords * 100).toFixed(1);
-		html += `<div style="background: rgba(0,0,0,0.05); padding: 5px 10px; border-radius: 4px;"><b>${sceneType}:</b> ${pct}%</div>`;
+	// Only update the DOM if the generated HTML is different from the current innerHTML
+	if (container.innerHTML !== html) {
+		container.innerHTML = html;
 	}
-	html += '</div>';
-	container.innerHTML = html;
 }
 
 // Handles the realistic typewriter effect for the manual writing interface
 function updateTypewriter(deltaTime) {
-	if (pendingTypewriterChars <= 0) return;
+	// Check if actively writing (holding button or within 1-second click window)
+	let isActivelyWriting = (isHoldingSceneButton || clickTypingTimer > 0);
+	
+	// Instantly stop outputting if not actively writing (unless finishing a typo correction)
+	if (!isActivelyWriting && !isLiveCorrecting) {
+		return;
+	}
 	
 	liveTypingDelay -= deltaTime * 1000;
 	if (liveTypingDelay > 0) return;
@@ -500,16 +510,21 @@ function updateTypewriter(deltaTime) {
 	if (isLiveCorrecting) {
 		typewriterText = typewriterText.slice(0, -1);
 		isLiveCorrecting = false;
-		liveTypingDelay = 75; // Pause after deleting
+		liveTypingDelay = 35; // Pause after deleting
 	} else {
+		// If the sentence is finished, clear the line and start over
 		if (typewriterIndex >= currentTypewriterSentence.length) {
-			let sentences = sceneTypesBaseData ? sceneTypesBaseData[lastSceneType] : null;
+			typewriterText = ""; // Clear the line
+			typewriterIndex = 0;
+			
+			// Fetch new sentence using the queued scene type (allows finishing last sentence before switching)
+			let sceneToUse = nextSceneType || "Action";
+			let sentences = sceneTypesBaseData ? sceneTypesBaseData[sceneToUse] : null;
 			if (sentences && sentences.length > 0) {
 				currentTypewriterSentence = sentences[Math.floor(Math.random() * sentences.length)] + " ";
 			} else {
 				currentTypewriterSentence = "Writing... ";
 			}
-			typewriterIndex = 0;
 		}
 		
 		let char = currentTypewriterSentence[typewriterIndex];
@@ -518,25 +533,19 @@ function updateTypewriter(deltaTime) {
 			const chars = 'abcdefghijklmnopqrstuvwxyz';
 			typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
 			isLiveCorrecting = true;
-			liveTypingDelay = 125; // Pause before realizing mistake
+			liveTypingDelay = 60; // Pause before realizing mistake
 		} else {
 			typewriterText += char;
 			typewriterIndex++;
-			pendingTypewriterChars--;
-			// Delay between 167ms and 500ms (averages 20-40 chars per second)
-			liveTypingDelay = Math.random() * 16 + 33;
+			// Delay between 167ms and 500ms (averages 40-80 chars per second)
+			liveTypingDelay = Math.random() * 8 + 16;
 		}
-	}
-	
-	// Keep text length manageable to prevent lag
-	if (typewriterText.length > 500) {
-		typewriterText = typewriterText.substring(typewriterText.length - 500);
 	}
 	
 	const displayEl = document.getElementById('liveWritingText');
 	if (displayEl) {
 		displayEl.innerHTML = typewriterText + '<span class="blinking-cursor">|</span>';
-		displayEl.scrollTop = displayEl.scrollHeight;
+		displayEl.scrollLeft = displayEl.scrollWidth; // Keep cursor in view if it overflows
 	}
 }
 

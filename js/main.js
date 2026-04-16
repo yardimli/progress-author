@@ -38,7 +38,14 @@ function gameLoop(currentTime) {
             if (gameData.potions.acceleration < 0) gameData.potions.acceleration = 0;
         }
         
-        // Handle manual writing continuous hold
+        // Handle manual writing continuous hold or click timer
+        if (clickTypingTimer > 0) {
+            clickTypingTimer -= deltaTime;
+            if (clickTypingTimer <= 0 && !isHoldingSceneButton) {
+                activeSceneType = null; // Stop writing if timer runs out and not holding
+            }
+        }
+        
         if (activeSceneType) {
             writeProgress(activeSceneType, deltaTime);
         }

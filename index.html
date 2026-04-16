@@ -162,17 +162,16 @@
 				<!-- Manual Writing Interface -->
 				<div id="manualWritingContainer" class="ui-row" style="display: none; flex-direction: column; padding: 15px; margin-bottom: 20px; cursor: default;">
 					<div class="category-header" style="margin-top: 0; width: 100%;">Write Scene</div>
-					<div class="tab-description" style="font-size: 0.9em; margin-bottom: 10px; width: 100%;">Click to write 3 seconds worth of words, or hold to write continuously. Match the ideal composition for your genre to maximize quality!</div>
+					<div class="tab-description" style="font-size: 0.9em; margin-bottom: 10px; width: 100%;">Click to write 1 second worth of words, or hold to write continuously. Match the ideal composition for your genre to maximize quality!</div>
 					<div id="sceneButtonsContainer" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; width: 100%;">
 						<!-- Buttons injected here -->
 					</div>
 					
-					<div class="category-header" style="width: 100%;">Live Draft</div>
-					<div class="word-app-container" style="height: 150px; margin-bottom: 15px; overflow-y: auto; width: 100%; box-sizing: border-box;" id="liveWritingText">
+					<!-- Single line live draft container -->
+					<div class="word-app-container" style="margin-bottom: 15px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden; padding: 10px;" id="liveWritingText">
 						<span class="blinking-cursor">|</span>
 					</div>
 					
-					<div class="category-header" style="width: 100%;">Current Composition</div>
 					<div id="compositionStats" style="width: 100%;">
 						<i>Start writing to see composition...</i>
 					</div>
