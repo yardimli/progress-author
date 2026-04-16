@@ -5,7 +5,11 @@ var isPaused = false;
 var isInitialized = false;
 var popupQueue = [];
 
+// Define the current game version
+const GAME_VERSION = "1.0.2";
+
 var gameData = {
+	version: GAME_VERSION, // Save the version in state
 	taskData: {},
 	itemData: {},
 	coins: 0,

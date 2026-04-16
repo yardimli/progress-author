@@ -595,6 +595,12 @@ function updateText() {
 		writingProgressBar.style.width = writingProgress + "%";
 	}
 	updateIfChanged("writingProgressDisplay", writingProgress.toFixed(1) + "%");
+	
+	// Update game version display in settings
+	let versionDisplay = document.getElementById("gameVersionDisplay");
+	if (versionDisplay && versionDisplay.textContent !== "v" + GAME_VERSION) {
+		versionDisplay.textContent = "v" + GAME_VERSION;
+	}
 }
 
 function setSignDisplay() {
@@ -674,7 +680,7 @@ function updateUI() {
 
 // Helper to update the global pause state based on open modals
 function updatePauseState() {
-	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal'];
+	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal'];
 	let anyOpen = false;
 	for (let id of modals) {
 		let m = document.getElementById(id);

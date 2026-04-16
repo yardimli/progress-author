@@ -77,6 +77,17 @@ function loadGameData() {
 	let gameDataSave = JSON.parse(localStorage.getItem("authorsJourneySave"));
 	
 	if (gameDataSave !== null) {
+		// Check if the saved version matches the current game version
+		if (gameDataSave.version !== GAME_VERSION) {
+			// Show the version mismatch modal
+			let versionModal = document.getElementById('versionModal');
+			if (versionModal) {
+				versionModal.style.display = 'flex';
+			}
+			isPaused = true; // Pause the game
+			return; // Abort loading old save to prevent crashes, wait for user to reset
+		}
+		
 		replaceSaveDict(gameData, gameDataSave);
 		replaceSaveDict(gameData.requirements, gameDataSave.requirements);
 		replaceSaveDict(gameData.taskData, gameDataSave.taskData);

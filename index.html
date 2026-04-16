@@ -218,6 +218,11 @@
 			
 			<div class="tab" id="settings" style="display: none;">
 				<ul>
+					<!-- Display Game Version -->
+					<li>
+						<h2>Game Version</h2>
+						<p id="gameVersionDisplay" style="color: #888; font-weight: bold;"></p>
+					</li>
 					<li>
 						<h2>Import/export save</h2>
 						<button class="btn" onClick="importGameData()">Import</button>
@@ -317,6 +322,15 @@
 			</div>
 			<button class="btn" style="margin-top: 15px; align-self: flex-end;" onclick="closeBookModal()">Close</button>
 		</div>
+	</div>
+</div>
+
+<!-- Version Mismatch Modal -->
+<div id="versionModal" class="modal" style="display: none; z-index: 3000;">
+	<div class="modal-content" style="max-width: 400px; text-align: center;">
+		<h2 style="margin-top: 0;">Game Updated!</h2>
+		<p>The game has evolved to a new version. To ensure everything works correctly, your save will auto-reset to the beginning.</p>
+		<button class="btn btn-danger" style="margin-top: 15px; width: 100%;" onclick="resetGameData()">Reset Game</button>
 	</div>
 </div>
 
