@@ -143,6 +143,16 @@
     color: #aaa;
 }
 
+/* NEW: Dark mode for tutorial text */
+.dark .tutorial-text {
+    color: #aaa;
+}
+
+/* NEW: Dark mode for Author Selection */
+.dark #authorSelectionScreen .modal-content {
+    background-color: #1a1a1a;
+}
+
 /* NEW: Dark mode for Word Processor App */
 .dark .word-app-container {
     background-color: #1e1e1e;

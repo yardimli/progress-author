@@ -89,6 +89,11 @@ function loadGameData() {
 			gameData.potions = { inspiration: 0, acceleration: 0 };
 		}
 		
+		// NEW: Backward compatibility for unlocks
+		if (!gameData.unlocks) {
+			gameData.unlocks = { shop: false, skills: false, writing: false };
+		}
+		
 		if (gameData.completedBooks && gameData.completedBooks.length > 0) {
 			if (typeof gameData.completedBooks[0] === 'string') {
 				gameData.completedBooks = gameData.completedBooks.map(id => ({

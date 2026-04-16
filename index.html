@@ -22,8 +22,8 @@
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
 				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn" style="padding: 2px 8px; margin-left: 5px;" onClick="setTimeWarping()">Enable flow</button></span></div>
 				
-				<!-- NEW: Slider for Work/Writing balance -->
-				<div style="display: flex; align-items: center; gap: 10px; margin-top: 2px;">
+				<!-- Slider for Work/Writing balance -->
+				<div id="workWritingSliderContainer" class="hidden" style="display: flex; align-items: center; gap: 10px; margin-top: 2px;">
 					<span style="font-size: 0.9em; font-weight: bold; color: #4CAF50;">Work: <span id="workPercentage">100</span>%</span>
 					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider" style="width: 150px; margin: 0;">
 					<span style="font-size: 0.9em; font-weight: bold; color: #219ebc;">Writing: <span id="writingPercentage">0</span>%</span>
@@ -40,15 +40,15 @@
 				<img id="jobTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Work <span id="jobTabText" style="color:#4CAF50;margin-left:8px;"></span>
 			</div>
-			<div class="tabButton" id="skillTabButton" onClick="setTab(this, 'skills')">
+			<div class="tabButton hidden" id="skillTabButton" onClick="setTab(this, 'skills')">
 				<img id="skillTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Skills <span id="skillTabText" style="margin-left:8px;font-weight:bold;"></span>
 			</div>
-			<div class="tabButton" id="shopTabButton" onClick="setTab(this, 'shop')">
+			<div class="tabButton hidden" id="shopTabButton" onClick="setTab(this, 'shop')">
 				<img id="shopTabImg" src="" style="width:24px;height:24px;border-radius:50%;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Shop <span id="shopTabText" style="color:#f44336;margin-left:8px;"></span>
 			</div>
-			<div class="tabButton" id="writingTabButton" onClick="setTab(this, 'writing')">
+			<div class="tabButton hidden" id="writingTabButton" onClick="setTab(this, 'writing')">
 				<img id="writingTabImg" src="" style="width:24px;height:24px;border-radius:4px;object-fit:cover;margin-right:8px;display:none;" alt="">
 				Writing
 			</div>
@@ -152,7 +152,7 @@
 					</div>
 				</div>
 				
-				<!-- NEW: Life Experiences Section -->
+				<!-- Life Experiences Section -->
 				<div class="category-header">Life Experiences (Quality Multipliers)</div>
 				<div class="ui-row" style="margin-bottom: 20px; cursor: default; padding: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; background-color: rgba(0,0,0,0.02);">
 					<div style="text-align: center; flex: 1; min-width: 80px;">
@@ -264,6 +264,26 @@
 	</div>
 </div>
 
+<!-- NEW: Author Selection Screen -->
+<div id="authorSelectionScreen" class="modal" style="display: none; z-index: 2000;">
+	<div class="modal-content" style="max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 30px;">
+		<h1 style="text-align: center; margin-top: 0;">Choose Your Author</h1>
+		<p style="text-align: center; color: #888; font-size: 1.1em; margin-bottom: 30px;">Select the protagonist for your journey. Click an image to read their biography.</p>
+		<div id="authorSelectionGrid" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+			<!-- Populated dynamically by JS -->
+		</div>
+	</div>
+</div>
+
+<!-- NEW: Author Bio Modal -->
+<div id="authorBioModal" class="modal" style="display: none; z-index: 2001;">
+	<div class="modal-content" style="max-width: 500px; text-align: left;">
+		<h2 id="bioModalName" style="margin-top: 0;"></h2>
+		<p id="bioModalText" style="color: #888; line-height: 1.6; font-size: 1.05em;"></p>
+		<button class="btn" onclick="closeAuthorBio()" style="margin-top: 20px; width: 100%;">Close</button>
+	</div>
+</div>
+
 <!-- Intro Modal -->
 <div id="introModal" class="modal" style="display: none;">
 	<div class="modal-content" style="max-width: 600px; text-align: left;">
@@ -285,12 +305,24 @@
 </div>
 
 <!-- Info Modal Container -->
-<div id="infoModal" class="modal" style="display: none;">
+<div id="infoModal" class="modal" style="display: none; z-index: 2004;">
 	<div class="modal-content">
 		<img id="modalImage" src="" alt="" style="width: 192px; height: 192px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
 		<div id="modalTitle" class="modal-title"></div>
 		<div id="modalDescription" class="modal-description"></div>
 		<div id="modalMaxLevel" style="color: #4CAF50; display: none; font-size: 0.95em; margin-top: 10px;"></div>
+		<button class="btn" style="margin-top: 15px; width: 100%;" onclick="closeInfoModal()">Close</button>
+	</div>
+</div>
+
+<!-- NEW: Tutorial Modal -->
+<div id="tutorialModal" class="modal" style="display: none; z-index: 2005;">
+	<div class="modal-content" style="max-width: 500px; text-align: left;">
+		<h2 id="tutorialModalTitle" style="text-align: center; margin-top: 0;"></h2>
+		<p id="tutorialModalText" class="tutorial-text"></p>
+		<div style="text-align: center; margin-top: 20px;">
+			<button class="btn" onclick="closeTutorialModal()">Continue</button>
+		</div>
 	</div>
 </div>
 

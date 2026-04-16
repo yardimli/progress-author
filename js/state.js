@@ -1,10 +1,15 @@
 // Global variables, gameData, constants
 
+// NEW: Global state variables for pausing and queuing modals
+var isPaused = false;
+var isInitialized = false;
+var popupQueue = [];
+
 var gameData = {
 	taskData: {},
 	itemData: {},
 	coins: 0,
-	days: 365 * 18, // Starts at 18
+	days: 365 * 20, // Starts at 20
 	fame: 0,
 	timeWarpingEnabled: true,
 	rebirthOneCount: 0,
@@ -31,6 +36,13 @@ var gameData = {
 	potions: {
 		inspiration: 0,
 		acceleration: 0
+	},
+	
+	// NEW: Track unlocked features
+	unlocks: {
+		shop: false,
+		skills: false,
+		writing: false
 	},
 	
 	// Writing Process variables

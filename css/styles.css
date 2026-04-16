@@ -585,6 +585,13 @@ button:focus {
     margin-bottom: 10px;
 }
 
+/* NEW: Tutorial Modal Text Style */
+.tutorial-text {
+    line-height: 1.6;
+    font-size: 1.05em;
+    color: #555;
+}
+
 /* NEW: Book Modal Specific Styles */
 .book-modal-content {
     max-width: 800px;

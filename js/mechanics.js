@@ -8,6 +8,25 @@ function applyExpenses() {
 	}
 }
 
+// NEW: Check conditions to unlock new tabs
+function checkUnlocks() {
+	if (!gameData.unlocks.shop && gameData.taskData["Gig Worker"].level >= 3) {
+		gameData.unlocks.shop = true;
+		queueTutorialModal("Shop Unlocked", "You've earned enough experience to start looking for better living conditions and equipment. The <b>Shop</b> tab is now available!");
+		applyUnlocksUI();
+	}
+	if (!gameData.unlocks.skills && gameData.currentProperty.name === "Rented Room" && gameData.taskData["Gig Worker"].level >= 5) {
+		gameData.unlocks.skills = true;
+		queueTutorialModal("Skills Unlocked", "With a roof over your head and more experience under your belt, you can now focus on self-improvement. The <b>Skills</b> tab is now available!");
+		applyUnlocksUI();
+	}
+	if (!gameData.unlocks.writing && gameData.coins >= 10000 && gameData.unlocks.shop && gameData.unlocks.skills) {
+		gameData.unlocks.writing = true;
+		queueTutorialModal("Writing Unlocked", "You've saved up a substantial amount of money. It's time to pursue your true passion. The <b>Writing</b> tab and Work/Writing balance slider are now available!");
+		applyUnlocksUI();
+	}
+}
+
 function goBankrupt() {
 	gameData.coins = 0;
 	gameData.currentProperty = gameData.itemData["Homeless"];
@@ -72,7 +91,6 @@ function increaseDays() {
 	gameData.days += increase;
 }
 
-// Calculates the raw writing speed before the 1000 words/day cap
 function getRawWritingSpeed() {
 	let baseSpeed = 100;
 	let typingSpeed = gameData.taskData["Typing Speed"] ? gameData.taskData["Typing Speed"].getEffect() : 1;
@@ -80,10 +98,8 @@ function getRawWritingSpeed() {
 	let inspiration = getInspiration();
 	let fullTimeBonus = (gameData.currentJob && gameData.currentJob.name === "Full-Time Author") ? 5 : 1;
 	
-	// Apply writing percentage from the slider
 	let writingPercentage = gameData.workWritingBalance / 100;
 	
-	// Calculate combined item writing speed multipliers
 	let itemWritingMultiplier = 1;
 	if (gameData.currentProperty && gameData.currentProperty.baseData.writingMultiplier) {
 		itemWritingMultiplier *= gameData.currentProperty.baseData.writingMultiplier;
@@ -97,12 +113,10 @@ function getRawWritingSpeed() {
 	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier;
 }
 
-// Caps writing speed at 1000 words/day
 function getWritingSpeed() {
 	return Math.min(1000, getRawWritingSpeed());
 }
 
-// Converts excess writing speed into a quality multiplier (Max x10)
 function getQualityMultiplier() {
 	let rawSpeed = getRawWritingSpeed();
 	if (rawSpeed > 1000) {
@@ -137,6 +151,19 @@ function getLifeExperiences() {
 			exp.social += task.level * task.social;
 		}
 	}
+	
+	// NEW: Apply author starting multipliers
+	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
+		let authorMults = authorsBaseData[gameData.currentAuthor].multipliers;
+		if (authorMults) {
+			exp.hardship *= (authorMults.hardship || 1);
+			exp.observation *= (authorMults.observation || 1);
+			exp.escapism *= (authorMults.escapism || 1);
+			exp.exposure *= (authorMults.exposure || 1);
+			exp.social *= (authorMults.social || 1);
+		}
+	}
+	
 	return exp;
 }
 
@@ -148,7 +175,6 @@ function getBookLength() {
 	return (50 + (plottingLvl * 2)) * 250;
 }
 
-// Factored in the 5 Life Experiences to heavily boost book quality
 function getBookQuality() {
 	let grammar = gameData.taskData["Grammar & Prose"] ? gameData.taskData["Grammar & Prose"].level : 0;
 	let plotting = gameData.taskData["Plotting"] ? gameData.taskData["Plotting"].level : 0;
@@ -159,7 +185,6 @@ function getBookQuality() {
 		baseSkillQuality = 0.3;
 	}
 	
-	// Calculate multiplier based on accumulated life experiences (diminishing returns via log10)
 	let lifeExp = getLifeExperiences();
 	let expMultiplier = 1
 		+ (Math.log10(lifeExp.hardship + 1) * 0.1)
@@ -168,7 +193,6 @@ function getBookQuality() {
 		+ (Math.log10(lifeExp.exposure + 1) * 0.1)
 		+ (Math.log10(lifeExp.social + 1) * 0.1);
 	
-	// NEW: Calculate combined item writing quality multipliers
 	let itemQualityMultiplier = 1;
 	if (gameData.currentProperty && gameData.currentProperty.baseData.writingQuality) {
 		itemQualityMultiplier *= gameData.currentProperty.baseData.writingQuality;
@@ -179,7 +203,6 @@ function getBookQuality() {
 		}
 	}
 	
-	// MODIFIED: Apply the item quality multiplier to the final book quality
 	return baseSkillQuality * expMultiplier * itemQualityMultiplier;
 }
 
@@ -190,7 +213,6 @@ function updateWritingProcess() {
 	let target = getBookLength();
 	
 	while (gameData.wordsWritten >= target) {
-		// Apply quality multiplier and enforce minimum royalty
 		let baseQuality = getBookQuality();
 		let multiplier = getQualityMultiplier();
 		let quality = baseQuality * multiplier;
@@ -219,7 +241,7 @@ function updateWritingProcess() {
 				age: bookAge,
 				day: bookDay,
 				royalties: royalty,
-				quality: quality // Save the final quality for the UI
+				quality: quality
 			});
 		}
 		
@@ -261,13 +283,8 @@ function rebirthReset() {
 	gameData.currentProperty = gameData.itemData["Homeless"];
 	gameData.currentMisc = [];
 	
-	gameData.currentAuthor = null;
 	gameData.currentBook = null;
 	gameData.completedBooks = [];
-	if (authorsBaseData) {
-		let authorKeys = Object.keys(authorsBaseData);
-		gameData.currentAuthor = authorKeys[Math.floor(Math.random() * authorKeys.length)];
-	}
 	pickNextBook();
 	
 	for (let taskName in gameData.taskData) {

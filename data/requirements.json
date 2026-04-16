@@ -834,7 +834,7 @@
     ],
     "requirements": [
       {
-        "requirement": 0
+        "requirement": 6000
       }
     ]
   },
@@ -848,7 +848,7 @@
     ],
     "requirements": [
       {
-        "requirement": 2000
+        "requirement": 9000
       }
     ]
   },
@@ -862,7 +862,7 @@
     ],
     "requirements": [
       {
-        "requirement": 15000
+        "requirement": 20000
       }
     ]
   },
@@ -876,7 +876,7 @@
     ],
     "requirements": [
       {
-        "requirement": 30000
+        "requirement": 35000
       }
     ]
   },

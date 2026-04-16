@@ -6,6 +6,7 @@ function update() {
     doCurrentTask(gameData.currentSkill);
     updateWritingProcess();
     applyExpenses();
+    checkUnlocks(); // NEW: Check if any new tabs should be unlocked
     updateUI();
 }
 
@@ -15,17 +16,30 @@ function gameLoop(currentTime) {
     
     if (deltaTime > 86400) deltaTime = 86400;
     
-    // Update potion timers (real-time)
-    if (gameData.potions.inspiration > 0) {
-        gameData.potions.inspiration -= deltaTime;
-        if (gameData.potions.inspiration < 0) gameData.potions.inspiration = 0;
-    }
-    if (gameData.potions.acceleration > 0) {
-        gameData.potions.acceleration -= deltaTime;
-        if (gameData.potions.acceleration < 0) gameData.potions.acceleration = 0;
+    // NEW: Process popup queue if not currently paused
+    if (!isPaused && popupQueue.length > 0) {
+        let popup = popupQueue.shift();
+        if (popup.type === 'tutorial') {
+            showTutorialModal(popup.title, popup.text);
+        } else if (popup.type === 'info') {
+            showModal(popup.imgEl);
+        }
     }
     
-    update();
+    // MODIFIED: Only update game logic if not paused
+    if (!isPaused) {
+        // Update potion timers (real-time)
+        if (gameData.potions.inspiration > 0) {
+            gameData.potions.inspiration -= deltaTime;
+            if (gameData.potions.inspiration < 0) gameData.potions.inspiration = 0;
+        }
+        if (gameData.potions.acceleration > 0) {
+            gameData.potions.acceleration -= deltaTime;
+            if (gameData.potions.acceleration < 0) gameData.potions.acceleration = 0;
+        }
+        
+        update();
+    }
     
     saveTimer += deltaTime;
     if (saveTimer >= 3) {
@@ -95,34 +109,65 @@ async function init() {
         loadGameData();
         
         if (!gameData.currentAuthor) {
-            let authorKeys = Object.keys(authorsBaseData);
-            gameData.currentAuthor = authorKeys[Math.floor(Math.random() * authorKeys.length)];
+            // NEW: Show author selection screen instead of random pick
+            showAuthorSelection();
+            return; // Halt initialization until author is selected
         }
         
-        if (!gameData.currentBook) {
-            pickNextBook();
-        }
-        
-        setCustomEffects();
-        addMultipliers();
-        
-        setTab(jobTabButton, "jobs");
-        
-        update();
-        
-        lastTime = performance.now();
-        requestAnimationFrame(gameLoop);
-        
-        logEvent("Started a new game. Welcome to Author's Journey!");
-        
-        // NEW: Show intro modal if it hasn't been seen yet
-        if (!gameData.introSeen) {
-            showIntroModal();
-        }
+        continueInit();
         
     } catch (error) {
         console.error("Failed to load game data:", error);
         alert("Failed to load game data. Ensure you are running this on a local web server to allow fetch API to work.");
+    }
+}
+
+// NEW: Continues initialization after an author is selected or loaded
+function continueInit() {
+    if (!gameData.currentBook) {
+        pickNextBook();
+    }
+    
+    setCustomEffects();
+    addMultipliers();
+    
+    setTab(jobTabButton, "jobs");
+    
+    update();
+    
+    lastTime = performance.now();
+    requestAnimationFrame(gameLoop);
+    
+    logEvent("Started a new game. Welcome to Author's Journey!");
+    
+    if (!gameData.introSeen) {
+        showIntroModal();
+    }
+}
+
+function continueInit() {
+    if (!gameData.currentBook) {
+        pickNextBook();
+    }
+    
+    setCustomEffects();
+    addMultipliers();
+    
+    applyUnlocksUI(); // NEW: Apply hidden states to tabs based on unlocks
+    
+    setTab(jobTabButton, "jobs");
+    
+    update();
+    
+    lastTime = performance.now();
+    requestAnimationFrame(gameLoop);
+    
+    logEvent("Started a new game. Welcome to Author's Journey!");
+    
+    isInitialized = true; // NEW: Mark as initialized so new unlocks trigger modals
+    
+    if (!gameData.introSeen) {
+        showIntroModal();
     }
 }
 

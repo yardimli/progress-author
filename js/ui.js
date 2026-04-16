@@ -16,7 +16,29 @@ function setTab(element, selectedTab) {
 	element.classList.add("btn-active");
 }
 
-// NEW: Function to handle slider updates
+// NEW: Update UI visibility based on unlocks
+function applyUnlocksUI() {
+	if (gameData.unlocks.shop) {
+		document.getElementById("shopTabButton").classList.remove("hidden");
+	} else {
+		document.getElementById("shopTabButton").classList.add("hidden");
+	}
+	
+	if (gameData.unlocks.skills) {
+		document.getElementById("skillTabButton").classList.remove("hidden");
+	} else {
+		document.getElementById("skillTabButton").classList.add("hidden");
+	}
+	
+	if (gameData.unlocks.writing) {
+		document.getElementById("writingTabButton").classList.remove("hidden");
+		document.getElementById("workWritingSliderContainer").classList.remove("hidden");
+	} else {
+		document.getElementById("writingTabButton").classList.add("hidden");
+		document.getElementById("workWritingSliderContainer").classList.add("hidden");
+	}
+}
+
 function updateWorkWritingBalance(value) {
 	gameData.workWritingBalance = parseInt(value);
 	document.getElementById("workPercentage").textContent = 100 - gameData.workWritingBalance;
@@ -182,9 +204,17 @@ function updateRequiredRows(data, categoryType) {
 			if (!element) continue;
 			
 			let requirements = gameData.requirements[entityName];
+			let previouslyCompleted = requirements ? requirements.completed : true; // NEW: Track previous state
 			
 			if (!requirements || requirements.isCompleted()) {
-				if (element.classList.contains("hiddenTask")) element.classList.remove("hiddenTask");
+				if (element.classList.contains("hiddenTask")) {
+					element.classList.remove("hiddenTask");
+					// NEW: Queue info modal if newly unlocked
+					if (requirements && !previouslyCompleted && isInitialized) {
+						let imgEl = element.querySelector('.card-image, .row-image');
+						if (imgEl) queueInfoModal(imgEl);
+					}
+				}
 			} else {
 				if (!element.classList.contains("hiddenTask")) element.classList.add("hiddenTask");
 				
@@ -410,7 +440,6 @@ function updateBookHistory() {
 		let royalties = bookRecord.royalties || 0;
 		let yearlyRoyalties = royalties * 365;
 		
-		// MODIFIED: Display the book's quality in the history list
 		let qualityText = bookRecord.quality ? ` | Quality: ${bookRecord.quality.toFixed(1)}%` : "";
 		
 		let div = document.createElement("div");
@@ -501,7 +530,6 @@ function updateText() {
 	updateIfChanged("writingSpeedDisplayTab", format(getWritingSpeed()));
 	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(2));
 	
-	// NEW: Update Life Experiences UI
 	let lifeExp = getLifeExperiences();
 	updateIfChanged("expHardshipDisplay", format(lifeExp.hardship, 1));
 	updateIfChanged("expObservationDisplay", format(lifeExp.observation, 1));
@@ -610,6 +638,45 @@ function updateUI() {
 	updatePotionsUI();
 }
 
+// NEW: Helper to update the global pause state based on open modals
+function updatePauseState() {
+	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal'];
+	let anyOpen = false;
+	for (let id of modals) {
+		let m = document.getElementById(id);
+		if (m && m.style.display !== 'none' && m.style.display !== '') {
+			anyOpen = true;
+			break;
+		}
+	}
+	isPaused = anyOpen;
+}
+
+// NEW: Queue functions for modals
+function queueTutorialModal(title, text) {
+	popupQueue.push({ type: 'tutorial', title: title, text: text });
+}
+
+function queueInfoModal(imgEl) {
+	popupQueue.push({ type: 'info', imgEl: imgEl });
+}
+
+// NEW: Show Tutorial Modal
+function showTutorialModal(title, text) {
+	let modal = document.getElementById('tutorialModal');
+	document.getElementById('tutorialModalTitle').textContent = title;
+	document.getElementById('tutorialModalText').innerHTML = text;
+	modal.style.display = 'flex';
+	updatePauseState();
+}
+
+// NEW: Close Tutorial Modal
+function closeTutorialModal() {
+	let modal = document.getElementById('tutorialModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
+
 function showModal (imgElement) {
 	let name = imgElement.getAttribute('data-name');
 	let type = imgElement.getAttribute('data-type');
@@ -622,7 +689,6 @@ function showModal (imgElement) {
 	modalImg.src = imgElement.src;
 	modalTitle.textContent = name;
 	
-	// MODIFIED: Append the job's Life Experience yields to the description
 	let descriptionText = tooltips[name] || "";
 	if (type === 'job') {
 		let task = gameData.taskData[name];
@@ -654,12 +720,110 @@ function showModal (imgElement) {
 	}
 	
 	modal.style.display = "flex";
+	updatePauseState(); // NEW: Pause game
+}
+
+// NEW: Close Info Modal
+function closeInfoModal() {
+	let modal = document.getElementById('infoModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
+
+// NEW: Show the Author Selection Screen
+function showAuthorSelection() {
+	let screen = document.getElementById("authorSelectionScreen");
+	let grid = document.getElementById("authorSelectionGrid");
+	grid.innerHTML = "";
+	
+	for (let key in authorsBaseData) {
+		let author = authorsBaseData[key];
+		let mults = author.multipliers;
+		
+		let card = document.createElement("div");
+		card.className = "ui-card";
+		card.style.width = "180px";
+		card.style.height = "auto";
+		card.style.padding = "15px";
+		card.style.cursor = "default";
+		
+		let img = document.createElement("img");
+		img.className = "card-image";
+		img.style.width = "190px";
+		img.style.height = "190px";
+		img.style.cursor = "pointer";
+		let filefolder = author.filefolder + '256';
+		let filename = author.filename.replace('.png', '.jpg');
+		img.src = `img/${filefolder}/${filename}`;
+		img.onclick = () => showAuthorBio(key);
+		
+		let name = document.createElement("div");
+		name.className = "card-title";
+		name.style.fontSize = "1.1em";
+		name.style.marginTop = "5px";
+		name.style.height = "45px";
+		name.textContent = author.name;
+		
+		let stats = document.createElement("div");
+		stats.style.fontSize = "0.9em";
+		stats.style.color = "#888";
+		stats.style.textAlign = "left";
+		stats.style.marginTop = "10px";
+		stats.style.lineHeight = "1.5";
+		stats.innerHTML = `
+			<b>Hardship:</b> x${mults.hardship.toFixed(1)}<br>
+			<b>Observation:</b> x${mults.observation.toFixed(1)}<br>
+			<b>Escapism:</b> x${mults.escapism.toFixed(1)}<br>
+			<b>Exposure:</b> x${mults.exposure.toFixed(1)}<br>
+			<b>Social:</b> x${mults.social.toFixed(1)}
+		`;
+		
+		let selectBtn = document.createElement("button");
+		selectBtn.className = "btn";
+		selectBtn.style.marginTop = "15px";
+		selectBtn.style.width = "100%";
+		selectBtn.textContent = "Select";
+		selectBtn.onclick = () => selectAuthor(key);
+		
+		card.appendChild(img);
+		card.appendChild(name);
+		card.appendChild(stats);
+		card.appendChild(selectBtn);
+		grid.appendChild(card);
+	}
+	
+	screen.style.display = "flex";
+	updatePauseState(); // NEW: Pause game
+}
+
+// NEW: Set the selected author and continue game initialization
+function selectAuthor(authorId) {
+	gameData.currentAuthor = authorId;
+	document.getElementById("authorSelectionScreen").style.display = "none";
+	updatePauseState(); // NEW: Unpause game
+	continueInit();
+}
+
+// NEW: Show Author Biography Modal
+function showAuthorBio(authorId) {
+	let author = authorsBaseData[authorId];
+	document.getElementById("bioModalName").textContent = author.name;
+	document.getElementById("bioModalText").innerHTML = author.biography;
+	document.getElementById("authorBioModal").style.display = "flex";
+	updatePauseState(); // NEW: Pause game
+}
+
+// NEW: Close Author Biography Modal
+function closeAuthorBio() {
+	document.getElementById("authorBioModal").style.display = "none";
+	updatePauseState(); // NEW: Unpause game
 }
 
 function showIntroModal() {
 	let introModal = document.getElementById('introModal');
 	if (introModal) {
 		introModal.style.display = 'flex';
+		updatePauseState(); // NEW: Pause game
 	}
 }
 
@@ -670,6 +834,7 @@ function closeIntroModal() {
 	}
 	gameData.introSeen = true;
 	saveGameData();
+	updatePauseState(); // NEW: Unpause game
 }
 
 function showBookModal(bookId) {
@@ -691,6 +856,7 @@ function showBookModal(bookId) {
 	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
 	
 	modal.style.display = "flex";
+	updatePauseState(); // NEW: Pause game
 	
 	let firstPageText = book.firstPage || "Chapter 1\n\nThe beginning of a new journey...";
 	startTypingEffect(firstPageText, "bookModalFirstPage");
@@ -700,6 +866,7 @@ function closeBookModal() {
 	if (typingTimeout) clearTimeout(typingTimeout);
 	let modal = document.getElementById('bookModal');
 	if (modal) modal.style.display = 'none';
+	updatePauseState(); // NEW: Unpause game
 }
 
 function startTypingEffect(fullText, elementId) {
@@ -762,11 +929,22 @@ function startTypingEffect(fullText, elementId) {
 window.addEventListener('click', function (event) {
 	let infoModal = document.getElementById('infoModal');
 	if (infoModal && infoModal.style.display === 'flex' && event.target === infoModal) {
-		infoModal.style.display = 'none';
+		closeInfoModal(); // MODIFIED
 	}
 	
 	let bookModal = document.getElementById('bookModal');
 	if (bookModal && bookModal.style.display === 'flex' && event.target === bookModal) {
 		closeBookModal();
+	}
+	
+	let authorBioModal = document.getElementById('authorBioModal');
+	if (authorBioModal && authorBioModal.style.display === 'flex' && event.target === authorBioModal) {
+		closeAuthorBio();
+	}
+	
+	// NEW: Handle tutorial modal background click
+	let tutorialModal = document.getElementById('tutorialModal');
+	if (tutorialModal && tutorialModal.style.display === 'flex' && event.target === tutorialModal) {
+		closeTutorialModal();
 	}
 });
