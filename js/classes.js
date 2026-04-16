@@ -67,7 +67,6 @@ class Job extends Task {
     getXpGain() {
         let baseGain = super.getXpGain();
         let workPercentage = (100 - gameData.workWritingBalance) / 100;
-        // MODIFIED: Added gameData.workXpMultiplier to speed up or slow down leveling
         return baseGain * gameData.workMultiplier * gameData.workXpMultiplier * workPercentage;
     }
 }
@@ -88,7 +87,6 @@ class Skill extends Task {
     
     getXpGain() {
         let baseGain = super.getXpGain();
-        // MODIFIED: Added gameData.skillXpMultiplier to speed up or slow down leveling
         return baseGain * gameData.skillMultiplier * gameData.skillXpMultiplier;
     }
 }
@@ -105,18 +103,34 @@ class Item {
         return this.baseData.effect;
     }
     
-    // MODIFIED: Appends the writing multiplier to the description if the item has one defined
+    // MODIFIED: Dynamically appends all 3 multipliers to the description if they have an effect (> 1)
     getEffectDescription() {
         let description = this.baseData.description;
         if (itemCategories["Properties"].includes(this.name)) description = "Inspiration";
         
-        let effectText = "x" + this.baseData.effect.toFixed(1) + " " + description;
+        let effectTexts = [];
         
-        if (this.baseData.writingMultiplier) {
-            effectText += " | x" + this.baseData.writingMultiplier.toFixed(1) + " Writing Speed";
+        // 1. Base Effect (Inspiration, Skill XP, etc.)
+        if (this.baseData.effect && this.baseData.effect !== 1) {
+            effectTexts.push("x" + this.baseData.effect.toFixed(1) + " " + description);
         }
         
-        return effectText;
+        // 2. Writing Speed Multiplier
+        if (this.baseData.writingMultiplier && this.baseData.writingMultiplier !== 1) {
+            effectTexts.push("x" + this.baseData.writingMultiplier.toFixed(1) + " Writing Speed");
+        }
+        
+        // 3. NEW: Writing Quality Multiplier
+        if (this.baseData.writingQuality && this.baseData.writingQuality !== 1) {
+            effectTexts.push("x" + this.baseData.writingQuality.toFixed(1) + " Writing Quality");
+        }
+        
+        // Return "No effect" if all multipliers are exactly 1
+        if (effectTexts.length === 0) {
+            return "No effect";
+        }
+        
+        return effectTexts.join(" | ");
     }
     
     getExpense() {

@@ -83,7 +83,7 @@ function getRawWritingSpeed() {
 	// Apply writing percentage from the slider
 	let writingPercentage = gameData.workWritingBalance / 100;
 	
-	// MODIFIED: Calculate combined item writing multipliers
+	// Calculate combined item writing speed multipliers
 	let itemWritingMultiplier = 1;
 	if (gameData.currentProperty && gameData.currentProperty.baseData.writingMultiplier) {
 		itemWritingMultiplier *= gameData.currentProperty.baseData.writingMultiplier;
@@ -94,7 +94,6 @@ function getRawWritingSpeed() {
 		}
 	}
 	
-	// MODIFIED: Apply the global writing multiplier, item multipliers, and the new writingXpMultiplier
 	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier;
 }
 
@@ -169,7 +168,19 @@ function getBookQuality() {
 		+ (Math.log10(lifeExp.exposure + 1) * 0.1)
 		+ (Math.log10(lifeExp.social + 1) * 0.1);
 	
-	return baseSkillQuality * expMultiplier;
+	// NEW: Calculate combined item writing quality multipliers
+	let itemQualityMultiplier = 1;
+	if (gameData.currentProperty && gameData.currentProperty.baseData.writingQuality) {
+		itemQualityMultiplier *= gameData.currentProperty.baseData.writingQuality;
+	}
+	for (let misc of gameData.currentMisc) {
+		if (misc.baseData.writingQuality) {
+			itemQualityMultiplier *= misc.baseData.writingQuality;
+		}
+	}
+	
+	// MODIFIED: Apply the item quality multiplier to the final book quality
+	return baseSkillQuality * expMultiplier * itemQualityMultiplier;
 }
 
 function updateWritingProcess() {

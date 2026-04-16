@@ -3,6 +3,8 @@
     "name": "Homeless",
     "expense": 0,
     "effect": 1,
+    "writingMultiplier": 1,
+    "writingQuality": 1,
     "filename": "homeless.png",
     "filefolder": "items",
     "imageprompt": "A desolate street corner depicted in a sepia-toned woodblock print style, featuring a makeshift bed of old newspapers. The scene evokes a gritty, classic 1920s urban struggle with heavy dark brown ink shadows. It captures the raw, unpolished beginning of a writer's journey before any hint of prestige."
@@ -11,7 +13,8 @@
     "name": "Rented Room",
     "expense": 30,
     "effect": 1.4,
-    "writingMultiplier": 1.1,
+    "writingMultiplier": 1.2,
+    "writingQuality": 1.05,
     "filename": "rented_room.png",
     "filefolder": "items",
     "imageprompt": "A cramped, dimly lit boarding house room illustrated like a vintage newspaper etching. A single flickering candle illuminates a battered wooden desk in dark brown ink. The atmosphere is steeped in struggling academia, devoid of any golden luxury."
@@ -20,7 +23,8 @@
     "name": "Studio Apartment",
     "expense": 75,
     "effect": 1.6,
-    "writingMultiplier": 1.3,
+    "writingMultiplier": 1.4,
+    "writingQuality": 1.1,
     "filename": "studio_apartment.png",
     "filefolder": "items",
     "imageprompt": "A modest 1920s studio apartment rendered in classic sepia tones with meticulous crosshatching. A small typewriter sits by a window overlooking a bustling, industrial city street. The woodblock print style emphasizes the humble but dedicated environment of a rising author."
@@ -28,8 +32,9 @@
   "Suburban House": {
     "name": "Suburban House",
     "expense": 120,
-    "effect": 2,
-    "writingMultiplier": 1.5,
+    "effect": 2.0,
+    "writingMultiplier": 1.7,
+    "writingQuality": 1.15,
     "filename": "suburban_house.png",
     "filefolder": "items",
     "imageprompt": "A quaint, classic suburban home drawn in the style of an old architectural etching. The dark brown ink details a peaceful porch and a sturdy oak door, hinting at newfound stability. The scene feels like a nostalgic illustration from a mid-century literary magazine."
@@ -38,7 +43,8 @@
     "name": "Large House",
     "expense": 250,
     "effect": 2.4,
-    "writingMultiplier": 2,
+    "writingMultiplier": 2.1,
+    "writingQuality": 1.2,
     "filename": "large_house.png",
     "filefolder": "items",
     "imageprompt": "An elegant, multi-story residence depicted with refined sepia linework and classic academic charm. The illustration features a grand bay window and manicured hedges in a vintage newspaper style. Subtle hints of prosperity begin to show in the intricate, dark brown ink detailing."
@@ -46,8 +52,9 @@
   "City Penthouse": {
     "name": "City Penthouse",
     "expense": 600,
-    "effect": 3,
-    "writingMultiplier": 2.2,
+    "effect": 3.0,
+    "writingMultiplier": 2.6,
+    "writingQuality": 1.25,
     "filename": "city_penthouse.png",
     "filefolder": "items",
     "imageprompt": "A luxurious Art Deco city penthouse overlooking a roaring 1920s metropolis. The woodblock print style is elevated with striking geometric patterns and early hints of gold foil accents. It radiates the Great Gatsby era's prestige and the high life of a successful author."
@@ -55,8 +62,9 @@
   "Private Villa": {
     "name": "Private Villa",
     "expense": 2000,
-    "effect": 4,
-    "writingMultiplier": 2.5,
+    "effect": 4.0,
+    "writingMultiplier": 3.2,
+    "writingQuality": 1.3,
     "filename": "private_villa.png",
     "filefolder": "items",
     "imageprompt": "A breathtaking Mediterranean-style villa illustrated with elegant, sweeping lines and sepia tones. The artwork features ornate archways and a sunlit courtyard, accented with shimmering gold foil details. It embodies the pinnacle of classic literary success and timeless wealth."
@@ -64,8 +72,9 @@
   "Mansion Estate": {
     "name": "Mansion Estate",
     "expense": 5000,
-    "effect": 6,
-    "writingMultiplier": 3,
+    "effect": 6.0,
+    "writingMultiplier": 4.0,
+    "writingQuality": 1.4,
     "filename": "mansion_estate.png",
     "filefolder": "items",
     "imageprompt": "A sprawling, Gatsby-esque mansion estate rendered in a masterful Art Deco style. Brilliant gold foil linework weaves through the dark brown ink, highlighting grand fountains and towering gates. The image perfectly captures the ultimate prestige of a legendary literary titan."
@@ -75,7 +84,8 @@
     "expense": 1,
     "effect": 1.1,
     "description": "Skill experience",
-    "writingMultiplier": 1.5,
+    "writingMultiplier": 1.05,
+    "writingQuality": 1.2,
     "filename": "library_card.png",
     "filefolder": "items",
     "imageprompt": "A vintage, dog-eared library card stamped with faded dates in a classic sepia tone. The woodblock print style highlights the textured parchment paper and elegant cursive handwriting. It represents the humble, academic roots of a writer's quest for knowledge."
@@ -85,7 +95,8 @@
     "expense": 3,
     "effect": 1.2,
     "description": "Typing Speed experience",
-    "writingMultiplier": 2,
+    "writingMultiplier": 1.3,
+    "writingQuality": 1.1,
     "filename": "used_laptop.png",
     "filefolder": "items",
     "imageprompt": "A heavy, early-model typewriter sketched in dark brown ink to represent a classic writing machine. The illustration mimics an old newspaper advertisement with meticulous crosshatching on the mechanical keys. It feels like a reliable, time-tested tool for a dedicated wordsmith."
@@ -93,9 +104,10 @@
   "Editor": {
     "name": "Editor",
     "expense": 50,
-    "effect": 2,
+    "effect": 2.0,
     "description": "Job experience",
-    "writingMultiplier": 2.5,
+    "writingMultiplier": 1.1,
+    "writingQuality": 2.0,
     "filename": "editor.png",
     "filefolder": "items",
     "imageprompt": "A stern, bespectacled editor sitting behind a towering stack of manuscripts in a sepia-toned etching. The scene is filled with old printing press elements and academia vibes, drawn with heavy ink strokes. It captures the rigorous, classic editorial process of the 1920s."
@@ -105,7 +117,8 @@
     "expense": 2,
     "effect": 1.5,
     "description": "Creative Industry experience",
-    "writingMultiplier": 1.2,
+    "writingMultiplier": 1.0,
+    "writingQuality": 1.6,
     "filename": "style_guide.png",
     "filefolder": "items",
     "imageprompt": "A thick, leather-bound grammar tome resting on a wooden desk, illustrated in vintage woodblock style. The dark brown ink details the embossed lettering and worn pages of the academic text. It evokes the strict, classical standards of literary excellence."
@@ -115,7 +128,8 @@
     "expense": 5,
     "effect": 1.5,
     "description": "Inspiration",
-    "writingMultiplier": 1.5,
+    "writingMultiplier": 1.2,
+    "writingQuality": 1.1,
     "filename": "ergonomic_chair.png",
     "filefolder": "items",
     "imageprompt": "A plush, tufted leather reading chair drawn in the style of a classic Victorian catalog illustration. The sepia-toned linework emphasizes the deep cushions and sturdy wooden frame. It represents comfort and endurance for long nights of writing."
@@ -125,7 +139,8 @@
     "expense": 10,
     "effect": 2.2,
     "description": "Writing Craft experience",
-    "writingMultiplier": 2.0,
+    "writingMultiplier": 1.4,
+    "writingQuality": 1.8,
     "filename": "pro_writing_software.png",
     "filefolder": "items",
     "imageprompt": "An intricate, brass-fitted mechanical writing contraption depicted in dark brown ink. The vintage blueprint style features precise, academic crosshatching and interlocking gears. It symbolizes cutting-edge literary technology of a bygone era."
@@ -135,7 +150,8 @@
     "expense": 40,
     "effect": 2.5,
     "description": "Skill experience",
-    "writingMultiplier": 2,
+    "writingMultiplier": 1.5,
+    "writingQuality": 2.0,
     "filename": "home_office.png",
     "filefolder": "items",
     "imageprompt": "A sophisticated, wood-paneled study illustrated with classic academic charm and sepia tones. The scene includes a grand oak desk, a glowing desk lamp, and walls lined with books. Subtle Art Deco geometric patterns hint at a writer's growing prestige."
@@ -143,9 +159,10 @@
   "Home Library": {
     "name": "Home Library",
     "expense": 100,
-    "effect": 2,
+    "effect": 2.0,
     "description": "Skill experience",
-    "writingMultiplier": 3,
+    "writingMultiplier": 1.2,
+    "writingQuality": 2.5,
     "filename": "home_library.png",
     "filefolder": "items",
     "imageprompt": "A magnificent, multi-tiered personal library rendered with stunning Art Deco elegance. Dark brown ink contrasts with striking gold foil accents along the bookshelves and rolling ladder. It is the ultimate sanctuary for a legendary author, dripping with Gatsby-era luxury."
