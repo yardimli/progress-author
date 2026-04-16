@@ -8,7 +8,7 @@ function applyExpenses() {
 	}
 }
 
-// NEW: Check conditions to unlock new tabs
+// Check conditions to unlock new tabs
 function checkUnlocks() {
 	if (!gameData.unlocks.shop && gameData.taskData["Gig Worker"].level >= 3) {
 		gameData.unlocks.shop = true;
@@ -152,7 +152,7 @@ function getLifeExperiences() {
 		}
 	}
 	
-	// NEW: Apply author starting multipliers
+	// Apply author starting multipliers
 	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
 		let authorMults = authorsBaseData[gameData.currentAuthor].multipliers;
 		if (authorMults) {

@@ -1,6 +1,6 @@
 // Global variables, gameData, constants
 
-// NEW: Global state variables for pausing and queuing modals
+// Global state variables for pausing and queuing modals
 var isPaused = false;
 var isInitialized = false;
 var popupQueue = [];
@@ -22,12 +22,12 @@ var gameData = {
 	// Track the work vs writing balance (0 = 100% work, 100 = 100% writing)
 	workWritingBalance: 0,
 	
-	// MODIFIED: Multipliers for work, skill, and writing (1 is default)
+	// Multipliers for work, skill, and writing (1 is default)
 	workMultiplier: 1,
 	skillMultiplier: 1,
 	writingMultiplier: 1,
 	
-	// NEW: XP gain multipliers for each category to adjust leveling speed independently
+	// XP gain multipliers for each category to adjust leveling speed independently
 	workXpMultiplier: 0.4,
 	skillXpMultiplier: 0.4,
 	writingXpMultiplier: 0.4,
@@ -38,7 +38,7 @@ var gameData = {
 		acceleration: 0
 	},
 	
-	// NEW: Track unlocked features
+	// Track unlocked features
 	unlocks: {
 		shop: false,
 		skills: false,

@@ -6,7 +6,7 @@ function update() {
     doCurrentTask(gameData.currentSkill);
     updateWritingProcess();
     applyExpenses();
-    checkUnlocks(); // NEW: Check if any new tabs should be unlocked
+    checkUnlocks();
     updateUI();
 }
 
@@ -16,7 +16,7 @@ function gameLoop(currentTime) {
     
     if (deltaTime > 86400) deltaTime = 86400;
     
-    // NEW: Process popup queue if not currently paused
+    // Process popup queue if not currently paused
     if (!isPaused && popupQueue.length > 0) {
         let popup = popupQueue.shift();
         if (popup.type === 'tutorial') {
@@ -26,7 +26,7 @@ function gameLoop(currentTime) {
         }
     }
     
-    // MODIFIED: Only update game logic if not paused
+    // Only update game logic if not paused
     if (!isPaused) {
         // Update potion timers (real-time)
         if (gameData.potions.inspiration > 0) {
@@ -109,7 +109,7 @@ async function init() {
         loadGameData();
         
         if (!gameData.currentAuthor) {
-            // NEW: Show author selection screen instead of random pick
+            // Show author selection screen instead of random pick
             showAuthorSelection();
             return; // Halt initialization until author is selected
         }
@@ -122,7 +122,7 @@ async function init() {
     }
 }
 
-// NEW: Continues initialization after an author is selected or loaded
+// Continues initialization after an author is selected or loaded
 function continueInit() {
     if (!gameData.currentBook) {
         pickNextBook();
@@ -130,6 +130,8 @@ function continueInit() {
     
     setCustomEffects();
     addMultipliers();
+    
+    applyUnlocksUI(); // Apply hidden states to tabs based on unlocks
     
     setTab(jobTabButton, "jobs");
     
@@ -140,31 +142,7 @@ function continueInit() {
     
     logEvent("Started a new game. Welcome to Author's Journey!");
     
-    if (!gameData.introSeen) {
-        showIntroModal();
-    }
-}
-
-function continueInit() {
-    if (!gameData.currentBook) {
-        pickNextBook();
-    }
-    
-    setCustomEffects();
-    addMultipliers();
-    
-    applyUnlocksUI(); // NEW: Apply hidden states to tabs based on unlocks
-    
-    setTab(jobTabButton, "jobs");
-    
-    update();
-    
-    lastTime = performance.now();
-    requestAnimationFrame(gameLoop);
-    
-    logEvent("Started a new game. Welcome to Author's Journey!");
-    
-    isInitialized = true; // NEW: Mark as initialized so new unlocks trigger modals
+    isInitialized = true; // Mark as initialized so new unlocks trigger modals
     
     if (!gameData.introSeen) {
         showIntroModal();

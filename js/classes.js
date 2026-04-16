@@ -103,7 +103,7 @@ class Item {
         return this.baseData.effect;
     }
     
-    // MODIFIED: Dynamically appends all 3 multipliers to the description if they have an effect (> 1)
+    // Dynamically appends all 3 multipliers to the description if they have an effect (> 1)
     getEffectDescription() {
         let description = this.baseData.description;
         if (itemCategories["Properties"].includes(this.name)) description = "Inspiration";
@@ -120,7 +120,7 @@ class Item {
             effectTexts.push("x" + this.baseData.writingMultiplier.toFixed(1) + " Writing Speed");
         }
         
-        // 3. NEW: Writing Quality Multiplier
+        // 3. Writing Quality Multiplier
         if (this.baseData.writingQuality && this.baseData.writingQuality !== 1) {
             effectTexts.push("x" + this.baseData.writingQuality.toFixed(1) + " Writing Quality");
         }

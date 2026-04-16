@@ -84,12 +84,12 @@ function loadGameData() {
 		
 		gameData = gameDataSave;
 		
-		// NEW: Backward compatibility for potions
+		// Backward compatibility for potions
 		if (!gameData.potions) {
 			gameData.potions = { inspiration: 0, acceleration: 0 };
 		}
 		
-		// NEW: Backward compatibility for unlocks
+		// Backward compatibility for unlocks
 		if (!gameData.unlocks) {
 			gameData.unlocks = { shop: false, skills: false, writing: false };
 		}

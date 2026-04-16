@@ -16,7 +16,7 @@ function setTab(element, selectedTab) {
 	element.classList.add("btn-active");
 }
 
-// NEW: Update UI visibility based on unlocks
+// Update UI visibility based on unlocks
 function applyUnlocksUI() {
 	if (gameData.unlocks.shop) {
 		document.getElementById("shopTabButton").classList.remove("hidden");
@@ -204,12 +204,12 @@ function updateRequiredRows(data, categoryType) {
 			if (!element) continue;
 			
 			let requirements = gameData.requirements[entityName];
-			let previouslyCompleted = requirements ? requirements.completed : true; // NEW: Track previous state
+			let previouslyCompleted = requirements ? requirements.completed : true; // Track previous state
 			
 			if (!requirements || requirements.isCompleted()) {
 				if (element.classList.contains("hiddenTask")) {
 					element.classList.remove("hiddenTask");
-					// NEW: Queue info modal if newly unlocked
+					// Queue info modal if newly unlocked
 					if (requirements && !previouslyCompleted && isInitialized) {
 						let imgEl = element.querySelector('.card-image, .row-image');
 						if (imgEl) queueInfoModal(imgEl);
@@ -638,7 +638,7 @@ function updateUI() {
 	updatePotionsUI();
 }
 
-// NEW: Helper to update the global pause state based on open modals
+// Helper to update the global pause state based on open modals
 function updatePauseState() {
 	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal'];
 	let anyOpen = false;
@@ -652,7 +652,7 @@ function updatePauseState() {
 	isPaused = anyOpen;
 }
 
-// NEW: Queue functions for modals
+// Queue functions for modals
 function queueTutorialModal(title, text) {
 	popupQueue.push({ type: 'tutorial', title: title, text: text });
 }
@@ -661,7 +661,7 @@ function queueInfoModal(imgEl) {
 	popupQueue.push({ type: 'info', imgEl: imgEl });
 }
 
-// NEW: Show Tutorial Modal
+// Show Tutorial Modal
 function showTutorialModal(title, text) {
 	let modal = document.getElementById('tutorialModal');
 	document.getElementById('tutorialModalTitle').textContent = title;
@@ -670,7 +670,6 @@ function showTutorialModal(title, text) {
 	updatePauseState();
 }
 
-// NEW: Close Tutorial Modal
 function closeTutorialModal() {
 	let modal = document.getElementById('tutorialModal');
 	if (modal) modal.style.display = 'none';
@@ -720,17 +719,15 @@ function showModal (imgElement) {
 	}
 	
 	modal.style.display = "flex";
-	updatePauseState(); // NEW: Pause game
+	updatePauseState(); // Pause game
 }
 
-// NEW: Close Info Modal
 function closeInfoModal() {
 	let modal = document.getElementById('infoModal');
 	if (modal) modal.style.display = 'none';
 	updatePauseState();
 }
 
-// NEW: Show the Author Selection Screen
 function showAuthorSelection() {
 	let screen = document.getElementById("authorSelectionScreen");
 	let grid = document.getElementById("authorSelectionGrid");
@@ -793,37 +790,35 @@ function showAuthorSelection() {
 	}
 	
 	screen.style.display = "flex";
-	updatePauseState(); // NEW: Pause game
+	updatePauseState(); // Pause game
 }
 
-// NEW: Set the selected author and continue game initialization
+// Set the selected author and continue game initialization
 function selectAuthor(authorId) {
 	gameData.currentAuthor = authorId;
 	document.getElementById("authorSelectionScreen").style.display = "none";
-	updatePauseState(); // NEW: Unpause game
+	updatePauseState(); // Unpause game
 	continueInit();
 }
 
-// NEW: Show Author Biography Modal
 function showAuthorBio(authorId) {
 	let author = authorsBaseData[authorId];
 	document.getElementById("bioModalName").textContent = author.name;
 	document.getElementById("bioModalText").innerHTML = author.biography;
 	document.getElementById("authorBioModal").style.display = "flex";
-	updatePauseState(); // NEW: Pause game
+	updatePauseState(); // Pause game
 }
 
-// NEW: Close Author Biography Modal
 function closeAuthorBio() {
 	document.getElementById("authorBioModal").style.display = "none";
-	updatePauseState(); // NEW: Unpause game
+	updatePauseState(); // Unpause game
 }
 
 function showIntroModal() {
 	let introModal = document.getElementById('introModal');
 	if (introModal) {
 		introModal.style.display = 'flex';
-		updatePauseState(); // NEW: Pause game
+		updatePauseState(); // Pause game
 	}
 }
 
@@ -834,7 +829,7 @@ function closeIntroModal() {
 	}
 	gameData.introSeen = true;
 	saveGameData();
-	updatePauseState(); // NEW: Unpause game
+	updatePauseState(); // Unpause game
 }
 
 function showBookModal(bookId) {
@@ -856,7 +851,7 @@ function showBookModal(bookId) {
 	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
 	
 	modal.style.display = "flex";
-	updatePauseState(); // NEW: Pause game
+	updatePauseState(); // Pause game
 	
 	let firstPageText = book.firstPage || "Chapter 1\n\nThe beginning of a new journey...";
 	startTypingEffect(firstPageText, "bookModalFirstPage");
@@ -866,7 +861,7 @@ function closeBookModal() {
 	if (typingTimeout) clearTimeout(typingTimeout);
 	let modal = document.getElementById('bookModal');
 	if (modal) modal.style.display = 'none';
-	updatePauseState(); // NEW: Unpause game
+	updatePauseState(); // Unpause game
 }
 
 function startTypingEffect(fullText, elementId) {
@@ -929,7 +924,7 @@ function startTypingEffect(fullText, elementId) {
 window.addEventListener('click', function (event) {
 	let infoModal = document.getElementById('infoModal');
 	if (infoModal && infoModal.style.display === 'flex' && event.target === infoModal) {
-		closeInfoModal(); // MODIFIED
+		closeInfoModal();
 	}
 	
 	let bookModal = document.getElementById('bookModal');
@@ -942,7 +937,6 @@ window.addEventListener('click', function (event) {
 		closeAuthorBio();
 	}
 	
-	// NEW: Handle tutorial modal background click
 	let tutorialModal = document.getElementById('tutorialModal');
 	if (tutorialModal && tutorialModal.style.display === 'flex' && event.target === tutorialModal) {
 		closeTutorialModal();
