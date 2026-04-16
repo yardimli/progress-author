@@ -9,7 +9,7 @@
   },
   "Acceleration Potion": {
     "name": "Acceleration Potion",
-    "effect": 2.0,
+    "effect": 4.0,
     "type": "acceleration",
     "filename": "acceleration_potion.png",
     "filefolder": "potions",

@@ -59,19 +59,19 @@ async function init() {
             authorsRes, booksRes,
             potionsRes, lifeExpRes // Added new fetch requests
         ] = await Promise.all([
-            fetch('data/jobs.json'),
-            fetch('data/skills.json'),
-            fetch('data/items.json'),
-            fetch('data/jobCategories.json'),
-            fetch('data/skillCategories.json'),
-            fetch('data/itemCategories.json'),
-            fetch('data/headerRowColors.json'),
-            fetch('data/tooltips.json'),
-            fetch('data/requirements.json'),
-            fetch('data/authors.json'),
-            fetch('data/books.json'),
-            fetch('data/potions.json'), // Added new fetch
-            fetch('data/lifeExperiences.json') // Added new fetch
+            fetch('data/jobs.json?' + gameData.version), // Cache busting with version query param
+            fetch('data/skills.json?' + gameData.version),
+            fetch('data/items.json?' + gameData.version),
+            fetch('data/jobCategories.json?' + gameData.version),
+            fetch('data/skillCategories.json?' + gameData.version),
+            fetch('data/itemCategories.json?' + gameData.version),
+            fetch('data/headerRowColors.json?' + gameData.version),
+            fetch('data/tooltips.json?' + gameData.version),
+            fetch('data/requirements.json?' + gameData.version),
+            fetch('data/authors.json?' + gameData.version),
+            fetch('data/books.json?' + gameData.version),
+            fetch('data/potions.json?' + gameData.version),
+            fetch('data/lifeExperiences.json?' + gameData.version)
         ]);
         
         jobBaseData = await jobsRes.json();
