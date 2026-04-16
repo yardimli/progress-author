@@ -206,7 +206,7 @@
     "requirements": [
       {
         "task": "Focus",
-        "requirement": 5
+        "requirement": 10
       }
     ]
   },
@@ -764,7 +764,7 @@
     ],
     "requirements": [
       {
-        "requirement": 50000
+        "requirement": 70000
       }
     ]
   },
@@ -778,7 +778,7 @@
     ],
     "requirements": [
       {
-        "requirement": 150000
+        "requirement": 280000
       }
     ]
   },
@@ -848,7 +848,7 @@
     ],
     "requirements": [
       {
-        "requirement": 9000
+        "requirement": 15000
       }
     ]
   },
@@ -862,7 +862,7 @@
     ],
     "requirements": [
       {
-        "requirement": 20000
+        "requirement": 50000
       }
     ]
   },
@@ -876,7 +876,7 @@
     ],
     "requirements": [
       {
-        "requirement": 35000
+        "requirement": 150000
       }
     ]
   },

@@ -1,3 +1,5 @@
+// js/main.js
+
 // Init function, game loop, core update function
 
 function update() {
@@ -58,7 +60,7 @@ async function init() {
             jobCatRes, skillCatRes, itemCatRes,
             colorsRes, tooltipsRes, reqRes,
             authorsRes, booksRes,
-            potionsRes, lifeExpRes // Added new fetch requests
+            potionsRes, lifeExpRes, genresRes // Added genres fetch
         ] = await Promise.all([
             fetch('data/jobs.json?' + gameData.version), // Cache busting with version query param
             fetch('data/skills.json?' + gameData.version),
@@ -72,7 +74,8 @@ async function init() {
             fetch('data/authors.json?' + gameData.version),
             fetch('data/books.json?' + gameData.version),
             fetch('data/potions.json?' + gameData.version),
-            fetch('data/lifeExperiences.json?' + gameData.version)
+            fetch('data/lifeExperiences.json?' + gameData.version),
+            fetch('data/genres.json?' + gameData.version)
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -88,8 +91,9 @@ async function init() {
         
         authorsBaseData = await authorsRes.json();
         booksBaseData = await booksRes.json();
-        potionsBaseData = await potionsRes.json(); // Assign potions data
-        lifeExperiencesBaseData = await lifeExpRes.json(); // Assign life experiences data
+        potionsBaseData = await potionsRes.json();
+        lifeExperiencesBaseData = await lifeExpRes.json();
+        genresBaseData = await genresRes.json(); // Assign genres data
         
         createAllRows(jobCategories, "jobTable");
         createAllRows(skillCategories, "skillTable");
@@ -131,9 +135,7 @@ async function init() {
 
 // Continues initialization after an author is selected or loaded
 function continueInit() {
-    if (!gameData.currentBook) {
-        pickNextBook();
-    }
+    populateGenres(); // Populate the genre dropdown
     
     setCustomEffects();
     addMultipliers();

@@ -1,4 +1,4 @@
-// Global variables, gameData, constants
+// js/state.js
 
 // Global state variables for pausing and queuing modals
 var isPaused = false;
@@ -59,6 +59,7 @@ var gameData = {
 	currentAuthor: null,
 	currentBook: null,
 	completedBooks: [],
+	selectedGenre: null, // Track the currently selected genre for new books
 	
 	// Track if the player has seen the intro tutorial
 	introSeen: false
@@ -81,4 +82,4 @@ var saveTimer = 0;
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
-var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData; // Added potions and lifeExperiences
+var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData;

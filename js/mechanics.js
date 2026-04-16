@@ -1,3 +1,5 @@
+// js/mechanics.js
+
 // Writing process, rebirth, death
 
 function applyExpenses() {
@@ -125,18 +127,33 @@ function getQualityMultiplier() {
 	return 1;
 }
 
-function pickNextBook() {
+// Called when the user clicks "Start Writing"
+function startWritingBook() {
+	if (!gameData.selectedGenre) return;
+	pickNextBook(gameData.selectedGenre);
+	updateUI();
+}
+
+function pickNextBook(genre) {
 	if (!booksBaseData) return;
 	let allBooks = Object.keys(booksBaseData);
+	let genreBooks = allBooks.filter(id => booksBaseData[id].genre === genre);
 	let completedIds = gameData.completedBooks.map(b => b.id);
-	let availableBooks = allBooks.filter(id => !completedIds.includes(id));
+	let availableBooks = genreBooks.filter(id => !completedIds.includes(id));
 	
+	// Fallback if all books in the selected genre have been written
+	if (availableBooks.length === 0) {
+		availableBooks = genreBooks;
+	}
+	
+	// Ultimate fallback if genre doesn't exist in books
 	if (availableBooks.length === 0) {
 		availableBooks = allBooks;
 	}
 	
 	let randomIndex = Math.floor(Math.random() * availableBooks.length);
 	gameData.currentBook = availableBooks[randomIndex];
+	gameData.wordsWritten = 0; // Reset progress for the new book
 }
 
 function getLifeExperiences() {
@@ -188,8 +205,25 @@ function getBookQuality() {
 	let lifeExp = getLifeExperiences();
 	let expMultiplier = 1;
 	
-	// Dynamically calculate the multiplier using JSON data
-	if (typeof lifeExperiencesBaseData !== 'undefined') {
+	// Determine which genre to use for calculating multipliers
+	let currentGenre = "Romance"; // Default fallback
+	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+		currentGenre = booksBaseData[gameData.currentBook].genre;
+	} else if (gameData.selectedGenre) {
+		currentGenre = gameData.selectedGenre;
+	}
+	
+	let genreMults = (typeof genresBaseData !== 'undefined' && genresBaseData[currentGenre]) ? genresBaseData[currentGenre] : null;
+	
+	// Dynamically calculate the multiplier using genre data
+	if (genreMults) {
+		for (let key in genreMults) {
+			let expValue = lifeExp[key.toLowerCase()] || 0;
+			let multValue = genreMults[key];
+			expMultiplier += Math.log10(expValue + 1) * multValue;
+		}
+	} else if (typeof lifeExperiencesBaseData !== 'undefined') {
+		// Fallback to old logic if genres.json fails
 		for (let key in lifeExperiencesBaseData) {
 			let expData = lifeExperiencesBaseData[key];
 			let expValue = lifeExp[key.toLowerCase()] || 0;
@@ -197,7 +231,7 @@ function getBookQuality() {
 			expMultiplier += Math.log10(expValue + 1) * multValue;
 		}
 	} else {
-		// Fallback in case JSON failed to load
+		// Ultimate fallback
 		expMultiplier += (Math.log10(lifeExp.hardship + 1) * 0.1)
 			+ (Math.log10(lifeExp.observation + 1) * 0.1)
 			+ (Math.log10(lifeExp.escapism + 1) * 0.1)
@@ -219,12 +253,14 @@ function getBookQuality() {
 }
 
 function updateWritingProcess() {
+	if (!gameData.currentBook) return; // Do not write if no book is selected
+	
 	let speed = applySpeed(getWritingSpeed());
 	gameData.wordsWritten += speed;
 	
 	let target = getBookLength();
 	
-	while (gameData.wordsWritten >= target) {
+	if (gameData.wordsWritten >= target) {
 		let baseQuality = getBookQuality();
 		let multiplier = getQualityMultiplier();
 		let quality = baseQuality * multiplier;
@@ -238,7 +274,6 @@ function updateWritingProcess() {
 		
 		gameData.royalties += royalty;
 		gameData.booksPublished += 1;
-		gameData.wordsWritten -= target;
 		
 		let bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : "Unknown Book";
 		logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
@@ -257,8 +292,9 @@ function updateWritingProcess() {
 			});
 		}
 		
-		pickNextBook();
-		target = getBookLength();
+		// Stop writing and wait for the player to select the next genre
+		gameData.currentBook = null;
+		gameData.wordsWritten = 0;
 	}
 }
 
@@ -297,7 +333,6 @@ function rebirthReset() {
 	
 	gameData.currentBook = null;
 	gameData.completedBooks = [];
-	pickNextBook();
 	
 	for (let taskName in gameData.taskData) {
 		let task = gameData.taskData[taskName];

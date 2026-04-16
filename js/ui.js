@@ -1,3 +1,5 @@
+// js/ui.js
+
 // DOM manipulation, table creation, updating text
 
 let typingTimeout = null;
@@ -232,6 +234,44 @@ function initLifeExperiencesUI() {
 	}
 }
 
+// Populate the genre selection buttons
+function populateGenres() {
+	let container = document.getElementById("genreButtonsContainer");
+	if (!container) return;
+	container.innerHTML = "";
+	
+	if (typeof genresBaseData !== 'undefined') {
+		let firstGenre = null;
+		for (let genre in genresBaseData) {
+			if (!firstGenre) firstGenre = genre;
+			
+			let btn = document.createElement("button");
+			btn.className = "btn";
+			if (gameData.selectedGenre === genre) {
+				btn.classList.add("btn-active");
+			}
+			btn.textContent = genre;
+			btn.onclick = function() {
+				selectGenre(genre);
+			};
+			container.appendChild(btn);
+		}
+		
+		// Set a default if none selected
+		if (!gameData.selectedGenre && firstGenre) {
+			gameData.selectedGenre = firstGenre;
+			populateGenres(); // Re-render to show active state
+		}
+	}
+}
+
+// Handle genre selection
+function selectGenre(genre) {
+	gameData.selectedGenre = genre;
+	populateGenres(); // Update active button classes
+	updateUI(); // Refresh expected quality
+}
+
 function updateRequiredRows(data, categoryType) {
 	for (let categoryName in categoryType) {
 		let category = categoryType[categoryName];
@@ -394,7 +434,13 @@ function updateAuthorAndBookUI() {
 		}
 	}
 	
+	let bookSelectionContainer = document.getElementById("bookSelectionContainer");
+	let bookStatusRow = document.getElementById("bookStatusRow");
+	
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+		if (bookSelectionContainer) bookSelectionContainer.style.display = "none";
+		if (bookStatusRow) bookStatusRow.style.display = "flex";
+		
 		let book = booksBaseData[gameData.currentBook];
 		let bookImg = document.getElementById("currentBookImage");
 		let bookTitle = document.getElementById("currentBookTitle");
@@ -409,6 +455,9 @@ function updateAuthorAndBookUI() {
 		if (bookTitle && bookTitle.textContent !== book.title) {
 			bookTitle.textContent = book.title;
 		}
+	} else {
+		if (bookSelectionContainer) bookSelectionContainer.style.display = "flex";
+		if (bookStatusRow) bookStatusRow.style.display = "none";
 	}
 }
 
@@ -569,8 +618,22 @@ function updateText() {
 	updateIfChanged("wordsWrittenDisplay", format(gameData.wordsWritten));
 	updateIfChanged("bookLengthDisplay", format(getBookLength(),0));
 	
-	updateIfChanged("writingSpeedDisplayTab", format(getWritingSpeed()));
+	let writingSpeed = getWritingSpeed();
+	updateIfChanged("writingSpeedDisplayTab", format(writingSpeed));
 	updateIfChanged("bookQualityDisplayTab", getBookQuality().toFixed(2));
+	
+	// Display expected quality in the selection screen
+	updateIfChanged("expectedQualityDisplay", getBookQuality().toFixed(2));
+	
+	// Display warning if writing speed is 0
+	let speedWarning = document.getElementById("writingSpeedWarning");
+	if (speedWarning) {
+		if (writingSpeed <= 0) {
+			speedWarning.style.display = "block";
+		} else {
+			speedWarning.style.display = "none";
+		}
+	}
 	
 	let lifeExp = getLifeExperiences();
 	
