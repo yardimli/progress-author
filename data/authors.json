@@ -3,120 +3,80 @@
     "name": "Arthur Pendelton",
     "filename": "arthur_pendelton.png",
     "filefolder": "authors",
-    "imageprompt": "A portrait of a thoughtful male author in his 20s wearing a modern jacket over a hoodie, rendered in a contemporary, high-contrast woodblock print style."
+    "imageprompt": "A portrait of a thoughtful male author in his 20s wearing a modern jacket over a hoodie, rendered in a contemporary, high-contrast woodblock print style.",
+    "multipliers": { "hardship": 1.5, "observation": 1.2, "escapism": 0.8, "exposure": 0.5, "social": 1.0 },
+    "biography": "At just 20 years old, Arthur has already worked grueling shifts in the city's industrial district to support his siblings. His hands are calloused, and his mind is tempered by the harsh realities of poverty. He acutely observes the gritty, unspoken struggles of the working class, though he lacks exposure to high society and formal literary circles."
   },
   "author2": {
     "name": "James Sterling",
     "filename": "james_sterling.png",
     "filefolder": "authors",
-    "imageprompt": "A young male writer in his 20s with trendy round spectacles, looking out a modern apartment window, captured in a clean, dark ink etching style."
+    "imageprompt": "A young male writer in his 20s with trendy round spectacles, looking out a modern apartment window, captured in a clean, dark ink etching style.",
+    "multipliers": { "hardship": 0.5, "observation": 1.5, "escapism": 1.2, "exposure": 1.5, "social": 1.2 },
+    "biography": "Born into a prestigious family of academics, 20-year-old James has spent his youth surrounded by towering bookshelves and intellectual debates. He has unparalleled exposure to classic literature and sharp observational skills. However, having been sheltered by wealth, he has rarely faced true hardship."
   },
   "author3": {
     "name": "Elias Thorne",
     "filename": "elias_thorne.png",
     "filefolder": "authors",
-    "imageprompt": "A rugged male author in his 20s with messy hair, wearing a worn t-shirt, drawn in an aggressive heavy crosshatching style, exuding a modern neo-noir vibe."
+    "imageprompt": "A rugged male author in his 20s with messy hair, wearing a worn t-shirt, drawn in an aggressive heavy crosshatching style, exuding a modern neo-noir vibe.",
+    "multipliers": { "hardship": 1.2, "observation": 1.0, "escapism": 1.5, "exposure": 0.8, "social": 0.5 },
+    "biography": "A reclusive and brooding 20-year-old, Elias finds solace entirely within his own imagination. Escaping a turbulent and broken childhood, he prefers the company of his fictional worlds over real people. His capacity for escapism is unmatched, but his social skills severely suffer as a result."
   },
   "author4": {
     "name": "William Vance",
     "filename": "william_vance.png",
     "filefolder": "authors",
-    "imageprompt": "A studious male author in his 20s with a sharp haircut and a short beard, holding a coffee mug, rendered in a precise, contemporary etching style."
+    "imageprompt": "A studious male author in his 20s with a sharp haircut and a short beard, holding a coffee mug, rendered in a precise, contemporary etching style.",
+    "multipliers": { "hardship": 1.0, "observation": 1.2, "escapism": 1.0, "exposure": 1.2, "social": 1.5 },
+    "biography": "Charming, charismatic, and endlessly curious, 20-year-old William has always been the life of the party. He navigates complex social circles with ease and naturally absorbs the stories of everyone he meets. His social intuition and broad exposure to different walks of life are his greatest assets."
   },
   "author5": {
     "name": "Thomas Blackwood",
     "filename": "thomas_blackwood.png",
     "filefolder": "authors",
-    "imageprompt": "A sharp-featured male author in his 20s with a slicked-back undercut, wearing a stylish modern blazer, illustrated in dark ink with subtle digital gold foil accents."
+    "imageprompt": "A sharp-featured male author in his 20s with a slicked-back undercut, wearing a stylish modern blazer, illustrated in dark ink with subtle digital gold foil accents.",
+    "multipliers": { "hardship": 0.8, "observation": 1.5, "escapism": 1.2, "exposure": 1.0, "social": 1.0 },
+    "biography": "A sharp-witted 20-year-old investigative journalist in the making, Thomas has a terrifyingly keen eye for detail. He spends his days people-watching from dimly lit cafes, uncovering the city's hidden secrets. His intense observation and vivid escapism drive his compelling narratives."
   },
   "author6": {
-    "name": "Henry Caldwell",
-    "filename": "henry_caldwell.png",
-    "filefolder": "authors",
-    "imageprompt": "A bright-eyed, ambitious male writer in his 20s typing on a laptop, drawn in a clean, monochromatic graphic novel illustration style."
-  },
-  "author7": {
-    "name": "Oliver Finch",
-    "filename": "oliver_finch.png",
-    "filefolder": "authors",
-    "imageprompt": "A male author in his 20s wearing a comfortable sweater, sitting in a modern armchair with a laptop, rendered in a contemporary linocut print style with a warm color palette."
-  },
-  "author8": {
-    "name": "Samuel Reed",
-    "filename": "samuel_reed.png",
-    "filefolder": "authors",
-    "imageprompt": "A stern-looking male author in his 20s with a strong jawline, illuminated by a laptop screen in a dark room, drawn in a dramatic, high-contrast neo-noir ink style."
-  },
-  "author9": {
-    "name": "Charles Mercer",
-    "filename": "charles_mercer.png",
-    "filefolder": "authors",
-    "imageprompt": "An eccentric male author in his 20s with wild, colorful hair and quirky glasses, sketching on a tablet, illustrated in a whimsical fine-line ink style."
-  },
-  "author10": {
-    "name": "Edward Locke",
-    "filename": "edward_locke.png",
-    "filefolder": "authors",
-    "imageprompt": "A sophisticated male author in his 20s, looking confidently at the camera, rendered in a bold, minimalist graphic style with geometric background elements."
-  },
-  "author11": {
     "name": "Clara Hughes",
     "filename": "clara_hughes.png",
     "filefolder": "authors",
-    "imageprompt": "A portrait of a brilliant female author in her 20s wearing a modern beanie, looking intensely focused, rendered in a contemporary, high-contrast woodblock print style."
+    "imageprompt": "A portrait of a brilliant female author in her 20s wearing a modern beanie, looking intensely focused, rendered in a contemporary, high-contrast woodblock print style.",
+    "multipliers": { "hardship": 1.5, "observation": 1.0, "escapism": 1.2, "exposure": 0.8, "social": 0.8 },
+    "biography": "Having left a broken home early to forge her own path, 20-year-old Clara knows the true meaning of struggle. She channels her difficult past and daily survival into vivid, escapist fantasies, relying on her immense resilience to push through the grueling life of a starving artist."
   },
-  "author12": {
+  "author7": {
     "name": "Evelyn Vance",
     "filename": "evelyn_vance.png",
     "filefolder": "authors",
-    "imageprompt": "An elegant female writer in her 20s with minimalist jewelry and a sharp, confident gaze, captured in a clean, dark ink etching style, exuding modern intelligence."
+    "imageprompt": "An elegant female writer in her 20s with minimalist jewelry and a sharp, confident gaze, captured in a clean, dark ink etching style, exuding modern intelligence.",
+    "multipliers": { "hardship": 0.5, "observation": 1.5, "escapism": 1.0, "exposure": 1.5, "social": 1.2 },
+    "biography": "A 20-year-old literary prodigy from a wealthy background, Evelyn has had every educational resource at her fingertips since childhood. Her exposure to the classics and high society is unparalleled, giving her a refined, highly observant edge, though she remains detached from the struggles of the common folk."
   },
-  "author13": {
+  "author8": {
     "name": "Margaret Sterling",
     "filename": "margaret_sterling.png",
     "filefolder": "authors",
-    "imageprompt": "A determined female author in her 20s with her hair in a messy bun, leaning over a laptop, drawn in an energetic, heavy crosshatching comic book style."
+    "imageprompt": "A determined female author in her 20s with her hair in a messy bun, leaning over a laptop, drawn in an energetic, heavy crosshatching comic book style.",
+    "multipliers": { "hardship": 1.2, "observation": 1.2, "escapism": 0.8, "exposure": 1.0, "social": 1.5 },
+    "biography": "Fiercely independent and deeply empathetic, 20-year-old Margaret has spent her youth organizing community events and listening to the struggles of the marginalized. Her incredible social intuition and firsthand understanding of hardship fuel her raw, emotionally resonant prose."
   },
-  "author14": {
+  "author9": {
     "name": "Rosemary Thorne",
     "filename": "rosemary_thorne.png",
     "filefolder": "authors",
-    "imageprompt": "An intelligent female author in her 20s with stylish glasses, reading from a tablet, rendered in a precise, contemporary etching style."
+    "imageprompt": "An intelligent female author in her 20s with stylish glasses, reading from a tablet, rendered in a precise, contemporary etching style.",
+    "multipliers": { "hardship": 1.0, "observation": 1.5, "escapism": 1.5, "exposure": 1.0, "social": 0.5 },
+    "biography": "A quiet, highly observant 20-year-old, Rosemary prefers the corner of a bustling library to the center of attention. She escapes entirely into her writing, crafting intricate, sprawling worlds based on the subtle, easily missed details she notices in the people around her."
   },
-  "author15": {
+  "author10": {
     "name": "Beatrice Blackwood",
     "filename": "beatrice_blackwood.png",
     "filefolder": "authors",
-    "imageprompt": "A glamorous female author in her 20s wearing a chic, modern dress at a book launch, illustrated in dark ink with striking digital gold foil accents."
-  },
-  "author16": {
-    "name": "Alice Caldwell",
-    "filename": "alice_caldwell.png",
-    "filefolder": "authors",
-    "imageprompt": "A dreamy female writer in her 20s looking out the window of a modern cafe, holding a coffee cup, rendered in a soft, light-filled digital illustration style."
-  },
-  "author17": {
-    "name": "Eleanor Finch",
-    "filename": "eleanor_finch.png",
-    "filefolder": "authors",
-    "imageprompt": "A focused female author in her 20s wearing a tailored blazer, working at a clean, minimalist desk, captured in a contemporary linocut print style with a bold color palette."
-  },
-  "author18": {
-    "name": "Josephine Reed",
-    "filename": "josephine_reed.png",
-    "filefolder": "authors",
-    "imageprompt": "A mysterious female author in her 20s, the hood of her sweatshirt casting a deep shadow over her face, illuminated only by her phone screen, in a high-contrast neo-noir ink style."
-  },
-  "author19": {
-    "name": "Lydia Mercer",
-    "filename": "lydia_mercer.png",
-    "filefolder": "authors",
-    "imageprompt": "An avant-garde female author in her 20s with a sharp, asymmetric haircut, illustrated in a bold, confident graphic style with clean lines and flat colors."
-  },
-  "author20": {
-    "name": "Victoria Locke",
-    "filename": "victoria_locke.png",
-    "filefolder": "authors",
-    "imageprompt": "A commanding female author in her 20s proudly holding her newly published book, rendered as a sleek vector portrait with elegant linework and a vibrant background."
+    "imageprompt": "A glamorous female author in her 20s wearing a chic, modern dress at a book launch, illustrated in dark ink with striking digital gold foil accents.",
+    "multipliers": { "hardship": 0.8, "observation": 1.2, "escapism": 1.0, "exposure": 1.5, "social": 1.5 },
+    "biography": "At just 20, Beatrice is a social butterfly with a flair for the dramatic and a magnetic personality. She thrives in the spotlight and uses her extensive network and deep exposure to the arts to inspire her glamorous, captivating, and widely appealing stories."
   }
 }
