@@ -6,7 +6,7 @@
     "description": "Skill experience",
     "filename": "focus.png",
     "filefolder": "skills",
-    "imageprompt": "A tight, detailed etching of a human eye staring intently at a piece of parchment. The dark brown ink and sepia tones create a moody, academic atmosphere. The woodblock print style emphasizes intense concentration and mental clarity."
+    "imageprompt": "A close-up, hyper-detailed digital illustration of a human eye reflecting the glow of a laptop screen in a darkened modern room. Cool blue and white LED light cuts through the darkness with sharp, clean linework in a contemporary graphic novel style. Empty coffee cups and sticky notes blur in the background, emphasizing intense, singular concentration."
   },
   "Time Management": {
     "name": "Time Management",
@@ -15,7 +15,7 @@
     "description": "Job experience",
     "filename": "time_management.png",
     "filefolder": "skills",
-    "imageprompt": "A classic, ornate pocket watch resting on a stack of manuscript pages, drawn in vintage newspaper style. The intricate gears and hands are detailed with precise, dark brown ink crosshatching. It symbolizes the careful, deliberate pacing of a writer's life."
+    "imageprompt": "A sleek modern smartphone displaying a packed digital calendar and task management app, resting beside an open manuscript on a minimalist desk. Rendered in a clean, contemporary flat-ink illustration style with sharp teal and charcoal tones. Multiple browser tabs and notification badges subtly suggest the relentless juggling act of a modern writer's schedule."
   },
   "Frugality": {
     "name": "Frugality",
@@ -24,7 +24,7 @@
     "description": "Expenses",
     "filename": "frugality.png",
     "filefolder": "skills",
-    "imageprompt": "A worn leather coin purse with a few scattered coins, illustrated in a humble woodblock print style. The monochromatic sepia tones highlight the texture of the old leather and rough wooden table. It captures the essence of saving pennies during the struggling artist phase."
+    "imageprompt": "A flat digital illustration of a nearly empty bank account on a laptop screen, surrounded by a cheap instant noodle cup and a bargain-brand coffee mug on a cluttered apartment desk. Muted grey and faded green tones convey financial restraint. A hand-written budget sheet taped to the monitor captures the calculated thrift of a struggling modern author."
   },
   "Meditation": {
     "name": "Meditation",
@@ -33,7 +33,7 @@
     "description": "Inspiration",
     "filename": "meditation.png",
     "filefolder": "skills",
-    "imageprompt": "A serene figure sitting cross-legged in a dimly lit, vintage study, surrounded by floating pages. The dark brown ink creates soft, ethereal shadows in a classic academic setting. The illustration evokes a deep, peaceful connection to inner inspiration."
+    "imageprompt": "A modern figure wearing wireless earbuds, seated cross-legged on a yoga mat in a minimalist apartment, bathed in the soft amber glow of a Himalayan salt lamp. A meditation app glows softly on a nearby phone screen. The clean, contemporary ink illustration style uses warm ochre and cool indigo tones to evoke digital-age mindfulness and creative stillness."
   },
   "Typing Speed": {
     "name": "Typing Speed",
@@ -42,7 +42,7 @@
     "description": "Writing Speed",
     "filename": "typing_speed.png",
     "filefolder": "skills",
-    "imageprompt": "A blur of motion over the keys of a classic 1920s typewriter, rendered in dynamic sepia linework. The woodblock style captures the mechanical energy and rapid-fire rhythm of the printing press era. It feels frantic yet highly skilled and precise."
+    "imageprompt": "A dynamic, motion-blurred digital illustration of fingers flying across a sleek mechanical keyboard, the RGB backlighting streaking into neon trails. A word count ticker climbs rapidly on the monitor above. The bold, energetic linework in electric blue and white captures the raw, exhilarating speed of a modern writer in full creative sprint."
   },
   "Grammar & Prose": {
     "name": "Grammar & Prose",
@@ -51,7 +51,7 @@
     "description": "Creative Industry experience",
     "filename": "grammar_and_prose.png",
     "filefolder": "skills",
-    "imageprompt": "An elegant, vintage fountain pen resting on a beautifully handwritten parchment letter. The dark brown ink detailing showcases classic calligraphy and academic rigor. It represents the foundational, timeless rules of beautiful literary construction."
+    "imageprompt": "A crisp digital illustration of a manuscript open in a modern word processor, with elegant tracked-changes annotations and grammar suggestions glowing in the margins. A well-worn paperback style guide sits beside a half-drunk pour-over coffee. Clean navy and ivory tones reflect the disciplined, contemporary craft of precise literary construction."
   },
   "Plotting": {
     "name": "Plotting",
@@ -60,7 +60,7 @@
     "description": "Literary Elite experience",
     "filename": "plotting.png",
     "filefolder": "skills",
-    "imageprompt": "A complex, wall-mounted corkboard connected with strings and pinned notes, drawn in an old newspaper etching style. The sepia-toned illustration feels like a detective's evidence board applied to storytelling. It captures the intricate, structural planning of a grand narrative."
+    "imageprompt": "A wide corkboard covered in printed scene cards, color-coded sticky notes, and lengths of colored string mapping a complex narrative web, photographed in a sharp, modern graphic style. The illustration uses bold flat colors — coral, teal, and off-white — against a concrete apartment wall. A Scrivener window glows on an open laptop below, bridging analog and digital story architecture."
   },
   "Character Dev.": {
     "name": "Character Dev.",
@@ -69,7 +69,7 @@
     "description": "Typing Speed experience",
     "filename": "character_dev.png",
     "filefolder": "skills",
-    "imageprompt": "A series of expressive, vintage portrait sketches layered over one another in dark brown ink. The woodblock print style highlights the different facets of human emotion and personality. It evokes the deep psychological study required to create lifelike literary figures."
+    "imageprompt": "A modern digital illustration of a character profile spreadsheet on a widescreen monitor — complete with psychology notes, backstory timelines, and personality trait wheels — surrounded by candid street photography printouts pinned to the wall. Warm amber and steel blue tones convey deep human observation. It captures the meticulous, research-driven process of building believable 21st-century characters."
   },
   "Healthy Lifestyle": {
     "name": "Healthy Lifestyle",
@@ -78,7 +78,7 @@
     "description": "Later retirement age",
     "filename": "healthy_lifestyle.png",
     "filefolder": "skills",
-    "imageprompt": "A classic illustration of a 1920s figure engaging in morning calisthenics by an open window. The sepia tones and clean linework reflect the era's approach to vitality and wellness. It symbolizes the physical endurance needed for a long, productive life."
+    "imageprompt": "A clean, contemporary flat-ink illustration of a writer on a morning run through an urban park, wireless earbuds in, a fitness tracker glowing on their wrist. A smoothie bottle and a yoga mat lean against their apartment door in the background. Crisp green and daylight-white tones capture the disciplined, health-conscious routine that sustains a long modern creative career."
   },
   "Flow State": {
     "name": "Flow State",
@@ -87,7 +87,7 @@
     "description": "Gamespeed",
     "filename": "flow_state.png",
     "filefolder": "skills",
-    "imageprompt": "An abstract, swirling vortex of ink and parchment pages, drawn with mesmerizing dark brown crosshatching. The woodblock print style bends reality, showing a writer completely consumed by their work. It captures the magical, time-warping experience of deep creative focus."
+    "imageprompt": "An abstract, swirling digital illustration of a writer dissolving into cascading streams of glowing text and luminous code-like characters, their laptop screen blazing white in a dark room. Electric indigo and neon cyan tones pulse outward in hypnotic concentric rings. It captures the exhilarating, reality-dissolving experience of a modern creative mind locked in perfect, unstoppable flow."
   },
   "Longevity Secrets": {
     "name": "Longevity Secrets",
@@ -96,7 +96,7 @@
     "description": "Later retirement age",
     "filename": "longevity_secrets.png",
     "filefolder": "skills",
-    "imageprompt": "An ancient, glowing hourglass resting on an ornate pedestal, illustrated with striking Art Deco elements. Subtle gold foil accents highlight the falling sand against the sepia background. It represents the mystical, prestigious mastery over time and lifespan."
+    "imageprompt": "A striking modern digital illustration of a glowing DNA double helix intertwined with a minimalist timeline stretching across decades, rendered in a sleek infographic art style. Deep navy and luminous gold tones evoke cutting-edge longevity science and biohacking culture. A stack of dog-eared books on neuroscience and longevity research sits at the base, grounding the mystique in modern intellectual pursuit."
   },
   "Brand Management": {
     "name": "Brand Management",
@@ -105,7 +105,7 @@
     "description": "All experience",
     "filename": "brand_management.png",
     "filefolder": "skills",
-    "imageprompt": "A grand, vintage wax seal stamping a prestigious emblem onto a leather-bound book. The dark brown ink is elevated with elegant gold foil linework, symbolizing a powerful authorial identity. It exudes the Great Gatsby-era prestige of a carefully crafted public image."
+    "imageprompt": "A sharp, contemporary flat illustration of a unified author brand spread across multiple screens — a polished website, a curated Instagram grid, and a book cover mockup — all displaying the same bold, consistent visual identity. Rich charcoal and metallic gold tones convey calculated prestige. It captures the strategic, multi-platform image crafting of a modern literary powerhouse."
   },
   "Networking": {
     "name": "Networking",
@@ -114,7 +114,7 @@
     "description": "Fame gain",
     "filename": "networking.png",
     "filefolder": "skills",
-    "imageprompt": "A sophisticated 1920s cocktail party scene, rendered in a classic newspaper illustration style. Figures in sharp suits and flapper dresses converse under glowing chandeliers in sepia tones. It captures the essential, high-society connections of the literary elite."
+    "imageprompt": "A vibrant modern illustration of a literary festival afterparty — writers, agents, and editors mingling under string lights in a converted warehouse, phones out, business cards exchanged, laughter in the air. Warm amber and electric teal tones capture the contemporary creative industry scene. It evokes the essential, electric energy of real-world connections forged in the 21st-century publishing world."
   },
   "Public Speaking": {
     "name": "Public Speaking",
@@ -123,7 +123,7 @@
     "description": "Expenses",
     "filename": "public_speaking.png",
     "filefolder": "skills",
-    "imageprompt": "A charismatic orator standing at a classic wooden podium, bathed in a dramatic spotlight. The woodblock print uses heavy dark brown ink to create a powerful, commanding presence. It evokes the academic and political prestige of a master rhetorician."
+    "imageprompt": "A bold, contemporary flat-ink illustration of a confident author on a TED-style stage, bathed in a dramatic cool-white spotlight before a packed auditorium. A minimalist projection screen behind them displays the book cover in sharp contrast. Charcoal and electric blue tones capture the high-stakes, high-reward performance of a modern author commanding a live audience."
   },
   "Personal Brand": {
     "name": "Personal Brand",
@@ -132,7 +132,7 @@
     "description": "All experience",
     "filename": "personal_brand.png",
     "filefolder": "skills",
-    "imageprompt": "A towering, stylized silhouette of an author overlooking a city, drawn in a bold Art Deco style. Brilliant gold foil accents outline the figure against a sepia-toned sky. It represents the monumental, larger-than-life status of a legendary literary icon."
+    "imageprompt": "A towering, stylized modern silhouette of an author rendered in bold graphic design style, their image projected across a city building during a major book launch event. Brilliant electric gold and deep midnight blue tones dominate the urban skyline. Social media follower counts and glowing five-star review badges orbit the figure like satellites, representing the monumental digital-age icon of a legendary contemporary writer."
   },
   "Media Tours": {
     "name": "Media Tours",
@@ -141,7 +141,7 @@
     "description": "Fame gain",
     "filename": "media_tours.png",
     "filefolder": "skills",
-    "imageprompt": "A vintage 1920s radio microphone surrounded by flashing press cameras, illustrated with dynamic linework. The dark brown ink captures the chaotic, glamorous energy of a nationwide publicity campaign. It feels like a historic snapshot of skyrocketing fame."
+    "imageprompt": "A dynamic, contemporary illustration of an author mid-interview on a bright morning talk show set, surrounded by professional studio lighting rigs and boom microphones, a bestseller propped visibly on the desk. Smartphone cameras in the front row stream live to social media. Vivid warm studio gold and crisp white tones capture the relentless, glamorous momentum of a modern media publicity blitz."
   },
   "Royalty Negotiation": {
     "name": "Royalty Negotiation",
@@ -150,6 +150,6 @@
     "description": "Job pay",
     "filename": "royalty_negotiation.png",
     "filefolder": "skills",
-    "imageprompt": "Two hands firmly shaking over a heavily drafted contract, depicted in a refined academic etching. The sepia tones and subtle gold foil details on the pen highlight the high-stakes nature of the deal. It symbolizes the shrewd, lucrative business side of elite publishing."
+    "imageprompt": "A sharp, modern flat illustration of two professionals across a sleek glass conference table — a literary agent and a publishing executive — a detailed contract and royalty breakdown spreadsheet open on a tablet between them. Clean charcoal suits, a city skyline visible through floor-to-ceiling windows, and a bold gold pen poised to sign. Monochrome grey and metallic gold tones capture the high-stakes, financially decisive world of contemporary publishing deals."
   }
 }

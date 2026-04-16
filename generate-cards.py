@@ -9,6 +9,16 @@ from PIL import Image # Used for resizing and converting to JPG
 # Updated tasks to point to the 5 game JSON files and include aspect ratios.
 TASKS = [
     {
+        "json_filename": "data/potions.json",
+        "start_prompt": "An image for a game item.",
+        "aspect_ratio": "1:1"
+    },
+    {
+        "json_filename": "data/lifeExperiences.json",
+        "start_prompt": "An image for a game skill.",
+        "aspect_ratio": "1:1"
+    },
+    {
         "json_filename": "data/items.json",
         "start_prompt": "An image for a game item.",
         "aspect_ratio": "1:1"
@@ -152,8 +162,7 @@ def process_task(task_config):
 
 {imageprompt}
 
-Vibe: Classic literature, Great Gatsby, old printing presses, academia.
-Execution: Icons are monochromatic (sepia or dark brown ink) resembling woodblock prints or old newspaper illustrations.
+Execution: Icons are monochromatic (sepia or dark brown ink) resembling old newspaper illustrations.
 The final image should be a clean icon on a parchment-textured background.
 """
             try:

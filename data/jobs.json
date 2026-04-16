@@ -10,7 +10,7 @@
     "social": 0.5,
     "filename": "gig_worker.png",
     "filefolder": "jobs",
-    "imageprompt": "A weary worker carrying a heavy load down a cobblestone street, drawn in a gritty woodblock print style. The dark brown ink and sepia tones emphasize the struggle of early 1900s labor. It captures the exhausting, unglamorous reality of making ends meet."
+    "imageprompt": "A exhausted gig worker in a worn hoodie and scuffed sneakers, hunched over a cracked smartphone screen on a rain-slicked urban sidewalk at night. Rendered in a gritty linocut print style with high-contrast black ink and muted urban grays. Blurred neon signs and rideshare app notifications glow faintly in the background, capturing the precarious, algorithm-driven grind of modern hustle culture."
   },
   "Food Service": {
     "name": "Food Service",
@@ -23,7 +23,7 @@
     "social": 1.5,
     "filename": "food_service.png",
     "filefolder": "jobs",
-    "imageprompt": "A bustling 1920s diner scene illustrated like a vintage newspaper etching. A tired server balances a tray of coffee cups, rendered in heavy sepia linework. The atmosphere is frantic and steeped in working-class struggles."
+    "imageprompt": "A frantic barista in a branded apron juggles a tower of specialty coffee cups in a chaotic fast-casual café, illustrated in a gritty urban woodblock print style. Heavy black ink linework captures the steam-fogged windows, POS touchscreens, and overwhelmed expressions of the mid-2010s service industry. The atmosphere crackles with exhaustion and relentless human traffic."
   },
   "Delivery Driver": {
     "name": "Delivery Driver",
@@ -36,7 +36,7 @@
     "social": 0.8,
     "filename": "delivery_driver.png",
     "filefolder": "jobs",
-    "imageprompt": "A classic bicycle messenger navigating a crowded, sepia-toned city intersection. The dark brown ink captures the motion and urgency of the era's delivery services. It feels like an authentic, historical snapshot of urban life."
+    "imageprompt": "A delivery driver on an electric bike weaving through a congested city intersection at dusk, insulated food bag strapped to the back, rendered in a bold contemporary linocut style. Dark charcoal ink captures the motion blur of traffic lights, pedestrian crossings, and glowing app maps mounted on handlebars. The scene reflects the frenetic, anonymous reality of the app-based gig economy."
   },
   "Warehouse Worker": {
     "name": "Warehouse Worker",
@@ -49,7 +49,7 @@
     "social": 0.5,
     "filename": "warehouse_worker.png",
     "filefolder": "jobs",
-    "imageprompt": "A towering, dimly lit industrial warehouse depicted with intense crosshatching and dark shadows. Workers lift heavy wooden crates in a scene reminiscent of early 20th-century labor prints. The woodblock style highlights the physical toll of the job."
+    "imageprompt": "A lone worker in a safety vest and ear protection scanning barcodes beneath the crushing fluorescent lights of a massive fulfillment center, illustrated in high-contrast industrial linocut style. Towering metal shelving units disappear into darkness, conveyor belts snake endlessly through the frame, and security cameras peer from every corner. The heavy black ink emphasizes the dehumanizing scale and monotony of the modern logistics industry."
   },
   "Office Temp": {
     "name": "Office Temp",
@@ -62,7 +62,7 @@
     "social": 1.0,
     "filename": "office_temp.png",
     "filefolder": "jobs",
-    "imageprompt": "Rows of wooden desks in a cramped, vintage office space, drawn in dark brown ink. A solitary figure files papers under the glow of a hanging pendant light. The illustration evokes the monotonous, bureaucratic side of classic academia and business."
+    "imageprompt": "A solitary temp worker surrounded by identical cubicles in a sterile open-plan office, staring blankly at a glowing monitor amid a sea of hot-desks and ergonomic chairs. Rendered in a stark, minimalist woodblock print style with cool gray and black ink tones. Fluorescent overheads cast harsh shadows, and a half-dead succulent sits forgotten on the desk, embodying the disposable anonymity of contract work in the 2010s corporate landscape."
   },
   "Personal Assistant": {
     "name": "Personal Assistant",
@@ -75,7 +75,7 @@
     "social": 2.0,
     "filename": "personal_assistant.png",
     "filefolder": "jobs",
-    "imageprompt": "A sharply dressed assistant managing a chaotic desk full of ringing rotary phones and scattered papers. The sepia-toned etching captures the fast-paced, demanding nature of supporting an executive. It features clean, classic linework typical of 1920s illustrations."
+    "imageprompt": "A sharp, multitasking personal assistant simultaneously speaking into a Bluetooth earpiece, scrolling a tablet, and clutching a leather portfolio in a gleaming modern high-rise lobby. Rendered in a sleek contemporary linocut style with bold black ink and subtle cool-blue highlights. The background hums with revolving glass doors, executive energy, and the relentless pace of a post-2000s corporate powerhouse."
   },
   "Intern": {
     "name": "Intern",
@@ -88,7 +88,7 @@
     "social": 1.0,
     "filename": "intern.png",
     "filefolder": "jobs",
-    "imageprompt": "A young, eager apprentice carrying a stack of manuscripts through a grand publishing house. The woodblock print style uses dark brown ink to detail the towering bookshelves and classic architecture. It represents the humble beginnings within the prestigious literary world."
+    "imageprompt": "A wide-eyed young intern in smart-casual clothes lugs a towering stack of manuscript printouts through the glass-walled corridors of a contemporary publishing house, rendered in a clean modern woodblock print style. Bold black ink details the open-plan office, exposed brick feature walls, and the intimidating bustle of editorial professionals ignoring them entirely. It captures the hopeful, slightly overwhelmed energy of breaking into the literary world."
   },
   "Blogger": {
     "name": "Blogger",
@@ -101,7 +101,7 @@
     "social": 1.2,
     "filename": "blogger.png",
     "filefolder": "jobs",
-    "imageprompt": "A dedicated writer furiously typing on a classic typewriter, surrounded by crumpled parchment. The sepia-toned illustration mimics an old newspaper sketch with heavy ink contrast. It captures the solitary, grassroots effort of independent publishing."
+    "imageprompt": "A focused blogger typing furiously on a MacBook in a cozy coffee shop corner, surrounded by a half-drunk oat milk latte, scattered sticky notes, and tangled earbuds, rendered in a warm contemporary linocut style. Medium-weight black ink captures the ambient café noise, the glow of the laptop screen, and the quiet determination of building an audience one post at a time. It embodies the early-2000s grassroots blogging era perfectly."
   },
   "Content Creator": {
     "name": "Content Creator",
@@ -114,7 +114,7 @@
     "social": 1.8,
     "filename": "content_creator.png",
     "filefolder": "jobs",
-    "imageprompt": "A charismatic storyteller presenting their work to a small, captivated audience in a vintage parlor. The dark brown ink and classic etching style highlight the growing connection with readers. Subtle Art Deco elements begin to appear in the background decor."
+    "imageprompt": "A charismatic content creator filming themselves against a carefully curated ring-lit backdrop in a cluttered home studio, rendered in a bold modern woodblock style. Sharp black ink lines capture the tangle of cables, green screen edges, and the tiny glowing red dot of a recording mirrorless camera. Social media notification icons float at the edges of the frame, reflecting the relentless self-promotional hustle of the creator economy."
   },
   "Copy Editor": {
     "name": "Copy Editor",
@@ -127,7 +127,7 @@
     "social": 0.5,
     "filename": "copy_editor.png",
     "filefolder": "jobs",
-    "imageprompt": "A meticulous editor hunched over a manuscript with a red ink pen, rendered in monochromatic sepia. The academic vibe is strong, with magnifying glasses and reference books scattered around. The woodblock print style emphasizes precision and literary standards."
+    "imageprompt": "A meticulous copy editor with reading glasses perched on their nose, annotating a printed manuscript with a red fine-liner at a desk buried under style guides and Chicago Manuals, rendered in precise contemporary linocut style. Clean, controlled black ink linework highlights the dual monitors in the background, one displaying a tracked-changes Word document. The image radiates quiet, exacting authority and literary precision."
   },
   "Staff Writer": {
     "name": "Staff Writer",
@@ -140,7 +140,7 @@
     "social": 1.2,
     "filename": "staff_writer.png",
     "filefolder": "jobs",
-    "imageprompt": "A confident journalist sitting at a bustling newsroom desk, illustrated with sharp, classic linework. The dark brown ink details the chaotic energy of an old printing press environment. It feels like a respected, established role in a 1920s publication."
+    "imageprompt": "A confident staff writer at a standing desk in a buzzing open-plan digital media office, mid-thought with fingers hovering over a mechanical keyboard, rendered in a sharp contemporary woodblock print style. Bold black ink details the rows of monitors, editorial whiteboards covered in story pitches, and the ambient glow of breaking news feeds. It captures the focused energy of a writer who has earned their byline."
   },
   "Senior Editor": {
     "name": "Senior Editor",
@@ -153,7 +153,7 @@
     "social": 1.5,
     "filename": "senior_editor.png",
     "filefolder": "jobs",
-    "imageprompt": "An imposing figure reviewing a manuscript in a luxurious, wood-paneled office. The sepia-toned etching features early hints of gold foil accents on the desk accessories. It radiates authority and deep academic prestige within the publishing industry."
+    "imageprompt": "An authoritative senior editor reviewing a manuscript across a sleek glass-and-steel desk in a minimalist corner office with floor-to-ceiling city views, rendered in a sophisticated modern linocut style. Precise black ink lines are accented with subtle warm gold tones on the publisher's imprint plaques and award statuettes lining the shelves. The image radiates earned prestige and editorial command in the contemporary publishing landscape."
   },
   "Ghostwriter": {
     "name": "Ghostwriter",
@@ -166,7 +166,7 @@
     "social": 0.5,
     "filename": "ghostwriter.png",
     "filefolder": "jobs",
-    "imageprompt": "A shadowy, anonymous figure writing by candlelight in a hidden, vintage study. The woodblock print uses heavy dark brown ink to obscure the writer's face, emphasizing secrecy. It captures the mysterious, behind-the-scenes nature of writing for the elite."
+    "imageprompt": "A faceless figure in shadow typing at a glowing laptop in a sparse, darkened home office late at night, rendered in a high-contrast modern linocut style. Heavy black ink obscures their identity while the screen's cold blue glow illuminates non-disclosure agreements and a celebrity memoir cover bearing someone else's name. It perfectly captures the anonymous, lucrative, and quietly powerful world of professional ghostwriting."
   },
   "Full-Time Author": {
     "name": "Full-Time Author",
@@ -179,7 +179,7 @@
     "social": 1.0,
     "filename": "full_time_author.png",
     "filefolder": "jobs",
-    "imageprompt": "A triumphant writer holding their freshly bound novel, bathed in warm sepia light. The illustration features elegant Art Deco borders and striking gold foil details. It symbolizes the ultimate achievement and prestige of a dedicated literary career."
+    "imageprompt": "A triumphant author holds their freshly published debut novel in warm morning light streaming through a home library window, rendered in an elegant contemporary woodblock style. Rich black ink is beautifully contrasted with warm amber and subtle gold highlights on the book's cover and spine. Floor-to-ceiling shelves filled with beloved novels frame the scene, embodying the hard-won freedom and creative fulfillment of writing full time."
   },
   "C.W. Student": {
     "name": "C.W. Student",
@@ -192,7 +192,7 @@
     "social": 1.0,
     "filename": "cw_student.png",
     "filefolder": "jobs",
-    "imageprompt": "A young scholar surrounded by towering stacks of classic literature in a grand university library. The dark brown ink and woodblock style evoke a deep sense of old-world academia. It captures the foundational, studious beginnings of a literary elite."
+    "imageprompt": "A young creative writing student hunched over a heavily annotated workshop manuscript in a modern university library, surrounded by highlighted copies of contemporary literary fiction and an open laptop showing a MFA program portal. Rendered in a clean, expressive linocut style with bold black ink. The scene captures the intense mixture of self-doubt, ambition, and literary obsession that defines the early 2000s MFA experience."
   },
   "Junior Agent": {
     "name": "Junior Agent",
@@ -205,7 +205,7 @@
     "social": 2.0,
     "filename": "junior_agent.png",
     "filefolder": "jobs",
-    "imageprompt": "A sharply dressed professional negotiating over a vintage wooden desk, drawn in a classic newspaper style. The sepia tones highlight the bustling, competitive nature of the literary agency. It represents the first step into the business side of publishing."
+    "imageprompt": "A sharp, ambitious junior literary agent in business casual attire pitching over the phone at a cramped agency desk buried in query letters and submission spreadsheets, rendered in a dynamic modern linocut style. Confident black ink linework captures the energy of a BookExpo badge on the desk, a whiteboard tracking submission statuses, and the competitive hunger of someone climbing the industry ladder. It pulses with the hustle of contemporary publishing business."
   },
   "Senior Agent": {
     "name": "Senior Agent",
@@ -218,7 +218,7 @@
     "social": 2.5,
     "filename": "senior_agent.png",
     "filefolder": "jobs",
-    "imageprompt": "A confident power-broker sealing a deal in an upscale, 1920s lounge. The illustration is enhanced with elegant Art Deco geometric patterns and subtle gold foil accents. It exudes the prestige and influence of a major player in the literary world."
+    "imageprompt": "A commanding senior literary agent closing a seven-figure deal over lunch at an upscale Manhattan restaurant, rendered in a sleek, sophisticated linocut style. Elegant black ink linework is enhanced with refined gold accent tones on champagne glasses and a leather-bound deal memo. Authors' bestselling titles are subtly visible on their phone screen, conveying the immense influence and deal-making power of a top-tier modern literary agent."
   },
   "Publisher": {
     "name": "Publisher",
@@ -231,7 +231,7 @@
     "social": 2.5,
     "filename": "publisher.png",
     "filefolder": "jobs",
-    "imageprompt": "A commanding executive standing before a massive, roaring vintage printing press. The dark brown ink is contrasted with brilliant gold foil highlights on the machinery. It captures the immense power and industrial scale of a publishing empire."
+    "imageprompt": "A formidable publisher stands before a wall of floor-to-ceiling windows overlooking a major city skyline, hands clasped behind their back, flanked by towering shelves of their imprint's bestsellers, rendered in a powerful contemporary woodblock style. Bold black ink is strikingly contrasted with gold highlights on framed NYT Bestseller lists and industry awards. It radiates the corporate authority and cultural weight of running a major 21st-century publishing house."
   },
   "Literary Titan": {
     "name": "Literary Titan",
@@ -244,7 +244,7 @@
     "social": 2.0,
     "filename": "literary_titan.png",
     "filefolder": "jobs",
-    "imageprompt": "A legendary figure sitting on a metaphorical throne of classic books, rendered in stunning Art Deco style. Lavish gold foil linework weaves through the sepia-toned woodblock print. It embodies the Great Gatsby-esque pinnacle of literary fame and influence."
+    "imageprompt": "A legendary literary titan seated in a grand modern reading chair atop a stylized throne of iconic 21st-century novels, rendered in a breathtaking contemporary art print style that blends linocut textures with bold graphic design sensibility. Rich black ink is interwoven with lavish gold foil linework highlighting their name emblazoned across book spines and festival banners. The image exudes the rare, mythic stature of a writer whose work has genuinely shaped modern culture."
   },
   "Head of Publishing": {
     "name": "Head of Publishing",
@@ -257,6 +257,6 @@
     "social": 3.0,
     "filename": "head_of_publishing.png",
     "filefolder": "jobs",
-    "imageprompt": "An omnipotent industry leader overlooking a sprawling 1920s metropolis from a grand penthouse. The illustration is dripping with prestige, featuring intricate gold foil Art Deco designs and dark brown ink. It represents the absolute zenith of the literary business world."
+    "imageprompt": "An omnipotent Head of Publishing surveys a sprawling global media empire from an ultra-modern penthouse boardroom, a digital world map displaying their conglomerate's reach across every continent, rendered in a monumental contemporary linocut style. Sweeping black ink strokes are elevated by intricate gold foil accents on the corporate logo, the Booker Prize trophy on the credenza, and the spines of their flagship authors' works. It represents the absolute apex of power in the 21st-century literary and media world."
   }
 }
