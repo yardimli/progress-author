@@ -8,6 +8,7 @@ function updateLogic() {
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
     checkUnlocks();
+    checkRebirthPrompts(); // Added: Check for age-based rebirth modals.
 }
 
 function gameLoop(currentTime) {

@@ -27,6 +27,19 @@ function checkUnlocks() {
 	}
 }
 
+// Added: New function to check for age-based rebirth prompts
+function checkRebirthPrompts() {
+	const age = daysToYears(gameData.days);
+	if (age >= 65 && !gameData.rebirthOnePrompted) {
+		showRebirthOneModal();
+		gameData.rebirthOnePrompted = true;
+	}
+	if (age >= 200 && !gameData.rebirthTwoPrompted) {
+		showRebirthTwoModal();
+		gameData.rebirthTwoPrompted = true;
+	}
+}
+
 function goBankrupt() {
 	gameData.coins = 0;
 	gameData.currentProperty = gameData.itemData["Homeless"];
@@ -402,6 +415,8 @@ function rebirthOne() {
 	gameData.rebirthOneCount += 1;
 	logEvent("Retired and started a new chapter. Legacy bonuses updated.");
 	rebirthReset();
+	closeRetirementModal(); // Added: Close modal after action
+	closeRebirthOneModal(); // Added: Close modal after action
 }
 
 function rebirthTwo() {
@@ -411,6 +426,8 @@ function rebirthTwo() {
 	logEvent(`Retired as a Legend. Gained ${fameGain.toFixed(1)} Fame!`);
 	
 	rebirthReset();
+	closeRetirementModal(); // Added: Close modal after action
+	closeRebirthTwoModal(); // Added: Close modal after action
 	
 	for (let taskName in gameData.taskData) {
 		let task = gameData.taskData[taskName];
@@ -434,6 +451,10 @@ function rebirthReset() {
 	gameData.currentBook = null;
 	gameData.completedBooks = [];
 	
+	// Added: Reset rebirth prompt flags
+	gameData.rebirthOnePrompted = false;
+	gameData.rebirthTwoPrompted = false;
+	
 	for (let taskName in gameData.taskData) {
 		let task = gameData.taskData[taskName];
 		if (task.level > task.maxLevel) task.maxLevel = task.level;
@@ -455,17 +476,15 @@ function getLifespan() {
 
 function isAlive() {
 	let condition = gameData.days < getLifespan();
-	let deathText = document.getElementById("deathText");
+	// Modified: Instead of showing text, this now triggers a non-closable retirement modal.
 	if (!condition) {
 		gameData.days = getLifespan();
-		deathText.classList.remove("hidden");
+		showRetirementModal(); // Show the forced retirement modal
 		if (!gameData.loggedDeath) {
 			logEvent("You have reached your retirement age. It's time to retire.");
 			gameData.loggedDeath = true;
 		}
-	}
-	else {
-		deathText.classList.add("hidden");
+	} else {
 		gameData.loggedDeath = false;
 	}
 	return condition;

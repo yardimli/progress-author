@@ -120,6 +120,14 @@ function loadGameData() {
 			gameData.unlocks = { shop: false, skills: false, writing: false };
 		}
 		
+		// Added: Backward compatibility for rebirth prompts
+		if (gameData.rebirthOnePrompted === undefined) {
+			gameData.rebirthOnePrompted = false;
+		}
+		if (gameData.rebirthTwoPrompted === undefined) {
+			gameData.rebirthTwoPrompted = false;
+		}
+		
 		if (gameData.completedBooks && gameData.completedBooks.length > 0) {
 			if (typeof gameData.completedBooks[0] === 'string') {
 				gameData.completedBooks = gameData.completedBooks.map(id => ({

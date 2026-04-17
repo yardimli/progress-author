@@ -13,62 +13,6 @@
       }
     ]
   },
-  "Rebirth tab": {
-    "type": "age",
-    "elements": [
-      {
-        "type": "id",
-        "value": "rebirthTabButton"
-      }
-    ],
-    "requirements": [
-      {
-        "requirement": 25
-      }
-    ]
-  },
-  "Rebirth note 1": {
-    "type": "age",
-    "elements": [
-      {
-        "type": "id",
-        "value": "rebirthNote1"
-      }
-    ],
-    "requirements": [
-      {
-        "requirement": 45
-      }
-    ]
-  },
-  "Rebirth note 2": {
-    "type": "age",
-    "elements": [
-      {
-        "type": "id",
-        "value": "rebirthNote2"
-      }
-    ],
-    "requirements": [
-      {
-        "requirement": 65
-      }
-    ]
-  },
-  "Rebirth note 3": {
-    "type": "age",
-    "elements": [
-      {
-        "type": "id",
-        "value": "rebirthNote3"
-      }
-    ],
-    "requirements": [
-      {
-        "requirement": 200
-      }
-    ]
-  },
   "Fame info": {
     "type": "fame",
     "elements": [

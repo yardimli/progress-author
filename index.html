@@ -16,7 +16,8 @@
 			<img id="authorImage" src="" alt="Author" class="author-image">
 			
 			<div class="header-stats-container">
-				<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span> <span id="deathText" class="hidden death-text">You have reached retirement age. Use the Golden Pen to retire.</span></div>
+				<!-- Modified: Removed the deathText span -->
+				<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span></div>
 				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
 				<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
@@ -53,7 +54,7 @@
 				<img id="writingTabImg" src="" class="tab-icon-square" style="display:none;" alt="">
 				Writing
 			</div>
-			<div class="tabButton" id="rebirthTabButton" onClick="setTab(this, 'rebirth')">Golden Pen</div>
+			<!-- Modified: Removed the Golden Pen tab -->
 			<div class="tabButton" id="logTabButton" onClick="setTab(this, 'log')">Log</div>
 			<div class="tabButton tab-button-right" id="settingsTabButton" onClick="setTab(this, 'settings')">Settings</div>
 		</div>
@@ -234,51 +235,7 @@
 				</div>
 			</div>
 			
-			<div class="tab" id="rebirth" style="display: none;">
-				<ul>
-					<li class="rebirth-list-item">
-						You stumble across a strange looking Golden Pen on your 25th birthday. It does not look like
-						it has any worth on the market given that it's made from cheap-looking brass. However, you
-						feel a weird urge to keep the pen, so you slip it into your pocket for safekeeping.
-					</li>
-					<li class="rebirth-list-item" id="rebirthNote1">
-						On your 45th birthday, you feel the pen shiver uncontrollably in your pocket. You take it
-						out and the constant shivering suddenly stops. More to your bizarre surprise, you notice
-						a strange etching on the side of the pen.
-					</li>
-					<li class="rebirth-list-item" id="rebirthNote2">
-						<div class="rebirth-note-text">
-							On your 65th birthday, you once again encounter the strange, unexplained shivering from your
-							pen. But this time, it begins to glow. Although terribly frightened,
-							you realise you do not have many years to live left anyway so you consider clicking the pen
-							to see what happens.
-						</div>
-						<i class="rebirth-lore-text">
-							By clicking the pen, you will retire and have to restart your career, losing all your levels and money.
-							However, you will gain <b>experience multipliers</b> for your jobs and skills equivalent to: <b>1 + the max level of the skill or job / 20.</b>
-							This means you will learn everything again much more quickly than you did in your previous life. <span class="rebirth-warning-text">
-								Something tells you that the pen might transform even further after living for <b>2 whole centuries</b>...</span>
-						</i>
-						<br/>
-						<button class="btn rebirth-btn" onClick="rebirthOne()">Start a New Chapter</button>
-						<br/>
-					</li>
-					<li class="rebirth-list-item" id="rebirthNote3">
-						<div class="rebirth-note-text">
-							Your gut instinct was right. The moment you hit the grand age of 200, you hear an ominous hum coming from the pen.
-							It begins to write on its own, spelling out: "So you've made it this far... Are you ready to become a legend?"
-						</div>
-						<i class="rebirth-warning-text">
-							If you decide to become a legend, all of your levels, money and even max levels will be reset.
-							You will be reborn as a fresh slate. However, you will unlock a new line of skills and gain
-							<b><span id="fameGainDisplay"></span> Fame</b>, which will heavily impact your future lives and book sales.
-						</i>
-						<br/>
-						<button class="btn rebirth-btn" onClick="rebirthTwo()">Become a Legend</button>
-						<br/>
-					</li>
-				</ul>
-			</div>
+			<!-- Modified: Removed the entire rebirth tab content -->
 			
 			<div class="tab" id="settings" style="display: none;">
 				<ul>
@@ -400,6 +357,61 @@
 		<button class="btn btn-danger btn-full-width-mt15" onclick="resetGameData()">Reset Game</button>
 	</div>
 </div>
+
+<!-- Added: Rebirth and Retirement Modals -->
+<div id="rebirthOneModal" class="modal modal-overlay-tutorial" style="display: none;">
+	<div class="modal-content modal-content-standard">
+		<h2 class="modal-header-center">The Golden Pen Awakens</h2>
+		<p class="tutorial-text">
+			On your 65th birthday, the strange pen you found long ago begins to glow. You realize it offers a chance to start over, wiser and more experienced.
+		</p>
+		<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+			By clicking the pen, you can retire and restart your career, losing all levels and money. However, you will gain <b>experience multipliers</b> for all jobs and skills, allowing you to progress much faster in your next life.
+		</p>
+		<div class="modal-footer-center">
+			<button class="btn" style="margin-right: 10px;" onclick="rebirthOne()">Start a New Chapter</button>
+			<button class="btn" onclick="closeRebirthOneModal()">Not Yet</button>
+		</div>
+	</div>
+</div>
+
+<div id="rebirthTwoModal" class="modal modal-overlay-tutorial" style="display: none;">
+	<div class="modal-content modal-content-standard">
+		<h2 class="modal-header-center">A Legendary Opportunity</h2>
+		<p class="tutorial-text">
+			At the grand age of 200, the Golden Pen hums with immense power. It offers you a path to true immortality, a chance to become a legend.
+		</p>
+		<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+			If you accept, all levels, money, and even your max level bonuses will be reset. You will be reborn as a fresh slate. However, you will unlock new skills and gain <b><span id="fameGainDisplayModal"></span> Fame</b>, which will heavily impact all future lives and book sales.
+		</p>
+		<div class="modal-footer-center">
+			<button class="btn" style="margin-right: 10px;" onclick="rebirthTwo()">Become a Legend</button>
+			<button class="btn" onclick="closeRebirthTwoModal()">Not Yet</button>
+		</div>
+	</div>
+</div>
+
+<div id="retirementModal" class="modal modal-overlay-version" style="display: none;">
+	<div class="modal-content modal-content-standard">
+		<h2 class="modal-header-center">Retirement</h2>
+		<p class="tutorial-text">You have reached your retirement age. It is time to put down your pen and reflect on your legacy. Choose how you wish to proceed.</p>
+		
+		<div id="retirementRebirthOne" style="display: none; margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
+			<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+				Restart your career, losing all levels and money but gaining <b>experience multipliers</b> for all jobs and skills based on your max level this life.
+			</p>
+			<button class="btn btn-full-width" onclick="rebirthOne()">Start a New Chapter</button>
+		</div>
+		
+		<div id="retirementRebirthTwo" style="display: none; margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
+			<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+				Reset everything, including max level bonuses, to gain <b><span id="fameGainDisplayRetirement"></span> Fame</b> and unlock new skills.
+			</p>
+			<button class="btn btn-full-width" onclick="rebirthTwo()">Become a Legend</button>
+		</div>
+	</div>
+</div>
+
 
 <!-- Scripts loaded in dependency order -->
 <script type="text/javascript" src="js/classes.js?v=1.4"></script>

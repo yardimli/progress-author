@@ -61,7 +61,11 @@ var gameData = {
 	selectedGenre: null, // Track the currently selected genre for new books
 	
 	// Track if the player has seen the intro tutorial
-	introSeen: false
+	introSeen: false,
+	
+	// Added: Track if rebirth modals have been shown in the current life
+	rebirthOnePrompted: false,
+	rebirthTwoPrompted: false
 };
 
 var tempData = {};

@@ -4,7 +4,8 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal'];
+	// Added new modal IDs to the list
+	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal'];
 	let anyOpen = false;
 	for (const id of modals) {
 		const m = document.getElementById(id);
@@ -271,6 +272,66 @@ function closeBookModal () {
 	updatePauseState(); // Unpause game
 }
 
+// --- Added: New Modal Functions for Rebirth ---
+
+function showRebirthOneModal() {
+	const modal = document.getElementById('rebirthOneModal');
+	if (modal) modal.style.display = 'flex';
+	updatePauseState();
+}
+
+function closeRebirthOneModal() {
+	const modal = document.getElementById('rebirthOneModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
+
+function showRebirthTwoModal() {
+	const modal = document.getElementById('rebirthTwoModal');
+	if (modal) {
+		document.getElementById('fameGainDisplayModal').textContent = getFameGain().toFixed(1);
+		modal.style.display = 'flex';
+	}
+	updatePauseState();
+}
+
+function closeRebirthTwoModal() {
+	const modal = document.getElementById('rebirthTwoModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
+
+function showRetirementModal() {
+	const modal = document.getElementById('retirementModal');
+	const age = daysToYears(gameData.days);
+	
+	// Dynamically show available rebirth options based on age
+	const rebirthOneContent = document.getElementById('retirementRebirthOne');
+	const rebirthTwoContent = document.getElementById('retirementRebirthTwo');
+	
+	if (rebirthOneContent) {
+		rebirthOneContent.style.display = age >= 65 ? 'block' : 'none';
+	}
+	if (rebirthTwoContent) {
+		if (age >= 200) {
+			document.getElementById('fameGainDisplayRetirement').textContent = getFameGain().toFixed(1);
+			rebirthTwoContent.style.display = 'block';
+		} else {
+			rebirthTwoContent.style.display = 'none';
+		}
+	}
+	
+	if (modal) modal.style.display = 'flex';
+	updatePauseState();
+}
+
+function closeRetirementModal() {
+	const modal = document.getElementById('retirementModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
+
+
 function startTypingEffect (fullText, elementId) {
 	if (typingTimeout) clearTimeout(typingTimeout);
 	
@@ -348,5 +409,16 @@ window.addEventListener('click', function (event) {
 	const tutorialModal = document.getElementById('tutorialModal');
 	if (tutorialModal && tutorialModal.style.display === 'flex' && event.target === tutorialModal) {
 		closeTutorialModal();
+	}
+	
+	// Added: Event listeners for new closable modals
+	const rebirthOneModal = document.getElementById('rebirthOneModal');
+	if (rebirthOneModal && rebirthOneModal.style.display === 'flex' && event.target === rebirthOneModal) {
+		closeRebirthOneModal();
+	}
+	
+	const rebirthTwoModal = document.getElementById('rebirthTwoModal');
+	if (rebirthTwoModal && rebirthTwoModal.style.display === 'flex' && event.target === rebirthTwoModal) {
+		closeRebirthTwoModal();
 	}
 });
