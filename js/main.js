@@ -11,18 +11,27 @@ function update() {
 
 function gameLoop(currentTime) {
     deltaTime = (currentTime - lastTime) / 1000;
+    if (deltaTime < 0.05) {
+        requestAnimationFrame(gameLoop);
+        return;
+    }
+    
     lastTime = currentTime;
     
     if (deltaTime > 86400) deltaTime = 86400;
     
-    // Process popup queue if not currently paused
-    if (!isPaused && popupQueue.length > 0) {
-        let popup = popupQueue.shift();
-        if (popup.type === 'tutorial') {
-            showTutorialModal(popup.title, popup.text);
-        } else if (popup.type === 'info') {
-            // Pass the isNewUnlock flag to showModal
-            showModal(popup.imgEl, popup.isNewUnlock);
+    textUpdateTimer += deltaTime;
+    
+    if (textUpdateTimer >= 1) {
+        // Process popup queue if not currently paused
+        if (!isPaused && popupQueue.length > 0) {
+            let popup = popupQueue.shift();
+            if (popup.type === 'tutorial') {
+                showTutorialModal(popup.title, popup.text);
+            } else if (popup.type === 'info') {
+                // Pass the isNewUnlock flag to showModal
+                showModal(popup.imgEl, popup.isNewUnlock);
+            }
         }
     }
     
@@ -53,7 +62,10 @@ function gameLoop(currentTime) {
         // Process the visual typewriter effect independently of game speed
         updateTypewriter(deltaTime);
         
-        update();
+        if (textUpdateTimer >= 1) {
+            textUpdateTimer = 0;
+            update();
+        }
     }
     
     saveTimer += deltaTime;

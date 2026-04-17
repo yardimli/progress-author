@@ -549,12 +549,11 @@ function updateTypewriter(deltaTime) {
 			const chars = 'abcdefghijklmnopqrstuvwxyz';
 			typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
 			isLiveCorrecting = true;
-			liveTypingDelay = 60; // Pause before realizing mistake
+			liveTypingDelay = 20; // Pause before realizing mistake
 		} else {
 			typewriterText += char;
 			typewriterIndex++;
-			// Delay between 167ms and 500ms (averages 40-80 chars per second)
-			liveTypingDelay = Math.random() * 8 + 16;
+			liveTypingDelay = Math.random() * 4 + 8;
 		}
 	}
 	

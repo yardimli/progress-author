@@ -78,6 +78,7 @@ const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 var lastTime = performance.now();
 var deltaTime = 0;
 var saveTimer = 0;
+var textUpdateTimer = 0;
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
