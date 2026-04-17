@@ -512,48 +512,56 @@ function updateTypewriter(deltaTime) {
 	}
 	
 	liveTypingDelay -= deltaTime * 1000;
-	if (liveTypingDelay > 0) return;
 	
-	if (isLiveCorrecting) {
-		typewriterText = typewriterText.slice(0, -1);
-		isLiveCorrecting = false;
-		liveTypingDelay = 35; // Pause after deleting
-	} else {
-		// If the sentence is finished, clear the line and start over
-		if (typewriterIndex >= currentTypewriterSentence.length) {
-			typewriterText = ""; // Clear the line
-			typewriterIndex = 0;
-			
-			// Fetch new sentence using the queued scene type and current genre
-			let sceneToUse = nextSceneType || "Action";
-			let currentGenre = "Romance";
-			if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
-				currentGenre = booksBaseData[gameData.currentBook].genre;
-			} else if (gameData.selectedGenre) {
-				currentGenre = gameData.selectedGenre;
+	// Use a while loop to process multiple characters if deltaTime is large.
+	// This prevents the typing speed from slowing down when frame rate is capped.
+	while (liveTypingDelay <= 0) {
+		if (isLiveCorrecting) {
+			typewriterText = typewriterText.slice(0, -1);
+			isLiveCorrecting = false;
+			liveTypingDelay += 35; // Add to delay instead of overwriting
+		} else {
+			// If the sentence is finished, clear the line and start over
+			if (typewriterIndex >= currentTypewriterSentence.length) {
+				typewriterText = ""; // Clear the line
+				typewriterIndex = 0;
+				
+				// Fetch new sentence using the queued scene type and current genre
+				let sceneToUse = nextSceneType || "Action";
+				let currentGenre = "Romance";
+				if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+					currentGenre = booksBaseData[gameData.currentBook].genre;
+				} else if (gameData.selectedGenre) {
+					currentGenre = gameData.selectedGenre;
+				}
+				
+				// Access nested scene types by genre
+				let sentences = (sceneTypesBaseData && sceneTypesBaseData[currentGenre]) ? sceneTypesBaseData[currentGenre][sceneToUse] : null;
+				
+				if (sentences && sentences.length > 0) {
+					currentTypewriterSentence = sentences[Math.floor(Math.random() * sentences.length)] + " ";
+				} else {
+					currentTypewriterSentence = "Writing... ";
+				}
 			}
 			
-			// Access nested scene types by genre
-			let sentences = (sceneTypesBaseData && sceneTypesBaseData[currentGenre]) ? sceneTypesBaseData[currentGenre][sceneToUse] : null;
+			let char = currentTypewriterSentence[typewriterIndex];
 			
-			if (sentences && sentences.length > 0) {
-				currentTypewriterSentence = sentences[Math.floor(Math.random() * sentences.length)] + " ";
+			if (/[a-zA-Z]/.test(char) && Math.random() < 0.03) { // 3% chance for typo
+				const chars = 'abcdefghijklmnopqrstuvwxyz';
+				typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
+				isLiveCorrecting = true;
+				liveTypingDelay += 20; // Add to delay
 			} else {
-				currentTypewriterSentence = "Writing... ";
+				typewriterText += char;
+				typewriterIndex++;
+				liveTypingDelay += Math.random() * 4 + 8; // Add to delay
 			}
 		}
 		
-		let char = currentTypewriterSentence[typewriterIndex];
-		
-		if (/[a-zA-Z]/.test(char) && Math.random() < 0.03) { // 3% chance for typo
-			const chars = 'abcdefghijklmnopqrstuvwxyz';
-			typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
-			isLiveCorrecting = true;
-			liveTypingDelay = 20; // Pause before realizing mistake
-		} else {
-			typewriterText += char;
-			typewriterIndex++;
-			liveTypingDelay = Math.random() * 4 + 8;
+		// Safety break to prevent infinite loops if delay gets stuck
+		if (liveTypingDelay <= 0 && liveTypingDelay > -1) {
+			liveTypingDelay = 1;
 		}
 	}
 	
