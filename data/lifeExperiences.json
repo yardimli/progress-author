@@ -4,34 +4,34 @@
     "multiplier": 0.1,
     "filename": "hardship.png",
     "filefolder": "experiences",
-    "imageprompt": "A dark, stormy cloud raining over a cobblestone street, sepia-toned etching."
+    "imageprompt": "A simple dark cloud with raindrops falling over a small cobblestone path, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft muted colors."
   },
   "Observation": {
     "name": "Observation",
     "multiplier": 0.1,
     "filename": "observation.png",
     "filefolder": "experiences",
-    "imageprompt": "A detailed, piercing eye looking through a vintage magnifying glass, dark brown ink."
+    "imageprompt": "A simple eye shape viewed through a round magnifying glass, flat minimalist vector illustration, clean cozy aesthetic, simplified geometric shapes, soft warm colors."
   },
   "Escapism": {
     "name": "Escapism",
     "multiplier": 0.1,
     "filename": "escapism.png",
     "filefolder": "experiences",
-    "imageprompt": "A thought bubble filled with fantastical castles and dragons, classic woodblock print."
+    "imageprompt": "A rounded thought bubble containing a tiny castle and small dragon, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft pastel colors."
   },
   "Exposure": {
     "name": "Exposure",
     "multiplier": 0.1,
     "filename": "exposure.png",
     "filefolder": "experiences",
-    "imageprompt": "A towering stack of classic literature glowing with knowledge, Art Deco style."
+    "imageprompt": "A neat stack of books with a gentle glow around them, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft warm colors."
   },
   "Social": {
     "name": "Social",
     "multiplier": 0.1,
     "filename": "social.png",
     "filefolder": "experiences",
-    "imageprompt": "Two silhouetted figures engaged in deep conversation over coffee, 1920s newspaper style."
+    "imageprompt": "Two simple rounded figures sitting across from each other with coffee cups on a small table, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft warm colors."
   }
 }

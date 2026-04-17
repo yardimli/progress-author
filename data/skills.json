@@ -6,7 +6,7 @@
     "description": "Skill experience",
     "filename": "focus.png",
     "filefolder": "skills",
-    "imageprompt": "A close-up, hyper-detailed digital illustration of a human eye reflecting the glow of a laptop screen in a darkened modern room. Cool blue and white LED light cuts through the darkness with sharp, clean linework in a contemporary graphic novel style. Empty coffee cups and sticky notes blur in the background, emphasizing intense, singular concentration."
+    "imageprompt": "A flat, minimalist vector illustration of a simple laptop on a desk with a soft glow emanating from its screen, depicted as concentric rounded shapes. A tiny coffee cup and a single sticky note sit beside it. Cozy muted blues and warm off-white tones with simplified geometric shapes, clean outlines, and no realistic detail."
   },
   "Time Management": {
     "name": "Time Management",
@@ -15,7 +15,7 @@
     "description": "Job experience",
     "filename": "time_management.png",
     "filefolder": "skills",
-    "imageprompt": "A sleek modern smartphone displaying a packed digital calendar and task management app, resting beside an open manuscript on a minimalist desk. Rendered in a clean, contemporary flat-ink illustration style with sharp teal and charcoal tones. Multiple browser tabs and notification badges subtly suggest the relentless juggling act of a modern writer's schedule."
+    "imageprompt": "A flat, minimalist vector illustration of a smartphone displaying a simple grid calendar with rounded colored blocks, resting beside a tiny stack of papers on a clean desk. Soft teal and charcoal tones, simplified geometric shapes, clean linework, and a cozy aesthetic with no realistic detail."
   },
   "Frugality": {
     "name": "Frugality",
@@ -24,7 +24,7 @@
     "description": "Expenses",
     "filename": "frugality.png",
     "filefolder": "skills",
-    "imageprompt": "A flat digital illustration of a nearly empty bank account on a laptop screen, surrounded by a cheap instant noodle cup and a bargain-brand coffee mug on a cluttered apartment desk. Muted grey and faded green tones convey financial restraint. A hand-written budget sheet taped to the monitor captures the calculated thrift of a struggling modern author."
+    "imageprompt": "A flat, minimalist vector illustration of a small piggy bank beside a simple noodle cup and a basic mug on a tidy desk. A tiny budget sheet with simplified lines hangs on the wall. Muted grey and soft green tones, rounded geometric shapes, clean outlines, and a cozy aesthetic."
   },
   "Meditation": {
     "name": "Meditation",
@@ -33,7 +33,7 @@
     "description": "Inspiration",
     "filename": "meditation.png",
     "filefolder": "skills",
-    "imageprompt": "A modern figure wearing wireless earbuds, seated cross-legged on a yoga mat in a minimalist apartment, bathed in the soft amber glow of a Himalayan salt lamp. A meditation app glows softly on a nearby phone screen. The clean, contemporary ink illustration style uses warm ochre and cool indigo tones to evoke digital-age mindfulness and creative stillness."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure sitting cross-legged on a small rounded mat, with a glowing orb-shaped lamp nearby. Soft amber and indigo tones, rounded geometric shapes, clean linework, and a cozy, calming aesthetic with no realistic detail."
   },
   "Typing Speed": {
     "name": "Typing Speed",
@@ -42,7 +42,7 @@
     "description": "Writing Speed",
     "filename": "typing_speed.png",
     "filefolder": "skills",
-    "imageprompt": "A dynamic, motion-blurred digital illustration of fingers flying across a sleek mechanical keyboard, the RGB backlighting streaking into neon trails. A word count ticker climbs rapidly on the monitor above. The bold, energetic linework in electric blue and white captures the raw, exhilarating speed of a modern writer in full creative sprint."
+    "imageprompt": "A flat, minimalist vector illustration of a simple keyboard with a few motion lines trailing off the keys, and a small monitor above showing a rising bar graph. Soft electric blue and white tones, rounded geometric shapes, clean outlines, and a cozy minimalist aesthetic."
   },
   "Grammar & Prose": {
     "name": "Grammar & Prose",
@@ -51,7 +51,7 @@
     "description": "Creative Industry experience",
     "filename": "grammar_and_prose.png",
     "filefolder": "skills",
-    "imageprompt": "A crisp digital illustration of a manuscript open in a modern word processor, with elegant tracked-changes annotations and grammar suggestions glowing in the margins. A well-worn paperback style guide sits beside a half-drunk pour-over coffee. Clean navy and ivory tones reflect the disciplined, contemporary craft of precise literary construction."
+    "imageprompt": "A flat, minimalist vector illustration of an open laptop showing simple lines of text with a few highlighted marks, beside a small book and a rounded coffee cup. Soft navy and ivory tones, simplified geometric shapes, clean linework, and a cozy aesthetic."
   },
   "Plotting": {
     "name": "Plotting",
@@ -60,7 +60,7 @@
     "description": "Literary Elite experience",
     "filename": "plotting.png",
     "filefolder": "skills",
-    "imageprompt": "A wide corkboard covered in printed scene cards, color-coded sticky notes, and lengths of colored string mapping a complex narrative web, photographed in a sharp, modern graphic style. The illustration uses bold flat colors — coral, teal, and off-white — against a concrete apartment wall. A Scrivener window glows on an open laptop below, bridging analog and digital story architecture."
+    "imageprompt": "A flat, minimalist vector illustration of a simple corkboard covered with small colored rectangular cards connected by thin lines, with a tiny laptop beneath it. Soft coral, teal, and off-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail."
   },
   "Character Dev.": {
     "name": "Character Dev.",
@@ -69,7 +69,7 @@
     "description": "Typing Speed experience",
     "filename": "character_dev.png",
     "filefolder": "skills",
-    "imageprompt": "A modern digital illustration of a character profile spreadsheet on a widescreen monitor — complete with psychology notes, backstory timelines, and personality trait wheels — surrounded by candid street photography printouts pinned to the wall. Warm amber and steel blue tones convey deep human observation. It captures the meticulous, research-driven process of building believable 21st-century characters."
+    "imageprompt": "A flat, minimalist vector illustration of a monitor displaying a simple character silhouette next to a small chart, with tiny portrait cards pinned to a wall nearby. Soft amber and steel blue tones, simplified geometric shapes, clean linework, and a cozy minimalist aesthetic."
   },
   "Healthy Lifestyle": {
     "name": "Healthy Lifestyle",
@@ -78,7 +78,7 @@
     "description": "Later retirement age",
     "filename": "healthy_lifestyle.png",
     "filefolder": "skills",
-    "imageprompt": "A clean, contemporary flat-ink illustration of a writer on a morning run through an urban park, wireless earbuds in, a fitness tracker glowing on their wrist. A smoothie bottle and a yoga mat lean against their apartment door in the background. Crisp green and daylight-white tones capture the disciplined, health-conscious routine that sustains a long modern creative career."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure jogging past a few rounded trees, with a small smoothie bottle and rolled yoga mat in the foreground. Soft green and daylight-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail."
   },
   "Flow State": {
     "name": "Flow State",
@@ -87,7 +87,7 @@
     "description": "Gamespeed",
     "filename": "flow_state.png",
     "filefolder": "skills",
-    "imageprompt": "An abstract, swirling digital illustration of a writer dissolving into cascading streams of glowing text and luminous code-like characters, their laptop screen blazing white in a dark room. Electric indigo and neon cyan tones pulse outward in hypnotic concentric rings. It captures the exhilarating, reality-dissolving experience of a modern creative mind locked in perfect, unstoppable flow."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure at a glowing laptop, with soft concentric rings and flowing wave shapes radiating outward. Soft indigo and cyan tones, rounded geometric shapes, clean linework, and a cozy, dreamlike minimalist aesthetic."
   },
   "Longevity Secrets": {
     "name": "Longevity Secrets",
@@ -96,7 +96,7 @@
     "description": "Later retirement age",
     "filename": "longevity_secrets.png",
     "filefolder": "skills",
-    "imageprompt": "A striking modern digital illustration of a glowing DNA double helix intertwined with a minimalist timeline stretching across decades, rendered in a sleek infographic art style. Deep navy and luminous gold tones evoke cutting-edge longevity science and biohacking culture. A stack of dog-eared books on neuroscience and longevity research sits at the base, grounding the mystique in modern intellectual pursuit."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified DNA double helix formed from rounded dots and curves, with a small stack of books beneath it. Soft navy and warm gold tones, simplified geometric shapes, clean outlines, and a cozy minimalist aesthetic."
   },
   "Brand Management": {
     "name": "Brand Management",
@@ -105,7 +105,7 @@
     "description": "All experience",
     "filename": "brand_management.png",
     "filefolder": "skills",
-    "imageprompt": "A sharp, contemporary flat illustration of a unified author brand spread across multiple screens — a polished website, a curated Instagram grid, and a book cover mockup — all displaying the same bold, consistent visual identity. Rich charcoal and metallic gold tones convey calculated prestige. It captures the strategic, multi-platform image crafting of a modern literary powerhouse."
+    "imageprompt": "A flat, minimalist vector illustration of three small screens — a laptop, a phone, and a tablet — each displaying the same simplified logo shape. Soft charcoal and warm gold tones, rounded geometric shapes, clean linework, and a cozy aesthetic with no realistic detail."
   },
   "Networking": {
     "name": "Networking",
@@ -114,7 +114,7 @@
     "description": "Fame gain",
     "filename": "networking.png",
     "filefolder": "skills",
-    "imageprompt": "A vibrant modern illustration of a literary festival afterparty — writers, agents, and editors mingling under string lights in a converted warehouse, phones out, business cards exchanged, laughter in the air. Warm amber and electric teal tones capture the contemporary creative industry scene. It evokes the essential, electric energy of real-world connections forged in the 21st-century publishing world."
+    "imageprompt": "A flat, minimalist vector illustration of a few simplified figures standing together holding small rounded drink glasses, with tiny string lights arcing above them. Soft amber and teal tones, simplified geometric shapes, clean outlines, and a cozy, welcoming aesthetic."
   },
   "Public Speaking": {
     "name": "Public Speaking",
@@ -123,7 +123,7 @@
     "description": "Expenses",
     "filename": "public_speaking.png",
     "filefolder": "skills",
-    "imageprompt": "A bold, contemporary flat-ink illustration of a confident author on a TED-style stage, bathed in a dramatic cool-white spotlight before a packed auditorium. A minimalist projection screen behind them displays the book cover in sharp contrast. Charcoal and electric blue tones capture the high-stakes, high-reward performance of a modern author commanding a live audience."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure standing on a small round stage under a soft spotlight, with a few rounded audience silhouettes in the foreground. Soft charcoal and electric blue tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic."
   },
   "Personal Brand": {
     "name": "Personal Brand",
@@ -132,7 +132,7 @@
     "description": "All experience",
     "filename": "personal_brand.png",
     "filefolder": "skills",
-    "imageprompt": "A towering, stylized modern silhouette of an author rendered in bold graphic design style, their image projected across a city building during a major book launch event. Brilliant electric gold and deep midnight blue tones dominate the urban skyline. Social media follower counts and glowing five-star review badges orbit the figure like satellites, representing the monumental digital-age icon of a legendary contemporary writer."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure silhouette displayed on a large rounded billboard, with tiny star shapes and heart icons floating around it. Soft gold and midnight blue tones, simplified geometric shapes, clean outlines, and a cozy aesthetic."
   },
   "Media Tours": {
     "name": "Media Tours",
@@ -141,7 +141,7 @@
     "description": "Fame gain",
     "filename": "media_tours.png",
     "filefolder": "skills",
-    "imageprompt": "A dynamic, contemporary illustration of an author mid-interview on a bright morning talk show set, surrounded by professional studio lighting rigs and boom microphones, a bestseller propped visibly on the desk. Smartphone cameras in the front row stream live to social media. Vivid warm studio gold and crisp white tones capture the relentless, glamorous momentum of a modern media publicity blitz."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure seated at a small rounded interview desk with a tiny book propped up, a boom microphone and small camera nearby. Warm studio gold and soft white tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic."
   },
   "Royalty Negotiation": {
     "name": "Royalty Negotiation",
@@ -150,6 +150,6 @@
     "description": "Job pay",
     "filename": "royalty_negotiation.png",
     "filefolder": "skills",
-    "imageprompt": "A sharp, modern flat illustration of two professionals across a sleek glass conference table — a literary agent and a publishing executive — a detailed contract and royalty breakdown spreadsheet open on a tablet between them. Clean charcoal suits, a city skyline visible through floor-to-ceiling windows, and a bold gold pen poised to sign. Monochrome grey and metallic gold tones capture the high-stakes, financially decisive world of contemporary publishing deals."
+    "imageprompt": "A flat, minimalist vector illustration of two simplified figures seated across a small rounded table, a tiny contract and pen between them, with a simple skyline shape in the background. Soft grey and warm gold tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail."
   }
 }

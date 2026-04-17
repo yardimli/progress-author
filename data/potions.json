@@ -5,7 +5,7 @@
     "type": "inspiration",
     "filename": "inspiration_potion.png",
     "filefolder": "potions",
-    "imageprompt": "A glowing purple potion in a vintage glass vial, emitting ethereal sparkles, drawn in a classic woodblock print style."
+    "imageprompt": "A glowing purple potion in a simple glass vial with soft sparkles floating above, flat minimalist vector illustration style, clean cozy aesthetic using simplified shapes rather than realism, soft color palette, gentle shading."
   },
   "Acceleration Potion": {
     "name": "Acceleration Potion",
@@ -13,6 +13,6 @@
     "type": "acceleration",
     "filename": "acceleration_potion.png",
     "filefolder": "potions",
-    "imageprompt": "A vibrant orange potion in a sleek flask, with lightning motifs, rendered in a striking Art Deco style."
+    "imageprompt": "A bright orange potion in a rounded flask with a small lightning bolt symbol, flat minimalist vector illustration style, clean cozy aesthetic using simplified shapes rather than realism, warm color palette, gentle shading."
   }
 }

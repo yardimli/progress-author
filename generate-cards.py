@@ -3,6 +3,8 @@ import json
 import fal_client
 import requests # Used to download the image
 from PIL import Image # Used for resizing and converting to JPG
+import base64
+import mimetypes
 
 # --- Main Configuration ---
 
@@ -11,32 +13,38 @@ TASKS = [
     {
         "json_filename": "data/potions.json",
         "start_prompt": "An image for a game item.",
-        "aspect_ratio": "1:1"
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-items-5.jpg"
     },
     {
         "json_filename": "data/lifeExperiences.json",
         "start_prompt": "An image for a game skill.",
-        "aspect_ratio": "1:1"
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-items-5.jpg"
     },
     {
         "json_filename": "data/items.json",
         "start_prompt": "An image for a game item.",
-        "aspect_ratio": "1:1"
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-items-5.jpg"
     },
     {
         "json_filename": "data/jobs.json",
         "start_prompt": "An image for a game job/profession.",
-        "aspect_ratio": "1:1"
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-items-5.jpg"
     },
     {
         "json_filename": "data/skills.json",
         "start_prompt": "An image for a game skill.",
-        "aspect_ratio": "1:1"
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-items-5.jpg"
     },
     {
         "json_filename": "data/authors.json",
         "start_prompt": "An image of a modern day author. Don't include any name.",
-        "aspect_ratio": "1:1"
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-faces.jpg"
     },
     {
         "json_filename": "data/books.json",
@@ -45,7 +53,9 @@ TASKS = [
     }
 ]
 
+# Model IDs for generation and editing
 FAL_MODEL_ID = "fal-ai/gemini-25-flash-image"
+FAL_EDIT_MODEL_ID = "fal-ai/gemini-25-flash-image/edit"
 
 def check_api_key():
     """Checks if the FAL_KEY environment variable is set."""
@@ -90,6 +100,19 @@ def resize_and_convert_image(input_path, output_path, target_width=256):
     except Exception as e:
         print(f"Error resizing image {input_path}: {e}")
 
+def get_base64_data_uri(filepath):
+    """Reads a local file and returns a Base64 Data URI string."""
+    try:
+        mime_type, _ = mimetypes.guess_type(filepath)
+        if not mime_type:
+            mime_type = "image/png"  # fallback
+        with open(filepath, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+        return f"data:{mime_type};base64,{encoded_string}"
+    except FileNotFoundError:
+        print(f"Error: Reference image not found at {filepath}")
+        return None
+
 def on_queue_update(update):
     """Callback for fal_client to print log messages during generation."""
     if isinstance(update, fal_client.InProgress):
@@ -128,6 +151,7 @@ def process_task(task_config):
         img_filename = entry.get("filename")
         img_folder = entry.get("filefolder")
         imageprompt = entry.get("imageprompt")
+        reference_image_path = entry.get("reference_image") # New: Check for reference image
 
         if not img_filename or not img_folder or not imageprompt:
             print(f"Skipping '{name}': Missing 'filename', 'filefolder', or 'imageprompt'.")
@@ -162,19 +186,38 @@ def process_task(task_config):
 
 {imageprompt}
 
-Execution: Icons are monochromatic (sepia or dark brown ink) resembling old newspaper illustrations.
-The final image should be a clean icon on a parchment-textured background.
 """
             try:
-                print(f"Subscribing to {FAL_MODEL_ID} for text-to-image (Aspect Ratio: {aspect_ratio})...")
-                result = fal_client.subscribe(
-                    FAL_MODEL_ID,
-                    arguments={
-                        "prompt": prompt_text,
-                        "aspect_ratio": aspect_ratio,
-                        "safety_tolerance": 6
-                    }
-                )
+                result = None
+                # Check if a valid reference image is provided
+                if reference_image_path and os.path.exists(reference_image_path):
+                    print(f"Found reference image: {reference_image_path}. Using edit model.")
+                    base_image_data_uri = get_base64_data_uri(reference_image_path)
+                    if base_image_data_uri:
+                        print(f"Subscribing to {FAL_EDIT_MODEL_ID} for image-to-image edit...")
+                        result = fal_client.subscribe(
+                            FAL_EDIT_MODEL_ID,
+                            arguments={
+                                "prompt": prompt_text,
+                                "image_urls": [base_image_data_uri]
+                            },
+                            with_logs=True,
+                            on_queue_update=on_queue_update
+                        )
+
+                # If no reference image or it failed to load, use text-to-image
+                if result is None:
+                    print(f"Subscribing to {FAL_MODEL_ID} for text-to-image (Aspect Ratio: {aspect_ratio})...")
+                    result = fal_client.subscribe(
+                        FAL_MODEL_ID,
+                        arguments={
+                            "prompt": prompt_text,
+                            "aspect_ratio": aspect_ratio,
+                            "safety_tolerance": 6
+                        },
+                        with_logs=True,
+                        on_queue_update=on_queue_update
+                    )
 
                 if result and 'images' in result and len(result['images']) > 0:
                     image_url = result['images'][0]['url']

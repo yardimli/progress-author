@@ -7,7 +7,7 @@
     "writingQuality": 1,
     "filename": "homeless.png",
     "filefolder": "items",
-    "imageprompt": "A gritty urban street corner in a modern city, circa 2005, rendered in a stark digital illustration style with muted grey and blue tones. A sleeping bag and cardboard boxes are tucked against a graffiti-tagged concrete wall beneath a flickering LED streetlight. Empty coffee cups and a worn notebook lay nearby, hinting at a writer's desperate beginnings in the harsh realities of early 21st-century city life."
+    "imageprompt": "A flat, minimalist vector illustration of a quiet urban street corner with simplified shapes. A small sleeping bag and a stack of cardboard boxes rest against a plain wall beneath a single streetlamp. A paper cup and a worn notebook sit nearby. Clean lines, muted cozy color palette of soft greys and warm blues, no realistic detail, just simple geometric forms conveying the humble beginnings of a writer."
   },
   "Rented Room": {
     "name": "Rented Room",
@@ -17,7 +17,7 @@
     "writingQuality": 1.05,
     "filename": "rented_room.png",
     "filefolder": "items",
-    "imageprompt": "A cramped, dimly lit rented room in a rundown urban apartment building, illustrated in a gritty digital art style with cool blue-grey shadows. A secondhand IKEA desk is cluttered with printed manuscript pages and a cheap desk lamp. Peeling paint, thin walls, and a foggy window overlooking a wet alley capture the struggling writer's spartan existence in the early 2000s."
+    "imageprompt": "A flat, minimalist vector illustration of a small rented room rendered with simplified shapes. A basic desk holds a stack of papers and a small lamp, a single window shows a soft blue night sky, and a narrow bed sits against the wall. Clean lines, cozy aesthetic, muted palette of warm beiges and soft blues, no realism, just simple geometric forms creating a humble writer's space."
   },
   "Studio Apartment": {
     "name": "Studio Apartment",
@@ -27,7 +27,7 @@
     "writingQuality": 1.1,
     "filename": "studio_apartment.png",
     "filefolder": "items",
-    "imageprompt": "A compact, minimalist studio apartment in a modern urban building, depicted in a clean digital illustration style with warm amber and grey tones. A used laptop sits open on a simple white desk near a window overlooking a busy city street lined with parked cars and neon signs. IKEA shelving holds a modest collection of paperbacks and a French press, reflecting the frugal but hopeful lifestyle of an emerging writer in the mid-2000s."
+    "imageprompt": "A flat, minimalist vector illustration of a tidy studio apartment using simple geometric shapes. A laptop sits open on a clean white desk by a large window showing a simplified city skyline. A small bookshelf, a potted plant, and a coffee mug complete the scene. Cozy aesthetic with warm amber and soft grey tones, clean lines, no realistic detail, conveying a hopeful emerging writer's home."
   },
   "Suburban House": {
     "name": "Suburban House",
@@ -37,7 +37,7 @@
     "writingQuality": 1.15,
     "filename": "suburban_house.png",
     "filefolder": "items",
-    "imageprompt": "A modest, well-kept suburban home in a quiet American neighborhood, illustrated in a warm digital art style with natural green and beige tones. A freshly paved driveway leads to a two-car garage, and a neatly trimmed lawn stretches to the sidewalk. Through a bay window, a writer's desk is faintly visible, suggesting newfound stability and a dedicated creative space in the comfortable early 2010s suburban landscape."
+    "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house with simplified shapes. A small two-story home with a triangle roof, a single tree, a neat green lawn, and a paved path to the front door. Soft rounded clouds float above. Clean lines, cozy color palette of warm greens, beiges, and soft blues, no realism, just friendly geometric forms representing a writer's stable new home."
   },
   "Large House": {
     "name": "Large House",
@@ -47,7 +47,7 @@
     "writingQuality": 1.2,
     "filename": "large_house.png",
     "filefolder": "items",
-    "imageprompt": "An impressive, spacious two-story modern home in an upscale neighborhood, rendered in a polished digital illustration style with rich earth tones and soft golden lighting. A stone-paved driveway winds past manicured landscaping to a wide front door with glass panel accents. Large floor-to-ceiling windows hint at an airy, well-furnished interior, reflecting the growing success and lifestyle upgrade of a mid-career author in the 2010s."
+    "imageprompt": "A flat, minimalist vector illustration of a spacious two-story modern house using simple geometric shapes. Large rectangular windows glow with warm yellow light, a stone path curves through tidy landscaping, and a pair of trees frame the home. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence."
   },
   "City Penthouse": {
     "name": "City Penthouse",
@@ -57,7 +57,7 @@
     "writingQuality": 1.25,
     "filename": "city_penthouse.png",
     "filefolder": "items",
-    "imageprompt": "A sleek, ultra-modern city penthouse apartment with floor-to-ceiling glass walls overlooking a glittering contemporary skyline at dusk, illustrated in a sophisticated digital art style with deep navy and gold tones. A minimalist open-plan living space features a designer writing desk, smart home panels, and a wraparound terrace with a city panorama. The scene radiates the aspirational luxury of a bestselling author thriving in the 2010s metropolitan elite."
+    "imageprompt": "A flat, minimalist vector illustration of a sleek city penthouse with simplified geometric shapes. Floor-to-ceiling windows reveal a stylized skyline of rectangular buildings at dusk, with a small writing desk and a modern chair inside. A potted plant and a wraparound terrace add warmth. Clean lines, cozy aesthetic, palette of deep navy, soft gold, and warm whites, no realism, just simple shapes evoking upscale urban living."
   },
   "Private Villa": {
     "name": "Private Villa",
@@ -67,7 +67,7 @@
     "writingQuality": 1.3,
     "filename": "private_villa.png",
     "filefolder": "items",
-    "imageprompt": "A stunning contemporary private villa nestled in a lush coastal landscape, illustrated in a vibrant digital painting style with warm Mediterranean light, turquoise water, and crisp white architecture. Infinity pool terraces cascade toward a sun-drenched sea, while a glass-walled writing studio overlooks an olive grove. The scene captures the peak lifestyle of a celebrated modern author enjoying international success in the early 2020s."
+    "imageprompt": "A flat, minimalist vector illustration of a bright coastal villa using simple shapes. A white cubic home sits on a hill above a turquoise sea, with a rectangular infinity pool, rounded olive trees, and a small glass studio. A soft sun hangs in a pastel sky. Clean lines, cozy Mediterranean palette of whites, turquoise, and warm sand tones, no realism, just friendly geometric forms depicting a celebrated author's retreat."
   },
   "Mansion Estate": {
     "name": "Mansion Estate",
@@ -77,7 +77,7 @@
     "writingQuality": 1.4,
     "filename": "mansion_estate.png",
     "filefolder": "items",
-    "imageprompt": "A breathtaking, sprawling modern mansion estate set behind towering automated security gates, rendered in a dramatic digital art style with deep twilight blues and brilliant warm interior lighting. Manicured topiary gardens flank a grand stone driveway lined with luxury vehicles. The vast estate features a private lake, tennis courts, and a custom-built literary wing visible through soaring glass architecture, embodying the legendary status of a globally iconic 21st-century author."
+    "imageprompt": "A flat, minimalist vector illustration of a grand mansion estate using simplified geometric shapes. A wide symmetrical house with warm glowing windows sits behind simple iron gates, with rounded topiary bushes, a curved driveway, and a small reflecting pond. A soft twilight sky frames the scene. Clean lines, cozy palette of deep blues, warm golds, and soft greens, no realism, just stylized shapes conveying legendary author status."
   },
   "Library Card": {
     "name": "Library Card",
@@ -88,7 +88,7 @@
     "writingQuality": 1.2,
     "filename": "library_card.png",
     "filefolder": "items",
-    "imageprompt": "A modern public library card with a barcode and magnetic strip, illustrated in a clean flat digital style with cool blue and white tones. The plastic card is slightly scuffed from regular use, sitting atop a sleek self-checkout receipt from a contemporary public library. It represents the accessible, democratic foundation of a writer's early 21st-century quest for knowledge and self-improvement."
+    "imageprompt": "A flat, minimalist vector illustration of a simple public library card with a small barcode and rounded corners. The card rests on a plain surface next to a tiny receipt. Clean lines, cozy aesthetic, soft palette of blues and whites with a warm accent, no realism, just simplified geometric shapes representing the humble foundation of a writer's learning journey."
   },
   "Used Laptop": {
     "name": "Used Laptop",
@@ -99,7 +99,7 @@
     "writingQuality": 1.1,
     "filename": "used_laptop.png",
     "filefolder": "items",
-    "imageprompt": "A battered, sticker-covered secondhand laptop from the mid-2000s, illustrated in a gritty flat digital style with cool grey tones. The screen glows with an open word processing document, the keyboard worn smooth at the most-used keys. A cracked charging cable is taped together near the connector, capturing the resourceful, budget-conscious reality of a writer grinding away on their first stories in the early internet age."
+    "imageprompt": "A flat, minimalist vector illustration of a small open laptop with a few colorful stickers on its lid, rendered in simple geometric shapes. The screen shows a blank document with a tiny blinking cursor. A coiled charging cable curls beside it. Clean lines, cozy aesthetic, muted palette of soft greys with pops of warm color, no realism, just simplified shapes conveying a writer's trusty budget tool."
   },
   "Editor": {
     "name": "Editor",
@@ -110,7 +110,7 @@
     "writingQuality": 2.0,
     "filename": "editor.png",
     "filefolder": "items",
-    "imageprompt": "A sharp, focused professional editor in a modern open-plan publishing office, depicted in a clean contemporary digital illustration style with neutral tones and bright overhead lighting. Surrounded by dual monitors displaying tracked manuscript changes, a glass-walled conference room, and shelves of recent releases, she reviews a printed manuscript with a red pen. The scene captures the rigorous, fast-paced world of 21st-century commercial publishing and editorial craft."
+    "imageprompt": "A flat, minimalist vector illustration of a friendly editor character sitting at a simple desk, rendered with rounded geometric shapes. A monitor displays tidy lines of text, a manuscript page with a red pen rests on the desk, and a small bookshelf sits in the background. Clean lines, cozy aesthetic, warm palette of soft neutrals and gentle reds, no realism, just simplified shapes representing the publishing craft."
   },
   "Style Guide": {
     "name": "Style Guide",
@@ -121,7 +121,7 @@
     "writingQuality": 1.6,
     "filename": "style_guide.png",
     "filefolder": "items",
-    "imageprompt": "A well-thumbed modern style guide and grammar handbook sitting beside a open laptop on a clean white desk, illustrated in a bright flat digital style with crisp blue and white tones. Post-it notes and color-coded tabs stick out from the pages, and a steaming mug of coffee sits nearby. It reflects the practical, research-driven habits of a dedicated 21st-century writer committed to mastering their craft."
+    "imageprompt": "A flat, minimalist vector illustration of a thick style guide book with colorful tabs sticking out of its pages, beside a small steaming coffee mug. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, warm palette of soft blues, creams, and a pop of red, no realism, just simplified shapes conveying a writer's dedication to craft."
   },
   "Ergonomic Chair": {
     "name": "Ergonomic Chair",
@@ -132,7 +132,7 @@
     "writingQuality": 1.1,
     "filename": "ergonomic_chair.png",
     "filefolder": "items",
-    "imageprompt": "A sleek, modern ergonomic office chair with mesh back support and adjustable armrests, illustrated in a clean product-style digital art with neutral grey and black tones. The chair sits in a tidy home workspace with soft natural light filtering through modern blinds. It represents the writer's investment in comfort, productivity, and the marathon sessions of focused creativity demanded by a serious 21st-century writing career."
+    "imageprompt": "A flat, minimalist vector illustration of a modern ergonomic office chair with a rounded mesh back and simple armrests, shown in soft geometric shapes. Placed in a tidy corner with a small plant nearby. Clean lines, cozy aesthetic, muted palette of soft greys and warm accents, no realism, just simplified shapes representing comfort and productivity for a focused writer."
   },
   "Pro Writing Software": {
     "name": "Pro Writing Software",
@@ -143,7 +143,7 @@
     "writingQuality": 1.8,
     "filename": "pro_writing_software.png",
     "filefolder": "items",
-    "imageprompt": "A glowing laptop screen displaying a professional writing software interface with corkboard outlines, manuscript chapters, and analytics dashboards, illustrated in a vibrant digital flat style with deep blue and white UI tones. Sticky note cards and character maps are pinned to a virtual board on screen, while a second monitor shows manuscript word count statistics. It embodies the powerful, tech-driven creative workflow of a serious modern author harnessing 21st-century tools."
+    "imageprompt": "A flat, minimalist vector illustration of a laptop showing a stylized writing software interface with a simple corkboard of note cards and a sidebar of chapters. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, palette of soft blues, whites, and warm accent colors, no realism, just simplified shapes conveying a modern writer's creative toolkit."
   },
   "Home Office": {
     "name": "Home Office",
@@ -154,7 +154,7 @@
     "writingQuality": 2.0,
     "filename": "home_office.png",
     "filefolder": "items",
-    "imageprompt": "A thoughtfully designed modern home office with a standing desk, dual ultrawide monitors, and a large bookshelf, illustrated in a warm contemporary digital art style with natural wood tones and soft ambient lighting. A noise-canceling headset hangs from the monitor stand and a mood board of manuscript notes covers one wall. The scene radiates the focused productivity and creative organization of a dedicated professional writer thriving in the 2010s work-from-home era."
+    "imageprompt": "A flat, minimalist vector illustration of a tidy home office with a simple desk, a monitor, a small lamp, and a potted plant, all rendered in geometric shapes. A small bookshelf and a framed picture hang on the wall. Clean lines, cozy aesthetic, warm palette of soft woods, creams, and gentle greens, no realism, just simplified shapes depicting a focused writer's workspace."
   },
   "Home Library": {
     "name": "Home Library",
@@ -165,6 +165,6 @@
     "writingQuality": 2.5,
     "filename": "home_library.png",
     "filefolder": "items",
-    "imageprompt": "A stunning, architecturally designed private home library with soaring two-story bookshelves and a rolling library ladder, illustrated in a rich warm digital painting style with deep mahogany, leather, and soft golden accent lighting. A sleek modern reading nook is embedded between shelves, featuring a designer armchair and a wireless charging pad. Floor-to-ceiling curated book collections, framed literary awards, and a custom-built writing alcove define this ultimate sanctuary of a celebrated 21st-century literary powerhouse."
+    "imageprompt": "A flat, minimalist vector illustration of a cozy home library with tall bookshelves filled with colorful simplified book spines. A rounded armchair sits beside a small side table with a lamp, and a rolling ladder leans against the shelves. Clean lines, cozy aesthetic, warm palette of deep browns, soft golds, and rich reds, no realism, just simplified shapes representing a celebrated writer's sanctuary."
   }
 }
