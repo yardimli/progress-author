@@ -4,7 +4,7 @@ var isInitialized = false;
 var popupQueue = [];
 
 // Define the current game version
-const GAME_VERSION = "1.0.3";
+const GAME_VERSION = "1.0.4";
 
 var gameData = {
 	version: GAME_VERSION, // Save the version in state
