@@ -142,6 +142,7 @@ function startWritingBook() {
 	activeSceneType = null;
 	isWaitingToClearLine = false; // Reset line clear flag
 	isClearingLine = false; // Reset pause flag
+	currentTypingSceneType = null; // Reset typing scene type
 }
 
 function pickNextBook(genre) {
@@ -393,6 +394,7 @@ function finishBook() {
 	activeSceneType = null; // Clear active scene
 	isWaitingToClearLine = false; // Reset line clear flag
 	isClearingLine = false; // Reset pause flag
+	currentTypingSceneType = null; // Reset typing scene type
 	document.getElementById('liveWritingText').innerHTML = '<span class="blinking-cursor">|</span>';
 }
 

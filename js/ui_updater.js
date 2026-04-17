@@ -511,6 +511,14 @@ function updateTypewriter(deltaTime) {
 		return;
 	}
 	
+	// If the player changed the scene type, immediately clear and start a new sentence
+	if (nextSceneType !== currentTypingSceneType) {
+		currentTypingSceneType = nextSceneType;
+		typewriterIndex = currentTypewriterSentence.length; // Force sentence end
+		isLiveCorrecting = false; // Cancel any ongoing typo correction
+		liveTypingDelay = 0; // Force immediate update
+	}
+	
 	liveTypingDelay -= deltaTime * 1000;
 	
 	// Use a while loop to process multiple characters if deltaTime is large.
@@ -520,6 +528,7 @@ function updateTypewriter(deltaTime) {
 		if (isClearingLine) {
 			typewriterText = "";
 			isClearingLine = false;
+			isWaitingToClearLine = false; // Safety reset to ensure it doesn't trigger immediately again
 		}
 		
 		if (isLiveCorrecting) {
@@ -559,7 +568,7 @@ function updateTypewriter(deltaTime) {
 				const chars = 'abcdefghijklmnopqrstuvwxyz';
 				typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
 				isLiveCorrecting = true;
-				liveTypingDelay += 60; // Add to delay
+				liveTypingDelay += 80; // Add to delay
 			} else {
 				typewriterText += char;
 				typewriterIndex++;
@@ -568,7 +577,7 @@ function updateTypewriter(deltaTime) {
 				// Check if we should clear the line because we finished a word and exceeded 75% width
 				if (isWaitingToClearLine && (char === ' ' || char === '-')) {
 					isClearingLine = true; // Set flag to clear on next tick
-					liveTypingDelay += 200; // Add 200ms pause so the user can read the word
+					liveTypingDelay += 250; // Add 200ms pause so the user can read the word
 					isWaitingToClearLine = false; // Reset flag after catching the word boundary
 				}
 			}
@@ -588,7 +597,8 @@ function updateTypewriter(deltaTime) {
 		
 		// Check if the text width exceeds 75% of the container's visible width
 		const innerSpan = document.getElementById('liveWritingTextInner');
-		if (innerSpan && innerSpan.offsetWidth > displayEl.clientWidth * 0.75) {
+		// Prevent triggering if we are already in the process of clearing the line
+		if (innerSpan && innerSpan.offsetWidth > displayEl.clientWidth * 0.75 && !isClearingLine) {
 			isWaitingToClearLine = true;
 		}
 	}

@@ -96,3 +96,4 @@ var isLiveCorrecting = false; // Tracks if the typewriter is currently fixing a 
 var liveTypingDelay = 0;      // Timer for the next keystroke
 var isWaitingToClearLine = false; // Tracks if the line should clear after the current word
 var isClearingLine = false; // Tracks if we are in the 200ms pause before clearing the line
+var currentTypingSceneType = null; // Tracks the scene type currently being typed to detect changes
