@@ -40,15 +40,16 @@
 				<img id="jobTabImg" src="" class="tab-icon" style="display:none;" alt="">
 				Work <span id="jobTabText" class="tab-text-job"></span>
 			</div>
-			<div class="tabButton hidden" id="skillTabButton" onClick="setTab(this, 'skills')">
+			<!-- Removed 'hidden' class so tabs are always clickable -->
+			<div class="tabButton" id="skillTabButton" onClick="setTab(this, 'skills')">
 				<img id="skillTabImg" src="" class="tab-icon" style="display:none;" alt="">
 				Skills <span id="skillTabText" class="tab-text-skill"></span>
 			</div>
-			<div class="tabButton hidden" id="shopTabButton" onClick="setTab(this, 'shop')">
+			<div class="tabButton" id="shopTabButton" onClick="setTab(this, 'shop')">
 				<img id="shopTabImg" src="" class="tab-icon" style="display:none;" alt="">
 				Shop <span id="shopTabText" class="tab-text-shop"></span>
 			</div>
-			<div class="tabButton hidden" id="writingTabButton" onClick="setTab(this, 'writing')">
+			<div class="tabButton" id="writingTabButton" onClick="setTab(this, 'writing')">
 				<img id="writingTabImg" src="" class="tab-icon-square" style="display:none;" alt="">
 				Writing
 			</div>
@@ -126,17 +127,35 @@
 			</div>
 			
 			<div class="tab" id="skills" style="display: none;">
+				<!-- New Locked Overlay -->
+				<div id="skillsLockedOverlay" class="locked-tab-overlay">
+					<div class="locked-tab-icon">🔒</div>
+					<div class="locked-tab-title">Skills Locked</div>
+					<div class="locked-tab-reqs">Move into a Rented Room and reach level 5 in Gig Worker to unlock.</div>
+				</div>
 				<div class="tab-description">Select a skill to progress. All earned bonuses apply, even if not selected.</div>
 				<div id="skillTable"></div>
 			</div>
 			
 			<div class="tab" id="shop" style="display: none;">
+				<!-- New Locked Overlay -->
+				<div id="shopLockedOverlay" class="locked-tab-overlay">
+					<div class="locked-tab-icon">🔒</div>
+					<div class="locked-tab-title">Shop Locked</div>
+					<div class="locked-tab-reqs">Reach level 3 in Gig Worker to unlock.</div>
+				</div>
 				<!-- Added help text for Properties/Shop at the top -->
 				<div class="tab-description">Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.</div>
 				<div id="itemTable"></div>
 			</div>
 			
 			<div class="tab" id="writing" style="display: none;">
+				<!-- New Locked Overlay -->
+				<div id="writingLockedOverlay" class="locked-tab-overlay">
+					<div class="locked-tab-icon">🔒</div>
+					<div class="locked-tab-title">Writing Locked</div>
+					<div class="locked-tab-reqs">Save up $20,000 to unlock.</div>
+				</div>
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
 				<!-- Writing Speed Warning -->

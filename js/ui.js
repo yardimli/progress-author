@@ -16,23 +16,26 @@ function setTab (element, selectedTab) {
 
 // Update UI visibility based on unlocks
 function applyUnlocksUI () {
-	if (gameData.unlocks.shop) {
-		document.getElementById('shopTabButton').classList.remove('hidden');
-	} else {
-		document.getElementById('shopTabButton').classList.add('hidden');
+	// Toggle overlay visibility instead of hiding the tab buttons completely
+	const shopOverlay = document.getElementById('shopLockedOverlay');
+	if (shopOverlay) {
+		shopOverlay.style.display = gameData.unlocks.shop ? 'none' : 'flex';
 	}
 	
-	if (gameData.unlocks.skills) {
-		document.getElementById('skillTabButton').classList.remove('hidden');
-	} else {
-		document.getElementById('skillTabButton').classList.add('hidden');
+	const skillsOverlay = document.getElementById('skillsLockedOverlay');
+	if (skillsOverlay) {
+		skillsOverlay.style.display = gameData.unlocks.skills ? 'none' : 'flex';
 	}
 	
+	const writingOverlay = document.getElementById('writingLockedOverlay');
+	if (writingOverlay) {
+		writingOverlay.style.display = gameData.unlocks.writing ? 'none' : 'flex';
+	}
+	
+	// The slider should still be hidden until writing is actually unlocked
 	if (gameData.unlocks.writing) {
-		document.getElementById('writingTabButton').classList.remove('hidden');
 		document.getElementById('workWritingSliderContainer').classList.remove('hidden');
 	} else {
-		document.getElementById('writingTabButton').classList.add('hidden');
 		document.getElementById('workWritingSliderContainer').classList.add('hidden');
 	}
 }

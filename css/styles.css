@@ -193,6 +193,54 @@ button:focus {
 
 /* --- New UI Styles (Light Mode Base) --- */
 
+/* Added position relative to contain the absolute overlay */
+.tab {
+    position: relative;
+    min-height: 300px; /* Ensures the tab has enough height for the overlay message */
+}
+
+/* --- New Locked Tab Overlay Styles --- */
+.locked-tab-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.65);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.locked-tab-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.locked-tab-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.locked-tab-reqs {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 400px;
+    line-height: 1.4;
+}
+
 .tab-description {
     color: #666;
     margin-bottom: 15px;

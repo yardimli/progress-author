@@ -184,3 +184,20 @@
     background-color: #1b3a1b;
     border-color: #2e7d32;
 }
+
+/* --- Dark Mode Locked Tab Overlay --- */
+.dark .locked-tab-overlay {
+    background-color: rgba(32, 32, 32, 0.75);
+}
+
+.dark .locked-tab-icon {
+    color: #aaa;
+}
+
+.dark .locked-tab-title {
+    color: #fff;
+}
+
+.dark .locked-tab-reqs {
+    color: #ccc;
+}
