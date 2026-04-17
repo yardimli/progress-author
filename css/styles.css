@@ -6,9 +6,15 @@ body {
 }
 
 html, body {
-    font-family: Verdana, sans-serif;
+    /* Changed to a classic serif font stack to fit the author theme */
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
     font-size: 15px;
     line-height: 1.5;
+}
+
+/* Ensure form elements and buttons inherit the serif font */
+button, input, select, textarea {
+    font-family: inherit;
 }
 
 html {
