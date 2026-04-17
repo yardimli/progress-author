@@ -312,7 +312,9 @@
 		<div id="modalCategory" class="modal-category-text"></div>
 		<!-- Added unlock message container -->
 		<div id="modalUnlockMessage" class="unlock-message" style="display: none;"></div>
-		<img id="modalImage" src="" alt="" class="modal-main-image">
+		<div class="modal-image-container">
+			<img id="modalImage" src="" alt="" class="modal-main-image">
+		</div>
 		<div id="modalTitle" class="modal-title"></div>
 		<div id="modalDescription" class="modal-description"></div>
 		<div id="modalMaxLevel" class="modal-max-level" style="display: none;"></div>
@@ -341,7 +343,7 @@
 			<h2 id="bookModalTitle" class="book-modal-title">Title</h2>
 			<h4 id="bookModalSubtitle" class="book-modal-subtitle">Subtitle</h4>
 			<p id="bookModalInfo" class="book-modal-info"></p>
-			<div class="word-app-container" id="wordAppContainer">
+			<div class="word-app-container" id="wordAppContainer" style="height:300px; max-height: 300px; overflow-y: auto;">
 				<div id="bookModalFirstPage"></div>
 			</div>
 			<button class="btn btn-align-right" onclick="closeBookModal()">Close</button>

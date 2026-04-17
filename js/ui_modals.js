@@ -261,7 +261,8 @@ function showBookModal (bookId) {
 	modal.style.display = 'flex';
 	updatePauseState(); // Pause game
 	
-	const firstPageText = book.firstPage || 'Chapter 1\n\nThe beginning of a new journey...';
+	// Modified: Load first page text from the new booksFirstPageBaseData object
+	const firstPageText = (booksFirstPageBaseData && booksFirstPageBaseData[bookId]) ? booksFirstPageBaseData[bookId] : 'Chapter 1\n\nThe beginning of a new journey...';
 	startTypingEffect(firstPageText, 'bookModalFirstPage');
 }
 

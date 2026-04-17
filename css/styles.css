@@ -601,70 +601,359 @@ button:focus {
 }
 
 /* --- Extracted Inline Styles from HTML --- */
-.author-image { width: 120px; height: 120px; border-radius: 8px; object-fit: cover; background-color: #eee; }
-.header-stats-container { flex-grow: 1; display: flex; flex-direction: column; gap: 5px; }
-.author-name-container { font-size: 1.2em; }
-.fame-info { font-size: 0.8em; color: #d32f2f; margin-left: 10px; }
-.death-text { color: red; font-weight: bold; }
-.bold-text { font-weight: bold; }
-.slider-container { display: flex; align-items: center; gap: 10px; margin-top: 2px; }
-.work-percentage-label { font-size: 0.9em; font-weight: bold; color: #4CAF50; }
-.work-writing-slider { width: 150px; margin: 0; }
-.writing-percentage-label { font-size: 0.9em; font-weight: bold; color: #219ebc; }
-.header-actions { display: flex; gap: 10px; align-items: center; margin-top: 5px; }
-.btn-small-inline { padding: 2px 8px; margin-left: 5px; }
-.tab-icon { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; margin-right: 8px; }
-.tab-text-job { color: #4CAF50; margin-left: 8px; }
-.tab-text-skill { margin-left: 8px; font-weight: bold; }
-.tab-text-shop { color: #f44336; margin-left: 8px; }
-.tab-icon-square { width: 24px; height: 24px; border-radius: 4px; object-fit: cover; margin-right: 8px; }
-.tab-button-right { margin-left: auto; }
-.main-content-panel { min-height: 100px; }
-.book-status-row { margin-bottom: 20px; cursor: default; }
-.book-cover-image { width: 120px; height: 180px; object-fit: cover; border-radius: 4px; cursor: pointer; }
-.book-title-large { font-size: 1.5em; }
-.book-stats-container { margin-top: 10px; }
-.writing-progress-bar-container { width: 100%; height: 20px; background-color: #ddd; margin-top: 5px; border-radius: 4px; overflow: hidden; }
-.writing-progress-bar-fill { height: 100%; background-color: #4CAF50; transition: width 0.1s; }
-.writing-stat-text { margin-top: 15px; font-size: 1.1em; }
-.writing-stat-text-sm { font-size: 1.1em; }
-.life-experiences-container { margin-bottom: 20px; cursor: default; padding: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; background-color: rgba(0,0,0,0.02); }
-.rebirth-list-item { margin: 8px; }
-.rebirth-note-text { margin-bottom: 8px; }
-.rebirth-lore-text { color: grey; }
-.rebirth-warning-text { color: rgb(200, 0, 0); }
-.rebirth-btn { margin-bottom: 8px; margin-top: 8px; }
-.version-display { color: #888; font-weight: bold; }
-.settings-form { margin-top: 16px; }
-.import-export-box { width: 300px; height: 30px; }
-.modal-overlay-high { z-index: 2000; }
-.modal-overlay-higher { z-index: 2001; }
-.modal-overlay-intro { z-index: 2002; }
-.modal-overlay-book { z-index: 2003; }
-.modal-overlay-info { z-index: 2004; }
-.modal-overlay-tutorial { z-index: 2005; }
-.modal-overlay-version { z-index: 3000; }
-.modal-content-large { max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 30px; }
-.modal-header-center { text-align: center; margin-top: 0; }
-.modal-subtitle-center { text-align: center; color: #888; font-size: 1.1em; margin-bottom: 30px; }
-.author-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.modal-content-medium { max-width: 800px; text-align: left; }
-.modal-title-nomargin { margin-top: 0; }
-.bio-text { color: #888; line-height: 1.6; font-size: 1.05em; }
-.btn-full-width { margin-top: 20px; width: 100%; }
-.btn-full-width-mt15 { margin-top: 15px; width: 100%; }
-.modal-content-standard { max-width: 600px; text-align: left; }
-.intro-list { line-height: 1.6; }
-.modal-footer-center { text-align: center; margin-top: 20px; }
-.modal-category-text { color: #888; font-size: 1.2em; text-transform: uppercase; margin-bottom: 10px; font-weight: bold; }
-.modal-main-image { width: 192px; height: 192px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-.modal-max-level { color: #4CAF50; font-size: 0.95em; margin-top: 10px; }
-.modal-content-small { max-width: 500px; text-align: left; }
-.book-modal-title { margin-top: 0; margin-bottom: 5px; }
-.book-modal-subtitle { margin-top: 0; color: #666; margin-bottom: 15px; }
-.book-modal-info { color: #888; font-size: 0.95em; margin-bottom: 15px; }
-.btn-align-right { margin-top: 15px; align-self: flex-end; }
-.modal-content-xs { max-width: 400px; text-align: center; }
+.author-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.header-stats-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.author-name-container {
+    font-size: 1.2em;
+}
+
+.fame-info {
+    font-size: 0.8em;
+    color: #d32f2f;
+    margin-left: 10px;
+}
+
+.death-text {
+    color: red;
+    font-weight: bold;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.work-percentage-label {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.work-writing-slider {
+    width: 150px;
+    margin: 0;
+}
+
+.writing-percentage-label {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #219ebc;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.btn-small-inline {
+    padding: 2px 8px;
+    margin-left: 5px;
+}
+
+.tab-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+.tab-text-job {
+    color: #4CAF50;
+    margin-left: 8px;
+}
+
+.tab-text-skill {
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.tab-text-shop {
+    color: #f44336;
+    margin-left: 8px;
+}
+
+.tab-icon-square {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+.tab-button-right {
+    margin-left: auto;
+}
+
+.main-content-panel {
+    min-height: 100px;
+}
+
+.book-status-row {
+    margin-bottom: 20px;
+    cursor: default;
+}
+
+.book-cover-image {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.book-title-large {
+    font-size: 1.5em;
+}
+
+.book-stats-container {
+    margin-top: 10px;
+}
+
+.writing-progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #ddd;
+    margin-top: 5px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.writing-progress-bar-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.1s;
+}
+
+.writing-stat-text {
+    margin-top: 15px;
+    font-size: 1.1em;
+}
+
+.writing-stat-text-sm {
+    font-size: 1.1em;
+}
+
+.life-experiences-container {
+    margin-bottom: 20px;
+    cursor: default;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.rebirth-list-item {
+    margin: 8px;
+}
+
+.rebirth-note-text {
+    margin-bottom: 8px;
+}
+
+.rebirth-lore-text {
+    color: grey;
+}
+
+.rebirth-warning-text {
+    color: rgb(200, 0, 0);
+}
+
+.rebirth-btn {
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.version-display {
+    color: #888;
+    font-weight: bold;
+}
+
+.settings-form {
+    margin-top: 16px;
+}
+
+.import-export-box {
+    width: 300px;
+    height: 30px;
+}
+
+.modal-overlay-high {
+    z-index: 2000;
+}
+
+.modal-overlay-higher {
+    z-index: 2001;
+}
+
+.modal-overlay-intro {
+    z-index: 2002;
+}
+
+.modal-overlay-book {
+    z-index: 2003;
+}
+
+.modal-overlay-info {
+    z-index: 2004;
+}
+
+.modal-overlay-tutorial {
+    z-index: 2005;
+}
+
+.modal-overlay-version {
+    z-index: 3000;
+}
+
+.modal-content-large {
+    max-width: 1200px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.modal-header-center {
+    text-align: center;
+    margin-top: 0;
+}
+
+.modal-subtitle-center {
+    text-align: center;
+    color: #888;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.author-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.modal-content-medium {
+    max-width: 800px;
+    text-align: left;
+}
+
+.modal-title-nomargin {
+    margin-top: 0;
+}
+
+.bio-text {
+    color: #888;
+    line-height: 1.6;
+    font-size: 1.05em;
+}
+
+.btn-full-width {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.btn-full-width-mt15 {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.modal-content-standard {
+    max-width: 600px;
+    text-align: left;
+}
+
+.intro-list {
+    line-height: 1.6;
+}
+
+.modal-footer-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal-category-text {
+    color: #888;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align:center;
+}
+
+.modal-image-container  {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-main-image {
+    width: 192px;
+    height: 192px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.modal-max-level {
+    color: #4CAF50;
+    font-size: 0.95em;
+    margin-top: 10px;
+}
+
+.modal-content-small {
+    max-width: 500px;
+    text-align: left;
+}
+
+.book-modal-title {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.book-modal-subtitle {
+    margin-top: 0;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.book-modal-info {
+    color: #888;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+}
+
+.btn-align-right {
+    margin-top: 15px;
+    align-self: flex-end;
+}
+
+.modal-content-xs {
+    max-width: 400px;
+    text-align: center;
+}
 
 /* --- Modal Styles --- */
 .modal {
@@ -685,7 +974,7 @@ button:focus {
     padding: 15px;
     border-radius: 8px;
     max-width: 600px;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -693,6 +982,7 @@ button:focus {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .modal-description {
@@ -723,7 +1013,7 @@ button:focus {
 .book-modal-left img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .book-modal-right {
@@ -745,7 +1035,7 @@ button:focus {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.1em;
     line-height: 1.6;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .blinking-cursor {
@@ -754,8 +1044,12 @@ button:focus {
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
 /* --- New Unlock Modal Styles --- */

@@ -89,7 +89,8 @@ async function init() {
             colorsRes, tooltipsRes, reqRes,
             authorsRes, booksRes,
             potionsRes, lifeExpRes, genresRes,
-            sceneTypesRes, genreIdealsRes
+            sceneTypesRes, genreIdealsRes,
+            booksFirstPageRes // Added: Fetch new booksFirstPage.json
         ] = await Promise.all([
             fetch('data/jobs.json?' + gameData.version), // Cache busting with version query param
             fetch('data/skills.json?' + gameData.version),
@@ -106,7 +107,8 @@ async function init() {
             fetch('data/lifeExperiences.json?' + gameData.version),
             fetch('data/genres.json?' + gameData.version),
             fetch('data/sceneTypes.json?' + gameData.version),
-            fetch('data/genreIdeals.json?' + gameData.version)
+            fetch('data/genreIdeals.json?' + gameData.version),
+            fetch('data/booksFirstPage.json?' + gameData.version) // Added: Fetch new booksFirstPage.json
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -127,6 +129,7 @@ async function init() {
         genresBaseData = await genresRes.json(); // Assign genres data
         sceneTypesBaseData = await sceneTypesRes.json();
         genreIdealsBaseData = await genreIdealsRes.json();
+        booksFirstPageBaseData = await booksFirstPageRes.json(); // Added: Assign first page data
         
         createAllRows(jobCategories, "jobTable");
         createAllRows(skillCategories, "skillTable");

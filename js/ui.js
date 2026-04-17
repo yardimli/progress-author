@@ -1,21 +1,35 @@
 // Core UI interactions, layout toggles, and logging
 
-function setTab (element, selectedTab) {
+function setTab(element, selectedTab) {
 	const tabs = Array.prototype.slice.call(document.getElementsByClassName('tab'));
 	tabs.forEach(function (tab) {
 		tab.style.display = 'none';
 	});
-	document.getElementById(selectedTab).style.display = 'block';
+	
+	// Modified: store the selected tab element so we can reset its scroll position.
+	const selectedTabElement = document.getElementById(selectedTab);
+	selectedTabElement.style.display = 'block';
 	
 	const tabButtons = document.getElementsByClassName('tabButton');
 	for (const tabButton of tabButtons) {
 		tabButton.classList.remove('btn-active');
 	}
 	element.classList.add('btn-active');
+	
+	// Added: reset the main scrollable content area to the top whenever the tab changes.
+	const scrollContainer = document.querySelector('.scroll-container');
+	if (scrollContainer) {
+		scrollContainer.scrollTop = 0;
+	}
+	
+	// Added: also reset the tab itself in case it ever becomes independently scrollable.
+	if (selectedTabElement) {
+		selectedTabElement.scrollTop = 0;
+	}
 }
 
 // Update UI visibility based on unlocks
-function applyUnlocksUI () {
+function applyUnlocksUI() {
 	// Toggle overlay visibility instead of hiding the tab buttons completely
 	const shopOverlay = document.getElementById('shopLockedOverlay');
 	if (shopOverlay) {
@@ -40,19 +54,19 @@ function applyUnlocksUI () {
 	}
 }
 
-function updateWorkWritingBalance (value) {
+function updateWorkWritingBalance(value) {
 	gameData.workWritingBalance = parseInt(value);
 	document.getElementById('workPercentage').textContent = 100 - gameData.workWritingBalance;
 	document.getElementById('writingPercentage').textContent = gameData.workWritingBalance;
 	if (typeof updateUI === 'function') updateUI();
 }
 
-function setLightDarkMode () {
+function setLightDarkMode() {
 	const body = document.getElementById('body');
 	body.classList.contains('dark') ? body.classList.remove('dark') : body.classList.add('dark');
 }
 
-function logEvent (message) {
+function logEvent(message) {
 	const logContainer = document.getElementById('logContainer');
 	if (!logContainer) return;
 	const entry = document.createElement('div');

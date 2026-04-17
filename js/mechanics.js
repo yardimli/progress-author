@@ -307,10 +307,10 @@ function getCompositionMultiplier() {
 		distance += Math.abs(actualPct - idealPct);
 	}
 	
-	// Max distance is 2.0. Map distance 0 -> 2.0 multiplier, distance 2.0 -> 0.1 multiplier
-	let multiplier = 2.0 - (distance * 0.95);
-	if (multiplier < 0.1) multiplier = 0.1;
-	if (multiplier > 2.0) multiplier = 2.0;
+	// Max distance is 3.0. Map distance 0 -> 3.0 multiplier, distance 3.0 -> 0.15 multiplier
+	let multiplier = 3.0 - (distance * 0.95);
+	if (multiplier < 0.15) multiplier = 0.15;
+	if (multiplier > 3.0) multiplier = 3.0;
 	
 	return multiplier;
 }
