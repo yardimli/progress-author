@@ -412,6 +412,11 @@ function finishBook() {
 		});
 	}
 	
+	// Added: Show the book finished modal before resetting currentBook
+	if (typeof showBookFinishedModal === 'function') {
+		showBookFinishedModal(gameData.currentBook, quality, royalty);
+	}
+	
 	// Stop writing and wait for the player to select the next genre
 	gameData.currentBook = null;
 	gameData.wordsWritten = 0;

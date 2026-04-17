@@ -4,8 +4,8 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	// Added new modal IDs to the list
-	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal'];
+	// Modified: Added 'bookFinishedModal' to the list of modals that pause the game
+	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal'];
 	let anyOpen = false;
 	for (const id of modals) {
 		const m = document.getElementById(id);
@@ -335,6 +335,41 @@ function closeBookModal () {
 	updatePauseState(); // Unpause game
 }
 
+function showBookFinishedModal(bookId, quality, royalty) {
+	const book = booksBaseData[bookId];
+	if (!book) return;
+	
+	const modal = document.getElementById('bookFinishedModal');
+	const modalImg = document.getElementById('bookFinishedModalImage');
+	const modalTitle = document.getElementById('bookFinishedModalTitle');
+	const modalSubtitle = document.getElementById('bookFinishedModalSubtitle');
+	const modalInfo = document.getElementById('bookFinishedModalInfo');
+	const statsBox = document.getElementById('bookFinishedStatsBox');
+	
+	const filefolder = book.filefolder + '256';
+	const filename = book.filename.replace('.png', '.jpg');
+	modalImg.src = `img/${filefolder}/${filename}`;
+	
+	modalTitle.textContent = book.title;
+	modalSubtitle.textContent = book.subtitle;
+	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
+	
+	// Inject the dynamic stats into the highlighted box
+	statsBox.innerHTML = `
+		<div style="margin-bottom: 8px; font-size: 1.1em;"><b>Final Quality:</b> <span style="color: #4CAF50;">${quality.toFixed(1)}%</span></div>
+		<div style="font-size: 1.1em;"><b>Royalties Earned:</b> <span style="color: #219ebc;">+$${format(royalty)}/day</span></div>
+	`;
+	
+	modal.style.display = 'flex';
+	updatePauseState(); // Pause game
+}
+
+function closeBookFinishedModal() {
+	const modal = document.getElementById('bookFinishedModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState(); // Unpause game
+}
+
 // --- Added: New Modal Functions for Rebirth ---
 
 function showRebirthOneModal() {
@@ -462,6 +497,11 @@ window.addEventListener('click', function (event) {
 	const bookModal = document.getElementById('bookModal');
 	if (bookModal && bookModal.style.display === 'flex' && event.target === bookModal) {
 		closeBookModal();
+	}
+	
+	const bookFinishedModal = document.getElementById('bookFinishedModal');
+	if (bookFinishedModal && bookFinishedModal.style.display === 'flex' && event.target === bookFinishedModal) {
+		closeBookFinishedModal();
 	}
 	
 	const authorBioModal = document.getElementById('authorBioModal');

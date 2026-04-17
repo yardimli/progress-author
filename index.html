@@ -354,6 +354,28 @@
 	</div>
 </div>
 
+<!-- Added: Book Finished Modal Container -->
+<div id="bookFinishedModal" class="modal modal-overlay-book" style="display: none;">
+	<div class="modal-content book-modal-content">
+		<div class="book-modal-left">
+			<img id="bookFinishedModalImage" src="" alt="Book Cover">
+		</div>
+		<div class="book-modal-right">
+			<h2 class="modal-title-nomargin" style="color: #4CAF50; margin-bottom: 5px;">Book Published!</h2>
+			<h2 id="bookFinishedModalTitle" class="book-modal-title" style="margin-top: 10px;">Title</h2>
+			<h4 id="bookFinishedModalSubtitle" class="book-modal-subtitle">Subtitle</h4>
+			<p id="bookFinishedModalInfo" class="book-modal-info"></p>
+			
+			<!-- Stats Box with universal light/dark mode transparency -->
+			<div id="bookFinishedStatsBox" style="margin-top: 15px; padding: 15px; background-color: rgba(128, 128, 128, 0.1); border-radius: 8px;">
+				<!-- Stats dynamically injected here -->
+			</div>
+			
+			<button class="btn btn-align-right" onclick="closeBookFinishedModal()">Awesome!</button>
+		</div>
+	</div>
+</div>
+
 <!-- Version Mismatch Modal -->
 <div id="versionModal" class="modal modal-overlay-version" style="display: none;">
 	<div class="modal-content modal-content-xs">

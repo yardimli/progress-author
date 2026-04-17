@@ -7,7 +7,7 @@
     "wordCount": 75000,
     "filename": "love_in_paris.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'A Love in Paris', subtitle 'City of Lights', hook 'Can a broken heart heal in the most romantic city on earth?'. Genre: Romance. Vintage sepia style showing the Eiffel Tower in the background."
+    "imageprompt": "A book cover titled 'A Love in Paris', subtitle 'City of Lights', hook 'Can a broken heart heal in the most romantic city on earth?'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a simple Eiffel Tower silhouette."
   },
   "book2": {
     "title": "Whispers of the Heart",
@@ -17,7 +17,7 @@
     "wordCount": 65000,
     "filename": "whispers_heart.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Whispers of the Heart', subtitle 'A Countryside Tale', hook 'Sometimes love is found where you least expect it.'. Genre: Romance. Woodblock print of a quiet countryside cottage."
+    "imageprompt": "A book cover titled 'Whispers of the Heart', subtitle 'A Countryside Tale', hook 'Sometimes love is found where you least expect it.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a quiet countryside cottage."
   },
   "book3": {
     "title": "The Duke's Dilemma",
@@ -27,7 +27,7 @@
     "wordCount": 85000,
     "filename": "dukes_dilemma.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Duke's Dilemma', subtitle 'High Society Secrets', hook 'A marriage of convenience turns into a dangerous game of love.'. Genre: Romance. Elegant Art Deco ballroom scene."
+    "imageprompt": "A book cover titled 'The Duke's Dilemma', subtitle 'High Society Secrets', hook 'A marriage of convenience turns into a dangerous game of love.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a simple ballroom scene."
   },
   "book4": {
     "title": "Starlight Rendezvous",
@@ -37,7 +37,7 @@
     "wordCount": 60000,
     "filename": "starlight_rendezvous.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Starlight Rendezvous', subtitle 'Midnight Encounters', hook 'Two strangers, one night, endless possibilities.'. Genre: Romance. Dark brown ink showing a starry night over a city bridge."
+    "imageprompt": "A book cover titled 'Starlight Rendezvous', subtitle 'Midnight Encounters', hook 'Two strangers, one night, endless possibilities.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a starry night over a city bridge."
   },
   "book5": {
     "title": "Letters to You",
@@ -47,7 +47,7 @@
     "wordCount": 72000,
     "filename": "letters_to_you.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Letters to You', subtitle 'A Lost Connection', hook 'A bundle of unsent letters holds the key to her past.'. Genre: Romance. Sepia etching of a stack of old letters tied with ribbon."
+    "imageprompt": "A book cover titled 'Letters to You', subtitle 'A Lost Connection', hook 'A bundle of unsent letters holds the key to her past.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a stack of letters tied with ribbon."
   },
   "book6": {
     "title": "Autumn Embrace",
@@ -57,7 +57,7 @@
     "wordCount": 68000,
     "filename": "autumn_embrace.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Autumn Embrace', subtitle 'Falling for You', hook 'As the leaves fall, so do her defenses.'. Genre: Romance. Classic illustration of a park bench under falling leaves."
+    "imageprompt": "A book cover titled 'Autumn Embrace', subtitle 'Falling for You', hook 'As the leaves fall, so do her defenses.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a park bench under falling leaves."
   },
   "book7": {
     "title": "The Sapphire Ring",
@@ -67,7 +67,7 @@
     "wordCount": 80000,
     "filename": "sapphire_ring.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Sapphire Ring', subtitle 'A Family Heirloom', hook 'It was just a ring, until it changed her life forever.'. Genre: Romance. Vintage drawing of a glowing gemstone ring."
+    "imageprompt": "A book cover titled 'The Sapphire Ring', subtitle 'A Family Heirloom', hook 'It was just a ring, until it changed her life forever.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a simple gemstone ring."
   },
   "book8": {
     "title": "Ocean's Melody",
@@ -77,7 +77,7 @@
     "wordCount": 70000,
     "filename": "oceans_melody.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Ocean's Melody', subtitle 'A Seaside Romance', hook 'The tide brought him in, but will it take him away?'. Genre: Romance. Sepia-toned waves crashing against a lighthouse."
+    "imageprompt": "A book cover titled 'Ocean's Melody', subtitle 'A Seaside Romance', hook 'The tide brought him in, but will it take him away?'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting waves beside a lighthouse."
   },
   "book9": {
     "title": "A Dance in the Rain",
@@ -87,7 +87,7 @@
     "wordCount": 62000,
     "filename": "dance_in_rain.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'A Dance in the Rain', subtitle 'Unexpected Joy', hook 'She hated the rain, until she met him.'. Genre: Romance. Two silhouettes sharing an umbrella in a downpour."
+    "imageprompt": "A book cover titled 'A Dance in the Rain', subtitle 'Unexpected Joy', hook 'She hated the rain, until she met him.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing two silhouettes sharing an umbrella."
   },
   "book10": {
     "title": "The Last Waltz",
@@ -97,7 +97,7 @@
     "wordCount": 90000,
     "filename": "last_waltz.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Last Waltz', subtitle 'A Farewell to Love', hook 'One final dance before the world ends.'. Genre: Romance. Elegant classic etching of a couple dancing."
+    "imageprompt": "A book cover titled 'The Last Waltz', subtitle 'A Farewell to Love', hook 'One final dance before the world ends.'. Genre: Romance. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a couple dancing."
   },
   "book11": {
     "title": "Murder at Midnight",
@@ -107,7 +107,7 @@
     "wordCount": 85000,
     "filename": "murder_midnight.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Murder at Midnight', subtitle 'A Detective's Case', hook 'The clock struck twelve, and the screaming began.'. Genre: Mystery/Thriller. Dark noir style clock tower."
+    "imageprompt": "A book cover titled 'Murder at Midnight', subtitle 'A Detective's Case', hook 'The clock struck twelve, and the screaming began.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a simple clock tower silhouette."
   },
   "book12": {
     "title": "The Silent Witness",
@@ -117,7 +117,7 @@
     "wordCount": 92000,
     "filename": "silent_witness.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Silent Witness', subtitle 'Unseen Eyes', hook 'Someone saw everything, but they aren't talking.'. Genre: Mystery/Thriller. Gritty woodblock print of a shadowy figure in a window."
+    "imageprompt": "A book cover titled 'The Silent Witness', subtitle 'Unseen Eyes', hook 'Someone saw everything, but they aren't talking.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a shadowy figure in a window."
   },
   "book13": {
     "title": "Poisoned Chalice",
@@ -127,7 +127,7 @@
     "wordCount": 78000,
     "filename": "poisoned_chalice.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Poisoned Chalice', subtitle 'A Dinner to Die For', hook 'One of the guests is a killer. But who?'. Genre: Mystery/Thriller. Vintage etching of an ornate wine glass spilling dark liquid."
+    "imageprompt": "A book cover titled 'Poisoned Chalice', subtitle 'A Dinner to Die For', hook 'One of the guests is a killer. But who?'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a wine glass spilling liquid."
   },
   "book14": {
     "title": "Shadows of the Past",
@@ -137,7 +137,7 @@
     "wordCount": 88000,
     "filename": "shadows_past.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Shadows of the Past', subtitle 'Buried Secrets', hook 'You can't outrun what you've done.'. Genre: Mystery/Thriller. High-contrast ink drawing of a man running down an alley."
+    "imageprompt": "A book cover titled 'Shadows of the Past', subtitle 'Buried Secrets', hook 'You can't outrun what you've done.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a figure running down an alley."
   },
   "book15": {
     "title": "The Missing Heir",
@@ -147,7 +147,7 @@
     "wordCount": 95000,
     "filename": "missing_heir.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Missing Heir', subtitle 'A Fortune Lost', hook 'A billion-dollar estate, and no one to claim it.'. Genre: Mystery/Thriller. Sepia-toned grand mansion gates."
+    "imageprompt": "A book cover titled 'The Missing Heir', subtitle 'A Fortune Lost', hook 'A billion-dollar estate, and no one to claim it.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing grand mansion gates."
   },
   "book16": {
     "title": "Cold Blood",
@@ -157,7 +157,7 @@
     "wordCount": 82000,
     "filename": "cold_blood.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Cold Blood', subtitle 'A Winter Murder', hook 'The snow covers the tracks, but not the guilt.'. Genre: Mystery/Thriller. Dark ink illustration of footprints in the snow."
+    "imageprompt": "A book cover titled 'Cold Blood', subtitle 'A Winter Murder', hook 'The snow covers the tracks, but not the guilt.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting footprints in the snow."
   },
   "book17": {
     "title": "The Cipher",
@@ -167,7 +167,7 @@
     "wordCount": 105000,
     "filename": "the_cipher.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Cipher', subtitle 'A Deadly Code', hook 'Crack the code, or die trying.'. Genre: Mystery/Thriller. Vintage typewriter with cryptic symbols on the page."
+    "imageprompt": "A book cover titled 'The Cipher', subtitle 'A Deadly Code', hook 'Crack the code, or die trying.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a typewriter with cryptic symbols."
   },
   "book18": {
     "title": "Echoes in the Dark",
@@ -177,7 +177,7 @@
     "wordCount": 76000,
     "filename": "echoes_dark.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Echoes in the Dark', subtitle 'A Haunted Mind', hook 'Is she losing her mind, or is someone in her house?'. Genre: Mystery/Thriller. Spooky woodblock print of a half-open door."
+    "imageprompt": "A book cover titled 'Echoes in the Dark', subtitle 'A Haunted Mind', hook 'Is she losing her mind, or is someone in her house?'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a half-open door."
   },
   "book19": {
     "title": "The Final Act",
@@ -187,7 +187,7 @@
     "wordCount": 89000,
     "filename": "final_act.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Final Act', subtitle 'Curtain Call', hook 'The play was a hit, but the murder was real.'. Genre: Mystery/Thriller. Classic etching of a theater stage with a dropped dagger."
+    "imageprompt": "A book cover titled 'The Final Act', subtitle 'Curtain Call', hook 'The play was a hit, but the murder was real.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a theater stage with a dropped dagger."
   },
   "book20": {
     "title": "Blood Ties",
@@ -197,7 +197,7 @@
     "wordCount": 91000,
     "filename": "blood_ties.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Blood Ties', subtitle 'Family Betrayal', hook 'Trust no one. Especially your family.'. Genre: Mystery/Thriller. Sepia drawing of a torn family photograph."
+    "imageprompt": "A book cover titled 'Blood Ties', subtitle 'Family Betrayal', hook 'Trust no one. Especially your family.'. Genre: Mystery/Thriller. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a torn family photograph."
   },
   "book21": {
     "title": "The Dragon's Hoard",
@@ -207,7 +207,7 @@
     "wordCount": 90000,
     "filename": "dragons_hoard.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Dragon's Hoard', subtitle 'An Epic Quest', hook 'To save the kingdom, they must wake the beast.'. Genre: Fantasy. Vintage etching of a massive dragon sleeping on gold."
+    "imageprompt": "A book cover titled 'The Dragon's Hoard', subtitle 'An Epic Quest', hook 'To save the kingdom, they must wake the beast.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a dragon sleeping on gold."
   },
   "book22": {
     "title": "Crown of Thorns",
@@ -217,7 +217,7 @@
     "wordCount": 105000,
     "filename": "crown_thorns.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Crown of Thorns', subtitle 'The Fallen King', hook 'A king without a throne is a dangerous man.'. Genre: Fantasy. Dark brown ink drawing of a shattered crown."
+    "imageprompt": "A book cover titled 'Crown of Thorns', subtitle 'The Fallen King', hook 'A king without a throne is a dangerous man.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a shattered crown."
   },
   "book23": {
     "title": "The Crystal Blade",
@@ -227,7 +227,7 @@
     "wordCount": 85000,
     "filename": "crystal_blade.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Crystal Blade', subtitle 'Magic Unleashed', hook 'Whoever wields the blade controls the world.'. Genre: Fantasy. Woodblock print of a glowing sword stuck in stone."
+    "imageprompt": "A book cover titled 'The Crystal Blade', subtitle 'Magic Unleashed', hook 'Whoever wields the blade controls the world.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a glowing sword in stone."
   },
   "book24": {
     "title": "Whispering Woods",
@@ -237,7 +237,7 @@
     "wordCount": 95000,
     "filename": "whispering_woods.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Whispering Woods', subtitle 'The Elven Realm', hook 'Do not stray from the path, or the forest will keep you.'. Genre: Fantasy. Sepia-toned dense, magical forest with ancient trees."
+    "imageprompt": "A book cover titled 'Whispering Woods', subtitle 'The Elven Realm', hook 'Do not stray from the path, or the forest will keep you.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a dense, magical forest."
   },
   "book25": {
     "title": "Shadow Mage",
@@ -247,7 +247,7 @@
     "wordCount": 105000,
     "filename": "shadow_mage.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Shadow Mage', subtitle 'Dark Arts', hook 'Magic always comes with a price.'. Genre: Fantasy. High-contrast ink drawing of a cloaked figure casting a spell."
+    "imageprompt": "A book cover titled 'Shadow Mage', subtitle 'Dark Arts', hook 'Magic always comes with a price.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a cloaked figure casting a spell."
   },
   "book26": {
     "title": "The Lost City",
@@ -257,7 +257,7 @@
     "wordCount": 125000,
     "filename": "lost_city.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Lost City', subtitle 'Ruins of the Gods', hook 'Legends say it holds the secret to immortality.'. Genre: Fantasy. Classic illustration of ancient ruins overgrown with vines."
+    "imageprompt": "A book cover titled 'The Lost City', subtitle 'Ruins of the Gods', hook 'Legends say it holds the secret to immortality.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting ancient ruins overgrown with vines."
   },
   "book27": {
     "title": "Blood of the Phoenix",
@@ -267,7 +267,7 @@
     "wordCount": 115000,
     "filename": "blood_phoenix.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Blood of the Phoenix', subtitle 'Rebirth', hook 'From the ashes, a new hero will rise.'. Genre: Fantasy. Art Deco style flaming bird rising from embers."
+    "imageprompt": "A book cover titled 'Blood of the Phoenix', subtitle 'Rebirth', hook 'From the ashes, a new hero will rise.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a flaming bird rising from embers."
   },
   "book28": {
     "title": "The Iron Throne",
@@ -277,7 +277,7 @@
     "wordCount": 140000,
     "filename": "iron_throne.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Iron Throne', subtitle 'War of the Realms', hook 'In the game of kings, you win or you die.'. Genre: Fantasy. Heavy crosshatching of a menacing throne made of swords."
+    "imageprompt": "A book cover titled 'The Iron Throne', subtitle 'War of the Realms', hook 'In the game of kings, you win or you die.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a throne made of swords."
   },
   "book29": {
     "title": "Sorcerer's Apprentice",
@@ -287,7 +287,7 @@
     "wordCount": 90000,
     "filename": "sorcerers_apprentice.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Sorcerer's Apprentice', subtitle 'A Magical Journey', hook 'He wanted to learn magic. He got a war instead.'. Genre: Fantasy. Vintage etching of a glowing magical tome."
+    "imageprompt": "A book cover titled 'Sorcerer's Apprentice', subtitle 'A Magical Journey', hook 'He wanted to learn magic. He got a war instead.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a glowing magical tome."
   },
   "book30": {
     "title": "The Last Unicorn",
@@ -297,7 +297,7 @@
     "wordCount": 100000,
     "filename": "last_unicorn.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Last Unicorn', subtitle 'A Mythic Tale', hook 'She is the last of her kind, and they are hunting her.'. Genre: Fantasy. Sepia woodblock print of a majestic unicorn in a clearing."
+    "imageprompt": "A book cover titled 'The Last Unicorn', subtitle 'A Mythic Tale', hook 'She is the last of her kind, and they are hunting her.'. Genre: Fantasy. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a unicorn in a clearing."
   },
   "book31": {
     "title": "Beyond the Stars",
@@ -307,7 +307,7 @@
     "wordCount": 95000,
     "filename": "beyond_stars.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Beyond the Stars', subtitle 'A Space Odyssey', hook 'Earth was just the beginning.'. Genre: Sci-Fi. Retro-futuristic etching of a rocket ship."
+    "imageprompt": "A book cover titled 'Beyond the Stars', subtitle 'A Space Odyssey', hook 'Earth was just the beginning.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a simple rocket ship."
   },
   "book32": {
     "title": "The Neon City",
@@ -317,7 +317,7 @@
     "wordCount": 105000,
     "filename": "neon_city.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Neon City', subtitle 'Cyberpunk Dreams', hook 'In a city of machines, humanity is a liability.'. Genre: Sci-Fi. Dark ink drawing of a futuristic cityscape with flying cars."
+    "imageprompt": "A book cover titled 'The Neon City', subtitle 'Cyberpunk Dreams', hook 'In a city of machines, humanity is a liability.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a futuristic cityscape with flying cars."
   },
   "book33": {
     "title": "Artificial Soul",
@@ -327,7 +327,7 @@
     "wordCount": 85000,
     "filename": "artificial_soul.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Artificial Soul', subtitle 'The Android's Dilemma', hook 'Can a machine learn to love?'. Genre: Sci-Fi. Vintage blueprint style drawing of a mechanical heart."
+    "imageprompt": "A book cover titled 'Artificial Soul', subtitle 'The Android's Dilemma', hook 'Can a machine learn to love?'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a mechanical heart."
   },
   "book34": {
     "title": "Time's Arrow",
@@ -337,7 +337,7 @@
     "wordCount": 110000,
     "filename": "times_arrow.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Time's Arrow', subtitle 'A Temporal Paradox', hook 'If you change the past, do you erase yourself?'. Genre: Sci-Fi. Sepia-toned surreal illustration of melting clocks."
+    "imageprompt": "A book cover titled 'Time's Arrow', subtitle 'A Temporal Paradox', hook 'If you change the past, do you erase yourself?'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting melting clocks."
   },
   "book35": {
     "title": "The Martian Colony",
@@ -347,7 +347,7 @@
     "wordCount": 98000,
     "filename": "martian_colony.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Martian Colony', subtitle 'Red Dust', hook 'Millions of miles from home, survival is not guaranteed.'. Genre: Sci-Fi. Woodblock print of a domed city on a barren landscape."
+    "imageprompt": "A book cover titled 'The Martian Colony', subtitle 'Red Dust', hook 'Millions of miles from home, survival is not guaranteed.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a domed city on a barren landscape."
   },
   "book36": {
     "title": "Quantum Shift",
@@ -357,7 +357,7 @@
     "wordCount": 115000,
     "filename": "quantum_shift.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Quantum Shift', subtitle 'Parallel Worlds', hook 'There are infinite versions of you. One of them is a killer.'. Genre: Sci-Fi. High-contrast ink drawing of a fractured mirror."
+    "imageprompt": "A book cover titled 'Quantum Shift', subtitle 'Parallel Worlds', hook 'There are infinite versions of you. One of them is a killer.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a fractured mirror."
   },
   "book37": {
     "title": "Starship Vanguard",
@@ -367,7 +367,7 @@
     "wordCount": 125000,
     "filename": "starship_vanguard.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Starship Vanguard', subtitle 'Galactic War', hook 'The fate of the galaxy rests on one ship.'. Genre: Sci-Fi. Classic etching of a massive space cruiser."
+    "imageprompt": "A book cover titled 'Starship Vanguard', subtitle 'Galactic War', hook 'The fate of the galaxy rests on one ship.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a massive space cruiser."
   },
   "book38": {
     "title": "The Memory Thief",
@@ -377,7 +377,7 @@
     "wordCount": 92000,
     "filename": "memory_thief.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Memory Thief', subtitle 'Mind Control', hook 'Your memories aren't your own.'. Genre: Sci-Fi. Art Deco style illustration of a human head with gears inside."
+    "imageprompt": "A book cover titled 'The Memory Thief', subtitle 'Mind Control', hook 'Your memories aren't your own.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a human head with gears inside."
   },
   "book39": {
     "title": "Alien Contact",
@@ -387,7 +387,7 @@
     "wordCount": 102000,
     "filename": "alien_contact.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Alien Contact', subtitle 'First Encounter', hook 'We are not alone. And they are hungry.'. Genre: Sci-Fi. Sepia-toned drawing of a massive UFO hovering over a city."
+    "imageprompt": "A book cover titled 'Alien Contact', subtitle 'First Encounter', hook 'We are not alone. And they are hungry.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a UFO hovering over a city."
   },
   "book40": {
     "title": "The Void",
@@ -397,7 +397,7 @@
     "wordCount": 88000,
     "filename": "the_void.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Void', subtitle 'Deep Space', hook 'In space, no one can hear you scream.'. Genre: Sci-Fi. Dark, minimalist ink drawing of a lone astronaut floating."
+    "imageprompt": "A book cover titled 'The Void', subtitle 'Deep Space', hook 'In space, no one can hear you scream.'. Genre: Sci-Fi. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a lone astronaut floating."
   },
   "book41": {
     "title": "The Roman Legion",
@@ -407,7 +407,7 @@
     "wordCount": 110000,
     "filename": "roman_legion.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Roman Legion', subtitle 'Empire's Edge', hook 'One soldier stands between civilization and ruin.'. Genre: Historical Fiction. Vintage etching of a Roman centurion's helmet."
+    "imageprompt": "A book cover titled 'The Roman Legion', subtitle 'Empire's Edge', hook 'One soldier stands between civilization and ruin.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a Roman centurion's helmet."
   },
   "book42": {
     "title": "Tudor Rose",
@@ -417,7 +417,7 @@
     "wordCount": 125000,
     "filename": "tudor_rose.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Tudor Rose', subtitle 'Court Intrigue', hook 'To wear the crown is to invite the blade.'. Genre: Historical Fiction. Sepia woodblock print of an ornate rose and a dagger."
+    "imageprompt": "A book cover titled 'Tudor Rose', subtitle 'Court Intrigue', hook 'To wear the crown is to invite the blade.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting an ornate rose and a dagger."
   },
   "book43": {
     "title": "The Silk Road",
@@ -427,7 +427,7 @@
     "wordCount": 95000,
     "filename": "silk_road.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Silk Road', subtitle 'A Merchant's Tale', hook 'Riches await those brave enough to cross the desert.'. Genre: Historical Fiction. Classic illustration of a camel caravan in the dunes."
+    "imageprompt": "A book cover titled 'The Silk Road', subtitle 'A Merchant's Tale', hook 'Riches await those brave enough to cross the desert.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a camel caravan in the dunes."
   },
   "book44": {
     "title": "Viking Fury",
@@ -437,7 +437,7 @@
     "wordCount": 105000,
     "filename": "viking_fury.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Viking Fury', subtitle 'Sails of the North', hook 'The sea calls for blood, and they will answer.'. Genre: Historical Fiction. High-contrast ink drawing of a Viking longship in a storm."
+    "imageprompt": "A book cover titled 'Viking Fury', subtitle 'Sails of the North', hook 'The sea calls for blood, and they will answer.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a Viking longship in a storm."
   },
   "book45": {
     "title": "The French Revolution",
@@ -447,7 +447,7 @@
     "wordCount": 130000,
     "filename": "french_revolution.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The French Revolution', subtitle 'Reign of Terror', hook 'Liberty, equality, fraternity... or death.'. Genre: Historical Fiction. Dark brown ink drawing of a guillotine."
+    "imageprompt": "A book cover titled 'The French Revolution', subtitle 'Reign of Terror', hook 'Liberty, equality, fraternity... or death.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a guillotine."
   },
   "book46": {
     "title": "Samurai's Honor",
@@ -457,7 +457,7 @@
     "wordCount": 115000,
     "filename": "samurais_honor.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Samurai's Honor', subtitle 'The Last Shogun', hook 'A blade without a master is a dangerous thing.'. Genre: Historical Fiction. Vintage Japanese woodblock style drawing of a katana."
+    "imageprompt": "A book cover titled 'Samurai's Honor', subtitle 'The Last Shogun', hook 'A blade without a master is a dangerous thing.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a katana."
   },
   "book47": {
     "title": "The Great War",
@@ -467,7 +467,7 @@
     "wordCount": 120000,
     "filename": "great_war.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Great War', subtitle 'Trenches of Despair', hook 'The war to end all wars.'. Genre: Historical Fiction. Sepia-toned etching of soldiers in a muddy trench."
+    "imageprompt": "A book cover titled 'The Great War', subtitle 'Trenches of Despair', hook 'The war to end all wars.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing soldiers in a muddy trench."
   },
   "book48": {
     "title": "Pirate's Gold",
@@ -477,7 +477,7 @@
     "wordCount": 90000,
     "filename": "pirates_gold.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Pirate's Gold', subtitle 'The Black Flag', hook 'Dead men tell no tales.'. Genre: Historical Fiction. Classic illustration of a skull and crossbones flag."
+    "imageprompt": "A book cover titled 'Pirate's Gold', subtitle 'The Black Flag', hook 'Dead men tell no tales.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a skull and crossbones flag."
   },
   "book49": {
     "title": "The Pharaoh's Curse",
@@ -487,7 +487,7 @@
     "wordCount": 100000,
     "filename": "pharaohs_curse.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Pharaoh's Curse', subtitle 'Sands of Time', hook 'Some tombs should never be opened.'. Genre: Historical Fiction. Art Deco style drawing of an Egyptian sarcophagus."
+    "imageprompt": "A book cover titled 'The Pharaoh's Curse', subtitle 'Sands of Time', hook 'Some tombs should never be opened.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing an Egyptian sarcophagus."
   },
   "book50": {
     "title": "The Gold Rush",
@@ -497,7 +497,7 @@
     "wordCount": 85000,
     "filename": "gold_rush.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Gold Rush', subtitle 'Striking It Rich', hook 'Greed can make a man do terrible things.'. Genre: Historical Fiction. Woodblock print of a miner panning for gold."
+    "imageprompt": "A book cover titled 'The Gold Rush', subtitle 'Striking It Rich', hook 'Greed can make a man do terrible things.'. Genre: Historical Fiction. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a miner panning for gold."
   },
   "book51": {
     "title": "Awaken Your Mind",
@@ -507,7 +507,7 @@
     "wordCount": 50000,
     "filename": "awaken_mind.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Awaken Your Mind', subtitle 'The Power of Thought', hook 'Change your thoughts, change your life.'. Genre: Self-Help. Minimalist vintage etching of a glowing brain."
+    "imageprompt": "A book cover titled 'Awaken Your Mind', subtitle 'The Power of Thought', hook 'Change your thoughts, change your life.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a glowing brain."
   },
   "book52": {
     "title": "The Habit Loop",
@@ -517,7 +517,7 @@
     "wordCount": 55000,
     "filename": "habit_loop.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Habit Loop', subtitle 'Mastering Routine', hook 'You are what you repeatedly do.'. Genre: Self-Help. Sepia-toned drawing of interlocking gears."
+    "imageprompt": "A book cover titled 'The Habit Loop', subtitle 'Mastering Routine', hook 'You are what you repeatedly do.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting interlocking gears."
   },
   "book53": {
     "title": "Finding Peace",
@@ -527,7 +527,7 @@
     "wordCount": 45000,
     "filename": "finding_peace.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Finding Peace', subtitle 'A Guide to Mindfulness', hook 'Stop rushing. Start living.'. Genre: Self-Help. Classic illustration of a calm zen garden."
+    "imageprompt": "A book cover titled 'Finding Peace', subtitle 'A Guide to Mindfulness', hook 'Stop rushing. Start living.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a calm zen garden."
   },
   "book54": {
     "title": "The Art of Focus",
@@ -537,7 +537,7 @@
     "wordCount": 60000,
     "filename": "art_of_focus.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Art of Focus', subtitle 'Eliminating Distractions', hook 'In a world of noise, silence is a superpower.'. Genre: Self-Help. High-contrast ink drawing of a magnifying glass."
+    "imageprompt": "A book cover titled 'The Art of Focus', subtitle 'Eliminating Distractions', hook 'In a world of noise, silence is a superpower.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a magnifying glass."
   },
   "book55": {
     "title": "Unstoppable Confidence",
@@ -547,7 +547,7 @@
     "wordCount": 52000,
     "filename": "unstoppable_confidence.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Unstoppable Confidence', subtitle 'Believe in Yourself', hook 'The only thing holding you back is you.'. Genre: Self-Help. Art Deco style drawing of a person standing tall on a mountain peak."
+    "imageprompt": "A book cover titled 'Unstoppable Confidence', subtitle 'Believe in Yourself', hook 'The only thing holding you back is you.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a person standing tall on a mountain peak."
   },
   "book56": {
     "title": "Financial Freedom",
@@ -557,7 +557,7 @@
     "wordCount": 65000,
     "filename": "financial_freedom.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Financial Freedom', subtitle 'Wealth Building Strategies', hook 'Make your money work for you.'. Genre: Self-Help. Vintage woodblock print of a growing tree made of coins."
+    "imageprompt": "A book cover titled 'Financial Freedom', subtitle 'Wealth Building Strategies', hook 'Make your money work for you.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a growing tree made of coins."
   },
   "book57": {
     "title": "The Leadership Code",
@@ -567,7 +567,7 @@
     "wordCount": 70000,
     "filename": "leadership_code.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Leadership Code', subtitle 'Inspiring Others', hook 'Great leaders are made, not born.'. Genre: Self-Help. Sepia drawing of a compass pointing true north."
+    "imageprompt": "A book cover titled 'The Leadership Code', subtitle 'Inspiring Others', hook 'Great leaders are made, not born.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a compass pointing true north."
   },
   "book58": {
     "title": "Overcoming Fear",
@@ -577,7 +577,7 @@
     "wordCount": 48000,
     "filename": "overcoming_fear.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Overcoming Fear', subtitle 'Courage in Action', hook 'Fear is just a feeling. Courage is a choice.'. Genre: Self-Help. Dark ink etching of a person stepping over a chasm."
+    "imageprompt": "A book cover titled 'Overcoming Fear', subtitle 'Courage in Action', hook 'Fear is just a feeling. Courage is a choice.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting a person stepping over a chasm."
   },
   "book59": {
     "title": "The Joy of Less",
@@ -587,7 +587,7 @@
     "wordCount": 42000,
     "filename": "joy_of_less.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'The Joy of Less', subtitle 'Minimalist Living', hook 'Own less, live more.'. Genre: Self-Help. Clean, classic illustration of a single empty chair in a bright room."
+    "imageprompt": "A book cover titled 'The Joy of Less', subtitle 'Minimalist Living', hook 'Own less, live more.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, showing a single empty chair in a bright room."
   },
   "book60": {
     "title": "Mastering Communication",
@@ -597,6 +597,6 @@
     "wordCount": 58000,
     "filename": "mastering_communication.png",
     "filefolder": "books",
-    "imageprompt": "A book cover titled 'Mastering Communication', subtitle 'The Art of Connection', hook 'It's not what you say, it's how you say it.'. Genre: Self-Help. Vintage etching of two tin cans connected by a string."
+    "imageprompt": "A book cover titled 'Mastering Communication', subtitle 'The Art of Connection', hook 'It's not what you say, it's how you say it.'. Genre: Self-Help. Flat, minimalist vector illustration style, clean, cozy aesthetic that relies on simplified shapes rather than realism, depicting two tin cans connected by a string."
   }
 }
