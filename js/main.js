@@ -1,17 +1,21 @@
 // Init function, game loop, core update function
 
-function update() {
+// Renamed from update() to updateLogic() and removed updateUI()
+// This allows logic to run every frame while UI updates periodically
+function updateLogic() {
     increaseDays();
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
     checkUnlocks();
-    updateUI();
 }
 
 function gameLoop(currentTime) {
     deltaTime = (currentTime - lastTime) / 1000;
-    if (deltaTime < 0.05) {
+    
+    // Limit frame rate to ~60 FPS to reduce CPU load
+    // Returning here without updating lastTime ensures deltaTime accumulates correctly
+    if (deltaTime < 0.016) {
         requestAnimationFrame(gameLoop);
         return;
     }
@@ -20,18 +24,13 @@ function gameLoop(currentTime) {
     
     if (deltaTime > 86400) deltaTime = 86400;
     
-    textUpdateTimer += deltaTime;
-    
-    if (textUpdateTimer >= 1) {
-        // Process popup queue if not currently paused
-        if (!isPaused && popupQueue.length > 0) {
-            let popup = popupQueue.shift();
-            if (popup.type === 'tutorial') {
-                showTutorialModal(popup.title, popup.text);
-            } else if (popup.type === 'info') {
-                // Pass the isNewUnlock flag to showModal
-                showModal(popup.imgEl, popup.isNewUnlock);
-            }
+    // Process popup queue immediately if not paused
+    if (!isPaused && popupQueue.length > 0) {
+        let popup = popupQueue.shift();
+        if (popup.type === 'tutorial') {
+            showTutorialModal(popup.title, popup.text);
+        } else if (popup.type === 'info') {
+            showModal(popup.imgEl, popup.isNewUnlock);
         }
     }
     
@@ -62,16 +61,20 @@ function gameLoop(currentTime) {
         // Process the visual typewriter effect independently of game speed
         updateTypewriter(deltaTime);
         
-        if (textUpdateTimer >= 1) {
-            textUpdateTimer = 0;
-            update();
+        // Run core game logic every frame so it scales correctly with deltaTime
+        updateLogic();
+        
+        textUpdateTimer += deltaTime;
+        if (textUpdateTimer >= 0.2) { // Update UI 5 times a second to save CPU
+            textUpdateTimer -= 0.2; // Keep remainder instead of resetting to 0
+            updateUI();
         }
     }
     
     saveTimer += deltaTime;
     if (saveTimer >= 3) {
         saveGameData();
-        saveTimer = 0;
+        saveTimer -= 3; // Keep remainder instead of resetting to 0
     }
     
     requestAnimationFrame(gameLoop);
@@ -174,7 +177,8 @@ function continueInit() {
     
     setTab(jobTabButton, "jobs");
     
-    update();
+    updateLogic(); // Run logic once
+    updateUI();    // Update UI once
     
     lastTime = performance.now();
     requestAnimationFrame(gameLoop);
