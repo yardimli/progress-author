@@ -130,7 +130,6 @@ function createAllRows (categoryType, containerId) {
 			// Dynamically generate Cheat Items (Potions) using JSON data
 			const headerHTML = `
         <div class="category-header" style="margin-top: 25px;">Cheat Items</div>
-        <div class="tab-description" style="margin-bottom: 15px; font-size: 0.95em;">Get a helping hand to progress faster.</div>
       `;
 			const contentDivPotions = document.createElement('div');
 			contentDivPotions.className = 'category-content list';
@@ -250,7 +249,19 @@ function buildSceneButtons() {
 	for (let sceneType in availableScenes) {
 		let btn = document.createElement('button');
 		btn.className = 'btn scene-btn';
-		btn.textContent = sceneType;
+		
+		// Modified: Create text node for the scene name
+		btn.appendChild(document.createTextNode(sceneType + " "));
+		
+		// Added: Create a dedicated span for the percentage so it can be updated independently
+		let pctSpan = document.createElement('span');
+		pctSpan.className = 'scene-pct';
+		pctSpan.dataset.scene = sceneType;
+		pctSpan.textContent = '(0.0%)';
+		pctSpan.style.fontSize = '0.85em';
+		pctSpan.style.opacity = '0.7'; // Subdue the text slightly so it blends well in light/dark mode
+		
+		btn.appendChild(pctSpan);
 		
 		// Mouse events
 		btn.addEventListener('mousedown', () => handleSceneHoldStart(sceneType));

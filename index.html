@@ -157,12 +157,17 @@
 					<div class="locked-tab-title">Writing Locked</div>
 					<div class="locked-tab-reqs">Save up $20,000 to unlock.</div>
 				</div>
+				
+				<!-- Added: New Locked Overlay for 0 Writing Speed -->
+				<div id="writingSpeedOverlay" class="locked-tab-overlay" style="display: none;">
+					<div class="locked-tab-icon">⏳</div>
+					<div class="locked-tab-title">No Time Assigned</div>
+					<div class="locked-tab-reqs">Adjust the Work/Writing slider in the top panel to allocate time for writing.</div>
+				</div>
+				
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
-				<!-- Writing Speed Warning -->
-				<div id="writingSpeedWarning" style="color: #ff4c4c; font-weight: bold; margin-bottom: 15px; display: none; text-align: center; background-color: rgba(255, 76, 76, 0.1); padding: 10px; border-radius: 4px; border: 1px solid #ff4c4c;">
-					Writing Speed is 0! Adjust the Work/Writing slider in the top panel to start writing.
-				</div>
+				<!-- Removed: Inline Writing Speed Warning -->
 				
 				<!-- New Genre Selection UI -->
 				<div id="bookSelectionContainer" class="ui-row" style="padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
@@ -192,9 +197,7 @@
 						<span class="blinking-cursor">|</span>
 					</div>
 					
-					<div id="compositionStats" style="width: 100%;">
-						<i>Start writing to see composition...</i>
-					</div>
+					<!-- Removed: compositionStats div -->
 				</div>
 				
 				<!-- Active Book Status Row -->
@@ -414,21 +417,33 @@
 	</div>
 </div>
 
-
-<!-- Scripts loaded in dependency order -->
-<script type="text/javascript" src="js/classes.js?v=1.4"></script>
-<script type="text/javascript" src="js/state.js?v=1.4"></script>
-<script type="text/javascript" src="js/utils.js?v=1.4"></script>
-<script type="text/javascript" src="js/formulas.js?v=1.4"></script>
-
-<!-- Refactored UI Modules -->
-<script type="text/javascript" src="js/ui_builder.js?v=1.4"></script>
-<script type="text/javascript" src="js/ui_updater.js?v=1.4"></script>
-<script type="text/javascript" src="js/ui_modals.js?v=1.4"></script>
-<script type="text/javascript" src="js/ui.js?v=1.4"></script>
-
-<script type="text/javascript" src="js/save.js?v=1.4"></script>
-<script type="text/javascript" src="js/mechanics.js?v=1.4"></script>
-<script type="text/javascript" src="js/main.js?v=1.4"></script>
-</body>
-</html>
+<script type="text/javascript">
+	(function() {
+		// 1. Generate a unique version based on current time (better than random)
+		const v = Date.now();
+		
+		// 2. Define scripts in the EXACT order they must load
+		const scripts = [
+			"js/classes.js",
+			"js/state.js",
+			"js/utils.js",
+			"js/formulas.js",
+			"js/ui_builder.js",
+			"js/ui_updater.js",
+			"js/ui_modals.js",
+			"js/ui.js",
+			"js/save.js",
+			"js/mechanics.js",
+			"js/main.js"
+		];
+		
+		// 3. Loop and inject
+		scripts.forEach(src => {
+			const s = document.createElement('script');
+			s.type = 'text/javascript';
+			s.src = `${src}?v=${v}`;
+			s.async = false; // CRITICAL: Ensures scripts execute in the order they are added
+			document.head.appendChild(s);
+		});
+	})();
+</script>

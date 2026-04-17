@@ -82,6 +82,13 @@ function setMisc(miscName) {
 function drinkPotion(type) {
 	if (gameData.potions[type] <= 0) {
 		gameData.potions[type] = 600; // 10 minutes in seconds
+		if (type === 'inspiration') {
+			//make sure player has 20K coins, if not increase coins to 20K
+			if (gameData.coins < 20000) {
+				gameData.coins = 20000;
+				logEvent("Not enough coins to drink Inspiration Potion. Coins increased to $20,000.");
+			}
+		}
 		logEvent(`Drank ${type === 'inspiration' ? 'Inspiration' : 'Acceleration'} Potion!`);
 	}
 }
@@ -273,7 +280,17 @@ function getBookQuality() {
 		}
 	}
 	
-	return baseSkillQuality * expMultiplier * itemQualityMultiplier;
+	// Added: Calculate total skill writing quality multiplier
+	let skillQualityMultiplier = 1;
+	for (let key in gameData.taskData) {
+		let task = gameData.taskData[key];
+		if (task instanceof Skill) {
+			skillQualityMultiplier *= task.getWritingQuality();
+		}
+	}
+	
+	// Modified: Include skillQualityMultiplier in the final calculation
+	return baseSkillQuality * expMultiplier * itemQualityMultiplier * skillQualityMultiplier;
 }
 
 // Calculate the composition multiplier based on how close the player matched the genre ideals

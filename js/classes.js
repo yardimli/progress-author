@@ -80,9 +80,22 @@ class Skill extends Task {
         return 1 + this.baseData.effect * this.level;
     }
     
+    // Added: Method to calculate the writing quality multiplier based on skill level
+    getWritingQuality() {
+        if (!this.baseData.writingQuality) return 1;
+        return 1 + this.baseData.writingQuality * this.level;
+    }
+    
+    // Modified: Append writing quality multiplier to the description
     getEffectDescription() {
         let description = this.baseData.description;
-        return "x" + String(this.getEffect().toFixed(2)) + " " + description;
+        let effectText = "x" + String(this.getEffect().toFixed(2)) + " " + description;
+        
+        if (this.baseData.writingQuality) {
+            effectText += " | x" + String(this.getWritingQuality().toFixed(2)) + " Writing Quality";
+        }
+        
+        return effectText;
     }
     
     getXpGain() {

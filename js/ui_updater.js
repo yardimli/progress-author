@@ -363,13 +363,13 @@ function updateText () {
 	// Display expected quality in the selection screen
 	updateIfChanged('expectedQualityDisplay', getBookQuality().toFixed(2));
 	
-	// Display warning if writing speed is 0
-	const speedWarning = document.getElementById('writingSpeedWarning');
-	if (speedWarning) {
-		if (writingSpeed <= 0) {
-			speedWarning.style.display = 'block';
+	// Modified: Display overlay if writing speed is 0 and the tab is unlocked
+	const speedOverlay = document.getElementById('writingSpeedOverlay');
+	if (speedOverlay) {
+		if (writingSpeed <= 0 && gameData.unlocks.writing) {
+			speedOverlay.style.display = 'flex';
 		} else {
-			speedWarning.style.display = 'none';
+			speedOverlay.style.display = 'none';
 		}
 	}
 	
@@ -474,31 +474,29 @@ function hideEntities () {
 
 // Updates the composition statistics UI
 function updateCompositionUI() {
-	const container = document.getElementById('compositionStats');
-	if (!container || !gameData.currentBookComposition) return;
+	if (!gameData.currentBookComposition) return;
 	
 	let totalWords = 0;
 	for (let key in gameData.currentBookComposition) {
 		totalWords += gameData.currentBookComposition[key];
 	}
 	
-	let html = '';
-	if (totalWords === 0) {
-		html = '<i>Start writing to see composition...</i>';
-	} else {
-		html = '<div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.85em;">';
-		for (let sceneType in gameData.currentBookComposition) {
-			let words = gameData.currentBookComposition[sceneType];
-			let pct = (words / totalWords * 100).toFixed(1);
-			html += `<div style="background: rgba(0,0,0,0.05); padding: 5px 10px; border-radius: 4px;"><b>${sceneType}:</b> ${pct}%</div>`;
+	// Modified: Target the spans inside the buttons instead of a separate container
+	const pctSpans = document.querySelectorAll('.scene-pct');
+	pctSpans.forEach(span => {
+		const sceneType = span.dataset.scene;
+		let pctText = '(0.0%)';
+		
+		if (totalWords > 0) {
+			const words = gameData.currentBookComposition[sceneType] || 0;
+			pctText = `(${(words / totalWords * 100).toFixed(1)}%)`;
 		}
-		html += '</div>';
-	}
-	
-	// Only update the DOM if the generated HTML is different from the current innerHTML
-	if (container.innerHTML !== html) {
-		container.innerHTML = html;
-	}
+		
+		// Only update the DOM if the text has actually changed
+		if (span.textContent !== pctText) {
+			span.textContent = pctText;
+		}
+	});
 }
 
 // Handles the realistic typewriter effect for the manual writing interface
