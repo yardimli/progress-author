@@ -516,6 +516,12 @@ function updateTypewriter(deltaTime) {
 	// Use a while loop to process multiple characters if deltaTime is large.
 	// This prevents the typing speed from slowing down when frame rate is capped.
 	while (liveTypingDelay <= 0) {
+		// Clear the line if the 200ms delay has finished
+		if (isClearingLine) {
+			typewriterText = "";
+			isClearingLine = false;
+		}
+		
 		if (isLiveCorrecting) {
 			typewriterText = typewriterText.slice(0, -1);
 			isLiveCorrecting = false;
@@ -525,6 +531,8 @@ function updateTypewriter(deltaTime) {
 			if (typewriterIndex >= currentTypewriterSentence.length) {
 				typewriterText = ""; // Clear the line
 				typewriterIndex = 0;
+				isWaitingToClearLine = false; // Reset line clear flag
+				isClearingLine = false; // Reset pause flag
 				
 				// Fetch new sentence using the queued scene type and current genre
 				let sceneToUse = nextSceneType || "Action";
@@ -551,11 +559,18 @@ function updateTypewriter(deltaTime) {
 				const chars = 'abcdefghijklmnopqrstuvwxyz';
 				typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
 				isLiveCorrecting = true;
-				liveTypingDelay += 20; // Add to delay
+				liveTypingDelay += 60; // Add to delay
 			} else {
 				typewriterText += char;
 				typewriterIndex++;
-				liveTypingDelay += Math.random() * 4 + 8; // Add to delay
+				liveTypingDelay += Math.random() * 16 + 32; // Add to delay
+				
+				// Check if we should clear the line because we finished a word and exceeded 75% width
+				if (isWaitingToClearLine && (char === ' ' || char === '-')) {
+					isClearingLine = true; // Set flag to clear on next tick
+					liveTypingDelay += 200; // Add 200ms pause so the user can read the word
+					isWaitingToClearLine = false; // Reset flag after catching the word boundary
+				}
 			}
 		}
 		
@@ -567,8 +582,15 @@ function updateTypewriter(deltaTime) {
 	
 	const displayEl = document.getElementById('liveWritingText');
 	if (displayEl) {
-		displayEl.innerHTML = typewriterText + '<span class="blinking-cursor">|</span>';
+		// Wrap the text in a span to accurately measure its width relative to the container
+		displayEl.innerHTML = '<span id="liveWritingTextInner">' + typewriterText + '</span><span class="blinking-cursor">|</span>';
 		displayEl.scrollLeft = displayEl.scrollWidth; // Keep cursor in view if it overflows
+		
+		// Check if the text width exceeds 75% of the container's visible width
+		const innerSpan = document.getElementById('liveWritingTextInner');
+		if (innerSpan && innerSpan.offsetWidth > displayEl.clientWidth * 0.75) {
+			isWaitingToClearLine = true;
+		}
 	}
 }
 
