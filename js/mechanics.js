@@ -20,9 +20,16 @@ function checkUnlocks() {
 		queueTutorialModal("Skills Unlocked", "With a roof over your head and more experience under your belt, you can now focus on self-improvement. The <b>Skills</b> tab is now available!");
 		applyUnlocksUI();
 	}
-	if (!gameData.unlocks.writing && gameData.coins >= 20000 && gameData.unlocks.shop && gameData.unlocks.skills) {
+	
+	// Added: Check if the player has a property other than Homeless and is using a Used Laptop
+	const hasRoof = gameData.currentProperty && gameData.currentProperty.name !== "Homeless";
+	const hasLaptop = gameData.currentMisc && gameData.currentMisc.some(item => item.name === "Used Laptop");
+	
+	// Modified: Changed unlock requirement from $20,000 to having a home and a laptop
+	if (!gameData.unlocks.writing && hasRoof && hasLaptop) {
 		gameData.unlocks.writing = true;
-		queueTutorialModal("Writing Unlocked", "You've saved up a substantial amount of money. It's time to pursue your true passion. The <b>Writing</b> tab and Work/Writing balance slider are now available!");
+		// Modified: Updated tutorial text to match the new narrative requirements
+		queueTutorialModal("Writing Unlocked", "With a roof over your head and a laptop to type on, it's time to pursue your true passion. The <b>Writing</b> tab and Work/Writing balance slider are now available!");
 		applyUnlocksUI();
 	}
 }
