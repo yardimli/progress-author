@@ -1,0 +1,42 @@
+{
+  "Welcome": {
+    "name": "Welcome",
+    "title": "Welcome to Author's Journey",
+    "text": "<p>In this game, you will live through the lives of aspiring authors.</p><p>You will start from the bottom, struggling to balance menial jobs with your passion for writing.</p><p><i>Hint:</i> You can learn more about things when clicking on the images.</p><p><i>Hint:</i> Time is fleeting. You will eventually reach retirement age and rest. However, as you progress, you may discover secrets to extending your career, or even achieving legendary status. Each time you reset, a new author takes up the mantle, inheriting the legacy and knowledge of those who came before.</p>",
+    "filename": "intro_welcome.png",
+    "filefolder": "intro",
+    "imageprompt": "A flat, minimalist vector illustration of an open book with a glowing quill hovering above it. Clean geometric shapes, soft warm colors, cozy aesthetic."
+  },
+  "Work": {
+    "name": "Work",
+    "title": "The Daily Grind",
+    "text": "<p><b>Work:</b> Work jobs to earn money. You need funds to survive and invest in your career.</p><p>As you work, you gain experience in different areas, eventually unlocking better-paying and more prestigious jobs in the Creative Industry and Literary Elite.</p><p>Keep an eye on your income and expenses to avoid going bankrupt!</p>",
+    "filename": "intro_work.png",
+    "filefolder": "intro",
+    "imageprompt": "A flat, minimalist vector illustration of a simple desk with a coffee cup, a stack of papers, and a small clock. Clean geometric shapes, muted office colors, cozy aesthetic."
+  },
+  "Shop": {
+    "name": "Shop",
+    "title": "Living Conditions & Tools",
+    "text": "<p><b>Shop:</b> Buy better living conditions and equipment. Comfort and good tools drastically improve your inspiration and experience gains.</p><p>Properties increase your expenses but provide massive boosts to your writing speed and quality.</p><p>Misc items offer permanent buffs to your skills and work efficiency, as long as you can afford their daily upkeep.</p>",
+    "filename": "intro_shop.png",
+    "filefolder": "intro",
+    "imageprompt": "A flat, minimalist vector illustration of a cozy storefront with a small awning and a glowing window displaying a typewriter. Clean geometric shapes, warm inviting colors."
+  },
+  "Skills": {
+    "name": "Skills",
+    "title": "Honing Your Craft",
+    "text": "<p><b>Skills:</b> Practice your craft and life skills. These improve your writing speed, quality, and work efficiency.</p><p>Skills like Focus and Typing Speed are essential early on, while advanced skills like Plotting and Grammar & Prose will elevate your books to bestsellers.</p><p>All unlocked skills provide their passive bonuses simultaneously, even if you aren't actively practicing them.</p>",
+    "filename": "intro_skills.png",
+    "filefolder": "intro",
+    "imageprompt": "A flat, minimalist vector illustration of a human head silhouette with a glowing lightbulb and small gears inside. Clean geometric shapes, soft blue and gold colors."
+  },
+  "Writing": {
+    "name": "Writing",
+    "title": "Writing Your Masterpiece",
+    "text": "<p><b>Writing:</b> The core of your journey. Write and publish books.</p><p>High-quality books earn you royalties and Fame, eventually allowing you to quit your day job.</p><p>Use the Work/Writing slider to balance your time between working to pay the bills and writing your masterpiece. When writing manually, try to match the ideal scene composition for your genre to maximize the final quality!</p>",
+    "filename": "intro_writing.png",
+    "filefolder": "intro",
+    "imageprompt": "A flat, minimalist vector illustration of a stack of colorful books with a small gold star badge leaning against them. Clean geometric shapes, bright cozy colors."
+  }
+}

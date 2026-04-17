@@ -222,11 +222,73 @@ function closeAuthorBio () {
 	updatePauseState(); // Unpause game
 }
 
+// Modified: Initialize and display the new slideshow-style intro modal
 function showIntroModal () {
 	const introModal = document.getElementById('introModal');
 	if (introModal) {
+		currentIntroSlide = 0; // Reset to first slide
+		updateIntroSlide();    // Populate slide content
 		introModal.style.display = 'flex';
 		updatePauseState(); // Pause game
+	}
+}
+
+// Modified: Function to update the intro modal content based on current slide from JSON object
+function updateIntroSlide () {
+	if (!introSlidesBaseData) return;
+	
+	const slideKeys = Object.keys(introSlidesBaseData);
+	if (slideKeys.length === 0) return;
+	
+	const currentKey = slideKeys[currentIntroSlide];
+	const slide = introSlidesBaseData[currentKey];
+	
+	document.getElementById('introModalTitle').textContent = slide.title;
+	document.getElementById('introModalText').innerHTML = slide.text;
+	
+	const imgEl = document.getElementById('introModalImage');
+	const filefolder = slide.filefolder + '256';
+	const filename = slide.filename.replace('.png', '.jpg');
+	imgEl.src = `img/${filefolder}/${filename}`;
+	
+	const prevBtn = document.getElementById('introPrevBtn');
+	const nextBtn = document.getElementById('introNextBtn');
+	
+	// Toggle Previous button visibility
+	if (currentIntroSlide === 0) {
+		prevBtn.style.visibility = 'hidden';
+	} else {
+		prevBtn.style.visibility = 'visible';
+	}
+	
+	// Change Next button text on the last slide
+	if (currentIntroSlide === slideKeys.length - 1) {
+		nextBtn.textContent = 'Start Journey';
+		nextBtn.classList.add('btn-active'); // Highlight the start button
+	} else {
+		nextBtn.textContent = 'Next';
+		nextBtn.classList.remove('btn-active');
+	}
+}
+
+// Added: Function to go to the previous intro slide
+function prevIntroSlide () {
+	if (currentIntroSlide > 0) {
+		currentIntroSlide--;
+		updateIntroSlide();
+	}
+}
+
+// Modified: Function to go to the next intro slide or close if at the end
+function nextIntroSlide () {
+	if (!introSlidesBaseData) return;
+	
+	const slideKeys = Object.keys(introSlidesBaseData);
+	if (currentIntroSlide < slideKeys.length - 1) {
+		currentIntroSlide++;
+		updateIntroSlide();
+	} else {
+		closeIntroModal();
 	}
 }
 

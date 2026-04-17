@@ -86,8 +86,11 @@ var textUpdateTimer = 0;
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
-// Added: booksFirstPageBaseData to hold the extracted first page text
-var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData, sceneTypesBaseData, genreIdealsBaseData, booksFirstPageBaseData;
+// Modified: Added introSlidesBaseData to hold the intro slides data
+var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData, sceneTypesBaseData, genreIdealsBaseData, booksFirstPageBaseData, introSlidesBaseData;
+
+// Added: Track current intro slide index
+var currentIntroSlide = 0;
 
 // Manual Writing State
 var activeSceneType = null;

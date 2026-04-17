@@ -50,6 +50,11 @@ TASKS = [
         "json_filename": "data/books.json",
         "start_prompt": "An image of a classic book cover.",
         "aspect_ratio": "3:4" # Tall aspect ratio for books
+    },
+    {
+        "json_filename": "data/introSlides.json",
+        "start_prompt": "An image for a game intro slide.",
+        "aspect_ratio": "3:4" # Tall aspect ratio for books
     }
 ]
 

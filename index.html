@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/dark.css?v=1.4">
 	<title>Author's Journey</title>
 </head>
-<body id="body" class="dark">
+<body id="body">
 
 <!-- Fixed Header Wrapper -->
 <div class="fixed-header-wrapper">
@@ -290,21 +290,21 @@
 </div>
 
 <!-- Intro Modal -->
+<!-- Modified: Updated to use a split layout for the slideshow -->
 <div id="introModal" class="modal modal-overlay-intro" style="display: none;">
-	<div class="modal-content modal-content-standard">
-		<h2 class="modal-header-center">Welcome to Author's Journey</h2>
-		<p>In this game, you will live through the lives of aspiring authors. Each time you reset, a new author takes up the mantle, inheriting the legacy and knowledge of those who came before.</p>
-		<p>You will start from the bottom, struggling to balance menial jobs with your passion for writing. Here is how to navigate your journey:</p>
-		<ul class="intro-list">
-			<li><b>Work:</b> Work jobs to earn money. You need funds to survive and invest in your career.</li>
-			<li><b>Skills:</b> Practice your craft and life skills. These improve your writing speed, quality, and work efficiency.</li>
-			<li><b>Shop:</b> Buy better living conditions and equipment. Comfort and good tools drastically improve your inspiration and experience gains.</li>
-			<li><b>Writing:</b> The core of your journey. Write and publish books. High-quality books earn you royalties and Fame, eventually allowing you to quit your day job.</li>
-		</ul>
-		<p><i>Hint:</i> You can learn more about things when clicking on the images.</p>
-		<p><i>Hint:</i> Time is fleeting. You will eventually reach retirement age and rest. However, as you progress, you may discover secrets to extending your career, or even achieving legendary status through the mysterious <b>Golden Pen</b>.</p>
-		<div class="modal-footer-center">
-			<button class="btn" onclick="closeIntroModal()">Start Journey</button>
+	<div class="modal-content book-modal-content">
+		<div class="book-modal-left">
+			<img id="introModalImage" src="" alt="Intro Image">
+		</div>
+		<div class="book-modal-right" style="justify-content: space-between;">
+			<div>
+				<h2 id="introModalTitle" class="modal-title-nomargin">Welcome</h2>
+				<div id="introModalText" class="tutorial-text" style="margin-top: 15px;"></div>
+			</div>
+			<div style="display: flex; justify-content: space-between; margin-top: 20px;">
+				<button id="introPrevBtn" class="btn" onclick="prevIntroSlide()">Previous</button>
+				<button id="introNextBtn" class="btn" onclick="nextIntroSlide()">Next</button>
+			</div>
 		</div>
 	</div>
 </div>

@@ -969,6 +969,16 @@ button:focus {
     justify-content: center;
 }
 
+#authorSelectionScreen .modal-content {
+    max-width: 1200px;
+}
+
+#introModal .modal-content {
+    max-width: 800px;
+    min-height: 50vh;
+
+}
+
 .modal-content {
     background-color: #fff;
     padding: 15px;
