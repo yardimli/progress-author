@@ -778,7 +778,7 @@
     ],
     "requirements": [
       {
-        "requirement": 6000
+        "requirement": 5000
       }
     ]
   },
@@ -792,7 +792,7 @@
     ],
     "requirements": [
       {
-        "requirement": 15000
+        "requirement": 3000
       }
     ]
   },
