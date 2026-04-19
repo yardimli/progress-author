@@ -892,11 +892,54 @@ button:focus {
     margin-bottom: 30px;
 }
 
+/* Modified: Replaced flex grid with CSS Grid for responsive author selection layout */
 .author-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr)); /* col-3 equivalent */
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Added: Specific overrides for cards inside the author grid to stretch properly */
+.author-grid .ui-card {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    padding: 15px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+/* Added: Ensure author images scale proportionally and remain square */
+.author-grid .card-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+/* Added: Ensure titles align nicely */
+.author-grid .card-title {
+    text-align: center;
+    height: auto;
+    min-height: 48px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    align-items: center;
     justify-content: center;
+    margin-bottom: 0;
+}
+
+/* Added: Media queries for mobile responsiveness */
+@media (max-width: 768px) {
+    .author-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* col-6 equivalent */
+    }
 }
 
 .modal-content-medium {
@@ -1027,6 +1070,7 @@ button:focus {
     max-width: 600px;
     text-align: left;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; /* Added: Ensure padding doesn't expand width */
 }
 
 .modal-title {
@@ -1120,24 +1164,16 @@ button:focus {
     transition: opacity 0.2s ease;
 }
 
-/* Added: Scene button active state (border instead of background) */
 .scene-btn-active {
     border: 2px solid #4CAF50 !important;
-    padding: 7px 15px !important; /* Offset the 1px border increase to prevent layout shift */
+    padding: 7px 15px !important;
 }
 
-/* Added: Scene button pressed down effect */
 .scene-btn:active {
     transform: translateY(2px);
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.scene-btn:hover {
-    background-color: rgba(0, 0, 0, 0);
-    border-color: #4CAF50;
-}
-
-/* Added: Scene percentage text styling */
 .scene-pct {
     font-size: 0.85em;
     opacity: 0.8;

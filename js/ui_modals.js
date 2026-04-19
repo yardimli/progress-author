@@ -4,7 +4,6 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	// Modified: Added 'settingsModal' to the list of modals that pause the game
 	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'settingsModal'];
 	let anyOpen = false;
 	for (const id of modals) {
@@ -22,7 +21,6 @@ function queueTutorialModal (title, text) {
 	popupQueue.push({ type: 'tutorial', title: title, text: text });
 }
 
-// Added isNewUnlock flag to track if it's a first-time unlock
 function queueInfoModal (imgEl, isNewUnlock = false) {
 	popupQueue.push({ type: 'info', imgEl: imgEl, isNewUnlock: isNewUnlock });
 }
@@ -42,7 +40,6 @@ function closeTutorialModal () {
 	updatePauseState();
 }
 
-// Added isNewUnlock parameter to handle styling and text for newly unlocked items
 function showModal (imgElement, isNewUnlock = false) {
 	const name = imgElement.getAttribute('data-name');
 	const type = imgElement.getAttribute('data-type');
@@ -58,7 +55,6 @@ function showModal (imgElement, isNewUnlock = false) {
 	modalImg.src = imgElement.src;
 	modalTitle.textContent = name;
 	
-	// Logic to display what the modal is for (Work, Skill, Shop, etc.)
 	let categoryText = '';
 	let actionWord = '';
 	if (type === 'job') {
@@ -85,7 +81,6 @@ function showModal (imgElement, isNewUnlock = false) {
 		modalCategory.textContent = categoryText;
 	}
 	
-	// Handle new unlock styling and text
 	if (isNewUnlock && modalUnlockMessage) {
 		const entityType = type === 'job' ? 'job' : (type === 'skill' ? 'skill' : 'item');
 		modalUnlockMessage.textContent = `You have unlocked a new ${entityType} to ${actionWord}!`;
@@ -147,15 +142,10 @@ function showAuthorSelection () {
 		
 		const card = document.createElement('div');
 		card.className = 'ui-card';
-		card.style.width = '180px';
-		card.style.height = 'auto';
-		card.style.padding = '15px';
 		card.style.cursor = 'default';
 		
 		const img = document.createElement('img');
 		img.className = 'card-image';
-		img.style.width = '190px';
-		img.style.height = '190px';
 		img.style.cursor = 'pointer';
 		const filefolder = author.filefolder + '256';
 		const filename = author.filename.replace('.png', '.jpg');
@@ -166,7 +156,6 @@ function showAuthorSelection () {
 		name.className = 'card-title';
 		name.style.fontSize = '1.1em';
 		name.style.marginTop = '5px';
-		name.style.height = '45px';
 		name.textContent = author.name;
 		
 		const stats = document.createElement('div');
@@ -174,7 +163,9 @@ function showAuthorSelection () {
 		stats.style.color = '#888';
 		stats.style.textAlign = 'left';
 		stats.style.marginTop = '10px';
+		stats.style.marginBottom = '15px'; // Added margin to space out from the button
 		stats.style.lineHeight = '1.5';
+		stats.style.width = '100%';
 		stats.innerHTML = `
       <b>Hardship:</b> x${mults.hardship.toFixed(1)}<br>
       <b>Observation:</b> x${mults.observation.toFixed(1)}<br>
@@ -185,7 +176,7 @@ function showAuthorSelection () {
 		
 		const selectBtn = document.createElement('button');
 		selectBtn.className = 'btn';
-		selectBtn.style.marginTop = '15px';
+		selectBtn.style.marginTop = 'auto'; // Modified: Push button to the bottom of the card
 		selectBtn.style.width = '100%';
 		selectBtn.textContent = 'Select';
 		selectBtn.onclick = () => selectAuthor(key);
@@ -222,7 +213,6 @@ function closeAuthorBio () {
 	updatePauseState(); // Unpause game
 }
 
-// Modified: Initialize and display the new slideshow-style intro modal
 function showIntroModal () {
 	const introModal = document.getElementById('introModal');
 	if (introModal) {
@@ -233,7 +223,6 @@ function showIntroModal () {
 	}
 }
 
-// Modified: Function to update the intro modal content based on current slide from JSON object
 function updateIntroSlide () {
 	if (!introSlidesBaseData) return;
 	
@@ -254,14 +243,12 @@ function updateIntroSlide () {
 	const prevBtn = document.getElementById('introPrevBtn');
 	const nextBtn = document.getElementById('introNextBtn');
 	
-	// Toggle Previous button visibility
 	if (currentIntroSlide === 0) {
 		prevBtn.style.visibility = 'hidden';
 	} else {
 		prevBtn.style.visibility = 'visible';
 	}
 	
-	// Change Next button text on the last slide
 	if (currentIntroSlide === slideKeys.length - 1) {
 		nextBtn.textContent = 'Start Journey';
 		nextBtn.classList.add('btn-active'); // Highlight the start button
@@ -271,7 +258,6 @@ function updateIntroSlide () {
 	}
 }
 
-// Added: Function to go to the previous intro slide
 function prevIntroSlide () {
 	if (currentIntroSlide > 0) {
 		currentIntroSlide--;
@@ -279,7 +265,6 @@ function prevIntroSlide () {
 	}
 }
 
-// Modified: Function to go to the next intro slide or close if at the end
 function nextIntroSlide () {
 	if (!introSlidesBaseData) return;
 	
@@ -323,7 +308,6 @@ function showBookModal (bookId) {
 	modal.style.display = 'flex';
 	updatePauseState(); // Pause game
 	
-	// Modified: Load first page text from the new booksFirstPageBaseData object
 	const firstPageText = (booksFirstPageBaseData && booksFirstPageBaseData[bookId]) ? booksFirstPageBaseData[bookId] : 'Chapter 1\n\nThe beginning of a new journey...';
 	startTypingEffect(firstPageText, 'bookModalFirstPage');
 }
@@ -354,7 +338,6 @@ function showBookFinishedModal (bookId, quality, royalty) {
 	modalSubtitle.textContent = book.subtitle;
 	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
 	
-	// Inject the dynamic stats into the highlighted box
 	statsBox.innerHTML = `
 		<div style="margin-bottom: 8px; font-size: 1.1em;"><b>Final Quality:</b> <span style="color: #4CAF50;">${quality.toFixed(1)}%</span></div>
 		<div style="font-size: 1.1em;"><b>Royalties Earned:</b> <span style="color: #219ebc;">+$${format(royalty)}/day</span></div>
@@ -369,8 +352,6 @@ function closeBookFinishedModal () {
 	if (modal) modal.style.display = 'none';
 	updatePauseState(); // Unpause game
 }
-
-// --- Added: New Modal Functions for Rebirth ---
 
 function showRebirthOneModal () {
 	const modal = document.getElementById('rebirthOneModal');
@@ -403,7 +384,6 @@ function showRetirementModal () {
 	const modal = document.getElementById('retirementModal');
 	const age = daysToYears(gameData.days);
 	
-	// Dynamically show available rebirth options based on age
 	const rebirthOneContent = document.getElementById('retirementRebirthOne');
 	const rebirthTwoContent = document.getElementById('retirementRebirthTwo');
 	
@@ -429,7 +409,6 @@ function closeRetirementModal () {
 	updatePauseState();
 }
 
-// Added: Settings Modal Logic
 function showSettingsModal () {
 	const modal = document.getElementById('settingsModal');
 	if (modal) modal.style.display = 'flex';
@@ -499,7 +478,6 @@ function startTypingEffect (fullText, elementId) {
 	typingTimeout = setTimeout(typeNext, 500);
 }
 
-// Global click listener to close modals when clicking outside
 window.addEventListener('click', function (event) {
 	const infoModal = document.getElementById('infoModal');
 	if (infoModal && infoModal.style.display === 'flex' && event.target === infoModal) {
@@ -526,7 +504,6 @@ window.addEventListener('click', function (event) {
 		closeTutorialModal();
 	}
 	
-	// Added: Event listeners for new closable modals
 	const rebirthOneModal = document.getElementById('rebirthOneModal');
 	if (rebirthOneModal && rebirthOneModal.style.display === 'flex' && event.target === rebirthOneModal) {
 		closeRebirthOneModal();

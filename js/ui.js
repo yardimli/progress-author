@@ -28,6 +28,11 @@ function applyUnlocksUI () {
 	}
 }
 
+// Added: Function to quickly set the writing balance from the overlay button
+function setInitialWritingBalance () {
+	updateWorkWritingBalance(30);
+}
+
 function updateWorkWritingBalance (value) {
 	gameData.workWritingBalance = parseInt(value);
 	document.getElementById('workPercentage').textContent = 100 - gameData.workWritingBalance;

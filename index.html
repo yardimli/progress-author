@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.4">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/styles.css?v=1.4">
 	<link rel="stylesheet" type="text/css" href="css/dark.css?v=1.4">
 	<title>Author's Journey</title>
@@ -23,12 +23,7 @@
 					<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 					<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
 					
-					<!-- Slider for Work/Writing balance -->
-					<div id="workWritingSliderContainer" class="hidden slider-container">
-						<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
-						<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
-						<span class="writing-percentage-label">Writing: <span id="writingPercentage">0</span>%</span>
-					</div>
+					<!-- Modified: Removed the Work/Writing slider from here -->
 					
 					<div class="header-actions">
 						<!-- Added Settings Button -->
@@ -62,16 +57,13 @@
 				</div>
 			</template>
 			
-			<!-- Modified: jobCardTemplate to include card-overlay -->
 			<template id="jobCardTemplate">
 				<div class="ui-card">
 					<img class="card-image" src="" alt="">
-					<!-- Added: Overlay container for hover text -->
 					<div class="card-overlay">
 						<div class="card-title name"></div>
 						<div class="card-value income"></div>
 					</div>
-					<!-- Modified: Progress bar stays outside the overlay to remain visible -->
 					<div class="level-badge">
 						<div class="badge-fill progressFill"></div>
 						<span class="badge-text level"></span>
@@ -93,11 +85,9 @@
 				</div>
 			</template>
 			
-			<!-- Modified: propertyCardTemplate to include card-overlay -->
 			<template id="propertyCardTemplate">
 				<div class="ui-card">
 					<img class="card-image" src="" alt="">
-					<!-- Added: Overlay container for hover text -->
 					<div class="card-overlay">
 						<div class="card-title name"></div>
 						<div class="card-value effect"></div>
@@ -110,7 +100,6 @@
 				<div class="ui-row">
 					<img class="row-image" src="" alt="">
 					<div class="row-info">
-						<!-- Modified: Flex container to place expense next to title instead of as a 3rd column -->
 						<div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
 							<div class="row-title name" style="margin-bottom: 0;"></div>
 							<div class="row-expense expense" style="min-width: auto; margin-right: 0;"></div>
@@ -159,10 +148,20 @@
 				<div id="writingSpeedOverlay" class="locked-tab-overlay" style="display: none;">
 					<div class="locked-tab-icon">⏳</div>
 					<div class="locked-tab-title">No Time Assigned</div>
-					<div class="locked-tab-reqs">Adjust the Work/Writing slider in the top panel to allocate time for writing.</div>
+					<!-- Modified: Removed "in the top panel" from the text -->
+					<div class="locked-tab-reqs">Adjust the Work/Writing slider to allocate time for writing.</div>
+					<!-- Added: Quick start button to set 30% writing -->
+					<button class="btn btn-active" style="margin-top: 15px;" onclick="setInitialWritingBalance()">Start Writing</button>
 				</div>
 				
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
+				
+				<!-- Modified: Moved Slider for Work/Writing balance here -->
+				<div id="workWritingSliderContainer" class="hidden slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
+					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
+					<span class="writing-percentage-label">Writing: <span id="writingPercentage">0</span>%</span>
+				</div>
 				
 				<div id="bookSelectionContainer" class="ui-row" style="padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
 					<h3 style="margin-top: 0;">Start a New Book</h3>
