@@ -1,12 +1,4 @@
 {
-  "Inspiration Potion": {
-    "name": "Inspiration Potion",
-    "effect": 2.0,
-    "type": "inspiration",
-    "filename": "inspiration_potion.png",
-    "filefolder": "potions",
-    "imageprompt": "A glowing purple potion in a simple glass vial with soft sparkles floating above, flat minimalist vector illustration style, clean cozy aesthetic using simplified shapes rather than realism, soft color palette, gentle shading."
-  },
   "Acceleration Potion": {
     "name": "Acceleration Potion",
     "effect": 4.0,

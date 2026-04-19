@@ -15,20 +15,13 @@
 		<div id="topPanel" class="panel panel-padding-sm top-panel">
 			<!-- Left side: Stats and Author Info -->
 			<div class="top-panel-left">
-				<img id="authorImage" src="" alt="Author" class="author-image">
+				<img id="authorImage" src="" alt="Author" class="author-image" onClick="showSettingsModal()" style="cursor: pointer;">
 				
 				<div class="header-stats-container">
 					<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span></div>
-					<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
+					<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement <span id="lifespanDisplay">70</span> years</div>
 					<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 					<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
-					
-					<!-- Modified: Removed the Work/Writing slider from here -->
-					
-					<div class="header-actions">
-						<!-- Added Settings Button -->
-						<button class="btn btn-small-inline" onClick="showSettingsModal()">Settings</button>
-					</div>
 				</div>
 			</div>
 			
@@ -110,7 +103,7 @@
 			</template>
 			
 			<!-- Column 1: Work -->
-			<div class="panel-column" id="jobs">
+			<div class="panel-column active-mobile" id="jobs">
 				<div class="tab-description">Select a job to earn money.</div>
 				<div id="jobTable"></div>
 			</div>
@@ -277,12 +270,14 @@
 		<div class="book-modal-left">
 			<img id="introModalImage" src="" alt="Intro Image">
 		</div>
-		<div class="book-modal-right" style="justify-content: space-between;">
-			<div>
+		<div class="book-modal-right">
+			<!-- Modified: Added intro-modal-body wrapper for scrollable content -->
+			<div class="intro-modal-body">
 				<h2 id="introModalTitle" class="modal-title-nomargin">Welcome</h2>
 				<div id="introModalText" class="tutorial-text" style="margin-top: 15px;"></div>
 			</div>
-			<div style="display: flex; justify-content: space-between; margin-top: 20px;">
+			<!-- Modified: Added intro-modal-footer wrapper to keep buttons fixed at bottom -->
+			<div class="intro-modal-footer">
 				<button id="introPrevBtn" class="btn" onclick="prevIntroSlide()">Previous</button>
 				<button id="introNextBtn" class="btn" onclick="nextIntroSlide()">Next</button>
 			</div>
@@ -416,6 +411,14 @@
 			<button class="btn btn-full-width" onclick="rebirthTwo()">Become a Legend</button>
 		</div>
 	</div>
+</div>
+
+<!-- Added: Mobile Navigation Bar -->
+<div class="mobile-nav" id="mobileNav">
+	<button class="mobile-nav-btn active" onclick="switchMobileTab('jobs', this)">Work</button>
+	<button class="mobile-nav-btn" onclick="switchMobileTab('skills', this)">Skills</button>
+	<button class="mobile-nav-btn" onclick="switchMobileTab('shop', this)">Shop</button>
+	<button class="mobile-nav-btn" onclick="switchMobileTab('writing', this)">Writing</button>
 </div>
 
 <script type="text/javascript">

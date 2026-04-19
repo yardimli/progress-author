@@ -71,7 +71,7 @@ function showModal (imgElement, isNewUnlock = false) {
 		}
 		actionWord = 'purchase';
 	} else if (type === 'potion') {
-		categoryText = 'Cheat Item';
+		categoryText = 'Bonus Item';
 		actionWord = 'use';
 	} else if (type === 'experience') {
 		categoryText = 'Life Experience';

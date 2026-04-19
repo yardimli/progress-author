@@ -115,9 +115,9 @@ function createAllRows (categoryType, containerId) {
 			const freeItemsDiv = document.createElement('div');
 			freeItemsDiv.className = 'category-section';
 			
-			// Dynamically generate Cheat Items (Potions) using JSON data
+			// Dynamically generate Bonus Items (Potions) using JSON data
 			const headerHTML = `
-        <div class="category-header" style="margin-top: 25px;">Cheat Items</div>
+        <div class="category-header" style="margin-top: 25px;">Bonus Items</div>
       `;
 			const contentDivPotions = document.createElement('div');
 			contentDivPotions.className = 'category-content list';

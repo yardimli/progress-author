@@ -199,3 +199,23 @@
 .dark .locked-tab-reqs {
     color: #ccc;
 }
+
+/* Added: Dark mode styles for mobile nav and intro modal */
+.dark .mobile-nav {
+    background-color: #1a1a1a;
+    border-top: 1px solid #444;
+}
+
+.dark .mobile-nav-btn {
+    color: #aaa;
+    border-right: 1px solid #333;
+}
+
+.dark .mobile-nav-btn.active {
+    background-color: #2e2e2e;
+    color: #fff;
+}
+
+.dark .intro-modal-footer {
+    border-top: 1px solid #444;
+}

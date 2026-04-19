@@ -1,6 +1,25 @@
 // Core UI interactions, layout toggles, and logging
 
-// Modified: Removed setTab function since the UI now uses a 4-column layout
+// Added: Function to handle switching tabs on mobile layout
+function switchMobileTab (tabId, btnElement) {
+	// Hide all columns
+	const columns = document.querySelectorAll('.panel-column');
+	columns.forEach(col => col.classList.remove('active-mobile'));
+	
+	// Show the selected column
+	const selectedCol = document.getElementById(tabId);
+	if (selectedCol) {
+		selectedCol.classList.add('active-mobile');
+	}
+	
+	// Update active state on navigation buttons
+	const navBtns = document.querySelectorAll('.mobile-nav-btn');
+	navBtns.forEach(btn => btn.classList.remove('active'));
+	
+	if (btnElement) {
+		btnElement.classList.add('active');
+	}
+}
 
 // Update UI visibility based on unlocks
 function applyUnlocksUI () {
