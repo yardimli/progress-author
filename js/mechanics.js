@@ -21,20 +21,16 @@ function checkUnlocks () {
 		applyUnlocksUI();
 	}
 	
-	// Added: Check if the player has a property other than Homeless and is using a Used Laptop
 	const hasRoof = gameData.currentProperty && gameData.currentProperty.name !== 'Homeless';
 	const hasLaptop = gameData.currentMisc && gameData.currentMisc.some(item => item.name === 'Used Laptop');
 	
-	// Modified: Changed unlock requirement from $20,000 to having a home and a laptop
 	if (!gameData.unlocks.writing && hasRoof && hasLaptop) {
 		gameData.unlocks.writing = true;
-		// Modified: Updated tutorial text to match the new narrative requirements
 		queueTutorialModal('Writing Unlocked', 'With a roof over your head and a laptop to type on, it\'s time to pursue your true passion. The <b>Writing</b> tab and Work/Writing balance slider are now available!');
 		applyUnlocksUI();
 	}
 }
 
-// Added: New function to check for age-based rebirth prompts
 function checkRebirthPrompts () {
 	const age = daysToYears(gameData.days);
 	if (age >= 65 && !gameData.rebirthOnePrompted) {
@@ -90,7 +86,6 @@ function drinkPotion (type) {
 	if (gameData.potions[type] <= 0) {
 		gameData.potions[type] = 600; // 10 minutes in seconds
 		if (type === 'inspiration') {
-			// make sure player has 20K coins, if not increase coins to 20K
 			if (gameData.coins < 20000) {
 				gameData.coins = 20000;
 				logEvent('Not enough coins to drink Inspiration Potion. Coins increased to $20,000.');
@@ -157,6 +152,19 @@ function startWritingBook () {
 	if (!gameData.selectedGenre) return;
 	pickNextBook(gameData.selectedGenre);
 	buildSceneButtons(); // Rebuild buttons to match the new book's genre
+	
+	// Modified: Determine default scene type for auto-writing
+	let currentGenre = gameData.selectedGenre;
+	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
+		currentGenre = booksBaseData[gameData.currentBook].genre;
+	}
+	let defaultScene = "Action";
+	if (sceneTypesBaseData && sceneTypesBaseData[currentGenre]) {
+		defaultScene = Object.keys(sceneTypesBaseData[currentGenre])[0] || "Action";
+	}
+	currentAutoSceneType = defaultScene;
+	nextSceneType = defaultScene;
+	
 	updateUI();
 	
 	// Reset manual writing state
@@ -165,8 +173,6 @@ function startWritingBook () {
 	currentTypewriterSentence = '';
 	typewriterIndex = 0;
 	isHoldingSceneButton = false;
-	clickTypingTimer = 0;
-	activeSceneType = null;
 	isWaitingToClearLine = false; // Reset line clear flag
 	isClearingLine = false; // Reset pause flag
 	currentTypingSceneType = null; // Reset typing scene type
@@ -287,7 +293,6 @@ function getBookQuality () {
 		}
 	}
 	
-	// Added: Calculate total skill writing quality multiplier
 	let skillQualityMultiplier = 1;
 	for (const key in gameData.taskData) {
 		const task = gameData.taskData[key];
@@ -296,7 +301,6 @@ function getBookQuality () {
 		}
 	}
 	
-	// Modified: Include skillQualityMultiplier in the final calculation
 	return baseSkillQuality * expMultiplier * itemQualityMultiplier * skillQualityMultiplier;
 }
 
@@ -339,11 +343,17 @@ function getCompositionMultiplier () {
 	return multiplier;
 }
 
-// Manual Writing Progress Function
+// Writing Progress Function (Called automatically every frame)
 function writeProgress (sceneType, timeInSeconds) {
 	if (!gameData.currentBook) return;
 	
-	const speedPerSecond = getWritingSpeed();
+	let speedPerSecond = getWritingSpeed();
+	
+	// Modified: Apply flat 2x multiplier if holding the scene button
+	if (isHoldingSceneButton) {
+		speedPerSecond *= 2;
+	}
+	
 	const words = speedPerSecond * getGameSpeed() * timeInSeconds;
 	
 	if (words <= 0) return;
@@ -366,23 +376,44 @@ function writeProgress (sceneType, timeInSeconds) {
 
 // Interaction Handlers
 function handleSceneClick (sceneType) {
-	activeSceneType = sceneType;
+	// Modified: Set active auto scene
+	currentAutoSceneType = sceneType;
 	nextSceneType = sceneType; // Queue the genre for the typewriter
-	clickTypingTimer = 1.0; // 1 second of typing/progress
+	
+	// Modified: Instant 3 days of progress per click
+	if (gameData.currentBook) {
+		const speedPerDay = getWritingSpeed();
+		const words = speedPerDay * 3; // 3 days worth of words
+		
+		if (words > 0) {
+			gameData.wordsWritten += words;
+			
+			if (!gameData.currentBookComposition) {
+				gameData.currentBookComposition = {};
+			}
+			if (!gameData.currentBookComposition[sceneType]) {
+				gameData.currentBookComposition[sceneType] = 0;
+			}
+			gameData.currentBookComposition[sceneType] += words;
+			
+			const target = getBookLength();
+			if (gameData.wordsWritten >= target) {
+				finishBook();
+			}
+		}
+	}
+	
 	if (typeof updateUI === 'function') updateUI();
 }
 
 function handleSceneHoldStart (sceneType) {
 	isHoldingSceneButton = true;
-	activeSceneType = sceneType;
+	currentAutoSceneType = sceneType; // Modified: Update auto scene
 	nextSceneType = sceneType; // Queue the genre for the typewriter
-	clickTypingTimer = 0; // Override click timer
 }
 
 function handleSceneHoldEnd () {
 	isHoldingSceneButton = false;
-	clickTypingTimer = 0; // Clear click timer to stop instantly on release
-	activeSceneType = null;
 }
 
 function finishBook () {
@@ -419,7 +450,6 @@ function finishBook () {
 		});
 	}
 	
-	// Added: Show the book finished modal before resetting currentBook
 	if (typeof showBookFinishedModal === 'function') {
 		showBookFinishedModal(gameData.currentBook, quality, royalty);
 	}
@@ -432,8 +462,7 @@ function finishBook () {
 	currentTypewriterSentence = ''; // Reset sentence
 	typewriterIndex = 0; // Reset index
 	isHoldingSceneButton = false; // Reset hold state
-	clickTypingTimer = 0; // Reset click timer
-	activeSceneType = null; // Clear active scene
+	currentAutoSceneType = null; // Clear active scene
 	isWaitingToClearLine = false; // Reset line clear flag
 	isClearingLine = false; // Reset pause flag
 	currentTypingSceneType = null; // Reset typing scene type
@@ -444,8 +473,8 @@ function rebirthOne () {
 	gameData.rebirthOneCount += 1;
 	logEvent('Retired and started a new chapter. Legacy bonuses updated.');
 	rebirthReset();
-	closeRetirementModal(); // Added: Close modal after action
-	closeRebirthOneModal(); // Added: Close modal after action
+	closeRetirementModal();
+	closeRebirthOneModal();
 }
 
 function rebirthTwo () {
@@ -455,8 +484,8 @@ function rebirthTwo () {
 	logEvent(`Retired as a Legend. Gained ${fameGain.toFixed(1)} Fame!`);
 	
 	rebirthReset();
-	closeRetirementModal(); // Added: Close modal after action
-	closeRebirthTwoModal(); // Added: Close modal after action
+	closeRetirementModal();
+	closeRebirthTwoModal();
 	
 	for (const taskName in gameData.taskData) {
 		const task = gameData.taskData[taskName];
@@ -465,8 +494,6 @@ function rebirthTwo () {
 }
 
 function rebirthReset () {
-	// Modified: Removed setTab call since we use a 4 column layout now
-	
 	gameData.coins = 0;
 	gameData.days = 365 * 18;
 	gameData.wordsWritten = 0;
@@ -480,7 +507,6 @@ function rebirthReset () {
 	gameData.currentBook = null;
 	gameData.completedBooks = [];
 	
-	// Added: Reset rebirth prompt flags
 	gameData.rebirthOnePrompted = false;
 	gameData.rebirthTwoPrompted = false;
 	
@@ -505,7 +531,6 @@ function getLifespan () {
 
 function isAlive () {
 	const condition = gameData.days < getLifespan();
-	// Modified: Instead of showing text, this now triggers a non-closable retirement modal.
 	if (!condition) {
 		gameData.days = getLifespan();
 		showRetirementModal(); // Show the forced retirement modal

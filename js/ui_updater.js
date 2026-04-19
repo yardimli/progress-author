@@ -199,8 +199,6 @@ function updateAuthorAndBookUI () {
 	}
 }
 
-// Modified: Removed updateTabButtons function since tabs no longer exist
-
 function updateBookHistory () {
 	const container = document.getElementById('bookHistoryContainer');
 	if (!container) return;
@@ -311,7 +309,6 @@ function updateText () {
 	// Display expected quality in the selection screen
 	updateIfChanged('expectedQualityDisplay', getBookQuality().toFixed(2));
 	
-	// Modified: Display overlay if writing speed is 0 and the tab is unlocked
 	const speedOverlay = document.getElementById('writingSpeedOverlay');
 	if (speedOverlay) {
 		if (writingSpeed <= 0 && gameData.unlocks.writing) {
@@ -343,14 +340,23 @@ function updateText () {
 		}
 	}
 	
+	// Modified: Only update the composition multiplier display if the text or color actually changed
 	const compMultiplier = getCompositionMultiplier();
 	const compMultiplierDisplay = document.getElementById('compMultiplierDisplay');
 	if (compMultiplierDisplay) {
+		let newText = '';
+		let newColor = '';
+		
 		if (compMultiplier !== 1) {
-			compMultiplierDisplay.textContent = ` (x${compMultiplier.toFixed(2)} Comp)`;
-			compMultiplierDisplay.style.color = compMultiplier > 1 ? '#4CAF50' : '#ff4c4c';
-		} else {
-			compMultiplierDisplay.textContent = '';
+			newText = ` (x${compMultiplier.toFixed(2)} Comp)`;
+			newColor = compMultiplier > 1 ? '#4CAF50' : '#ff4c4c';
+		}
+		
+		if (compMultiplierDisplay.textContent !== newText) {
+			compMultiplierDisplay.textContent = newText;
+		}
+		if (compMultiplierDisplay.style.color !== newColor) {
+			compMultiplierDisplay.style.color = newColor;
 		}
 	}
 	
@@ -429,7 +435,7 @@ function updateCompositionUI () {
 		totalWords += gameData.currentBookComposition[key];
 	}
 	
-	// Modified: Target the buttons directly to update their background strength via CSS variables
+	// Target the buttons directly to update their background strength via CSS variables
 	const sceneBtns = document.querySelectorAll('.scene-btn');
 	sceneBtns.forEach(btn => {
 		const sceneType = btn.dataset.scene;
@@ -440,15 +446,33 @@ function updateCompositionUI () {
 			pct = words / totalWords;
 		}
 		
-		// Added: Set CSS variable for background opacity to indicate percentage
-		btn.style.setProperty('--pct', pct);
+		// Modified: Only update the CSS variable if it changed
+		const currentPctVar = btn.style.getPropertyValue('--pct');
+		// Drop pct to 2 decimal places for comparison to avoid excessive updates from tiny float differences
+		pct = parseFloat(pct.toFixed(2));
+		if (currentPctVar !== String(pct)) {
+			btn.style.setProperty('--pct', pct);
+		}
+		
+		// Modified: Highlight active auto scene with border class instead of background class
+		const isActive = (sceneType === currentAutoSceneType);
+		if (isActive) {
+			if (!btn.classList.contains('scene-btn-active')) {
+				btn.classList.add('scene-btn-active');
+				btn.classList.remove('btn-active'); // Ensure old background class is removed
+			}
+		} else {
+			if (btn.classList.contains('scene-btn-active')) {
+				btn.classList.remove('scene-btn-active');
+			}
+		}
 	});
 }
 
 // Handles the realistic typewriter effect for the manual writing interface
 function updateTypewriter (deltaTime) {
-	// Check if actively writing (holding button or within 1-second click window)
-	const isActivelyWriting = (isHoldingSceneButton || clickTypingTimer > 0);
+	// Actively writing as long as there is a book and writing speed > 0
+	const isActivelyWriting = (gameData.currentBook !== null && getWritingSpeed() > 0);
 	
 	// Instantly stop outputting if not actively writing (unless finishing a typo correction)
 	if (!isActivelyWriting && !isLiveCorrecting) {
@@ -558,7 +582,6 @@ function updateUI () {
 	hideEntities();
 	updateAuthorAndBookUI();
 	updateText();
-	// Modified: Removed updateTabButtons call
 	updateBookHistory();
 	updatePotionsUI();
 	updateCompositionUI();

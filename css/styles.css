@@ -179,7 +179,6 @@ button:focus {
     margin-bottom: 2px;
 }
 
-/* Modified: Top panel log container styling */
 .top-log-container {
     width: 350px;
     height: 160px;
@@ -199,20 +198,18 @@ button:focus {
     font-size: 0.95em;
 }
 
-/* Modified: Replaced .tab with .panel-column and made it scrollable */
 .panel-column {
     position: relative;
     min-height: 300px;
-    height: 100%; /* Fill the grid cell */
-    overflow-y: auto; /* Scroll internally */
-    padding-right: 5px; /* Space for scrollbar */
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 5px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     scrollbar-width: thin;
 }
 
-/* Added: Custom scrollbar for panel-column */
 .panel-column::-webkit-scrollbar {
     width: 8px;
 }
@@ -228,7 +225,6 @@ button:focus {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* --- New Locked Tab Overlay Styles --- */
 .locked-tab-overlay {
     position: absolute;
     top: 0;
@@ -277,19 +273,18 @@ button:focus {
     font-size: 1.05em;
 }
 
-/* Modified: Made category headers sticky and added background color */
 .category-header {
     text-transform: uppercase;
     color: #555;
-    margin: 0 0 15px 0; /* Adjusted for sticky flushness */
-    padding: 10px 0 5px 0; /* Added top padding */
+    margin: 0 0 15px 0;
+    padding: 10px 0 5px 0;
     font-size: 1.1em;
     letter-spacing: 1px;
     border-bottom: 1px solid #ccc;
-    position: sticky; /* Sticky positioning */
-    top: 0; /* Stick to top of panel-column */
-    z-index: 10; /* Stay above scrolling content */
-    background-color: white; /* Light mode background */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
 }
 
 .category-content.grid {
@@ -304,15 +299,12 @@ button:focus {
     gap: 10px;
 }
 
-/* Card Style (Jobs, Properties) */
 .ui-card {
     background-color: #fff;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     padding: 0px;
-    /* Modified: Set width to exactly fit 3 cards per row accounting for the 12px gap */
     width: calc((100% - 24px) / 3);
-    /* Modified: Force the card to be a perfect square */
     aspect-ratio: 1 / 1;
     text-align: center;
     cursor: pointer;
@@ -323,9 +315,7 @@ button:focus {
     transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* Added: Scoped styles for Work and Property cards to support hover overlays */
 #jobs .ui-card, #shop .ui-card {
-    /* Modified: Removed fixed height so aspect-ratio dictates height */
     overflow: hidden;
     justify-content: center;
 }
@@ -348,7 +338,6 @@ button:focus {
     object-fit: cover;
 }
 
-/* Added: Scoped absolute positioning for images inside Work and Property cards */
 #jobs .card-image, #shop .card-image {
     position: absolute;
     top: 0;
@@ -359,7 +348,6 @@ button:focus {
     z-index: 1;
 }
 
-/* Added: Overlay container for hover text */
 .card-overlay {
     position: absolute;
     top: 0;
@@ -378,13 +366,11 @@ button:focus {
     box-sizing: border-box;
 }
 
-/* Show overlay on hover */
 #jobs .ui-card:hover .card-overlay,
 #shop .ui-card:hover .card-overlay {
     opacity: 1;
 }
 
-/* Ensure text inside overlay is light */
 .card-overlay .card-title {
     color: #fff;
     margin-bottom: 5px;
@@ -396,7 +382,6 @@ button:focus {
     z-index: 3;
 }
 
-/* Adjust dynamic text colors when inside the dark overlay */
 .card-overlay .color-income-val,
 .card-overlay .color-expense-val {
     color: #ffd700;
@@ -431,7 +416,6 @@ button:focus {
     margin-bottom: 6px;
 }
 
-/* Row Style (Skills, Misc) */
 .ui-row {
     background-color: #fff;
     border: 2px solid #e0e0e0;
@@ -489,7 +473,6 @@ button:focus {
     font-weight: bold;
 }
 
-/* Level Badge */
 .level-badge {
     opacity: 0.7;
     background-color: #eee;
@@ -504,7 +487,6 @@ button:focus {
     border: 1px solid #ccc;
 }
 
-/* Modified: Position level badge at the absolute bottom of the card for Work section */
 #jobs .ui-card .level-badge {
     position: absolute;
     bottom: 0;
@@ -572,7 +554,6 @@ button:focus {
     margin-top: 15px;
 }
 
-/* Added: Center locked card content properly in the new fixed height cards */
 #jobs .locked-card .locked-icon,
 #shop .locked-card .locked-icon {
     margin-top: 0;
@@ -607,7 +588,6 @@ button:focus {
     padding: 0;
 }
 
-/* Dynamic Text Colors for JS Injection */
 .color-income-val, .color-expense-val {
     color: #b8860b;
 }
@@ -620,7 +600,6 @@ button:focus {
     color: #d32f2f;
 }
 
-/* Modified: Top panel layout to split stats and logs */
 .panel.top-panel {
     display: flex;
     align-items: center;
@@ -644,8 +623,6 @@ button:focus {
     flex-shrink: 0;
 }
 
-/* --- Fixed Header and Scroll Container Styles --- */
-
 .fixed-header-wrapper {
     position: fixed;
     top: 0;
@@ -657,7 +634,6 @@ button:focus {
     background-color: rgb(243, 243, 243);
 }
 
-/* Modified: Changed max-width to 100% for full width */
 .fixed-header-content {
     width: 100%;
     max-width: 100%;
@@ -665,7 +641,6 @@ button:focus {
     box-sizing: border-box;
 }
 
-/* Modified: Changed max-width to 100% and adjusted padding-top for removed tabs */
 .main-layout-wrapper {
     width: 100%;
     max-width: 100%;
@@ -675,7 +650,6 @@ button:focus {
     box-sizing: border-box;
 }
 
-/* Modified: Four column grid layout to stretch and fill height */
 .four-column-layout {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -686,9 +660,8 @@ button:focus {
 }
 
 .scroll-container {
-    /* Modified: Viewport height minus the 185px fixed header offset */
     height: calc(100vh - 185px);
-    overflow: hidden; /* Modified: hidden so columns scroll individually */
+    overflow: hidden;
     scrollbar-width: thin;
     padding-bottom: 0px;
 }
@@ -773,7 +746,6 @@ button:focus {
     margin-top: 5px;
 }
 
-/* Modified: Ensure main content panel takes full height */
 .main-content-panel {
     min-height: 100px;
     height: 100%;
@@ -1026,7 +998,6 @@ button:focus {
     text-align: center;
 }
 
-/* --- Modal Styles --- */
 .modal {
     position: fixed;
     top: 0;
@@ -1103,7 +1074,6 @@ button:focus {
     max-height: 80vh;
 }
 
-/* Simulated Word Processor App */
 .word-app-container {
     background-color: #fff;
     color: #000;
@@ -1132,7 +1102,6 @@ button:focus {
     }
 }
 
-/* Added: Scene button styles for dynamic background strength */
 .scene-btn {
     position: relative;
     overflow: hidden;
@@ -1145,13 +1114,36 @@ button:focus {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.35); /* Darkens the button in light mode */
+    background-color: rgba(0, 0, 0, 0.35);
     opacity: var(--pct, 0);
     z-index: 0;
     transition: opacity 0.2s ease;
 }
 
-/* --- New Unlock Modal Styles --- */
+/* Added: Scene button active state (border instead of background) */
+.scene-btn-active {
+    border: 2px solid #4CAF50 !important;
+    padding: 7px 15px !important; /* Offset the 1px border increase to prevent layout shift */
+}
+
+/* Added: Scene button pressed down effect */
+.scene-btn:active {
+    transform: translateY(2px);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.scene-btn:hover {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: #4CAF50;
+}
+
+/* Added: Scene percentage text styling */
+.scene-pct {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-left: 4px;
+}
+
 .modal-new-unlock {
     background-color: #f0f8ff;
     border: 2px solid #4CAF50;

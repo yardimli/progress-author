@@ -63,14 +63,12 @@ var gameData = {
 	// Track if the player has seen the intro tutorial
 	introSeen: false,
 	
-	// Added: Track if rebirth modals have been shown in the current life
+	// Track if rebirth modals have been shown in the current life
 	rebirthOnePrompted: false,
 	rebirthTwoPrompted: false
 };
 
 var tempData = {};
-
-// Removed jobTabButton as tabs are no longer used
 
 // Constants
 const baseLifespan = 365 * 70;
@@ -85,17 +83,15 @@ var textUpdateTimer = 0;
 
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
-// Modified: Added introSlidesBaseData to hold the intro slides data
 var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData, sceneTypesBaseData, genreIdealsBaseData, booksFirstPageBaseData, introSlidesBaseData;
 
-// Added: Track current intro slide index
+// Track current intro slide index
 var currentIntroSlide = 0;
 
-// Manual Writing State
-var activeSceneType = null;
+// Modified: Manual & Automatic Writing State
+var currentAutoSceneType = null; // Tracks the scene type for automatic writing
 var nextSceneType = "Action"; // Track the next scene type to transition to
 var isHoldingSceneButton = false; // Tracks manual hold
-var clickTypingTimer = 0; // Tracks the 1-second click duration
 var currentTypewriterSentence = "";
 var typewriterIndex = 0;
 var typewriterText = "";

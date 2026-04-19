@@ -8,7 +8,7 @@ function updateLogic () {
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
     checkUnlocks();
-    checkRebirthPrompts(); // Added: Check for age-based rebirth modals.
+    checkRebirthPrompts(); // Check for age-based rebirth modals.
 }
 
 function gameLoop (currentTime) {
@@ -47,16 +47,9 @@ function gameLoop (currentTime) {
             if (gameData.potions.acceleration < 0) gameData.potions.acceleration = 0;
         }
         
-        // Handle manual writing continuous hold or click timer
-        if (clickTypingTimer > 0) {
-            clickTypingTimer -= deltaTime;
-            if (clickTypingTimer <= 0 && !isHoldingSceneButton) {
-                activeSceneType = null; // Stop writing if timer runs out and not holding
-            }
-        }
-        
-        if (activeSceneType) {
-            writeProgress(activeSceneType, deltaTime);
+        // Modified: Automatic writing process
+        if (gameData.currentBook && currentAutoSceneType) {
+            writeProgress(currentAutoSceneType, deltaTime);
         }
         
         // Process the visual typewriter effect independently of game speed
@@ -91,7 +84,7 @@ async function init () {
             potionsRes, lifeExpRes, genresRes,
             sceneTypesRes, genreIdealsRes,
             booksFirstPageRes,
-            introSlidesRes // Added: Fetch intro slides
+            introSlidesRes // Fetch intro slides
         ] = await Promise.all([
             fetch('data/jobs.json?' + gameData.version), // Cache busting with version query param
             fetch('data/skills.json?' + gameData.version),
@@ -110,7 +103,7 @@ async function init () {
             fetch('data/sceneTypes.json?' + gameData.version),
             fetch('data/genreIdeals.json?' + gameData.version),
             fetch('data/booksFirstPage.json?' + gameData.version),
-            fetch('data/introSlides.json?' + gameData.version) // Added: Fetch intro slides
+            fetch('data/introSlides.json?' + gameData.version) // Fetch intro slides
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -131,8 +124,8 @@ async function init () {
         genresBaseData = await genresRes.json(); // Assign genres data
         sceneTypesBaseData = await sceneTypesRes.json();
         genreIdealsBaseData = await genreIdealsRes.json();
-        booksFirstPageBaseData = await booksFirstPageRes.json(); // Added: Assign first page data
-        introSlidesBaseData = await introSlidesRes.json(); // Added: Assign intro slides data
+        booksFirstPageBaseData = await booksFirstPageRes.json(); // Assign first page data
+        introSlidesBaseData = await introSlidesRes.json(); // Assign intro slides data
         
         createAllRows(jobCategories, 'jobTable');
         createAllRows(skillCategories, 'skillTable');
@@ -181,8 +174,6 @@ function continueInit () {
     addMultipliers();
     
     applyUnlocksUI(); // Apply hidden states to tabs based on unlocks
-    
-    // Modified: Removed setTab call since we use a 4 column layout now
     
     updateLogic(); // Run logic once
     updateUI();    // Update UI once

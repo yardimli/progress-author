@@ -237,14 +237,19 @@ function buildSceneButtons() {
 	for (let sceneType in availableScenes) {
 		let btn = document.createElement('button');
 		btn.className = 'btn scene-btn';
-		btn.dataset.scene = sceneType; // Added: Store scene type on button for CSS variable targeting
+		btn.dataset.scene = sceneType;
 		
-		// Modified: Wrap text in a span to keep it above the background fill (z-index)
-		let textSpan = document.createElement('span');
-		textSpan.style.position = 'relative';
-		textSpan.style.zIndex = '1';
-		textSpan.textContent = sceneType;
-		btn.appendChild(textSpan);
+		// Modified: Wrap text and percentage in spans for independent targeting
+		let contentWrapper = document.createElement('span');
+		contentWrapper.style.position = 'relative';
+		contentWrapper.style.zIndex = '1';
+		
+		let nameSpan = document.createElement('span');
+		nameSpan.className = 'scene-name';
+		nameSpan.textContent = sceneType;
+		
+		contentWrapper.appendChild(nameSpan);
+		btn.appendChild(contentWrapper);
 		
 		// Mouse events
 		btn.addEventListener('mousedown', () => handleSceneHoldStart(sceneType));

@@ -8,7 +8,7 @@
 }
 
 .dark .panel.top-panel {
-    background-color: #18181b; /* Deep dark color, distinct from the #2e2e2e tab panels */
+    background-color: #18181b;
     border-bottom: 2px solid #000;
 }
 
@@ -27,7 +27,6 @@
     border-bottom: 1px solid rgb(73, 73, 73);
 }
 
-/* Modified: Changed #logContainer to .top-log-container for dark mode */
 .dark .top-log-container {
     background-color: #2e2e2e;
     border: 1px solid #494949;
@@ -37,12 +36,10 @@
     border-bottom: 1px solid #494949;
 }
 
-/* Ensure new UI elements adhere to dark theme */
 .dark .tab-description {
     color: #aaa;
 }
 
-/* Modified: Added background color to match dark panel for sticky header */
 .dark .category-header {
     color: #888;
     border-bottom: 1px solid #444;
@@ -112,28 +109,24 @@
     color: #777;
 }
 
-/* Dynamic Text Colors for JS Injection */
 .dark .color-income-val, .dark .color-expense-val { color: #ffd700; }
 .dark .color-income-lbl { color: #a8d08d; }
 .dark .color-expense-lbl { color: #ff4c4c; }
 
-/* --- Dark mode for Layout and Scrollbar --- */
 .dark .fixed-header-wrapper {
-    background-color: rgb(32, 32, 32); /* Match dark theme body background */
+    background-color: rgb(32, 32, 32);
 }
 
 .dark .scroll-container:hover::-webkit-scrollbar-thumb,
 .dark .scroll-container:active::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3); /* Lighter thumb for dark mode */
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Added: Dark mode scrollbar for internally scrolling panel-columns */
 .dark .panel-column:hover::-webkit-scrollbar-thumb,
 .dark .panel-column:active::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* --- Dark mode for Modal --- */
 .dark .modal-content {
     background-color: #1a1a1a;
     color: #fff;
@@ -162,12 +155,15 @@
     background-color: #2e2e2e !important;
 }
 
-/* Added: Scene button background strength for dark mode */
-.dark .scene-btn::before {
-    background-color: rgba(255, 255, 255, 0.35); /* Lightens the button in dark mode */
+/* Added: Scene button active border for dark mode */
+.dark .scene-btn-active {
+    border-color: #a8d08d !important;
 }
 
-/* --- Dark Mode Extracted Styles --- */
+.dark .scene-btn::before {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
 .dark .life-experiences-container {
     background-color: rgba(255, 255, 255, 0.05);
 }
@@ -176,7 +172,6 @@
     background-color: #444;
 }
 
-/* --- Dark Mode New Unlock Modal Styles --- */
 .dark .modal-new-unlock {
     background-color: #1a2e1a;
     border: 2px solid #4CAF50;
@@ -189,7 +184,6 @@
     border-color: #2e7d32;
 }
 
-/* --- Dark Mode Locked Tab Overlay --- */
 .dark .locked-tab-overlay {
     background-color: rgba(32, 32, 32, 0.75);
 }
