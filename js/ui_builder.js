@@ -36,16 +36,6 @@ function createAllRows (categoryType, containerId) {
 		
 		const contentDiv = categoryDiv.querySelector('.category-content');
 		
-		// Added help text for Misc items
-		if (isItem && categoryName === 'Misc') {
-			const miscHelp = document.createElement('div');
-			miscHelp.className = 'tab-description';
-			miscHelp.style.marginBottom = '15px';
-			miscHelp.style.fontSize = '0.95em';
-			miscHelp.textContent = 'You can acquire every item here and also give them up. They all influence work, skills, and writing in different ways.';
-			categoryDiv.insertBefore(miscHelp, contentDiv);
-		}
-		
 		if (isJob || (isItem && categoryName === 'Properties')) {
 			contentDiv.classList.add('grid');
 		} else {
@@ -147,7 +137,7 @@ function createAllRows (categoryType, containerId) {
               <div class="row-title">${potion.name}</div>
               <div class="row-value">x${potion.effect.toFixed(1)} ${potion.type === 'inspiration' ? 'Inspiration' : 'Game Speed'}</div>
             </div>
-            <div class="potion-action" id="action-${potion.type}" style="width: 120px; text-align: right; flex-shrink: 0;">
+            <div class="potion-action" id="action-${potion.type}" style="width: 80px; text-align: right; flex-shrink: 0;">
               <button class="btn" onclick="drinkPotion('${potion.type}')">Drink</button>
             </div>
           `;

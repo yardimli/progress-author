@@ -110,16 +110,19 @@
 				<div class="ui-row">
 					<img class="row-image" src="" alt="">
 					<div class="row-info">
-						<div class="row-title name"></div>
+						<!-- Modified: Flex container to place expense next to title instead of as a 3rd column -->
+						<div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;">
+							<div class="row-title name" style="margin-bottom: 0;"></div>
+							<div class="row-expense expense" style="min-width: auto; margin-right: 0;"></div>
+						</div>
 						<div class="row-value effect"></div>
 					</div>
-					<div class="row-expense expense"></div>
 				</div>
 			</template>
 			
 			<!-- Column 1: Work -->
 			<div class="panel-column" id="jobs">
-				<div class="tab-description">Select a job to earn money. You can switch at any time.</div>
+				<div class="tab-description">Select a job to earn money.</div>
 				<div id="jobTable"></div>
 			</div>
 			
@@ -141,7 +144,7 @@
 					<div class="locked-tab-title">Shop Locked</div>
 					<div class="locked-tab-reqs">Reach level 3 in Gig Worker to unlock.</div>
 				</div>
-				<div class="tab-description" title="Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.">Properties.</div>
+				<div class="tab-description" title="Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.">Shop.</div>
 				<div id="itemTable"></div>
 			</div>
 			
