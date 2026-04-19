@@ -42,9 +42,11 @@
     color: #aaa;
 }
 
+/* Modified: Added background color to match dark panel for sticky header */
 .dark .category-header {
     color: #888;
     border-bottom: 1px solid #444;
+    background-color: rgb(46, 46, 46);
 }
 
 .dark .ui-card, .dark .ui-row {
@@ -127,6 +129,12 @@
 .dark .scroll-container:hover::-webkit-scrollbar-thumb,
 .dark .scroll-container:active::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.3); /* Lighter thumb for dark mode */
+}
+
+/* Added: Dark mode scrollbar for internally scrolling panel-columns */
+.dark .panel-column:hover::-webkit-scrollbar-thumb,
+.dark .panel-column:active::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* --- Dark mode for Modal --- */

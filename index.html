@@ -62,11 +62,16 @@
 				</div>
 			</template>
 			
+			<!-- Modified: jobCardTemplate to include card-overlay -->
 			<template id="jobCardTemplate">
 				<div class="ui-card">
 					<img class="card-image" src="" alt="">
-					<div class="card-title name"></div>
-					<div class="card-value income"></div>
+					<!-- Added: Overlay container for hover text -->
+					<div class="card-overlay">
+						<div class="card-title name"></div>
+						<div class="card-value income"></div>
+					</div>
+					<!-- Modified: Progress bar stays outside the overlay to remain visible -->
 					<div class="level-badge">
 						<div class="badge-fill progressFill"></div>
 						<span class="badge-text level"></span>
@@ -88,12 +93,16 @@
 				</div>
 			</template>
 			
+			<!-- Modified: propertyCardTemplate to include card-overlay -->
 			<template id="propertyCardTemplate">
 				<div class="ui-card">
 					<img class="card-image" src="" alt="">
-					<div class="card-title name"></div>
-					<div class="card-value effect"></div>
-					<div class="card-expense expense"></div>
+					<!-- Added: Overlay container for hover text -->
+					<div class="card-overlay">
+						<div class="card-title name"></div>
+						<div class="card-value effect"></div>
+						<div class="card-expense expense"></div>
+					</div>
 				</div>
 			</template>
 			
