@@ -6,13 +6,11 @@ body {
 }
 
 html, body {
-    /* Changed to a classic serif font stack to fit the author theme */
     font-family: 'Georgia', 'Times New Roman', Times, serif;
     font-size: 15px;
     line-height: 1.5;
 }
 
-/* Ensure form elements and buttons inherit the serif font */
 button, input, select, textarea {
     font-family: inherit;
 }
@@ -69,8 +67,6 @@ html {
 .btn-danger:hover {
     background-color: #d32f2f !important;
 }
-
-/* --- End Internal Utility Classes --- */
 
 td {
     vertical-align: middle !important;
@@ -183,11 +179,17 @@ button:focus {
     margin-bottom: 2px;
 }
 
-#logContainer {
-    height: 500px;
-    padding: 10px;
+/* Modified: Top panel log container styling */
+.top-log-container {
+    width: 350px;
+    height: 160px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 0.85em;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
 
 .log-entry {
@@ -197,12 +199,12 @@ button:focus {
     font-size: 0.95em;
 }
 
-/* --- New UI Styles (Light Mode Base) --- */
-
-/* Added position relative to contain the absolute overlay */
-.tab {
+/* Modified: Replaced .tab with .panel-column */
+.panel-column {
     position: relative;
-    min-height: 300px; /* Ensures the tab has enough height for the overlay message */
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* --- New Locked Tab Overlay Styles --- */
@@ -281,7 +283,7 @@ button:focus {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     padding: 0px;
-    width: 128px;
+    width: 30%;
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -302,8 +304,8 @@ button:focus {
 }
 
 .card-image {
-    width: 128px;
-    height: 128px;
+    width: 100%;
+    height: 100%;
     background-color: #eee;
     margin-bottom: 6px;
     object-fit: cover;
@@ -505,47 +507,28 @@ button:focus {
     color: #d32f2f;
 }
 
+/* Modified: Top panel layout to split stats and logs */
 .panel.top-panel {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     height: 185px;
     box-sizing: border-box;
-    background-color: #e2e8f0; /* Distinct slate-gray background for light mode */
+    background-color: #e2e8f0;
     border-bottom: 2px solid #cbd5e1;
 }
 
-.tabs-container {
-    display: flex;
-    overflow-x: auto;
-    height: 44px;
-    box-sizing: border-box;
-    align-items: center;
-    background-color: #f8f9fa; /* Light background for tabs */
-    border-bottom: 1px solid #ddd;
-}
-
-.tabButton {
+.top-panel-left {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px 16px;
-    cursor: pointer;
-    white-space: nowrap;
-    border: none;
-    background: none;
-    font-size: 16px;
-    transition: background-color 0.2s;
-    border-radius: 4px;
+    gap: 20px;
+    flex-grow: 1;
 }
 
-.tabButton:hover {
-    background-color: #ddd;
-}
-
-.dark .tabButton:hover {
-    background-color: #444;
+.top-panel-right {
+    flex-shrink: 0;
 }
 
 /* --- Fixed Header and Scroll Container Styles --- */
@@ -558,49 +541,58 @@ button:focus {
     z-index: 1000;
     display: flex;
     justify-content: center;
-    background-color: rgb(243, 243, 243); /* Match light theme body background */
+    background-color: rgb(243, 243, 243);
 }
 
+/* Modified: Changed max-width to 100% for full width */
 .fixed-header-content {
     width: 100%;
-    max-width: 1200px;
-    padding: 0 15px;
+    max-width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
+/* Modified: Changed max-width to 100% and adjusted padding-top for removed tabs */
 .main-layout-wrapper {
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
-    /* 185px (topPanel) + 44px (tabs) = 224px offset */
-    padding-top: 229px;
+    padding: 0px;
+    padding-top: 185px;
+    box-sizing: border-box;
+}
+
+/* Added: Four column grid layout */
+.four-column-layout {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: start;
 }
 
 .scroll-container {
-    /* Viewport height minus the 224px fixed header offset */
-    height: calc(100vh - 229px);
-    overflow-y: overlay; /* Overlays scrollbar on content */
-    scrollbar-width: thin; /* Firefox support */
-    padding-bottom: 0px; /* Breathing room at the bottom */
+    /* Modified: Viewport height minus the 185px fixed header offset */
+    height: calc(100vh - 185px);
+    overflow-y: overlay;
+    scrollbar-width: thin;
+    padding-bottom: 0px;
 }
 
-/* WebKit (Chrome, Safari, Edge) Customization */
 .scroll-container::-webkit-scrollbar {
     width: 8px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-    background-color: transparent; /* Faded out by default */
+    background-color: transparent;
     border-radius: 10px;
-    transition: background-color 0.3s; /* Smooth transition */
+    transition: background-color 0.3s;
 }
 
 .scroll-container:hover::-webkit-scrollbar-thumb,
 .scroll-container:active::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3); /* Fades in on hover/touch */
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* --- Extracted Inline Styles from HTML --- */
 .author-image {
     width: 160px;
     height: 160px;
@@ -671,53 +663,19 @@ button:focus {
     margin-left: 5px;
 }
 
-.tab-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 8px;
-}
-
-.tab-text-job {
-    color: #4CAF50;
-    margin-left: 8px;
-}
-
-.tab-text-skill {
-    margin-left: 8px;
-    font-weight: bold;
-}
-
-.tab-text-shop {
-    color: #f44336;
-    margin-left: 8px;
-}
-
-.tab-icon-square {
-    width: 24px;
-    height: 24px;
-    border-radius: 4px;
-    object-fit: cover;
-    margin-right: 8px;
-}
-
-.tab-button-right {
-    margin-left: auto;
-}
-
 .main-content-panel {
     min-height: 100px;
 }
 
 .book-status-row {
     margin-bottom: 20px;
+    padding:10px;
     cursor: default;
 }
 
 .book-cover-image {
-    width: 120px;
-    height: 180px;
+    width: 100px;
+    height: 150px;
     object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
@@ -962,7 +920,7 @@ button:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Darken backdrop with opacity */
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -976,7 +934,6 @@ button:focus {
 #introModal .modal-content {
     max-width: 800px;
     min-height: 50vh;
-
 }
 
 .modal-content {

@@ -199,56 +199,7 @@ function updateAuthorAndBookUI () {
 	}
 }
 
-function updateTabButtons () {
-	const updateImg = (imgId, entity) => {
-		const imgEl = document.getElementById(imgId);
-		if (!imgEl) return;
-		if (entity && entity.baseData) {
-			const src = `img/${entity.baseData.filefolder}256/${entity.baseData.filename.replace('.png', '.jpg')}`;
-			if (imgEl.src !== src && !imgEl.src.includes(src)) {
-				imgEl.src = src;
-				imgEl.style.display = 'inline-block';
-			}
-		} else {
-			if (imgEl.style.display !== 'none') imgEl.style.display = 'none';
-		}
-	};
-	
-	updateImg('jobTabImg', gameData.currentJob);
-	const jobTabText = document.getElementById('jobTabText');
-	if (jobTabText) {
-		const jobIncomeText = `+$${format(getIncome(), 0)}/day`;
-		if (jobTabText.textContent !== jobIncomeText) jobTabText.textContent = jobIncomeText;
-	}
-	
-	updateImg('skillTabImg', gameData.currentSkill);
-	const skillTabText = document.getElementById('skillTabText');
-	if (skillTabText) {
-		const skillLvlText = gameData.currentSkill ? `Lvl ${gameData.currentSkill.level}` : '';
-		if (skillTabText.textContent !== skillLvlText) skillTabText.textContent = skillLvlText;
-	}
-	
-	const writingImgEl = document.getElementById('writingTabImg');
-	if (writingImgEl) {
-		if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
-			const book = booksBaseData[gameData.currentBook];
-			const src = `img/${book.filefolder}256/${book.filename.replace('.png', '.jpg')}`;
-			if (writingImgEl.src !== src && !writingImgEl.src.includes(src)) {
-				writingImgEl.src = src;
-				writingImgEl.style.display = 'inline-block';
-			}
-		} else {
-			if (writingImgEl.style.display !== 'none') writingImgEl.style.display = 'none';
-		}
-	}
-	
-	updateImg('shopTabImg', gameData.currentProperty);
-	const shopTabText = document.getElementById('shopTabText');
-	if (shopTabText) {
-		const shopExpenseText = `-$${format(getExpense(), 0)}/day`;
-		if (shopTabText.textContent !== shopExpenseText) shopTabText.textContent = shopExpenseText;
-	}
-}
+// Modified: Removed updateTabButtons function since tabs no longer exist
 
 function updateBookHistory () {
 	const container = document.getElementById('bookHistoryContainer');
@@ -352,9 +303,6 @@ function updateText () {
 	
 	updateIfChanged('timeWarpingDisplay', gameData.taskData['Flow State'].getEffect().toFixed(2));
 	updateIfChanged('timeWarpingButton', gameData.timeWarpingEnabled ? 'Disable flow' : 'Enable flow');
-	
-	updateIfChanged('wordsWrittenDisplay', format(gameData.wordsWritten));
-	updateIfChanged('bookLengthDisplay', format(getBookLength(), 0));
 	
 	const writingSpeed = getWritingSpeed();
 	updateIfChanged('writingSpeedDisplayTab', format(writingSpeed));
@@ -473,11 +421,11 @@ function hideEntities () {
 }
 
 // Updates the composition statistics UI
-function updateCompositionUI() {
+function updateCompositionUI () {
 	if (!gameData.currentBookComposition) return;
 	
 	let totalWords = 0;
-	for (let key in gameData.currentBookComposition) {
+	for (const key in gameData.currentBookComposition) {
 		totalWords += gameData.currentBookComposition[key];
 	}
 	
@@ -500,9 +448,9 @@ function updateCompositionUI() {
 }
 
 // Handles the realistic typewriter effect for the manual writing interface
-function updateTypewriter(deltaTime) {
+function updateTypewriter (deltaTime) {
 	// Check if actively writing (holding button or within 1-second click window)
-	let isActivelyWriting = (isHoldingSceneButton || clickTypingTimer > 0);
+	const isActivelyWriting = (isHoldingSceneButton || clickTypingTimer > 0);
 	
 	// Instantly stop outputting if not actively writing (unless finishing a typo correction)
 	if (!isActivelyWriting && !isLiveCorrecting) {
@@ -524,7 +472,7 @@ function updateTypewriter(deltaTime) {
 	while (liveTypingDelay <= 0) {
 		// Clear the line if the 200ms delay has finished
 		if (isClearingLine) {
-			typewriterText = "";
+			typewriterText = '';
 			isClearingLine = false;
 			isWaitingToClearLine = false; // Safety reset to ensure it doesn't trigger immediately again
 		}
@@ -536,14 +484,14 @@ function updateTypewriter(deltaTime) {
 		} else {
 			// If the sentence is finished, clear the line and start over
 			if (typewriterIndex >= currentTypewriterSentence.length) {
-				typewriterText = ""; // Clear the line
+				typewriterText = ''; // Clear the line
 				typewriterIndex = 0;
 				isWaitingToClearLine = false; // Reset line clear flag
 				isClearingLine = false; // Reset pause flag
 				
 				// Fetch new sentence using the queued scene type and current genre
-				let sceneToUse = nextSceneType || "Action";
-				let currentGenre = "Romance";
+				const sceneToUse = nextSceneType || 'Action';
+				let currentGenre = 'Romance';
 				if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
 					currentGenre = booksBaseData[gameData.currentBook].genre;
 				} else if (gameData.selectedGenre) {
@@ -551,16 +499,16 @@ function updateTypewriter(deltaTime) {
 				}
 				
 				// Access nested scene types by genre
-				let sentences = (sceneTypesBaseData && sceneTypesBaseData[currentGenre]) ? sceneTypesBaseData[currentGenre][sceneToUse] : null;
+				const sentences = (sceneTypesBaseData && sceneTypesBaseData[currentGenre]) ? sceneTypesBaseData[currentGenre][sceneToUse] : null;
 				
 				if (sentences && sentences.length > 0) {
-					currentTypewriterSentence = sentences[Math.floor(Math.random() * sentences.length)] + " ";
+					currentTypewriterSentence = sentences[Math.floor(Math.random() * sentences.length)] + ' ';
 				} else {
-					currentTypewriterSentence = "Writing... ";
+					currentTypewriterSentence = 'Writing... ';
 				}
 			}
 			
-			let char = currentTypewriterSentence[typewriterIndex];
+			const char = currentTypewriterSentence[typewriterIndex];
 			
 			if (/[a-zA-Z]/.test(char) && Math.random() < 0.03) { // 3% chance for typo
 				const chars = 'abcdefghijklmnopqrstuvwxyz';
@@ -612,7 +560,7 @@ function updateUI () {
 	hideEntities();
 	updateAuthorAndBookUI();
 	updateText();
-	updateTabButtons();
+	// Modified: Removed updateTabButtons call
 	updateBookHistory();
 	updatePotionsUI();
 	updateCompositionUI();

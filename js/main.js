@@ -2,7 +2,7 @@
 
 // Renamed from update() to updateLogic() and removed updateUI()
 // This allows logic to run every frame while UI updates periodically
-function updateLogic() {
+function updateLogic () {
     increaseDays();
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
@@ -11,7 +11,7 @@ function updateLogic() {
     checkRebirthPrompts(); // Added: Check for age-based rebirth modals.
 }
 
-function gameLoop(currentTime) {
+function gameLoop (currentTime) {
     deltaTime = (currentTime - lastTime) / 1000;
     
     // Limit frame rate to ~60 FPS to reduce CPU load
@@ -27,7 +27,7 @@ function gameLoop(currentTime) {
     
     // Process popup queue immediately if not paused
     if (!isPaused && popupQueue.length > 0) {
-        let popup = popupQueue.shift();
+        const popup = popupQueue.shift();
         if (popup.type === 'tutorial') {
             showTutorialModal(popup.title, popup.text);
         } else if (popup.type === 'info') {
@@ -81,7 +81,7 @@ function gameLoop(currentTime) {
     requestAnimationFrame(gameLoop);
 }
 
-async function init() {
+async function init () {
     try {
         const [
             jobsRes, skillsRes, itemsRes,
@@ -134,26 +134,26 @@ async function init() {
         booksFirstPageBaseData = await booksFirstPageRes.json(); // Added: Assign first page data
         introSlidesBaseData = await introSlidesRes.json(); // Added: Assign intro slides data
         
-        createAllRows(jobCategories, "jobTable");
-        createAllRows(skillCategories, "skillTable");
-        createAllRows(itemCategories, "itemTable");
+        createAllRows(jobCategories, 'jobTable');
+        createAllRows(skillCategories, 'skillTable');
+        createAllRows(itemCategories, 'itemTable');
         initLifeExperiencesUI(); // Initialize dynamic Life Experiences UI
         
         createData(gameData.taskData, jobBaseData);
         createData(gameData.taskData, skillBaseData);
         createData(gameData.itemData, itemBaseData);
         
-        gameData.currentJob = gameData.taskData["Gig Worker"];
-        gameData.currentSkill = gameData.taskData["Focus"];
-        gameData.currentProperty = gameData.itemData["Homeless"];
+        gameData.currentJob = gameData.taskData['Gig Worker'];
+        gameData.currentSkill = gameData.taskData['Focus'];
+        gameData.currentProperty = gameData.itemData['Homeless'];
         gameData.currentMisc = [];
         
         setupRequirements(requirementsData);
         
-        tempData["requirements"] = {};
-        for (let key in gameData.requirements) {
-            let requirement = gameData.requirements[key];
-            tempData["requirements"][key] = requirement;
+        tempData['requirements'] = {};
+        for (const key in gameData.requirements) {
+            const requirement = gameData.requirements[key];
+            tempData['requirements'][key] = requirement;
         }
         
         loadGameData();
@@ -167,13 +167,13 @@ async function init() {
         continueInit();
         
     } catch (error) {
-        console.error("Failed to load game data:", error);
-        alert("Failed to load game data. Ensure you are running this on a local web server to allow fetch API to work.");
+        console.error('Failed to load game data:', error);
+        alert('Failed to load game data. Ensure you are running this on a local web server to allow fetch API to work.');
     }
 }
 
 // Continues initialization after an author is selected or loaded
-function continueInit() {
+function continueInit () {
     populateGenres(); // Populate the genre dropdown
     buildSceneButtons(); // Build the manual writing buttons
     
@@ -182,7 +182,7 @@ function continueInit() {
     
     applyUnlocksUI(); // Apply hidden states to tabs based on unlocks
     
-    setTab(jobTabButton, "jobs");
+    // Modified: Removed setTab call since we use a 4 column layout now
     
     updateLogic(); // Run logic once
     updateUI();    // Update UI once

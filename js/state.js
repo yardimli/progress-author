@@ -70,8 +70,7 @@ var gameData = {
 
 var tempData = {};
 
-// DOM Elements
-var jobTabButton = document.getElementById("jobTabButton");
+// Removed jobTabButton as tabs are no longer used
 
 // Constants
 const baseLifespan = 365 * 70;

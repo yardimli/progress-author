@@ -13,59 +13,46 @@
 <div class="fixed-header-wrapper">
 	<div class="fixed-header-content">
 		<div id="topPanel" class="panel panel-padding-sm top-panel">
-			<img id="authorImage" src="" alt="Author" class="author-image">
+			<!-- Left side: Stats and Author Info -->
+			<div class="top-panel-left">
+				<img id="authorImage" src="" alt="Author" class="author-image">
+				
+				<div class="header-stats-container">
+					<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span></div>
+					<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
+					<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
+					<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
+					
+					<!-- Slider for Work/Writing balance -->
+					<div id="workWritingSliderContainer" class="hidden slider-container">
+						<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
+						<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
+						<span class="writing-percentage-label">Writing: <span id="writingPercentage">0</span>%</span>
+					</div>
+					
+					<div class="header-actions">
+						<!-- Added Settings Button -->
+						<button class="btn btn-small-inline" onClick="showSettingsModal()">Settings</button>
+					</div>
+				</div>
+			</div>
 			
-			<div class="header-stats-container">
-				<!-- Modified: Removed the deathText span -->
-				<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span></div>
-				<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement Age <span id="lifespanDisplay">70</span> years</div>
-				<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
-				<div>Words Written: <span id="wordsWrittenDisplay">0</span> / <span id="bookLengthDisplay">12500</span></div>
-				<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
-				
-				<!-- Slider for Work/Writing balance -->
-				<div id="workWritingSliderContainer" class="hidden slider-container">
-					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
-					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
-					<span class="writing-percentage-label">Writing: <span id="writingPercentage">0</span>%</span>
-				</div>
-				
-				<div class="header-actions">
+			<!-- Right side: Logs -->
+			<div class="top-panel-right">
+				<div id="logContainer" class="scroll top-log-container">
+					<!-- Logs dynamically prepended here -->
 				</div>
 			</div>
 		</div>
-		
-		<!-- TABS -->
-		<div class="panel tabs-container">
-			<div class="tabButton" id="jobTabButton" onClick="setTab(this, 'jobs')">
-				<img id="jobTabImg" src="" class="tab-icon" style="display:none;" alt="">
-				Work <span id="jobTabText" class="tab-text-job"></span>
-			</div>
-			<!-- Removed 'hidden' class so tabs are always clickable -->
-			<div class="tabButton" id="skillTabButton" onClick="setTab(this, 'skills')">
-				<img id="skillTabImg" src="" class="tab-icon" style="display:none;" alt="">
-				Skills <span id="skillTabText" class="tab-text-skill"></span>
-			</div>
-			<div class="tabButton" id="shopTabButton" onClick="setTab(this, 'shop')">
-				<img id="shopTabImg" src="" class="tab-icon" style="display:none;" alt="">
-				Shop <span id="shopTabText" class="tab-text-shop"></span>
-			</div>
-			<div class="tabButton" id="writingTabButton" onClick="setTab(this, 'writing')">
-				<img id="writingTabImg" src="" class="tab-icon-square" style="display:none;" alt="">
-				Writing
-			</div>
-			<!-- Modified: Removed the Golden Pen tab -->
-			<div class="tabButton" id="logTabButton" onClick="setTab(this, 'log')">Log</div>
-			<div class="tabButton tab-button-right" id="settingsTabButton" onClick="setTab(this, 'settings')">Settings</div>
-		</div>
+		<!-- Removed tabs-container -->
 	</div>
 </div>
 
 <!-- Main Layout Wrapper for Scrollable Content -->
 <div class="main-layout-wrapper">
 	<div class="scroll-container">
-		<!-- CONTENT AREA -->
-		<div class="panel panel-padding main-content-panel">
+		<!-- CONTENT AREA: 4 Column Layout -->
+		<div class="panel panel-padding main-content-panel four-column-layout">
 			
 			<!-- Templates -->
 			<template id="categoryHeaderTemplate">
@@ -121,45 +108,42 @@
 				</div>
 			</template>
 			
-			<!-- Tab Contents -->
-			<div class="tab" id="jobs">
+			<!-- Column 1: Work -->
+			<div class="panel-column" id="jobs">
 				<div class="tab-description">Select a job to earn money. You can switch at any time.</div>
 				<div id="jobTable"></div>
 			</div>
 			
-			<div class="tab" id="skills" style="display: none;">
-				<!-- New Locked Overlay -->
+			<!-- Column 2: Skills -->
+			<div class="panel-column" id="skills">
 				<div id="skillsLockedOverlay" class="locked-tab-overlay">
 					<div class="locked-tab-icon">🔒</div>
 					<div class="locked-tab-title">Skills Locked</div>
 					<div class="locked-tab-reqs">Move into a Rented Room and reach level 5 in Gig Worker to unlock.</div>
 				</div>
-				<div class="tab-description">Select a skill to progress. All earned bonuses apply, even if not selected.</div>
+				<div class="tab-description" title="Select a skill to progress. All earned bonuses apply, even if not selected.">Select a skill to progress.</div>
 				<div id="skillTable"></div>
 			</div>
 			
-			<div class="tab" id="shop" style="display: none;">
-				<!-- New Locked Overlay -->
+			<!-- Column 3: Shop -->
+			<div class="panel-column" id="shop">
 				<div id="shopLockedOverlay" class="locked-tab-overlay">
 					<div class="locked-tab-icon">🔒</div>
 					<div class="locked-tab-title">Shop Locked</div>
 					<div class="locked-tab-reqs">Reach level 3 in Gig Worker to unlock.</div>
 				</div>
-				<!-- Added help text for Properties/Shop at the top -->
-				<div class="tab-description">Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.</div>
+				<div class="tab-description" title="Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.">Properties.</div>
 				<div id="itemTable"></div>
 			</div>
 			
-			<div class="tab" id="writing" style="display: none;">
-				<!-- New Locked Overlay -->
+			<!-- Column 4: Writing -->
+			<div class="panel-column" id="writing">
 				<div id="writingLockedOverlay" class="locked-tab-overlay">
 					<div class="locked-tab-icon">🔒</div>
 					<div class="locked-tab-title">Writing Locked</div>
-					<!-- Modified: Updated locked requirements text to match new logic -->
 					<div class="locked-tab-reqs">Move into a home (Rented Room or better) and acquire a Used Laptop to unlock.</div>
 				</div>
 				
-				<!-- Added: New Locked Overlay for 0 Writing Speed -->
 				<div id="writingSpeedOverlay" class="locked-tab-overlay" style="display: none;">
 					<div class="locked-tab-icon">⏳</div>
 					<div class="locked-tab-title">No Time Assigned</div>
@@ -168,9 +152,6 @@
 				
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
-				<!-- Removed: Inline Writing Speed Warning -->
-				
-				<!-- New Genre Selection UI -->
 				<div id="bookSelectionContainer" class="ui-row" style="padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
 					<h3 style="margin-top: 0;">Start a New Book</h3>
 					<div style="margin-bottom: 15px; text-align: center;">
@@ -185,41 +166,34 @@
 					<button class="btn btn-active" onclick="startWritingBook()">Start Writing</button>
 				</div>
 				
-				<!-- Manual Writing Interface -->
 				<div id="manualWritingContainer" class="ui-row" style="display: none; flex-direction: column; padding: 15px; margin-bottom: 20px; cursor: default;">
 					<div class="category-header" style="margin-top: 0; width: 100%;">Write Scene</div>
-					<div class="tab-description" style="font-size: 0.9em; margin-bottom: 10px; width: 100%;">Click to write 1 second worth of words, or hold to write continuously. Match the ideal composition for your genre to maximize quality!</div>
+					<div class="tab-description" style="font-size: 0.9em; margin-bottom: 10px; width: 100%;" title="Click to write 1 second worth of words, or hold to write continuously. Match the ideal composition for your genre to maximize quality!">Match the ideal composition for your genre to maximize quality!</div>
 					<div id="sceneButtonsContainer" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; width: 100%;">
 						<!-- Buttons injected here -->
 					</div>
 					
-					<!-- Single line live draft container -->
 					<div class="word-app-container" style="margin-bottom: 15px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden; padding: 10px;" id="liveWritingText">
 						<span class="blinking-cursor">|</span>
 					</div>
-					
-					<!-- Removed: compositionStats div -->
 				</div>
 				
-				<!-- Active Book Status Row -->
 				<div class="ui-row book-status-row" id="bookStatusRow" style="display: none;">
 					<img id="currentBookImage" src="" alt="Book Cover" class="row-image book-cover-image" onclick="showBookModal(gameData.currentBook)">
 					<div class="row-info">
 						<div class="row-title book-title-large" id="currentBookTitle">Book Title</div>
-						<!-- Added Book Genre Display -->
 						<div id="currentBookGenre" style="font-size: 0.9em; color: #888; margin-bottom: 5px; font-weight: bold;">Genre</div>
 						<div class="book-stats-container">
 							<div><b>Progress:</b> <span id="writingProgressDisplay">0.0%</span></div>
 							<div class="progress-bar writing-progress-bar-container">
 								<div id="writingProgressBar" class="writing-progress-bar-fill" style="width: 0%;"></div>
 							</div>
-							<div class="writing-stat-text"><b>Writing Speed:</b> <span id="writingSpeedDisplayTab">0</span> words/day</div>
-							<div class="writing-stat-text-sm"><b>Current Quality:</b> <span id="bookQualityDisplayTab">0</span>%<span id="bookQualityMultiplierDisplay"></span><span id="compMultiplierDisplay"></span></div>
+							<div class="writing-stat-text"><b>Speed:</b> <span id="writingSpeedDisplayTab">0</span> words/day</div>
+							<div class="writing-stat-text-sm"><b>Quality:</b> <span id="bookQualityDisplayTab">0</span>%<span id="bookQualityMultiplierDisplay"></span><span id="compMultiplierDisplay"></span></div>
 						</div>
 					</div>
 				</div>
 				
-				<!-- Wrapped Life Experiences Section so it can be toggled -->
 				<div id="lifeExperiencesSection">
 					<div class="category-header">Life Experiences (Quality Multipliers)</div>
 					<div id="lifeExperiencesContainer" class="ui-row life-experiences-container">
@@ -232,41 +206,38 @@
 					<!-- Books dynamically added here -->
 				</div>
 			</div>
-			
-			<div class="tab" id="log" style="display: none;">
-				<div id="logContainer" class="scroll">
-					<!-- Logs dynamically prepended here -->
-				</div>
-			</div>
-			
-			<!-- Modified: Removed the entire rebirth tab content -->
-			
-			<div class="tab" id="settings" style="display: none;">
-				<ul>
-					<!-- Display Game Version -->
-					<li>
-						<h2>Game Version</h2>
-						<p id="gameVersionDisplay" class="version-display"></p>
-					</li>
-					<li>
-						<h2>Import/export save</h2>
-						<button class="btn" onClick="importGameData()">Import</button>
-						<button class="btn" onClick="exportGameData()">Export</button>
-						<form class="settings-form">
-							<input id="importExportBox" type="text" class="import-export-box" />
-						</form>
-					</li>
-					<li>
-						<h2>Toggle light/dark mode</h2>
-						<button class="btn" onClick="setLightDarkMode()">Toggle</button>
-					</li>
-					<li>
-						<h2>Hard reset game</h2>
-						<button class="btn btn-danger" onClick="resetGameData()">Reset</button>
-					</li>
-				</ul>
-			</div>
+		
 		</div>
+	</div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal modal-overlay-info" style="display: none;">
+	<div class="modal-content modal-content-small">
+		<h2 class="modal-header-center">Settings</h2>
+		<ul style="list-style: none; padding: 0;">
+			<li>
+				<h3>Game Version</h3>
+				<p id="gameVersionDisplay" class="version-display"></p>
+			</li>
+			<li>
+				<h3>Import/export save</h3>
+				<button class="btn" onClick="importGameData()">Import</button>
+				<button class="btn" onClick="exportGameData()">Export</button>
+				<form class="settings-form">
+					<input id="importExportBox" type="text" class="import-export-box" />
+				</form>
+			</li>
+			<li>
+				<h3>Toggle light/dark mode</h3>
+				<button class="btn" onClick="setLightDarkMode()">Toggle</button>
+			</li>
+			<li>
+				<h3>Hard reset game</h3>
+				<button class="btn btn-danger" onClick="resetGameData()">Reset</button>
+			</li>
+		</ul>
+		<button class="btn btn-full-width-mt15" onclick="closeSettingsModal()">Close</button>
 	</div>
 </div>
 
@@ -291,7 +262,6 @@
 </div>
 
 <!-- Intro Modal -->
-<!-- Modified: Updated to use a split layout for the slideshow -->
 <div id="introModal" class="modal modal-overlay-intro" style="display: none;">
 	<div class="modal-content book-modal-content">
 		<div class="book-modal-left">
@@ -314,7 +284,6 @@
 <div id="infoModal" class="modal modal-overlay-info" style="display: none;">
 	<div class="modal-content">
 		<div id="modalCategory" class="modal-category-text"></div>
-		<!-- Added unlock message container -->
 		<div id="modalUnlockMessage" class="unlock-message" style="display: none;"></div>
 		<div class="modal-image-container">
 			<img id="modalImage" src="" alt="" class="modal-main-image">
@@ -355,7 +324,7 @@
 	</div>
 </div>
 
-<!-- Added: Book Finished Modal Container -->
+<!-- Book Finished Modal Container -->
 <div id="bookFinishedModal" class="modal modal-overlay-book" style="display: none;">
 	<div class="modal-content book-modal-content">
 		<div class="book-modal-left">
@@ -367,7 +336,6 @@
 			<h4 id="bookFinishedModalSubtitle" class="book-modal-subtitle">Subtitle</h4>
 			<p id="bookFinishedModalInfo" class="book-modal-info"></p>
 			
-			<!-- Stats Box with universal light/dark mode transparency -->
 			<div id="bookFinishedStatsBox" style="margin-top: 15px; padding: 15px; background-color: rgba(128, 128, 128, 0.1); border-radius: 8px;">
 				<!-- Stats dynamically injected here -->
 			</div>
@@ -386,7 +354,7 @@
 	</div>
 </div>
 
-<!-- Added: Rebirth and Retirement Modals -->
+<!-- Rebirth and Retirement Modals -->
 <div id="rebirthOneModal" class="modal modal-overlay-tutorial" style="display: none;">
 	<div class="modal-content modal-content-standard">
 		<h2 class="modal-header-center">The Golden Pen Awakens</h2>
@@ -442,10 +410,7 @@
 
 <script type="text/javascript">
 	(function() {
-		// 1. Generate a unique version based on current time (better than random)
 		const v = Date.now();
-		
-		// 2. Define scripts in the EXACT order they must load
 		const scripts = [
 			"js/classes.js",
 			"js/state.js",
@@ -460,12 +425,11 @@
 			"js/main.js"
 		];
 		
-		// 3. Loop and inject
 		scripts.forEach(src => {
 			const s = document.createElement('script');
 			s.type = 'text/javascript';
 			s.src = `${src}?v=${v}`;
-			s.async = false; // CRITICAL: Ensures scripts execute in the order they are added
+			s.async = false;
 			document.head.appendChild(s);
 		});
 	})();

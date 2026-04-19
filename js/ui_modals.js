@@ -4,8 +4,8 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	// Modified: Added 'bookFinishedModal' to the list of modals that pause the game
-	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal'];
+	// Modified: Added 'settingsModal' to the list of modals that pause the game
+	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'settingsModal'];
 	let anyOpen = false;
 	for (const id of modals) {
 		const m = document.getElementById(id);
@@ -335,7 +335,7 @@ function closeBookModal () {
 	updatePauseState(); // Unpause game
 }
 
-function showBookFinishedModal(bookId, quality, royalty) {
+function showBookFinishedModal (bookId, quality, royalty) {
 	const book = booksBaseData[bookId];
 	if (!book) return;
 	
@@ -364,7 +364,7 @@ function showBookFinishedModal(bookId, quality, royalty) {
 	updatePauseState(); // Pause game
 }
 
-function closeBookFinishedModal() {
+function closeBookFinishedModal () {
 	const modal = document.getElementById('bookFinishedModal');
 	if (modal) modal.style.display = 'none';
 	updatePauseState(); // Unpause game
@@ -372,19 +372,19 @@ function closeBookFinishedModal() {
 
 // --- Added: New Modal Functions for Rebirth ---
 
-function showRebirthOneModal() {
+function showRebirthOneModal () {
 	const modal = document.getElementById('rebirthOneModal');
 	if (modal) modal.style.display = 'flex';
 	updatePauseState();
 }
 
-function closeRebirthOneModal() {
+function closeRebirthOneModal () {
 	const modal = document.getElementById('rebirthOneModal');
 	if (modal) modal.style.display = 'none';
 	updatePauseState();
 }
 
-function showRebirthTwoModal() {
+function showRebirthTwoModal () {
 	const modal = document.getElementById('rebirthTwoModal');
 	if (modal) {
 		document.getElementById('fameGainDisplayModal').textContent = getFameGain().toFixed(1);
@@ -393,13 +393,13 @@ function showRebirthTwoModal() {
 	updatePauseState();
 }
 
-function closeRebirthTwoModal() {
+function closeRebirthTwoModal () {
 	const modal = document.getElementById('rebirthTwoModal');
 	if (modal) modal.style.display = 'none';
 	updatePauseState();
 }
 
-function showRetirementModal() {
+function showRetirementModal () {
 	const modal = document.getElementById('retirementModal');
 	const age = daysToYears(gameData.days);
 	
@@ -423,12 +423,24 @@ function showRetirementModal() {
 	updatePauseState();
 }
 
-function closeRetirementModal() {
+function closeRetirementModal () {
 	const modal = document.getElementById('retirementModal');
 	if (modal) modal.style.display = 'none';
 	updatePauseState();
 }
 
+// Added: Settings Modal Logic
+function showSettingsModal () {
+	const modal = document.getElementById('settingsModal');
+	if (modal) modal.style.display = 'flex';
+	updatePauseState();
+}
+
+function closeSettingsModal () {
+	const modal = document.getElementById('settingsModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
 
 function startTypingEffect (fullText, elementId) {
 	if (typingTimeout) clearTimeout(typingTimeout);
@@ -523,5 +535,10 @@ window.addEventListener('click', function (event) {
 	const rebirthTwoModal = document.getElementById('rebirthTwoModal');
 	if (rebirthTwoModal && rebirthTwoModal.style.display === 'flex' && event.target === rebirthTwoModal) {
 		closeRebirthTwoModal();
+	}
+	
+	const settingsModal = document.getElementById('settingsModal');
+	if (settingsModal && settingsModal.style.display === 'flex' && event.target === settingsModal) {
+		closeSettingsModal();
 	}
 });
