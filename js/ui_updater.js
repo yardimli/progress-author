@@ -429,21 +429,19 @@ function updateCompositionUI () {
 		totalWords += gameData.currentBookComposition[key];
 	}
 	
-	// Modified: Target the spans inside the buttons instead of a separate container
-	const pctSpans = document.querySelectorAll('.scene-pct');
-	pctSpans.forEach(span => {
-		const sceneType = span.dataset.scene;
-		let pctText = '(0.0%)';
+	// Modified: Target the buttons directly to update their background strength via CSS variables
+	const sceneBtns = document.querySelectorAll('.scene-btn');
+	sceneBtns.forEach(btn => {
+		const sceneType = btn.dataset.scene;
+		let pct = 0;
 		
 		if (totalWords > 0) {
 			const words = gameData.currentBookComposition[sceneType] || 0;
-			pctText = `(${(words / totalWords * 100).toFixed(1)}%)`;
+			pct = words / totalWords;
 		}
 		
-		// Only update the DOM if the text has actually changed
-		if (span.textContent !== pctText) {
-			span.textContent = pctText;
-		}
+		// Added: Set CSS variable for background opacity to indicate percentage
+		btn.style.setProperty('--pct', pct);
 	});
 }
 

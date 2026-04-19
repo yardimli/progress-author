@@ -1132,6 +1132,25 @@ button:focus {
     }
 }
 
+/* Added: Scene button styles for dynamic background strength */
+.scene-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.scene-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.35); /* Darkens the button in light mode */
+    opacity: var(--pct, 0);
+    z-index: 0;
+    transition: opacity 0.2s ease;
+}
+
 /* --- New Unlock Modal Styles --- */
 .modal-new-unlock {
     background-color: #f0f8ff;

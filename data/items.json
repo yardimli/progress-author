@@ -19,8 +19,8 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small rented room rendered with simplified shapes. A basic desk holds a stack of papers and a small lamp, a single window shows a soft blue night sky, and a narrow bed sits against the wall. Clean lines, cozy aesthetic, muted palette of warm beiges and soft blues, no realism, just simple geometric forms creating a humble writer's space."
   },
-  "Studio Apartment": {
-    "name": "Studio Apartment",
+  "Studio": {
+    "name": "Studio",
     "expense": 75,
     "effect": 1.6,
     "writingMultiplier": 1.4,
@@ -29,15 +29,15 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a tidy studio apartment using simple geometric shapes. A laptop sits open on a clean white desk by a large window showing a simplified city skyline. A small bookshelf, a potted plant, and a coffee mug complete the scene. Cozy aesthetic with warm amber and soft grey tones, clean lines, no realistic detail, conveying a hopeful emerging writer's home."
   },
-  "Suburban House": {
-    "name": "Suburban House",
+  "Suburban": {
+    "name": "Suburban",
     "expense": 120,
     "effect": 2.0,
     "writingMultiplier": 1.7,
     "writingQuality": 1.15,
     "filename": "suburban_house.png",
     "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house with simplified shapes. A small two-story home with a triangle roof, a single tree, a neat green lawn, and a paved path to the front door. Soft rounded clouds float above. Clean lines, cozy color palette of warm greens, beiges, and soft blues, no realism, just friendly geometric forms representing a writer's stable new home."
+    "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house using simple geometric shapes. Small rectangular windows glow with warm yellow light, a single tree, a neat green lawn, and a paved path to the front door. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence."
   },
   "Large House": {
     "name": "Large House",

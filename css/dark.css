@@ -162,6 +162,11 @@
     background-color: #2e2e2e !important;
 }
 
+/* Added: Scene button background strength for dark mode */
+.dark .scene-btn::before {
+    background-color: rgba(255, 255, 255, 0.35); /* Lightens the button in dark mode */
+}
+
 /* --- Dark Mode Extracted Styles --- */
 .dark .life-experiences-container {
     background-color: rgba(255, 255, 255, 0.05);

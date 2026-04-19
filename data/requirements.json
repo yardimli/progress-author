@@ -684,12 +684,12 @@
       }
     ]
   },
-  "Studio Apartment": {
+  "Studio": {
     "type": "coins",
     "elements": [
       {
         "type": "id",
-        "value": "row Studio Apartment"
+        "value": "row Studio"
       }
     ],
     "requirements": [
@@ -698,12 +698,12 @@
       }
     ]
   },
-  "Suburban House": {
+  "Suburban": {
     "type": "coins",
     "elements": [
       {
         "type": "id",
-        "value": "row Suburban House"
+        "value": "row Suburban"
       }
     ],
     "requirements": [

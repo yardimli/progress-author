@@ -237,19 +237,14 @@ function buildSceneButtons() {
 	for (let sceneType in availableScenes) {
 		let btn = document.createElement('button');
 		btn.className = 'btn scene-btn';
+		btn.dataset.scene = sceneType; // Added: Store scene type on button for CSS variable targeting
 		
-		// Modified: Create text node for the scene name
-		btn.appendChild(document.createTextNode(sceneType + " "));
-		
-		// Added: Create a dedicated span for the percentage so it can be updated independently
-		let pctSpan = document.createElement('span');
-		pctSpan.className = 'scene-pct';
-		pctSpan.dataset.scene = sceneType;
-		pctSpan.textContent = '(0.0%)';
-		pctSpan.style.fontSize = '0.85em';
-		pctSpan.style.opacity = '0.7'; // Subdue the text slightly so it blends well in light/dark mode
-		
-		btn.appendChild(pctSpan);
+		// Modified: Wrap text in a span to keep it above the background fill (z-index)
+		let textSpan = document.createElement('span');
+		textSpan.style.position = 'relative';
+		textSpan.style.zIndex = '1';
+		textSpan.textContent = sceneType;
+		btn.appendChild(textSpan);
 		
 		// Mouse events
 		btn.addEventListener('mousedown', () => handleSceneHoldStart(sceneType));
