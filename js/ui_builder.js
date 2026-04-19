@@ -106,7 +106,6 @@ function createAllRows (categoryType, containerId) {
 			lockedPlaceholder.className = 'ui-card locked-card hiddenTask';
 			lockedPlaceholder.innerHTML = `
         <div class="locked-icon">🔒</div>
-        <div class="locked-title">Required</div>
         <div class="locked-text"></div>
       `;
 		} else {
@@ -114,7 +113,6 @@ function createAllRows (categoryType, containerId) {
 			lockedPlaceholder.innerHTML = `
         <div class="locked-icon">🔒</div>
         <div class="row-info">
-          <div class="locked-title">Required</div>
           <div class="locked-text"></div>
         </div>
       `;

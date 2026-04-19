@@ -295,7 +295,7 @@ button:focus {
 .category-content.grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 6px;
 }
 
 .category-content.list {
@@ -310,7 +310,10 @@ button:focus {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     padding: 0px;
-    width: 30%;
+    /* Modified: Set width to exactly fit 3 cards per row accounting for the 12px gap */
+    width: calc((100% - 24px) / 3);
+    /* Modified: Force the card to be a perfect square */
+    aspect-ratio: 1 / 1;
     text-align: center;
     cursor: pointer;
     position: relative;
@@ -322,7 +325,7 @@ button:focus {
 
 /* Added: Scoped styles for Work and Property cards to support hover overlays */
 #jobs .ui-card, #shop .ui-card {
-    height: 160px;
+    /* Modified: Removed fixed height so aspect-ratio dictates height */
     overflow: hidden;
     justify-content: center;
 }
@@ -409,21 +412,21 @@ button:focus {
 
 .card-title {
     font-weight: bold;
-    font-size: 0.95em;
+    font-size: 0.8em;
     margin-bottom: 3px;
     color: #333;
     text-transform: uppercase;
 }
 
 .card-value {
-    font-size: 0.9em;
+    font-size: 0.7em;
     color: #b8860b;
     margin-bottom: 3px;
     font-weight: bold;
 }
 
 .card-expense {
-    font-size: 0.9em;
+    font-size: 0.7em;
     color: #d32f2f;
     margin-bottom: 6px;
 }
@@ -479,6 +482,7 @@ button:focus {
 }
 
 .row-expense {
+    min-width: 110px;
     font-size: 0.95em;
     color: #b8860b;
     margin-right: 15px;
@@ -523,7 +527,7 @@ button:focus {
 }
 
 .ui-row .level-badge {
-    width: 80px;
+    width: 100px;
     margin: 20px;
     text-align: center;
 }
@@ -574,14 +578,6 @@ button:focus {
     margin-top: 0;
 }
 
-.locked-title {
-    font-size: 0.85em;
-    color: #999;
-    margin-top: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
 .locked-text {
     font-size: 0.8em;
     color: #aaa;
@@ -602,14 +598,6 @@ button:focus {
     margin-right: 15px;
     flex-shrink: 0;
     margin-top: 0;
-}
-
-.locked-row .locked-title {
-    color: #999;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    margin-top: 0;
-    margin-bottom: 4px;
 }
 
 .locked-row .locked-text {
@@ -1163,8 +1151,3 @@ button:focus {
     border-radius: 4px;
     border: 1px solid #c8e6c9;
 }
-
---- END OF FILE css
-
-/
-styles.css ---

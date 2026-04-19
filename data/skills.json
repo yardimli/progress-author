@@ -4,7 +4,7 @@
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
-    "description": "Skill experience",
+    "description": "Skill ex.",
     "filename": "focus.png",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simple laptop on a desk with a soft glow emanating from its screen, depicted as concentric rounded shapes. A tiny coffee cup and a single sticky note sit beside it. Cozy muted blues and warm off-white tones with simplified geometric shapes, clean outlines, and no realistic detail."
@@ -14,7 +14,7 @@
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
-    "description": "Job experience",
+    "description": "Job ex.",
     "filename": "time_management.png",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a smartphone displaying a simple grid calendar with rounded colored blocks, resting beside a tiny stack of papers on a clean desk. Soft teal and charcoal tones, simplified geometric shapes, clean linework, and a cozy aesthetic with no realistic detail."
@@ -74,7 +74,7 @@
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.02,
-    "description": "Typing Speed experience",
+    "description": "Typing Speed",
     "filename": "character_dev.png",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a monitor displaying a simple character silhouette next to a small chart, with tiny portrait cards pinned to a wall nearby. Soft amber and steel blue tones, simplified geometric shapes, clean linework, and a cozy minimalist aesthetic."
