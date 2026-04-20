@@ -11,6 +11,12 @@ import mimetypes
 # Updated tasks to point to the 5 game JSON files and include aspect ratios.
 TASKS = [
     {
+        "json_filename": "data/authors.json",
+        "start_prompt": "An image of a modern day author. Don't include any name.",
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-faces.jpg"
+    },
+    {
         "json_filename": "data/authorAged.json",
         "start_prompt": "An image of a modern day author. Don't include any name.",
         "aspect_ratio": "1:1",
@@ -51,12 +57,6 @@ TASKS = [
         "start_prompt": "An image for a game skill.",
         "aspect_ratio": "1:1",
         "reference_image": "images/game-items-5.jpg"
-    },
-    {
-        "json_filename": "data/authors.json",
-        "start_prompt": "An image of a modern day author. Don't include any name.",
-        "aspect_ratio": "1:1",
-        "reference_image": "images/game-faces.jpg"
     },
     {
         "json_filename": "data/books.json",

@@ -1,10 +1,10 @@
 {
   "author1": {
-    "name": "Beatrice Blackwood",
+    "name": "Beatrice Hansen",
     "gender": "female",
-    "filename": "beatrice_blackwood.png",
+    "filename": "beatrice_hansen.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a glamorous young woman in her early 20s wearing a stylish dress and bold statement earrings, smiling mid-conversation at a cozy arts event, holding a simple glass. Behind her, simplified shapes of abstract canvases on the wall and soft warm gallery lighting. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a glamorous young woman in her early 20s standing up straight and facing forward, arms crossed confidently over her chest. She has a heart-shaped face with high cheekbones, warm olive skin, bright hazel eyes with a subtle smirk, and glossy auburn hair styled in loose waves that fall past her shoulders. She wears a fitted plum cocktail dress with a sweetheart neckline and bold gold geometric statement earrings. Slim, poised build. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 0.8,
       "observation": 1.2,
@@ -19,7 +19,7 @@
     "gender": "male",
     "filename": "arthur_pendelton.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a weary young man in his early 20s wearing a simple high-visibility work vest over a hoodie, standing outside a stylized warehouse with simplified delivery truck shapes in the background. A small notebook peeks from his pocket. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, no realism, simple facial features, gentle flat shading.",
+    "imageprompt": "A flat, minimalist vector illustration of a weary young man in his early 20s standing up straight and facing forward, arms crossed over his chest. He has a long, angular face with a strong jaw, tired blue eyes with faint shadows beneath, fair skin with a hint of stubble, and short sandy-brown hair that looks slightly unkempt. Tall, lean, broad-shouldered build. He wears a high-visibility yellow work vest over a faded grey hoodie and dark work trousers. A small notebook peeks from the vest pocket. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 1.5,
       "observation": 1.2,
@@ -30,11 +30,11 @@
     "biography": "Arthur is 20 years old and has spent most of his life working grueling shifts in the city's industrial district just to keep his younger siblings fed.<br><br>His hands are calloused, and his worldview is shaped entirely by the harsh, unspoken realities of poverty and working-class survival. He fills cheap notebooks with raw observations of the people around him ... the foremen, the overnight shift workers, the quietly desperate.<br><br>He has never set foot in a literary salon or finished anything longer than a short story, but the material he carries inside him is immense. What he lacks in polish and exposure, he more than makes up for in grit and authenticity."
   },
   "author3": {
-    "name": "Rosemary Thorne",
+    "name": "Rosemary Lis",
     "gender": "female",
-    "filename": "rosemary_thorne.png",
+    "filename": "rosemary_lis.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a quiet young woman in her early 20s with oversized tortoiseshell glasses, curled up in a cozy armchair in a simplified library corner. She reads from a small e-reader with a notebook on her knee and a pencil tucked behind her ear. Simplified bookshelves in the background. She wears a loose linen shirt. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a quiet young woman in her early 20s standing up straight and facing forward, arms crossed gently over her chest. She has a soft round face with pale skin, thoughtful green eyes behind oversized tortoiseshell glasses, light freckles across her nose, and dark chestnut hair pulled back into a low loose ponytail. Petite, slender build. She wears a fit cream linen button-up shirt and muted olive high-waisted trousers. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 1.0,
       "observation": 1.5,
@@ -45,11 +45,11 @@
     "biography": "Rosemary has always preferred observation to participation. At 20, she can reconstruct an entire stranger's life from the way they carry a bag or pause before answering a question ... and she fills notebook after notebook with these quiet, meticulous studies.<br><br>In her writing, she builds elaborate fictional worlds assembled from these fragments: intricate, sprawling, and full of the kind of detail that makes readers feel they have stepped somewhere entirely real. Her short stories are understated gems that reward close attention.<br><br>Her difficulty is in reaching outward ... toward readers, toward collaborators, toward the industry that might actually publish her work. The world of professional authorship will require her to step out of her corner and be seen."
   },
   "author4": {
-    "name": "James Sterling",
+    "name": "James Markman",
     "gender": "male",
-    "filename": "james_sterling.png",
+    "filename": "james_markman.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a composed young man in his early 20s wearing a simple Oxford shirt and round wire-framed glasses, standing by a large window with a simplified city skyline at dusk. Behind him, stylized bookshelves filled with neatly stacked book shapes and a small laptop on a desk. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a composed young man in his early 20s standing up straight and facing forward, arms crossed neatly over his chest. He has a clean-shaven oval face with fair skin, calm grey-blue eyes behind round wire-framed glasses, and neatly combed dark brown hair with a side part. Slim, tall, refined build with good posture. He wears a crisp dusty-blue Oxford shirt tucked into tailored charcoal trousers with a thin brown belt. Plain cream background, no scenery. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 0.5,
       "observation": 1.5,
@@ -64,7 +64,7 @@
     "gender": "female",
     "filename": "margaret_sterling.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a warm young woman in her early 20s with her dark hair in a messy bun, leaning over a cozy kitchen table with a simplified laptop, a mug of tea, and a small stack of flyers. A simple corkboard on the wall behind her with a few pinned notes and a stylized neighborhood map. She wears a soft hoodie. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a warm young woman in her early 20s standing up straight and facing forward, arms crossed loosely over her chest. She has a round, friendly face with warm brown skin, kind dark brown eyes, full cheeks, and thick dark curly hair gathered into a messy bun on top of her head with a few loose strands framing her face. Soft, approachable build. She wears an oversized soft ochre hoodie over dark jeans. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 1.2,
       "observation": 1.2,
@@ -79,7 +79,7 @@
     "gender": "male",
     "filename": "elias_thorne.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a disheveled young man in his early 20s with messy dark hair, sitting hunched at a small cluttered desk in a cozy dim bedroom. Simple shapes of scattered papers and pinned notes on the wall behind him, a small desk lamp glowing softly, a simplified monitor. He wears a plain tee and joggers. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a disheveled young man in his early 20s standing up straight and facing forward, arms crossed over his chest. He has a thin, pale face with sharp cheekbones, wary deep-set dark brown eyes with faint shadows beneath, and messy shoulder-length dark hair that falls into his eyes. Lanky, slight build with a slightly slouched posture made straight. He wears a plain worn navy t-shirt and loose grey joggers. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 1.2,
       "observation": 1.0,
@@ -90,11 +90,11 @@
     "biography": "Elias has been retreating into imaginary worlds since he was old enough to hold a pencil. A turbulent and fractured childhood gave him little reason to engage with the real world, and by 20, he has fully committed to living inside his own head.<br><br>He writes compulsively ... strange, vivid short stories full of invented mythology and labyrinthine internal logic that bear little resemblance to anything else out there. The problem is, almost no one has ever read them.<br><br>Elias struggles deeply with people, deadlines, and anything that pulls him out of his creative isolation. Turning his raw imaginative power into something publishable will require him to learn how to let the outside world back in."
   },
   "author7": {
-    "name": "Evelyn Vance",
+    "name": "Evelyn Tower",
     "gender": "female",
-    "filename": "evelyn_vance.png",
+    "filename": "evelyn_tower.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of an elegant young woman in her early 20s with simple gold earrings and a soft cashmere top, sitting in a cozy home study with simplified built-in bookshelves and a small reading lamp. She holds a slim book with a calm expression. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of an elegant young woman in her early 20s standing up straight and facing forward, arms crossed gracefully over her chest. She has a long oval face with porcelain-fair skin, cool blue eyes with a reserved calm expression, subtle pink lips, and sleek honey-blonde hair pulled back into a low chignon. Small gold stud earrings. Tall, slender, poised build. She wears a soft ivory cashmere turtleneck tucked into a high-waisted navy pleated skirt. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 0.5,
       "observation": 1.5,
@@ -109,7 +109,7 @@
     "gender": "male",
     "filename": "william_vance.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a friendly young man in his early 20s with a short fade haircut and a neatly trimmed beard, smiling easily while sitting at a small table in a cozy coffee shop. Simplified coffee cup, phone, and open notebook on the table, soft shapes of café patrons in the background. He wears a simple crewneck sweatshirt. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a friendly young man in his early 20s standing up straight and facing forward, arms crossed casually over his chest with an easy smile. He has a warm square face with medium-brown skin, bright dark brown eyes with smile lines, a neatly trimmed short beard, and short black hair in a clean fade haircut. Medium, athletic build. He wears a simple cream crewneck sweatshirt over a collared shirt with the collar peeking out, paired with dark chinos. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 1.0,
       "observation": 1.2,
@@ -124,7 +124,7 @@
     "gender": "female",
     "filename": "clara_hughes.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a determined young woman in her early 20s wearing a simple ribbed beanie and a puffer jacket, sitting at a small folding desk in a sparse cozy flat. Simplified laptop, a handful of manuscript pages, and a small meal on the desk. A single window with soft light. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a determined young Black woman in her early 20s standing up straight and facing forward, arms crossed firmly over her chest. She has a heart-shaped face with deep brown skin, sharp dark eyes with a serious, steady gaze, full lips set in a resolute expression, and dark braided hair. Slim, wiry build with a stubborn posture. She wears a thin jacket in muted slate blue over a plain grey t-shirt with a V neckline and dark jeans. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 1.5,
       "observation": 1.0,
@@ -139,7 +139,7 @@
     "gender": "male",
     "filename": "thomas_blackwood.png",
     "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a focused young man in his early 20s with a slicked-back undercut, sitting alone at a corner café table wearing a plain black turtleneck. A simple notebook and small espresso cup in front of him, stylized rain droplets on a window beside him with soft shapes of a street outside. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a focused young man in his early 20s standing up straight and facing forward, arms crossed tightly over his chest. He has a long narrow face with pale skin, intense hooded dark grey eyes with a watchful expression, thin lips, and jet-black hair styled in a slicked-back undercut. Tall, lean, sharp build. He wears a plain black fitted turtleneck tucked into charcoal trousers. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism.",
     "multipliers": {
       "hardship": 0.8,
       "observation": 1.5,

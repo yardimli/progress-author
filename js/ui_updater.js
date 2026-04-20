@@ -1,3 +1,5 @@
+// js/ui_updater.js:
+
 // Dynamic UI updates for the game loop
 
 function updateRequiredRows (data, categoryType) {
@@ -144,6 +146,31 @@ function updateItemRows () {
 	}
 }
 
+// Added: New helper function to get the author's image based on their age.
+/**
+ * Gets the correct author image filename based on the author's current age.
+ * The image changes at the start of each decade (30, 40, 50, 60).
+ * @param {object} authorData - The base data for the current author.
+ * @returns {string} The filename for the aged portrait (e.g., 'arthur_pendelton_40.jpg').
+ */
+function getAuthorImageFilename (authorData) {
+	const age = daysToYears(gameData.days);
+	const baseFilename = authorData.filename.replace('.png', '');
+	
+	let ageSuffix = '';
+	if (age >= 60) {
+		ageSuffix = '_60';
+	} else if (age >= 50) {
+		ageSuffix = '_50';
+	} else if (age >= 40) {
+		ageSuffix = '_40';
+	} else if (age >= 30) {
+		ageSuffix = '_30';
+	}
+	
+	return `${baseFilename}${ageSuffix}.jpg`;
+}
+
 function updateAuthorAndBookUI () {
 	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
 		const author = authorsBaseData[gameData.currentAuthor];
@@ -151,10 +178,12 @@ function updateAuthorAndBookUI () {
 		const authorName = document.getElementById('authorNameDisplay');
 		
 		const filefolder = author.filefolder + '256';
-		const filename = author.filename.replace('.png', '.jpg');
+		// Modified: Use helper function to get age-appropriate filename
+		const filename = getAuthorImageFilename(author);
 		const imgSrc = `img/${filefolder}/${filename}`;
 		
-		if (authorImg && authorImg.src !== imgSrc && !authorImg.src.includes(imgSrc)) {
+		// Modified: Check if src needs updating to prevent unnecessary DOM changes
+		if (authorImg && !authorImg.src.includes(imgSrc)) {
 			authorImg.src = imgSrc;
 		}
 		if (authorName && authorName.textContent !== author.name) {

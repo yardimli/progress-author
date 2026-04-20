@@ -1,0 +1,772 @@
+{
+  "author1_20": {
+    "name": "Beatrice Hansen",
+    "gender": "female",
+    "original_filename": "game-faces.jpg",
+    "filename": "beatrice_hansen.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an ambitious young woman in her early 20s with fresh, flawless dewy skin, high cheekbones with a natural youthful flush, bright eager almond-shaped eyes sparkling with hopeful ambition, full lips tinted with a soft berry gloss, and glossy dark auburn hair styled in long, loose tumbling waves falling well past her shoulders. Her slender, willowy frame has the fresh lightness of youth, posture hopeful and slightly unsure. She wears a trendy sleeveless party dress revealing slim youthful arms, with simple delicate gold jewelry. Behind her, simplified shapes of student artwork on the wall and soft warm string lights. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism."
+  },
+  "author2_20": {
+    "name": "Arthur Pendelton",
+    "gender": "male",
+    "original_filename": "game-faces.jpg",
+    "filename": "arthur_pendelton.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a determined young man in his early 20s with a strong, angular jawline showing only the faintest hint of patchy stubble, earnest deep-set brown eyes full of youthful intensity, a straight nose, and thick dark brown hair cropped short and slightly tousled. His broad-shouldered, lean-muscled frame is youthful and wiry with the fresh energy of a young laborer, hands already showing the first calluses as he grips a small notebook. He wears a worn canvas work jacket over a simple grey t-shirt, standing outside a stylized warehouse during a break. Simplified delivery truck shapes in the background. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, no realism, simple facial features, gentle flat shading."
+  },
+  "author3_20": {
+    "name": "Rosemary Lis",
+    "gender": "female",
+    "original_filename": "game-faces.jpg",
+    "filename": "rosemary_lis.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a shy young woman in her early 20s with a soft heart-shaped face with youthful fullness in her cheeks, warm hazel eyes behind stylish tortoiseshell glasses, a small upturned nose, a gentle uncertain smile, and wavy chestnut hair worn long and loose with a few strands falling across her face. Her softly rounded youthful figure is curled up in a cozy armchair tucked in a quiet corner of a university library. She looks up. Simplified bookshelves in the background. She wears an oversized cream knit sweater. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism."
+  },
+  "author4_20": {
+    "name": "James Markman",
+    "gender": "male",
+    "original_filename": "game-faces.jpg",
+    "filename": "james_markman.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an earnest young man in his early 20s with a slender, refined boyish face, smooth fair unblemished skin, intelligent grey-blue eyes behind round wire-framed glasses, a narrow straight nose, thin lips curved in thoughtful contemplation, and neatly parted light brown hair worn slightly longer. His slim, slightly tall frame has the unfinished lankiness of youth, posture scholarly but a bit awkward. He wears a simple blue button-down shirt tucked into chinos, standing by a large window in a dormitory. Behind him, stylized bookshelves overflowing with books next to his laptop. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism."
+  },
+  "author5_20": {
+    "name": "Margaret Sterling",
+    "gender": "female",
+    "original_filename": "game-faces.jpg",
+    "filename": "margaret_sterling.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a passionate young woman in her early 20s with a warm olive complexion and smooth youthful skin, earnest dark brown eyes burning with idealism, full expressive eyebrows, a strong nose, and thick dark hair worn long, pulled into a messy ponytail with loose tendrils. Her sturdy, grounded frame has a youthful energy, leaning over a small cluttered kitchen table with the posture of someone who can't sit still. She wears a simple ochre sweater over a white t-shirt. Her notebook is open filled with scribbled story ideas, a chipped mug of tea beside it. A corkboard behind her is filled with community flyers and protest posters. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism."
+  },
+  "author6_20": {
+    "name": "Elias Thorne",
+    "gender": "male",
+    "original_filename": "game-faces.jpg",
+    "filename": "elias_thorne.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an intense young man in his early 20s with pale skin that hasn't seen much sunlight, sharp emerging cheekbones, a gaunt narrow youthful face, thin unsmiling lips, and longish dark black hair falling messily over his forehead and into his eyes. His thin, slightly hunched frame has an underfed youthful quality. He wears a worn black band t-shirt, sitting hunched at a cluttered desk in a cozy dim childhood bedroom. A small desk lamp illuminates scattered handwritten pages and a battered notebook. A simplified monitor glows with a wall of text. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism."
+  },
+  "author7_20": {
+    "name": "Evelyn Tower",
+    "gender": "female",
+    "original_filename": "game-faces.jpg",
+    "filename": "evelyn_tower.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a poised young woman in her early 20s with porcelain-smooth youthful skin, cool blue-grey eyes holding a guarded curiosity, delicate features including a small straight nose and softly defined lips, refined emerging cheekbones, and sleek ash-blonde hair worn long and straight past her shoulders with a simple center part. Her slim, graceful frame carries the careful poise of a finishing-school upbringing. She wears a cream linen blouse with a small pearl necklace, sitting in a cozy dorm study, holding an open literature textbook with a pen in her other hand. Simplified bookshelves and a small reading lamp are behind her. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism."
+  },
+  "author8_20": {
+    "name": "William Vance",
+    "gender": "male",
+    "original_filename": "game-faces.jpg",
+    "filename": "william_vance.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a charismatic young man in his early 20s with warm tan smooth skin, bright expressive hazel eyes that crinkle easily when he grins, a strong straight nose, a wide infectious grin showing slightly imperfect teeth, and wavy sandy-brown hair worn a bit long and tousled, paired with the first patchy attempts at a beard. His sturdy, athletic build leans casually forward with unstoppable youthful energy. He wears a casual olive flannel over a henley, sitting at a table in a cozy college coffee shop chatting with someone with an open notebook on the table. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism."
+  },
+  "author9_20": {
+    "name": "Clara Hughes",
+    "gender": "female",
+    "original_filename": "game-faces.jpg",
+    "filename": "clara_hughes.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a fiercely determined young woman in her early 20s with rich brown smooth skin, burning dark eyes holding raw youthful defiance and hunger, sharp emerging cheekbones, a determined set to her full lips, and tightly coiled black natural hair pulled up into a high puff. Her lean, wiry youthful frame shows the evidence of too many skipped meals, but her posture is unshakeably straight. She wears a simple worn grey sweater, sitting cross-legged on the floor of a barely-furnished apartment. A secondhand laptop, scattered manuscript pages, and a stack of library books surround her. A window shows a grey city morning. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism."
+  },
+  "author10_20": {
+    "name": "Thomas Blackwood",
+    "gender": "male",
+    "original_filename": "game-faces.jpg",
+    "filename": "thomas_blackwood.png",
+    "age": 20,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an intense young man in his early 20s with pale smooth skin, cold observant grey eyes with an analytical, almost unnerving stillness, an angular youthful jawline, thin expressive lips, sharp emerging cheekbones, and jet-black hair worn in a longer, more unkempt style falling around his ears. His tall, lean frame is composed and still, with the coiled stillness of a natural watcher. He wears a dark, slightly oversized charcoal sweater, sitting alone at a corner café table. A slim notebook sits next to his black coffee. He observes the rain-streaked street outside with a focused, analytical gaze. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism."
+  },
+  "author1_30": {
+    "name": "Beatrice Hansen",
+    "gender": "female",
+    "original_filename": "beatrice_hansen.png",
+    "filename": "beatrice_hansen_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a confident woman in her early 30s with smooth, radiant skin, high cheekbones, bright almond-shaped eyes with a hint of playful confidence, full lips painted in deep berry, and glossy dark auburn hair styled in loose waves falling past her shoulders. Her slender frame has a graceful posture, shoulders back with practiced poise. She wears a sophisticated sleeveless dress revealing toned arms, and artistic gold statement necklace jewelry. She is sitting holding a champagne flute at a bustling book launch party. Behind her, simplified shapes of abstract canvases on the wall and soft warm gallery lighting. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.5
+    },
+    "biography": "Beatrice's debut novel was the talk of the town, launched with a party that was written about for weeks. At 30, she is a fixture in the literary scene, her name synonymous with wit and style. She has mastered the art of being an author in public.<br><br>Her follow-up novels have been successful, praised for their sharp dialogue and vibrant settings. She has proven her talent is real and sustainable.<br><br>The solitary grind is no longer a mystery to her, but a means to an end. The question now is whether she will ever write the book that scares her, the one that isn't about performance but about vulnerability."
+  },
+  "author2_30": {
+    "name": "Arthur Pendelton",
+    "gender": "male",
+    "original_filename": "arthur_pendelton.png",
+    "filename": "arthur_pendelton_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a focused man in his early 30s with a strong, angular jawline showing the first hints of stubble, tired deep-set brown eyes with faint shadows beneath them, a straight nose, and thick dark brown hair cropped short and slightly tousled from work. His broad-shouldered, lean-muscled frame shows the wear of physical labor, with calloused hands gripping a small notebook. He wears a worn canvas work jacket over a simple grey shirt, standing outside a stylized warehouse during a break. Simplified delivery truck shapes in the background. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, no realism, simple facial features, gentle flat shading.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 0.5,
+      "social": 1.0
+    },
+    "biography": "Arthur's short stories, published in a handful of respected literary journals, have earned him a quiet but fierce reputation for authenticity. At 30, he still works long hours in the industrial district, but now he does so with the knowledge that his words have found a home.<br><br>He has an agent and a small advance for a novel-in-progress, pieced together during lunch breaks and late at night. His writing is slow, deliberate, and carved from lived experience.<br><br>He remains an outsider to the literary world, uncomfortable with its customs and expectations. His challenge is no longer just finding the time to write, but learning to navigate the world his writing is beginning to open for him."
+  },
+  "author3_30": {
+    "name": "Rosemary Lis",
+    "gender": "female",
+    "original_filename": "rosemary_lis.png",
+    "filename": "rosemary_lis_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a self-assured woman in her early 30s with a soft heart-shaped face, warm hazel eyes behind stylish tortoiseshell glasses, a small upturned nose, a gentle thoughtful smile, and wavy chestnut hair pulled loosely back with a few strands framing her face. Her figure is softly rounded and comfortable, curled up in a cozy armchair in a familiar library corner. She looks up from her e-reader with a thoughtful smile, a notebook resting on her knee. Simplified bookshelves in the background. She wears a comfortable but elegant cream knit sweater. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.5,
+      "escapism": 1.5,
+      "exposure": 1.0,
+      "social": 0.5
+    },
+    "biography": "At 30, Rosemary is the author of a quiet, critically acclaimed debut novel that became a word-of-mouth success. She has found a way to reach outward on her own terms, primarily through her intricate, immersive writing.<br><br>Her readers are a devoted following who appreciate the meticulous detail and deep empathy of her work. She has built a world for them, and for herself, that feels more real than reality.<br><br>While she still prefers observation to participation, she has grown more comfortable with her role as an author. She has learned that stepping out doesn't always require leaving her corner, but simply opening the door for others to look in."
+  },
+  "author4_30": {
+    "name": "James Markman",
+    "gender": "male",
+    "original_filename": "james_markman.png",
+    "filename": "james_markman_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a thoughtful man in his early 30s with a slender, refined face, smooth fair skin, intelligent grey-blue eyes behind round wire-framed glasses, a narrow straight nose, thin lips pressed in contemplation, and neatly parted light brown hair. His slim, slightly tall frame has a scholarly posture. He wears a simple blue button-down shirt tucked into chinos, standing by a large window with a simplified city skyline. Behind him, stylized bookshelves and a small collection of travel artifacts next to his laptop. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "The past decade was humbling for James. After realizing the limits of his own experience, he spent years traveling, working odd jobs, and listening more than he spoke. At 30, he has returned with a quieter confidence and a wealth of new understanding.<br><br>He has finally published a collection of short stories, praised not for their technical elegance—which is still present—but for their newfound depth and empathy. He writes about struggle with a hard-won humility.<br><br>He is no longer just the promising son of literary parents but an author in his own right. The journey from his bookshelf to the real world has been his most important education."
+  },
+  "author5_30": {
+    "name": "Margaret Sterling",
+    "gender": "female",
+    "original_filename": "margaret_sterling.png",
+    "filename": "margaret_sterling_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a focused woman in her early 30s with a warm olive complexion, earnest dark brown eyes with a determined gaze, full expressive eyebrows, a strong nose, and thick dark hair gathered into a loose bun with escaping tendrils. Her sturdy, grounded frame leans over a cozy kitchen table with the shoulders of someone who carries many responsibilities. She wears a simple ochre sweater over a white collared shirt. Her laptop is open to a manuscript, and a copy of her published book of short stories sits next to a mug of tea. A corkboard behind her is filled with community notices and story notes. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 1.0,
+      "social": 1.5
+    },
+    "biography": "Margaret's debut collection of short stories, 'People I've Known,' was a critical success, celebrated for its profound empathy. At 30, she has learned to balance her community work with the demands of her own creativity, seeing them not as competing forces but as two parts of the same whole.<br><br>She writes with an urgency born from her activism, telling the stories of the people she continues to show up for. Her voice has become a trusted and essential one.<br><br>The challenge of prioritizing her own ambition has transformed into the quiet confidence that her art is itself an act of service, and that her stories are worth the world's attention."
+  },
+  "author6_30": {
+    "name": "Elias Thorne",
+    "gender": "male",
+    "original_filename": "elias_thorne.png",
+    "filename": "elias_thorne_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an intense man in his early 30s with pale skin that rarely sees sunlight, sharp cheekbones, a gaunt narrow face, thin lips often unsmiling, and longish dark black hair falling messily over his forehead. His thin, slightly hunched frame suggests too many hours indoors. He wears a worn black t-shirt, sitting hunched at a cluttered desk in a cozy dim bedroom. A small desk lamp illuminates a published book with simple shapes on the cover. A simplified monitor glows with a wall of text. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.0,
+      "escapism": 1.5,
+      "exposure": 0.8,
+      "social": 0.5
+    },
+    "biography": "An editor at a small press stumbled upon Elias's work online, and the resulting collection of stories became a cult classic. At 30, Elias is a published author, though he has never met his agent or editor in person.<br><br>He still writes compulsively from his small room, his strange and vivid worlds now reaching a small but fanatical audience. He communicates through his fiction, and his readers wouldn't have it any other way.<br><br>He has managed to turn his raw imagination into a career without compromising his isolation. The outside world has been let in, but only on his very specific terms: through the mail slot and the modem."
+  },
+  "author7_30": {
+    "name": "Evelyn Tower",
+    "gender": "female",
+    "original_filename": "evelyn_tower.png",
+    "filename": "evelyn_tower_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a pensive woman in her mid 30s with porcelain-smooth skin, cool blue-grey eyes that hold a guarded intelligence, delicate features including a small straight nose and softly defined lips, refined cheekbones, and sleek ash-blonde hair cut in a precise chin-length bob. Her slim, poised frame carries itself with quiet elegance. She wears a cream linen blouse with a simple gold necklace, sitting in a cozy home study, holding an open travel journal with a pen in her other hand. Simplified built-in bookshelves and a small reading lamp are behind her. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "Evelyn's first novel was a masterclass in technique that received polite, if cool, reviews. The critique that it lacked heart stung, and she took it seriously. At 30, she has spent the better part of a decade dismantling her curated life in search of genuine feeling.<br><br>She has traveled extensively, not as a tourist, but as a student of the human condition. She is working on a new novel, one informed by experience rather than theory.<br><br>Her writing is still precise, but it is no longer cautious. She has ventured far outside her comfort zone and is slowly discovering the emotional urgency that will transform her from a skilled technician into a true artist."
+  },
+  "author8_30": {
+    "name": "William Vance",
+    "gender": "male",
+    "original_filename": "william_vance.png",
+    "filename": "william_vance_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a charismatic man in his mid 30s with warm tan skin, bright expressive hazel eyes that crinkle at the corners when he smiles, a strong straight nose, a wide genuine grin showing slightly imperfect teeth, and wavy sandy-brown hair paired with a neatly trimmed beard showing the first traces of auburn. His sturdy, athletic-but-softening build leans comfortably forward with natural warmth. He wears a smart casual olive jacket over a henley, sitting at a table in a cozy coffee shop interviewing someone with an open notebook on the table. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.2,
+      "social": 1.5
+    },
+    "biography": "William found his niche not in fiction, but in long-form journalism. At 30, he is a celebrated magazine writer, known for his deeply humanizing profiles and ability to capture the voices of his subjects with uncanny accuracy.<br><br>He still gathers stories constantly, his natural curiosity now channeled into a successful career. He has published a bestselling collection of his essays and has a reputation as one of the best interviewers in the business.<br><br>The great, solitary novel remains unwritten, but he has found a way to turn his brilliance for starting things and gathering material into a finished, respected body of work. The depth comes from the lives of others, which he honors with his craft."
+  },
+  "author9_30": {
+    "name": "Clara Hughes",
+    "gender": "female",
+    "original_filename": "clara_hughes.png",
+    "filename": "clara_hughes_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a triumphant but tired woman in her early 30s with rich brown skin, fierce dark eyes holding traces of exhaustion and defiance, sharp cheekbones, a determined set to her full lips, and tightly coiled black natural hair pulled back into a practical puff. Her lean, wiry frame shows years of living on too little food and too much willpower, but her posture is straight with earned pride. She wears a simple grey sweater, sitting at a proper wooden desk in a cozy, personalized apartment. A manuscript pages, and a copy of her acclaimed debut novel titled \"Last Call\" are on the desk. A window shows a soft city morning. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.0,
+      "escapism": 1.2,
+      "exposure": 0.8,
+      "social": 0.8
+    },
+    "biography": "Clara's fierce, unflinching debut novel, written in stolen moments, became a surprise bestseller and a critical darling. At 30, she is no longer fending for herself; she is a full-time author, her life transformed by the sheer force of her will.<br><br>She writes with the same urgency, but now from a place of stability. Her work gives voice to the kinds of lives that are rarely seen in literature, and she has become an icon for many.<br><br>Her conviction paid off. She has not only survived but thrived, proving that her lack of connections was no match for her talent and determination. Giving up was never an option, and now, neither is being ignored."
+  },
+  "author10_30": {
+    "name": "Thomas Blackwood",
+    "gender": "male",
+    "original_filename": "thomas_blackwood.png",
+    "filename": "thomas_blackwood_30.png",
+    "age": 30,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an intense man in his mid 30s with pale skin, cold observant grey eyes with an analytical, unblinking quality, an angular jawline, thin expressive lips, high cheekbones, and jet-black hair cut in a sharp, precise undercut style. His tall, lean frame is composed and still, with the coiled stillness of a natural observer. He wears a dark, well-fitted charcoal sweater, sitting alone at a corner café table. His published novella \"dark nights\" sits next to his notebook and espresso cup. He observes the rain-streaked street outside with a focused, analytical gaze. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.0,
+      "social": 1.0
+    },
+    "biography": "Thomas's debut novella, a dark and unsettling portrait of the city's underbelly, was a critical success. At 30, he is known for his meticulous prose and chillingly accurate observations. He has made a name for himself as the cartographer of the city's hidden machinery.<br><br>He is now working on his first full-length novel, a daunting task that requires him to sustain his intense focus over a much longer haul. The discipline he has cultivated over the last decade is being put to the ultimate test.<br><br>He has the eye, the imagination, and a growing reputation. The courage to go the distance is no longer in question; it's a quiet, daily commitment."
+  },
+  "author1_40": {
+    "name": "Beatrice Hansen",
+    "gender": "female",
+    "original_filename": "beatrice_hansen.png",
+    "filename": "beatrice_hansen_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an elegant woman in her early 40s with maturing skin showing the first fine lines around her eyes and mouth, slightly softened jawline, still-bright almond eyes carrying a hint of practiced weariness behind her smile, full lips in signature plum, and auburn hair now shoulder-length with subtle highlights styled in polished waves. Her slim figure has filled out slightly at the hips with age, maintained with poise. She wears a chic emerald silk blouse, giving a practiced smile at a book signing event. A simplified stack of her novels sits on the table in front of her. The background is a soft, warm blur of a bookstore. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.5
+    },
+    "biography": "At 40, Beatrice is a literary brand. With a string of bestselling novels to her name, she is a master of the book tour, the television interview, and the literary festival circuit. She has achieved the kind of success most writers only dream of.<br><br>Yet, a quiet dissatisfaction has begun to set in. She feels the pressure to maintain her public persona and deliver the kind of witty, stylish book her audience expects.<br><br>She finds herself longing to write something messy, something that costs her more than just time. The greatest challenge of her career is about to begin: dismantling the perfect life she built to find the truth underneath."
+  },
+  "author2_40": {
+    "name": "Arthur Pendelton",
+    "gender": "male",
+    "original_filename": "arthur_pendelton.png",
+    "filename": "arthur_pendelton_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a respected man in his early 40s with weathered, sun-creased skin showing deep lines of experience across his forehead and around his mouth, warm thoughtful brown eyes framed by crow's feet, a stronger greying stubble, and thick dark brown hair now threaded with silver at the temples. His broad-shouldered frame has softened slightly with less physical labor but retains its working-class solidity. He wears a simple, comfortable oatmeal sweater. He sits in a modest home study, a window behind him showing a stylized industrial skyline. He is mentoring a younger writer (not pictured), listening with patient intensity. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, no realism, simple facial features, gentle flat shading.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 0.5,
+      "social": 1.0
+    },
+    "biography": "Arthur's first novel won a major literary prize, allowing him to finally leave the warehouse behind. At 40, he is a respected, even revered, author whose work is praised for its unflinching honesty and grace. He writes about the world he came from with a clarity that has made him its most important chronicler.<br><br>He has not forgotten his roots. He uses his platform to champion other working-class writers, creating opportunities for those who, like him, started with nothing but a notebook and a story to tell.<br><br>He is no longer an outsider but a vital, necessary voice within the literary world, proving that grit and authenticity are the most valuable currency of all."
+  },
+  "author3_40": {
+    "name": "Rosemary Lis",
+    "gender": "female",
+    "original_filename": "rosemary_lis.png",
+    "filename": "rosemary_lis_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a content woman in her early 40s with a soft round face showing gentle laugh lines and smile crinkles at her eyes, warm hazel eyes behind signature tortoiseshell glasses, rosy cheeks, a serene smile, and wavy chestnut hair now showing the first grey strands at the temples, loosely pinned back. Her softly rounded figure has grown more comfortable and settled with age. She wears a cozy sage-green cardigan over a cream shirt. She is in her own beautiful home library, surrounded by floor-to-ceiling bookshelves filled with books, including several of her own novels. She holds a cup of tea. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.5,
+      "escapism": 1.5,
+      "exposure": 1.0,
+      "social": 0.5
+    },
+    "biography": "By 40, Rosemary is an institution. Her series of intricate, sprawling novels has become a cultural phenomenon, beloved by millions of readers who feel they have a personal connection to the worlds she builds. She is one of the most successful authors of her generation.<br><br>She rarely leaves her home, having built a career that allows her to remain in her preferred state of quiet observation. Her relationship with her readers is maintained through her work and a carefully managed online presence.<br><br>She has proven that a public life is not a prerequisite for success. By staying true to her nature, she has achieved a level of connection and influence that a more conventional path could never have offered."
+  },
+  "author4_40": {
+    "name": "James Markman",
+    "gender": "male",
+    "original_filename": "james_markman.png",
+    "filename": "james_markman_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a calm, wise-looking man in his early 40s with a thinner face showing the first lines of thought carved between his brows, intelligent blue-grey eyes with a weathered compassion behind round glasses, a refined nose, and light brown hair now greying distinctly at the temples in distinguished streaks. His slim frame has grown slightly fuller, scholarly and composed. He wears a tweed jacket over a pale blue shirt. He is in a university office, with stylized bookshelves and a large window with a city view behind him, patiently talking to a student. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "James is now a celebrated professor and the author of several thoughtful, mature novels. At 40, the promise of his youth has been fulfilled, but in a way he never expected. His work is lauded not just for its craft, but for its profound and hard-won empathy.<br><br>He writes about connection, loss, and the quiet struggles of ordinary life with a wisdom that could only have come from stepping outside the world of books.<br><br>He now helps a new generation of writers find their own voices, teaching them that the most important material often lies beyond the library walls. His own life is the primary text."
+  },
+  "author5_40": {
+    "name": "Margaret Sterling",
+    "gender": "female",
+    "original_filename": "margaret_sterling.png",
+    "filename": "margaret_sterling_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an inspiring woman in her early 40s with warm olive skin showing soft lines around her mouth from years of speaking and smiling, passionate dark brown eyes with thoughtful creases at the corners, strong brows, and thick dark hair now with a few silver strands, cut into a practical shoulder-length style. Her sturdy frame has a commanding, grounded presence. She wears a simple, professional burgundy dress. She speaks with warmth and passion at a podium in a bright, modern community center. Behind her, a simple banner for a literacy program she founded. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 1.0,
+      "social": 1.5
+    },
+    "biography": "At 40, Margaret is a major literary voice and a pillar of her community. Her novels, which tackle pressing social issues with immense heart, are both bestsellers and critical successes. She has also founded a successful non-profit dedicated to youth literacy.<br><br>She has fully integrated her art and her activism. Her writing fuels her community work, and her community work provides the substance of her powerful, deeply human stories.<br><br>She is no longer a young woman struggling to carve out space for her voice; she is a woman whose voice creates space for others. Her empathy, once her greatest gift, is now her enduring legacy."
+  },
+  "author6_40": {
+    "name": "Elias Thorne",
+    "gender": "male",
+    "original_filename": "elias_thorne.png",
+    "filename": "elias_thorne_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a reclusive, iconic man in his early 40s, seen from behind, hunched over a desk in a cluttered, dimly lit room. His silhouette reveals a thin, narrow-shouldered frame in a worn dark sweater. Visible in profile is pale sunken skin, a sharp protruding cheekbone, dark hollow eyes, and longer unkempt black hair now shot through with premature grey streaks. The room is filled with strange artifacts and stacks of books. The glow from his monitor illuminates a wall covered in labyrinthine charts and notes. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.0,
+      "escapism": 1.5,
+      "exposure": 0.8,
+      "social": 0.5
+    },
+    "biography": "Elias Thorne is a genre unto himself. At 40, he is a legendary figure in speculative fiction, a famous recluse whose strange and brilliant novels are dissected and debated by a global fanbase. His work is being adapted into a major television series, a process he has no involvement in.<br><br>He continues to write with obsessive dedication, his output as prolific as it is bewildering. His isolation is no longer a sign of struggle but a core part of his mythos.<br><br>He has succeeded beyond anyone's imagination, not by learning to let the world in, but by creating worlds so compelling that the real world has no choice but to peer in after him."
+  },
+  "author7_40": {
+    "name": "Evelyn Tower",
+    "gender": "female",
+    "original_filename": "evelyn_tower.png",
+    "filename": "evelyn_tower_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a serene and elegant woman in her mid 40s with porcelain skin showing faint fine lines around her eyes, cool blue-grey eyes now warmed by lived experience, refined cheekbones, softly-shaped lips in muted rose, and ash-blonde hair now with delicate silver threads, cut in a sleek jaw-length bob. Her slim, poised figure has gained a quiet gravitas with age. She wears a simple but beautiful navy dress. She stands in her cozy, art-filled study, holding her breakout novel. Photos and mementos from her world travels are visible on the bookshelves behind her. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "After years of searching, Evelyn finally wrote her masterpiece. Her second novel, a devastating story of love and loss informed by her travels, was a phenomenal success, praised for being both technically brilliant and emotionally profound. At 40, she has found her true voice.<br><br>She is now a celebrated and respected author, known for her poise, intelligence, and the deep emotional resonance of her work. She has integrated the lessons of her curated upbringing with the hard-won wisdom of her experiences.<br><br>The journey outside her comfort zone was the making of her. She has proven that it is never too late to learn how to feel, and to turn that feeling into great art."
+  },
+  "author8_40": {
+    "name": "William Vance",
+    "gender": "male",
+    "original_filename": "william_vance.png",
+    "filename": "william_vance_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an engaging man in his early 40s showing deep laugh lines around his mouth and crinkles at the corners of his hazel eyes, a softer, friendlier face with the beginnings of a double chin, and black  hair now flecked with grey paired with a fuller, greying beard. His broader, softer build radiates warmth and welcome. He stands in a university lecture hall, clearly passionate about his subject. He wears a smart navy blazer over a warm sweater. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.2,
+      "social": 1.5
+    },
+    "biography": "At 40, William finally did it. He sat down and wrote his novel—a sprawling, polyphonic story about a single city block, filled with the kinds of vibrant characters he had spent a lifetime meeting. It was a bestseller, praised for its warmth and incredible dialogue.<br><br>He is now a tenured creative writing professor, a role that perfectly suits his social nature and his genuine interest in other people's stories. He is as gifted at teaching as he was at journalism.<br><br>He learned that finishing something wasn't about shutting the world out, but about finding a structure big enough to fit all the life he was constantly letting in."
+  },
+  "author9_40": {
+    "name": "Clara Hughes",
+    "gender": "female",
+    "original_filename": "clara_hughes.png",
+    "filename": "clara_hughes_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a powerful, confident woman in her early 40s with rich brown skin now showing distinguished fine lines at the corners of her fierce dark eyes, sharp prominent cheekbones, a firmly set jaw, full lips carrying natural gravitas, and tightly coiled black natural hair cut into a striking short crop with just a dusting of grey at the temples. Her lean frame has filled into something stronger, shoulders squared with hard-won authority. She stands on a stage at a major literary festival. She speaks with quiet passion to a large, unseen audience, wearing a simple, elegant dark navy dress. The stage lighting is warm and focused. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.0,
+      "escapism": 1.2,
+      "exposure": 0.8,
+      "social": 0.8
+    },
+    "biography": "Clara Hughes is one of the most important writers of her time. At 40, her body of work is a searing indictment of inequality and a testament to human resilience. She is not just an author but an activist, a public intellectual, and a beacon of hope.<br><br>She has used her success to establish a foundation that supports at-risk youth and aspiring writers from marginalized backgrounds, ensuring that the ladder she climbed so painstakingly is there for others.<br><br>The fierce girl who wrote on the floor of her apartment has become a woman whose voice can fill stadiums. Her conviction has not only changed her own life; it is changing the world."
+  },
+  "author10_40": {
+    "name": "Thomas Blackwood",
+    "gender": "male",
+    "original_filename": "thomas_blackwood.png",
+    "filename": "thomas_blackwood_40.png",
+    "age": 40,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an acclaimed, solitary man in his early 40s with pale skin showing sharp lines of habitual concentration between his brows, cold analytical grey eyes with hollow shadows beneath them, a hardened angular jawline, thin unsmiling lips, and jet-black hair now with distinctive silver streaks at the temples, still cut in a precise undercut. His tall, lean frame has grown slightly thinner with age. He stands on a balcony of a high-rise apartment at night, looking down at the stylized, sprawling city lights. He wears a dark, minimalist charcoal jacket. His expression is proprietary and thoughtful. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.0,
+      "social": 1.0
+    },
+    "biography": "At 40, Thomas is the undisputed master of the literary psychological thriller. His novels are bestsellers, praised for their chilling precision and dark, atmospheric portrayal of urban life. He has successfully channeled his obsessive observation into a formidable career.<br><br>He is a private man, rarely giving interviews and allowing his work to speak for itself. The city he once documented from cafes he now observes from a distance, his perspective having shifted from street-level to panoramic.<br><br>He has gone the distance and mapped the hidden machinery he set out to expose. The challenge now is to avoid becoming one of the ghosts that haunt the pages of his own books."
+  },
+  "author1_50": {
+    "name": "Beatrice Hansen",
+    "gender": "female",
+    "original_filename": "beatrice_hansen.png",
+    "filename": "beatrice_hansen_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a reflective woman in her early 50s with visibly aged skin showing soft wrinkles around her eyes, forehead lines, and parenthetical marks around her mouth, almond eyes now carrying wisdom rather than sparkle, softer jawline beginning to lose definition, lips worn bare of bold color, and auburn-to-silver hair styled in an elegant but simple chin-length cut with significant natural grey. Her figure has thickened gently at the waist with age, comfortable rather than performative. She wears a comfortable oatmeal cashmere sweater. She sits alone in a beautifully decorated but quiet room, writing in a leather-bound journal, a cup of tea beside her. The lighting is soft and natural. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.5
+    },
+    "biography": "The literary world was shocked when Beatrice, at the height of her fame, retreated from public life. At 50, she is in the middle of a great reappraisal, grappling with her legacy and the feeling that her stylish novels have kept her from a deeper truth.<br><br>She has stopped performing and started excavating. For the first time, she is writing something not for an audience, but for herself: a raw, honest memoir about the woman behind the glamorous facade.<br><br>Her brilliance, once a tool for charming rooms, is now being turned inward. She is finally writing the book that costs her something, and in return, gained a sense of peace she never knew was possible."
+  },
+  "author2_50": {
+    "name": "Arthur Pendelton",
+    "gender": "male",
+    "original_filename": "arthur_pendelton.png",
+    "filename": "arthur_pendelton_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a kind, weathered man in his early 50s with deeply creased sun-worn skin, warm brown eyes surrounded by deep crow's feet, a thickened nose, a short salt-and-pepper beard, and mostly-grey hair with streaks of the original dark brown remaining. His broad shoulders have softened and slightly stooped, his frame thicker at the middle with age. He wears a comfortable forest green jacket over a chambray shirt. He is in a university library, speaking warmly with a young, aspiring writer, his expression one of gentle mentorship. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, no realism, simple facial features, gentle flat shading.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 0.5,
+      "social": 1.0
+    },
+    "biography": "At 50, Arthur is an elder statesman of American letters. His work is taught in universities, and his name has become synonymous with literary realism. He is a revered figure, not just for his powerful writing, but for his integrity and generosity.<br><br>He holds a distinguished professorship, where he is a beloved and sought-after mentor. He sees his greatest work now as paving the way for the next generation of authentic voices.<br><br>The calloused hands of his youth have been replaced by a firm, guiding hand on the shoulders of young writers. He has built a legacy of truth, both on the page and in the lives he has touched."
+  },
+  "author3_50": {
+    "name": "Rosemary Lis",
+    "gender": "female",
+    "original_filename": "rosemary_lis.png",
+    "filename": "rosemary_lis_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a peaceful woman in her early 50s with a fuller rounded face, soft wrinkles around warm hazel eyes, gentle laugh lines, a serene unhurried expression, and mostly-silver hair still threaded with remnants of chestnut, styled simply at shoulder length. Her soft, matronly figure radiates calm contentment. She wears her signature tortoiseshell glasses and a natural beige linen shirt. She is sitting in a lush, private garden, a notebook and pen in her lap, looking thoughtfully at the simplified shapes of flowers around her. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.5,
+      "escapism": 1.5,
+      "exposure": 1.0,
+      "social": 0.5
+    },
+    "biography": "Rosemary's sprawling literary universe is a global phenomenon, complete with conventions, fan communities, and academic studies. At 50, she is the quiet, unseen ruler of a vast and beloved fictional empire.<br><br>She lives a peaceful, private life, content to continue her meticulous work far from the public eye. She has found a perfect equilibrium between her inner world and her outer success.<br><br>Her difficulty reaching outward has become her greatest strength, preserving the unique vision that has captivated millions. She has built not just a career, but a sanctuary, both for herself and for her readers."
+  },
+  "author4_50": {
+    "name": "James Markman",
+    "gender": "male",
+    "original_filename": "james_markman.png",
+    "filename": "james_markman_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a content, distinguished man in his early 50s with a fine-featured face showing deep thoughtful lines on his forehead and between his brows, kind blue-grey eyes behind round glasses with significant crinkles at the corners, a receding hairline, and mostly-grey hair still combed neatly to one side. His slim frame has filled into a comfortable softness. He wears a simple, high-quality navy sweater over a crisp collared shirt. He is in his comfortable home study, looking peacefully out a large window at the city skyline. A Pulitzer Prize is subtly visible on a bookshelf. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "At 50, James is a Pulitzer Prize-winning author whose novels are celebrated for their quiet wisdom, masterful structure, and profound humanity. He has become one of the most respected writers of his generation.<br><br>His work is a testament to his long journey from intellectual understanding to true, lived-in empathy. He writes with a grace and humility that resonates deeply with readers.<br><br>The blind spot of his youth has been replaced by a clear-eyed, compassionate vision of the world. The experiences no bookshelf could provide have become the foundation of his greatest work."
+  },
+  "author5_50": {
+    "name": "Margaret Sterling",
+    "gender": "female",
+    "original_filename": "margaret_sterling.png",
+    "filename": "margaret_sterling_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a warm, respected woman in her early 50s with warm olive skin now showing well-earned laugh lines around her generous mouth and crinkles at the corners of her dark brown eyes, softer cheeks, and mostly silver-grey hair pulled back from her face, letting natural strands fall around her temples. Her sturdy figure has thickened with age into something grounded and maternal. She wears a comfortable rust-colored knit jacket. She stands alone on the steps of a new community library. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 1.0,
+      "social": 1.5
+    },
+    "biography": "Margaret's work is now required reading in schools across the country. At 50, she is as much a social architect as she is a novelist, her legacy written in the community centers she has built and the lives she has changed, as well as in her beloved books.<br><br>She continues to write, but her focus has shifted to ensuring the sustainability of the organizations she has founded. Her life's work is about building systems of care.<br><br>She has shown that a literary life does not have to be a solitary one. Her greatest story is the one she has lived: a life of service, empathy, and profound connection."
+  },
+  "author6_50": {
+    "name": "Elias Thorne",
+    "gender": "male",
+    "original_filename": "elias_thorne.png",
+    "filename": "elias_thorne_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an enigmatic man in his early 50s, mostly in shadow. Only his hand, now older with visible veins, prominent knuckles and age spots, is clearly visible, meticulously drawing on a piece of paper at a cluttered desk with a ballpoint pen. Glimpses show a gaunt pale face heavily lined with years of isolation, sunken hollow cheeks, deep hollows beneath unfocused dark eyes, and long grey-streaked black hair falling lank around his shoulders. His emaciated frame is swallowed by an oversized dark sweater. The desk is lit by a single lamp, a modern computer sits in the background. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.0,
+      "escapism": 1.5,
+      "exposure": 0.8,
+      "social": 0.5
+    },
+    "biography": "Elias Thorne, at 50, is more of a myth than a man. He is the enigmatic master of the weird, communicating with the world only through his increasingly complex and brilliant novels. Biographers and documentarians attempt to piece his life together from public records and the scant clues in his work, with little success.<br><br>He lives and writes in the same room, his creative isolation now absolute and legendary. His work continues to evolve in strange and unpredictable ways, influencing a new generation of writers who have never seen his face.<br><br>He remains a testament to the raw power of imagination, a fixed point of creative energy, completely untroubled by the outside world."
+  },
+  "author7_50": {
+    "name": "Evelyn Tower",
+    "gender": "female",
+    "original_filename": "evelyn_tower.png",
+    "filename": "evelyn_tower_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a poised woman in her early 50s with delicate porcelain skin showing refined fine lines around her eyes and mouth, cool blue-grey eyes carrying deep knowing warmth, softly softened cheekbones, lips in muted rose, and silver-blonde hair cut in a sleek elegant bob just above her shoulders. Her slender, graceful figure stands tall with accumulated dignity. She wears an elegant floor-length charcoal gown, accepting a prestigious literary award on a simplified stage. She holds the award with a calm, knowing smile. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "At 50, Evelyn is a grand dame of letters. She is celebrated for her exquisitely crafted prose, her deep psychological insight, and the quiet emotional power of her work. She has become a figure of immense literary authority and grace.<br><br>Her novels are international bestsellers, and she has won nearly every major award available to her. The cool, perceptive eye of her youth has been tempered with a deep and abiding compassion.<br><br>She has completed her transformation from a writer of promise to an author of enduring importance. The emotional urgency she once lacked is now the defining characteristic of her celebrated work."
+  },
+  "author8_50": {
+    "name": "William Vance",
+    "gender": "male",
+    "original_filename": "william_vance.png",
+    "filename": "william_vance_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a beloved public figure in his early 50s with warm tan skin heavily creased with deep laugh lines, crinkled hazel eyes beneath greying bushy brows, rounder softer cheeks flushed with warmth, a fuller build that speaks of good meals and good company, and mostly-silver hair paired with a full grey beard. His ample, welcoming presence is unmistakable. He wears a comfortable, stylish rust-colored shirt. He is hosting a lively dinner party in his cozy, art-filled home, surrounded by the simplified shapes of friends and fellow artists. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.2,
+      "social": 1.5
+    },
+    "biography": "William is, at 50, one of the most beloved literary figures in the country. He has written several more successful, warm-hearted novels, but he is equally known for his generosity, his humor, and his role as a connector of people.<br><br>His home is a modern-day salon, a gathering place for writers, artists, and thinkers from all walks of life. He continues to collect stories, but now he also curates them, creating a vibrant community around him.<br><br>He never lost his ability to talk to strangers; he simply expanded his definition of 'neighbor' to include the entire artistic world. His greatest talent is, and has always been, connection."
+  },
+  "author9_50": {
+    "name": "Clara Hughes",
+    "gender": "female",
+    "original_filename": "clara_hughes.png",
+    "filename": "clara_hughes_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a national treasure in her early 50s, a woman of immense dignity and strength. Her rich brown skin now shows distinguished lines around her piercing dark eyes and mouth, her sharp cheekbones framed by a powerful set jaw, her full lips carrying earned gravitas, and her tightly coiled natural hair, now silvery-grey, cropped close to her head like a crown. Her lean, strong frame stands straight with decades of fought-for authority. She is being presented with a prestigious lifetime achievement award. She wears a regal dark purple dress. Her expression is one of quiet, powerful grace. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.0,
+      "escapism": 1.2,
+      "exposure": 0.8,
+      "social": 0.8
+    },
+    "biography": "At 50, Clara Hughes is a Nobel laureate, recognized for a body of work that 'with unflinching clarity has given voice to the displaced and a testament to the resilience of the human spirit.' She is a moral compass in a turbulent world.<br><br>Her writing is a force of nature, and her activism has effected real political change. She is a figure of global importance, whose words carry immense weight.<br><br>The conviction she carried in her barely furnished apartment has been amplified for the entire world to hear. She has never forgotten where she came from, and she has dedicated her life to ensuring that no one's story is ever lost to poverty or neglect."
+  },
+  "author10_50": {
+    "name": "Thomas Blackwood",
+    "gender": "male",
+    "original_filename": "thomas_blackwood.png",
+    "filename": "thomas_blackwood_50.png",
+    "age": 50,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a reclusive, well-dressed man in his early 50s with pale sallow skin heavily lined with severe creases between his brows and around his mouth, cold grey eyes now deeply sunken and shadowed with weariness, a sharpened angular jaw, and jet-black hair now dramatically streaked with silver, his precise undercut growing slightly longer. His tall, now-thinner frame has a gaunt, isolated quality. He is seen in his minimalist, high-rise apartment, wearing a crisp dark charcoal button-down. The room is dark, illuminated only by the twinkling lights of the city below. His expression is isolated and weary, as if he's become a character in one of his own dark novels. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.0,
+      "social": 1.0
+    },
+    "biography": "Thomas's dark urban novels have been adapted into a series of critically and commercially successful films. At 50, he is a wealthy and famous man, but he has become a recluse, wary of the very world he so obsessively documented.<br><br>He lives high above the city, his observations now entirely remote. The hidden machinery he once sought to expose now feels like a trap he can't escape.<br><br>His ambition has been realized, but at a cost. He has spent so long staring into the abyss of the city that he now struggles to see anything else."
+  },
+  "author1_60": {
+    "name": "Beatrice Hansen",
+    "gender": "female",
+    "original_filename": "beatrice_hansen.png",
+    "filename": "beatrice_hansen_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a serene woman in her early 60s with noticeably aged skin showing deep wrinkles around her eyes, mouth, and along her neck, sagging jawline and softer cheeks, almond eyes grown gentler and kinder with age, natural bare lips, and fully silver-grey hair styled in an elegant but simple shoulder-length cut. Her figure has grown softer and rounder with age, her posture now relaxed rather than performative. She wears a soft dove-grey cashmere cardigan. She sits in a cozy armchair by a large window, looking out with a gentle smile, a journal in her lap. She is at peace, no longer needing an audience. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.5
+    },
+    "biography": "Beatrice's memoir, published in her mid-fifties, was her greatest triumph. It was a raw, vulnerable, and beautifully written work that redefined her career and earned her a new level of critical respect. At 60, she writes for herself, publishing only when she has something essential to say.<br><br>She has found a quiet contentment far from the literary parties of her youth. Her life is no longer about performance, but about presence.<br><br>The brilliance that once lit up rooms now provides a soft, steady light for her own path. She has finally written something that cost her everything, and in return, gained a sense of peace she never knew was possible."
+  },
+  "author2_60": {
+    "name": "Arthur Pendelton",
+    "gender": "male",
+    "original_filename": "arthur_pendelton.png",
+    "filename": "arthur_pendelton_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a beloved, grandfatherly man in his early 60s with deeply weathered skin carved with many lines of a life of labor and contemplation, kind brown eyes with heavy crow's feet and soft pouches beneath them, a thick full white beard, and a full head of snow-white hair. His broad frame has stooped and softened further, belly rounder, hands large and heavily veined. He wears a comfortable plaid flannel shirt in rust and cream tones. He sits on the porch of his comfortable home in a quiet neighborhood street, a book resting in his lap. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, no realism, simple facial features, gentle flat shading.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 0.5,
+      "social": 1.0
+    },
+    "biography": "Retired from teaching, Arthur at 60 is a beloved literary icon. He spends his days writing essays, memoirs, and the occasional short story from his small, comfortable home. He is a figure of immense moral authority and quiet dignity.<br><br>He has lived to see the writers he mentored achieve their own success, creating a literary lineage born of grit and authenticity. His legacy is secure, not just in his own books, but in the library of voices he helped to build.<br><br>The harsh realities of his youth have softened into a deep, compassionate wisdom. He has told his story, and in doing so, has made space for countless others to tell theirs."
+  },
+  "author3_60": {
+    "name": "Rosemary Lis",
+    "gender": "female",
+    "original_filename": "rosemary_lis.png",
+    "filename": "rosemary_lis_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a content woman in her early 60s with a full, round face softened by age and gentle laugh lines etched around her warm hazel eyes, rosy cheeks, a serene smile, and a soft halo of silver hair cut just above her shoulders. Her plump, grandmotherly figure settles comfortably into her chair. She wears signature tortoiseshell glasses and a soft heather-green cardigan. She is sitting in her cozy home library. The room is filled with fan art and letters from generations of readers. She holds a new book, smiling at a dedication page. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.5,
+      "escapism": 1.5,
+      "exposure": 1.0,
+      "social": 0.5
+    },
+    "biography": "At 60, Rosemary continues to add to the rich, intricate world she created decades ago. Her work is now a multi-generational touchstone, a source of comfort and wonder for readers of all ages. She is the quiet queen of a world built entirely from her own imagination.<br><br>She remains a private person, but her life is filled with the love and appreciation of millions, expressed through letters, art, and online tributes. She is alone, but never lonely.<br><br>She has achieved the rarest of literary feats: creating a world that will live on long after she is gone, a legacy of quiet, meticulous, and boundless imagination."
+  },
+  "author4_60": {
+    "name": "James Markman",
+    "gender": "male",
+    "original_filename": "james_markman.png",
+    "filename": "james_markman_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a distinguished and kindly man in his early 60s with a thinner weathered face deeply lined with forehead creases and thoughtful wrinkles between his brows, warm blue-grey eyes behind round glasses with heavy crinkles at the corners, a receding hairline revealing a high forehead, and thin white hair combed neatly. His slim frame has grown slightly stooped with a gentle scholarly posture. He wears a simple, high-quality navy sweater over a checked shirt. He is walking through a beautiful university campus in autumn. He smiles warmly, carrying a leather satchel. He is a revered professor emeritus. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "As a professor emeritus, James at 60 is a celebrated literary figure, known for his insightful essays on craft, life, and the nature of storytelling. He has found a perfect balance between the intellectual life he was born into and the emotional wisdom he worked so hard to acquire.<br><br>His novels are considered modern classics, and his influence as a teacher and mentor is profound. He has guided generations of writers with his gentle, Socratic approach.<br><br>He has become the man his younger self, surrounded by books, could only aspire to be: not just well-read, but truly wise."
+  },
+  "author5_60": {
+    "name": "Margaret Sterling",
+    "gender": "female",
+    "original_filename": "margaret_sterling.png",
+    "filename": "margaret_sterling_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a joyful woman in her early 60s with warm olive skin deeply creased with lifelong laugh lines and empathy etched around her dark brown eyes, round soft cheeks flushed with delight, full smiling lips, and fully silver hair tied back in a loose low bun. Her matriarchal figure is full, warm, and welcoming. She wears a soft mustard cardigan over a cream blouse. She sits on a small chair in a bright library, reading a picture book to an enraptured group of small children. The library is one she helped build. Her expression is one of pure happiness and fulfillment. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.2,
+      "escapism": 0.8,
+      "exposure": 1.0,
+      "social": 1.5
+    },
+    "biography": "At 60, Margaret's focus is almost entirely on her foundation and community work. She writes rarely now, but her body of work stands as a powerful testament to a life of empathy. Her true masterpiece is the community she has nurtured and the institutions she has built.<br><br>She finds her greatest joy in the small moments: reading to children in a library that bears her name, seeing a scholarship student graduate, watching her community thrive.<br><br>Her legacy is not just on the bookshelf, but in the very fabric of the city she has served her entire life. She has shown that the most enduring stories are the ones we help others to live."
+  },
+  "author6_60": {
+    "name": "Elias Thorne",
+    "gender": "male",
+    "original_filename": "elias_thorne.png",
+    "filename": "elias_thorne_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of an old man in his early 60s with extremely pale papery skin heavily carved with sunken hollows and deep lines etched by decades of isolation, feverish dark eyes deep in shadowed sockets, gaunt protruding cheekbones, thin pale lips, and wild unkempt long grey hair falling past his shoulders. His emaciated, hunched frame disappears into an oversized dark sweater. He is hunched over a cluttered desk in a dim room, completely absorbed in his work. The room is a cavern of books. A single desk lamp illuminates his focused, wrinkled face. There is a computer on the table. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.2,
+      "observation": 1.0,
+      "escapism": 1.5,
+      "exposure": 0.8,
+      "social": 0.5
+    },
+    "biography": "Elias, at 60, is a ghost in the machine of literature. He has not been seen in public in decades, but his strange, brilliant, and obsessive work continues to pour forth, as if from another dimension. He is less an author than a force of nature.<br><br>His early life remains a mystery, and his current existence is the subject of wild speculation. For him, none of it matters. The only reality is the one he creates on the page.<br><br>He will leave behind a body of work unlike any other and a legacy of absolute, uncompromising creative solitude. He never let the world in, and literature is infinitely richer for it."
+  },
+  "author7_60": {
+    "name": "Evelyn Tower",
+    "gender": "female",
+    "original_filename": "evelyn_tower.png",
+    "filename": "evelyn_tower_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a woman in her early 60s with fine papery porcelain skin now showing elegant age lines at the corners of her eyes and mouth, cool blue-grey eyes holding deep luminous wisdom, softened cheekbones and slight jowls, and elegant pure silver hair cut in a sharp chin-length bob. Her slender figure remains upright and refined with aristocratic grace. She wears a simple, chic ivory tunic over tailored trousers. She is giving a writing masterclass to a small, adoring group of graduate students in a beautiful, light-filled seminar room. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.5,
+      "observation": 1.5,
+      "escapism": 1.0,
+      "exposure": 1.5,
+      "social": 1.2
+    },
+    "biography": "At 60, Evelyn is a revered literary figure, known for her wisdom, grace, and the timeless quality of her work. She writes sparingly now, and each new book is a major cultural event. She has nothing left to prove, and writes only from a place of deep artistic necessity.<br><br>She is a sought-after speaker and teacher, sharing the lessons of her long and remarkable journey with a new generation. Her masterclasses on writing and life are legendary.<br><br>The cool, cautious girl she once was has been fully integrated into a woman of immense warmth and profound insight. Her life, like her prose, has become a model of elegance and emotional truth."
+  },
+  "author8_60": {
+    "name": "William Vance",
+    "gender": "male",
+    "original_filename": "william_vance.png",
+    "filename": "william_vance_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a beloved storyteller in his early 60s with warm tan skin heavily crinkled with decades of laugh lines around his twinkling hazel eyes and generous mouth, rounder fuller cheeks, a noticeable belly beneath his shirt, and a full head of snow-white hair paired with a generous white beard. His jolly, comfortable build conveys joy and warmth. He sits in a comfortable armchair in a warm, inviting living room wearing a cozy burgundy cardigan. He is animatedly telling a story to his smiling family and friends (simplified shapes). The room is filled with books and photographs. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.0,
+      "observation": 1.2,
+      "escapism": 1.0,
+      "exposure": 1.2,
+      "social": 1.5
+    },
+    "biography": "William, at 60, has settled into his most natural role: the ultimate storyteller. He has transitioned from novels to memoirs and humorous essays, delighting readers with his wit, warmth, and endless supply of anecdotes about the incredible people he has met throughout his life.<br><br>He is a beloved public figure, a frequent guest on talk shows, and a master of the graduation speech. His greatest gift remains his ability to connect with anyone and everyone.<br><br>He never met a stranger, and his life's work is a testament to the extraordinary stories that can be found in ordinary people, if one only takes the time to listen."
+  },
+  "author9_60": {
+    "name": "Clara Hughes",
+    "gender": "female",
+    "original_filename": "clara_hughes.png",
+    "filename": "clara_hughes_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of a national treasure in her early 60s, a woman of immense dignity and strength. Her rich brown skin is now dignified with deep lines telling the story of her journey, her piercing dark eyes carrying the weight of a lifetime's fight, her face settled into a strong, regal bearing with prominent cheekbones and full lips, and her close-cropped silver natural hair worn like a crown. Her lean frame, slightly thinner with age, stands straight with unshakeable authority. She wears a deep indigo dress with simple statement earrings. She is being presented with a prestigious lifetime achievement award by a political leader (simplified shape). Her expression is one of quiet, powerful grace. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 1.5,
+      "observation": 1.0,
+      "escapism": 1.2,
+      "exposure": 0.8,
+      "social": 0.8
+    },
+    "biography": "At 60, Clara is a national treasure. She has written the definitive works about her generation's struggles and triumphs, and her voice is considered the conscience of her nation. She is a figure of unimpeachable integrity and moral courage.<br><br>Though her work is done, her foundation continues to thrive, a self-sustaining engine of opportunity for the next generation. Her legacy is etched in the laws she helped change and the lives she has saved.<br><br>The girl who had to fight for everything has become the woman who has given everything back. Her life is the ultimate story of survival, determination, and the transformative power of a single, unwavering voice."
+  },
+  "author10_60": {
+    "name": "Thomas Blackwood",
+    "gender": "male",
+    "original_filename": "thomas_blackwood.png",
+    "filename": "thomas_blackwood_60.png",
+    "age": 60,
+    "filefolder": "authors",
+    "imageprompt": "A flat, minimalist vector illustration of the silhouette of an older man in his early 60s with a camera, standing at the end of a rain-slicked city street at night. His tall, thinner, slightly stooped frame is wrapped in a long dark coat. In profile, his pale aged skin shows deep lines around his still-sharp analytical grey eyes, a gaunt lined face now softened by contemplation rather than judgment, hollow cheeks, and a full head of steel-grey hair, slightly longer and less precise than in his prime. He is focused on capturing an image, finding a new way to document the city's secrets without words. The scene is moody and atmospheric. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism.",
+    "multipliers": {
+      "hardship": 0.8,
+      "observation": 1.5,
+      "escapism": 1.2,
+      "exposure": 1.0,
+      "social": 1.0
+    },
+    "biography": "In his late fifties, Thomas stopped writing. The darkness he had so meticulously chronicled had become too much to bear. At 60, he has found a new, quieter medium for his obsession: photography. He wanders the city at night, capturing its hidden corners and lonely moments in stark, beautiful images.<br><br>He has returned to street level, no longer the remote observer from a high-rise, but a silent participant in the city's nocturnal life. He is finding a new kind of peace in the wordless act of seeing.<br><br>He has finally escaped the labyrinth of his own fiction by finding a new way to map the city. His eye is as sharp as ever, but his purpose is no longer to expose, but simply to witness."
+  }
+}
