@@ -88,7 +88,7 @@
 }
 
 .dark .badge-text {
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .dark .locked-card, .dark .locked-row {
@@ -109,9 +109,27 @@
     color: #777;
 }
 
-.dark .color-income-val, .dark .color-expense-val { color: #ffd700; }
-.dark .color-income-lbl { color: #a8d08d; }
-.dark .color-expense-lbl { color: #ff4c4c; }
+/* Added: Dark mode styles for the new info icon */
+.dark .card-info-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.dark .card-info-icon:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dark .color-income-val, .dark .color-expense-val {
+    color: #ffd700;
+}
+
+.dark .color-income-lbl {
+    color: #a8d08d;
+}
+
+.dark .color-expense-lbl {
+    color: #ff4c4c;
+}
 
 .dark .fixed-header-wrapper {
     background-color: rgb(32, 32, 32);
@@ -132,6 +150,7 @@
     color: #fff;
     border: 1px solid #444;
 }
+
 .dark .modal-description {
     color: #aaa;
 }
@@ -148,7 +167,7 @@
     background-color: #1e1e1e;
     color: #d4d4d4;
     border-color: #444;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .dark .btn-active {

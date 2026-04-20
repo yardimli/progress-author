@@ -45,6 +45,7 @@
 			
 			<template id="jobCardTemplate">
 				<div class="ui-card">
+					<div class="card-info-icon">i</div> <!-- Added: Info icon -->
 					<img class="card-image" src="" alt="">
 					<div class="card-overlay">
 						<div class="card-title name"></div>
@@ -73,6 +74,7 @@
 			
 			<template id="propertyCardTemplate">
 				<div class="ui-card">
+					<div class="card-info-icon">i</div> <!-- Added: Info icon -->
 					<img class="card-image" src="" alt="">
 					<div class="card-overlay">
 						<div class="card-title name"></div>
@@ -97,7 +99,6 @@
 			
 			<!-- Column 1: Work -->
 			<div class="panel-column active-mobile" id="jobs">
-				<div class="tab-description">Select a job to earn money.</div>
 				<div id="jobTable"></div>
 			</div>
 			
@@ -108,7 +109,6 @@
 					<div class="locked-tab-title">Skills Locked</div>
 					<div class="locked-tab-reqs">Move into a Rented Room and reach level 5 in Gig Worker to unlock.</div>
 				</div>
-				<div class="tab-description" title="Select a skill to progress. All earned bonuses apply, even if not selected.">Select a skill to progress.</div>
 				<div id="skillTable"></div>
 			</div>
 			
@@ -119,12 +119,12 @@
 					<div class="locked-tab-title">Shop Locked</div>
 					<div class="locked-tab-reqs">Reach level 3 in Gig Worker to unlock.</div>
 				</div>
-				<div class="tab-description" title="Properties can be upgraded or downgraded to influence work and writing efficiency at the cost of increasing expenses.">Shop.</div>
 				<div id="itemTable"></div>
 			</div>
 			
 			<!-- Column 4: Writing -->
 			<div class="panel-column" id="writing">
+				<div class="category-header">Writing</div>
 				<div id="writingLockedOverlay" class="locked-tab-overlay">
 					<div class="locked-tab-icon">🔒</div>
 					<div class="locked-tab-title">Writing Locked</div>
@@ -137,8 +137,6 @@
 					<div class="locked-tab-reqs">Adjust the Work/Writing slider to allocate time for writing.</div>
 					<button class="btn btn-active" style="margin-top: 15px;" onclick="setInitialWritingBalance()">Start Writing</button>
 				</div>
-				
-				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
 				<div id="workWritingSliderContainer" class="hidden slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
 					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
@@ -188,7 +186,7 @@
 				</div>
 				
 				<div id="lifeExperiencesSection">
-					<div class="category-header">Life Experiences (Quality Multipliers)</div>
+					<div class="category-header">Quality Multipliers</div>
 					<div id="lifeExperiencesContainer" class="ui-row life-experiences-container">
 						<!-- Dynamically populated by initLifeExperiencesUI() -->
 					</div>

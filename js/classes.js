@@ -66,7 +66,8 @@ class Job extends Task {
     
     getXpGain() {
         let baseGain = super.getXpGain();
-        let workPercentage = (100 - gameData.workWritingBalance) / 100;
+        // Modified: If not writing a book, work percentage is always 100%
+        const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
         return baseGain * gameData.workMultiplier * gameData.workXpMultiplier * workPercentage;
     }
 }

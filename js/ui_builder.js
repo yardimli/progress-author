@@ -57,6 +57,18 @@ function createAllRows (categoryType, containerId) {
 			element.id = 'row ' + name;
 			element.querySelector('.name').textContent = name;
 			
+			// Added: Setup for the info icon click event
+			const infoIcon = element.querySelector('.card-info-icon');
+			if (infoIcon) {
+				infoIcon.onclick = function (event) {
+					event.stopPropagation(); // Prevent the card's main click event
+					const imgElement = element.querySelector('.card-image');
+					if (imgElement) {
+						showModal(imgElement);
+					}
+				};
+			}
+			
 			const entityData = baseData[name];
 			if (entityData && entityData.filefolder && entityData.filename) {
 				const imgElement = element.querySelector('.card-image, .row-image');

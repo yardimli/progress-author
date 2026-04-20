@@ -152,7 +152,8 @@ function getGameSpeed() {
 function getIncome() {
 	let income = 0;
 	// Apply work percentage to active job income
-	let workPercentage = (100 - gameData.workWritingBalance) / 100;
+	// Modified: If not writing a book, work percentage is always 100%
+	const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
 	income += gameData.currentJob.getIncome() * workPercentage;
 	income += gameData.royalties;
 	return income;
