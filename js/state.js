@@ -7,11 +7,11 @@ var popupQueue = [];
 const GAME_VERSION = "1.0.5";
 
 var gameData = {
-	version: GAME_VERSION, // Save the version in state
+	version: GAME_VERSION,
 	taskData: {},
 	itemData: {},
 	coins: 0,
-	days: 365 * 20, // Starts at 20
+	days: 365 * 20,
 	fame: 0,
 	timeWarpingEnabled: true,
 	rebirthOneCount: 0,
@@ -21,57 +21,65 @@ var gameData = {
 	currentProperty: null,
 	currentMisc: null,
 	
-	// Track the work vs writing balance (0 = 100% work, 100 = 100% writing)
 	workWritingBalance: 0,
 	
-	// Multipliers for work, skill, and writing (1 is default)
 	workMultiplier: 1,
 	skillMultiplier: 1,
 	writingMultiplier: 1,
 	
-	// XP gain multipliers for each category to adjust leveling speed independently
 	workXpMultiplier: 0.4,
 	skillXpMultiplier: 0.4,
 	writingXpMultiplier: 0.4,
 	
-	// Potions state
 	potions: {
 		inspiration: 0,
 		acceleration: 0
 	},
 	
-	// Track unlocked features
 	unlocks: {
 		shop: false,
 		skills: false,
 		writing: false
 	},
 	
-	// Writing Process variables
 	wordsWritten: 0,
 	booksPublished: 0,
 	royalties: 0,
 	loggedDeath: false,
 	
-	// Author and Book properties
 	currentAuthor: null,
 	currentBook: null,
 	completedBooks: [],
-	currentBookComposition: {}, // Tracks words written per scene type
-	selectedGenre: null, // Track the currently selected genre for new books
+	currentBookComposition: {},
+	selectedGenre: null,
 	
-	// Track if the player has seen the intro tutorial
 	introSeen: false,
 	
-	// Track if rebirth modals have been shown in the current life
 	rebirthOnePrompted: false,
 	rebirthTwoPrompted: false,
 	
-	// Added: Badge tracking
-	earnedBadges: [] // Stores keys of earned badges
+	earnedBadges: [],
+	
+	// Added: Data for author profile modal
+	monthlyChartData: [], // Stores monthly data points for the chart
+	logHistory: [] // Stores all log messages
 };
 
-var tempData = {};
+var tempData = {
+	// Added: Temporary tracker for monthly chart data
+	monthlyTracker: {
+		lastDayChecked: 365 * 20,
+		income: 0,
+		expense: 0,
+		royalties: 0,
+		wordsWritten: 0,
+		booksPublished: 0,
+		inspirationSum: 0,
+		inspirationCount: 0,
+		qualitySum: 0,
+		qualityCount: 0
+	}
+};
 
 // Constants
 const baseLifespan = 365 * 70;
@@ -87,20 +95,20 @@ var textUpdateTimer = 0;
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
 var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData, sceneTypesBaseData, genreIdealsBaseData, booksFirstPageBaseData, introSlidesBaseData;
-var badgeBaseData; // Added: Badge data container
+var badgeBaseData;
 
 // Track current intro slide index
 var currentIntroSlide = 0;
 
 // Modified: Manual & Automatic Writing State
-var currentAutoSceneType = null; // Tracks the scene type for automatic writing
-var nextSceneType = "Action"; // Track the next scene type to transition to
-var isHoldingSceneButton = false; // Tracks manual hold
+var currentAutoSceneType = null;
+var nextSceneType = "Action";
+var isHoldingSceneButton = false;
 var currentTypewriterSentence = "";
 var typewriterIndex = 0;
 var typewriterText = "";
-var isLiveCorrecting = false; // Tracks if the typewriter is currently fixing a typo
-var liveTypingDelay = 0;      // Timer for the next keystroke
-var isWaitingToClearLine = false; // Tracks if the line should clear after the current word
-var isClearingLine = false; // Tracks if we are in the 200ms pause before clearing the line
-var currentTypingSceneType = null; // Tracks the scene type currently being typed to detect changes
+var isLiveCorrecting = false;
+var liveTypingDelay = 0;
+var isWaitingToClearLine = false;
+var isClearingLine = false;
+var currentTypingSceneType = null;

@@ -155,7 +155,6 @@
     background-color: #2e2e2e !important;
 }
 
-/* Added: Scene button active border for dark mode */
 .dark .scene-btn-active {
     border-color: #a8d08d !important;
 }
@@ -200,7 +199,6 @@
     color: #ccc;
 }
 
-/* Added: Dark mode styles for mobile nav and intro modal */
 .dark .mobile-nav {
     background-color: #1a1a1a;
     border-top: 1px solid #444;
@@ -220,7 +218,6 @@
     border-top: 1px solid #444;
 }
 
-/* Added: Dark mode styles for badges */
 .dark .badge-icon.locked-badge {
     filter: grayscale(100%) brightness(0.6);
 }
@@ -241,4 +238,39 @@
 
 .dark .mobile-badge-grid .badge-wrapper.locked-badge .badge-name-mobile {
     color: #666;
+}
+
+.dark .profile-modal-tabs .tab-btn {
+    background-color: #252525;
+    border-bottom-color: #444;
+    color: #aaa;
+}
+
+.dark .profile-modal-tabs .tab-btn.active {
+    background-color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
+    color: #fff;
+}
+
+/* Modified: Removed styles that are no longer needed */
+.dark .profile-modal-tab-content {
+    background-color: transparent; /* Body now has the background */
+    border-color: transparent; /* Body now has the border */
+}
+
+/* Added: Style for the new footer */
+.dark .profile-modal-footer {
+    border-top-color: #444;
+}
+
+.dark .profile-settings-section h3 {
+    border-bottom-color: #444;
+}
+
+.dark .profile-achievements-grid .badge-wrapper.locked-badge .badge-name-mobile {
+    color: #666;
+}
+
+.dark .profile-log-container .log-entry {
+    border-bottom-color: #444;
 }

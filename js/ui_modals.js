@@ -1,11 +1,11 @@
 // Modal, popup, and overlay logic
 
 let typingTimeout = null;
+// Removed: Chart.js instance variable is no longer needed
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	// Modified: Added badge modals to the list
-	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'settingsModal', 'badgeDetailsModal', 'mobileBadgeModal'];
+	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'badgeDetailsModal', 'mobileBadgeModal', 'authorProfileModal'];
 	let anyOpen = false;
 	for (const id of modals) {
 		const m = document.getElementById(id);
@@ -22,7 +22,6 @@ function queueTutorialModal (title, text) {
 	popupQueue.push({ type: 'tutorial', title: title, text: text });
 }
 
-// Modified: Add a flag for badge popups
 function queueInfoModal (imgEl, isNewUnlock = false, isBadge = false) {
 	if (isBadge) {
 		popupQueue.push({ type: 'badge', imgEl: imgEl, isNewUnlock: isNewUnlock });
@@ -47,7 +46,6 @@ function closeTutorialModal () {
 	updatePauseState();
 }
 
-// Modified: Add isBadge parameter to handle badge-specific display logic
 function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	const name = imgElement.getAttribute('data-name');
 	const type = imgElement.getAttribute('data-type');
@@ -84,7 +82,7 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	} else if (type === 'experience') {
 		categoryText = 'Life Experience';
 		actionWord = 'gain';
-	} else if (type === 'badge') { // Added: Handle badge type
+	} else if (type === 'badge') {
 		categoryText = 'Badge Earned';
 		actionWord = 'earn';
 	}
@@ -103,7 +101,6 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	}
 	
 	let descriptionText = tooltips[name] || '';
-	// Added: For badges, pull description from badgeBaseData
 	if (isBadge && badgeBaseData && badgeBaseData[name.toLowerCase().replace(/ /g, '_')]) {
 		const badge = badgeBaseData[name.toLowerCase().replace(/ /g, '_')];
 		descriptionText = badge.description;
@@ -139,7 +136,7 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	}
 	
 	modal.style.display = 'flex';
-	updatePauseState(); // Pause game
+	updatePauseState();
 }
 
 function closeInfoModal () {
@@ -148,7 +145,6 @@ function closeInfoModal () {
 	updatePauseState();
 }
 
-// Added: Functions for badge modals
 function showBadgeModal(badgeId) {
 	const badge = badgeBaseData[badgeId];
 	if (!badge) return;
@@ -229,7 +225,7 @@ function showAuthorSelection () {
 		stats.style.color = '#888';
 		stats.style.textAlign = 'left';
 		stats.style.marginTop = '10px';
-		stats.style.marginBottom = '15px'; // Added margin to space out from the button
+		stats.style.marginBottom = '15px';
 		stats.style.lineHeight = '1.5';
 		stats.style.width = '100%';
 		stats.innerHTML = `
@@ -242,7 +238,7 @@ function showAuthorSelection () {
 		
 		const selectBtn = document.createElement('button');
 		selectBtn.className = 'btn';
-		selectBtn.style.marginTop = 'auto'; // Modified: Push button to the bottom of the card
+		selectBtn.style.marginTop = 'auto';
 		selectBtn.style.width = '100%';
 		selectBtn.textContent = 'Select';
 		selectBtn.onclick = () => selectAuthor(key);
@@ -255,14 +251,13 @@ function showAuthorSelection () {
 	}
 	
 	screen.style.display = 'flex';
-	updatePauseState(); // Pause game
+	updatePauseState();
 }
 
-// Set the selected author and continue game initialization
 function selectAuthor (authorId) {
 	gameData.currentAuthor = authorId;
 	document.getElementById('authorSelectionScreen').style.display = 'none';
-	updatePauseState(); // Unpause game
+	updatePauseState();
 	continueInit();
 }
 
@@ -271,21 +266,21 @@ function showAuthorBio (authorId) {
 	document.getElementById('bioModalName').textContent = author.name;
 	document.getElementById('bioModalText').innerHTML = author.biography;
 	document.getElementById('authorBioModal').style.display = 'flex';
-	updatePauseState(); // Pause game
+	updatePauseState();
 }
 
 function closeAuthorBio () {
 	document.getElementById('authorBioModal').style.display = 'none';
-	updatePauseState(); // Unpause game
+	updatePauseState();
 }
 
 function showIntroModal () {
 	const introModal = document.getElementById('introModal');
 	if (introModal) {
-		currentIntroSlide = 0; // Reset to first slide
-		updateIntroSlide();    // Populate slide content
+		currentIntroSlide = 0;
+		updateIntroSlide();
 		introModal.style.display = 'flex';
-		updatePauseState(); // Pause game
+		updatePauseState();
 	}
 }
 
@@ -317,7 +312,7 @@ function updateIntroSlide () {
 	
 	if (currentIntroSlide === slideKeys.length - 1) {
 		nextBtn.textContent = 'Start Journey';
-		nextBtn.classList.add('btn-active'); // Highlight the start button
+		nextBtn.classList.add('btn-active');
 	} else {
 		nextBtn.textContent = 'Next';
 		nextBtn.classList.remove('btn-active');
@@ -350,7 +345,7 @@ function closeIntroModal () {
 	}
 	gameData.introSeen = true;
 	saveGameData();
-	updatePauseState(); // Unpause game
+	updatePauseState();
 }
 
 function showBookModal (bookId) {
@@ -372,7 +367,7 @@ function showBookModal (bookId) {
 	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
 	
 	modal.style.display = 'flex';
-	updatePauseState(); // Pause game
+	updatePauseState();
 	
 	const firstPageText = (booksFirstPageBaseData && booksFirstPageBaseData[bookId]) ? booksFirstPageBaseData[bookId] : 'Chapter 1\n\nThe beginning of a new journey...';
 	startTypingEffect(firstPageText, 'bookModalFirstPage');
@@ -382,7 +377,7 @@ function closeBookModal () {
 	if (typingTimeout) clearTimeout(typingTimeout);
 	const modal = document.getElementById('bookModal');
 	if (modal) modal.style.display = 'none';
-	updatePauseState(); // Unpause game
+	updatePauseState();
 }
 
 function showBookFinishedModal (bookId, quality, royalty) {
@@ -410,13 +405,13 @@ function showBookFinishedModal (bookId, quality, royalty) {
 	`;
 	
 	modal.style.display = 'flex';
-	updatePauseState(); // Pause game
+	updatePauseState();
 }
 
 function closeBookFinishedModal () {
 	const modal = document.getElementById('bookFinishedModal');
 	if (modal) modal.style.display = 'none';
-	updatePauseState(); // Unpause game
+	updatePauseState();
 }
 
 function showRebirthOneModal () {
@@ -475,17 +470,83 @@ function closeRetirementModal () {
 	updatePauseState();
 }
 
-function showSettingsModal () {
-	const modal = document.getElementById('settingsModal');
-	if (modal) modal.style.display = 'flex';
+function showAuthorProfileModal () {
+	const modal = document.getElementById('authorProfileModal');
+	if (!modal || !gameData.currentAuthor) return;
+	
+	// --- Populate Profile Tab ---
+	const author = authorsBaseData[gameData.currentAuthor];
+	const profileImg = document.getElementById('profileAuthorImage');
+	const filefolder = author.filefolder + '256';
+	const filename = getAuthorImageFilename(author);
+	profileImg.src = `img/${filefolder}/${filename}`;
+	
+	document.getElementById('profileAuthorName').textContent = author.name;
+	document.getElementById('profileAuthorBio').innerHTML = author.biography;
+	document.getElementById('profileGameVersion').textContent = 'v' + GAME_VERSION;
+	
+	// --- Populate Achievements Tab ---
+	const achievementsGrid = document.getElementById('profileAchievementsGrid');
+	achievementsGrid.innerHTML = '';
+	for (const badgeId in badgeBaseData) {
+		const badge = badgeBaseData[badgeId];
+		const isEarned = gameData.earnedBadges.includes(badgeId);
+		const wrapper = document.createElement('div');
+		wrapper.className = 'badge-wrapper' + (isEarned ? '' : ' locked-badge');
+		wrapper.onclick = () => showBadgeModal(badgeId);
+		wrapper.innerHTML = `
+            <img src="img/${badge.filefolder}256/${badge.filename.replace('.png', '.jpg')}" class="badge-icon-mobile" alt="${badge.name}">
+            <div class="badge-name-mobile">${badge.name}</div>
+        `;
+		achievementsGrid.appendChild(wrapper);
+	}
+	
+	const achievementsBooks = document.getElementById('profileAchievementsBooks');
+	achievementsBooks.innerHTML = '';
+	if (gameData.completedBooks.length > 0) {
+		for (let i = gameData.completedBooks.length - 1; i >= 0; i--) {
+			const bookRecord = gameData.completedBooks[i];
+			const bookData = booksBaseData[bookRecord.id];
+			if (!bookData) continue;
+			const div = document.createElement('div');
+			div.className = 'ui-row';
+			div.style.marginBottom = '10px';
+			div.innerHTML = `
+                <img src="img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}" class="row-image" style="width: 50px; height: 75px; object-fit: cover; border-radius: 4px;">
+                <div class="row-info">
+                    <div class="row-title">${bookData.title}</div>
+                    <div class="row-value">Quality: ${bookRecord.quality.toFixed(1)}% | Royalties: $${format(bookRecord.royalties)}/day</div>
+                </div>`;
+			achievementsBooks.appendChild(div);
+		}
+	} else {
+		achievementsBooks.innerHTML = '<p>No books published yet.</p>';
+	}
+	
+	// --- Populate Logs Tab ---
+	const logContainer = document.getElementById('profileLogContainer');
+	logContainer.innerHTML = gameData.logHistory.map(log => `<div class="log-entry">${log}</div>`).join('');
+	
+	// --- Show Modal ---
+	modal.style.display = 'flex';
+	switchProfileTab('profile', document.querySelector('.profile-modal-tabs .tab-btn'));
 	updatePauseState();
 }
 
-function closeSettingsModal () {
-	const modal = document.getElementById('settingsModal');
+function closeAuthorProfileModal () {
+	const modal = document.getElementById('authorProfileModal');
 	if (modal) modal.style.display = 'none';
 	updatePauseState();
 }
+
+// Modified: This function now calls the custom drawing function from chart.js
+function renderAuthorChart () {
+	// A small delay to ensure the canvas is visible and has its final dimensions
+	setTimeout(() => {
+		drawAuthorChart('authorChart', gameData.monthlyChartData);
+	}, 100);
+}
+
 
 function startTypingEffect (fullText, elementId) {
 	if (typingTimeout) clearTimeout(typingTimeout);
@@ -510,19 +571,19 @@ function startTypingEffect (fullText, elementId) {
 			return;
 		}
 		
-		let delay = Math.random() * 40 + 20; // 20-60ms typing speed
+		let delay = Math.random() * 40 + 20;
 		
 		if (isCorrecting) {
 			currentHTML = currentHTML.slice(0, -1);
 			isCorrecting = false;
-			delay = 100; // Pause after deleting
+			delay = 100;
 		} else {
 			const char = fullText[currentIndex];
 			
 			if (/[a-zA-Z]/.test(char) && Math.random() < 0.02) {
 				currentHTML += getRandomChar();
 				isCorrecting = true;
-				delay = 150; // Pause before realizing the mistake
+				delay = 150;
 			} else {
 				if (char === '\n') {
 					currentHTML += '<br>';
@@ -580,12 +641,11 @@ window.addEventListener('click', function (event) {
 		closeRebirthTwoModal();
 	}
 	
-	const settingsModal = document.getElementById('settingsModal');
-	if (settingsModal && settingsModal.style.display === 'flex' && event.target === settingsModal) {
-		closeSettingsModal();
+	const authorProfileModal = document.getElementById('authorProfileModal');
+	if (authorProfileModal && authorProfileModal.style.display === 'flex' && event.target === authorProfileModal) {
+		closeAuthorProfileModal();
 	}
 	
-	// Added: Close listeners for badge modals
 	const badgeDetailsModal = document.getElementById('badgeDetailsModal');
 	if (badgeDetailsModal && badgeDetailsModal.style.display === 'flex' && event.target === badgeDetailsModal) {
 		closeBadgeModal();

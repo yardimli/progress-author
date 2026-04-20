@@ -76,7 +76,6 @@ function saveGameData() {
 function loadGameData() {
 	let gameDataSave;
 	
-	// Wrap JSON.parse in try-catch to handle corrupted localstorage data
 	try {
 		gameDataSave = JSON.parse(localStorage.getItem("authorsJourneySave"));
 	} catch (error) {
@@ -86,21 +85,18 @@ function loadGameData() {
 	}
 	
 	if (gameDataSave !== null) {
-		// Auto-reset immediately if the save data doesn't have a version at all (legacy saves)
 		if (!gameDataSave.version) {
 			resetGameData();
 			return;
 		}
 		
-		// Check if the saved version exists but does not match the current game version
 		if (gameDataSave.version !== GAME_VERSION) {
-			// Show the version mismatch modal
 			let versionModal = document.getElementById('versionModal');
 			if (versionModal) {
 				versionModal.style.display = 'flex';
 			}
-			isPaused = true; // Pause the game
-			return; // Abort loading old save to prevent crashes, wait for user to reset
+			isPaused = true;
+			return;
 		}
 		
 		replaceSaveDict(gameData, gameDataSave);
@@ -110,17 +106,14 @@ function loadGameData() {
 		
 		gameData = gameDataSave;
 		
-		// Backward compatibility for potions
 		if (!gameData.potions) {
 			gameData.potions = { inspiration: 0, acceleration: 0 };
 		}
 		
-		// Backward compatibility for unlocks
 		if (!gameData.unlocks) {
 			gameData.unlocks = { shop: false, skills: false, writing: false };
 		}
 		
-		// Added: Backward compatibility for rebirth prompts
 		if (gameData.rebirthOnePrompted === undefined) {
 			gameData.rebirthOnePrompted = false;
 		}
@@ -128,9 +121,16 @@ function loadGameData() {
 			gameData.rebirthTwoPrompted = false;
 		}
 		
-		// Added: Backward compatibility for badges
 		if (!gameData.earnedBadges) {
 			gameData.earnedBadges = [];
+		}
+		
+		// Added: Backward compatibility for chart and log data
+		if (!gameData.monthlyChartData) {
+			gameData.monthlyChartData = [];
+		}
+		if (!gameData.logHistory) {
+			gameData.logHistory = [];
 		}
 		
 		if (gameData.completedBooks && gameData.completedBooks.length > 0) {

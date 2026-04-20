@@ -115,7 +115,6 @@ function createAllRows (categoryType, containerId) {
 			const freeItemsDiv = document.createElement('div');
 			freeItemsDiv.className = 'category-section';
 			
-			// Dynamically generate Bonus Items (Potions) using JSON data
 			const headerHTML = `
         <div class="category-header" style="margin-top: 25px;">Bonus Items</div>
       `;
@@ -152,7 +151,6 @@ function createAllRows (categoryType, containerId) {
 	}
 }
 
-// Function to dynamically generate the Life Experiences UI
 function initLifeExperiencesUI () {
 	const container = document.getElementById('lifeExperiencesContainer');
 	if (!container) return;
@@ -178,43 +176,8 @@ function initLifeExperiencesUI () {
 	}
 }
 
-// Added: Function to initialize the badge UI display
-function initBadgesUI() {
-	const desktopContainer = document.getElementById('badgeContainer');
-	const mobileContainer = document.getElementById('mobileBadgeGrid');
-	if (!desktopContainer || !mobileContainer || !badgeBaseData) return;
-	
-	desktopContainer.innerHTML = '';
-	mobileContainer.innerHTML = '';
-	
-	for (const badgeId in badgeBaseData) {
-		const badge = badgeBaseData[badgeId];
-		const imgSrc = `img/${badge.filefolder}256/${badge.filename.replace('.png', '.jpg')}`;
-		
-		// Create desktop icon
-		const desktopIcon = document.createElement('img');
-		desktopIcon.id = `badge-icon-desktop-${badgeId}`;
-		desktopIcon.src = imgSrc;
-		desktopIcon.className = 'badge-icon locked-badge';
-		desktopIcon.title = `${badge.name} (Locked)`;
-		desktopIcon.onclick = () => showBadgeModal(badgeId);
-		desktopContainer.appendChild(desktopIcon);
-		
-		// Create mobile grid item
-		const mobileWrapper = document.createElement('div');
-		mobileWrapper.id = `badge-wrapper-mobile-${badgeId}`;
-		mobileWrapper.className = 'badge-wrapper locked-badge';
-		mobileWrapper.onclick = () => showBadgeModal(badgeId);
-		mobileWrapper.innerHTML = `
-            <img src="${imgSrc}" class="badge-icon-mobile" alt="${badge.name}">
-            <div class="badge-name-mobile">${badge.name}</div>
-        `;
-		mobileContainer.appendChild(mobileWrapper);
-	}
-}
+// Removed: initBadgesUI function is no longer needed as badges are built on-demand in the modal.
 
-
-// Populate the genre selection buttons
 function populateGenres () {
 	const container = document.getElementById('genreButtonsContainer');
 	if (!container) return;
@@ -237,28 +200,24 @@ function populateGenres () {
 			container.appendChild(btn);
 		}
 		
-		// Set a default if none selected
 		if (!gameData.selectedGenre && firstGenre) {
 			gameData.selectedGenre = firstGenre;
-			populateGenres(); // Re-render to show active state
+			populateGenres();
 		}
 	}
 }
 
-// Handle genre selection
 function selectGenre (genre) {
 	gameData.selectedGenre = genre;
-	populateGenres(); // Update active button classes
-	if (typeof updateUI === 'function') updateUI(); // Refresh expected quality
+	populateGenres();
+	if (typeof updateUI === 'function') updateUI();
 }
 
-// Build the manual writing scene buttons dynamically based on the current genre
 function buildSceneButtons() {
 	const container = document.getElementById('sceneButtonsContainer');
 	if (!container || typeof sceneTypesBaseData === 'undefined') return;
 	container.innerHTML = '';
 	
-	// Determine current genre to pull appropriate scene types
 	let currentGenre = "Romance";
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
 		currentGenre = booksBaseData[gameData.currentBook].genre;
@@ -266,7 +225,6 @@ function buildSceneButtons() {
 		currentGenre = gameData.selectedGenre;
 	}
 	
-	// Pull all available scenes for the current genre, allowing the player to make mistakes
 	let availableScenes = sceneTypesBaseData[currentGenre];
 	if (!availableScenes) return;
 	
@@ -275,7 +233,6 @@ function buildSceneButtons() {
 		btn.className = 'btn scene-btn';
 		btn.dataset.scene = sceneType;
 		
-		// Modified: Wrap text and percentage in spans for independent targeting
 		let contentWrapper = document.createElement('span');
 		contentWrapper.style.position = 'relative';
 		contentWrapper.style.zIndex = '1';
@@ -287,16 +244,13 @@ function buildSceneButtons() {
 		contentWrapper.appendChild(nameSpan);
 		btn.appendChild(contentWrapper);
 		
-		// Mouse events
 		btn.addEventListener('mousedown', () => handleSceneHoldStart(sceneType));
 		btn.addEventListener('mouseup', () => handleSceneHoldEnd());
 		btn.addEventListener('mouseleave', () => handleSceneHoldEnd());
 		
-		// Touch events for mobile
 		btn.addEventListener('touchstart', (e) => { e.preventDefault(); handleSceneHoldStart(sceneType); });
 		btn.addEventListener('touchend', (e) => { e.preventDefault(); handleSceneHoldEnd(); });
 		
-		// Click event (3 seconds progress)
 		btn.addEventListener('click', () => handleSceneClick(sceneType));
 		
 		container.appendChild(btn);

@@ -1,5 +1,3 @@
-// js/ui_updater.js:
-
 // Dynamic UI updates for the game loop
 
 function updateRequiredRows (data, categoryType) {
@@ -16,15 +14,14 @@ function updateRequiredRows (data, categoryType) {
 			if (!element) continue;
 			
 			const requirements = gameData.requirements[entityName];
-			const previouslyCompleted = requirements ? requirements.completed : true; // Track previous state
+			const previouslyCompleted = requirements ? requirements.completed : true;
 			
 			if (!requirements || requirements.isCompleted()) {
 				if (element.classList.contains('hiddenTask')) {
 					element.classList.remove('hiddenTask');
-					// Queue info modal if newly unlocked
 					if (requirements && !previouslyCompleted && isInitialized) {
 						const imgEl = element.querySelector('.card-image, .row-image');
-						if (imgEl) queueInfoModal(imgEl, true); // Added true flag for new unlocks
+						if (imgEl) queueInfoModal(imgEl, true);
 					}
 				}
 			} else {
@@ -146,13 +143,6 @@ function updateItemRows () {
 	}
 }
 
-// Added: New helper function to get the author's image based on their age.
-/**
- * Gets the correct author image filename based on the author's current age.
- * The image changes at the start of each decade (30, 40, 50, 60).
- * @param {object} authorData - The base data for the current author.
- * @returns {string} The filename for the aged portrait (e.g., 'arthur_pendelton_40.jpg').
- */
 function getAuthorImageFilename (authorData) {
 	const age = daysToYears(gameData.days);
 	const baseFilename = authorData.filename.replace('.png', '');
@@ -178,11 +168,9 @@ function updateAuthorAndBookUI () {
 		const authorName = document.getElementById('authorNameDisplay');
 		
 		const filefolder = author.filefolder + '256';
-		// Modified: Use helper function to get age-appropriate filename
 		const filename = getAuthorImageFilename(author);
 		const imgSrc = `img/${filefolder}/${filename}`;
 		
-		// Modified: Check if src needs updating to prevent unnecessary DOM changes
 		if (authorImg && !authorImg.src.includes(imgSrc)) {
 			authorImg.src = imgSrc;
 		}
@@ -200,7 +188,7 @@ function updateAuthorAndBookUI () {
 		if (bookSelectionContainer) bookSelectionContainer.style.display = 'none';
 		if (bookStatusRow) bookStatusRow.style.display = 'flex';
 		if (manualWritingContainer) manualWritingContainer.style.display = 'flex';
-		if (lifeExpSection) lifeExpSection.style.display = 'none'; // Hide when actively writing
+		if (lifeExpSection) lifeExpSection.style.display = 'none';
 		
 		const book = booksBaseData[gameData.currentBook];
 		const bookImg = document.getElementById('currentBookImage');
@@ -224,7 +212,7 @@ function updateAuthorAndBookUI () {
 		if (bookSelectionContainer) bookSelectionContainer.style.display = 'flex';
 		if (bookStatusRow) bookStatusRow.style.display = 'none';
 		if (manualWritingContainer) manualWritingContainer.style.display = 'none';
-		if (lifeExpSection) lifeExpSection.style.display = 'block'; // Show when selecting genre
+		if (lifeExpSection) lifeExpSection.style.display = 'block';
 	}
 }
 
@@ -297,45 +285,7 @@ function updatePotionsUI () {
 	});
 }
 
-// Added: Function to update badge UI based on earned status
-function updateBadgesUI() {
-	if (!badgeBaseData) return;
-	for (const badgeId in badgeBaseData) {
-		const isEarned = gameData.earnedBadges.includes(badgeId);
-		const badge = badgeBaseData[badgeId];
-		
-		// Desktop
-		const desktopIcon = document.getElementById(`badge-icon-desktop-${badgeId}`);
-		if (desktopIcon) {
-			if (isEarned) {
-				if (desktopIcon.classList.contains('locked-badge')) {
-					desktopIcon.classList.remove('locked-badge');
-					desktopIcon.title = badge.name;
-				}
-			} else {
-				if (!desktopIcon.classList.contains('locked-badge')) {
-					desktopIcon.classList.add('locked-badge');
-					desktopIcon.title = `${badge.name} (Locked)`;
-				}
-			}
-		}
-		
-		// Mobile
-		const mobileWrapper = document.getElementById(`badge-wrapper-mobile-${badgeId}`);
-		if (mobileWrapper) {
-			if (isEarned) {
-				if (mobileWrapper.classList.contains('locked-badge')) {
-					mobileWrapper.classList.remove('locked-badge');
-				}
-			} else {
-				if (!mobileWrapper.classList.contains('locked-badge')) {
-					mobileWrapper.classList.add('locked-badge');
-				}
-			}
-		}
-	}
-}
-
+// Removed: updateBadgesUI is no longer needed for the header.
 
 function updateText () {
 	const updateIfChanged = (id, newText) => {
@@ -375,7 +325,6 @@ function updateText () {
 	updateIfChanged('writingSpeedDisplayTab', format(writingSpeed));
 	updateIfChanged('bookQualityDisplayTab', getBookQuality().toFixed(2));
 	
-	// Display expected quality in the selection screen
 	updateIfChanged('expectedQualityDisplay', getBookQuality().toFixed(2));
 	
 	const speedOverlay = document.getElementById('writingSpeedOverlay');
@@ -389,7 +338,6 @@ function updateText () {
 	
 	const lifeExp = getLifeExperiences();
 	
-	// Dynamically update Life Experiences text using JSON data
 	if (typeof lifeExperiencesBaseData !== 'undefined') {
 		for (const key in lifeExperiencesBaseData) {
 			const expName = lifeExperiencesBaseData[key].name;
@@ -409,7 +357,6 @@ function updateText () {
 		}
 	}
 	
-	// Modified: Only update the composition multiplier display if the text or color actually changed
 	const compMultiplier = getCompositionMultiplier();
 	const compMultiplierDisplay = document.getElementById('compMultiplierDisplay');
 	if (compMultiplierDisplay) {
@@ -443,7 +390,6 @@ function updateText () {
 	}
 	updateIfChanged('writingProgressDisplay', writingProgress.toFixed(1) + '%');
 	
-	// Update game version display in settings
 	const versionDisplay = document.getElementById('gameVersionDisplay');
 	if (versionDisplay && versionDisplay.textContent !== 'v' + GAME_VERSION) {
 		versionDisplay.textContent = 'v' + GAME_VERSION;
@@ -495,7 +441,6 @@ function hideEntities () {
 	}
 }
 
-// Updates the composition statistics UI
 function updateCompositionUI () {
 	if (!gameData.currentBookComposition) return;
 	
@@ -504,7 +449,6 @@ function updateCompositionUI () {
 		totalWords += gameData.currentBookComposition[key];
 	}
 	
-	// Target the buttons directly to update their background strength via CSS variables
 	const sceneBtns = document.querySelectorAll('.scene-btn');
 	sceneBtns.forEach(btn => {
 		const sceneType = btn.dataset.scene;
@@ -515,20 +459,17 @@ function updateCompositionUI () {
 			pct = words / totalWords;
 		}
 		
-		// Modified: Only update the CSS variable if it changed
 		const currentPctVar = btn.style.getPropertyValue('--pct');
-		// Drop pct to 2 decimal places for comparison to avoid excessive updates from tiny float differences
 		pct = parseFloat(pct.toFixed(2));
 		if (currentPctVar !== String(pct)) {
 			btn.style.setProperty('--pct', pct);
 		}
 		
-		// Modified: Highlight active auto scene with border class instead of background class
 		const isActive = (sceneType === currentAutoSceneType);
 		if (isActive) {
 			if (!btn.classList.contains('scene-btn-active')) {
 				btn.classList.add('scene-btn-active');
-				btn.classList.remove('btn-active'); // Ensure old background class is removed
+				btn.classList.remove('btn-active');
 			}
 		} else {
 			if (btn.classList.contains('scene-btn-active')) {
@@ -538,49 +479,40 @@ function updateCompositionUI () {
 	});
 }
 
-// Handles the realistic typewriter effect for the manual writing interface
 function updateTypewriter (deltaTime) {
-	// Actively writing as long as there is a book and writing speed > 0
 	const isActivelyWriting = (gameData.currentBook !== null && getWritingSpeed() > 0);
 	
-	// Instantly stop outputting if not actively writing (unless finishing a typo correction)
 	if (!isActivelyWriting && !isLiveCorrecting) {
 		return;
 	}
 	
-	// If the player changed the scene type, immediately clear and start a new sentence
 	if (nextSceneType !== currentTypingSceneType) {
 		currentTypingSceneType = nextSceneType;
-		typewriterIndex = currentTypewriterSentence.length; // Force sentence end
-		isLiveCorrecting = false; // Cancel any ongoing typo correction
-		liveTypingDelay = 0; // Force immediate update
+		typewriterIndex = currentTypewriterSentence.length;
+		isLiveCorrecting = false;
+		liveTypingDelay = 0;
 	}
 	
 	liveTypingDelay -= deltaTime * 1000;
 	
-	// Use a while loop to process multiple characters if deltaTime is large.
-	// This prevents the typing speed from slowing down when frame rate is capped.
 	while (liveTypingDelay <= 0) {
-		// Clear the line if the 200ms delay has finished
 		if (isClearingLine) {
 			typewriterText = '';
 			isClearingLine = false;
-			isWaitingToClearLine = false; // Safety reset to ensure it doesn't trigger immediately again
+			isWaitingToClearLine = false;
 		}
 		
 		if (isLiveCorrecting) {
 			typewriterText = typewriterText.slice(0, -1);
 			isLiveCorrecting = false;
-			liveTypingDelay += 35; // Add to delay instead of overwriting
+			liveTypingDelay += 35;
 		} else {
-			// If the sentence is finished, clear the line and start over
 			if (typewriterIndex >= currentTypewriterSentence.length) {
-				typewriterText = ''; // Clear the line
+				typewriterText = '';
 				typewriterIndex = 0;
-				isWaitingToClearLine = false; // Reset line clear flag
-				isClearingLine = false; // Reset pause flag
+				isWaitingToClearLine = false;
+				isClearingLine = false;
 				
-				// Fetch new sentence using the queued scene type and current genre
 				const sceneToUse = nextSceneType || 'Action';
 				let currentGenre = 'Romance';
 				if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
@@ -589,7 +521,6 @@ function updateTypewriter (deltaTime) {
 					currentGenre = gameData.selectedGenre;
 				}
 				
-				// Access nested scene types by genre
 				const sentences = (sceneTypesBaseData && sceneTypesBaseData[currentGenre]) ? sceneTypesBaseData[currentGenre][sceneToUse] : null;
 				
 				if (sentences && sentences.length > 0) {
@@ -601,26 +532,24 @@ function updateTypewriter (deltaTime) {
 			
 			const char = currentTypewriterSentence[typewriterIndex];
 			
-			if (/[a-zA-Z]/.test(char) && Math.random() < 0.03) { // 3% chance for typo
+			if (/[a-zA-Z]/.test(char) && Math.random() < 0.03) {
 				const chars = 'abcdefghijklmnopqrstuvwxyz';
 				typewriterText += chars.charAt(Math.floor(Math.random() * chars.length));
 				isLiveCorrecting = true;
-				liveTypingDelay += 80; // Add to delay
+				liveTypingDelay += 80;
 			} else {
 				typewriterText += char;
 				typewriterIndex++;
-				liveTypingDelay += Math.random() * 16 + 32; // Add to delay
+				liveTypingDelay += Math.random() * 16 + 32;
 				
-				// Check if we should clear the line because we finished a word and exceeded 75% width
 				if (isWaitingToClearLine && (char === ' ' || char === '-')) {
-					isClearingLine = true; // Set flag to clear on next tick
-					liveTypingDelay += 250; // Add 200ms pause so the user can read the word
-					isWaitingToClearLine = false; // Reset flag after catching the word boundary
+					isClearingLine = true;
+					liveTypingDelay += 250;
+					isWaitingToClearLine = false;
 				}
 			}
 		}
 		
-		// Safety break to prevent infinite loops if delay gets stuck
 		if (liveTypingDelay <= 0 && liveTypingDelay > -1) {
 			liveTypingDelay = 1;
 		}
@@ -628,13 +557,10 @@ function updateTypewriter (deltaTime) {
 	
 	const displayEl = document.getElementById('liveWritingText');
 	if (displayEl) {
-		// Wrap the text in a span to accurately measure its width relative to the container
 		displayEl.innerHTML = '<span id="liveWritingTextInner">' + typewriterText + '</span><span class="blinking-cursor">|</span>';
-		displayEl.scrollLeft = displayEl.scrollWidth; // Keep cursor in view if it overflows
+		displayEl.scrollLeft = displayEl.scrollWidth;
 		
-		// Check if the text width exceeds 75% of the container's visible width
 		const innerSpan = document.getElementById('liveWritingTextInner');
-		// Prevent triggering if we are already in the process of clearing the line
 		if (innerSpan && innerSpan.offsetWidth > displayEl.clientWidth * 0.75 && !isClearingLine) {
 			isWaitingToClearLine = true;
 		}
@@ -654,5 +580,4 @@ function updateUI () {
 	updateBookHistory();
 	updatePotionsUI();
 	updateCompositionUI();
-	updateBadgesUI(); // Added: Update badge display
 }

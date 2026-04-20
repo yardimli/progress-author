@@ -3,6 +3,7 @@
 function applyExpenses () {
 	const coins = applySpeed(getExpense());
 	gameData.coins -= coins;
+	tempData.monthlyTracker.expense += coins; // Added: Track monthly expense
 	if (gameData.coins < 0) {
 		goBankrupt();
 	}
@@ -31,13 +32,12 @@ function checkUnlocks () {
 	}
 }
 
-// Added: Function to check for badge unlocks
 function checkBadgeUnlocks() {
 	if (!badgeBaseData) return;
 	
 	for (const badgeId in badgeBaseData) {
 		if (gameData.earnedBadges.includes(badgeId)) {
-			continue; // Already earned
+			continue;
 		}
 		
 		const badge = badgeBaseData[badgeId];
@@ -52,7 +52,6 @@ function checkBadgeUnlocks() {
 		if (allMet) {
 			gameData.earnedBadges.push(badgeId);
 			logEvent(`Badge Earned: <b style="color: #ffd700;">${badge.name}</b>!`);
-			// Create a fake image element to pass to the modal queue
 			const fakeImgEl = {
 				getAttribute: (attr) => {
 					if (attr === 'data-name') return badge.name;
@@ -66,7 +65,6 @@ function checkBadgeUnlocks() {
 	}
 }
 
-// Added: Helper function to check a single badge requirement
 function isRequirementMet(req) {
 	switch (req.type) {
 		case 'task':
@@ -90,7 +88,7 @@ function isRequirementMet(req) {
 			return count >= req.count;
 		}
 		case 'maxTaskLevel': {
-			const taskType = req.taskType; // "Job" or "Skill"
+			const taskType = req.taskType;
 			const baseData = taskType === "Job" ? jobBaseData : skillBaseData;
 			for (const taskName in baseData) {
 				if (gameData.taskData[taskName] && gameData.taskData[taskName].level >= req.level) {
@@ -176,7 +174,7 @@ function setMisc (miscName) {
 
 function drinkPotion (type) {
 	if (gameData.potions[type] <= 0) {
-		gameData.potions[type] = 600; // 10 minutes in seconds
+		gameData.potions[type] = 600;
 		if (type === 'inspiration') {
 			if (gameData.coins < 20000) {
 				gameData.coins = 20000;
@@ -198,6 +196,8 @@ function doCurrentTask (task) {
 function increaseCoins () {
 	const coins = applySpeed(getIncome());
 	gameData.coins += coins;
+	tempData.monthlyTracker.income += coins; // Added: Track monthly income
+	tempData.monthlyTracker.royalties += applySpeed(gameData.royalties); // Added: Track monthly royalties
 }
 
 function increaseDays () {
@@ -224,7 +224,7 @@ function getRawWritingSpeed () {
 		}
 	}
 	
-	const badgeMultiplier = getBadgeMultiplier("writingSpeed"); // Added: Badge multiplier for writing speed
+	const badgeMultiplier = getBadgeMultiplier("writingSpeed");
 	
 	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier * badgeMultiplier;
 }
@@ -241,13 +241,11 @@ function getQualityMultiplier () {
 	return 1;
 }
 
-// Called when the user clicks "Start Writing"
 function startWritingBook () {
 	if (!gameData.selectedGenre) return;
 	pickNextBook(gameData.selectedGenre);
-	buildSceneButtons(); // Rebuild buttons to match the new book's genre
+	buildSceneButtons();
 	
-	// Modified: Determine default scene type for auto-writing
 	let currentGenre = gameData.selectedGenre;
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
 		currentGenre = booksBaseData[gameData.currentBook].genre;
@@ -261,15 +259,14 @@ function startWritingBook () {
 	
 	updateUI();
 	
-	// Reset manual writing state
 	gameData.currentBookComposition = {};
 	typewriterText = '';
 	currentTypewriterSentence = '';
 	typewriterIndex = 0;
 	isHoldingSceneButton = false;
-	isWaitingToClearLine = false; // Reset line clear flag
-	isClearingLine = false; // Reset pause flag
-	currentTypingSceneType = null; // Reset typing scene type
+	isWaitingToClearLine = false;
+	isClearingLine = false;
+	currentTypingSceneType = null;
 }
 
 function pickNextBook (genre) {
@@ -279,19 +276,17 @@ function pickNextBook (genre) {
 	const completedIds = gameData.completedBooks.map(b => b.id);
 	let availableBooks = genreBooks.filter(id => !completedIds.includes(id));
 	
-	// Fallback if all books in the selected genre have been written
 	if (availableBooks.length === 0) {
 		availableBooks = genreBooks;
 	}
 	
-	// Ultimate fallback if genre doesn't exist in books
 	if (availableBooks.length === 0) {
 		availableBooks = allBooks;
 	}
 	
 	const randomIndex = Math.floor(Math.random() * availableBooks.length);
 	gameData.currentBook = availableBooks[randomIndex];
-	gameData.wordsWritten = 0; // Reset progress for the new book
+	gameData.wordsWritten = 0;
 }
 
 function getLifeExperiences () {
@@ -307,7 +302,6 @@ function getLifeExperiences () {
 		}
 	}
 	
-	// Apply author starting multipliers
 	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
 		const authorMults = authorsBaseData[gameData.currentAuthor].multipliers;
 		if (authorMults) {
@@ -343,8 +337,7 @@ function getBookQuality () {
 	const lifeExp = getLifeExperiences();
 	let expMultiplier = 1;
 	
-	// Determine which genre to use for calculating multipliers
-	let currentGenre = 'Romance'; // Default fallback
+	let currentGenre = 'Romance';
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
 		currentGenre = booksBaseData[gameData.currentBook].genre;
 	} else if (gameData.selectedGenre) {
@@ -353,7 +346,6 @@ function getBookQuality () {
 	
 	const genreMults = (typeof genresBaseData !== 'undefined' && genresBaseData[currentGenre]) ? genresBaseData[currentGenre] : null;
 	
-	// Dynamically calculate the multiplier using genre data
 	if (genreMults) {
 		for (const key in genreMults) {
 			const expValue = lifeExp[key.toLowerCase()] || 0;
@@ -361,7 +353,6 @@ function getBookQuality () {
 			expMultiplier += Math.log10(expValue + 1) * multValue;
 		}
 	} else if (typeof lifeExperiencesBaseData !== 'undefined') {
-		// Fallback to old logic if genres.json fails
 		for (const key in lifeExperiencesBaseData) {
 			const expData = lifeExperiencesBaseData[key];
 			const expValue = lifeExp[key.toLowerCase()] || 0;
@@ -369,7 +360,6 @@ function getBookQuality () {
 			expMultiplier += Math.log10(expValue + 1) * multValue;
 		}
 	} else {
-		// Ultimate fallback
 		expMultiplier += (Math.log10(lifeExp.hardship + 1) * 0.1) +
 			(Math.log10(lifeExp.observation + 1) * 0.1) +
 			(Math.log10(lifeExp.escapism + 1) * 0.1) +
@@ -395,12 +385,11 @@ function getBookQuality () {
 		}
 	}
 	
-	const badgeMultiplier = getBadgeMultiplier("writingQuality"); // Added: Badge multiplier for writing quality
+	const badgeMultiplier = getBadgeMultiplier("writingQuality");
 	
 	return baseSkillQuality * expMultiplier * itemQualityMultiplier * skillQualityMultiplier * badgeMultiplier;
 }
 
-// Calculate the composition multiplier based on how close the player matched the genre ideals
 function getCompositionMultiplier () {
 	if (!gameData.currentBookComposition) return 1;
 	
@@ -422,7 +411,6 @@ function getCompositionMultiplier () {
 	if (totalWords === 0) return 0.1;
 	
 	let distance = 0;
-	// Check all scene types present in either the composition or the ideals
 	const allSceneTypes = new Set([...Object.keys(gameData.currentBookComposition), ...Object.keys(ideals)]);
 	
 	for (const sceneType of allSceneTypes) {
@@ -431,7 +419,6 @@ function getCompositionMultiplier () {
 		distance += Math.abs(actualPct - idealPct);
 	}
 	
-	// Max distance is 3.0. Map distance 0 -> 3.0 multiplier, distance 3.0 -> 0.15 multiplier
 	let multiplier = 3.0 - (distance * 0.95);
 	if (multiplier < 0.15) multiplier = 0.15;
 	if (multiplier > 3.0) multiplier = 3.0;
@@ -439,13 +426,11 @@ function getCompositionMultiplier () {
 	return multiplier;
 }
 
-// Writing Progress Function (Called automatically every frame)
 function writeProgress (sceneType, timeInSeconds) {
 	if (!gameData.currentBook) return;
 	
 	let speedPerSecond = getWritingSpeed();
 	
-	// Modified: Apply flat 2x multiplier if holding the scene button
 	if (isHoldingSceneButton) {
 		speedPerSecond *= 2;
 	}
@@ -455,6 +440,7 @@ function writeProgress (sceneType, timeInSeconds) {
 	if (words <= 0) return;
 	
 	gameData.wordsWritten += words;
+	tempData.monthlyTracker.wordsWritten += words; // Added: Track monthly words
 	
 	if (!gameData.currentBookComposition) {
 		gameData.currentBookComposition = {};
@@ -470,19 +456,17 @@ function writeProgress (sceneType, timeInSeconds) {
 	}
 }
 
-// Interaction Handlers
 function handleSceneClick (sceneType) {
-	// Modified: Set active auto scene
 	currentAutoSceneType = sceneType;
-	nextSceneType = sceneType; // Queue the genre for the typewriter
+	nextSceneType = sceneType;
 	
-	// Modified: Instant 3 days of progress per click
 	if (gameData.currentBook) {
 		const speedPerDay = getWritingSpeed();
-		const words = speedPerDay * 3; // 3 days worth of words
+		const words = speedPerDay * 3;
 		
 		if (words > 0) {
 			gameData.wordsWritten += words;
+			tempData.monthlyTracker.wordsWritten += words; // Added: Track monthly words
 			
 			if (!gameData.currentBookComposition) {
 				gameData.currentBookComposition = {};
@@ -504,8 +488,8 @@ function handleSceneClick (sceneType) {
 
 function handleSceneHoldStart (sceneType) {
 	isHoldingSceneButton = true;
-	currentAutoSceneType = sceneType; // Modified: Update auto scene
-	nextSceneType = sceneType; // Queue the genre for the typewriter
+	currentAutoSceneType = sceneType;
+	nextSceneType = sceneType;
 }
 
 function handleSceneHoldEnd () {
@@ -521,7 +505,7 @@ function finishBook () {
 	const fame = gameData.fame;
 	const sales = (quality / 100) * (fame + 10) * 5;
 	let royalty = sales * 0.1;
-	royalty *= getBadgeMultiplier("royalties"); // Added: Badge multiplier for royalties
+	royalty *= getBadgeMultiplier("royalties");
 	
 	if (royalty < 0.10) {
 		royalty = 0.10;
@@ -529,6 +513,9 @@ function finishBook () {
 	
 	gameData.royalties += royalty;
 	gameData.booksPublished += 1;
+	tempData.monthlyTracker.booksPublished++; // Added: Track monthly books
+	tempData.monthlyTracker.qualitySum += quality; // Added: Track quality for monthly average
+	tempData.monthlyTracker.qualityCount++; // Added: Track quality for monthly average
 	
 	const bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : 'Unknown Book';
 	logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
@@ -551,18 +538,17 @@ function finishBook () {
 		showBookFinishedModal(gameData.currentBook, quality, royalty);
 	}
 	
-	// Stop writing and wait for the player to select the next genre
 	gameData.currentBook = null;
 	gameData.wordsWritten = 0;
 	gameData.currentBookComposition = {};
 	typewriterText = '';
-	currentTypewriterSentence = ''; // Reset sentence
-	typewriterIndex = 0; // Reset index
-	isHoldingSceneButton = false; // Reset hold state
-	currentAutoSceneType = null; // Clear active scene
-	isWaitingToClearLine = false; // Reset line clear flag
-	isClearingLine = false; // Reset pause flag
-	currentTypingSceneType = null; // Reset typing scene type
+	currentTypewriterSentence = '';
+	typewriterIndex = 0;
+	isHoldingSceneButton = false;
+	currentAutoSceneType = null;
+	isWaitingToClearLine = false;
+	isClearingLine = false;
+	currentTypingSceneType = null;
 	document.getElementById('liveWritingText').innerHTML = '<span class="blinking-cursor">|</span>';
 }
 
@@ -596,6 +582,8 @@ function rebirthReset () {
 	gameData.wordsWritten = 0;
 	gameData.booksPublished = 0;
 	gameData.royalties = 0;
+	gameData.logHistory = []; // Modified: Clear log history on rebirth
+	gameData.monthlyChartData = []; // Modified: Clear chart data on rebirth
 	gameData.currentJob = gameData.taskData['Gig Worker'];
 	gameData.currentSkill = gameData.taskData['Focus'];
 	gameData.currentProperty = gameData.itemData['Homeless'];
@@ -623,7 +611,7 @@ function rebirthReset () {
 function getLifespan () {
 	const healthy = gameData.taskData['Healthy Lifestyle'] ? gameData.taskData['Healthy Lifestyle'].getEffect() : 1;
 	const longevity = gameData.taskData['Longevity Secrets'] ? gameData.taskData['Longevity Secrets'].getEffect() : 1;
-	const badgeBonus = getBadgeMultiplier("lifespan") * 365; // Added: Badge bonus for lifespan (in days)
+	const badgeBonus = getBadgeMultiplier("lifespan") * 365;
 	return baseLifespan * healthy * longevity + badgeBonus;
 }
 
@@ -631,7 +619,7 @@ function isAlive () {
 	const condition = gameData.days < getLifespan();
 	if (!condition) {
 		gameData.days = getLifespan();
-		showRetirementModal(); // Show the forced retirement modal
+		showRetirementModal();
 		if (!gameData.loggedDeath) {
 			logEvent("You have reached your retirement age. It's time to retire.");
 			gameData.loggedDeath = true;

@@ -8,8 +8,9 @@ function updateLogic () {
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
     checkUnlocks();
-    checkBadgeUnlocks(); // Added: Check for new badge unlocks
-    checkRebirthPrompts(); // Check for age-based rebirth modals.
+    checkBadgeUnlocks();
+    checkRebirthPrompts();
+    trackMonthlyData(); // Added: Track data for chart
 }
 
 function gameLoop (currentTime) {
@@ -33,7 +34,7 @@ function gameLoop (currentTime) {
             showTutorialModal(popup.title, popup.text);
         } else if (popup.type === 'info') {
             showModal(popup.imgEl, popup.isNewUnlock);
-        } else if (popup.type === 'badge') { // Added: Handle badge popups
+        } else if (popup.type === 'badge') {
             showModal(popup.imgEl, popup.isNewUnlock, true);
         }
     }
@@ -50,20 +51,17 @@ function gameLoop (currentTime) {
             if (gameData.potions.acceleration < 0) gameData.potions.acceleration = 0;
         }
         
-        // Modified: Automatic writing process
         if (gameData.currentBook && currentAutoSceneType) {
             writeProgress(currentAutoSceneType, deltaTime);
         }
         
-        // Process the visual typewriter effect independently of game speed
         updateTypewriter(deltaTime);
         
-        // Run core game logic every frame so it scales correctly with deltaTime
         updateLogic();
         
         textUpdateTimer += deltaTime;
-        if (textUpdateTimer >= 0.2) { // Update UI 5 times a second to save CPU
-            textUpdateTimer -= 0.2; // Keep remainder instead of resetting to 0
+        if (textUpdateTimer >= 0.2) {
+            textUpdateTimer -= 0.2;
             updateUI();
         }
     }
@@ -71,10 +69,58 @@ function gameLoop (currentTime) {
     saveTimer += deltaTime;
     if (saveTimer >= 3) {
         saveGameData();
-        saveTimer -= 3; // Keep remainder instead of resetting to 0
+        saveTimer -= 3;
     }
     
     requestAnimationFrame(gameLoop);
+}
+
+// Added: Function to track and store monthly data for the chart
+function trackMonthlyData () {
+    const daysInMonth = 365 / 12;
+    const currentMonthIndex = Math.floor(gameData.days / daysInMonth);
+    const lastTrackedMonthIndex = Math.floor(tempData.monthlyTracker.lastDayChecked / daysInMonth);
+    
+    // Update trackers for the current frame
+    tempData.monthlyTracker.inspirationSum += getInspiration();
+    tempData.monthlyTracker.inspirationCount++;
+    
+    if (currentMonthIndex > lastTrackedMonthIndex) {
+        // A new month has passed, finalize and store the data
+        const age = daysToYears(tempData.monthlyTracker.lastDayChecked);
+        const month = Math.floor((tempData.monthlyTracker.lastDayChecked % 365) / daysInMonth);
+        
+        const avgInspiration = tempData.monthlyTracker.inspirationCount > 0 ? tempData.monthlyTracker.inspirationSum / tempData.monthlyTracker.inspirationCount : 0;
+        const avgQuality = tempData.monthlyTracker.qualityCount > 0 ? tempData.monthlyTracker.qualitySum / tempData.monthlyTracker.qualityCount : 0;
+        
+        gameData.monthlyChartData.push({
+            age: age + month / 12,
+            income: tempData.monthlyTracker.income,
+            expense: tempData.monthlyTracker.expense,
+            royalties: tempData.monthlyTracker.royalties,
+            wordsWritten: tempData.monthlyTracker.wordsWritten,
+            booksPublished: tempData.monthlyTracker.booksPublished,
+            inspiration: avgInspiration,
+            bookQuality: avgQuality
+        });
+        
+        // Reset the tracker for the new month
+        tempData.monthlyTracker = {
+            lastDayChecked: gameData.days,
+            income: 0,
+            expense: 0,
+            royalties: 0,
+            wordsWritten: 0,
+            booksPublished: 0,
+            inspirationSum: 0,
+            inspirationCount: 0,
+            qualitySum: 0,
+            qualityCount: 0
+        };
+    }
+    
+    // Always update the lastDayChecked to the current day
+    tempData.monthlyTracker.lastDayChecked = gameData.days;
 }
 
 async function init () {
@@ -88,9 +134,9 @@ async function init () {
             sceneTypesRes, genreIdealsRes,
             booksFirstPageRes,
             introSlidesRes,
-            badgesRes // Added: Fetch badges
+            badgesRes
         ] = await Promise.all([
-            fetch('data/jobs.json?' + gameData.version), // Cache busting with version query param
+            fetch('data/jobs.json?' + gameData.version),
             fetch('data/skills.json?' + gameData.version),
             fetch('data/items.json?' + gameData.version),
             fetch('data/jobCategories.json?' + gameData.version),
@@ -108,7 +154,7 @@ async function init () {
             fetch('data/genreIdeals.json?' + gameData.version),
             fetch('data/booksFirstPage.json?' + gameData.version),
             fetch('data/introSlides.json?' + gameData.version),
-            fetch('data/badges.json?' + gameData.version) // Added: Fetch badges
+            fetch('data/badges.json?' + gameData.version)
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -126,18 +172,17 @@ async function init () {
         booksBaseData = await booksRes.json();
         potionsBaseData = await potionsRes.json();
         lifeExperiencesBaseData = await lifeExpRes.json();
-        genresBaseData = await genresRes.json(); // Assign genres data
+        genresBaseData = await genresRes.json();
         sceneTypesBaseData = await sceneTypesRes.json();
         genreIdealsBaseData = await genreIdealsRes.json();
-        booksFirstPageBaseData = await booksFirstPageRes.json(); // Assign first page data
-        introSlidesBaseData = await introSlidesRes.json(); // Assign intro slides data
-        badgeBaseData = await badgesRes.json(); // Added: Assign badge data
+        booksFirstPageBaseData = await booksFirstPageRes.json();
+        introSlidesBaseData = await introSlidesRes.json();
+        badgeBaseData = await badgesRes.json();
         
         createAllRows(jobCategories, 'jobTable');
         createAllRows(skillCategories, 'skillTable');
         createAllRows(itemCategories, 'itemTable');
-        initLifeExperiencesUI(); // Initialize dynamic Life Experiences UI
-        initBadgesUI(); // Added: Initialize badge UI elements
+        initLifeExperiencesUI();
         
         createData(gameData.taskData, jobBaseData);
         createData(gameData.taskData, skillBaseData);
@@ -159,9 +204,8 @@ async function init () {
         loadGameData();
         
         if (!gameData.currentAuthor) {
-            // Show author selection screen instead of random pick
             showAuthorSelection();
-            return; // Halt initialization until author is selected
+            return;
         }
         
         continueInit();
@@ -172,25 +216,26 @@ async function init () {
     }
 }
 
-// Continues initialization after an author is selected or loaded
 function continueInit () {
-    populateGenres(); // Populate the genre dropdown
-    buildSceneButtons(); // Build the manual writing buttons
+    populateGenres();
+    buildSceneButtons();
     
     setCustomEffects();
     addMultipliers();
     
-    applyUnlocksUI(); // Apply hidden states to tabs based on unlocks
+    applyUnlocksUI();
     
-    updateLogic(); // Run logic once
-    updateUI();    // Update UI once
+    updateLogic();
+    updateUI();
     
     lastTime = performance.now();
     requestAnimationFrame(gameLoop);
     
-    logEvent("Started a new game. Welcome to Author's Journey!");
+    if (gameData.logHistory.length === 0) { // Modified: Check log history to prevent re-logging on load
+        logEvent("Started a new game. Welcome to Author's Journey!");
+    }
     
-    isInitialized = true; // Mark as initialized so new unlocks trigger modals
+    isInitialized = true;
     
     if (!gameData.introSeen) {
         showIntroModal();

@@ -13,12 +13,9 @@
 <div class="fixed-header-wrapper">
 	<div class="fixed-header-content">
 		<div id="topPanel" class="panel panel-padding-sm top-panel">
-			<!-- Left side: Stats and Author Info -->
 			<div class="top-panel-left">
-				<!-- Modified: Wrapped image and added settings icon -->
-				<div class="author-image-container">
+				<div id="authorImageContainer" class="author-image-container">
 					<img id="authorImage" src="" alt="Author" class="author-image">
-					<div id="settingsButton" class="settings-gear-icon" onclick="showSettingsModal()">⚙️</div>
 				</div>
 				
 				<div class="header-stats-container">
@@ -28,20 +25,7 @@
 					<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
 				</div>
 			</div>
-			
-			<!-- Added: Center container for Badges -->
-			<div class="top-panel-center" id="badgeContainer">
-				<!-- Badges will be populated by JS -->
-			</div>
-			
-			<!-- Right side: Logs -->
-			<div class="top-panel-right">
-				<div id="logContainer" class="scroll top-log-container">
-					<!-- Logs dynamically prepended here -->
-				</div>
-			</div>
 		</div>
-		<!-- Removed tabs-container -->
 	</div>
 </div>
 
@@ -150,15 +134,12 @@
 				<div id="writingSpeedOverlay" class="locked-tab-overlay" style="display: none;">
 					<div class="locked-tab-icon">⏳</div>
 					<div class="locked-tab-title">No Time Assigned</div>
-					<!-- Modified: Removed "in the top panel" from the text -->
 					<div class="locked-tab-reqs">Adjust the Work/Writing slider to allocate time for writing.</div>
-					<!-- Added: Quick start button to set 30% writing -->
 					<button class="btn btn-active" style="margin-top: 15px;" onclick="setInitialWritingBalance()">Start Writing</button>
 				</div>
 				
 				<div class="tab-description">Write and publish books to earn royalties and fame.</div>
 				
-				<!-- Modified: Moved Slider for Work/Writing balance here -->
 				<div id="workWritingSliderContainer" class="hidden slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
 					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
 					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
@@ -223,33 +204,76 @@
 	</div>
 </div>
 
-<!-- Settings Modal -->
-<div id="settingsModal" class="modal modal-overlay-info" style="display: none;">
-	<div class="modal-content modal-content-small">
-		<h2 class="modal-header-center">Settings</h2>
-		<ul style="list-style: none; padding: 0;">
-			<li>
-				<h3>Game Version</h3>
-				<p id="gameVersionDisplay" class="version-display"></p>
-			</li>
-			<li>
-				<h3>Import/export save</h3>
-				<button class="btn" onClick="importGameData()">Import</button>
-				<button class="btn" onClick="exportGameData()">Export</button>
-				<form class="settings-form">
-					<input id="importExportBox" type="text" class="import-export-box" />
-				</form>
-			</li>
-			<li>
-				<h3>Toggle light/dark mode</h3>
-				<button class="btn" onClick="setLightDarkMode()">Toggle</button>
-			</li>
-			<li>
-				<h3>Hard reset game</h3>
-				<button class="btn btn-danger" onClick="resetGameData()">Reset</button>
-			</li>
-		</ul>
-		<button class="btn btn-full-width-mt15" onclick="closeSettingsModal()">Close</button>
+<!-- Modified: Author Profile Modal with fixed header/footer structure -->
+<div id="authorProfileModal" class="modal modal-overlay-profile" style="display: none;">
+	<div class="modal-content modal-content-large">
+		<div class="profile-modal-tabs">
+			<button class="tab-btn active" onclick="switchProfileTab('profile', this)">Profile</button>
+			<button class="tab-btn" onclick="switchProfileTab('chart', this)">Chart</button>
+			<button class="tab-btn" onclick="switchProfileTab('achievements', this)">Achievements</button>
+			<button class="tab-btn" onclick="switchProfileTab('logs', this)">Logs</button>
+		</div>
+		
+		<div class="profile-modal-body">
+			<!-- Profile Tab -->
+			<div id="profileTab-profile" class="profile-modal-tab-content active">
+				<div class="profile-content-wrapper">
+					<div class="profile-left">
+						<img id="profileAuthorImage" src="" alt="Author" class="profile-author-image">
+						<h2 id="profileAuthorName" style="margin: 0;"></h2>
+					</div>
+					<div class="profile-right">
+						<h3>Biography</h3>
+						<p id="profileAuthorBio" class="bio-text"></p>
+					</div>
+				</div>
+				<div class="profile-settings-section">
+					<h3>Settings</h3>
+					<ul>
+						<li>
+							Game Version: <span id="profileGameVersion" class="version-display"></span>
+						</li>
+						<li>
+							<button class="btn" onClick="importGameData()">Import</button>
+							<button class="btn" onClick="exportGameData()">Export</button>
+							<form class="settings-form" style="display: inline-block;">
+								<input id="importExportBox" type="text" class="import-export-box" />
+							</form>
+						</li>
+						<li>
+							<button class="btn" onClick="setLightDarkMode()">Toggle Dark Mode</button>
+						</li>
+						<li>
+							<button class="btn btn-danger" onClick="resetGameData()">Hard Reset Game</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- Chart Tab -->
+			<div id="profileTab-chart" class="profile-modal-tab-content">
+				<div style="position: relative; height: 60vh; width: 100%;">
+					<canvas id="authorChart" style="height: 60vh; width: 100%;"></canvas>
+				</div>
+			</div>
+			
+			<!-- Achievements Tab -->
+			<div id="profileTab-achievements" class="profile-modal-tab-content">
+				<h3>Badges Earned</h3>
+				<div id="profileAchievementsGrid" class="profile-achievements-grid"></div>
+				<h3>Published Books</h3>
+				<div id="profileAchievementsBooks" class="category-content list"></div>
+			</div>
+			
+			<!-- Logs Tab -->
+			<div id="profileTab-logs" class="profile-modal-tab-content">
+				<div id="profileLogContainer" class="profile-log-container"></div>
+			</div>
+		</div>
+		
+		<div class="profile-modal-footer">
+			<button class="btn" onclick="closeAuthorProfileModal()">Close</button>
+		</div>
 	</div>
 </div>
 
@@ -280,12 +304,10 @@
 			<img id="introModalImage" src="" alt="Intro Image">
 		</div>
 		<div class="book-modal-right">
-			<!-- Modified: Added intro-modal-body wrapper for scrollable content -->
 			<div class="intro-modal-body">
 				<h2 id="introModalTitle" class="modal-title-nomargin">Welcome</h2>
 				<div id="introModalText" class="tutorial-text" style="margin-top: 15px;"></div>
 			</div>
-			<!-- Modified: Added intro-modal-footer wrapper to keep buttons fixed at bottom -->
 			<div class="intro-modal-footer">
 				<button id="introPrevBtn" class="btn" onclick="prevIntroSlide()">Previous</button>
 				<button id="introNextBtn" class="btn" onclick="nextIntroSlide()">Next</button>
@@ -422,7 +444,6 @@
 	</div>
 </div>
 
-<!-- Added: Badge Details Modal -->
 <div id="badgeDetailsModal" class="modal modal-overlay-badge" style="display: none;">
 	<div class="modal-content modal-content-xs">
 		<div class="modal-image-container">
@@ -436,7 +457,6 @@
 	</div>
 </div>
 
-<!-- Added: Mobile Badge Collection Modal -->
 <div id="mobileBadgeModal" class="modal modal-overlay-badge" style="display: none;">
 	<div class="modal-content modal-content-medium">
 		<h2 class="modal-header-center">My Badges</h2>
@@ -448,7 +468,6 @@
 </div>
 
 
-<!-- Added: Mobile Navigation Bar -->
 <div class="mobile-nav" id="mobileNav">
 	<button class="mobile-nav-btn active" onclick="switchMobileTab('jobs', this)">Work</button>
 	<button class="mobile-nav-btn" onclick="switchMobileTab('skills', this)">Skills</button>
@@ -456,6 +475,7 @@
 	<button class="mobile-nav-btn" onclick="switchMobileTab('writing', this)">Writing</button>
 </div>
 
+<!-- Modified: Removed Chart.js and added our custom chart script -->
 <script type="text/javascript">
 	(function() {
 		const v = Date.now();
@@ -464,6 +484,7 @@
 			"js/state.js",
 			"js/utils.js",
 			"js/formulas.js",
+			"js/chart.js", // Added new chart script
 			"js/ui_builder.js",
 			"js/ui_updater.js",
 			"js/ui_modals.js",

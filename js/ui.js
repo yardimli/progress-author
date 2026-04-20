@@ -1,18 +1,14 @@
 // Core UI interactions, layout toggles, and logging
 
-// Added: Function to handle switching tabs on mobile layout
 function switchMobileTab (tabId, btnElement) {
-	// Hide all columns
 	const columns = document.querySelectorAll('.panel-column');
 	columns.forEach(col => col.classList.remove('active-mobile'));
 	
-	// Show the selected column
 	const selectedCol = document.getElementById(tabId);
 	if (selectedCol) {
 		selectedCol.classList.add('active-mobile');
 	}
 	
-	// Update active state on navigation buttons
 	const navBtns = document.querySelectorAll('.mobile-nav-btn');
 	navBtns.forEach(btn => btn.classList.remove('active'));
 	
@@ -21,9 +17,7 @@ function switchMobileTab (tabId, btnElement) {
 	}
 }
 
-// Update UI visibility based on unlocks
 function applyUnlocksUI () {
-	// Toggle overlay visibility instead of hiding the tab buttons completely
 	const shopOverlay = document.getElementById('shopLockedOverlay');
 	if (shopOverlay) {
 		shopOverlay.style.display = gameData.unlocks.shop ? 'none' : 'flex';
@@ -39,7 +33,6 @@ function applyUnlocksUI () {
 		writingOverlay.style.display = gameData.unlocks.writing ? 'none' : 'flex';
 	}
 	
-	// The slider should still be hidden until writing is actually unlocked
 	if (gameData.unlocks.writing) {
 		document.getElementById('workWritingSliderContainer').classList.remove('hidden');
 	} else {
@@ -47,7 +40,6 @@ function applyUnlocksUI () {
 	}
 }
 
-// Added: Function to quickly set the writing balance from the overlay button
 function setInitialWritingBalance () {
 	updateWorkWritingBalance(30);
 }
@@ -65,24 +57,44 @@ function setLightDarkMode () {
 }
 
 function logEvent (message) {
-	const logContainer = document.getElementById('logContainer');
-	if (!logContainer) return;
-	const entry = document.createElement('div');
-	entry.className = 'log-entry';
 	const age = daysToYears(gameData.days);
 	const day = String(getDay()).padStart(3, '0');
-	entry.innerHTML = `<b style="color: #875F9A">[Age ${age}.${day} days]</b> ${message}`;
-	logContainer.prepend(entry);
+	const timestampedMessage = `<b style="color: #875F9A">[Age ${age}.${day} days]</b> ${message}`;
+	
+	gameData.logHistory.unshift(timestampedMessage);
+	
+	if (gameData.logHistory.length > 200) {
+		gameData.logHistory.pop();
+	}
 }
 
-// Added: Event listener for author image click to handle mobile badge modal
-document.addEventListener('DOMContentLoaded', (event) => {
-	const authorImage = document.getElementById('authorImage');
-	if (authorImage) {
-		authorImage.addEventListener('click', () => {
-			if (window.innerWidth <= 768) {
-				showMobileBadgeModal();
-			}
-		});
+// Modified: Event listener for author image click to open the profile modal.
+// The DOMContentLoaded wrapper was removed because the script is loaded at the end of the body,
+// guaranteeing the element exists. This prevents a race condition where the event might have already fired.
+const authorImageContainer = document.getElementById('authorImageContainer');
+if (authorImageContainer) {
+	authorImageContainer.addEventListener('click', () => {
+		showAuthorProfileModal();
+	});
+}
+
+function switchProfileTab (tabId, btnElement) {
+	const contents = document.querySelectorAll('.profile-modal-tab-content');
+	contents.forEach(content => content.classList.remove('active'));
+	
+	const buttons = document.querySelectorAll('.profile-modal-tabs .tab-btn');
+	buttons.forEach(btn => btn.classList.remove('active'));
+	
+	const selectedContent = document.getElementById(`profileTab-${tabId}`);
+	if (selectedContent) {
+		selectedContent.classList.add('active');
 	}
-});
+	
+	if (btnElement) {
+		btnElement.classList.add('active');
+	}
+	
+	if (tabId === 'chart') {
+		renderAuthorChart();
+	}
+}
