@@ -4,7 +4,8 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'settingsModal'];
+	// Modified: Added badge modals to the list
+	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'settingsModal', 'badgeDetailsModal', 'mobileBadgeModal'];
 	let anyOpen = false;
 	for (const id of modals) {
 		const m = document.getElementById(id);
@@ -21,9 +22,15 @@ function queueTutorialModal (title, text) {
 	popupQueue.push({ type: 'tutorial', title: title, text: text });
 }
 
-function queueInfoModal (imgEl, isNewUnlock = false) {
-	popupQueue.push({ type: 'info', imgEl: imgEl, isNewUnlock: isNewUnlock });
+// Modified: Add a flag for badge popups
+function queueInfoModal (imgEl, isNewUnlock = false, isBadge = false) {
+	if (isBadge) {
+		popupQueue.push({ type: 'badge', imgEl: imgEl, isNewUnlock: isNewUnlock });
+	} else {
+		popupQueue.push({ type: 'info', imgEl: imgEl, isNewUnlock: isNewUnlock });
+	}
 }
+
 
 // Show Tutorial Modal
 function showTutorialModal (title, text) {
@@ -40,7 +47,8 @@ function closeTutorialModal () {
 	updatePauseState();
 }
 
-function showModal (imgElement, isNewUnlock = false) {
+// Modified: Add isBadge parameter to handle badge-specific display logic
+function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	const name = imgElement.getAttribute('data-name');
 	const type = imgElement.getAttribute('data-type');
 	const modal = document.getElementById('infoModal');
@@ -76,13 +84,16 @@ function showModal (imgElement, isNewUnlock = false) {
 	} else if (type === 'experience') {
 		categoryText = 'Life Experience';
 		actionWord = 'gain';
+	} else if (type === 'badge') { // Added: Handle badge type
+		categoryText = 'Badge Earned';
+		actionWord = 'earn';
 	}
 	if (modalCategory) {
 		modalCategory.textContent = categoryText;
 	}
 	
 	if (isNewUnlock && modalUnlockMessage) {
-		const entityType = type === 'job' ? 'job' : (type === 'skill' ? 'skill' : 'item');
+		const entityType = type === 'job' ? 'job' : (type === 'skill' ? 'skill' : (type === 'badge' ? 'badge' : 'item'));
 		modalUnlockMessage.textContent = `You have unlocked a new ${entityType} to ${actionWord}!`;
 		modalUnlockMessage.style.display = 'block';
 		modalContent.classList.add('modal-new-unlock');
@@ -92,6 +103,12 @@ function showModal (imgElement, isNewUnlock = false) {
 	}
 	
 	let descriptionText = tooltips[name] || '';
+	// Added: For badges, pull description from badgeBaseData
+	if (isBadge && badgeBaseData && badgeBaseData[name.toLowerCase().replace(/ /g, '_')]) {
+		const badge = badgeBaseData[name.toLowerCase().replace(/ /g, '_')];
+		descriptionText = badge.description;
+		descriptionText += `<br><br><b style="color:#4CAF50;">Effect: ${badge.effect.text}</b>`;
+	}
 	if (type === 'job') {
 		const task = gameData.taskData[name];
 		if (task) {
@@ -130,6 +147,55 @@ function closeInfoModal () {
 	if (modal) modal.style.display = 'none';
 	updatePauseState();
 }
+
+// Added: Functions for badge modals
+function showBadgeModal(badgeId) {
+	const badge = badgeBaseData[badgeId];
+	if (!badge) return;
+	
+	const modal = document.getElementById('badgeDetailsModal');
+	const isEarned = gameData.earnedBadges.includes(badgeId);
+	
+	document.getElementById('badgeModalImage').src = `img/${badge.filefolder}256/${badge.filename.replace('.png', '.jpg')}`;
+	document.getElementById('badgeModalTitle').textContent = badge.name;
+	document.getElementById('badgeModalDescription').textContent = badge.description;
+	
+	const effectEl = document.getElementById('badgeModalEffect');
+	const statusEl = document.getElementById('badgeModalStatus');
+	
+	if (isEarned) {
+		effectEl.innerHTML = `<b>Effect:</b> ${badge.effect.text}`;
+		effectEl.style.display = 'block';
+		statusEl.textContent = 'Status: Unlocked';
+		statusEl.style.color = '#4CAF50';
+	} else {
+		effectEl.style.display = 'none';
+		statusEl.textContent = 'Status: Locked';
+		statusEl.style.color = '#f44336';
+	}
+	
+	modal.style.display = 'flex';
+	updatePauseState();
+}
+
+function closeBadgeModal() {
+	const modal = document.getElementById('badgeDetailsModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
+
+function showMobileBadgeModal() {
+	const modal = document.getElementById('mobileBadgeModal');
+	if (modal) modal.style.display = 'flex';
+	updatePauseState();
+}
+
+function closeMobileBadgeModal() {
+	const modal = document.getElementById('mobileBadgeModal');
+	if (modal) modal.style.display = 'none';
+	updatePauseState();
+}
+
 
 function showAuthorSelection () {
 	const screen = document.getElementById('authorSelectionScreen');
@@ -517,5 +583,16 @@ window.addEventListener('click', function (event) {
 	const settingsModal = document.getElementById('settingsModal');
 	if (settingsModal && settingsModal.style.display === 'flex' && event.target === settingsModal) {
 		closeSettingsModal();
+	}
+	
+	// Added: Close listeners for badge modals
+	const badgeDetailsModal = document.getElementById('badgeDetailsModal');
+	if (badgeDetailsModal && badgeDetailsModal.style.display === 'flex' && event.target === badgeDetailsModal) {
+		closeBadgeModal();
+	}
+	
+	const mobileBadgeModal = document.getElementById('mobileBadgeModal');
+	if (mobileBadgeModal && mobileBadgeModal.style.display === 'flex' && event.target === mobileBadgeModal) {
+		closeMobileBadgeModal();
 	}
 });

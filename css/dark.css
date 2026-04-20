@@ -219,3 +219,26 @@
 .dark .intro-modal-footer {
     border-top: 1px solid #444;
 }
+
+/* Added: Dark mode styles for badges */
+.dark .badge-icon.locked-badge {
+    filter: grayscale(100%) brightness(0.6);
+}
+
+.dark .settings-gear-icon {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ccc;
+}
+
+.dark .settings-gear-icon:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+}
+
+.dark .mobile-badge-grid .badge-wrapper.locked-badge .badge-icon-mobile {
+    filter: grayscale(100%) brightness(0.6);
+}
+
+.dark .mobile-badge-grid .badge-wrapper.locked-badge .badge-name-mobile {
+    color: #666;
+}

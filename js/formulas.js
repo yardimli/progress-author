@@ -1,5 +1,26 @@
 // Multipliers, income, expenses, game speed
 
+// Added: Get combined multiplier for a specific badge effect type
+function getBadgeMultiplier(type) {
+	let multiplier = 1;
+	if (!badgeBaseData) return 1;
+	
+	for (const badgeId of gameData.earnedBadges) {
+		const badge = badgeBaseData[badgeId];
+		if (badge && badge.effect && badge.effect.type === type) {
+			// For lifespan, the value is additive, not multiplicative
+			if (type === 'lifespan') {
+				multiplier += badge.effect.value;
+			} else {
+				multiplier *= badge.effect.value;
+			}
+		}
+	}
+	// For lifespan, we return the total years to add, not a multiplier
+	return type === 'lifespan' ? multiplier - 1 : multiplier;
+}
+
+
 function getBindedTaskEffect(taskName) {
 	let task = gameData.taskData[taskName];
 	return task ? task.getEffect.bind(task) : () => 1;
@@ -21,23 +42,28 @@ function addMultipliers() {
 		task.xpMultipliers.push(getInspiration);
 		task.xpMultipliers.push(getBindedTaskEffect("Brand Management"));
 		task.xpMultipliers.push(getBindedTaskEffect("Personal Brand"));
+		task.xpMultipliers.push(() => getBadgeMultiplier("allXp")); // Added: Badge multiplier for all XP
 		
 		if (task instanceof Job) {
 			task.incomeMultipliers.push(task.getLevelMultiplier.bind(task));
 			task.incomeMultipliers.push(getBindedTaskEffect("Royalty Negotiation"));
+			task.incomeMultipliers.push(() => getBadgeMultiplier("jobIncome")); // Added: Badge multiplier for job income
 			
 			task.xpMultipliers.push(getBindedTaskEffect("Time Management"));
 			task.xpMultipliers.push(getBindedItemEffect("Editor"));
+			task.xpMultipliers.push(() => getBadgeMultiplier("jobXp")); // Added: Badge multiplier for job XP
 		} else if (task instanceof Skill) {
 			task.xpMultipliers.push(getBindedTaskEffect("Focus"));
 			task.xpMultipliers.push(getBindedItemEffect("Library Card"));
 			task.xpMultipliers.push(getBindedItemEffect("Home Office"));
 			task.xpMultipliers.push(getBindedItemEffect("Home Library"));
+			task.xpMultipliers.push(() => getBadgeMultiplier("skillXp")); // Added: Badge multiplier for skill XP
 		}
 		
 		if (jobCategories["Creative Industry"].includes(task.name)) {
 			task.xpMultipliers.push(getBindedTaskEffect("Grammar & Prose"));
 			task.xpMultipliers.push(getBindedItemEffect("Style Guide"));
+			task.xpMultipliers.push(() => getBadgeMultiplier("creativeXp")); // Added: Badge multiplier for creative XP
 		} else if (task.name === "Typing Speed") {
 			task.xpMultipliers.push(getBindedTaskEffect("Character Dev."));
 			task.xpMultipliers.push(getBindedItemEffect("Used Laptop"));
@@ -45,6 +71,7 @@ function addMultipliers() {
 			task.xpMultipliers.push(getBindedItemEffect("Pro Writing Software"));
 		} else if (jobCategories["Literary Elite"].includes(task.name)) {
 			task.xpMultipliers.push(getBindedTaskEffect("Plotting"));
+			task.xpMultipliers.push(() => getBadgeMultiplier("literaryXp")); // Added: Badge multiplier for literary XP
 		} else if (skillCategories["The Business of Writing"].includes(task.name)) {
 			task.xpMultipliers.push(getFame);
 		}
@@ -55,6 +82,7 @@ function addMultipliers() {
 		item.expenseMultipliers = [];
 		item.expenseMultipliers.push(getBindedTaskEffect("Frugality"));
 		item.expenseMultipliers.push(getBindedTaskEffect("Public Speaking"));
+		item.expenseMultipliers.push(() => getBadgeMultiplier("expense")); // Added: Badge multiplier for expenses
 	}
 }
 
@@ -110,7 +138,8 @@ function applySpeed(value) {
 function getFameGain() {
 	let networking = gameData.taskData["Networking"] ? gameData.taskData["Networking"].getEffect() : 1;
 	let mediaTours = gameData.taskData["Media Tours"] ? gameData.taskData["Media Tours"].getEffect() : 1;
-	return gameData.booksPublished * networking * mediaTours;
+	let badgeMultiplier = getBadgeMultiplier("fameGain"); // Added: Badge multiplier for fame gain
+	return gameData.booksPublished * networking * mediaTours * badgeMultiplier;
 }
 
 function getGameSpeed() {

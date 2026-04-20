@@ -178,6 +178,42 @@ function initLifeExperiencesUI () {
 	}
 }
 
+// Added: Function to initialize the badge UI display
+function initBadgesUI() {
+	const desktopContainer = document.getElementById('badgeContainer');
+	const mobileContainer = document.getElementById('mobileBadgeGrid');
+	if (!desktopContainer || !mobileContainer || !badgeBaseData) return;
+	
+	desktopContainer.innerHTML = '';
+	mobileContainer.innerHTML = '';
+	
+	for (const badgeId in badgeBaseData) {
+		const badge = badgeBaseData[badgeId];
+		const imgSrc = `img/${badge.filefolder}256/${badge.filename.replace('.png', '.jpg')}`;
+		
+		// Create desktop icon
+		const desktopIcon = document.createElement('img');
+		desktopIcon.id = `badge-icon-desktop-${badgeId}`;
+		desktopIcon.src = imgSrc;
+		desktopIcon.className = 'badge-icon locked-badge';
+		desktopIcon.title = `${badge.name} (Locked)`;
+		desktopIcon.onclick = () => showBadgeModal(badgeId);
+		desktopContainer.appendChild(desktopIcon);
+		
+		// Create mobile grid item
+		const mobileWrapper = document.createElement('div');
+		mobileWrapper.id = `badge-wrapper-mobile-${badgeId}`;
+		mobileWrapper.className = 'badge-wrapper locked-badge';
+		mobileWrapper.onclick = () => showBadgeModal(badgeId);
+		mobileWrapper.innerHTML = `
+            <img src="${imgSrc}" class="badge-icon-mobile" alt="${badge.name}">
+            <div class="badge-name-mobile">${badge.name}</div>
+        `;
+		mobileContainer.appendChild(mobileWrapper);
+	}
+}
+
+
 // Populate the genre selection buttons
 function populateGenres () {
 	const container = document.getElementById('genreButtonsContainer');

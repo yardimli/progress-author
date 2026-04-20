@@ -15,7 +15,11 @@
 		<div id="topPanel" class="panel panel-padding-sm top-panel">
 			<!-- Left side: Stats and Author Info -->
 			<div class="top-panel-left">
-				<img id="authorImage" src="" alt="Author" class="author-image" onClick="showSettingsModal()" style="cursor: pointer;">
+				<!-- Modified: Wrapped image and added settings icon -->
+				<div class="author-image-container">
+					<img id="authorImage" src="" alt="Author" class="author-image">
+					<div id="settingsButton" class="settings-gear-icon" onclick="showSettingsModal()">⚙️</div>
+				</div>
 				
 				<div class="header-stats-container">
 					<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span></div>
@@ -23,6 +27,11 @@
 					<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
 					<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
 				</div>
+			</div>
+			
+			<!-- Added: Center container for Badges -->
+			<div class="top-panel-center" id="badgeContainer">
+				<!-- Badges will be populated by JS -->
 			</div>
 			
 			<!-- Right side: Logs -->
@@ -412,6 +421,32 @@
 		</div>
 	</div>
 </div>
+
+<!-- Added: Badge Details Modal -->
+<div id="badgeDetailsModal" class="modal modal-overlay-badge" style="display: none;">
+	<div class="modal-content modal-content-xs">
+		<div class="modal-image-container">
+			<img id="badgeModalImage" src="" alt="Badge" class="modal-main-image" style="width: 128px; height: 128px; border-radius: 50%;">
+		</div>
+		<h2 id="badgeModalTitle" class="modal-title" style="margin-bottom: 5px;"></h2>
+		<p id="badgeModalDescription" class="modal-description" style="font-size: 1em;"></p>
+		<p id="badgeModalEffect" class="modal-description" style="font-size: 1em; color: #4CAF50;"></p>
+		<p id="badgeModalStatus" class="modal-description" style="font-size: 0.9em; font-weight: bold;"></p>
+		<button class="btn btn-full-width-mt15" onclick="closeBadgeModal()">Close</button>
+	</div>
+</div>
+
+<!-- Added: Mobile Badge Collection Modal -->
+<div id="mobileBadgeModal" class="modal modal-overlay-badge" style="display: none;">
+	<div class="modal-content modal-content-medium">
+		<h2 class="modal-header-center">My Badges</h2>
+		<div id="mobileBadgeGrid" class="mobile-badge-grid">
+			<!-- Badges populated by JS -->
+		</div>
+		<button class="btn btn-full-width-mt15" onclick="closeMobileBadgeModal()">Close</button>
+	</div>
+</div>
+
 
 <!-- Added: Mobile Navigation Bar -->
 <div class="mobile-nav" id="mobileNav">

@@ -74,3 +74,15 @@ function logEvent (message) {
 	entry.innerHTML = `<b style="color: #875F9A">[Age ${age}.${day} days]</b> ${message}`;
 	logContainer.prepend(entry);
 }
+
+// Added: Event listener for author image click to handle mobile badge modal
+document.addEventListener('DOMContentLoaded', (event) => {
+	const authorImage = document.getElementById('authorImage');
+	if (authorImage) {
+		authorImage.addEventListener('click', () => {
+			if (window.innerWidth <= 768) {
+				showMobileBadgeModal();
+			}
+		});
+	}
+});

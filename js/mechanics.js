@@ -31,6 +31,98 @@ function checkUnlocks () {
 	}
 }
 
+// Added: Function to check for badge unlocks
+function checkBadgeUnlocks() {
+	if (!badgeBaseData) return;
+	
+	for (const badgeId in badgeBaseData) {
+		if (gameData.earnedBadges.includes(badgeId)) {
+			continue; // Already earned
+		}
+		
+		const badge = badgeBaseData[badgeId];
+		let allMet = true;
+		for (const req of badge.requirements) {
+			if (!isRequirementMet(req)) {
+				allMet = false;
+				break;
+			}
+		}
+		
+		if (allMet) {
+			gameData.earnedBadges.push(badgeId);
+			logEvent(`Badge Earned: <b style="color: #ffd700;">${badge.name}</b>!`);
+			// Create a fake image element to pass to the modal queue
+			const fakeImgEl = {
+				getAttribute: (attr) => {
+					if (attr === 'data-name') return badge.name;
+					if (attr === 'data-type') return 'badge';
+					return null;
+				},
+				src: `img/${badge.filefolder}256/${badge.filename.replace('.png', '.jpg')}`
+			};
+			queueInfoModal(fakeImgEl, true, true);
+		}
+	}
+}
+
+// Added: Helper function to check a single badge requirement
+function isRequirementMet(req) {
+	switch (req.type) {
+		case 'task':
+			return gameData.taskData[req.task] && gameData.taskData[req.task].level >= req.level;
+		case 'books':
+			return gameData.booksPublished >= req.value;
+		case 'bookQuality':
+			return gameData.completedBooks.some(book => book.quality >= req.value);
+		case 'jobCategoryLevel': {
+			const jobsInCategory = jobCategories[req.category] || [];
+			const count = jobsInCategory.filter(jobName => gameData.taskData[jobName] && gameData.taskData[jobName].level >= req.level).length;
+			return count >= req.count;
+		}
+		case 'skillLevelCount': {
+			let count = 0;
+			for (const skillName in skillBaseData) {
+				if (gameData.taskData[skillName] && gameData.taskData[skillName].level >= req.level) {
+					count++;
+				}
+			}
+			return count >= req.count;
+		}
+		case 'maxTaskLevel': {
+			const taskType = req.taskType; // "Job" or "Skill"
+			const baseData = taskType === "Job" ? jobBaseData : skillBaseData;
+			for (const taskName in baseData) {
+				if (gameData.taskData[taskName] && gameData.taskData[taskName].level >= req.level) {
+					return true;
+				}
+			}
+			return false;
+		}
+		case 'item':
+			return (gameData.currentProperty && gameData.currentProperty.name === req.name) ||
+				(gameData.currentMisc && gameData.currentMisc.some(item => item.name === req.name));
+		case 'itemCategory': {
+			const itemsInCategory = itemCategories[req.category] || [];
+			return itemsInCategory.every(itemName =>
+				(gameData.currentProperty && gameData.currentProperty.name === itemName) ||
+				(gameData.currentMisc && gameData.currentMisc.some(item => item.name === itemName))
+			);
+		}
+		case 'rebirth':
+			return gameData[req.rebirthType] >= req.value;
+		case 'age':
+			return daysToYears(gameData.days) >= req.value;
+		case 'coins':
+			return gameData.coins >= req.value;
+		case 'fame':
+			return gameData.fame >= req.value;
+		default:
+			return false;
+	}
+}
+
+
 function checkRebirthPrompts () {
 	const age = daysToYears(gameData.days);
 	if (age >= 65 && !gameData.rebirthOnePrompted) {
@@ -132,7 +224,9 @@ function getRawWritingSpeed () {
 		}
 	}
 	
-	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier;
+	const badgeMultiplier = getBadgeMultiplier("writingSpeed"); // Added: Badge multiplier for writing speed
+	
+	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier * badgeMultiplier;
 }
 
 function getWritingSpeed () {
@@ -301,7 +395,9 @@ function getBookQuality () {
 		}
 	}
 	
-	return baseSkillQuality * expMultiplier * itemQualityMultiplier * skillQualityMultiplier;
+	const badgeMultiplier = getBadgeMultiplier("writingQuality"); // Added: Badge multiplier for writing quality
+	
+	return baseSkillQuality * expMultiplier * itemQualityMultiplier * skillQualityMultiplier * badgeMultiplier;
 }
 
 // Calculate the composition multiplier based on how close the player matched the genre ideals
@@ -425,6 +521,7 @@ function finishBook () {
 	const fame = gameData.fame;
 	const sales = (quality / 100) * (fame + 10) * 5;
 	let royalty = sales * 0.1;
+	royalty *= getBadgeMultiplier("royalties"); // Added: Badge multiplier for royalties
 	
 	if (royalty < 0.10) {
 		royalty = 0.10;
@@ -526,7 +623,8 @@ function rebirthReset () {
 function getLifespan () {
 	const healthy = gameData.taskData['Healthy Lifestyle'] ? gameData.taskData['Healthy Lifestyle'].getEffect() : 1;
 	const longevity = gameData.taskData['Longevity Secrets'] ? gameData.taskData['Longevity Secrets'].getEffect() : 1;
-	return baseLifespan * healthy * longevity;
+	const badgeBonus = getBadgeMultiplier("lifespan") * 365; // Added: Badge bonus for lifespan (in days)
+	return baseLifespan * healthy * longevity + badgeBonus;
 }
 
 function isAlive () {

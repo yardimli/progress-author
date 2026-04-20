@@ -128,6 +128,11 @@ function loadGameData() {
 			gameData.rebirthTwoPrompted = false;
 		}
 		
+		// Added: Backward compatibility for badges
+		if (!gameData.earnedBadges) {
+			gameData.earnedBadges = [];
+		}
+		
 		if (gameData.completedBooks && gameData.completedBooks.length > 0) {
 			if (typeof gameData.completedBooks[0] === 'string') {
 				gameData.completedBooks = gameData.completedBooks.map(id => ({

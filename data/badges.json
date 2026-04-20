@@ -1,0 +1,305 @@
+{
+  "first_draft": {
+    "name": "First Draft",
+    "description": "Publish your very first book. A monumental first step on a long journey.",
+    "filename": "badge_first_draft.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a single fountain pen nib with a drop of ink falling from it. Clean geometric shapes, cozy aesthetic, soft palette of warm grey and gold, gentle flat shading, no realism.",
+    "effect": {
+      "type": "writingQuality",
+      "value": 1.05,
+      "text": "+5% Writing Quality"
+    },
+    "requirements": [
+      { "type": "books", "value": 1 }
+    ]
+  },
+  "prolific": {
+    "name": "Prolific",
+    "description": "Publish 10 books. The words are flowing and your library is growing.",
+    "filename": "badge_prolific.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a tall, leaning stack of colorful simplified books. Clean geometric shapes, cozy aesthetic, warm palette of muted primary colors, gentle flat shading, no realism.",
+    "effect": {
+      "type": "royalties",
+      "value": 1.1,
+      "text": "+10% Royalties"
+    },
+    "requirements": [
+      { "type": "books", "value": 10 }
+    ]
+  },
+  "hustler": {
+    "name": "Hustler",
+    "description": "Reach level 10 in three different Menial Work jobs. You know the value of hard work.",
+    "filename": "badge_hustler.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple rolled-up sleeve with a determined fist. Clean geometric shapes, cozy aesthetic, muted palette of warm ochre and soft brown, gentle flat shading, no realism.",
+    "effect": {
+      "type": "jobIncome",
+      "value": 1.1,
+      "text": "+10% Job Income"
+    },
+    "requirements": [
+      { "type": "jobCategoryLevel", "category": "Menial Work", "count": 3, "level": 10 }
+    ]
+  },
+  "creative_spark": {
+    "name": "Creative Spark",
+    "description": "Reach level 10 in three different Creative Industry jobs. You're making a name for yourself.",
+    "filename": "badge_creative_spark.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple glowing lightbulb with a small pencil tip at its base. Clean geometric shapes, cozy aesthetic, soft palette of warm gold and cream, gentle flat shading, no realism.",
+    "effect": {
+      "type": "creativeXp",
+      "value": 1.1,
+      "text": "+10% Creative Industry XP"
+    },
+    "requirements": [
+      { "type": "jobCategoryLevel", "category": "Creative Industry", "count": 3, "level": 10 }
+    ]
+  },
+  "literary_insider": {
+    "name": "Literary Insider",
+    "description": "Reach level 10 in three different Literary Elite jobs. You walk in the halls of power.",
+    "filename": "badge_literary_insider.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple golden key with a book shape for its head. Clean geometric shapes, cozy aesthetic, palette of deep navy and soft gold, gentle flat shading, no realism.",
+    "effect": {
+      "type": "literaryXp",
+      "value": 1.1,
+      "text": "+10% Literary Elite XP"
+    },
+    "requirements": [
+      { "type": "jobCategoryLevel", "category": "Literary Elite", "count": 3, "level": 10 }
+    ]
+  },
+  "focused_mind": {
+    "name": "Focused Mind",
+    "description": "Reach level 100 in the Focus skill. Distractions are a thing of the past.",
+    "filename": "badge_focused_mind.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple human head silhouette with calm, concentric circles radiating from the center. Clean geometric shapes, cozy aesthetic, soft palette of muted blue and white, gentle flat shading, no realism.",
+    "effect": {
+      "type": "skillXp",
+      "value": 1.05,
+      "text": "+5% Skill XP"
+    },
+    "requirements": [
+      { "type": "task", "task": "Focus", "level": 100 }
+    ]
+  },
+  "speed_demon": {
+    "name": "Speed Demon",
+    "description": "Reach level 100 in the Typing Speed skill. Your fingers fly across the keyboard.",
+    "filename": "badge_speed_demon.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple hand with motion lines trailing from the fingertips over a keyboard shape. Clean geometric shapes, cozy aesthetic, palette of electric blue and soft grey, gentle flat shading, no realism.",
+    "effect": {
+      "type": "writingSpeed",
+      "value": 1.05,
+      "text": "+5% Writing Speed"
+    },
+    "requirements": [
+      { "type": "task", "task": "Typing Speed", "level": 100 }
+    ]
+  },
+  "wordsmith": {
+    "name": "Wordsmith",
+    "description": "Reach level 100 in the Grammar & Prose skill. Every sentence is a work of art.",
+    "filename": "badge_wordsmith.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple quill pen elegantly writing a glowing, stylized signature. Clean geometric shapes, cozy aesthetic, palette of deep charcoal and soft gold, gentle flat shading, no realism.",
+    "effect": {
+      "type": "writingQuality",
+      "value": 1.1,
+      "text": "+10% Writing Quality"
+    },
+    "requirements": [
+      { "type": "task", "task": "Grammar & Prose", "level": 100 }
+    ]
+  },
+  "landlord": {
+    "name": "Landlord",
+    "description": "Purchase the Large House. A home to call your own.",
+    "filename": "badge_landlord.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple house key hanging from a small house-shaped keychain. Clean geometric shapes, cozy aesthetic, warm palette of bronze and soft brown, gentle flat shading, no realism.",
+    "effect": {
+      "type": "expense",
+      "value": 0.95,
+      "text": "-5% All Expenses"
+    },
+    "requirements": [
+      { "type": "item", "name": "Large House" }
+    ]
+  },
+  "tech_savvy": {
+    "name": "Tech Savvy",
+    "description": "Own both the Pro Writing Software and a Home Office. You have the ultimate writer's setup.",
+    "filename": "badge_tech_savvy.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple laptop with a small gear icon and a checkmark on its screen. Clean geometric shapes, cozy aesthetic, palette of slate blue and cream, gentle flat shading, no realism.",
+    "effect": {
+      "type": "writingSpeed",
+      "value": 1.1,
+      "text": "+10% Writing Speed"
+    },
+    "requirements": [
+      { "type": "item", "name": "Pro Writing Software" },
+      { "type": "item", "name": "Home Office" }
+    ]
+  },
+  "reborn": {
+    "name": "Reborn",
+    "description": "Experience your first rebirth. The cycle begins anew, but with wisdom.",
+    "filename": "badge_reborn.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple phoenix silhouette with glowing feathers, rising from a small pile of ash. Clean geometric shapes, cozy aesthetic, warm palette of orange, gold, and cream, gentle flat shading, no realism.",
+    "effect": {
+      "type": "allXp",
+      "value": 1.1,
+      "text": "+10% All XP"
+    },
+    "requirements": [
+      { "type": "rebirth", "rebirthType": "rebirthOneCount", "value": 1 }
+    ]
+  },
+  "centenarian": {
+    "name": "Centenarian",
+    "description": "Reach 100 years of age. A lifetime of stories to tell.",
+    "filename": "badge_centenarian.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple hourglass with the sand nearly all in the bottom, beside a small sapling growing. Clean geometric shapes, cozy aesthetic, palette of soft sand and muted green, gentle flat shading, no realism.",
+    "effect": {
+      "type": "lifespan",
+      "value": 10,
+      "text": "+10 years to base lifespan"
+    },
+    "requirements": [
+      { "type": "age", "value": 100 }
+    ]
+  },
+  "millionaire": {
+    "name": "Millionaire",
+    "description": "Have over $1,000,000 in your bank account at one time.",
+    "filename": "badge_millionaire.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple thick stack of banknotes held together by a golden money clip. Clean geometric shapes, cozy aesthetic, palette of muted green and soft gold, gentle flat shading, no realism.",
+    "effect": {
+      "type": "jobIncome",
+      "value": 1.05,
+      "text": "+5% Job Income"
+    },
+    "requirements": [
+      { "type": "coins", "value": 1000000 }
+    ]
+  },
+  "famous": {
+    "name": "Famous",
+    "description": "Reach 100 Fame. Your name is known in literary circles.",
+    "filename": "badge_famous.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple golden star with smaller stars orbiting it. Clean geometric shapes, cozy aesthetic, palette of bright gold and deep blue, gentle flat shading, no realism.",
+    "effect": {
+      "type": "fameGain",
+      "value": 1.1,
+      "text": "+10% Fame Gain"
+    },
+    "requirements": [
+      { "type": "fame", "value": 100 }
+    ]
+  },
+  "masterpiece": {
+    "name": "Masterpiece",
+    "description": "Publish a book with a quality of 95% or higher. A true work of genius.",
+    "filename": "badge_masterpiece.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple open book with a glowing golden crown hovering above its pages. Clean geometric shapes, cozy aesthetic, palette of ivory, gold, and soft red, gentle flat shading, no realism.",
+    "effect": {
+      "type": "royalties",
+      "value": 1.05,
+      "text": "+5% Royalties"
+    },
+    "requirements": [
+      { "type": "bookQuality", "value": 95 }
+    ]
+  },
+  "collector": {
+    "name": "The Collector",
+    "description": "Own every single Miscellaneous item at the same time.",
+    "filename": "badge_collector.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple treasure chest, slightly open, with a soft golden glow emanating from within. Clean geometric shapes, cozy aesthetic, warm palette of wood brown and gold, gentle flat shading, no realism.",
+    "effect": {
+      "type": "expense",
+      "value": 0.9,
+      "text": "-10% All Expenses"
+    },
+    "requirements": [
+      { "type": "itemCategory", "category": "Misc" }
+    ]
+  },
+  "jack_of_all_trades": {
+    "name": "Jack of All Trades",
+    "description": "Reach level 10 in at least one job from each of the three work categories.",
+    "filename": "badge_jack_of_all_trades.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of three simple, overlapping tools: a wrench, a paintbrush, and a fountain pen. Clean geometric shapes, cozy aesthetic, palette of muted primary colors, gentle flat shading, no realism.",
+    "effect": {
+      "type": "allXp",
+      "value": 1.05,
+      "text": "+5% All XP"
+    },
+    "requirements": [
+      { "type": "jobCategoryLevel", "category": "Menial Work", "count": 1, "level": 10 },
+      { "type": "jobCategoryLevel", "category": "Creative Industry", "count": 1, "level": 10 },
+      { "type": "jobCategoryLevel", "category": "Literary Elite", "count": 1, "level": 10 }
+    ]
+  },
+  "dedicated": {
+    "name": "Dedicated",
+    "description": "Reach level 50 in any single job. You've mastered your trade.",
+    "filename": "badge_dedicated.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple golden medal hanging from a red, white, and blue ribbon. Clean geometric shapes, cozy aesthetic, warm color palette, gentle flat shading, no realism.",
+    "effect": {
+      "type": "jobXp",
+      "value": 1.05,
+      "text": "+5% Job XP"
+    },
+    "requirements": [
+      { "type": "maxTaskLevel", "taskType": "Job", "level": 50 }
+    ]
+  },
+  "scholar": {
+    "name": "Scholar",
+    "description": "Reach level 50 in four different skills. Your mind is a finely-honed tool.",
+    "filename": "badge_scholar.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple graduation cap with a golden tassel. Clean geometric shapes, cozy aesthetic, palette of deep blue and soft gold, gentle flat shading, no realism.",
+    "effect": {
+      "type": "skillXp",
+      "value": 1.05,
+      "text": "+5% Skill XP"
+    },
+    "requirements": [
+      { "type": "skillLevelCount", "count": 4, "level": 50 }
+    ]
+  },
+  "legendary": {
+    "name": "Legendary",
+    "description": "Become a Legend. Your story will be told for ages to come.",
+    "filename": "badge_legendary.png",
+    "filefolder": "badges",
+    "imageprompt": "A flat, minimalist vector illustration of a simple book whose pages are turning into a glowing galaxy of stars. Clean geometric shapes, cozy aesthetic, palette of deep indigo and sparkling gold, gentle flat shading, no realism.",
+    "effect": {
+      "type": "fameGain",
+      "value": 1.25,
+      "text": "+25% Fame Gain"
+    },
+    "requirements": [
+      { "type": "rebirth", "rebirthType": "rebirthTwoCount", "value": 1 }
+    ]
+  }
+}

@@ -11,6 +11,18 @@ import mimetypes
 # Updated tasks to point to the 5 game JSON files and include aspect ratios.
 TASKS = [
     {
+        "json_filename": "data/authorAged.json",
+        "start_prompt": "An image of a modern day author. Don't include any name.",
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-faces.jpg"
+    },
+    {
+        "json_filename": "data/badges.json",
+        "start_prompt": "An image badge for a game skill.",
+        "aspect_ratio": "1:1",
+        "reference_image": "images/game-items-5.jpg"
+    },
+    {
         "json_filename": "data/potions.json",
         "start_prompt": "An image for a game item.",
         "aspect_ratio": "1:1",
@@ -133,7 +145,8 @@ def process_task(task_config):
     # --- 1. Unpack configuration for this task ---
     json_filename = task_config.get("json_filename")
     start_prompt = task_config.get("start_prompt")
-    aspect_ratio = task_config.get("aspect_ratio", "1:1") # Default to 1:1 if missing
+    aspect_ratio = task_config.get("aspect_ratio", "1:1")
+    task_reference_image = task_config.get("reference_image") # Task-level fallback image
 
     if not all([json_filename, start_prompt]):
         print("Error: Task configuration is missing a required key (json_filename or start_prompt). Skipping.")
@@ -159,11 +172,29 @@ def process_task(task_config):
         img_filename = entry.get("filename")
         img_folder = entry.get("filefolder")
         imageprompt = entry.get("imageprompt")
-        reference_image_path = entry.get("reference_image") # New: Check for reference image
 
         if not img_filename or not img_folder or not imageprompt:
             print(f"Skipping '{name}': Missing 'filename', 'filefolder', or 'imageprompt'.")
             continue
+
+        # --- UPDATED: Determine the reference image path with priority logic ---
+        reference_image_path = None
+        original_filename_ref = entry.get("original_filename")
+
+        # 1. Prioritize 'original_filename' from the JSON entry
+        if original_filename_ref and img_folder:
+            potential_path = os.path.join("img", img_folder, original_filename_ref)
+            if os.path.exists(potential_path):
+                reference_image_path = potential_path
+                print(f"Found specific reference image from 'original_filename': {reference_image_path}")
+            else:
+                print(f"Warning: 'original_filename' ({potential_path}) was specified but not found. Will fall back if possible.")
+
+        # 2. Fallback to the task-level 'reference_image' if a specific one wasn't found
+        if not reference_image_path and task_reference_image:
+            reference_image_path = task_reference_image
+        # --- END OF UPDATE ---
+
 
         # Paths for the original generated image
         output_dir = os.path.join("img", img_folder)
@@ -197,7 +228,7 @@ def process_task(task_config):
 """
             try:
                 result = None
-                # Check if a valid reference image is provided
+                # Check if a valid reference image is provided (using the new prioritized path)
                 if reference_image_path and os.path.exists(reference_image_path):
                     print(f"Found reference image: {reference_image_path}. Using edit model.")
                     base_image_data_uri = get_base64_data_uri(reference_image_path)

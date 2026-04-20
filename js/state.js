@@ -65,7 +65,10 @@ var gameData = {
 	
 	// Track if rebirth modals have been shown in the current life
 	rebirthOnePrompted: false,
-	rebirthTwoPrompted: false
+	rebirthTwoPrompted: false,
+	
+	// Added: Badge tracking
+	earnedBadges: [] // Stores keys of earned badges
 };
 
 var tempData = {};
@@ -84,6 +87,7 @@ var textUpdateTimer = 0;
 // JSON Data containers
 var jobBaseData, skillBaseData, itemBaseData, jobCategories, skillCategories, itemCategories, headerRowColors, tooltips;
 var authorsBaseData, booksBaseData, potionsBaseData, lifeExperiencesBaseData, genresBaseData, sceneTypesBaseData, genreIdealsBaseData, booksFirstPageBaseData, introSlidesBaseData;
+var badgeBaseData; // Added: Badge data container
 
 // Track current intro slide index
 var currentIntroSlide = 0;

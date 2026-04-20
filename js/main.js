@@ -8,6 +8,7 @@ function updateLogic () {
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
     checkUnlocks();
+    checkBadgeUnlocks(); // Added: Check for new badge unlocks
     checkRebirthPrompts(); // Check for age-based rebirth modals.
 }
 
@@ -32,6 +33,8 @@ function gameLoop (currentTime) {
             showTutorialModal(popup.title, popup.text);
         } else if (popup.type === 'info') {
             showModal(popup.imgEl, popup.isNewUnlock);
+        } else if (popup.type === 'badge') { // Added: Handle badge popups
+            showModal(popup.imgEl, popup.isNewUnlock, true);
         }
     }
     
@@ -84,7 +87,8 @@ async function init () {
             potionsRes, lifeExpRes, genresRes,
             sceneTypesRes, genreIdealsRes,
             booksFirstPageRes,
-            introSlidesRes // Fetch intro slides
+            introSlidesRes,
+            badgesRes // Added: Fetch badges
         ] = await Promise.all([
             fetch('data/jobs.json?' + gameData.version), // Cache busting with version query param
             fetch('data/skills.json?' + gameData.version),
@@ -103,7 +107,8 @@ async function init () {
             fetch('data/sceneTypes.json?' + gameData.version),
             fetch('data/genreIdeals.json?' + gameData.version),
             fetch('data/booksFirstPage.json?' + gameData.version),
-            fetch('data/introSlides.json?' + gameData.version) // Fetch intro slides
+            fetch('data/introSlides.json?' + gameData.version),
+            fetch('data/badges.json?' + gameData.version) // Added: Fetch badges
         ]);
         
         jobBaseData = await jobsRes.json();
@@ -126,11 +131,13 @@ async function init () {
         genreIdealsBaseData = await genreIdealsRes.json();
         booksFirstPageBaseData = await booksFirstPageRes.json(); // Assign first page data
         introSlidesBaseData = await introSlidesRes.json(); // Assign intro slides data
+        badgeBaseData = await badgesRes.json(); // Added: Assign badge data
         
         createAllRows(jobCategories, 'jobTable');
         createAllRows(skillCategories, 'skillTable');
         createAllRows(itemCategories, 'itemTable');
         initLifeExperiencesUI(); // Initialize dynamic Life Experiences UI
+        initBadgesUI(); // Added: Initialize badge UI elements
         
         createData(gameData.taskData, jobBaseData);
         createData(gameData.taskData, skillBaseData);

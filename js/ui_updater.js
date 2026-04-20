@@ -268,6 +268,46 @@ function updatePotionsUI () {
 	});
 }
 
+// Added: Function to update badge UI based on earned status
+function updateBadgesUI() {
+	if (!badgeBaseData) return;
+	for (const badgeId in badgeBaseData) {
+		const isEarned = gameData.earnedBadges.includes(badgeId);
+		const badge = badgeBaseData[badgeId];
+		
+		// Desktop
+		const desktopIcon = document.getElementById(`badge-icon-desktop-${badgeId}`);
+		if (desktopIcon) {
+			if (isEarned) {
+				if (desktopIcon.classList.contains('locked-badge')) {
+					desktopIcon.classList.remove('locked-badge');
+					desktopIcon.title = badge.name;
+				}
+			} else {
+				if (!desktopIcon.classList.contains('locked-badge')) {
+					desktopIcon.classList.add('locked-badge');
+					desktopIcon.title = `${badge.name} (Locked)`;
+				}
+			}
+		}
+		
+		// Mobile
+		const mobileWrapper = document.getElementById(`badge-wrapper-mobile-${badgeId}`);
+		if (mobileWrapper) {
+			if (isEarned) {
+				if (mobileWrapper.classList.contains('locked-badge')) {
+					mobileWrapper.classList.remove('locked-badge');
+				}
+			} else {
+				if (!mobileWrapper.classList.contains('locked-badge')) {
+					mobileWrapper.classList.add('locked-badge');
+				}
+			}
+		}
+	}
+}
+
+
 function updateText () {
 	const updateIfChanged = (id, newText) => {
 		const el = document.getElementById(id);
@@ -585,4 +625,5 @@ function updateUI () {
 	updateBookHistory();
 	updatePotionsUI();
 	updateCompositionUI();
+	updateBadgesUI(); // Added: Update badge display
 }
