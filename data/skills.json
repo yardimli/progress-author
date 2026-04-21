@@ -8,7 +8,8 @@
     "description": "Skill ex.",
     "filename": "focus.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simple laptop on a desk with a soft glow emanating from its screen, depicted as concentric rounded shapes. A tiny coffee cup and a single sticky note sit beside it. Cozy muted blues and warm off-white tones with simplified geometric shapes, clean outlines, and no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a simple laptop on a desk with a soft glow emanating from its screen, depicted as concentric rounded shapes. A tiny coffee cup and a single sticky note sit beside it. Cozy muted blues and warm off-white tones with simplified geometric shapes, clean outlines, and no realistic detail.",
+    "requirements": []
   },
   "Time Management": {
     "name": "Time Management",
@@ -19,7 +20,10 @@
     "description": "Job ex.",
     "filename": "time_management.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a smartphone displaying a simple grid calendar with rounded colored blocks, resting beside a tiny stack of papers on a clean desk. Soft teal and charcoal tones, simplified geometric shapes, clean linework, and a cozy aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a smartphone displaying a simple grid calendar with rounded colored blocks, resting beside a tiny stack of papers on a clean desk. Soft teal and charcoal tones, simplified geometric shapes, clean linework, and a cozy aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 5 }
+    ]
   },
   "Frugality": {
     "name": "Frugality",
@@ -30,7 +34,10 @@
     "description": "Expenses",
     "filename": "frugality.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a small piggy bank beside a simple noodle cup and a basic mug on a tidy desk. A tiny budget sheet with simplified lines hangs on the wall. Muted grey and soft green tones, rounded geometric shapes, clean outlines, and a cozy aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a small piggy bank beside a simple noodle cup and a basic mug on a tidy desk. A tiny budget sheet with simplified lines hangs on the wall. Muted grey and soft green tones, rounded geometric shapes, clean outlines, and a cozy aesthetic.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 10 }
+    ]
   },
   "Meditation": {
     "name": "Meditation",
@@ -41,7 +48,11 @@
     "description": "Inspiration",
     "filename": "meditation.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simplified figure sitting cross-legged on a small rounded mat, with a glowing orb-shaped lamp nearby. Soft amber and indigo tones, rounded geometric shapes, clean linework, and a cozy, calming aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure sitting cross-legged on a small rounded mat, with a glowing orb-shaped lamp nearby. Soft amber and indigo tones, rounded geometric shapes, clean linework, and a cozy, calming aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 30 },
+      { "type": "skill", "name": "Time Management", "value": 20 }
+    ]
   },
   "Typing Speed": {
     "name": "Typing Speed",
@@ -52,7 +63,11 @@
     "description": "Writing Speed",
     "filename": "typing_speed.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simple keyboard with a few motion lines trailing off the keys, and a small monitor above showing a rising bar graph. Soft electric blue and white tones, rounded geometric shapes, clean outlines, and a cozy minimalist aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a simple keyboard with a few motion lines trailing off the keys, and a small monitor above showing a rising bar graph. Soft electric blue and white tones, rounded geometric shapes, clean outlines, and a cozy minimalist aesthetic.",
+    "requirements": [
+      { "type": "shop", "name": "Used Laptop", "value": 1 },
+      { "type": "skill", "name": "Focus", "value": 5 }
+    ]
   },
   "Grammar & Prose": {
     "name": "Grammar & Prose",
@@ -63,7 +78,10 @@
     "description": "Creative Industry experience",
     "filename": "grammar_and_prose.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of an open laptop showing simple lines of text with a few highlighted marks, beside a small book and a rounded coffee cup. Soft navy and ivory tones, simplified geometric shapes, clean linework, and a cozy aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of an open laptop showing simple lines of text with a few highlighted marks, beside a small book and a rounded coffee cup. Soft navy and ivory tones, simplified geometric shapes, clean linework, and a cozy aesthetic.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 20 }
+    ]
   },
   "Plotting": {
     "name": "Plotting",
@@ -74,7 +92,11 @@
     "description": "Literary Elite experience",
     "filename": "plotting.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simple corkboard covered with small colored rectangular cards connected by thin lines, with a tiny laptop beneath it. Soft coral, teal, and off-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a simple corkboard covered with small colored rectangular cards connected by thin lines, with a tiny laptop beneath it. Soft coral, teal, and off-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 200 },
+      { "type": "skill", "name": "Meditation", "value": 200 }
+    ]
   },
   "Character Dev.": {
     "name": "Character Dev.",
@@ -85,7 +107,11 @@
     "description": "Typing Speed",
     "filename": "character_dev.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a monitor displaying a simple character silhouette next to a small chart, with tiny portrait cards pinned to a wall nearby. Soft amber and steel blue tones, simplified geometric shapes, clean linework, and a cozy minimalist aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a monitor displaying a simple character silhouette next to a small chart, with tiny portrait cards pinned to a wall nearby. Soft amber and steel blue tones, simplified geometric shapes, clean linework, and a cozy minimalist aesthetic.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 30 },
+      { "type": "skill", "name": "Typing Speed", "value": 30 }
+    ]
   },
   "Healthy Lifestyle": {
     "name": "Healthy Lifestyle",
@@ -96,7 +122,10 @@
     "description": "Later retirement age",
     "filename": "healthy_lifestyle.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simplified figure jogging past a few rounded trees, with a small smoothie bottle and rolled yoga mat in the foreground. Soft green and daylight-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure jogging past a few rounded trees, with a small smoothie bottle and rolled yoga mat in the foreground. Soft green and daylight-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Junior Agent", "value": 10 }
+    ]
   },
   "Flow State": {
     "name": "Flow State",
@@ -107,7 +136,10 @@
     "description": "Gamespeed",
     "filename": "flow_state.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simplified figure at a glowing laptop, with soft concentric rings and flowing wave shapes radiating outward. Soft indigo and cyan tones, rounded geometric shapes, clean linework, and a cozy, dreamlike minimalist aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure at a glowing laptop, with soft concentric rings and flowing wave shapes radiating outward. Soft indigo and cyan tones, rounded geometric shapes, clean linework, and a cozy, dreamlike minimalist aesthetic.",
+    "requirements": [
+      { "type": "job", "name": "Senior Agent", "value": 10 }
+    ]
   },
   "Longevity Secrets": {
     "name": "Longevity Secrets",
@@ -118,7 +150,10 @@
     "description": "Later retirement age",
     "filename": "longevity_secrets.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simplified DNA double helix formed from rounded dots and curves, with a small stack of books beneath it. Soft navy and warm gold tones, simplified geometric shapes, clean outlines, and a cozy minimalist aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified DNA double helix formed from rounded dots and curves, with a small stack of books beneath it. Soft navy and warm gold tones, simplified geometric shapes, clean outlines, and a cozy minimalist aesthetic.",
+    "requirements": [
+      { "type": "job", "name": "Head of Publishing", "value": 1000 }
+    ]
   },
   "Brand Management": {
     "name": "Brand Management",
@@ -129,7 +164,10 @@
     "description": "All experience",
     "filename": "brand_management.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of three small screens — a laptop, a phone, and a tablet — each displaying the same simplified logo shape. Soft charcoal and warm gold tones, rounded geometric shapes, clean linework, and a cozy aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of three small screens — a laptop, a phone, and a tablet — each displaying the same simplified logo shape. Soft charcoal and warm gold tones, rounded geometric shapes, clean linework, and a cozy aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "fame", "value": 1 }
+    ]
   },
   "Networking": {
     "name": "Networking",
@@ -140,7 +178,10 @@
     "description": "Fame gain",
     "filename": "networking.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a few simplified figures standing together holding small rounded drink glasses, with tiny string lights arcing above them. Soft amber and teal tones, simplified geometric shapes, clean outlines, and a cozy, welcoming aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a few simplified figures standing together holding small rounded drink glasses, with tiny string lights arcing above them. Soft amber and teal tones, simplified geometric shapes, clean outlines, and a cozy, welcoming aesthetic.",
+    "requirements": [
+      { "type": "fame", "value": 1 }
+    ]
   },
   "Public Speaking": {
     "name": "Public Speaking",
@@ -151,7 +192,10 @@
     "description": "Expenses",
     "filename": "public_speaking.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simplified figure standing on a small round stage under a soft spotlight, with a few rounded audience silhouettes in the foreground. Soft charcoal and electric blue tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure standing on a small round stage under a soft spotlight, with a few rounded audience silhouettes in the foreground. Soft charcoal and electric blue tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic.",
+    "requirements": [
+      { "type": "fame", "value": 1 }
+    ]
   },
   "Personal Brand": {
     "name": "Personal Brand",
@@ -162,7 +206,10 @@
     "description": "All experience",
     "filename": "personal_brand.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simplified figure silhouette displayed on a large rounded billboard, with tiny star shapes and heart icons floating around it. Soft gold and midnight blue tones, simplified geometric shapes, clean outlines, and a cozy aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure silhouette displayed on a large rounded billboard, with tiny star shapes and heart icons floating around it. Soft gold and midnight blue tones, simplified geometric shapes, clean outlines, and a cozy aesthetic.",
+    "requirements": [
+      { "type": "fame", "value": 25 }
+    ]
   },
   "Media Tours": {
     "name": "Media Tours",
@@ -173,7 +220,10 @@
     "description": "Fame gain",
     "filename": "media_tours.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of a simplified figure seated at a small rounded interview desk with a tiny book propped up, a boom microphone and small camera nearby. Warm studio gold and soft white tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic."
+    "imageprompt": "A flat, minimalist vector illustration of a simplified figure seated at a small rounded interview desk with a tiny book propped up, a boom microphone and small camera nearby. Warm studio gold and soft white tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic.",
+    "requirements": [
+      { "type": "fame", "value": 75 }
+    ]
   },
   "Royalty Negotiation": {
     "name": "Royalty Negotiation",
@@ -184,6 +234,9 @@
     "description": "Job pay",
     "filename": "royalty_negotiation.png",
     "filefolder": "skills",
-    "imageprompt": "A flat, minimalist vector illustration of two simplified figures seated across a small rounded table, a tiny contract and pen between them, with a simple skyline shape in the background. Soft grey and warm gold tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of two simplified figures seated across a small rounded table, a tiny contract and pen between them, with a simple skyline shape in the background. Soft grey and warm gold tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "fame", "value": 500 }
+    ]
   }
 }

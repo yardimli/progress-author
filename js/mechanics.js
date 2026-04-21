@@ -1,5 +1,46 @@
 // Writing process, rebirth, death
 
+// Modified: This helper function now checks for item ownership via the 'shop' type.
+function areRequirementsMet (entity) {
+	if (!entity.requirements || entity.requirements.length === 0) {
+		return true;
+	}
+	
+	for (const req of entity.requirements) {
+		switch (req.type) {
+			case 'job':
+			case 'skill':
+				if (!gameData.taskData[req.name] || gameData.taskData[req.name].level < req.value) {
+					return false;
+				}
+				break;
+			case 'shop': // Added: New case to check for item ownership.
+				const hasItem = (gameData.currentProperty && gameData.currentProperty.name === req.name) ||
+					(gameData.currentMisc && gameData.currentMisc.some(item => item.name === req.name));
+				if (!hasItem) {
+					return false;
+				}
+				break;
+			case 'coins':
+				if (gameData.coins < req.value) {
+					return false;
+				}
+				break;
+			case 'fame':
+				if (gameData.fame < req.value) {
+					return false;
+				}
+				break;
+			case 'age':
+				if (daysToYears(gameData.days) < req.value) {
+					return false;
+				}
+				break;
+		}
+	}
+	return true;
+}
+
 function applyExpenses () {
 	const coins = applySpeed(getExpense());
 	gameData.coins -= coins;
@@ -584,10 +625,8 @@ function rebirthReset () {
 		task.xp = 0;
 	}
 	
-	for (const key in gameData.requirements) {
-		const requirement = gameData.requirements[key];
-		requirement.completed = false;
-	}
+	// Modified: Reset the new unlocks tracker
+	gameData.unlocks = {};
 }
 
 function getLifespan () {

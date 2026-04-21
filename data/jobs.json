@@ -10,7 +10,8 @@
     "social": 0.0,
     "filename": "gig_worker.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a tired gig worker in a simple hoodie and sneakers, looking at a smartphone on a quiet city sidewalk at night. Clean geometric shapes, soft muted color palette, and a cozy aesthetic. Simplified neon signs and rain puddles are rendered as basic shapes, with no realistic detail. Warm, gentle lighting despite the subject matter."
+    "imageprompt": "A flat, minimalist vector illustration of a tired gig worker in a simple hoodie and sneakers, looking at a smartphone on a quiet city sidewalk at night. Clean geometric shapes, soft muted color palette, and a cozy aesthetic. Simplified neon signs and rain puddles are rendered as basic shapes, with no realistic detail. Warm, gentle lighting despite the subject matter.",
+    "requirements": []
   },
   "Food Service": {
     "name": "Food Service",
@@ -23,7 +24,10 @@
     "social": 0.3,
     "filename": "food_service.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a friendly barista in a simple apron holding a stack of coffee cups behind a café counter. Clean simplified shapes, soft pastel colors, and a cozy warm aesthetic. Basic geometric espresso machines, rounded cup shapes, and gentle steam curls fill the scene. No realistic detail, just charming simplified forms."
+    "imageprompt": "A flat, minimalist vector illustration of a friendly barista in a simple apron holding a stack of coffee cups behind a café counter. Clean simplified shapes, soft pastel colors, and a cozy warm aesthetic. Basic geometric espresso machines, rounded cup shapes, and gentle steam curls fill the scene. No realistic detail, just charming simplified forms.",
+    "requirements": [
+      { "type": "job", "name": "Gig Worker", "value": 10 }
+    ]
   },
   "Delivery Driver": {
     "name": "Delivery Driver",
@@ -36,7 +40,10 @@
     "social": 0.0,
     "filename": "delivery_driver.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a delivery driver on a simple bicycle with a square insulated bag on their back, riding down a clean city street at sunset. Rendered in soft warm colors with basic geometric buildings, rounded traffic lights, and a gentle gradient sky. Cozy, friendly aesthetic built entirely from simplified shapes."
+    "imageprompt": "A flat, minimalist vector illustration of a delivery driver on a simple bicycle with a square insulated bag on their back, riding down a clean city street at sunset. Rendered in soft warm colors with basic geometric buildings, rounded traffic lights, and a gentle gradient sky. Cozy, friendly aesthetic built entirely from simplified shapes.",
+    "requirements": [
+      { "type": "job", "name": "Food Service", "value": 10 }
+    ]
   },
   "Warehouse Worker": {
     "name": "Warehouse Worker",
@@ -49,7 +56,11 @@
     "social": 0.0,
     "filename": "warehouse_worker.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a worker in a simple safety vest holding a barcode scanner inside a warehouse. Clean geometric shelves stacked with rounded boxes stretch into the distance. Soft muted color palette with warm highlights, cozy despite the industrial setting. Everything rendered as simplified shapes with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a worker in a simple safety vest holding a barcode scanner inside a warehouse. Clean geometric shelves stacked with rounded boxes stretch into the distance. Soft muted color palette with warm highlights, cozy despite the industrial setting. Everything rendered as simplified shapes with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Delivery Driver", "value": 10 },
+      { "type": "skill", "name": "Focus", "value": 10 }
+    ]
   },
   "Office Temp": {
     "name": "Office Temp",
@@ -62,7 +73,11 @@
     "social": 0.2,
     "filename": "office_temp.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of an office temp sitting at a simple desk with a computer monitor, surrounded by a few identical cubicles rendered as basic rectangles. Soft muted blues and grays with warm accent colors, a tiny potted plant on the desk. Cozy, simplified aesthetic with clean geometric shapes and no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of an office temp sitting at a simple desk with a computer monitor, surrounded by a few identical cubicles rendered as basic rectangles. Soft muted blues and grays with warm accent colors, a tiny potted plant on the desk. Cozy, simplified aesthetic with clean geometric shapes and no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Warehouse Worker", "value": 10 },
+      { "type": "skill", "name": "Focus", "value": 30 }
+    ]
   },
   "Personal Assistant": {
     "name": "Personal Assistant",
@@ -75,7 +90,11 @@
     "social": 0.4,
     "filename": "personal_assistant.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a personal assistant holding a tablet and a small folder, standing in a simple modern lobby with rounded revolving doors. Soft warm color palette, clean geometric shapes, and a cozy friendly aesthetic. Simplified skyline visible through basic window shapes. No realistic detail, just charming vector forms."
+    "imageprompt": "A flat, minimalist vector illustration of a personal assistant holding a tablet and a small folder, standing in a simple modern lobby with rounded revolving doors. Soft warm color palette, clean geometric shapes, and a cozy friendly aesthetic. Simplified skyline visible through basic window shapes. No realistic detail, just charming vector forms.",
+    "requirements": [
+      { "type": "job", "name": "Office Temp", "value": 10 },
+      { "type": "skill", "name": "Frugality", "value": 50 }
+    ]
   },
   "Intern": {
     "name": "Intern",
@@ -88,7 +107,10 @@
     "social": 0.2,
     "filename": "intern.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a young intern carrying a tall stack of papers through a simple open office. Clean geometric shapes form the desks, brick wall, and ceiling lights. Soft warm colors with a cozy aesthetic, the intern's expression hopeful and wide-eyed. Everything simplified into charming basic forms."
+    "imageprompt": "A flat, minimalist vector illustration of a young intern carrying a tall stack of papers through a simple open office. Clean geometric shapes form the desks, brick wall, and ceiling lights. Soft warm colors with a cozy aesthetic, the intern's expression hopeful and wide-eyed. Everything simplified into charming basic forms.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 10 }
+    ]
   },
   "Blogger": {
     "name": "Blogger",
@@ -101,7 +123,11 @@
     "social": 0.0,
     "filename": "blogger.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a blogger typing on a laptop in a cozy coffee shop corner, with a simple latte cup, a few sticky notes, and rounded earbuds nearby. Warm pastel color palette, soft ambient glow from the laptop screen. Clean geometric shapes form the café background. Cozy, inviting aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a blogger typing on a laptop in a cozy coffee shop corner, with a simple latte cup, a few sticky notes, and rounded earbuds nearby. Warm pastel color palette, soft ambient glow from the laptop screen. Clean geometric shapes form the café background. Cozy, inviting aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Intern", "value": 10 },
+      { "type": "skill", "name": "Typing Speed", "value": 20 }
+    ]
   },
   "Content Creator": {
     "name": "Content Creator",
@@ -114,7 +140,11 @@
     "social": 0.36,
     "filename": "content_creator.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a cheerful content creator filming themselves in front of a simple ring light and camera on a tripod. Basic geometric shapes form the home studio, with simplified cables and a pastel green screen. Soft warm colors, floating rounded notification icons, and a cozy friendly aesthetic. No realistic detail, just clean vector forms."
+    "imageprompt": "A flat, minimalist vector illustration of a cheerful content creator filming themselves in front of a simple ring light and camera on a tripod. Basic geometric shapes form the home studio, with simplified cables and a pastel green screen. Soft warm colors, floating rounded notification icons, and a cozy friendly aesthetic. No realistic detail, just clean vector forms.",
+    "requirements": [
+      { "type": "job", "name": "Blogger", "value": 10 },
+      { "type": "skill", "name": "Grammar & Prose", "value": 40 }
+    ]
   },
   "Copy Editor": {
     "name": "Copy Editor",
@@ -127,7 +157,11 @@
     "social": 0.1,
     "filename": "copy_editor.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a copy editor with round glasses marking up a manuscript with a red pen at a tidy desk. Simple stacks of books, two rounded monitors, and a warm desk lamp. Soft cozy color palette with clean geometric shapes. No realistic detail, just charming simplified forms conveying quiet focus."
+    "imageprompt": "A flat, minimalist vector illustration of a copy editor with round glasses marking up a manuscript with a red pen at a tidy desk. Simple stacks of books, two rounded monitors, and a warm desk lamp. Soft cozy color palette with clean geometric shapes. No realistic detail, just charming simplified forms conveying quiet focus.",
+    "requirements": [
+      { "type": "job", "name": "Content Creator", "value": 10 },
+      { "type": "skill", "name": "Typing Speed", "value": 100 }
+    ]
   },
   "Staff Writer": {
     "name": "Staff Writer",
@@ -140,7 +174,11 @@
     "social": 0.24,
     "filename": "staff_writer.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a staff writer at a standing desk with a simple keyboard and monitor, in an open office with a basic whiteboard covered in colorful sticky notes. Soft warm color palette, clean geometric shapes, and a cozy productive aesthetic. No realistic detail, just simplified vector forms."
+    "imageprompt": "A flat, minimalist vector illustration of a staff writer at a standing desk with a simple keyboard and monitor, in an open office with a basic whiteboard covered in colorful sticky notes. Soft warm color palette, clean geometric shapes, and a cozy productive aesthetic. No realistic detail, just simplified vector forms.",
+    "requirements": [
+      { "type": "job", "name": "Copy Editor", "value": 10 },
+      { "type": "skill", "name": "Grammar & Prose", "value": 150 }
+    ]
   },
   "Senior Editor": {
     "name": "Senior Editor",
@@ -153,7 +191,11 @@
     "social": 0.3,
     "filename": "senior_editor.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a senior editor reviewing a manuscript at a clean glass desk in a simple corner office with rounded city skyline visible through the windows. Soft warm colors with gentle gold accents on small award shapes and book spines. Cozy, refined aesthetic built from simplified geometric shapes with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a senior editor reviewing a manuscript at a clean glass desk in a simple corner office with rounded city skyline visible through the windows. Soft warm colors with gentle gold accents on small award shapes and book spines. Cozy, refined aesthetic built from simplified geometric shapes with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Staff Writer", "value": 10 },
+      { "type": "skill", "name": "Typing Speed", "value": 300 }
+    ]
   },
   "Ghostwriter": {
     "name": "Ghostwriter",
@@ -166,7 +208,11 @@
     "social": 0.0,
     "filename": "ghostwriter.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a mysterious figure in silhouette typing at a laptop in a dim, cozy home office. Soft blue glow from the laptop screen illuminates a simplified book shape and a rounded contract. Muted color palette with warm accent highlights. Clean geometric shapes throughout, cozy despite the subject's anonymity, with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a mysterious figure in silhouette typing at a laptop in a dim, cozy home office. Soft blue glow from the laptop screen illuminates a simplified book shape and a rounded contract. Muted color palette with warm accent highlights. Clean geometric shapes throughout, cozy despite the subject's anonymity, with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Senior Editor", "value": 10 },
+      { "type": "skill", "name": "Plotting", "value": 500 }
+    ]
   },
   "Full-Time Author": {
     "name": "Full-Time Author",
@@ -179,7 +225,12 @@
     "social": 0.0,
     "filename": "full_time_author.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a smiling author holding up their new book in warm morning sunlight by a window. Simple geometric bookshelves fill the background with rows of colorful simplified book spines. Soft amber and gold color palette, cozy home library aesthetic. Clean vector shapes throughout with no realistic detail, radiating quiet joy."
+    "imageprompt": "A flat, minimalist vector illustration of a smiling author holding up their new book in warm morning sunlight by a window. Simple geometric bookshelves fill the background with rows of colorful simplified book spines. Soft amber and gold color palette, cozy home library aesthetic. Clean vector shapes throughout with no realistic detail, radiating quiet joy.",
+    "requirements": [
+      { "type": "job", "name": "Ghostwriter", "value": 10 },
+      { "type": "skill", "name": "Plotting", "value": 1000 },
+      { "type": "skill", "name": "Grammar & Prose", "value": 1000 }
+    ]
   },
   "C.W. Student": {
     "name": "C.W. Student",
@@ -192,7 +243,11 @@
     "social": 0.0,
     "filename": "cw_student.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a creative writing student reading a marked-up manuscript at a simple library table, surrounded by a small stack of books and an open laptop. Soft warm color palette with cozy pastel tones, clean geometric shelves in the background. Simplified shapes throughout, no realistic detail, conveying quiet literary focus."
+    "imageprompt": "A flat, minimalist vector illustration of a creative writing student reading a marked-up manuscript at a simple library table, surrounded by a small stack of books and an open laptop. Soft warm color palette with cozy pastel tones, clean geometric shelves in the background. Simplified shapes throughout, no realistic detail, conveying quiet literary focus.",
+    "requirements": [
+      { "type": "skill", "name": "Focus", "value": 200 },
+      { "type": "skill", "name": "Meditation", "value": 200 }
+    ]
   },
   "Junior Agent": {
     "name": "Junior Agent",
@@ -205,7 +260,11 @@
     "social": 0.4,
     "filename": "junior_agent.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of an enthusiastic junior literary agent on the phone at a cluttered desk stacked with simplified query letters and a basic laptop. Soft warm colors, a small whiteboard with colorful notes in the background. Cozy, approachable aesthetic built from clean geometric shapes with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of an enthusiastic junior literary agent on the phone at a cluttered desk stacked with simplified query letters and a basic laptop. Soft warm colors, a small whiteboard with colorful notes in the background. Cozy, approachable aesthetic built from clean geometric shapes with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "C.W. Student", "value": 10 },
+      { "type": "skill", "name": "Plotting", "value": 400 }
+    ]
   },
   "Senior Agent": {
     "name": "Senior Agent",
@@ -218,7 +277,11 @@
     "social": 0.5,
     "filename": "senior_agent.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a senior literary agent having lunch at a stylish restaurant table, holding a simple contract. Rounded champagne glasses and a small plate are rendered as basic shapes. Soft elegant color palette with gentle gold accents. Cozy refined aesthetic with clean geometric forms and no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a senior literary agent having lunch at a stylish restaurant table, holding a simple contract. Rounded champagne glasses and a small plate are rendered as basic shapes. Soft elegant color palette with gentle gold accents. Cozy refined aesthetic with clean geometric forms and no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Junior Agent", "value": 10 },
+      { "type": "skill", "name": "Plotting", "value": 700 }
+    ]
   },
   "Publisher": {
     "name": "Publisher",
@@ -231,7 +294,11 @@
     "social": 0.5,
     "filename": "publisher.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a confident publisher standing before a large window overlooking a simplified city skyline, framed by tall bookshelves filled with colorful simplified book spines. Soft warm color palette with gentle gold accents on small framed shapes. Clean geometric forms throughout, cozy and composed aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a confident publisher standing before a large window overlooking a simplified city skyline, framed by tall bookshelves filled with colorful simplified book spines. Soft warm color palette with gentle gold accents on small framed shapes. Clean geometric forms throughout, cozy and composed aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Senior Agent", "value": 10 },
+      { "type": "skill", "name": "Plotting", "value": 1000 }
+    ]
   },
   "Literary Titan": {
     "name": "Literary Titan",
@@ -244,7 +311,11 @@
     "social": 0.4,
     "filename": "literary_titan.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of a revered author seated in a cozy armchair atop a stylized stack of colorful simplified books shaped like a gentle throne. Soft warm color palette with lavish gold accents on the book spines and a small laurel wreath motif. Clean geometric shapes throughout, cozy and iconic aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of a revered author seated in a cozy armchair atop a stylized stack of colorful simplified books shaped like a gentle throne. Soft warm color palette with lavish gold accents on the book spines and a small laurel wreath motif. Clean geometric shapes throughout, cozy and iconic aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Publisher", "value": 10 },
+      { "type": "skill", "name": "Plotting", "value": 1500 }
+    ]
   },
   "Head of Publishing": {
     "name": "Head of Publishing",
@@ -257,6 +328,10 @@
     "social": 0.6,
     "filename": "head_of_publishing.png",
     "filefolder": "jobs",
-    "imageprompt": "A flat, minimalist vector illustration of the Head of Publishing standing in a sleek penthouse boardroom with a simplified world map on the wall marked with tiny dots. A small trophy shape sits on a basic credenza, with rows of colorful simplified book spines nearby. Soft warm color palette with elegant gold accents. Clean geometric shapes throughout, cozy and commanding aesthetic with no realistic detail."
+    "imageprompt": "A flat, minimalist vector illustration of the Head of Publishing standing in a sleek penthouse boardroom with a simplified world map on the wall marked with tiny dots. A small trophy shape sits on a basic credenza, with rows of colorful simplified book spines nearby. Soft warm color palette with elegant gold accents. Clean geometric shapes throughout, cozy and commanding aesthetic with no realistic detail.",
+    "requirements": [
+      { "type": "job", "name": "Literary Titan", "value": 10 },
+      { "type": "skill", "name": "Plotting", "value": 2000 }
+    ]
   }
 }

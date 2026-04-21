@@ -37,11 +37,8 @@ var gameData = {
 		acceleration: 0
 	},
 	
-	unlocks: {
-		shop: false,
-		skills: false,
-		writing: false
-	},
+	// Modified: The 'unlocks' object now tracks all unlockable entities.
+	unlocks: {},
 	
 	wordsWritten: 0,
 	booksPublished: 0,

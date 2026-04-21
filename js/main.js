@@ -124,10 +124,10 @@ function trackMonthlyData () {
 
 async function init () {
     try {
-        // Modified: Removed fetches for category JSON files
+        // Modified: Removed fetch for requirements.json
         const[
             jobsRes, skillsRes, itemsRes,
-            colorsRes, tooltipsRes, reqRes,
+            colorsRes, tooltipsRes,
             authorsRes, booksRes,
             potionsRes, lifeExpRes, genresRes,
             sceneTypesRes, genreIdealsRes,
@@ -140,7 +140,6 @@ async function init () {
             fetch('data/items.json?' + gameData.version),
             fetch('data/headerRowColors.json?' + gameData.version),
             fetch('data/tooltips.json?' + gameData.version),
-            fetch('data/requirements.json?' + gameData.version),
             fetch('data/authors.json?' + gameData.version),
             fetch('data/books.json?' + gameData.version),
             fetch('data/potions.json?' + gameData.version),
@@ -164,7 +163,7 @@ async function init () {
         
         headerRowColors = await colorsRes.json();
         tooltips = await tooltipsRes.json();
-        const requirementsData = await reqRes.json();
+        // Removed: requirementsData is no longer fetched or used
         
         authorsBaseData = await authorsRes.json();
         booksBaseData = await booksRes.json();
@@ -191,13 +190,7 @@ async function init () {
         gameData.currentProperty = gameData.itemData.Homeless;
         gameData.currentMisc =[];
         
-        setupRequirements(requirementsData);
-        
-        tempData.requirements = {};
-        for (const key in gameData.requirements) {
-            const requirement = gameData.requirements[key];
-            tempData.requirements[key] = requirement;
-        }
+        // Removed: setupRequirements and tempData.requirements are no longer needed
         
         loadGameData();
         

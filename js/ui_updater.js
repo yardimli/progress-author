@@ -1,6 +1,7 @@
 // Dynamic UI updates for the game loop
 
-function updateRequiredRows (data, categoryType) {
+// Modified: This function is completely rewritten to use the new requirements system.
+function updateRequiredRows (baseData, categoryType) {
 	for (const categoryName in categoryType) {
 		const category = categoryType[categoryName];
 		let nextEntityFound = false;
@@ -13,39 +14,41 @@ function updateRequiredRows (data, categoryType) {
 			const element = document.getElementById('row ' + entityName);
 			if (!element) continue;
 			
-			const requirements = gameData.requirements[entityName];
-			const previouslyCompleted = requirements ? requirements.completed : true;
+			const entity = baseData[entityName];
+			const isUnlocked = areRequirementsMet(entity);
 			
-			if (!requirements || requirements.isCompleted()) {
+			if (isUnlocked) {
 				if (element.classList.contains('hiddenTask')) {
 					element.classList.remove('hiddenTask');
-					if (requirements && !previouslyCompleted && isInitialized) {
+					// If it's the first time this is unlocked since the game started, show a popup.
+					if (!gameData.unlocks[entityName] && isInitialized) {
 						const imgEl = element.querySelector('.card-image, .row-image');
 						if (imgEl) queueInfoModal(imgEl, true);
 					}
 				}
+				gameData.unlocks[entityName] = true; // Mark as unlocked for future checks.
 			} else {
 				if (!element.classList.contains('hiddenTask')) element.classList.add('hiddenTask');
 				
+				// This is the first locked item in the category, so we display its requirements.
 				if (!nextEntityFound) {
-					let finalText = '';
-					
-					if (requirements instanceof FameRequirement) {
-						finalText += format(requirements.requirements[0].requirement) + ' fame';
-					} else if (requirements instanceof CoinRequirement) {
-						finalText += '$' + format(requirements.requirements[0].requirement, 0);
-					} else if (requirements instanceof TaskRequirement) {
-						const reqStrings = [];
-						for (const req of requirements.requirements) {
-							const task = gameData.taskData[req.task];
-							reqStrings.push(req.task + ' LVL ' + format(task.level, 0) + ' / ' + format(req.requirement, 0));
+					const reqStrings = [];
+					if (entity.requirements) {
+						for (const req of entity.requirements) {
+							if (req.type === 'fame') {
+								reqStrings.push(`${format(req.value)} fame`);
+							} else if (req.type === 'coins') {
+								reqStrings.push(`$${format(req.value, 0)}`);
+							} else if (req.type === 'job' || req.type === 'skill') {
+								const task = gameData.taskData[req.name];
+								const currentLevel = task ? task.level : 0;
+								reqStrings.push(`${req.name} LVL ${format(currentLevel, 0)} / ${format(req.value, 0)}`);
+							} else if (req.type === 'age') {
+								reqStrings.push(`Age ${format(req.value, 0)}`);
+							}
 						}
-						finalText += reqStrings.join('<br>');
-					} else if (requirements instanceof AgeRequirement) {
-						finalText += 'Age ' + format(requirements.requirements[0].requirement, 0);
 					}
-					
-					categoryReqText = finalText;
+					categoryReqText = reqStrings.join('<br>');
 					nextEntityFound = true;
 				}
 			}
@@ -503,24 +506,39 @@ function setSignDisplay () {
 	}
 }
 
-function hideEntities () {
-	for (const key in gameData.requirements) {
-		const requirement = gameData.requirements[key];
-		const completed = requirement.isCompleted();
-		for (const element of requirement.elements) {
-			if (element.id && element.id.startsWith('row ')) {
-				continue;
-			}
-			
-			if (completed) {
-				if (element.classList.contains('hidden')) {
-					element.classList.remove('hidden');
-				}
+// Added: New function to handle visibility of special UI elements.
+function updateUIVisibility () {
+	// Business of Writing Category Header
+	const businessOfWriting = document.getElementsByClassName('TheBusinessofWriting');
+	if (businessOfWriting.length > 0) {
+		const isVisible = gameData.fame >= 1;
+		for (let i = 0; i < businessOfWriting.length; i++) {
+			if (isVisible) {
+				businessOfWriting[i].classList.remove('hidden');
 			} else {
-				if (!element.classList.contains('hidden')) {
-					element.classList.add('hidden');
-				}
+				businessOfWriting[i].classList.add('hidden');
 			}
+		}
+	}
+	
+	// Fame Info in Header
+	const fameInfo = document.getElementById('fameInfo');
+	if (fameInfo) {
+		if (gameData.fame >= 1) {
+			fameInfo.classList.remove('hidden');
+		} else {
+			fameInfo.classList.add('hidden');
+		}
+	}
+	
+	// Flow State (Time Warping) Info in Header
+	const timeWarping = document.getElementById('timeWarping');
+	if (timeWarping) {
+		const seniorAgent = gameData.taskData['Senior Agent'];
+		if (seniorAgent && seniorAgent.level >= 10) {
+			timeWarping.classList.remove('hidden');
+		} else {
+			timeWarping.classList.add('hidden');
 		}
 	}
 }
@@ -655,10 +673,11 @@ function updateUI () {
 	updateHeaderUI();
 	updateTaskRows();
 	updateItemRows();
-	updateRequiredRows(gameData.taskData, jobCategories);
-	updateRequiredRows(gameData.taskData, skillCategories);
-	updateRequiredRows(gameData.itemData, itemCategories);
-	hideEntities();
+	// Modified: The old updateRequiredRows and hideEntities are replaced with new calls.
+	updateRequiredRows(jobBaseData, jobCategories);
+	updateRequiredRows(skillBaseData, skillCategories);
+	updateRequiredRows(itemBaseData, itemCategories);
+	updateUIVisibility();
 	updateAuthorAndBookUI();
 	updateText();
 	updateBookHistory();

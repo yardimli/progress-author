@@ -181,8 +181,8 @@
 
 <script>
 	// Global data variables to hold JSON data
-	// Modified: Added all necessary data files for a full simulation
-	let jobBaseData, skillBaseData, itemBaseData, reqData, bookBaseData;
+	// Modified: Removed reqData as requirements.json is no longer used
+	let jobBaseData, skillBaseData, itemBaseData, bookBaseData;
 	let badgeBaseData, authorsBaseData, genresBaseData, lifeExperiencesBaseData;
 	let jobCategories, skillCategories, itemCategories;
 	
@@ -226,12 +226,11 @@
 	// Initialize and load all required JSON files
 	async function init () {
 		try {
-			// Modified: Fetch all required JSONs for the simulation
-			const [jobsRes, skillsRes, itemsRes, reqsRes, booksRes, badgesRes, authorsRes, genresRes, lifeExpRes] = await Promise.all([
+			// Modified: Removed fetch for requirements.json
+			const [jobsRes, skillsRes, itemsRes, booksRes, badgesRes, authorsRes, genresRes, lifeExpRes] = await Promise.all([
 				fetch('data/jobs.json'),
 				fetch('data/skills.json'),
 				fetch('data/items.json'),
-				fetch('data/requirements.json'),
 				fetch('data/books.json'),
 				fetch('data/badges.json'),
 				fetch('data/authors.json'),
@@ -241,7 +240,7 @@
 			jobBaseData = await jobsRes.json();
 			skillBaseData = await skillsRes.json();
 			itemBaseData = await itemsRes.json();
-			reqData = await reqsRes.json();
+			// Modified: Removed reqData assignment
 			bookBaseData = await booksRes.json();
 			badgeBaseData = await badgesRes.json();
 			authorsBaseData = await authorsRes.json();
@@ -260,10 +259,14 @@
 				...jobCategories['Literary Elite']
 			];
 			
-			// Precompute coin requirements for items
-			for (const key in reqData) {
-				if (reqData[key].type === 'coins') {
-					itemReqs[key] = reqData[key].requirements[0].requirement;
+			// Modified: Precompute coin requirements by reading from itemBaseData directly
+			for (const key in itemBaseData) {
+				const item = itemBaseData[key];
+				if (item.requirements && item.requirements.length > 0) {
+					const coinReq = item.requirements.find(r => r.type === 'coins');
+					if (coinReq) {
+						itemReqs[key] = coinReq.value;
+					}
 				}
 			}
 			
@@ -535,23 +538,36 @@
 		return state.booksPublished * networking * mediaTours * getBadgeMultiplier('fameGain');
 	};
 	
-	// Check if a task is unlocked based on requirements
+	// Modified: Check if a task is unlocked based on requirements in the entity's own data.
 	function isUnlocked (taskName) {
-		const reqs = reqData[taskName];
-		if (!reqs) return true;
-		if (reqs.type === 'task') {
-			for (const r of reqs.requirements) {
-				if (getLevel(r.task) < r.requirement) return false;
+		const job = jobBaseData[taskName];
+		const skill = skillBaseData[taskName];
+		const entity = job || skill; // Get the entity from either job or skill data
+		
+		if (!entity || !entity.requirements || entity.requirements.length === 0) {
+			return true; // No requirements, so it's unlocked
+		}
+		
+		// Check all requirements for the entity
+		for (const req of entity.requirements) {
+			switch (req.type) {
+				case 'job':
+				case 'skill':
+					if (getLevel(req.name) < req.value) {
+						return false;
+					}
+					break;
+				case 'fame':
+					if (state.fame < req.value) {
+						return false;
+					}
+					break;
 			}
-			return true;
 		}
-		if (reqs.type === 'fame') {
-			return state.fame >= reqs.requirements[0].requirement;
-		}
-		return false;
+		return true; // All requirements met
 	};
 	
-	// Determine the next skill to train based on the selected strategy
+	// Modified: Determine the next skill to train based on the selected strategy, using the new requirements structure.
 	function getNextSkill () {
 		const strategy = state.skillStrategy;
 		const allSkills = Object.keys(skillBaseData);
@@ -564,32 +580,40 @@
 			
 			for (const s of allSkills) {
 				if (!isUnlocked(s)) {
-					let possible = true;
+					let possibleToTrainFor = true;
 					let levelsNeeded = 0;
-					let firstUnmetReq = null;
+					let firstUnmetSkillReq = null;
 					
-					const reqs = reqData[s];
-					if (reqs && reqs.type === 'task') {
-						for (const r of reqs.requirements) {
-							if (jobBaseData[r.task] && getLevel(r.task) < r.requirement) {
-								possible = false; // Requires a job level we don't have
+					const skill = skillBaseData[s];
+					if (skill && skill.requirements) {
+						for (const r of skill.requirements) {
+							// If a requirement is NOT a skill, we can't unlock this by skill training alone.
+							// Exception: a job requirement that is already met.
+							if (r.type === 'job' && getLevel(r.name) < r.value) {
+								possibleToTrainFor = false;
 								break;
 							}
-							if (skillBaseData[r.task]) {
-								const deficit = r.requirement - getLevel(r.task);
+							if (r.type === 'fame' && state.fame < r.value) {
+								possibleToTrainFor = false;
+								break;
+							}
+							
+							// If it's a skill requirement, calculate deficit.
+							if (r.type === 'skill') {
+								const deficit = r.value - getLevel(r.name);
 								if (deficit > 0) {
 									levelsNeeded += deficit;
-									if (!firstUnmetReq) firstUnmetReq = r.task;
+									if (!firstUnmetSkillReq) firstUnmetSkillReq = r.name;
 								}
 							}
 						}
 					} else {
-						possible = false; // Fame requirement, etc.
+						possibleToTrainFor = false; // Locked for a reason other than requirements (e.g. fame on a category)
 					}
 					
-					if (possible && firstUnmetReq && levelsNeeded < minLevelsNeeded) {
+					if (possibleToTrainFor && firstUnmetSkillReq && levelsNeeded < minLevelsNeeded) {
 						minLevelsNeeded = levelsNeeded;
-						bestReq = firstUnmetReq;
+						bestReq = firstUnmetSkillReq;
 					}
 				}
 			}
