@@ -113,6 +113,20 @@
 			flex-shrink: 0;
 			background-color: #f9f9f9;
 		}
+		.event-day {
+			font-size: 0.85em;
+			color: #666;
+			background: #eef2f5;
+			padding: 2px 6px;
+			border-radius: 4px;
+			margin-right: 6px;
+			font-weight: bold;
+			border: 1px solid #dcdcdc;
+		}
+		.event-icon {
+			font-size: 1em;
+			margin-right: 4px;
+		}
 		.event-job { border-top: 4px solid #4CAF50; }
 		.event-skill { border-top: 4px solid #219ebc; }
 		.event-item { border-top: 4px solid #ffc107; }
@@ -151,6 +165,13 @@
 		<option value="5">Level 5 (Max Spend / ASAP)</option>
 	</select>
 	
+	<label for="skillStrategySelect"><strong>Skill Strategy:</strong></label>
+	<select id="skillStrategySelect">
+		<option value="1">1 (Sequential to Lvl 10)</option>
+		<option value="2">2 (Balanced Catch-up)</option>
+		<option value="3" selected>3 (Writing Focus)</option>
+	</select>
+	
 	<button onclick="runSimulation()">Simulate Timeline</button>
 </div>
 
@@ -161,7 +182,7 @@
 <script>
 	// Global data variables to hold JSON data
 	let jobBaseData, skillBaseData, itemBaseData, reqData, jobCategories, bookBaseData;
-	let badgeBaseData, itemCategories, authorsBaseData, genresBaseData, lifeExperiencesBaseData;
+	let badgeBaseData, itemCategories, authorsBaseData, genresBaseData, lifeExperiencesBaseData, skillCategories;
 	let flattenedJobs =[];
 	const itemReqs = {};
 	
@@ -186,7 +207,7 @@
 	// Initialize and load all required JSON files
 	async function init () {
 		try {
-			const[jobsRes, skillsRes, itemsRes, reqsRes, jobCatRes, booksRes, badgesRes, itemCatRes, authorsRes, genresRes, lifeExpRes] = await Promise.all([
+			const[jobsRes, skillsRes, itemsRes, reqsRes, jobCatRes, booksRes, badgesRes, itemCatRes, authorsRes, genresRes, lifeExpRes, skillCatRes] = await Promise.all([
 				fetch('data/jobs.json'),
 				fetch('data/skills.json'),
 				fetch('data/items.json'),
@@ -197,7 +218,8 @@
 				fetch('data/itemCategories.json'),
 				fetch('data/authors.json'),
 				fetch('data/genres.json'),
-				fetch('data/lifeExperiences.json')
+				fetch('data/lifeExperiences.json'),
+				fetch('data/skillCategories.json')
 			]);
 			jobBaseData = await jobsRes.json();
 			skillBaseData = await skillsRes.json();
@@ -210,9 +232,10 @@
 			authorsBaseData = await authorsRes.json();
 			genresBaseData = await genresRes.json();
 			lifeExperiencesBaseData = await lifeExpRes.json();
+			skillCategories = await skillCatRes.json();
 			
 			// Flatten jobs into a single array for sequential progression
-			flattenedJobs =[
+			flattenedJobs = [
 				...jobCategories['Menial Work'],
 				...jobCategories['Creative Industry'],
 				...jobCategories['Literary Elite']
@@ -435,7 +458,7 @@
 		return exp;
 	}
 	
-	// Modified: Calculate book quality and return its breakdown formula
+	// Calculate book quality and return its breakdown formula
 	function getBookQualityDetails (bookId) {
 		const grammar = getLevel('Grammar & Prose');
 		const plotting = getLevel('Plotting');
@@ -512,48 +535,117 @@
 		return false;
 	}
 	
-	// Determine the next skill to train
+	// Modified: Determine the next skill to train based on the selected strategy
 	function getNextSkill () {
+		const strategy = state.skillStrategy;
 		const allSkills = Object.keys(skillBaseData);
-		
-		let targetLocked = null;
-		for (const s of allSkills) {
-			if (!isUnlocked(s)) {
-				let possible = true;
-				const reqs = reqData[s];
-				if (reqs && reqs.type === 'task') {
-					for (const r of reqs.requirements) {
-						if (jobBaseData[r.task] && r.task !== state.currentJob) {
-							possible = false;
-						}
-					}
-				}
-				if (possible) {
-					targetLocked = s;
-					break;
-				}
-			}
-		}
-		
-		if (targetLocked) {
-			const reqs = reqData[targetLocked];
-			if (reqs.type === 'task') {
-				let waitingForJob = false;
-				for (const r of reqs.requirements) {
-					if (skillBaseData[r.task] && getLevel(r.task) < r.requirement) {
-						return r.task;
-					}
-					if (jobBaseData[r.task] && getLevel(r.task) < r.requirement) {
-						waitingForJob = true;
-					}
-				}
-				if (!waitingForJob) return targetLocked;
-			}
-		}
-		
 		const unlockedSkills = allSkills.filter(s => isUnlocked(s));
-		unlockedSkills.sort((a, b) => getLevel(a) - getLevel(b));
-		if (unlockedSkills.length > 0) return unlockedSkills[0];
+		
+		// Helper to find the easiest locked skill to unlock and return its first unmet prerequisite
+		const getRequiredSkillForUnlock = () => {
+			let bestReq = null;
+			let minLevelsNeeded = Infinity;
+			
+			for (const s of allSkills) {
+				if (!isUnlocked(s)) {
+					let possible = true;
+					let levelsNeeded = 0;
+					let firstUnmetReq = null;
+					
+					const reqs = reqData[s];
+					if (reqs && reqs.type === 'task') {
+						for (const r of reqs.requirements) {
+							if (jobBaseData[r.task] && getLevel(r.task) < r.requirement) {
+								possible = false; // Requires a job level we don't have
+								break;
+							}
+							if (skillBaseData[r.task]) {
+								const deficit = r.requirement - getLevel(r.task);
+								if (deficit > 0) {
+									levelsNeeded += deficit;
+									if (!firstUnmetReq) firstUnmetReq = r.task;
+								}
+							}
+						}
+					} else {
+						possible = false; // Fame requirement, etc.
+					}
+					
+					if (possible && firstUnmetReq && levelsNeeded < minLevelsNeeded) {
+						minLevelsNeeded = levelsNeeded;
+						bestReq = firstUnmetReq;
+					}
+				}
+			}
+			return bestReq;
+		};
+		
+		const requiredSkill = getRequiredSkillForUnlock();
+		
+		if (strategy === 1) {
+			// Option 1: Strict Sequential to Level 10
+			if (state.currentSkill && getLevel(state.currentSkill) < 10) {
+				return state.currentSkill;
+			}
+			
+			const unstarted = unlockedSkills.filter(s => getLevel(s) === 0);
+			if (unstarted.length > 0) return unstarted[0];
+			
+			if (requiredSkill) return requiredSkill;
+			
+			unlockedSkills.sort((a, b) => getLevel(a) - getLevel(b));
+			return unlockedSkills.length > 0 ? unlockedSkills[0] : 'Focus';
+			
+		} else if (strategy === 2) {
+			// Option 2: Balanced Catch-up
+			const unstarted = unlockedSkills.filter(s => getLevel(s) === 0);
+			if (unstarted.length > 0) return unstarted[0];
+			
+			const under5 = unlockedSkills.filter(s => getLevel(s) < 5);
+			if (under5.length > 0) {
+				if (state.currentSkill && getLevel(state.currentSkill) < 5) return state.currentSkill;
+				under5.sort((a, b) => getLevel(a) - getLevel(b));
+				return under5[0];
+			}
+			
+			const under10 = unlockedSkills.filter(s => getLevel(s) < 10);
+			if (under10.length > 0) {
+				if (state.currentSkill && getLevel(state.currentSkill) < 10) return state.currentSkill;
+				under10.sort((a, b) => getLevel(a) - getLevel(b));
+				return under10[0];
+			}
+			
+			if (requiredSkill) return requiredSkill;
+			
+			unlockedSkills.sort((a, b) => getLevel(a) - getLevel(b));
+			return unlockedSkills.length > 0 ? unlockedSkills[0] : 'Focus';
+			
+		} else if (strategy === 3) {
+			// Option 3: Writing Focus
+			const unstarted = unlockedSkills.filter(s => getLevel(s) === 0);
+			if (unstarted.length > 0) return unstarted[0];
+			
+			const writingSkills = unlockedSkills.filter(s => skillCategories['Writing Craft'] && skillCategories['Writing Craft'].includes(s));
+			
+			if (writingSkills.length > 0) {
+				writingSkills.sort((a, b) => getLevel(a) - getLevel(b));
+				const lowestWriting = writingSkills[0];
+				
+				if (requiredSkill) {
+					if (writingSkills.includes(requiredSkill)) return requiredSkill;
+					// Keep prerequisites within 10 levels of the lowest writing skill
+					if (getLevel(requiredSkill) < getLevel(lowestWriting) + 10) {
+						return requiredSkill;
+					}
+				}
+				return lowestWriting;
+			}
+			
+			if (requiredSkill) return requiredSkill;
+			
+			unlockedSkills.sort((a, b) => getLevel(a) - getLevel(b));
+			return unlockedSkills.length > 0 ? unlockedSkills[0] : 'Focus';
+		}
 		
 		return 'Focus';
 	}
@@ -572,8 +664,8 @@
 		return '';
 	}
 	
-	// Modified: Add XP to a task and handle level ups, including multiplier info
-	function addXp (taskName, amount, isJob, events) {
+	// Add XP to a task and handle level ups, including day parameter
+	function addXp (taskName, amount, isJob, day, events) {
 		if (state.xp[taskName] === undefined) state.xp[taskName] = 0;
 		if (state.levels[taskName] === undefined) state.levels[taskName] = 0;
 		
@@ -591,24 +683,25 @@
 		if (leveledUp) {
 			const newLevel = state.levels[taskName];
 			if (newLevel <= 10 || newLevel % 10 === 0) {
-				// Calculate multiplier at the time of upgrade
 				const mult = isJob ? (getJobXpGain(taskName) / 4) : (getSkillXpGain(taskName) / 4);
 				events.push({
 					type: isJob ? 'job' : 'skill',
 					text: `<b>${taskName}</b> reached Level ${newLevel} (Mult: ${mult.toFixed(1)}x)`,
-					imgSrc: getImgSrc(taskName, isJob ? 'job' : 'skill')
+					imgSrc: getImgSrc(taskName, isJob ? 'job' : 'skill'),
+					dayOfYear: (day % 365) + 1 // Added day of the year
 				});
 			}
 		}
 	}
 	
-	// Modified: Check items for unlocks and purchases separately
+	// Check items for unlocks and purchases, including day parameter
 	function checkItems (day, age, events) {
 		const sortedItems = Object.keys(itemBaseData).sort((a, b) => (itemReqs[a] || 0) - (itemReqs[b] || 0));
 		
 		const spendLevel = parseInt(document.getElementById('spendLevelSelect').value);
 		const thresholds = { 1: 10, 2: 5, 3: 2, 4: 1.2, 5: 1 };
 		const threshold = thresholds[spendLevel];
+		const dayOfYear = (day % 365) + 1; // Added day of the year
 		
 		for (const itemName of sortedItems) {
 			const req = itemReqs[itemName];
@@ -620,7 +713,8 @@
 				events.push({
 					type: 'item',
 					text: `Unlocked <b>${itemName}</b> (Cost: $${format(req)})`,
-					imgSrc: getImgSrc(itemName, 'item')
+					imgSrc: getImgSrc(itemName, 'item'),
+					dayOfYear: dayOfYear
 				});
 			}
 			
@@ -639,7 +733,8 @@
 				events.push({
 					type: 'item',
 					text: `Purchased <b>${itemName}</b> (Cost: $${format(req)}, Bank: $${format(state.coins)})`,
-					imgSrc: getImgSrc(itemName, 'item')
+					imgSrc: getImgSrc(itemName, 'item'),
+					dayOfYear: dayOfYear
 				});
 			}
 		}
@@ -671,8 +766,9 @@
 		}
 	}
 	
-	// Check and unlock badges
-	function checkBadges (events) {
+	// Check and unlock badges, including day parameter
+	function checkBadges (day, events) {
+		const dayOfYear = (day % 365) + 1;
 		for (const badgeId in badgeBaseData) {
 			if (state.earnedBadges.includes(badgeId)) continue;
 			const badge = badgeBaseData[badgeId];
@@ -687,7 +783,8 @@
 				events.push({
 					type: 'badge',
 					text: `🏆 Earned Badge: <b>${badge.name}</b>`,
-					imgSrc: getImgSrc(badgeId, 'badge')
+					imgSrc: getImgSrc(badgeId, 'badge'),
+					dayOfYear: dayOfYear
 				});
 			}
 		}
@@ -702,13 +799,14 @@
 		const daysPerBook = Math.round(365 / publishRate);
 		
 		state.currentAuthor = document.getElementById('authorSelect').value;
+		state.skillStrategy = parseInt(document.getElementById('skillStrategySelect').value);
 		
 		state.days = 0;
 		state.coins = 0;
 		state.maxCoins = 0;
 		state.levels = {};
 		state.xp = {};
-		state.seenUnlockedItems =['Homeless', 'Library Card']; // Added: Track unlocked items separately
+		state.seenUnlockedItems = ['Homeless', 'Library Card'];
 		state.unlockedItems =['Homeless', 'Library Card'];
 		state.currentProperty = 'Homeless';
 		state.currentMisc = ['Library Card'];
@@ -755,7 +853,7 @@
 			state.yearlyExpense += dailyExpense;
 			
 			checkItems(day, age, events);
-			checkBadges(events);
+			checkBadges(day, events);
 			
 			// Automatic job progression logic
 			if (currentJobIndex < flattenedJobs.length - 1) {
@@ -766,16 +864,17 @@
 					events.push({
 						type: 'job',
 						text: `Started new job: <b>${state.currentJob}</b>`,
-						imgSrc: getImgSrc(state.currentJob, 'job')
+						imgSrc: getImgSrc(state.currentJob, 'job'),
+						dayOfYear: (day % 365) + 1
 					});
 				}
 			}
 			
-			addXp(state.currentJob, getJobXpGain(state.currentJob), true, events);
+			addXp(state.currentJob, getJobXpGain(state.currentJob), true, day, events);
 			
 			state.currentSkill = getNextSkill();
 			if (state.currentSkill) {
-				addXp(state.currentSkill, getSkillXpGain(state.currentSkill), false, events);
+				addXp(state.currentSkill, getSkillXpGain(state.currentSkill), false, day, events);
 			}
 			
 			state.daysSinceLastBook++;
@@ -786,7 +885,6 @@
 				const bookKeys = Object.keys(bookBaseData);
 				const bookId = bookKeys[(state.booksPublished - 1) % bookKeys.length];
 				
-				// Modified: Use getBookQualityDetails to get formula breakdown
 				const qualityDetails = getBookQualityDetails(bookId);
 				const quality = qualityDetails.finalQuality;
 				if (quality > state.highestQuality) state.highestQuality = quality;
@@ -808,7 +906,8 @@
 				events.push({
 					type: 'book',
 					text: `<div>📚 Published Book #${state.booksPublished} (Quality: ${quality.toFixed(1)}%, Royalties: +$${format(royalty)}/d)</div><div style="font-size: 0.85em; color: #666; margin-top: 4px;">Formula: ${qualityDetails.breakdown}</div>`,
-					imgSrc: bookImgSrc
+					imgSrc: bookImgSrc,
+					dayOfYear: (day % 365) + 1
 				});
 			}
 			
@@ -818,7 +917,8 @@
 				events.push({
 					type: 'stats',
 					text: `📊 Year End Stats: 💰 Bank: $${format(state.coins)} | 📈 Yearly Income: $${format(state.yearlyIncome)} | 📉 Yearly Expense: $${format(state.yearlyExpense)} | 💵 Net: $${format(net)} | 🌟 Fame: ${format(state.fame)}`,
-					imgSrc: ''
+					imgSrc: '',
+					dayOfYear: 365
 				});
 				state.yearlyIncome = 0;
 				state.yearlyExpense = 0;
@@ -836,6 +936,16 @@
 	function renderTimeline (timelineData) {
 		const container = document.getElementById('timeline');
 		container.innerHTML = '';
+		
+		// Define icons for each event type
+		const icons = {
+			job: '💼 Job',
+			skill: '🧠 Skill',
+			item: '🛒 Shop',
+			book: '✍️ Writing',
+			badge: '🏆',
+			stats: '📊'
+		};
 		
 		for (let age = 20; age <= 70; age++) {
 			const yearData = timelineData[age];
@@ -873,7 +983,12 @@
 				}
 				
 				const textDiv = document.createElement('div');
-				textDiv.innerHTML = ev.text;
+				
+				// Construct day badge and icon HTML
+				const dayHtml = ev.dayOfYear ? `<span class="event-day">Day ${ev.dayOfYear}</span>` : '';
+				const iconHtml = `<span class="event-icon" title="${ev.type}">${icons[ev.type] || ''}</span>`;
+				
+				textDiv.innerHTML = `${dayHtml}${iconHtml} ${ev.text}`;
 				box.appendChild(textDiv);
 				
 				eventsDiv.appendChild(box);
