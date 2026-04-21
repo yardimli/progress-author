@@ -345,7 +345,6 @@ function updateHeaderUI () {
 	// Band 3: Core Stats
 	updateHeaderVal('header-val-balance', `$${format(gameData.coins)}`);
 	
-	// Added: Calculate and update daily net in the header
 	const dailyNet = getIncome() - getExpense();
 	const netFormatted = (dailyNet >= 0 ? '+' : '-') + '$' + format(Math.abs(dailyNet)) + '/d';
 	const netColor = dailyNet >= 0 ? '#4CAF50' : '#f44336';
@@ -368,7 +367,6 @@ function updateHeaderUI () {
 	updateHeaderVal('header-val-books', gameData.booksPublished);
 	updateHeaderVal('header-val-progress', gameData.currentBook ? `${((gameData.wordsWritten / getBookLength()) * 100).toFixed(1)}%` : 'Idle');
 	
-	// Added: Populate Work, Skill, and Quality Multipliers
 	const workMulti = gameData.currentJob ? (applyMultipliers(1, gameData.currentJob.xpMultipliers) * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
 	updateHeaderVal('header-val-work-multi', workMulti.toFixed(2));
 	
@@ -398,18 +396,18 @@ function updateText () {
 	
 	const writingSpeed = getWritingSpeed();
 	
-	
 	updateIfChanged('writingSpeedDisplayTab', format(writingSpeed));
 	
 	updateIfChanged('bookQualityDisplayTab', getCurvedQuality(getBookQuality()).toFixed(2));
 	updateIfChanged('expectedQualityDisplay', getCurvedQuality(getBookQuality()).toFixed(2));
 	
-	const speedOverlay = document.getElementById('writingSpeedOverlay');
-	if (speedOverlay) {
-		if (writingSpeed <= 0 && gameData.unlocks.writing) {
-			speedOverlay.style.display = 'flex';
+	// Modified: Replaced old writingSpeedOverlay logic with the new writingTimeAlert
+	const writingTimeAlert = document.getElementById('writingTimeAlert');
+	if (writingTimeAlert) {
+		if (gameData.workWritingBalance === 0) {
+			writingTimeAlert.style.display = 'block';
 		} else {
-			speedOverlay.style.display = 'none';
+			writingTimeAlert.style.display = 'none';
 		}
 	}
 	

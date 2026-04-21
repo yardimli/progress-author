@@ -49,7 +49,6 @@
 				<div class="info-band band-3">
 					<div class="info-band-content">
 						<span class="marquee-item">
-							<!-- Modified: Added header-val-net and increased min-width to fit the new daily net value -->
 							<span class="stat-item" style="min-width:160px;">💰 <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
 							<span class="stat-item">📈 <span class="header-val-income">...</span></span>
 							<span class="stat-item">📉 <span class="header-val-expense">...</span></span>
@@ -57,13 +56,11 @@
 							<span class="stat-item">🏆 <span class="header-val-badges">...</span></span>
 							<span class="stat-item">📚 <span class="header-val-books">...</span></span>
 							<span class="stat-item">✍️ <span class="header-val-progress">...</span></span>
-							<!-- Added: Work, Skill, and Quality Multipliers -->
 							<span class="stat-item">💼 Work Multi: <span class="header-val-work-multi">...</span>x</span>
 							<span class="stat-item">🧠 Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
 							<span class="stat-item">✨ Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
 						</span>
 						<span class="marquee-item duplicate" aria-hidden="true">
-							<!-- Modified: Added header-val-net and increased min-width to fit the new daily net value -->
 							<span class="stat-item" style="min-width:160px;">💰 <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
 							<span class="stat-item">📈 <span class="header-val-income">...</span></span>
 							<span class="stat-item">📉 <span class="header-val-expense">...</span></span>
@@ -71,7 +68,6 @@
 							<span class="stat-item">🏆 <span class="header-val-badges">...</span></span>
 							<span class="stat-item">📚 <span class="header-val-books">...</span></span>
 							<span class="stat-item">✍️ <span class="header-val-progress">...</span></span>
-							<!-- Added: Work, Skill, and Quality Multipliers -->
 							<span class="stat-item">💼 Work Multi: <span class="header-val-work-multi">...</span>x</span>
 							<span class="stat-item">🧠 Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
 							<span class="stat-item">✨ Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
@@ -169,44 +165,31 @@
 			
 			<!-- Column 2: Skills -->
 			<div class="panel-column" id="skills">
-				<div id="skillsLockedOverlay" class="locked-tab-overlay">
-					<div class="locked-tab-icon">🔒</div>
-					<div class="locked-tab-title">Skills Locked</div>
-					<div class="locked-tab-reqs">Move into a Rented Room and reach level 5 in Gig Worker to unlock.</div>
-				</div>
+				<!-- Modified: Removed skillsLockedOverlay -->
 				<div id="skillTable"></div>
 			</div>
 			
 			<!-- Column 3: Shop -->
 			<div class="panel-column" id="shop">
-				<div id="shopLockedOverlay" class="locked-tab-overlay">
-					<div class="locked-tab-icon">🔒</div>
-					<div class="locked-tab-title">Shop Locked</div>
-					<div class="locked-tab-reqs">Reach level 3 in Gig Worker to unlock.</div>
-				</div>
+				<!-- Modified: Removed shopLockedOverlay -->
 				<div id="itemTable"></div>
 			</div>
 			
 			<!-- Column 4: Writing -->
 			<div class="panel-column" id="writing">
 				<div class="category-header">Writing</div>
-				<div id="writingLockedOverlay" class="locked-tab-overlay">
-					<div class="locked-tab-icon">🔒</div>
-					<div class="locked-tab-title">Writing Locked</div>
-					<div class="locked-tab-reqs">Move into a home (Rented Room or better) and acquire a Used Laptop to unlock.</div>
-				</div>
+				<!-- Modified: Removed writingLockedOverlay and writingSpeedOverlay -->
 				
-				<div id="writingSpeedOverlay" class="locked-tab-overlay" style="display: none;">
-					<div class="locked-tab-icon">⏳</div>
-					<div class="locked-tab-title">No Time Assigned</div>
-					<div class="locked-tab-reqs">Adjust the Work/Writing slider to allocate time for writing.</div>
-					<button class="btn btn-active" style="margin-top: 15px;" onclick="setInitialWritingBalance()">Start Writing</button>
-				</div>
-				
-				<div id="workWritingSliderContainer" class="hidden slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
+				<!-- Modified: Removed 'hidden' class so the slider is visible by default -->
+				<div id="workWritingSliderContainer" class="slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
 					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
 					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
 					<span class="writing-percentage-label">Writing: <span id="writingPercentage">0</span>%</span>
+				</div>
+				
+				<!-- Added: Alert to tell the user to add time to writing when work is at 100% -->
+				<div id="writingTimeAlert" style="display: none; color: #f44336; text-align: center; margin-bottom: 15px; font-weight: bold;">
+					Please allocate time to writing using the slider above to start writing!
 				</div>
 				
 				<div id="bookSelectionContainer" class="ui-row" style="padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">

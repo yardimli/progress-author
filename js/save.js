@@ -110,10 +110,6 @@ function loadGameData() {
 			gameData.potions = { inspiration: 0, acceleration: 0 };
 		}
 		
-		if (!gameData.unlocks) {
-			gameData.unlocks = { shop: false, skills: false, writing: false };
-		}
-		
 		if (gameData.rebirthOnePrompted === undefined) {
 			gameData.rebirthOnePrompted = false;
 		}

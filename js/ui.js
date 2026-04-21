@@ -17,29 +17,6 @@ function switchMobileTab (tabId, btnElement) {
 	}
 }
 
-function applyUnlocksUI () {
-	const shopOverlay = document.getElementById('shopLockedOverlay');
-	if (shopOverlay) {
-		shopOverlay.style.display = gameData.unlocks.shop ? 'none' : 'flex';
-	}
-	
-	const skillsOverlay = document.getElementById('skillsLockedOverlay');
-	if (skillsOverlay) {
-		skillsOverlay.style.display = gameData.unlocks.skills ? 'none' : 'flex';
-	}
-	
-	const writingOverlay = document.getElementById('writingLockedOverlay');
-	if (writingOverlay) {
-		writingOverlay.style.display = gameData.unlocks.writing ? 'none' : 'flex';
-	}
-	
-	if (gameData.unlocks.writing) {
-		document.getElementById('workWritingSliderContainer').classList.remove('hidden');
-	} else {
-		document.getElementById('workWritingSliderContainer').classList.add('hidden');
-	}
-}
-
 function setInitialWritingBalance () {
 	updateWorkWritingBalance(30);
 }
@@ -68,9 +45,6 @@ function logEvent (message) {
 	}
 }
 
-// Modified: Event listener for author image click to open the profile modal.
-// The DOMContentLoaded wrapper was removed because the script is loaded at the end of the body,
-// guaranteeing the element exists. This prevents a race condition where the event might have already fired.
 const authorImageContainer = document.getElementById('authorImageContainer');
 if (authorImageContainer) {
 	authorImageContainer.addEventListener('click', () => {

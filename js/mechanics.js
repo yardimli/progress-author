@@ -9,28 +9,6 @@ function applyExpenses () {
 	}
 }
 
-function checkUnlocks () {
-	if (!gameData.unlocks.shop && gameData.taskData['Gig Worker'].level >= 3) {
-		gameData.unlocks.shop = true;
-		queueTutorialModal('Shop Unlocked', 'You\'ve earned enough experience to start looking for better living conditions and equipment. The <b>Shop</b> tab is now available!');
-		applyUnlocksUI();
-	}
-	if (!gameData.unlocks.skills && gameData.currentProperty.name === 'Rented Room' && gameData.taskData['Gig Worker'].level >= 5) {
-		gameData.unlocks.skills = true;
-		queueTutorialModal('Skills Unlocked', 'With a roof over your head and more experience under your belt, you can now focus on self-improvement. The <b>Skills</b> tab is now available!');
-		applyUnlocksUI();
-	}
-	
-	const hasRoof = gameData.currentProperty && gameData.currentProperty.name !== 'Homeless';
-	const hasLaptop = gameData.currentMisc && gameData.currentMisc.some(item => item.name === 'Used Laptop');
-	
-	if (!gameData.unlocks.writing && hasRoof && hasLaptop) {
-		gameData.unlocks.writing = true;
-		queueTutorialModal('Writing Unlocked', 'With a roof over your head and a laptop to type on, it\'s time to pursue your true passion. The <b>Writing</b> tab and Work/Writing balance slider are now available!');
-		applyUnlocksUI();
-	}
-}
-
 function checkBadgeUnlocks() {
 	if (!badgeBaseData) return;
 	

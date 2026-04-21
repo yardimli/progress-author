@@ -7,7 +7,6 @@ function updateLogic () {
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
-    checkUnlocks();
     checkBadgeUnlocks();
     checkRebirthPrompts();
     trackMonthlyData(); // Added: Track data for chart
@@ -222,8 +221,6 @@ function continueInit () {
     
     setCustomEffects();
     addMultipliers();
-    
-    applyUnlocksUI();
     
     updateLogic();
     updateUI();
