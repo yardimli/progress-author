@@ -1,6 +1,7 @@
 {
   "Homeless": {
     "name": "Homeless",
+    "category": "Properties",
     "expense": 0,
     "effect": 1,
     "writingMultiplier": 1,
@@ -11,6 +12,7 @@
   },
   "Rented Room": {
     "name": "Rented Room",
+    "category": "Properties",
     "expense": 30,
     "effect": 1.4,
     "writingMultiplier": 1.2,
@@ -21,6 +23,7 @@
   },
   "Studio": {
     "name": "Studio",
+    "category": "Properties",
     "expense": 75,
     "effect": 1.6,
     "writingMultiplier": 1.4,
@@ -31,6 +34,7 @@
   },
   "Suburban": {
     "name": "Suburban",
+    "category": "Properties",
     "expense": 120,
     "effect": 2.0,
     "writingMultiplier": 1.7,
@@ -41,6 +45,7 @@
   },
   "Large House": {
     "name": "Large House",
+    "category": "Properties",
     "expense": 250,
     "effect": 2.4,
     "writingMultiplier": 2.1,
@@ -51,6 +56,7 @@
   },
   "City Penthouse": {
     "name": "City Penthouse",
+    "category": "Properties",
     "expense": 600,
     "effect": 3.0,
     "writingMultiplier": 2.6,
@@ -61,6 +67,7 @@
   },
   "Private Villa": {
     "name": "Private Villa",
+    "category": "Properties",
     "expense": 2000,
     "effect": 4.0,
     "writingMultiplier": 3.2,
@@ -71,6 +78,7 @@
   },
   "Mansion Estate": {
     "name": "Mansion Estate",
+    "category": "Properties",
     "expense": 5000,
     "effect": 6.0,
     "writingMultiplier": 4.0,
@@ -81,6 +89,7 @@
   },
   "Library Card": {
     "name": "Library Card",
+    "category": "Misc",
     "expense": 1,
     "effect": 1.0,
     "writingQuality": 1.2,
@@ -90,6 +99,7 @@
   },
   "Bus Pass": {
     "name": "Bus Pass",
+    "category": "Misc",
     "expense": 2,
     "effect": 1.2,
     "description": "Job XP",
@@ -101,6 +111,7 @@
   },
   "Used Laptop": {
     "name": "Used Laptop",
+    "category": "Misc",
     "expense": 3,
     "effect": 1.0,
     "writingMultiplier": 1.3,
@@ -110,6 +121,7 @@
   },
   "Planner": {
     "name": "Planner",
+    "category": "Misc",
     "expense": 4,
     "effect": 1.1,
     "description": "Skill XP",
@@ -121,6 +133,7 @@
   },
   "Ergonomic Chair": {
     "name": "Ergonomic Chair",
+    "category": "Misc",
     "expense": 5,
     "effect": 1.0,
     "writingMultiplier": 1.2,
@@ -131,6 +144,7 @@
   },
   "Coffee Machine": {
     "name": "Coffee Machine",
+    "category": "Misc",
     "expense": 8,
     "effect": 1.5,
     "description": "Inspiration",
@@ -142,6 +156,7 @@
   },
   "Style Guide": {
     "name": "Style Guide",
+    "category": "Misc",
     "expense": 12,
     "effect": 1.0,
     "writingMultiplier": 1.0,
@@ -152,6 +167,7 @@
   },
   "Industry Magazine": {
     "name": "Industry Magazine",
+    "category": "Misc",
     "expense": 16,
     "effect": 1.5,
     "description": "Creative Industry experience",
@@ -163,6 +179,7 @@
   },
   "Pro Writing Software": {
     "name": "Pro Writing Software",
+    "category": "Misc",
     "expense": 20,
     "effect": 1.0,
     "writingMultiplier": 1.0,
@@ -173,6 +190,7 @@
   },
   "Smart Assistant": {
     "name": "Smart Assistant",
+    "category": "Misc",
     "expense": 30,
     "effect": 1.5,
     "description": "Typing Speed experience",
@@ -184,6 +202,7 @@
   },
   "Home Office": {
     "name": "Home Office",
+    "category": "Misc",
     "expense": 40,
     "effect": 1.0,
     "writingMultiplier": 1.5,
@@ -194,6 +213,7 @@
   },
   "Masterclass Subscription": {
     "name": "Masterclass Subscription",
+    "category": "Misc",
     "expense": 50,
     "effect": 2.2,
     "description": "Writing Craft experience",
@@ -205,6 +225,7 @@
   },
   "Editor": {
     "name": "Editor",
+    "category": "Misc",
     "expense": 70,
     "effect": 1.0,
     "writingMultiplier": 1.0,
@@ -215,6 +236,7 @@
   },
   "Focus Supplements": {
     "name": "Focus Supplements",
+    "category": "Misc",
     "expense": 85,
     "effect": 2.5,
     "description": "Skill XP",
@@ -226,6 +248,7 @@
   },
   "Home Library": {
     "name": "Home Library",
+    "category": "Misc",
     "expense": 100,
     "effect": 1.0,
     "writingQuality": 2.5,
@@ -235,6 +258,7 @@
   },
   "Networking Membership": {
     "name": "Networking Membership",
+    "category": "Misc",
     "expense": 150,
     "effect": 2.0,
     "description": "Skill XP",

@@ -124,9 +124,9 @@ function trackMonthlyData () {
 
 async function init () {
     try {
-        const [
+        // Modified: Removed fetches for category JSON files
+        const[
             jobsRes, skillsRes, itemsRes,
-            jobCatRes, skillCatRes, itemCatRes,
             colorsRes, tooltipsRes, reqRes,
             authorsRes, booksRes,
             potionsRes, lifeExpRes, genresRes,
@@ -138,9 +138,6 @@ async function init () {
             fetch('data/jobs.json?' + gameData.version),
             fetch('data/skills.json?' + gameData.version),
             fetch('data/items.json?' + gameData.version),
-            fetch('data/jobCategories.json?' + gameData.version),
-            fetch('data/skillCategories.json?' + gameData.version),
-            fetch('data/itemCategories.json?' + gameData.version),
             fetch('data/headerRowColors.json?' + gameData.version),
             fetch('data/tooltips.json?' + gameData.version),
             fetch('data/requirements.json?' + gameData.version),
@@ -160,9 +157,11 @@ async function init () {
         skillBaseData = await skillsRes.json();
         itemBaseData = await itemsRes.json();
         
-        jobCategories = await jobCatRes.json();
-        skillCategories = await skillCatRes.json();
-        itemCategories = await itemCatRes.json();
+        // Added: Build categories dynamically from base data
+        jobCategories = buildCategories(jobBaseData);
+        skillCategories = buildCategories(skillBaseData);
+        itemCategories = buildCategories(itemBaseData);
+        
         headerRowColors = await colorsRes.json();
         tooltips = await tooltipsRes.json();
         const requirementsData = await reqRes.json();
@@ -188,16 +187,16 @@ async function init () {
         createData(gameData.itemData, itemBaseData);
         
         gameData.currentJob = gameData.taskData['Gig Worker'];
-        gameData.currentSkill = gameData.taskData['Focus'];
-        gameData.currentProperty = gameData.itemData['Homeless'];
-        gameData.currentMisc = [];
+        gameData.currentSkill = gameData.taskData.Focus;
+        gameData.currentProperty = gameData.itemData.Homeless;
+        gameData.currentMisc =[];
         
         setupRequirements(requirementsData);
         
-        tempData['requirements'] = {};
+        tempData.requirements = {};
         for (const key in gameData.requirements) {
             const requirement = gameData.requirements[key];
-            tempData['requirements'][key] = requirement;
+            tempData.requirements[key] = requirement;
         }
         
         loadGameData();
@@ -208,7 +207,6 @@ async function init () {
         }
         
         continueInit();
-        
     } catch (error) {
         console.error('Failed to load game data:', error);
         alert('Failed to load game data. Ensure you are running this on a local web server to allow fetch API to work.');

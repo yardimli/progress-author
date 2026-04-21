@@ -1,6 +1,7 @@
 {
   "Focus": {
     "name": "Focus",
+    "category": "Fundamentals",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -11,6 +12,7 @@
   },
   "Time Management": {
     "name": "Time Management",
+    "category": "Fundamentals",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -21,6 +23,7 @@
   },
   "Frugality": {
     "name": "Frugality",
+    "category": "Fundamentals",
     "maxXp": 100,
     "effect": -0.01,
     "writingQuality": 0.01,
@@ -31,6 +34,7 @@
   },
   "Meditation": {
     "name": "Meditation",
+    "category": "Fundamentals",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -41,6 +45,7 @@
   },
   "Typing Speed": {
     "name": "Typing Speed",
+    "category": "Writing Craft",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.0,
@@ -51,6 +56,7 @@
   },
   "Grammar & Prose": {
     "name": "Grammar & Prose",
+    "category": "Writing Craft",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.02,
@@ -61,6 +67,7 @@
   },
   "Plotting": {
     "name": "Plotting",
+    "category": "Writing Craft",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.02,
@@ -71,6 +78,7 @@
   },
   "Character Dev.": {
     "name": "Character Dev.",
+    "category": "Writing Craft",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.02,
@@ -81,6 +89,7 @@
   },
   "Healthy Lifestyle": {
     "name": "Healthy Lifestyle",
+    "category": "Lifestyle",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -91,6 +100,7 @@
   },
   "Flow State": {
     "name": "Flow State",
+    "category": "Lifestyle",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -101,6 +111,7 @@
   },
   "Longevity Secrets": {
     "name": "Longevity Secrets",
+    "category": "Lifestyle",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -111,6 +122,7 @@
   },
   "Brand Management": {
     "name": "Brand Management",
+    "category": "The Business of Writing",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -121,6 +133,7 @@
   },
   "Networking": {
     "name": "Networking",
+    "category": "The Business of Writing",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -131,6 +144,7 @@
   },
   "Public Speaking": {
     "name": "Public Speaking",
+    "category": "The Business of Writing",
     "maxXp": 100,
     "effect": -0.01,
     "writingQuality": 0.01,
@@ -141,6 +155,7 @@
   },
   "Personal Brand": {
     "name": "Personal Brand",
+    "category": "The Business of Writing",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -151,6 +166,7 @@
   },
   "Media Tours": {
     "name": "Media Tours",
+    "category": "The Business of Writing",
     "maxXp": 100,
     "effect": 0.01,
     "writingQuality": 0.01,
@@ -161,6 +177,7 @@
   },
   "Royalty Negotiation": {
     "name": "Royalty Negotiation",
+    "category": "The Business of Writing",
     "maxXp": 100,
     "effect": 0.002,
     "writingQuality": 0.01,

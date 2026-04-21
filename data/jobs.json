@@ -1,6 +1,7 @@
 {
   "Gig Worker": {
     "name": "Gig Worker",
+    "category": "Menial Work",
     "maxXp": 50,
     "income": 40.00,
     "hardship": 0.4,
@@ -13,6 +14,7 @@
   },
   "Food Service": {
     "name": "Food Service",
+    "category": "Menial Work",
     "maxXp": 100,
     "income": 70.00,
     "hardship": 0.3,
@@ -25,6 +27,7 @@
   },
   "Delivery Driver": {
     "name": "Delivery Driver",
+    "category": "Menial Work",
     "maxXp": 200,
     "income": 100.00,
     "hardship": 0.24,
@@ -37,6 +40,7 @@
   },
   "Warehouse Worker": {
     "name": "Warehouse Worker",
+    "category": "Menial Work",
     "maxXp": 400,
     "income": 130.00,
     "hardship": 0.36,
@@ -49,6 +53,7 @@
   },
   "Office Temp": {
     "name": "Office Temp",
+    "category": "Menial Work",
     "maxXp": 800,
     "income": 160.00,
     "hardship": 0.0,
@@ -61,6 +66,7 @@
   },
   "Personal Assistant": {
     "name": "Personal Assistant",
+    "category": "Menial Work",
     "maxXp": 1600,
     "income": 200.00,
     "hardship": 0.2,
@@ -73,6 +79,7 @@
   },
   "Intern": {
     "name": "Intern",
+    "category": "Creative Industry",
     "maxXp": 100,
     "income": 40.00,
     "hardship": 0.24,
@@ -85,6 +92,7 @@
   },
   "Blogger": {
     "name": "Blogger",
+    "category": "Creative Industry",
     "maxXp": 1000,
     "income": 80.00,
     "hardship": 0.0,
@@ -97,6 +105,7 @@
   },
   "Content Creator": {
     "name": "Content Creator",
+    "category": "Creative Industry",
     "maxXp": 10000,
     "income": 150.00,
     "hardship": 0.0,
@@ -109,6 +118,7 @@
   },
   "Copy Editor": {
     "name": "Copy Editor",
+    "category": "Creative Industry",
     "maxXp": 100000,
     "income": 220.00,
     "hardship": 0.0,
@@ -121,6 +131,7 @@
   },
   "Staff Writer": {
     "name": "Staff Writer",
+    "category": "Creative Industry",
     "maxXp": 1000000,
     "income": 300.00,
     "hardship": 0.0,
@@ -133,6 +144,7 @@
   },
   "Senior Editor": {
     "name": "Senior Editor",
+    "category": "Creative Industry",
     "maxXp": 7500000,
     "income": 450.00,
     "hardship": 0.0,
@@ -145,6 +157,7 @@
   },
   "Ghostwriter": {
     "name": "Ghostwriter",
+    "category": "Creative Industry",
     "maxXp": 40000000,
     "income": 700.00,
     "hardship": 0.0,
@@ -157,6 +170,7 @@
   },
   "Full-Time Author": {
     "name": "Full-Time Author",
+    "category": "Creative Industry",
     "maxXp": 150000000,
     "income": 0,
     "hardship": 0.0,
@@ -169,6 +183,7 @@
   },
   "C.W. Student": {
     "name": "C.W. Student",
+    "category": "Literary Elite",
     "maxXp": 100000,
     "income": 30.00,
     "hardship": 0.2,
@@ -181,6 +196,7 @@
   },
   "Junior Agent": {
     "name": "Junior Agent",
+    "category": "Literary Elite",
     "maxXp": 1000000,
     "income": 180.00,
     "hardship": 0.0,
@@ -193,6 +209,7 @@
   },
   "Senior Agent": {
     "name": "Senior Agent",
+    "category": "Literary Elite",
     "maxXp": 10000000,
     "income": 350.00,
     "hardship": 0.0,
@@ -205,6 +222,7 @@
   },
   "Publisher": {
     "name": "Publisher",
+    "category": "Literary Elite",
     "maxXp": 100000000,
     "income": 600.00,
     "hardship": 0.0,
@@ -217,6 +235,7 @@
   },
   "Literary Titan": {
     "name": "Literary Titan",
+    "category": "Literary Elite",
     "maxXp": 10000000000,
     "income": 1500.00,
     "hardship": 0.0,
@@ -229,6 +248,7 @@
   },
   "Head of Publishing": {
     "name": "Head of Publishing",
+    "category": "Literary Elite",
     "maxXp": 1000000000000,
     "income": 3000.00,
     "hardship": 0.0,
