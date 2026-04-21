@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Author's Journey - Timeline</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #f0f2f5;
+			margin: 0;
+			padding: 20px;
+		}
+		.header {
+			background: white;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+			margin-bottom: 20px;
+			display: flex;
+			gap: 15px;
+			align-items: center;
+			position: sticky;
+			top: 20px;
+			z-index: 100;
+		}
+		/* Added: Styling for select dropdowns */
+		select {
+			padding: 10px 15px;
+			font-size: 16px;
+			border: 1px solid #ccc;
+			border-radius: 6px;
+			outline: none;
+		}
+		button {
+			padding: 10px 15px;
+			font-size: 16px;
+			border: 1px solid #ccc;
+			border-radius: 6px;
+			outline: none;
+			background-color: #4CAF50;
+			color: white;
+			cursor: pointer;
+			font-weight: bold;
+			transition: background-color 0.2s;
+		}
+		button:hover {
+			background-color: #45a049;
+		}
+		.timeline-container {
+			background: white;
+			padding: 20px 30px;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+		}
+		.year-row {
+			display: flex;
+			align-items: flex-start;
+			border-bottom: 1px solid #f0f0f0;
+			padding: 20px 0;
+		}
+		.year-row:last-child {
+			border-bottom: none;
+		}
+		.year-label {
+			width: 90px;
+			font-weight: bold;
+			flex-shrink: 0;
+			padding-top: 10px;
+			color: #555;
+			font-size: 1.1em;
+		}
+		.year-events {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			flex-grow: 1;
+		}
+		.event-box {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 16px;
+			border-radius: 6px;
+			background: #fff;
+			border: 1px solid #e0e0e0;
+			font-size: 14px;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+			line-height: 1.4;
+		}
+		.event-box img {
+			width: 40px;
+			height: 40px;
+			object-fit: cover;
+			border-radius: 4px;
+			flex-shrink: 0;
+			background-color: #f9f9f9;
+		}
+		.event-job { border-top: 4px solid #4CAF50; }
+		.event-skill { border-top: 4px solid #219ebc; }
+		.event-item { border-top: 4px solid #ffc107; }
+		.event-book { border-top: 4px solid #ff5722; }
+		.event-stats {
+			border-top: 4px solid #9c27b0;
+			width: 100%;
+			background: #faf5fb;
+			font-weight: bold;
+			color: #4a148c;
+		}
+	</style>
+</head>
+<body>
+
+<div class="header">
+	<!-- Added: Dropdown for publishing rate -->
+	<label for="publishRateSelect"><strong>Publish Rate:</strong></label>
+	<select id="publishRateSelect">
+		<option value="0.3333">1 book every 3 years</option>
+		<option value="0.5">1 book every 2 years</option>
+		<option value="1" selected>1 book a year</option>
+		<option value="2">2 books a year</option>
+		<option value="3">3 books a year</option>
+	</select>
+	<button onclick="runSimulation()">Simulate Timeline</button>
+</div>
+
+<div class="timeline-container" id="timeline">
+	<div style="color: #888; text-align: center; padding: 40px; font-size: 1.1em;">Click Simulate to generate the timeline.</div>
+</div>
+
+<script>
+	// Global data variables to hold JSON data
+	let jobBaseData, skillBaseData, itemBaseData, reqData, jobCategories, bookBaseData;
+	let flattenedJobs =[];
+	const itemReqs = {};
+	
+	const units =['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc'];
+	
+	// Helper function to format numbers with suffixes
+	function format (number, decimals = 2) {
+		if (Math.abs(number) < 1000) {
+			const fixedNum = Number(Math.abs(number).toFixed(decimals));
+			if (fixedNum < 1000) {
+				return number.toFixed(decimals).replace('.', ',');
+			}
+			number = number < 0 ? -fixedNum : fixedNum;
+		}
+		const tier = Math.floor(Math.log10(Math.abs(number)) / 3);
+		const suffix = units[tier] || '';
+		const scale = Math.pow(10, tier * 3);
+		const scaled = number / scale;
+		return scaled.toFixed(decimals).replace('.', ',') + suffix;
+	}
+	
+	// Initialize and load all required JSON files
+	async function init () {
+		try {
+			const[jobsRes, skillsRes, itemsRes, reqsRes, jobCatRes, booksRes] = await Promise.all([
+				fetch('data/jobs.json'),
+				fetch('data/skills.json'),
+				fetch('data/items.json'),
+				fetch('data/requirements.json'),
+				fetch('data/jobCategories.json'),
+				fetch('data/books.json')
+			]);
+			jobBaseData = await jobsRes.json();
+			skillBaseData = await skillsRes.json();
+			itemBaseData = await itemsRes.json();
+			reqData = await reqsRes.json();
+			jobCategories = await jobCatRes.json();
+			bookBaseData = await booksRes.json();
+			
+			// Flatten jobs into a single array for sequential progression
+			flattenedJobs = [
+				...jobCategories['Menial Work'],
+				...jobCategories['Creative Industry'],
+				...jobCategories['Literary Elite']
+			];
+			
+			// Precompute coin requirements for items
+			for (const key in reqData) {
+				if (reqData[key].type === 'coins') {
+					itemReqs[key] = reqData[key].requirements[0].requirement;
+				}
+			}
+		} catch (e) {
+			console.error(e);
+			document.getElementById('timeline').innerHTML = '<div style="color:red; text-align:center; padding:40px;">Failed to load JSON data. Must run on a local server.</div>';
+		}
+	}
+	
+	// Simulation state
+	const state = {};
+	
+	// Retrieve the current level of a task
+	function getLevel (taskName) {
+		return state.levels[taskName] || 0;
+	}
+	
+	// Calculate the maximum XP needed for the next level
+	function getMaxXp (taskName, isJob) {
+		const base = isJob ? jobBaseData[taskName] : skillBaseData[taskName];
+		const lvl = getLevel(taskName);
+		return Math.round(base.maxXp * (lvl + 1) * Math.pow(1.01, lvl));
+	}
+	
+	// Calculate the effect multiplier of a skill
+	function getEffect (skillName) {
+		const base = skillBaseData[skillName];
+		if (!base) return 1;
+		const lvl = getLevel(skillName);
+		if (skillName === 'Frugality' || skillName === 'Public Speaking') {
+			const mult = 1 - (Math.log(lvl + 1) / Math.log(7)) / 10;
+			return Math.max(0.1, mult);
+		}
+		if (skillName === 'Flow State') {
+			return 1 + (Math.log(lvl + 1) / Math.log(13));
+		}
+		if (skillName === 'Healthy Lifestyle') {
+			return 1 + (Math.log(lvl + 1) / Math.log(33));
+		}
+		return 1 + base.effect * lvl;
+	}
+	
+	// Calculate the effect multiplier of an item
+	function getItemEffect (itemName) {
+		if (!state.unlockedItems.includes(itemName)) return 1;
+		const base = itemBaseData[itemName];
+		return base.effect || 1;
+	}
+	
+	// Calculate the daily income from a job
+	function getJobIncome (jobName) {
+		const base = jobBaseData[jobName];
+		if (!base) return 0;
+		const lvl = getLevel(jobName);
+		let income = base.income * (1 + Math.log10(lvl + 1));
+		income *= getEffect('Royalty Negotiation');
+		return income;
+	}
+	
+	// Calculate the XP gained per day for a job
+	function getJobXpGain (jobName) {
+		let gain = 10 * 0.4;
+		gain *= getEffect('Brand Management');
+		gain *= getEffect('Personal Brand');
+		gain *= getEffect('Time Management');
+		gain *= getItemEffect('Bus Pass');
+		
+		const creativeJobs =['Intern', 'Blogger', 'Content Creator', 'Copy Editor', 'Staff Writer', 'Senior Editor', 'Ghostwriter', 'Full-Time Author'];
+		if (creativeJobs.includes(jobName)) {
+			gain *= getEffect('Grammar & Prose');
+			gain *= getItemEffect('Industry Magazine');
+		}
+		
+		const eliteJobs =['C.W. Student', 'Junior Agent', 'Senior Agent', 'Publisher', 'Literary Titan', 'Head of Publishing'];
+		if (eliteJobs.includes(jobName)) {
+			gain *= getEffect('Plotting');
+		}
+		
+		return gain;
+	}
+	
+	// Calculate the XP gained per day for a skill
+	function getSkillXpGain (skillName) {
+		let gain = 10 * 0.4;
+		gain *= getEffect('Brand Management');
+		gain *= getEffect('Personal Brand');
+		gain *= getEffect('Focus');
+		gain *= getItemEffect('Planner');
+		gain *= getItemEffect('Focus Supplements');
+		gain *= getItemEffect('Networking Membership');
+		
+		if (['Typing Speed', 'Grammar & Prose', 'Plotting', 'Character Dev.'].includes(skillName)) {
+			gain *= getItemEffect('Masterclass Subscription');
+		}
+		if (skillName === 'Typing Speed') {
+			gain *= getEffect('Character Dev.');
+			gain *= getItemEffect('Smart Assistant');
+		}
+		if (['Brand Management', 'Networking', 'Public Speaking', 'Personal Brand', 'Media Tours', 'Royalty Negotiation'].includes(skillName)) {
+			gain *= (state.fame === 0 ? 1 : state.fame);
+		}
+		
+		return gain;
+	}
+	
+	// Calculate daily expenses
+	function getExpense () {
+		let expense = 0;
+		const prop = itemBaseData[state.currentProperty];
+		if (prop) expense += prop.expense;
+		for (const m of state.currentMisc) {
+			expense += itemBaseData[m].expense;
+		}
+		expense *= getEffect('Frugality');
+		expense *= getEffect('Public Speaking');
+		return expense;
+	}
+	
+	// Calculate raw writing speed
+	function getRawWritingSpeed () {
+		let speed = 100;
+		speed *= getEffect('Typing Speed');
+		speed *= getEffect('Focus');
+		
+		const insp = getEffect('Meditation') * getItemEffect('Coffee Machine') * getItemEffect(state.currentProperty);
+		speed *= insp;
+		
+		const fullTimeBonus = (state.currentJob === 'Full-Time Author') ? 5 : 1;
+		speed *= fullTimeBonus;
+		
+		speed *= 1 * 0.4; // writingPercentage * writingXpMultiplier
+		
+		let itemMult = 1;
+		if (itemBaseData[state.currentProperty].writingMultiplier) itemMult *= itemBaseData[state.currentProperty].writingMultiplier;
+		for (const m of state.currentMisc) {
+			if (itemBaseData[m].writingMultiplier) itemMult *= itemBaseData[m].writingMultiplier;
+		}
+		speed *= itemMult;
+		
+		return speed;
+	}
+	
+	// Calculate capped writing speed
+	function getWritingSpeed () {
+		return Math.min(1000, getRawWritingSpeed());
+	}
+	
+	// Calculate quality multiplier based on raw speed
+	function getQualityMultiplier () {
+		const rawSpeed = getRawWritingSpeed();
+		if (rawSpeed > 1000) {
+			return Math.min(10, rawSpeed / 1000);
+		}
+		return 1;
+	}
+	
+	// Calculate book quality percentage
+	function getBookQuality () {
+		const grammar = getLevel('Grammar & Prose');
+		const plotting = getLevel('Plotting');
+		const charDev = getLevel('Character Dev.');
+		let base = (grammar + plotting + charDev) / 3;
+		if (base === 0) base = 0.3;
+		
+		const expMult = 1; // Simplified life experiences
+		let itemMult = 1;
+		if (itemBaseData[state.currentProperty].writingQuality) itemMult *= itemBaseData[state.currentProperty].writingQuality;
+		for (const m of state.currentMisc) {
+			if (itemBaseData[m].writingQuality) itemMult *= itemBaseData[m].writingQuality;
+		}
+		
+		let skillMult = 1;
+		for (const s in skillBaseData) {
+			if (skillBaseData[s].writingQuality) {
+				skillMult *= (1 + skillBaseData[s].writingQuality * getLevel(s));
+			}
+		}
+		
+		const writingQualityMultiplier = expMult * itemMult * skillMult;
+		const raw = base * writingQualityMultiplier * getQualityMultiplier();
+		return 100 * (1 - (100 / (raw + 100)));
+	}
+	
+	// Calculate fame gained from publishing a book
+	function getFameGain () {
+		const networking = getEffect('Networking');
+		const mediaTours = getEffect('Media Tours');
+		return state.booksPublished * networking * mediaTours;
+	}
+	
+	// Check if a task is unlocked based on requirements
+	function isUnlocked (taskName) {
+		const reqs = reqData[taskName];
+		if (!reqs) return true;
+		if (reqs.type === 'task') {
+			for (const r of reqs.requirements) {
+				if (getLevel(r.task) < r.requirement) return false;
+			}
+			return true;
+		}
+		if (reqs.type === 'fame') {
+			return state.fame >= reqs.requirements[0].requirement;
+		}
+		return false;
+	}
+	
+	// Determine the next skill to train
+	function getNextSkill () {
+		const allSkills = Object.keys(skillBaseData);
+		
+		let targetLocked = null;
+		for (const s of allSkills) {
+			if (!isUnlocked(s)) {
+				let possible = true;
+				const reqs = reqData[s];
+				if (reqs && reqs.type === 'task') {
+					for (const r of reqs.requirements) {
+						if (jobBaseData[r.task] && r.task !== state.currentJob) {
+							possible = false;
+						}
+					}
+				}
+				if (possible) {
+					targetLocked = s;
+					break;
+				}
+			}
+		}
+		
+		if (targetLocked) {
+			const reqs = reqData[targetLocked];
+			if (reqs.type === 'task') {
+				let waitingForJob = false;
+				for (const r of reqs.requirements) {
+					if (skillBaseData[r.task] && getLevel(r.task) < r.requirement) {
+						return r.task;
+					}
+					if (jobBaseData[r.task] && getLevel(r.task) < r.requirement) {
+						waitingForJob = true;
+					}
+				}
+				if (!waitingForJob) return targetLocked;
+			}
+		}
+		
+		const unlockedSkills = allSkills.filter(s => isUnlocked(s));
+		unlockedSkills.sort((a, b) => getLevel(a) - getLevel(b));
+		if (unlockedSkills.length > 0) return unlockedSkills[0];
+		
+		return 'Focus';
+	}
+	
+	// Helper function to get image source for events
+	function getImgSrc (name, type) {
+		let data;
+		if (type === 'job') data = jobBaseData[name];
+		else if (type === 'skill') data = skillBaseData[name];
+		else if (type === 'item') data = itemBaseData[name];
+		
+		if (data && data.filefolder && data.filename) {
+			return `img/${data.filefolder}256/${data.filename.replace('.png', '.jpg')}`;
+		}
+		return '';
+	}
+	
+	// Add XP to a task and handle level ups
+	function addXp (taskName, amount, isJob, events) {
+		if (state.xp[taskName] === undefined) state.xp[taskName] = 0;
+		if (state.levels[taskName] === undefined) state.levels[taskName] = 0;
+		
+		state.xp[taskName] += amount;
+		let max = getMaxXp(taskName, isJob);
+		let leveledUp = false;
+		
+		while (state.xp[taskName] >= max) {
+			state.levels[taskName]++;
+			state.xp[taskName] -= max;
+			max = getMaxXp(taskName, isJob);
+			leveledUp = true;
+		}
+		
+		if (leveledUp) {
+			const newLevel = state.levels[taskName];
+			if (newLevel <= 10 || newLevel % 10 === 0) {
+				events.push({
+					type: isJob ? 'job' : 'skill',
+					text: `<b>${taskName}</b> reached Level ${newLevel}`,
+					imgSrc: getImgSrc(taskName, isJob ? 'job' : 'skill')
+				});
+			}
+		}
+	}
+	
+	// Check and purchase affordable items
+	function checkItems (day, age, events) {
+		const sortedItems = Object.keys(itemBaseData).sort((a, b) => (itemReqs[a] || 0) - (itemReqs[b] || 0));
+		
+		for (const itemName of sortedItems) {
+			if (!state.unlockedItems.includes(itemName)) {
+				const req = itemReqs[itemName];
+				if (req !== undefined && state.coins >= req) {
+					state.unlockedItems.push(itemName);
+					
+					const isProperty =['Homeless', 'Rented Room', 'Studio', 'Suburban', 'Large House', 'City Penthouse', 'Private Villa', 'Mansion Estate'].includes(itemName);
+					if (isProperty) {
+						state.currentProperty = itemName;
+					} else {
+						state.currentMisc.push(itemName);
+					}
+					
+					events.push({
+						type: 'item',
+						text: `Unlocked <b>${itemName}</b> (Cost: $${format(req)})`,
+						imgSrc: getImgSrc(itemName, 'item')
+					});
+				}
+			}
+		}
+	}
+	
+	// Main simulation loop
+	function runSimulation () {
+		let currentJobIndex = 0;
+		state.currentJob = flattenedJobs[currentJobIndex];
+		
+		// Added: Get publishing rate from dropdown
+		const publishRate = parseFloat(document.getElementById('publishRateSelect').value);
+		const daysPerBook = Math.round(365 / publishRate);
+		
+		state.days = 0;
+		state.coins = 0;
+		state.levels = {};
+		state.xp = {};
+		state.unlockedItems =['Homeless', 'Library Card'];
+		state.currentProperty = 'Homeless';
+		state.currentMisc =['Library Card'];
+		state.daysSinceLastBook = 0; // Modified: Replaced wordsWritten with a day counter
+		state.booksPublished = 0;
+		state.fame = 0;
+		state.royalties = 0;
+		
+		const timelineData = {};
+		
+		for (let day = 0; day <= 50 * 365; day++) {
+			state.days = day;
+			const age = 20 + Math.floor(day / 365);
+			const events =[];
+			
+			state.coins += getJobIncome(state.currentJob) + state.royalties;
+			state.coins -= getExpense();
+			if (state.coins < 0) state.coins = 0;
+			
+			checkItems(day, age, events);
+			
+			// Automatic job progression logic
+			if (currentJobIndex < flattenedJobs.length - 1) {
+				const nextJob = flattenedJobs[currentJobIndex + 1];
+				// Move to the next job if current job is at least level 10 and next job is unlocked
+				if (getLevel(state.currentJob) >= 10 && isUnlocked(nextJob)) {
+					currentJobIndex++;
+					state.currentJob = flattenedJobs[currentJobIndex];
+					events.push({
+						type: 'job',
+						text: `Started new job: <b>${state.currentJob}</b>`,
+						imgSrc: getImgSrc(state.currentJob, 'job')
+					});
+				}
+			}
+			
+			addXp(state.currentJob, getJobXpGain(state.currentJob), true, events);
+			
+			state.currentSkill = getNextSkill();
+			if (state.currentSkill) {
+				addXp(state.currentSkill, getSkillXpGain(state.currentSkill), false, events);
+			}
+			
+			// Modified: Publish book based on the selected rate (daysPerBook)
+			state.daysSinceLastBook++;
+			if (state.daysSinceLastBook >= daysPerBook) {
+				state.daysSinceLastBook = 0;
+				state.booksPublished++;
+				
+				const quality = getBookQuality();
+				const sales = (quality / 100) * (state.fame + 10) * 5;
+				let royalty = sales * 0.1;
+				if (royalty < 0.10) royalty = 0.10;
+				
+				state.royalties += royalty;
+				state.fame += getFameGain();
+				
+				// Get book image
+				const bookKeys = Object.keys(bookBaseData);
+				const bookId = bookKeys[(state.booksPublished - 1) % bookKeys.length];
+				const bookData = bookBaseData[bookId];
+				let bookImgSrc = '';
+				if (bookData && bookData.filefolder && bookData.filename) {
+					bookImgSrc = `img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}`;
+				}
+				
+				events.push({
+					type: 'book',
+					text: `📚 Published Book #${state.booksPublished} (Quality: ${quality.toFixed(1)}%, Royalties: +$${format(royalty)}/d)`,
+					imgSrc: bookImgSrc
+				});
+			}
+			
+			if (day > 0 && day % 365 === 0) {
+				events.push({
+					type: 'stats',
+					text: `📊 Year End Stats: 💰 $${format(state.coins)} | 📈 Income: $${format(getJobIncome(state.currentJob) + state.royalties)}/d | ✍️ Speed: ${format(getWritingSpeed())} w/d | 🌟 Fame: ${format(state.fame)}`,
+					imgSrc: '' // No image for stats
+				});
+			}
+			
+			if (events.length > 0) {
+				if (!timelineData[age]) timelineData[age] =[];
+				timelineData[age].push(...events);
+			}
+		}
+		
+		renderTimeline(timelineData);
+	}
+	
+	// Render the timeline UI
+	function renderTimeline (timelineData) {
+		const container = document.getElementById('timeline');
+		container.innerHTML = '';
+		
+		for (let age = 20; age <= 70; age++) {
+			const events = timelineData[age];
+			if (!events || events.length === 0) continue;
+			
+			const row = document.createElement('div');
+			row.className = 'year-row';
+			
+			const label = document.createElement('div');
+			label.className = 'year-label';
+			label.textContent = `Age ${age}`;
+			row.appendChild(label);
+			
+			const eventsDiv = document.createElement('div');
+			eventsDiv.className = 'year-events';
+			
+			for (const ev of events) {
+				const box = document.createElement('div');
+				box.className = `event-box event-${ev.type}`;
+				
+				// Create and append image element if source is provided
+				if (ev.imgSrc) {
+					const img = document.createElement('img');
+					img.src = ev.imgSrc;
+					box.appendChild(img);
+				}
+				
+				const textDiv = document.createElement('div');
+				textDiv.innerHTML = ev.text;
+				box.appendChild(textDiv);
+				
+				eventsDiv.appendChild(box);
+			}
+			
+			row.appendChild(eventsDiv);
+			container.appendChild(row);
+		}
+	}
+	
+	window.onload = init;
+</script>
+
+</body>
+</html>

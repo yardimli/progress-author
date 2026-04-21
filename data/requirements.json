@@ -680,7 +680,7 @@
     ],
     "requirements": [
       {
-        "requirement": 0
+        "requirement": 500
       }
     ]
   },

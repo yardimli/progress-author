@@ -93,6 +93,13 @@ function createAllRows (categoryType, containerId) {
 				element.onclick = function () {
 					setTask(name);
 				};
+				// Added: Double click listener for debug mode to set level
+				element.ondblclick = function (e) {
+					if (typeof isDebugMode !== 'undefined' && isDebugMode) {
+						e.stopPropagation();
+						showDebugModal(name);
+					}
+				};
 			} else if (isItem) {
 				element.onclick = categoryName === 'Properties'
 					? function () { setProperty(name); }

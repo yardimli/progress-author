@@ -512,6 +512,18 @@
 	</div>
 </div>
 
+<!-- Added: Debug Level Modal -->
+<div id="debugLevelModal" class="modal modal-overlay-high" style="display: none;">
+	<div class="modal-content modal-content-xs">
+		<h2 id="debugModalTitle" class="modal-title-nomargin">Set Level</h2>
+		<p>Enter new level for <span id="debugTaskName" style="font-weight: bold;"></span>:</p>
+		<input type="number" id="debugLevelInput" class="import-export-box" style="width: 100%; margin-bottom: 15px;" min="0" onkeydown="if(event.key === 'Enter') applyDebugLevel()">
+		<div style="display: flex; gap: 10px;">
+			<button class="btn btn-active" style="flex: 1;" onclick="applyDebugLevel()">Apply</button>
+			<button class="btn" style="flex: 1;" onclick="closeDebugModal()">Cancel</button>
+		</div>
+	</div>
+</div>
 
 <div class="mobile-nav" id="mobileNav">
 	<button class="mobile-nav-btn active" onclick="switchMobileTab('jobs', this)">Work</button>
@@ -523,7 +535,7 @@
 <script type="text/javascript">
 	(function() {
 		const v = Date.now();
-		const scripts = [
+		const scripts =[
 			"js/classes.js",
 			"js/state.js",
 			"js/utils.js",

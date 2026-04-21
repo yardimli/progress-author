@@ -1,7 +1,8 @@
 // Global state variables for pausing and queuing modals
 var isPaused = false;
 var isInitialized = false;
-var popupQueue = [];
+var popupQueue =[];
+var isDebugMode = true; // Added: Debug mode flag
 
 // Define the current game version
 const GAME_VERSION = "1.0.5";
@@ -49,7 +50,7 @@ var gameData = {
 	
 	currentAuthor: null,
 	currentBook: null,
-	completedBooks: [],
+	completedBooks:[],
 	currentBookComposition: {},
 	selectedGenre: null,
 	
@@ -58,11 +59,11 @@ var gameData = {
 	rebirthOnePrompted: false,
 	rebirthTwoPrompted: false,
 	
-	earnedBadges: [],
+	earnedBadges:[],
 	
 	// Added: Data for author profile modal
-	monthlyChartData: [], // Stores monthly data points for the chart
-	logHistory: [] // Stores all log messages
+	monthlyChartData:[], // Stores monthly data points for the chart
+	logHistory:[] // Stores all log messages
 };
 
 var tempData = {
@@ -84,7 +85,7 @@ var tempData = {
 // Constants
 const baseLifespan = 365 * 70;
 const baseGameSpeed = 4;
-const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
+const units =["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 
 // Variables for requestAnimationFrame loop
 var lastTime = performance.now();

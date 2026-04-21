@@ -5,7 +5,8 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	const modals = ['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'badgeDetailsModal', 'mobileBadgeModal', 'authorProfileModal'];
+	// Modified: Added 'debugLevelModal' to the list of modals
+	const modals =['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'badgeDetailsModal', 'mobileBadgeModal', 'authorProfileModal', 'debugLevelModal'];
 	let anyOpen = false;
 	for (const id of modals) {
 		const m = document.getElementById(id);
@@ -603,6 +604,54 @@ function startTypingEffect (fullText, elementId) {
 	typingTimeout = setTimeout(typeNext, 500);
 }
 
+// Added: Debug modal state
+let currentDebugTask = null;
+
+// Added: Show debug modal
+function showDebugModal (taskName) {
+	currentDebugTask = taskName;
+	const modal = document.getElementById('debugLevelModal');
+	const taskNameSpan = document.getElementById('debugTaskName');
+	const input = document.getElementById('debugLevelInput');
+	
+	if (modal && taskNameSpan && input) {
+		taskNameSpan.textContent = taskName;
+		const task = gameData.taskData[taskName];
+		input.value = task ? task.level : 0;
+		modal.style.display = 'flex';
+		updatePauseState();
+		input.focus();
+	}
+}
+
+// Added: Close debug modal
+function closeDebugModal () {
+	const modal = document.getElementById('debugLevelModal');
+	if (modal) modal.style.display = 'none';
+	currentDebugTask = null;
+	updatePauseState();
+}
+
+// Added: Apply debug level
+function applyDebugLevel () {
+	const input = document.getElementById('debugLevelInput');
+	if (input && currentDebugTask) {
+		const newLevel = parseInt(input.value, 10);
+		if (!isNaN(newLevel) && newLevel >= 0) {
+			const task = gameData.taskData[currentDebugTask];
+			if (task) {
+				task.level = newLevel;
+				task.xp = 0; // Reset XP for the new level
+				if (task.level > task.maxLevel) {
+					task.maxLevel = task.level;
+				}
+				if (typeof updateUI === 'function') updateUI();
+			}
+		}
+	}
+	closeDebugModal();
+}
+
 window.addEventListener('click', function (event) {
 	const infoModal = document.getElementById('infoModal');
 	if (infoModal && infoModal.style.display === 'flex' && event.target === infoModal) {
@@ -652,5 +701,11 @@ window.addEventListener('click', function (event) {
 	const mobileBadgeModal = document.getElementById('mobileBadgeModal');
 	if (mobileBadgeModal && mobileBadgeModal.style.display === 'flex' && event.target === mobileBadgeModal) {
 		closeMobileBadgeModal();
+	}
+	
+	// Added: Close debug modal on outside click
+	const debugLevelModal = document.getElementById('debugLevelModal');
+	if (debugLevelModal && debugLevelModal.style.display === 'flex' && event.target === debugLevelModal) {
+		closeDebugModal();
 	}
 });
