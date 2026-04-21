@@ -19,11 +19,11 @@
 			display: flex;
 			gap: 15px;
 			align-items: center;
+			flex-wrap: wrap;
 			position: sticky;
 			top: 20px;
 			z-index: 100;
 		}
-		/* Added: Styling for select dropdowns */
 		select {
 			padding: 10px 15px;
 			font-size: 16px;
@@ -52,28 +52,48 @@
 			border-radius: 8px;
 			box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 		}
+		/* Modified: Changed year-row to column layout to accommodate the new header summary */
 		.year-row {
 			display: flex;
-			align-items: flex-start;
+			flex-direction: column;
 			border-bottom: 1px solid #f0f0f0;
 			padding: 20px 0;
 		}
 		.year-row:last-child {
 			border-bottom: none;
 		}
+		.year-header {
+			display: flex;
+			align-items: center;
+			gap: 15px;
+			margin-bottom: 15px;
+			width: 100%;
+		}
 		.year-label {
-			width: 90px;
 			font-weight: bold;
-			flex-shrink: 0;
-			padding-top: 10px;
-			color: #555;
+			color: #fff;
+			background-color: #333;
+			padding: 6px 12px;
+			border-radius: 4px;
 			font-size: 1.1em;
+			flex-shrink: 0;
+		}
+		/* Added: Styling for the year summary text */
+		.year-summary {
+			font-size: 0.9em;
+			color: #555;
+			background: #f9f9f9;
+			padding: 6px 12px;
+			border-radius: 4px;
+			border: 1px solid #eee;
+			flex-grow: 1;
+			line-height: 1.4;
 		}
 		.year-events {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 12px;
-			flex-grow: 1;
+			width: 100%;
 		}
 		.event-box {
 			display: flex;
@@ -99,6 +119,8 @@
 		.event-skill { border-top: 4px solid #219ebc; }
 		.event-item { border-top: 4px solid #ffc107; }
 		.event-book { border-top: 4px solid #ff5722; }
+		/* Added: Badge event styling */
+		.event-badge { border-top: 4px solid #e91e63; }
 		.event-stats {
 			border-top: 4px solid #9c27b0;
 			width: 100%;
@@ -111,7 +133,6 @@
 <body>
 
 <div class="header">
-	<!-- Added: Dropdown for publishing rate -->
 	<label for="publishRateSelect"><strong>Publish Rate:</strong></label>
 	<select id="publishRateSelect">
 		<option value="0.3333">1 book every 3 years</option>
@@ -120,6 +141,17 @@
 		<option value="2">2 books a year</option>
 		<option value="3">3 books a year</option>
 	</select>
+	
+	<!-- Added: Dropdown for Shop Upgrade Level -->
+	<label for="spendLevelSelect"><strong>Shop Upgrade Level:</strong></label>
+	<select id="spendLevelSelect">
+		<option value="1">Level 1 (Min Spend / Frugal)</option>
+		<option value="2">Level 2 (Conservative)</option>
+		<option value="3" selected>Level 3 (Balanced)</option>
+		<option value="4">Level 4 (Aggressive)</option>
+		<option value="5">Level 5 (Max Spend / ASAP)</option>
+	</select>
+	
 	<button onclick="runSimulation()">Simulate Timeline</button>
 </div>
 
@@ -130,6 +162,7 @@
 <script>
 	// Global data variables to hold JSON data
 	let jobBaseData, skillBaseData, itemBaseData, reqData, jobCategories, bookBaseData;
+	let badgeBaseData, itemCategories; // Added: For badges and item categories
 	let flattenedJobs =[];
 	const itemReqs = {};
 	
@@ -154,13 +187,16 @@
 	// Initialize and load all required JSON files
 	async function init () {
 		try {
-			const[jobsRes, skillsRes, itemsRes, reqsRes, jobCatRes, booksRes] = await Promise.all([
+			// Modified: Added badges.json and itemCategories.json to the fetch list
+			const[jobsRes, skillsRes, itemsRes, reqsRes, jobCatRes, booksRes, badgesRes, itemCatRes] = await Promise.all([
 				fetch('data/jobs.json'),
 				fetch('data/skills.json'),
 				fetch('data/items.json'),
 				fetch('data/requirements.json'),
 				fetch('data/jobCategories.json'),
-				fetch('data/books.json')
+				fetch('data/books.json'),
+				fetch('data/badges.json'),
+				fetch('data/itemCategories.json')
 			]);
 			jobBaseData = await jobsRes.json();
 			skillBaseData = await skillsRes.json();
@@ -168,6 +204,8 @@
 			reqData = await reqsRes.json();
 			jobCategories = await jobCatRes.json();
 			bookBaseData = await booksRes.json();
+			badgeBaseData = await badgesRes.json();
+			itemCategories = await itemCatRes.json();
 			
 			// Flatten jobs into a single array for sequential progression
 			flattenedJobs = [
@@ -228,6 +266,18 @@
 		return base.effect || 1;
 	}
 	
+	// Added: Calculate combined badge multiplier for a specific effect type
+	function getBadgeMultiplier (type) {
+		let mult = 1;
+		for (const badgeId of state.earnedBadges) {
+			const badge = badgeBaseData[badgeId];
+			if (badge && badge.effect && badge.effect.type === type) {
+				mult *= badge.effect.value;
+			}
+		}
+		return mult;
+	}
+	
 	// Calculate the daily income from a job
 	function getJobIncome (jobName) {
 		const base = jobBaseData[jobName];
@@ -235,6 +285,7 @@
 		const lvl = getLevel(jobName);
 		let income = base.income * (1 + Math.log10(lvl + 1));
 		income *= getEffect('Royalty Negotiation');
+		income *= getBadgeMultiplier('jobIncome'); // Added badge effect
 		return income;
 	}
 	
@@ -245,16 +296,20 @@
 		gain *= getEffect('Personal Brand');
 		gain *= getEffect('Time Management');
 		gain *= getItemEffect('Bus Pass');
+		gain *= getBadgeMultiplier('allXp'); // Added badge effect
+		gain *= getBadgeMultiplier('jobXp'); // Added badge effect
 		
 		const creativeJobs =['Intern', 'Blogger', 'Content Creator', 'Copy Editor', 'Staff Writer', 'Senior Editor', 'Ghostwriter', 'Full-Time Author'];
 		if (creativeJobs.includes(jobName)) {
 			gain *= getEffect('Grammar & Prose');
 			gain *= getItemEffect('Industry Magazine');
+			gain *= getBadgeMultiplier('creativeXp'); // Added badge effect
 		}
 		
 		const eliteJobs =['C.W. Student', 'Junior Agent', 'Senior Agent', 'Publisher', 'Literary Titan', 'Head of Publishing'];
 		if (eliteJobs.includes(jobName)) {
 			gain *= getEffect('Plotting');
+			gain *= getBadgeMultiplier('literaryXp'); // Added badge effect
 		}
 		
 		return gain;
@@ -269,6 +324,8 @@
 		gain *= getItemEffect('Planner');
 		gain *= getItemEffect('Focus Supplements');
 		gain *= getItemEffect('Networking Membership');
+		gain *= getBadgeMultiplier('allXp'); // Added badge effect
+		gain *= getBadgeMultiplier('skillXp'); // Added badge effect
 		
 		if (['Typing Speed', 'Grammar & Prose', 'Plotting', 'Character Dev.'].includes(skillName)) {
 			gain *= getItemEffect('Masterclass Subscription');
@@ -294,6 +351,7 @@
 		}
 		expense *= getEffect('Frugality');
 		expense *= getEffect('Public Speaking');
+		expense *= getBadgeMultiplier('expense'); // Added badge effect
 		return expense;
 	}
 	
@@ -317,6 +375,7 @@
 			if (itemBaseData[m].writingMultiplier) itemMult *= itemBaseData[m].writingMultiplier;
 		}
 		speed *= itemMult;
+		speed *= getBadgeMultiplier('writingSpeed'); // Added badge effect
 		
 		return speed;
 	}
@@ -357,16 +416,24 @@
 			}
 		}
 		
-		const writingQualityMultiplier = expMult * itemMult * skillMult;
+		let writingQualityMultiplier = expMult * itemMult * skillMult;
+		writingQualityMultiplier *= getBadgeMultiplier('writingQuality'); // Added badge effect
+		
 		const raw = base * writingQualityMultiplier * getQualityMultiplier();
 		return 100 * (1 - (100 / (raw + 100)));
+	}
+	
+	// Calculate required words for a book
+	function getBookLength () {
+		const plotting = getLevel('Plotting');
+		return (50 + plotting * 2) * 250;
 	}
 	
 	// Calculate fame gained from publishing a book
 	function getFameGain () {
 		const networking = getEffect('Networking');
 		const mediaTours = getEffect('Media Tours');
-		return state.booksPublished * networking * mediaTours;
+		return state.booksPublished * networking * mediaTours * getBadgeMultiplier('fameGain'); // Added badge effect
 	}
 	
 	// Check if a task is unlocked based on requirements
@@ -437,6 +504,7 @@
 		if (type === 'job') data = jobBaseData[name];
 		else if (type === 'skill') data = skillBaseData[name];
 		else if (type === 'item') data = itemBaseData[name];
+		else if (type === 'badge') data = badgeBaseData[name]; // Added badge support
 		
 		if (data && data.filefolder && data.filename) {
 			return `img/${data.filefolder}256/${data.filename.replace('.png', '.jpg')}`;
@@ -472,14 +540,20 @@
 		}
 	}
 	
-	// Check and purchase affordable items
+	// Check and purchase affordable items based on spend level
 	function checkItems (day, age, events) {
 		const sortedItems = Object.keys(itemBaseData).sort((a, b) => (itemReqs[a] || 0) - (itemReqs[b] || 0));
+		
+		// Added: Spend level logic
+		const spendLevel = parseInt(document.getElementById('spendLevelSelect').value);
+		const thresholds = { 1: 10, 2: 5, 3: 2, 4: 1.2, 5: 1 };
+		const threshold = thresholds[spendLevel];
 		
 		for (const itemName of sortedItems) {
 			if (!state.unlockedItems.includes(itemName)) {
 				const req = itemReqs[itemName];
-				if (req !== undefined && state.coins >= req) {
+				// Modified: Multiply requirement by threshold to delay purchase based on spend level
+				if (req !== undefined && state.coins >= req * threshold) {
 					state.unlockedItems.push(itemName);
 					
 					const isProperty =['Homeless', 'Rented Room', 'Studio', 'Suburban', 'Large House', 'City Penthouse', 'Private Villa', 'Mansion Estate'].includes(itemName);
@@ -499,26 +573,78 @@
 		}
 	}
 	
+	// Added: Helper to check if a specific badge requirement is met
+	function isBadgeRequirementMet (req) {
+		switch (req.type) {
+			case 'task': return getLevel(req.task) >= req.level;
+			case 'books': return state.booksPublished >= req.value;
+			case 'bookQuality': return state.highestQuality >= req.value;
+			case 'jobCategoryLevel':
+				const jobs = jobCategories[req.category] ||[];
+				return jobs.filter(j => getLevel(j) >= req.level).length >= req.count;
+			case 'skillLevelCount':
+				return Object.keys(skillBaseData).filter(s => getLevel(s) >= req.level).length >= req.count;
+			case 'maxTaskLevel':
+				const base = req.taskType === 'Job' ? jobBaseData : skillBaseData;
+				return Object.keys(base).some(t => getLevel(t) >= req.level);
+			case 'item': return state.unlockedItems.includes(req.name);
+			case 'itemCategory':
+				const items = itemCategories[req.category] ||[];
+				return items.every(i => state.unlockedItems.includes(i));
+			case 'coins': return state.maxCoins >= req.value;
+			case 'fame': return state.fame >= req.value;
+			case 'rebirth': return false; // Ignore rebirths in simulation
+			case 'age': return state.days / 365 >= req.value;
+			default: return false;
+		}
+	}
+	
+	// Added: Check and unlock badges
+	function checkBadges (events) {
+		for (const badgeId in badgeBaseData) {
+			if (state.earnedBadges.includes(badgeId)) continue;
+			const badge = badgeBaseData[badgeId];
+			let allMet = true;
+			for (const req of badge.requirements) {
+				if (!isBadgeRequirementMet(req)) {
+					allMet = false; break;
+				}
+			}
+			if (allMet) {
+				state.earnedBadges.push(badgeId);
+				events.push({
+					type: 'badge',
+					text: `🏆 Earned Badge: <b>${badge.name}</b>`,
+					imgSrc: getImgSrc(badgeId, 'badge')
+				});
+			}
+		}
+	}
+	
 	// Main simulation loop
 	function runSimulation () {
 		let currentJobIndex = 0;
 		state.currentJob = flattenedJobs[currentJobIndex];
 		
-		// Added: Get publishing rate from dropdown
 		const publishRate = parseFloat(document.getElementById('publishRateSelect').value);
 		const daysPerBook = Math.round(365 / publishRate);
 		
 		state.days = 0;
 		state.coins = 0;
+		state.maxCoins = 0; // Added: Track max coins for badges
 		state.levels = {};
 		state.xp = {};
-		state.unlockedItems =['Homeless', 'Library Card'];
+		state.unlockedItems = ['Homeless', 'Library Card'];
 		state.currentProperty = 'Homeless';
-		state.currentMisc =['Library Card'];
-		state.daysSinceLastBook = 0; // Modified: Replaced wordsWritten with a day counter
+		state.currentMisc = ['Library Card'];
+		state.daysSinceLastBook = 0;
 		state.booksPublished = 0;
+		state.highestQuality = 0; // Added: Track highest quality for badges
 		state.fame = 0;
 		state.royalties = 0;
+		state.earnedBadges =[]; // Added: Track earned badges
+		state.yearlyIncome = 0; // Added: Track yearly income
+		state.yearlyExpense = 0; // Added: Track yearly expense
 		
 		const timelineData = {};
 		
@@ -527,16 +653,38 @@
 			const age = 20 + Math.floor(day / 365);
 			const events =[];
 			
-			state.coins += getJobIncome(state.currentJob) + state.royalties;
-			state.coins -= getExpense();
+			// Initialize year data and capture summary at the start of the year
+			if (day % 365 === 0) {
+				if (!timelineData[age]) {
+					const workMult = getJobXpGain(state.currentJob) / (10 * 0.4);
+					const skillMult = getSkillXpGain(state.currentSkill || 'Focus') / (10 * 0.4);
+					const writingMult = getRawWritingSpeed() / 100;
+					const insp = getEffect('Meditation') * getItemEffect('Coffee Machine') * getItemEffect(state.currentProperty);
+					
+					timelineData[age] = {
+						summary: `Job: <b>${state.currentJob}</b> | Skill: <b>${state.currentSkill || 'None'}</b> | Work Mult: ${workMult.toFixed(1)}x | Skill Mult: ${skillMult.toFixed(1)}x | Writing Mult: ${writingMult.toFixed(1)}x | Insp: ${insp.toFixed(1)}x`,
+						events:[]
+					};
+				}
+			}
+			
+			const dailyIncome = getJobIncome(state.currentJob) + state.royalties;
+			const dailyExpense = getExpense();
+			
+			state.coins += dailyIncome;
+			state.coins -= dailyExpense;
 			if (state.coins < 0) state.coins = 0;
+			if (state.coins > state.maxCoins) state.maxCoins = state.coins;
+			
+			state.yearlyIncome += dailyIncome;
+			state.yearlyExpense += dailyExpense;
 			
 			checkItems(day, age, events);
+			checkBadges(events); // Added: Check badges daily
 			
 			// Automatic job progression logic
 			if (currentJobIndex < flattenedJobs.length - 1) {
 				const nextJob = flattenedJobs[currentJobIndex + 1];
-				// Move to the next job if current job is at least level 10 and next job is unlocked
 				if (getLevel(state.currentJob) >= 10 && isUnlocked(nextJob)) {
 					currentJobIndex++;
 					state.currentJob = flattenedJobs[currentJobIndex];
@@ -555,21 +703,22 @@
 				addXp(state.currentSkill, getSkillXpGain(state.currentSkill), false, events);
 			}
 			
-			// Modified: Publish book based on the selected rate (daysPerBook)
 			state.daysSinceLastBook++;
 			if (state.daysSinceLastBook >= daysPerBook) {
 				state.daysSinceLastBook = 0;
 				state.booksPublished++;
 				
 				const quality = getBookQuality();
+				if (quality > state.highestQuality) state.highestQuality = quality;
+				
 				const sales = (quality / 100) * (state.fame + 10) * 5;
 				let royalty = sales * 0.1;
+				royalty *= getBadgeMultiplier('royalties'); // Added badge effect
 				if (royalty < 0.10) royalty = 0.10;
 				
 				state.royalties += royalty;
 				state.fame += getFameGain();
 				
-				// Get book image
 				const bookKeys = Object.keys(bookBaseData);
 				const bookId = bookKeys[(state.booksPublished - 1) % bookKeys.length];
 				const bookData = bookBaseData[bookId];
@@ -585,17 +734,20 @@
 				});
 			}
 			
-			if (day > 0 && day % 365 === 0) {
+			// End of year stats
+			if (day > 0 && day % 365 === 364) {
+				const net = state.yearlyIncome - state.yearlyExpense;
 				events.push({
 					type: 'stats',
-					text: `📊 Year End Stats: 💰 $${format(state.coins)} | 📈 Income: $${format(getJobIncome(state.currentJob) + state.royalties)}/d | ✍️ Speed: ${format(getWritingSpeed())} w/d | 🌟 Fame: ${format(state.fame)}`,
-					imgSrc: '' // No image for stats
+					text: `📊 Year End Stats: 💰 Bank: $${format(state.coins)} | 📈 Yearly Income: $${format(state.yearlyIncome)} | 📉 Yearly Expense: $${format(state.yearlyExpense)} | 💵 Net: $${format(net)} | 🌟 Fame: ${format(state.fame)}`,
+					imgSrc: ''
 				});
+				state.yearlyIncome = 0;
+				state.yearlyExpense = 0;
 			}
 			
 			if (events.length > 0) {
-				if (!timelineData[age]) timelineData[age] =[];
-				timelineData[age].push(...events);
+				timelineData[age].events.push(...events);
 			}
 		}
 		
@@ -608,25 +760,35 @@
 		container.innerHTML = '';
 		
 		for (let age = 20; age <= 70; age++) {
-			const events = timelineData[age];
-			if (!events || events.length === 0) continue;
+			const yearData = timelineData[age];
+			if (!yearData || yearData.events.length === 0) continue;
 			
 			const row = document.createElement('div');
 			row.className = 'year-row';
 			
+			// Modified: Create header container for label and summary
+			const header = document.createElement('div');
+			header.className = 'year-header';
+			
 			const label = document.createElement('div');
 			label.className = 'year-label';
 			label.textContent = `Age ${age}`;
-			row.appendChild(label);
+			header.appendChild(label);
+			
+			const summary = document.createElement('div');
+			summary.className = 'year-summary';
+			summary.innerHTML = yearData.summary;
+			header.appendChild(summary);
+			
+			row.appendChild(header);
 			
 			const eventsDiv = document.createElement('div');
 			eventsDiv.className = 'year-events';
 			
-			for (const ev of events) {
+			for (const ev of yearData.events) {
 				const box = document.createElement('div');
 				box.className = `event-box event-${ev.type}`;
 				
-				// Create and append image element if source is provided
 				if (ev.imgSrc) {
 					const img = document.createElement('img');
 					img.src = ev.imgSrc;
