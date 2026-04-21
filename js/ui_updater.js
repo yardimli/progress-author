@@ -367,10 +367,20 @@ function updateHeaderUI () {
 	updateHeaderVal('header-val-books', gameData.booksPublished);
 	updateHeaderVal('header-val-progress', gameData.currentBook ? `${((gameData.wordsWritten / getBookLength()) * 100).toFixed(1)}%` : 'Idle');
 	
-	const workMulti = gameData.currentJob ? (applyMultipliers(1, gameData.currentJob.xpMultipliers) * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
+	// Modified: Calculate exact multiplier without Math.round from applyMultipliers
+	let jobRawMulti = 1;
+	if (gameData.currentJob && gameData.currentJob.xpMultipliers) {
+		gameData.currentJob.xpMultipliers.forEach(fn => jobRawMulti *= fn());
+	}
+	const workMulti = gameData.currentJob ? (jobRawMulti * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
 	updateHeaderVal('header-val-work-multi', workMulti.toFixed(2));
 	
-	const skillMulti = gameData.currentSkill ? (applyMultipliers(1, gameData.currentSkill.xpMultipliers) * gameData.skillMultiplier * gameData.skillXpMultiplier) : 1;
+	// Modified: Calculate exact multiplier without Math.round from applyMultipliers
+	let skillRawMulti = 1;
+	if (gameData.currentSkill && gameData.currentSkill.xpMultipliers) {
+		gameData.currentSkill.xpMultipliers.forEach(fn => skillRawMulti *= fn());
+	}
+	const skillMulti = gameData.currentSkill ? (skillRawMulti * gameData.skillMultiplier * gameData.skillXpMultiplier) : 1;
 	updateHeaderVal('header-val-skill-multi', skillMulti.toFixed(2));
 	
 	const qualityMulti = typeof getWritingQualityMultiplier === 'function' ? getWritingQualityMultiplier() : 1;
@@ -401,7 +411,6 @@ function updateText () {
 	updateIfChanged('bookQualityDisplayTab', getCurvedQuality(getBookQuality()).toFixed(2));
 	updateIfChanged('expectedQualityDisplay', getCurvedQuality(getBookQuality()).toFixed(2));
 	
-	// Modified: Replaced old writingSpeedOverlay logic with the new writingTimeAlert
 	const writingTimeAlert = document.getElementById('writingTimeAlert');
 	if (writingTimeAlert) {
 		if (gameData.workWritingBalance === 0) {

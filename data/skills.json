@@ -43,7 +43,7 @@
     "name": "Typing Speed",
     "maxXp": 100,
     "effect": 0.01,
-    "writingQuality": 0.01,
+    "writingQuality": 0.0,
     "description": "Writing Speed",
     "filename": "typing_speed.png",
     "filefolder": "skills",
