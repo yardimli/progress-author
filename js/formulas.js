@@ -1,5 +1,10 @@
 // Multipliers, income, expenses, game speed
 
+function getCurvedQuality(rawQuality) {
+	// Asymptotic curve: Compresses an infinitely growing number into a 0 - 100% scale
+	return 100 * (1 - (100 / (rawQuality + 100)));
+}
+
 // Added: Get combined multiplier for a specific badge effect type
 function getBadgeMultiplier(type) {
 	let multiplier = 1;

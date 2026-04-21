@@ -162,23 +162,6 @@ function getAuthorImageFilename (authorData) {
 }
 
 function updateAuthorAndBookUI () {
-	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
-		const author = authorsBaseData[gameData.currentAuthor];
-		const authorImg = document.getElementById('authorImage');
-		const authorName = document.getElementById('authorNameDisplay');
-		
-		const filefolder = author.filefolder + '256';
-		const filename = getAuthorImageFilename(author);
-		const imgSrc = `img/${filefolder}/${filename}`;
-		
-		if (authorImg && !authorImg.src.includes(imgSrc)) {
-			authorImg.src = imgSrc;
-		}
-		if (authorName && authorName.textContent !== author.name) {
-			authorName.textContent = author.name;
-		}
-	}
-	
 	const bookSelectionContainer = document.getElementById('bookSelectionContainer');
 	const bookStatusRow = document.getElementById('bookStatusRow');
 	const manualWritingContainer = document.getElementById('manualWritingContainer');
@@ -285,7 +268,122 @@ function updatePotionsUI () {
 	});
 }
 
-// Removed: updateBadgesUI is no longer needed for the header.
+function updateBand (bandClass, newHTML) {
+	const bandContent = document.querySelector(`.${bandClass} .info-band-content`);
+	const band = bandContent.parentElement;
+	
+	const fullHTML = `<span class="marquee-item">${newHTML}</span><span class="marquee-item">${newHTML}</span>`;
+	
+	if (bandContent.innerHTML !== fullHTML) {
+		bandContent.innerHTML = fullHTML;
+		
+		setTimeout(() => {
+			const item = bandContent.querySelector('.marquee-item');
+			if (item && item.offsetWidth > band.offsetWidth) {
+				band.classList.add('scrolling');
+			} else {
+				band.classList.remove('scrolling');
+			}
+		}, 50);
+	}
+}
+
+function updateHeaderVal (className, newText) {
+	const elements = document.querySelectorAll('.' + className);
+	elements.forEach(el => {
+		if (el.textContent !== String(newText)) {
+			el.textContent = newText;
+		}
+	});
+}
+
+function checkBandScrolling (bandClass) {
+	const band = document.querySelector(`.${bandClass}`);
+	if (!band) return;
+	
+	const item = band.querySelector('.marquee-item');
+	if (item && item.offsetWidth > band.offsetWidth) {
+		if (!band.classList.contains('scrolling')) {
+			band.classList.add('scrolling');
+		}
+	} else {
+		if (band.classList.contains('scrolling')) {
+			band.classList.remove('scrolling');
+		}
+	}
+}
+
+function updateHeaderUI () {
+	// Author Image
+	if (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) {
+		const author = authorsBaseData[gameData.currentAuthor];
+		const authorImg = document.getElementById('authorImage');
+		const filefolder = author.filefolder + '256';
+		const filename = getAuthorImageFilename(author);
+		const imgSrc = `img/${filefolder}/${filename}`;
+		if (authorImg && !authorImg.src.includes(imgSrc)) {
+			authorImg.src = imgSrc;
+		}
+	}
+	
+	// Band 1: Author Info
+	const authorName = (gameData.currentAuthor && authorsBaseData && authorsBaseData[gameData.currentAuthor]) ? authorsBaseData[gameData.currentAuthor].name : '...';
+	const ageStr = `${daysToYears(gameData.days)}.${String(getDay()).padStart(3, '0')}`;
+	
+	updateHeaderVal('header-val-author', authorName);
+	updateHeaderVal('header-val-age', ageStr);
+	
+	// Band 2: Task Info
+	const job = gameData.currentJob;
+	const skill = gameData.currentSkill;
+	const property = gameData.currentProperty;
+	
+	updateHeaderVal('header-val-job', job ? `${job.name} (Lvl ${job.level}, $${format(job.getIncome())}/d)` : 'None');
+	updateHeaderVal('header-val-skill', skill ? `${skill.name} (Lvl ${skill.level})` : 'None');
+	updateHeaderVal('header-val-property', property ? property.name : 'None');
+	
+	// Band 3: Core Stats
+	updateHeaderVal('header-val-balance', `$${format(gameData.coins)}`);
+	
+	// Added: Calculate and update daily net in the header
+	const dailyNet = getIncome() - getExpense();
+	const netFormatted = (dailyNet >= 0 ? '+' : '-') + '$' + format(Math.abs(dailyNet)) + '/d';
+	const netColor = dailyNet >= 0 ? '#4CAF50' : '#f44336';
+	
+	const netElements = document.querySelectorAll('.header-val-net');
+	netElements.forEach(el => {
+		const newText = `(${netFormatted})`;
+		if (el.textContent !== newText) {
+			el.textContent = newText;
+		}
+		if (el.style.color !== netColor) {
+			el.style.color = netColor;
+		}
+	});
+	
+	updateHeaderVal('header-val-income', `$${format(getIncome() * (365 / 12))}/mo`);
+	updateHeaderVal('header-val-expense', `$${format(getExpense() * (365 / 12))}/mo`);
+	updateHeaderVal('header-val-inspiration', `${getInspiration().toFixed(1)}x`);
+	updateHeaderVal('header-val-badges', gameData.earnedBadges ? gameData.earnedBadges.length : 0);
+	updateHeaderVal('header-val-books', gameData.booksPublished);
+	updateHeaderVal('header-val-progress', gameData.currentBook ? `${((gameData.wordsWritten / getBookLength()) * 100).toFixed(1)}%` : 'Idle');
+	
+	// Added: Populate Work, Skill, and Quality Multipliers
+	const workMulti = gameData.currentJob ? (applyMultipliers(1, gameData.currentJob.xpMultipliers) * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
+	updateHeaderVal('header-val-work-multi', workMulti.toFixed(2));
+	
+	const skillMulti = gameData.currentSkill ? (applyMultipliers(1, gameData.currentSkill.xpMultipliers) * gameData.skillMultiplier * gameData.skillXpMultiplier) : 1;
+	updateHeaderVal('header-val-skill-multi', skillMulti.toFixed(2));
+	
+	const qualityMulti = typeof getWritingQualityMultiplier === 'function' ? getWritingQualityMultiplier() : 1;
+	updateHeaderVal('header-val-quality-multi', qualityMulti.toFixed(2));
+	
+	// Band 4: Logs
+	const lastLogs = gameData.logHistory.slice(0, 2).map(log => log.replace(/<[^>]*>?/gm, '')).join(' \u00A0 | \u00A0 ');
+	updateHeaderVal('header-val-logs', lastLogs);
+	
+	['band-1', 'band-2', 'band-3', 'band-4'].forEach(checkBandScrolling);
+}
 
 function updateText () {
 	const updateIfChanged = (id, newText) => {
@@ -295,37 +393,16 @@ function updateText () {
 		}
 	};
 	
-	updateIfChanged('ageDisplay', daysToYears(gameData.days));
-	const dayStr = String(getDay()).padStart(3, '0');
-	updateIfChanged('dayDisplay', dayStr);
-	updateIfChanged('lifespanDisplay', daysToYears(getLifespan()));
-	
-	const updateMoneyIfChanged = (money, id) => {
-		const el = document.getElementById(id);
-		if (!el) return;
-		const newHTML = `$${format(money)}`;
-		if (el.innerHTML !== newHTML) {
-			el.innerHTML = newHTML;
-		}
-	};
-	
-	updateMoneyIfChanged(gameData.coins, 'coinDisplay');
-	setSignDisplay();
-	updateMoneyIfChanged(getNet(), 'netDisplay');
-	
-	updateIfChanged('inspirationDisplay', getInspiration().toFixed(1));
-	
-	updateIfChanged('fameDisplay', format(gameData.fame));
-	updateIfChanged('fameGainDisplay', format(getFameGain()));
-	
 	updateIfChanged('timeWarpingDisplay', gameData.taskData['Flow State'].getEffect().toFixed(2));
 	updateIfChanged('timeWarpingButton', gameData.timeWarpingEnabled ? 'Disable flow' : 'Enable flow');
 	
 	const writingSpeed = getWritingSpeed();
-	updateIfChanged('writingSpeedDisplayTab', format(writingSpeed));
-	updateIfChanged('bookQualityDisplayTab', getBookQuality().toFixed(2));
 	
-	updateIfChanged('expectedQualityDisplay', getBookQuality().toFixed(2));
+	
+	updateIfChanged('writingSpeedDisplayTab', format(writingSpeed));
+	
+	updateIfChanged('bookQualityDisplayTab', getCurvedQuality(getBookQuality()).toFixed(2));
+	updateIfChanged('expectedQualityDisplay', getCurvedQuality(getBookQuality()).toFixed(2));
 	
 	const speedOverlay = document.getElementById('writingSpeedOverlay');
 	if (speedOverlay) {
@@ -567,8 +644,8 @@ function updateTypewriter (deltaTime) {
 	}
 }
 
-// Main UI Update loop
 function updateUI () {
+	updateHeaderUI();
 	updateTaskRows();
 	updateItemRows();
 	updateRequiredRows(gameData.taskData, jobCategories);

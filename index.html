@@ -12,17 +12,82 @@
 <!-- Fixed Header Wrapper -->
 <div class="fixed-header-wrapper">
 	<div class="fixed-header-content">
-		<div id="topPanel" class="panel panel-padding-sm top-panel">
-			<div class="top-panel-left">
-				<div id="authorImageContainer" class="author-image-container">
-					<img id="authorImage" src="" alt="Author" class="author-image">
+		<div id="topPanel" class="panel top-panel-new">
+			<div id="authorImageContainer" class="author-image-container-new">
+				<img id="authorImage" src="" alt="Author" class="author-image">
+			</div>
+			<div class="info-bands-container">
+				<!-- Band 1: Author Info -->
+				<div class="info-band band-1">
+					<div class="info-band-content">
+						<span class="marquee-item">
+							<span class="stat-item">👤 <span class="header-val-author">...</span></span>
+							<span class="stat-item">🎂 Age: <span class="header-val-age">...</span></span>
+						</span>
+						<span class="marquee-item duplicate" aria-hidden="true">
+							<span class="stat-item">👤 <span class="header-val-author">...</span></span>
+							<span class="stat-item">🎂 Age: <span class="header-val-age">...</span></span>
+						</span>
+					</div>
 				</div>
-				
-				<div class="header-stats-container">
-					<div class="author-name-container"><b id="authorNameDisplay">Author Name</b> <span id="fameInfo" class="hidden fame-info">Fame: <span id="fameDisplay">0</span></span></div>
-					<div>Age: <span id="ageDisplay">18</span>.<span id="dayDisplay">000</span> days, Retirement <span id="lifespanDisplay">70</span> years</div>
-					<div>Balance: <span id="coinDisplay" class="bold-text">$0.00</span> (<b id="signDisplay"></b><span id="netDisplay">$0.00</span>/day)</div>
-					<div>Inspiration: <span id="inspirationDisplay">1.0</span>x <span id="timeWarping" class="hidden">| Flow: <span id="timeWarpingDisplay">1.0</span>x <button id="timeWarpingButton" class="btn btn-small-inline" onClick="setTimeWarping()">Enable flow</button></span></div>
+				<!-- Band 2: Task Info -->
+				<div class="info-band band-2">
+					<div class="info-band-content">
+						<span class="marquee-item">
+							<span class="stat-item">🛠️ <span class="header-val-job">...</span></span>
+							<span class="stat-item">🧠 <span class="header-val-skill">...</span></span>
+							<span class="stat-item">🏠 <span class="header-val-property">...</span></span>
+						</span>
+						<span class="marquee-item duplicate" aria-hidden="true">
+							<span class="stat-item">🛠️ <span class="header-val-job">...</span></span>
+							<span class="stat-item">🧠 <span class="header-val-skill">...</span></span>
+							<span class="stat-item">🏠 <span class="header-val-property">...</span></span>
+						</span>
+					</div>
+				</div>
+				<!-- Band 3: Core Stats -->
+				<div class="info-band band-3">
+					<div class="info-band-content">
+						<span class="marquee-item">
+							<!-- Modified: Added header-val-net and increased min-width to fit the new daily net value -->
+							<span class="stat-item" style="min-width:160px;">💰 <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
+							<span class="stat-item">📈 <span class="header-val-income">...</span></span>
+							<span class="stat-item">📉 <span class="header-val-expense">...</span></span>
+							<span class="stat-item">💡 <span class="header-val-inspiration">...</span></span>
+							<span class="stat-item">🏆 <span class="header-val-badges">...</span></span>
+							<span class="stat-item">📚 <span class="header-val-books">...</span></span>
+							<span class="stat-item">✍️ <span class="header-val-progress">...</span></span>
+							<!-- Added: Work, Skill, and Quality Multipliers -->
+							<span class="stat-item">💼 Work Multi: <span class="header-val-work-multi">...</span>x</span>
+							<span class="stat-item">🧠 Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
+							<span class="stat-item">✨ Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
+						</span>
+						<span class="marquee-item duplicate" aria-hidden="true">
+							<!-- Modified: Added header-val-net and increased min-width to fit the new daily net value -->
+							<span class="stat-item" style="min-width:160px;">💰 <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
+							<span class="stat-item">📈 <span class="header-val-income">...</span></span>
+							<span class="stat-item">📉 <span class="header-val-expense">...</span></span>
+							<span class="stat-item">💡 <span class="header-val-inspiration">...</span></span>
+							<span class="stat-item">🏆 <span class="header-val-badges">...</span></span>
+							<span class="stat-item">📚 <span class="header-val-books">...</span></span>
+							<span class="stat-item">✍️ <span class="header-val-progress">...</span></span>
+							<!-- Added: Work, Skill, and Quality Multipliers -->
+							<span class="stat-item">💼 Work Multi: <span class="header-val-work-multi">...</span>x</span>
+							<span class="stat-item">🧠 Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
+							<span class="stat-item">✨ Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
+						</span>
+					</div>
+				</div>
+				<!-- Band 4: Log -->
+				<div class="info-band band-4">
+					<div class="info-band-content">
+						<span class="marquee-item">
+							<span class="stat-item">📜 <span class="header-val-logs">...</span></span>
+						</span>
+						<span class="marquee-item duplicate" aria-hidden="true">
+							<span class="stat-item">📜 <span class="header-val-logs">...</span></span>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -45,7 +110,7 @@
 			
 			<template id="jobCardTemplate">
 				<div class="ui-card">
-					<div class="card-info-icon">i</div> <!-- Added: Info icon -->
+					<div class="card-info-icon">i</div>
 					<img class="card-image" src="" alt="">
 					<div class="card-overlay">
 						<div class="card-title name"></div>
@@ -74,7 +139,7 @@
 			
 			<template id="propertyCardTemplate">
 				<div class="ui-card">
-					<div class="card-info-icon">i</div> <!-- Added: Info icon -->
+					<div class="card-info-icon">i</div>
 					<img class="card-image" src="" alt="">
 					<div class="card-overlay">
 						<div class="card-title name"></div>
@@ -202,7 +267,6 @@
 	</div>
 </div>
 
-<!-- Modified: Author Profile Modal with fixed header/footer structure -->
 <div id="authorProfileModal" class="modal modal-overlay-profile" style="display: none;">
 	<div class="modal-content modal-content-large">
 		<div class="profile-modal-tabs">
@@ -473,7 +537,6 @@
 	<button class="mobile-nav-btn" onclick="switchMobileTab('writing', this)">Writing</button>
 </div>
 
-<!-- Modified: Removed Chart.js and added our custom chart script -->
 <script type="text/javascript">
 	(function() {
 		const v = Date.now();
@@ -482,7 +545,7 @@
 			"js/state.js",
 			"js/utils.js",
 			"js/formulas.js",
-			"js/chart.js", // Added new chart script
+			"js/chart.js",
 			"js/ui_builder.js",
 			"js/ui_updater.js",
 			"js/ui_modals.js",

@@ -9,7 +9,6 @@
       "hardship": 0.8,
       "observation": 1.2,
       "escapism": 1.0,
-      "exposure": 1.5,
       "social": 1.5
     },
     "biography": "Beatrice was born knowing how to work a room. At 20, she is already embedded in the city's arts scene ... attending gallery openings, rubbing shoulders with poets and playwrights, and cultivating a network most aspiring writers spend decades trying to build.<br><br>She has written several short stories, each one brimming with wit, color, and a flair for the dramatic that reflects her larger-than-life personality. People who read them tend to remember them.<br><br>What Beatrice has not yet done is sit down alone, away from the energy of a crowd, and write something that costs her something. Her brilliance is real, but it has not yet been tested by the long, solitary grind that turning genuine talent into a published body of work will require."
@@ -24,7 +23,6 @@
       "hardship": 1.5,
       "observation": 1.2,
       "escapism": 0.8,
-      "exposure": 0.5,
       "social": 1.0
     },
     "biography": "Arthur is 20 years old and has spent most of his life working grueling shifts in the city's industrial district just to keep his younger siblings fed.<br><br>His hands are calloused, and his worldview is shaped entirely by the harsh, unspoken realities of poverty and working-class survival. He fills cheap notebooks with raw observations of the people around him ... the foremen, the overnight shift workers, the quietly desperate.<br><br>He has never set foot in a literary salon or finished anything longer than a short story, but the material he carries inside him is immense. What he lacks in polish and exposure, he more than makes up for in grit and authenticity."
@@ -39,7 +37,6 @@
       "hardship": 1.0,
       "observation": 1.5,
       "escapism": 1.5,
-      "exposure": 1.0,
       "social": 0.5
     },
     "biography": "Rosemary has always preferred observation to participation. At 20, she can reconstruct an entire stranger's life from the way they carry a bag or pause before answering a question ... and she fills notebook after notebook with these quiet, meticulous studies.<br><br>In her writing, she builds elaborate fictional worlds assembled from these fragments: intricate, sprawling, and full of the kind of detail that makes readers feel they have stepped somewhere entirely real. Her short stories are understated gems that reward close attention.<br><br>Her difficulty is in reaching outward ... toward readers, toward collaborators, toward the industry that might actually publish her work. The world of professional authorship will require her to step out of her corner and be seen."
@@ -54,7 +51,6 @@
       "hardship": 0.5,
       "observation": 1.5,
       "escapism": 1.2,
-      "exposure": 1.5,
       "social": 1.2
     },
     "biography": "James grew up surrounded by towering bookshelves and dinner table debates about literature, philosophy, and the nature of storytelling. Now 20, he has already read more canonical works than most English graduates and possesses a razor-sharp eye for narrative craft.<br><br>He has attended lectures, mingled with published authors at his parents' gatherings, and filled journals with beautifully structured short stories ... none of which he has ever shared publicly.<br><br>His greatest blind spot is the world beyond his privilege. He writes about struggle with elegance but without true understanding. The jump from promising amateur to real author will demand experiences that no bookshelf can provide."
@@ -69,7 +65,6 @@
       "hardship": 1.2,
       "observation": 1.2,
       "escapism": 0.8,
-      "exposure": 1.0,
       "social": 1.5
     },
     "biography": "Margaret has spent most of her young life showing up for other people. By 20, she has organized food drives, run youth programs in underfunded neighborhoods, and sat with strangers through their worst moments ... always listening, always remembering.<br><br>The short stories she writes in her limited spare time are intensely human, full of characters who feel immediately real and deeply specific. Her empathy is her greatest literary gift.<br><br>She has yet to write anything long-form and struggles to prioritize her own creative ambitions over the needs of those around her. Learning to carve out space for her own voice ... and to trust that it is worth the world's attention ... is the challenge that stands between her and the author she is capable of becoming."
@@ -84,7 +79,6 @@
       "hardship": 1.2,
       "observation": 1.0,
       "escapism": 1.5,
-      "exposure": 0.8,
       "social": 0.5
     },
     "biography": "Elias has been retreating into imaginary worlds since he was old enough to hold a pencil. A turbulent and fractured childhood gave him little reason to engage with the real world, and by 20, he has fully committed to living inside his own head.<br><br>He writes compulsively ... strange, vivid short stories full of invented mythology and labyrinthine internal logic that bear little resemblance to anything else out there. The problem is, almost no one has ever read them.<br><br>Elias struggles deeply with people, deadlines, and anything that pulls him out of his creative isolation. Turning his raw imaginative power into something publishable will require him to learn how to let the outside world back in."
@@ -99,7 +93,6 @@
       "hardship": 0.5,
       "observation": 1.5,
       "escapism": 1.0,
-      "exposure": 1.5,
       "social": 1.2
     },
     "biography": "Evelyn has been surrounded by literature, art, and intellectual excellence for as long as she can remember. At 20, she has attended the kind of private salons and cultural events that most aspiring writers only read about, and she has absorbed it all with a cool, perceptive eye.<br><br>Her short fiction is polished and precise, demonstrating a level of craft that belies her age. She understands structure, voice, and the mechanics of storytelling in an almost academic sense.<br><br>What she has yet to discover is genuine emotional urgency. Her writing is technically assured but emotionally cautious ... the product of a life that has been comfortable and curated. The path to becoming a real author will ask her to venture far outside everything she has known."
@@ -114,7 +107,6 @@
       "hardship": 1.0,
       "observation": 1.2,
       "escapism": 1.0,
-      "exposure": 1.2,
       "social": 1.5
     },
     "biography": "William has never met a stranger. At 20, he moves effortlessly through different social circles ... students, artists, tradespeople, academics ... and has an almost supernatural ability to get people to open up and share their stories.<br><br>He has scribbled down dozens of short story ideas inspired by people he has met, conversations overheard, and lives glimpsed from the outside. His instincts for character and dialogue are genuinely impressive for someone his age.<br><br>The challenge for William is depth. He is brilliant at starting things and gathering material, but finishing a long, demanding piece of writing ... and sitting alone long enough to do it ... is something he has never quite managed yet."
@@ -129,7 +121,6 @@
       "hardship": 1.5,
       "observation": 1.0,
       "escapism": 1.2,
-      "exposure": 0.8,
       "social": 0.8
     },
     "biography": "Clara left a broken home at sixteen and has been fending for herself ever since. Now 20, she works multiple part-time jobs and writes in whatever fragments of time she can steal ... on lunch breaks, on late-night buses, on the floor of her barely furnished apartment.<br><br>Her short stories are fierce and unflinching, drawn directly from a life spent navigating systems that were never designed to help her. She writes to survive as much as to create, and that urgency bleeds into every sentence.<br><br>What she lacks in literary connections and formal training, she compensates for with sheer determination. She has not published anything yet, but she carries the conviction that she will ... because giving up has never been an option she could afford."
@@ -144,7 +135,6 @@
       "hardship": 0.8,
       "observation": 1.5,
       "escapism": 1.2,
-      "exposure": 1.0,
       "social": 1.0
     },
     "biography": "Thomas sees everything. At 20, he has developed a near-obsessive habit of documenting the world around him ... the nervous tics of strangers on the subway, the small lies people tell in public, the way a neighborhood changes block by block.<br><br>He has spent the past two years trying to channel all of it into fiction, producing a series of dark, tightly observed short stories that his few readers describe as unsettling in the best possible way.<br><br>His ambition is to write something longer, something that exposes the hidden machinery of the city he obsesses over. He has the eye and the imagination. What he needs now is the courage and the discipline to go the distance."

@@ -3,13 +3,12 @@
 function applyExpenses () {
 	const coins = applySpeed(getExpense());
 	gameData.coins -= coins;
-	tempData.monthlyTracker.expense += coins; // Added: Track monthly expense
+	tempData.monthlyTracker.expense += coins;
 	if (gameData.coins < 0) {
 		goBankrupt();
 	}
 }
 
-// Check conditions to unlock new tabs
 function checkUnlocks () {
 	if (!gameData.unlocks.shop && gameData.taskData['Gig Worker'].level >= 3) {
 		gameData.unlocks.shop = true;
@@ -120,7 +119,6 @@ function isRequirementMet(req) {
 	}
 }
 
-
 function checkRebirthPrompts () {
 	const age = daysToYears(gameData.days);
 	if (age >= 65 && !gameData.rebirthOnePrompted) {
@@ -196,8 +194,8 @@ function doCurrentTask (task) {
 function increaseCoins () {
 	const coins = applySpeed(getIncome());
 	gameData.coins += coins;
-	tempData.monthlyTracker.income += coins; // Added: Track monthly income
-	tempData.monthlyTracker.royalties += applySpeed(gameData.royalties); // Added: Track monthly royalties
+	tempData.monthlyTracker.income += coins;
+	tempData.monthlyTracker.royalties += applySpeed(gameData.royalties);
 }
 
 function increaseDays () {
@@ -290,14 +288,13 @@ function pickNextBook (genre) {
 }
 
 function getLifeExperiences () {
-	const exp = { hardship: 0, observation: 0, escapism: 0, exposure: 0, social: 0 };
+	const exp = { hardship: 0, observation: 0, escapism: 0, social: 0 };
 	for (const key in gameData.taskData) {
 		const task = gameData.taskData[key];
 		if (task instanceof Job && task.level > 0) {
 			exp.hardship += task.level * task.hardship;
 			exp.observation += task.level * task.observation;
 			exp.escapism += task.level * task.escapism;
-			exp.exposure += task.level * task.exposure;
 			exp.social += task.level * task.social;
 		}
 	}
@@ -308,7 +305,6 @@ function getLifeExperiences () {
 			exp.hardship *= (authorMults.hardship || 1);
 			exp.observation *= (authorMults.observation || 1);
 			exp.escapism *= (authorMults.escapism || 1);
-			exp.exposure *= (authorMults.exposure || 1);
 			exp.social *= (authorMults.social || 1);
 		}
 	}
@@ -324,18 +320,10 @@ function getBookLength () {
 	return (50 + (plottingLvl * 2)) * 250;
 }
 
-function getBookQuality () {
-	const grammar = gameData.taskData['Grammar & Prose'] ? gameData.taskData['Grammar & Prose'].level : 0;
-	const plotting = gameData.taskData['Plotting'] ? gameData.taskData['Plotting'].level : 0;
-	const charDev = gameData.taskData['Character Dev.'] ? gameData.taskData['Character Dev.'].level : 0;
-	
-	let baseSkillQuality = (grammar + plotting + charDev) / 3;
-	if (baseSkillQuality === 0) {
-		baseSkillQuality = 0.3;
-	}
-	
-	const lifeExp = getLifeExperiences();
+// Added: Extracted helper function for calculating just the writing quality multiplier product.
+function getWritingQualityMultiplier () {
 	let expMultiplier = 1;
+	const lifeExp = getLifeExperiences();
 	
 	let currentGenre = 'Romance';
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
@@ -363,7 +351,6 @@ function getBookQuality () {
 		expMultiplier += (Math.log10(lifeExp.hardship + 1) * 0.1) +
 			(Math.log10(lifeExp.observation + 1) * 0.1) +
 			(Math.log10(lifeExp.escapism + 1) * 0.1) +
-			(Math.log10(lifeExp.exposure + 1) * 0.1) +
 			(Math.log10(lifeExp.social + 1) * 0.1);
 	}
 	
@@ -387,7 +374,21 @@ function getBookQuality () {
 	
 	const badgeMultiplier = getBadgeMultiplier("writingQuality");
 	
-	return baseSkillQuality * expMultiplier * itemQualityMultiplier * skillQualityMultiplier * badgeMultiplier;
+	return expMultiplier * itemQualityMultiplier * skillQualityMultiplier * badgeMultiplier;
+}
+
+function getBookQuality () {
+	const grammar = gameData.taskData['Grammar & Prose'] ? gameData.taskData['Grammar & Prose'].level : 0;
+	const plotting = gameData.taskData['Plotting'] ? gameData.taskData['Plotting'].level : 0;
+	const charDev = gameData.taskData['Character Dev.'] ? gameData.taskData['Character Dev.'].level : 0;
+	
+	let baseSkillQuality = (grammar + plotting + charDev) / 3;
+	if (baseSkillQuality === 0) {
+		baseSkillQuality = 0.3;
+	}
+	
+	// Modified: Re-uses the newly extracted multiplier helper function
+	return baseSkillQuality * getWritingQualityMultiplier();
 }
 
 function getCompositionMultiplier () {
@@ -440,7 +441,7 @@ function writeProgress (sceneType, timeInSeconds) {
 	if (words <= 0) return;
 	
 	gameData.wordsWritten += words;
-	tempData.monthlyTracker.wordsWritten += words; // Added: Track monthly words
+	tempData.monthlyTracker.wordsWritten += words;
 	
 	if (!gameData.currentBookComposition) {
 		gameData.currentBookComposition = {};
@@ -466,7 +467,7 @@ function handleSceneClick (sceneType) {
 		
 		if (words > 0) {
 			gameData.wordsWritten += words;
-			tempData.monthlyTracker.wordsWritten += words; // Added: Track monthly words
+			tempData.monthlyTracker.wordsWritten += words;
 			
 			if (!gameData.currentBookComposition) {
 				gameData.currentBookComposition = {};
@@ -501,7 +502,10 @@ function finishBook () {
 	const qualityMultiplier = getQualityMultiplier();
 	const compMultiplier = getCompositionMultiplier();
 	
-	const quality = baseQuality * qualityMultiplier * compMultiplier;
+	// Calculate the massive raw quality, then run it through the 100% cap curve
+	const rawQuality = baseQuality * qualityMultiplier * compMultiplier;
+	const quality = getCurvedQuality(rawQuality);
+	
 	const fame = gameData.fame;
 	const sales = (quality / 100) * (fame + 10) * 5;
 	let royalty = sales * 0.1;
@@ -513,9 +517,9 @@ function finishBook () {
 	
 	gameData.royalties += royalty;
 	gameData.booksPublished += 1;
-	tempData.monthlyTracker.booksPublished++; // Added: Track monthly books
-	tempData.monthlyTracker.qualitySum += quality; // Added: Track quality for monthly average
-	tempData.monthlyTracker.qualityCount++; // Added: Track quality for monthly average
+	tempData.monthlyTracker.booksPublished++;
+	tempData.monthlyTracker.qualitySum += quality;
+	tempData.monthlyTracker.qualityCount++;
 	
 	const bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : 'Unknown Book';
 	logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
@@ -582,8 +586,8 @@ function rebirthReset () {
 	gameData.wordsWritten = 0;
 	gameData.booksPublished = 0;
 	gameData.royalties = 0;
-	gameData.logHistory = []; // Modified: Clear log history on rebirth
-	gameData.monthlyChartData = []; // Modified: Clear chart data on rebirth
+	gameData.logHistory = [];
+	gameData.monthlyChartData = [];
 	gameData.currentJob = gameData.taskData['Gig Worker'];
 	gameData.currentSkill = gameData.taskData['Focus'];
 	gameData.currentProperty = gameData.itemData['Homeless'];

@@ -125,7 +125,6 @@ function loadGameData() {
 			gameData.earnedBadges = [];
 		}
 		
-		// Added: Backward compatibility for chart and log data
 		if (!gameData.monthlyChartData) {
 			gameData.monthlyChartData = [];
 		}
@@ -155,7 +154,8 @@ function resetGameData() {
 
 function importGameData() {
 	let importExportBox = document.getElementById("importExportBox");
-	let data = JSON.parse(window.atob(importExportBox.value));
+	// Modified: Decodes the string considering UTF-8 encoded sequences safely to prevent InvalidCharacterError
+	let data = JSON.parse(decodeURIComponent(escape(window.atob(importExportBox.value))));
 	gameData = data;
 	saveGameData();
 	location.reload();
@@ -163,7 +163,9 @@ function importGameData() {
 
 function exportGameData() {
 	let importExportBox = document.getElementById("importExportBox");
-	importExportBox.value = window.btoa(JSON.stringify(gameData));
+	// Modified: URL encodes multibyte characters prior to applying base-64 conversion
+	// preventing "The string to be encoded contains characters outside of the Latin1 range"
+	importExportBox.value = window.btoa(unescape(encodeURIComponent(JSON.stringify(gameData))));
 }
 
 function setupRequirements(reqData) {

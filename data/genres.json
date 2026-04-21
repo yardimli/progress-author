@@ -3,42 +3,36 @@
     "hardship": 0.2,
     "observation": 0.8,
     "escapism": 0.6,
-    "exposure": 0.5,
     "social": 1.0
   },
   "Mystery/Thriller": {
     "hardship": 0.7,
     "observation": 1.0,
     "escapism": 0.4,
-    "exposure": 0.6,
     "social": 0.5
   },
   "Fantasy": {
     "hardship": 0.5,
     "observation": 0.3,
     "escapism": 1.0,
-    "exposure": 0.7,
     "social": 0.4
   },
   "Sci-Fi": {
     "hardship": 0.4,
     "observation": 0.7,
     "escapism": 0.9,
-    "exposure": 0.8,
     "social": 0.3
   },
   "Historical Fiction": {
     "hardship": 0.8,
     "observation": 0.6,
     "escapism": 0.5,
-    "exposure": 1.0,
     "social": 0.6
   },
   "Self-Help": {
     "hardship": 0.9,
     "observation": 0.9,
     "escapism": 0.1,
-    "exposure": 0.8,
     "social": 0.8
   }
 }

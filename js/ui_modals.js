@@ -114,7 +114,6 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
             Hardship: +${task.hardship},
             Observation: +${task.observation},
             Escapism: +${task.escapism},
-            Exposure: +${task.exposure},
             Social: +${task.social}
             </span>`;
 		}
@@ -232,7 +231,6 @@ function showAuthorSelection () {
       <b>Hardship:</b> x${mults.hardship.toFixed(1)}<br>
       <b>Observation:</b> x${mults.observation.toFixed(1)}<br>
       <b>Escapism:</b> x${mults.escapism.toFixed(1)}<br>
-      <b>Exposure:</b> x${mults.exposure.toFixed(1)}<br>
       <b>Social:</b> x${mults.social.toFixed(1)}
     `;
 		

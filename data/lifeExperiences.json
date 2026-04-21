@@ -20,13 +20,6 @@
     "filefolder": "experiences",
     "imageprompt": "A rounded thought bubble containing a tiny castle and small dragon, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft pastel colors."
   },
-  "Exposure": {
-    "name": "Exposure",
-    "multiplier": 0.1,
-    "filename": "exposure.png",
-    "filefolder": "experiences",
-    "imageprompt": "A neat stack of books with a gentle glow around them, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft warm colors."
-  },
   "Social": {
     "name": "Social",
     "multiplier": 0.1,

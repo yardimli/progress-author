@@ -10,7 +10,6 @@ class Task {
         this.hardship = baseData.hardship || 0;
         this.observation = baseData.observation || 0;
         this.escapism = baseData.escapism || 0;
-        this.exposure = baseData.exposure || 0;
         this.social = baseData.social || 0;
     }
     
