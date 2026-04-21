@@ -441,7 +441,7 @@
     "requirements": [
       {
         "task": "Focus",
-        "requirement": 20
+        "requirement": 10
       }
     ]
   },
@@ -778,7 +778,21 @@
     ],
     "requirements": [
       {
-        "requirement": 7000
+        "requirement": 0
+      }
+    ]
+  },
+  "Bus Pass": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Bus Pass"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 1000
       }
     ]
   },
@@ -792,16 +806,44 @@
     ],
     "requirements": [
       {
-        "requirement": 6000
+        "requirement": 5000
       }
     ]
   },
-  "Editor": {
+  "Planner": {
     "type": "coins",
     "elements": [
       {
         "type": "id",
-        "value": "row Editor"
+        "value": "row Planner"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 10000
+      }
+    ]
+  },
+  "Ergonomic Chair": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Ergonomic Chair"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 25000
+      }
+    ]
+  },
+  "Coffee Machine": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Coffee Machine"
       }
     ],
     "requirements": [
@@ -820,21 +862,21 @@
     ],
     "requirements": [
       {
-        "requirement": 150000
+        "requirement": 100000
       }
     ]
   },
-  "Ergonomic Chair": {
+  "Industry Magazine": {
     "type": "coins",
     "elements": [
       {
         "type": "id",
-        "value": "row Ergonomic Chair"
+        "value": "row Industry Magazine"
       }
     ],
     "requirements": [
       {
-        "requirement": 100000
+        "requirement": 200000
       }
     ]
   },
@@ -848,7 +890,21 @@
     ],
     "requirements": [
       {
-        "requirement": 250000
+        "requirement": 500000
+      }
+    ]
+  },
+  "Smart Assistant": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Smart Assistant"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 1000000
       }
     ]
   },
@@ -862,7 +918,49 @@
     ],
     "requirements": [
       {
-        "requirement": 1000000
+        "requirement": 2500000
+      }
+    ]
+  },
+  "Masterclass Subscription": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Masterclass Subscription"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 5000000
+      }
+    ]
+  },
+  "Editor": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Editor"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 10000000
+      }
+    ]
+  },
+  "Focus Supplements": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Focus Supplements"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 25000000
       }
     ]
   },
@@ -876,7 +974,21 @@
     ],
     "requirements": [
       {
-        "requirement": 5000000
+        "requirement": 50000000
+      }
+    ]
+  },
+  "Networking Membership": {
+    "type": "coins",
+    "elements": [
+      {
+        "type": "id",
+        "value": "row Networking Membership"
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": 100000000
       }
     ]
   }

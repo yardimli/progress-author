@@ -55,25 +55,30 @@ function addMultipliers() {
 			task.incomeMultipliers.push(() => getBadgeMultiplier("jobIncome")); // Added: Badge multiplier for job income
 			
 			task.xpMultipliers.push(getBindedTaskEffect("Time Management"));
-			task.xpMultipliers.push(getBindedItemEffect("Editor"));
+			// Modified: Replaced Editor with Bus Pass for Job XP
+			task.xpMultipliers.push(getBindedItemEffect("Bus Pass"));
 			task.xpMultipliers.push(() => getBadgeMultiplier("jobXp")); // Added: Badge multiplier for job XP
 		} else if (task instanceof Skill) {
 			task.xpMultipliers.push(getBindedTaskEffect("Focus"));
-			task.xpMultipliers.push(getBindedItemEffect("Library Card"));
-			task.xpMultipliers.push(getBindedItemEffect("Home Office"));
-			task.xpMultipliers.push(getBindedItemEffect("Home Library"));
+			// Modified: Replaced Library Card, Home Office, and Home Library with new items for Skill XP
+			task.xpMultipliers.push(getBindedItemEffect("Planner"));
+			task.xpMultipliers.push(getBindedItemEffect("Focus Supplements"));
+			task.xpMultipliers.push(getBindedItemEffect("Networking Membership"));
 			task.xpMultipliers.push(() => getBadgeMultiplier("skillXp")); // Added: Badge multiplier for skill XP
 		}
 		
 		if (jobCategories["Creative Industry"].includes(task.name)) {
 			task.xpMultipliers.push(getBindedTaskEffect("Grammar & Prose"));
-			task.xpMultipliers.push(getBindedItemEffect("Style Guide"));
+			// Modified: Replaced Style Guide with Industry Magazine for Creative Industry XP
+			task.xpMultipliers.push(getBindedItemEffect("Industry Magazine"));
 			task.xpMultipliers.push(() => getBadgeMultiplier("creativeXp")); // Added: Badge multiplier for creative XP
 		} else if (task.name === "Typing Speed") {
 			task.xpMultipliers.push(getBindedTaskEffect("Character Dev."));
-			task.xpMultipliers.push(getBindedItemEffect("Used Laptop"));
+			// Modified: Replaced Used Laptop with Smart Assistant for Typing Speed XP
+			task.xpMultipliers.push(getBindedItemEffect("Smart Assistant"));
 		} else if (skillCategories["Writing Craft"].includes(task.name)) {
-			task.xpMultipliers.push(getBindedItemEffect("Pro Writing Software"));
+			// Modified: Replaced Pro Writing Software with Masterclass Subscription for Writing Craft XP
+			task.xpMultipliers.push(getBindedItemEffect("Masterclass Subscription"));
 		} else if (jobCategories["Literary Elite"].includes(task.name)) {
 			task.xpMultipliers.push(getBindedTaskEffect("Plotting"));
 			task.xpMultipliers.push(() => getBadgeMultiplier("literaryXp")); // Added: Badge multiplier for literary XP
@@ -119,7 +124,8 @@ function setCustomEffects() {
 
 function getInspiration() {
 	let meditationEffect = getBindedTaskEffect("Meditation");
-	let chairEffect = getBindedItemEffect("Ergonomic Chair");
+	// Modified: Replaced Ergonomic Chair with Coffee Machine for Inspiration
+	let chairEffect = getBindedItemEffect("Coffee Machine");
 	let potionMultiplier = gameData.potions.inspiration > 0 ? 2.0 : 1.0;
 	return meditationEffect() * chairEffect() * gameData.currentProperty.getEffect() * potionMultiplier;
 }
