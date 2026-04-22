@@ -57,7 +57,6 @@ function createAllRows (categoryType, containerId) {
 			element.id = 'row ' + name;
 			element.querySelector('.name').textContent = name;
 			
-			// Added: Setup for the info icon click event
 			const infoIcon = element.querySelector('.card-info-icon');
 			if (infoIcon) {
 				infoIcon.onclick = function (event) {
@@ -93,7 +92,6 @@ function createAllRows (categoryType, containerId) {
 				element.onclick = function () {
 					setTask(name);
 				};
-				// Added: Double click listener for debug mode to set level
 				element.ondblclick = function (e) {
 					if (typeof isDebugMode !== 'undefined' && isDebugMode) {
 						e.stopPropagation();
@@ -194,8 +192,6 @@ function initLifeExperiencesUI () {
 		}
 	}
 }
-
-// Removed: initBadgesUI function is no longer needed as badges are built on-demand in the modal.
 
 function populateGenres () {
 	const container = document.getElementById('genreButtonsContainer');

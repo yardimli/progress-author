@@ -2,7 +2,7 @@
 var isPaused = false;
 var isInitialized = false;
 var popupQueue =[];
-var isDebugMode = true; // Added: Debug mode flag
+var isDebugMode = true;
 
 // Define the current game version
 const GAME_VERSION = "1.0.5";
@@ -58,13 +58,13 @@ var gameData = {
 	
 	earnedBadges:[],
 	
-	// Added: Data for author profile modal
+	// Data for author profile modal
 	monthlyChartData:[], // Stores monthly data points for the chart
 	logHistory:[] // Stores all log messages
 };
 
 var tempData = {
-	// Added: Temporary tracker for monthly chart data
+	// Temporary tracker for monthly chart data
 	monthlyTracker: {
 		lastDayChecked: 365 * 20,
 		income: 0,

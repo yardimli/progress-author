@@ -66,7 +66,7 @@ function getKeyOfLowestValueFromDict (dict) {
 	}
 }
 
-// Added: Helper function to build categories from base data
+// Helper function to build categories from base data
 function buildCategories (baseData) {
 	const categories = {};
 	for (const key in baseData) {

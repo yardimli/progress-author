@@ -45,7 +45,6 @@ function updateRequiredRows (baseData, categoryType) {
 							} else if (req.type === 'age') {
 								reqStrings.push(`Age ${format(req.value, 0)}`);
 							} else if (req.type === 'shop') {
-								// Added: Logic to display item ownership requirements in the locked row
 								reqStrings.push(`Own ${req.name}`);
 							}
 						}
@@ -365,7 +364,14 @@ function updateHeaderUI () {
 		}
 	});
 	
-	updateHeaderVal('header-val-income', `$${format(getIncome() * (365 / 12))}/mo`);
+	// Split income into work and royalties for the header display
+	const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
+	const workIncomeDaily = gameData.currentJob ? gameData.currentJob.getIncome() * workPercentage : 0;
+	const royaltiesDaily = gameData.royalties || 0;
+	
+	updateHeaderVal('header-val-work-income', `$${format(workIncomeDaily * (365 / 12))}/mo`);
+	updateHeaderVal('header-val-royalties', `$${format(royaltiesDaily * (365 / 12))}/mo`);
+	
 	updateHeaderVal('header-val-expense', `$${format(getExpense() * (365 / 12))}/mo`);
 	updateHeaderVal('header-val-inspiration', `${getInspiration().toFixed(1)}x`);
 	updateHeaderVal('header-val-badges', gameData.earnedBadges ? gameData.earnedBadges.length : 0);
@@ -508,7 +514,7 @@ function setSignDisplay () {
 	}
 }
 
-// Added: New function to handle visibility of special UI elements.
+// Function to handle visibility of special UI elements.
 function updateUIVisibility () {
 	// Business of Writing Category Header
 	const businessOfWriting = document.getElementsByClassName('TheBusinessofWriting');

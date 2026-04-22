@@ -20,8 +20,6 @@ function assignMethods() {
 		gameData.itemData[key] = item;
 	}
 	
-	// Removed: The entire loop for gameData.requirements is no longer needed.
-	
 	gameData.currentJob = gameData.taskData[gameData.currentJob?.name] || gameData.taskData["Gig Worker"];
 	gameData.currentSkill = gameData.taskData[gameData.currentSkill?.name] || gameData.taskData["Focus"];
 	gameData.currentProperty = gameData.itemData[gameData.currentProperty?.name] || gameData.itemData["Homeless"];
@@ -40,7 +38,6 @@ function replaceSaveDict(dict, saveDict) {
 		if (!(key in saveDict)) {
 			saveDict[key] = dict[key];
 		}
-		// Removed: Special handling for requirements is no longer needed.
 	}
 	
 	for (let key in saveDict) {
@@ -81,7 +78,6 @@ function loadGameData() {
 		}
 		
 		replaceSaveDict(gameData, gameDataSave);
-		// Removed: replaceSaveDict for requirements is no longer needed.
 		replaceSaveDict(gameData.taskData, gameDataSave.taskData);
 		replaceSaveDict(gameData.itemData, gameDataSave.itemData);
 		
@@ -131,7 +127,7 @@ function resetGameData() {
 
 function importGameData() {
 	let importExportBox = document.getElementById("importExportBox");
-	// Modified: Decodes the string considering UTF-8 encoded sequences safely to prevent InvalidCharacterError
+	// Decodes the string considering UTF-8 encoded sequences safely to prevent InvalidCharacterError
 	let data = JSON.parse(decodeURIComponent(escape(window.atob(importExportBox.value))));
 	gameData = data;
 	saveGameData();
@@ -140,9 +136,7 @@ function importGameData() {
 
 function exportGameData() {
 	let importExportBox = document.getElementById("importExportBox");
-	// Modified: URL encodes multibyte characters prior to applying base-64 conversion
+	// URL encodes multibyte characters prior to applying base-64 conversion
 	// preventing "The string to be encoded contains characters outside of the Latin1 range"
 	importExportBox.value = window.btoa(unescape(encodeURIComponent(JSON.stringify(gameData))));
 }
-
-// Removed: setupRequirements function is no longer needed.

@@ -1,7 +1,6 @@
 // Modal, popup, and overlay logic
 
 let typingTimeout = null;
-// Removed: Chart.js instance variable is no longer needed
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
@@ -602,10 +601,8 @@ function startTypingEffect (fullText, elementId) {
 	typingTimeout = setTimeout(typeNext, 500);
 }
 
-// Added: Debug modal state
 let currentDebugTask = null;
 
-// Added: Show debug modal
 function showDebugModal (taskName) {
 	currentDebugTask = taskName;
 	const modal = document.getElementById('debugLevelModal');
@@ -622,7 +619,6 @@ function showDebugModal (taskName) {
 	}
 }
 
-// Added: Close debug modal
 function closeDebugModal () {
 	const modal = document.getElementById('debugLevelModal');
 	if (modal) modal.style.display = 'none';
@@ -630,7 +626,6 @@ function closeDebugModal () {
 	updatePauseState();
 }
 
-// Added: Apply debug level
 function applyDebugLevel () {
 	const input = document.getElementById('debugLevelInput');
 	if (input && currentDebugTask) {
@@ -701,7 +696,6 @@ window.addEventListener('click', function (event) {
 		closeMobileBadgeModal();
 	}
 	
-	// Added: Close debug modal on outside click
 	const debugLevelModal = document.getElementById('debugLevelModal');
 	if (debugLevelModal && debugLevelModal.style.display === 'flex' && event.target === debugLevelModal) {
 		closeDebugModal();

@@ -416,7 +416,6 @@ button:focus {
     margin-bottom: 6px;
 }
 
-/* Added: Styles for the new info icon on cards */
 .card-info-icon {
     position: absolute;
     top: 5px;
@@ -683,7 +682,6 @@ button:focus {
     padding-right: 50px;
 }
 
-/* Added: Logic to hide the duplicate text when scrolling isn't required */
 .marquee-item.duplicate {
     display: none;
 }

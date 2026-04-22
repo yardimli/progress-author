@@ -1,6 +1,6 @@
 // Writing process, rebirth, death
 
-// Modified: This helper function now checks for item ownership via the 'shop' type.
+// This helper function now checks for item ownership via the 'shop' type.
 function areRequirementsMet (entity) {
 	if (!entity.requirements || entity.requirements.length === 0) {
 		return true;
@@ -14,7 +14,7 @@ function areRequirementsMet (entity) {
 					return false;
 				}
 				break;
-			case 'shop': // Added: New case to check for item ownership.
+			case 'shop':
 				const hasItem = (gameData.currentProperty && gameData.currentProperty.name === req.name) ||
 					(gameData.currentMisc && gameData.currentMisc.some(item => item.name === req.name));
 				if (!hasItem) {
@@ -339,7 +339,7 @@ function getBookLength () {
 	return (50 + (plottingLvl * 2)) * 250;
 }
 
-// Added: Extracted helper function for calculating just the writing quality multiplier product.
+// Extracted helper function for calculating just the writing quality multiplier product.
 function getWritingQualityMultiplier () {
 	let expMultiplier = 1;
 	const lifeExp = getLifeExperiences();
@@ -406,7 +406,7 @@ function getBookQuality () {
 		baseSkillQuality = 0.3;
 	}
 	
-	// Modified: Re-uses the newly extracted multiplier helper function
+	// Re-uses the newly extracted multiplier helper function
 	return baseSkillQuality * getWritingQualityMultiplier();
 }
 
@@ -625,7 +625,7 @@ function rebirthReset () {
 		task.xp = 0;
 	}
 	
-	// Modified: Reset the new unlocks tracker
+	// Reset the new unlocks tracker
 	gameData.unlocks = {};
 }
 

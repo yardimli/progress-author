@@ -9,7 +9,7 @@ function updateLogic () {
     applyExpenses();
     checkBadgeUnlocks();
     checkRebirthPrompts();
-    trackMonthlyData(); // Added: Track data for chart
+    trackMonthlyData();
 }
 
 function gameLoop (currentTime) {
@@ -74,7 +74,7 @@ function gameLoop (currentTime) {
     requestAnimationFrame(gameLoop);
 }
 
-// Added: Function to track and store monthly data for the chart
+// Function to track and store monthly data for the chart
 function trackMonthlyData () {
     const daysInMonth = 365 / 12;
     const currentMonthIndex = Math.floor(gameData.days / daysInMonth);
@@ -124,7 +124,6 @@ function trackMonthlyData () {
 
 async function init () {
     try {
-        // Modified: Removed fetch for requirements.json
         const[
             jobsRes, skillsRes, itemsRes,
             colorsRes, tooltipsRes,
@@ -156,14 +155,13 @@ async function init () {
         skillBaseData = await skillsRes.json();
         itemBaseData = await itemsRes.json();
         
-        // Added: Build categories dynamically from base data
+        // Build categories dynamically from base data
         jobCategories = buildCategories(jobBaseData);
         skillCategories = buildCategories(skillBaseData);
         itemCategories = buildCategories(itemBaseData);
         
         headerRowColors = await colorsRes.json();
         tooltips = await tooltipsRes.json();
-        // Removed: requirementsData is no longer fetched or used
         
         authorsBaseData = await authorsRes.json();
         booksBaseData = await booksRes.json();
@@ -189,8 +187,6 @@ async function init () {
         gameData.currentSkill = gameData.taskData.Focus;
         gameData.currentProperty = gameData.itemData.Homeless;
         gameData.currentMisc =[];
-        
-        // Removed: setupRequirements and tempData.requirements are no longer needed
         
         loadGameData();
         
@@ -219,7 +215,7 @@ function continueInit () {
     lastTime = performance.now();
     requestAnimationFrame(gameLoop);
     
-    if (gameData.logHistory.length === 0) { // Modified: Check log history to prevent re-logging on load
+    if (gameData.logHistory.length === 0) {
         logEvent("Started a new game. Welcome to Author's Journey!");
     }
     

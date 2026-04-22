@@ -5,7 +5,7 @@ function getCurvedQuality(rawQuality) {
 	return 100 * (1 - (100 / (rawQuality + 100)));
 }
 
-// Added: Get combined multiplier for a specific badge effect type
+// Get combined multiplier for a specific badge effect type
 function getBadgeMultiplier(type) {
 	let multiplier = 1;
 	if (!badgeBaseData) return 1;
@@ -36,7 +36,7 @@ function getBindedItemEffect(itemName) {
 	return item ? item.getEffect.bind(item) : () => 1;
 }
 
-// Added: Helper to dynamically apply multipliers based on JSON descriptions
+// Helper to dynamically apply multipliers based on JSON descriptions
 function createDynamicMultiplier(validDescriptions) {
 	let matchingSkills = [];
 	let matchingItems = [];
@@ -90,7 +90,7 @@ function addMultipliers() {
 		task.xpMultipliers.push(task.getMaxLevelMultiplier.bind(task));
 		task.xpMultipliers.push(getInspiration);
 		
-		// Modified: Use dynamic category lookup instead of hardcoded strings
+		// Use dynamic category lookup instead of hardcoded strings
 		task.xpMultipliers.push(allXpMulti);
 		task.xpMultipliers.push(() => getBadgeMultiplier("allXp"));
 		
@@ -195,7 +195,7 @@ function applySpeed(value) {
 function getFameGain() {
 	let networking = gameData.taskData["Networking"] ? gameData.taskData["Networking"].getEffect() : 1;
 	let mediaTours = gameData.taskData["Media Tours"] ? gameData.taskData["Media Tours"].getEffect() : 1;
-	let badgeMultiplier = getBadgeMultiplier("fameGain"); // Added: Badge multiplier for fame gain
+	let badgeMultiplier = getBadgeMultiplier("fameGain");
 	return gameData.booksPublished * networking * mediaTours * badgeMultiplier;
 }
 
@@ -208,8 +208,7 @@ function getGameSpeed() {
 
 function getIncome() {
 	let income = 0;
-	// Apply work percentage to active job income
-	// Modified: If not writing a book, work percentage is always 100%
+	// Apply work percentage to active job income if not writing a book, work percentage is always 100%
 	const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
 	income += gameData.currentJob.getIncome() * workPercentage;
 	income += gameData.royalties;

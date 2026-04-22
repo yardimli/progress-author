@@ -80,7 +80,7 @@ class Skill extends Task {
         return 1 + this.baseData.effect * this.level;
     }
     
-    // Added: Method to calculate the writing quality multiplier based on skill level
+    // Method to calculate the writing quality multiplier based on skill level
     getWritingQuality() {
         if (!this.baseData.writingQuality) return 1;
         return 1 + this.baseData.writingQuality * this.level;
@@ -127,7 +127,7 @@ class Item {
         
         // 1. Base Effect (Inspiration, Skill XP, etc.)
         if (this.baseData.effect && this.baseData.effect !== 1) {
-            // Added: Fallback to "Effect" if description is completely missing to prevent "undefined"
+            // Fallback to "Effect" if description is completely missing to prevent "undefined"
             let displayText = label || "Effect";
             effectTexts.push("x" + this.baseData.effect.toFixed(2) + " " + displayText);
         }
