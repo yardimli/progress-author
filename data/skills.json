@@ -166,6 +166,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of three small screens — a laptop, a phone, and a tablet — each displaying the same simplified logo shape. Soft charcoal and warm gold tones, rounded geometric shapes, clean linework, and a cozy aesthetic with no realistic detail.",
     "requirements": [
+      { "type": "job", "name": "Head of Publishing", "value": 100 },
       { "type": "fame", "value": 1 }
     ]
   },
@@ -180,6 +181,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a few simplified figures standing together holding small rounded drink glasses, with tiny string lights arcing above them. Soft amber and teal tones, simplified geometric shapes, clean outlines, and a cozy, welcoming aesthetic.",
     "requirements": [
+      { "type": "job", "name": "Head of Publishing", "value": 100 },
       { "type": "fame", "value": 1 }
     ]
   },
@@ -194,6 +196,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure standing on a small round stage under a soft spotlight, with a few rounded audience silhouettes in the foreground. Soft charcoal and electric blue tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic.",
     "requirements": [
+      { "type": "job", "name": "Head of Publishing", "value": 100 },
       { "type": "fame", "value": 1 }
     ]
   },
@@ -208,6 +211,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure silhouette displayed on a large rounded billboard, with tiny star shapes and heart icons floating around it. Soft gold and midnight blue tones, simplified geometric shapes, clean outlines, and a cozy aesthetic.",
     "requirements": [
+      { "type": "job", "name": "Head of Publishing", "value": 100 },
       { "type": "fame", "value": 25 }
     ]
   },
@@ -222,6 +226,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure seated at a small rounded interview desk with a tiny book propped up, a boom microphone and small camera nearby. Warm studio gold and soft white tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic.",
     "requirements": [
+      { "type": "job", "name": "Head of Publishing", "value": 100 },
       { "type": "fame", "value": 75 }
     ]
   },
@@ -236,6 +241,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of two simplified figures seated across a small rounded table, a tiny contract and pen between them, with a simple skyline shape in the background. Soft grey and warm gold tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
     "requirements": [
+      { "type": "job", "name": "Head of Publishing", "value": 100 },
       { "type": "fame", "value": 500 }
     ]
   }

@@ -11,102 +11,6 @@
     "imageprompt": "A flat, minimalist vector illustration of a quiet urban street corner with simplified shapes. A small sleeping bag and a stack of cardboard boxes rest against a plain wall beneath a single streetlamp. A paper cup and a worn notebook sit nearby. Clean lines, muted cozy color palette of soft greys and warm blues, no realistic detail, just simple geometric forms conveying the humble beginnings of a writer.",
     "requirements": []
   },
-  "Rented Room": {
-    "name": "Rented Room",
-    "category": "Properties",
-    "expense": 30,
-    "effect": 3.2,
-    "writingMultiplier": 1.2,
-    "writingQuality": 1.05,
-    "filename": "rented_room.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a small rented room rendered with simplified shapes. A basic desk holds a stack of papers and a small lamp, a single window shows a soft blue night sky, and a narrow bed sits against the wall. Clean lines, cozy aesthetic, muted palette of warm beiges and soft blues, no realism, just simple geometric forms creating a humble writer's space.",
-    "requirements": []
-  },
-  "Studio": {
-    "name": "Studio",
-    "category": "Properties",
-    "expense": 75,
-    "effect": 6.4,
-    "writingMultiplier": 1.4,
-    "writingQuality": 1.1,
-    "filename": "studio_apartment.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a tidy studio apartment using simple geometric shapes. A laptop sits open on a clean white desk by a large window showing a simplified city skyline. A small bookshelf, a potted plant, and a coffee mug complete the scene. Cozy aesthetic with warm amber and soft grey tones, clean lines, no realistic detail, conveying a hopeful emerging writer's home.",
-    "requirements": [
-      { "type": "coins", "value": 30000 }
-    ]
-  },
-  "Suburban": {
-    "name": "Suburban",
-    "category": "Properties",
-    "expense": 120,
-    "effect": 12.8,
-    "writingMultiplier": 1.7,
-    "writingQuality": 1.15,
-    "filename": "suburban_house.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house using simple geometric shapes. Small rectangular windows glow with warm yellow light, a single tree, a neat green lawn, and a paved path to the front door. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
-    "requirements": [
-      { "type": "coins", "value": 150000 }
-    ]
-  },
-  "Large House": {
-    "name": "Large House",
-    "category": "Properties",
-    "expense": 250,
-    "effect": 25.6,
-    "writingMultiplier": 2.1,
-    "writingQuality": 1.2,
-    "filename": "large_house.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a spacious two-story modern house using simple geometric shapes. Large rectangular windows glow with warm yellow light, a stone path curves through tidy landscaping, and a pair of trees frame the home. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
-    "requirements": [
-      { "type": "coins", "value": 500000 }
-    ]
-  },
-  "City Penthouse": {
-    "name": "City Penthouse",
-    "category": "Properties",
-    "expense": 600,
-    "effect": 51.2,
-    "writingMultiplier": 2.6,
-    "writingQuality": 1.25,
-    "filename": "city_penthouse.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a sleek city penthouse with simplified geometric shapes. Floor-to-ceiling windows reveal a stylized skyline of rectangular buildings at dusk, with a small writing desk and a modern chair inside. A potted plant and a wraparound terrace add warmth. Clean lines, cozy aesthetic, palette of deep navy, soft gold, and warm whites, no realism, just simple shapes evoking upscale urban living.",
-    "requirements": [
-      { "type": "coins", "value": 5000000 }
-    ]
-  },
-  "Private Villa": {
-    "name": "Private Villa",
-    "category": "Properties",
-    "expense": 2000,
-    "effect": 102.4,
-    "writingMultiplier": 3.2,
-    "writingQuality": 1.3,
-    "filename": "private_villa.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a bright coastal villa using simple shapes. A white cubic home sits on a hill above a turquoise sea, with a rectangular infinity pool, rounded olive trees, and a small glass studio. A soft sun hangs in a pastel sky. Clean lines, cozy Mediterranean palette of whites, turquoise, and warm sand tones, no realism, just friendly geometric forms depicting a celebrated author's retreat.",
-    "requirements": [
-      { "type": "coins", "value": 25000000 }
-    ]
-  },
-  "Mansion Estate": {
-    "name": "Mansion Estate",
-    "category": "Properties",
-    "expense": 5000,
-    "effect": 204.8,
-    "writingMultiplier": 4.0,
-    "writingQuality": 1.4,
-    "filename": "mansion_estate.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a grand mansion estate using simplified geometric shapes. A wide symmetrical house with warm glowing windows sits behind simple iron gates, with rounded topiary bushes, a curved driveway, and a small reflecting pond. A soft twilight sky frames the scene. Clean lines, cozy palette of deep blues, warm golds, and soft greens, no realism, just stylized shapes conveying legendary author status.",
-    "requirements": [
-      { "type": "coins", "value": 100000000 }
-    ]
-  },
   "Library Card": {
     "name": "Library Card",
     "category": "Misc",
@@ -118,6 +22,20 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a simple public library card with a small barcode and rounded corners. The card rests on a plain surface next to a tiny receipt. Clean lines, cozy aesthetic, soft palette of blues and whites with a warm accent, no realism, just simplified geometric shapes representing the humble foundation of a writer's learning journey.",
     "requirements": []
+  },
+  "Rented Room": {
+    "name": "Rented Room",
+    "category": "Properties",
+    "expense": 30,
+    "effect": 3.2,
+    "writingMultiplier": 1.2,
+    "writingQuality": 1.05,
+    "filename": "rented_room.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a small rented room rendered with simplified shapes. A basic desk holds a stack of papers and a small lamp, a single window shows a soft blue night sky, and a narrow bed sits against the wall. Clean lines, cozy aesthetic, muted palette of warm beiges and soft blues, no realism, just simple geometric forms creating a humble writer's space.",
+    "requirements": [
+      { "type": "coins", "value": 5000 }
+    ]
   },
   "Bus Pass": {
     "name": "Bus Pass",
@@ -148,6 +66,20 @@
       { "type": "coins", "value": 25000 }
     ]
   },
+  "Studio": {
+    "name": "Studio",
+    "category": "Properties",
+    "expense": 75,
+    "effect": 6.4,
+    "writingMultiplier": 1.4,
+    "writingQuality": 1.1,
+    "filename": "studio_apartment.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a tidy studio apartment using simple geometric shapes. A laptop sits open on a clean white desk by a large window showing a simplified city skyline. A small bookshelf, a potted plant, and a coffee mug complete the scene. Cozy aesthetic with warm amber and soft grey tones, clean lines, no realistic detail, conveying a hopeful emerging writer's home.",
+    "requirements": [
+      { "type": "coins", "value": 50000 }
+    ]
+  },
   "Planner": {
     "name": "Planner",
     "category": "Misc",
@@ -160,7 +92,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of an open daily planner notebook with a simple pen resting on it. Clean lines, cozy aesthetic, warm palette of soft greens and creams, no realism.",
     "requirements": [
-      { "type": "coins", "value": 50000 }
+      { "type": "coins", "value": 65000 }
     ]
   },
   "Ergonomic Chair": {
@@ -175,7 +107,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a modern ergonomic office chair with a rounded mesh back and simple armrests, shown in soft geometric shapes. Placed in a tidy corner with a small plant nearby. Clean lines, cozy aesthetic, muted palette of soft greys and warm accents, no realism, just simplified shapes representing comfort and productivity for a focused writer.",
     "requirements": [
-      { "type": "coins", "value": 25000 }
+      { "type": "coins", "value": 90000 }
     ]
   },
   "Coffee Machine": {
@@ -190,7 +122,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a modern coffee machine with a steaming mug beneath it. Clean lines, cozy aesthetic, muted palette of soft greys and warm browns, no realism.",
     "requirements": [
-      { "type": "coins", "value": 50000 }
+      { "type": "coins", "value": 125000 }
     ]
   },
   "Style Guide": {
@@ -205,22 +137,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a thick style guide book with colorful tabs sticking out of its pages, beside a small steaming coffee mug. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, warm palette of soft blues, creams, and a pop of red, no realism, just simplified shapes conveying a writer's dedication to craft.",
     "requirements": [
-      { "type": "coins", "value": 100000 }
-    ]
-  },
-  "Industry Magazine": {
-    "name": "Industry Magazine",
-    "category": "Misc",
-    "expense": 16,
-    "effect": 1.88,
-    "description": "Creative Industry experience",
-    "writingMultiplier": 1.0,
-    "writingQuality": 1.0,
-    "filename": "industry_magazine.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a glossy magazine with a stylized cover layout of machines. Clean lines, cozy aesthetic, vibrant palette of soft reds and whites, no realism.",
-    "requirements": [
-      { "type": "coins", "value": 200000 }
+      { "type": "coins", "value": 150000 }
     ]
   },
   "Pro Writing Software": {
@@ -235,7 +152,36 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a laptop showing a stylized writing software interface with a simple corkboard of note cards and a sidebar of chapters. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, palette of soft blues, whites, and warm accent colors, no realism, just simplified shapes conveying a modern writer's creative toolkit.",
     "requirements": [
-      { "type": "coins", "value": 500000 }
+      { "type": "coins", "value": 200000 }
+    ]
+  },
+  "Suburban": {
+    "name": "Suburban",
+    "category": "Properties",
+    "expense": 120,
+    "effect": 12.8,
+    "writingMultiplier": 1.7,
+    "writingQuality": 1.15,
+    "filename": "suburban_house.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house using simple geometric shapes. Small rectangular windows glow with warm yellow light, a single tree, a neat green lawn, and a paved path to the front door. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
+    "requirements": [
+      { "type": "coins", "value": 300000 }
+    ]
+  },
+  "Industry Magazine": {
+    "name": "Industry Magazine",
+    "category": "Misc",
+    "expense": 16,
+    "effect": 1.88,
+    "description": "Creative Industry experience",
+    "writingMultiplier": 1.0,
+    "writingQuality": 1.0,
+    "filename": "industry_magazine.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a glossy magazine with a stylized cover layout of machines. Clean lines, cozy aesthetic, vibrant palette of soft reds and whites, no realism.",
+    "requirements": [
+      { "type": "coins", "value": 400000 }
     ]
   },
   "Smart Assistant": {
@@ -250,7 +196,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small cylindrical smart speaker with a glowing ring on top. Clean lines, cozy aesthetic, palette of deep charcoal and soft cyan, no realism.",
     "requirements": [
-      { "type": "coins", "value": 1000000 }
+      { "type": "coins", "value": 800000 }
     ]
   },
   "Home Office": {
@@ -265,7 +211,21 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a tidy home office with a simple desk, a monitor, a small lamp, and a potted plant, all rendered in geometric shapes. A small bookshelf and a framed picture hang on the wall. Clean lines, cozy aesthetic, warm palette of soft woods, creams, and gentle greens, no realism, just simplified shapes depicting a focused writer's workspace.",
     "requirements": [
-      { "type": "coins", "value": 2500000 }
+      { "type": "coins", "value": 1500000 }
+    ]
+  },
+  "Large House": {
+    "name": "Large House",
+    "category": "Properties",
+    "expense": 250,
+    "effect": 25.6,
+    "writingMultiplier": 2.1,
+    "writingQuality": 1.2,
+    "filename": "large_house.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a spacious two-story modern house using simple geometric shapes. Large rectangular windows glow with warm yellow light, a stone path curves through tidy landscaping, and a pair of trees frame the home. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
+    "requirements": [
+      { "type": "coins", "value": 3000000 }
     ]
   },
   "Masterclass Subscription": {
@@ -280,7 +240,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a tablet displaying a stylized video play button and a graduation cap icon. Clean lines, cozy aesthetic, warm palette of soft purples and golds, no realism.",
     "requirements": [
-      { "type": "coins", "value": 5000000 }
+      { "type": "coins", "value": 4500000 }
     ]
   },
   "Editor": {
@@ -295,7 +255,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a friendly editor character sitting at a simple desk, rendered with rounded geometric shapes. A monitor displays tidy lines of text, a manuscript page with a red pen rests on the desk, and a small bookshelf sits in the background. Clean lines, cozy aesthetic, warm palette of soft neutrals and gentle reds, no realism, just simplified shapes representing the publishing craft.",
     "requirements": [
-      { "type": "coins", "value": 10000000 }
+      { "type": "coins", "value": 6000000 }
     ]
   },
   "Focus Supplements": {
@@ -310,7 +270,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small stylized vitamin bottle with a couple of rounded capsules beside it. Clean lines, cozy aesthetic, muted palette of soft oranges and whites, no realism.",
     "requirements": [
-      { "type": "coins", "value": 25000000 }
+      { "type": "coins", "value": 15000000 }
     ]
   },
   "Home Library": {
@@ -324,7 +284,21 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a cozy home library with tall bookshelves filled with colorful simplified book spines. A rounded armchair sits beside a small side table with a lamp, and a rolling ladder leans against the shelves. Clean lines, cozy aesthetic, warm palette of deep browns, soft golds, and rich reds, no realism, just simplified shapes representing a celebrated writer's sanctuary.",
     "requirements": [
-      { "type": "coins", "value": 50000000 }
+      { "type": "coins", "value": 25000000 }
+    ]
+  },
+  "City Penthouse": {
+    "name": "City Penthouse",
+    "category": "Properties",
+    "expense": 600,
+    "effect": 51.2,
+    "writingMultiplier": 2.6,
+    "writingQuality": 1.25,
+    "filename": "city_penthouse.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a sleek city penthouse with simplified geometric shapes. Floor-to-ceiling windows reveal a stylized skyline of rectangular buildings at dusk, with a small writing desk and a modern chair inside. A potted plant and a wraparound terrace add warmth. Clean lines, cozy aesthetic, palette of deep navy, soft gold, and warm whites, no realism, just simple shapes evoking upscale urban living.",
+    "requirements": [
+      { "type": "coins", "value": 35000000 }
     ]
   },
   "Networking Membership": {
@@ -339,7 +313,35 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of an exclusive membership card called \"The Circle\" with a small subtle star emblem. Clean lines, cozy aesthetic, elegant palette of deep navy and soft gold, no realism.",
     "requirements": [
+      { "type": "coins", "value": 50000000 }
+    ]
+  },
+  "Private Villa": {
+    "name": "Private Villa",
+    "category": "Properties",
+    "expense": 2000,
+    "effect": 102.4,
+    "writingMultiplier": 3.2,
+    "writingQuality": 1.3,
+    "filename": "private_villa.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a bright coastal villa using simple shapes. A white cubic home sits on a hill above a turquoise sea, with a rectangular infinity pool, rounded olive trees, and a small glass studio. A soft sun hangs in a pastel sky. Clean lines, cozy Mediterranean palette of whites, turquoise, and warm sand tones, no realism, just friendly geometric forms depicting a celebrated author's retreat.",
+    "requirements": [
       { "type": "coins", "value": 100000000 }
+    ]
+  },
+  "Mansion Estate": {
+    "name": "Mansion Estate",
+    "category": "Properties",
+    "expense": 5000,
+    "effect": 204.8,
+    "writingMultiplier": 4.0,
+    "writingQuality": 1.4,
+    "filename": "mansion_estate.png",
+    "filefolder": "items",
+    "imageprompt": "A flat, minimalist vector illustration of a grand mansion estate using simplified geometric shapes. A wide symmetrical house with warm glowing windows sits behind simple iron gates, with rounded topiary bushes, a curved driveway, and a small reflecting pond. A soft twilight sky frames the scene. Clean lines, cozy palette of deep blues, warm golds, and soft greens, no realism, just stylized shapes conveying legendary author status.",
+    "requirements": [
+      { "type": "coins", "value": 1000000000 }
     ]
   }
 }
