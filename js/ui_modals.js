@@ -5,7 +5,6 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	// Modified: Added 'debugLevelModal' to the list of modals
 	const modals =['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'badgeDetailsModal', 'mobileBadgeModal', 'authorProfileModal', 'debugLevelModal'];
 	let anyOpen = false;
 	for (const id of modals) {
@@ -538,7 +537,6 @@ function closeAuthorProfileModal () {
 	updatePauseState();
 }
 
-// Modified: This function now calls the custom drawing function from chart.js
 function renderAuthorChart () {
 	// A small delay to ensure the canvas is visible and has its final dimensions
 	setTimeout(() => {

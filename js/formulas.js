@@ -36,7 +36,51 @@ function getBindedItemEffect(itemName) {
 	return item ? item.getEffect.bind(item) : () => 1;
 }
 
+// Added: Helper to dynamically apply multipliers based on JSON descriptions
+function createDynamicMultiplier(validDescriptions) {
+	let matchingSkills = [];
+	let matchingItems = [];
+	
+	// Find all matching skills and items once during setup
+	for (const taskName in gameData.taskData) {
+		const task = gameData.taskData[taskName];
+		if (task instanceof Skill && validDescriptions.includes(task.baseData.description)) {
+			matchingSkills.push(task);
+		}
+	}
+	
+	for (const itemName in gameData.itemData) {
+		const item = gameData.itemData[itemName];
+		if (validDescriptions.includes(item.baseData.description)) {
+			matchingItems.push(item);
+		}
+	}
+	
+	// Return a closure that iterates the pre-filtered arrays for maximum performance
+	return () => {
+		let multi = 1;
+		for (let i = 0; i < matchingSkills.length; i++) {
+			multi *= matchingSkills[i].getEffect();
+		}
+		for (let i = 0; i < matchingItems.length; i++) {
+			multi *= matchingItems[i].getEffect();
+		}
+		return multi;
+	};
+}
+
 function addMultipliers() {
+	// Pre-create the dynamic multiplier functions so we don't recreate them for every task
+	const allXpMulti = createDynamicMultiplier(["All experience"]);
+	const jobIncomeMulti = createDynamicMultiplier(["Job pay"]);
+	const jobXpMulti = createDynamicMultiplier(["Job ex.", "Job XP"]);
+	const skillXpMulti = createDynamicMultiplier(["Skill ex.", "Skill XP"]);
+	const creativeXpMulti = createDynamicMultiplier(["Creative Industry experience"]);
+	const typingSpeedMulti = createDynamicMultiplier(["Typing Speed", "Typing Speed experience"]);
+	const writingCraftMulti = createDynamicMultiplier(["Writing Craft experience"]);
+	const literaryXpMulti = createDynamicMultiplier(["Literary Elite experience"]);
+	const expenseMulti = createDynamicMultiplier(["Expenses"]);
+	
 	for (let taskName in gameData.taskData) {
 		let task = gameData.taskData[taskName];
 		
@@ -45,43 +89,33 @@ function addMultipliers() {
 		
 		task.xpMultipliers.push(task.getMaxLevelMultiplier.bind(task));
 		task.xpMultipliers.push(getInspiration);
-		task.xpMultipliers.push(getBindedTaskEffect("Brand Management"));
-		task.xpMultipliers.push(getBindedTaskEffect("Personal Brand"));
-		task.xpMultipliers.push(() => getBadgeMultiplier("allXp")); // Added: Badge multiplier for all XP
+		
+		// Modified: Use dynamic category lookup instead of hardcoded strings
+		task.xpMultipliers.push(allXpMulti);
+		task.xpMultipliers.push(() => getBadgeMultiplier("allXp"));
 		
 		if (task instanceof Job) {
 			task.incomeMultipliers.push(task.getLevelMultiplier.bind(task));
-			task.incomeMultipliers.push(getBindedTaskEffect("Royalty Negotiation"));
-			task.incomeMultipliers.push(() => getBadgeMultiplier("jobIncome")); // Added: Badge multiplier for job income
+			task.incomeMultipliers.push(jobIncomeMulti);
+			task.incomeMultipliers.push(() => getBadgeMultiplier("jobIncome"));
 			
-			task.xpMultipliers.push(getBindedTaskEffect("Time Management"));
-			// Modified: Replaced Editor with Bus Pass for Job XP
-			task.xpMultipliers.push(getBindedItemEffect("Bus Pass"));
-			task.xpMultipliers.push(() => getBadgeMultiplier("jobXp")); // Added: Badge multiplier for job XP
+			task.xpMultipliers.push(jobXpMulti);
+			task.xpMultipliers.push(() => getBadgeMultiplier("jobXp"));
 		} else if (task instanceof Skill) {
-			task.xpMultipliers.push(getBindedTaskEffect("Focus"));
-			// Modified: Replaced Library Card, Home Office, and Home Library with new items for Skill XP
-			task.xpMultipliers.push(getBindedItemEffect("Planner"));
-			task.xpMultipliers.push(getBindedItemEffect("Focus Supplements"));
-			task.xpMultipliers.push(getBindedItemEffect("Networking Membership"));
-			task.xpMultipliers.push(() => getBadgeMultiplier("skillXp")); // Added: Badge multiplier for skill XP
+			task.xpMultipliers.push(skillXpMulti);
+			task.xpMultipliers.push(() => getBadgeMultiplier("skillXp"));
 		}
 		
 		if (jobCategories["Creative Industry"].includes(task.name)) {
-			task.xpMultipliers.push(getBindedTaskEffect("Grammar & Prose"));
-			// Modified: Replaced Style Guide with Industry Magazine for Creative Industry XP
-			task.xpMultipliers.push(getBindedItemEffect("Industry Magazine"));
-			task.xpMultipliers.push(() => getBadgeMultiplier("creativeXp")); // Added: Badge multiplier for creative XP
+			task.xpMultipliers.push(creativeXpMulti);
+			task.xpMultipliers.push(() => getBadgeMultiplier("creativeXp"));
 		} else if (task.name === "Typing Speed") {
-			task.xpMultipliers.push(getBindedTaskEffect("Character Dev."));
-			// Modified: Replaced Used Laptop with Smart Assistant for Typing Speed XP
-			task.xpMultipliers.push(getBindedItemEffect("Smart Assistant"));
+			task.xpMultipliers.push(typingSpeedMulti);
 		} else if (skillCategories["Writing Craft"].includes(task.name)) {
-			// Modified: Replaced Pro Writing Software with Masterclass Subscription for Writing Craft XP
-			task.xpMultipliers.push(getBindedItemEffect("Masterclass Subscription"));
+			task.xpMultipliers.push(writingCraftMulti);
 		} else if (jobCategories["Literary Elite"].includes(task.name)) {
-			task.xpMultipliers.push(getBindedTaskEffect("Plotting"));
-			task.xpMultipliers.push(() => getBadgeMultiplier("literaryXp")); // Added: Badge multiplier for literary XP
+			task.xpMultipliers.push(literaryXpMulti);
+			task.xpMultipliers.push(() => getBadgeMultiplier("literaryXp"));
 		} else if (skillCategories["The Business of Writing"].includes(task.name)) {
 			task.xpMultipliers.push(getFame);
 		}
@@ -90,9 +124,8 @@ function addMultipliers() {
 	for (let itemName in gameData.itemData) {
 		let item = gameData.itemData[itemName];
 		item.expenseMultipliers = [];
-		item.expenseMultipliers.push(getBindedTaskEffect("Frugality"));
-		item.expenseMultipliers.push(getBindedTaskEffect("Public Speaking"));
-		item.expenseMultipliers.push(() => getBadgeMultiplier("expense")); // Added: Badge multiplier for expenses
+		item.expenseMultipliers.push(expenseMulti);
+		item.expenseMultipliers.push(() => getBadgeMultiplier("expense"));
 	}
 }
 
@@ -124,10 +157,23 @@ function setCustomEffects() {
 
 function getInspiration() {
 	let meditationEffect = getBindedTaskEffect("Meditation");
-	// Modified: Replaced Ergonomic Chair with Coffee Machine for Inspiration
-	let chairEffect = getBindedItemEffect("Coffee Machine");
 	let potionMultiplier = gameData.potions.inspiration > 0 ? 2.0 : 1.0;
-	return meditationEffect() * chairEffect() * gameData.currentProperty.getEffect() * potionMultiplier;
+	
+	let itemMultiplier = 1;
+	
+	// Apply current property effect
+	if (gameData.currentProperty) {
+		itemMultiplier *= gameData.currentProperty.getEffect();
+	}
+	
+	// Iterate through all owned misc items to dynamically apply Inspiration effects
+	for (let misc of gameData.currentMisc) {
+		if (misc.baseData.description === "Inspiration") {
+			itemMultiplier *= misc.getEffect();
+		}
+	}
+	
+	return meditationEffect() * itemMultiplier * potionMultiplier;
 }
 
 function getFame() {

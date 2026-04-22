@@ -625,7 +625,6 @@ button:focus {
     color: #d32f2f;
 }
 
-/* Modified: Replaced old top-panel styles with new ones for the info-band design */
 .top-panel-new {
     display: flex;
     align-items: center;
@@ -639,7 +638,6 @@ button:focus {
     overflow: hidden;
 }
 
-/* Modified: Force the container to take full height and remain a square */
 .author-image-container-new {
     flex-shrink: 0;
     height: 100%;
@@ -750,7 +748,6 @@ button:focus {
     box-sizing: border-box;
 }
 
-/* Modified: Adjusted padding-top for the new header height */
 .main-layout-wrapper {
     width: 100%;
     max-width: 100%;
@@ -769,7 +766,6 @@ button:focus {
     box-sizing: border-box;
 }
 
-/* Modified: Adjusted height for the new header height */
 .scroll-container {
     height: calc(100vh - 120px);
     overflow: hidden;
@@ -1420,7 +1416,6 @@ button:focus {
     color: #999;
 }
 
-/* Modified: Styles for Author Profile Modal structure */
 #authorProfileModal .modal-content-large {
     padding: 0;
     overflow: hidden;
@@ -1547,7 +1542,6 @@ button:focus {
         height: calc(100vh - 120px - 60px);
     }
 
-    /* Modified: Removed fixed width/height so the image continues scaling to 100% on mobile */
     .four-column-layout {
         display: block;
     }

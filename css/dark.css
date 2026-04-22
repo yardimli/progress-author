@@ -3,13 +3,11 @@
     color: white;
 }
 
-/* Modified: Updated top panel styles for the new design */
 .dark .top-panel-new {
     background-color: #18181b;
     border-bottom: 2px solid #000;
 }
 
-/* Added: Dark mode styles for the new info bands */
 .dark .info-band {
     color: #ccc;
 }
@@ -302,13 +300,11 @@
     color: #fff;
 }
 
-/* Modified: Removed styles that are no longer needed */
 .dark .profile-modal-tab-content {
     background-color: transparent; /* Body now has the background */
     border-color: transparent; /* Body now has the border */
 }
 
-/* Added: Style for the new footer */
 .dark .profile-modal-footer {
     border-top-color: #444;
 }

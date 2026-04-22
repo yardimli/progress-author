@@ -1,6 +1,5 @@
 // Dynamic UI updates for the game loop
 
-// Modified: This function is completely rewritten to use the new requirements system.
 function updateRequiredRows (baseData, categoryType) {
 	for (const categoryName in categoryType) {
 		const category = categoryType[categoryName];
@@ -45,6 +44,9 @@ function updateRequiredRows (baseData, categoryType) {
 								reqStrings.push(`${req.name} LVL ${format(currentLevel, 0)} / ${format(req.value, 0)}`);
 							} else if (req.type === 'age') {
 								reqStrings.push(`Age ${format(req.value, 0)}`);
+							} else if (req.type === 'shop') {
+								// Added: Logic to display item ownership requirements in the locked row
+								reqStrings.push(`Own ${req.name}`);
 							}
 						}
 					}
@@ -370,7 +372,7 @@ function updateHeaderUI () {
 	updateHeaderVal('header-val-books', gameData.booksPublished);
 	updateHeaderVal('header-val-progress', gameData.currentBook ? `${((gameData.wordsWritten / getBookLength()) * 100).toFixed(1)}%` : 'Idle');
 	
-	// Modified: Calculate exact multiplier without Math.round from applyMultipliers
+	// Calculate exact multiplier without Math.round from applyMultipliers
 	let jobRawMulti = 1;
 	if (gameData.currentJob && gameData.currentJob.xpMultipliers) {
 		gameData.currentJob.xpMultipliers.forEach(fn => jobRawMulti *= fn());
@@ -378,7 +380,7 @@ function updateHeaderUI () {
 	const workMulti = gameData.currentJob ? (jobRawMulti * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
 	updateHeaderVal('header-val-work-multi', workMulti.toFixed(2));
 	
-	// Modified: Calculate exact multiplier without Math.round from applyMultipliers
+	// Calculate exact multiplier without Math.round from applyMultipliers
 	let skillRawMulti = 1;
 	if (gameData.currentSkill && gameData.currentSkill.xpMultipliers) {
 		gameData.currentSkill.xpMultipliers.forEach(fn => skillRawMulti *= fn());
@@ -673,7 +675,6 @@ function updateUI () {
 	updateHeaderUI();
 	updateTaskRows();
 	updateItemRows();
-	// Modified: The old updateRequiredRows and hideEntities are replaced with new calls.
 	updateRequiredRows(jobBaseData, jobCategories);
 	updateRequiredRows(skillBaseData, skillCategories);
 	updateRequiredRows(itemBaseData, itemCategories);

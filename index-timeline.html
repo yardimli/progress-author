@@ -181,7 +181,6 @@
 
 <script>
 	// Global data variables to hold JSON data
-	// Modified: Removed reqData as requirements.json is no longer used
 	let jobBaseData, skillBaseData, itemBaseData, bookBaseData;
 	let badgeBaseData, authorsBaseData, genresBaseData, lifeExperiencesBaseData;
 	let jobCategories, skillCategories, itemCategories;
@@ -226,7 +225,6 @@
 	// Initialize and load all required JSON files
 	async function init () {
 		try {
-			// Modified: Removed fetch for requirements.json
 			const [jobsRes, skillsRes, itemsRes, booksRes, badgesRes, authorsRes, genresRes, lifeExpRes] = await Promise.all([
 				fetch('data/jobs.json'),
 				fetch('data/skills.json'),
@@ -240,14 +238,12 @@
 			jobBaseData = await jobsRes.json();
 			skillBaseData = await skillsRes.json();
 			itemBaseData = await itemsRes.json();
-			// Modified: Removed reqData assignment
 			bookBaseData = await booksRes.json();
 			badgeBaseData = await badgesRes.json();
 			authorsBaseData = await authorsRes.json();
 			genresBaseData = await genresRes.json();
 			lifeExperiencesBaseData = await lifeExpRes.json();
 			
-			// Modified: Dynamically build categories instead of fetching them
 			jobCategories = buildCategories(jobBaseData);
 			skillCategories = buildCategories(skillBaseData);
 			itemCategories = buildCategories(itemBaseData);
@@ -259,7 +255,7 @@
 				...jobCategories['Literary Elite']
 			];
 			
-			// Modified: Precompute coin requirements by reading from itemBaseData directly
+			// Precompute coin requirements by reading from itemBaseData directly
 			for (const key in itemBaseData) {
 				const item = itemBaseData[key];
 				if (item.requirements && item.requirements.length > 0) {
@@ -538,7 +534,7 @@
 		return state.booksPublished * networking * mediaTours * getBadgeMultiplier('fameGain');
 	};
 	
-	// Modified: Check if a task is unlocked based on requirements in the entity's own data.
+	// Check if a task is unlocked based on requirements in the entity's own data.
 	function isUnlocked (taskName) {
 		const job = jobBaseData[taskName];
 		const skill = skillBaseData[taskName];
@@ -567,7 +563,7 @@
 		return true; // All requirements met
 	};
 	
-	// Modified: Determine the next skill to train based on the selected strategy, using the new requirements structure.
+	// Determine the next skill to train based on the selected strategy, using the new requirements structure.
 	function getNextSkill () {
 		const strategy = state.skillStrategy;
 		const allSkills = Object.keys(skillBaseData);

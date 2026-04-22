@@ -37,7 +37,7 @@ var gameData = {
 		acceleration: 0
 	},
 	
-	// Modified: The 'unlocks' object now tracks all unlockable entities.
+	// The 'unlocks' object now tracks all unlockable entities.
 	unlocks: {},
 	
 	wordsWritten: 0,
@@ -98,7 +98,6 @@ var badgeBaseData;
 // Track current intro slide index
 var currentIntroSlide = 0;
 
-// Modified: Manual & Automatic Writing State
 var currentAutoSceneType = null;
 var nextSceneType = "Action";
 var isHoldingSceneButton = false;

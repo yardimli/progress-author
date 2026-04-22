@@ -21,9 +21,7 @@
     "filename": "rented_room.png",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small rented room rendered with simplified shapes. A basic desk holds a stack of papers and a small lamp, a single window shows a soft blue night sky, and a narrow bed sits against the wall. Clean lines, cozy aesthetic, muted palette of warm beiges and soft blues, no realism, just simple geometric forms creating a humble writer's space.",
-    "requirements": [
-      { "type": "coins", "value": 500 }
-    ]
+    "requirements": []
   },
   "Studio": {
     "name": "Studio",
@@ -36,7 +34,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a tidy studio apartment using simple geometric shapes. A laptop sits open on a clean white desk by a large window showing a simplified city skyline. A small bookshelf, a potted plant, and a coffee mug complete the scene. Cozy aesthetic with warm amber and soft grey tones, clean lines, no realistic detail, conveying a hopeful emerging writer's home.",
     "requirements": [
-      { "type": "coins", "value": 10000 }
+      { "type": "coins", "value": 30000 }
     ]
   },
   "Suburban": {
@@ -50,7 +48,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house using simple geometric shapes. Small rectangular windows glow with warm yellow light, a single tree, a neat green lawn, and a paved path to the front door. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
     "requirements": [
-      { "type": "coins", "value": 70000 }
+      { "type": "coins", "value": 150000 }
     ]
   },
   "Large House": {
@@ -64,7 +62,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a spacious two-story modern house using simple geometric shapes. Large rectangular windows glow with warm yellow light, a stone path curves through tidy landscaping, and a pair of trees frame the home. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
     "requirements": [
-      { "type": "coins", "value": 280000 }
+      { "type": "coins", "value": 500000 }
     ]
   },
   "City Penthouse": {
@@ -78,7 +76,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a sleek city penthouse with simplified geometric shapes. Floor-to-ceiling windows reveal a stylized skyline of rectangular buildings at dusk, with a small writing desk and a modern chair inside. A potted plant and a wraparound terrace add warmth. Clean lines, cozy aesthetic, palette of deep navy, soft gold, and warm whites, no realism, just simple shapes evoking upscale urban living.",
     "requirements": [
-      { "type": "coins", "value": 1000000 }
+      { "type": "coins", "value": 5000000 }
     ]
   },
   "Private Villa": {
@@ -92,7 +90,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a bright coastal villa using simple shapes. A white cubic home sits on a hill above a turquoise sea, with a rectangular infinity pool, rounded olive trees, and a small glass studio. A soft sun hangs in a pastel sky. Clean lines, cozy Mediterranean palette of whites, turquoise, and warm sand tones, no realism, just friendly geometric forms depicting a celebrated author's retreat.",
     "requirements": [
-      { "type": "coins", "value": 5000000 }
+      { "type": "coins", "value": 25000000 }
     ]
   },
   "Mansion Estate": {
@@ -106,7 +104,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a grand mansion estate using simplified geometric shapes. A wide symmetrical house with warm glowing windows sits behind simple iron gates, with rounded topiary bushes, a curved driveway, and a small reflecting pond. A soft twilight sky frames the scene. Clean lines, cozy palette of deep blues, warm golds, and soft greens, no realism, just stylized shapes conveying legendary author status.",
     "requirements": [
-      { "type": "coins", "value": 20000000 }
+      { "type": "coins", "value": 100000000 }
     ]
   },
   "Library Card": {
@@ -114,6 +112,7 @@
     "category": "Misc",
     "expense": 1,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingQuality": 1.2,
     "filename": "library_card.png",
     "filefolder": "items",
@@ -132,7 +131,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a simple transit bus pass card with a tiny lanyard. Clean lines, cozy aesthetic, soft palette of blues and yellows, no realism, just simplified geometric shapes.",
     "requirements": [
-      { "type": "coins", "value": 1000 }
+      { "type": "coins", "value": 15000 }
     ]
   },
   "Used Laptop": {
@@ -140,12 +139,13 @@
     "category": "Misc",
     "expense": 3,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingMultiplier": 1.3,
     "filename": "used_laptop.png",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small open laptop with a few colorful stickers on its lid, rendered in simple geometric shapes. The screen shows a blank document with a tiny blinking cursor. A coiled charging cable curls beside it. Clean lines, cozy aesthetic, muted palette of soft greys with pops of warm color, no realism, just simplified shapes conveying a writer's trusty budget tool.",
     "requirements": [
-      { "type": "coins", "value": 5000 }
+      { "type": "coins", "value": 25000 }
     ]
   },
   "Planner": {
@@ -160,7 +160,7 @@
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of an open daily planner notebook with a simple pen resting on it. Clean lines, cozy aesthetic, warm palette of soft greens and creams, no realism.",
     "requirements": [
-      { "type": "coins", "value": 10000 }
+      { "type": "coins", "value": 50000 }
     ]
   },
   "Ergonomic Chair": {
@@ -168,6 +168,7 @@
     "category": "Misc",
     "expense": 5,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingMultiplier": 1.2,
     "writingQuality": 1.1,
     "filename": "ergonomic_chair.png",
@@ -197,6 +198,7 @@
     "category": "Misc",
     "expense": 12,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingMultiplier": 1.0,
     "writingQuality": 1.6,
     "filename": "style_guide.png",
@@ -226,6 +228,7 @@
     "category": "Misc",
     "expense": 20,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingMultiplier": 1.0,
     "writingQuality": 1.8,
     "filename": "pro_writing_software.png",
@@ -255,6 +258,7 @@
     "category": "Misc",
     "expense": 40,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingMultiplier": 1.5,
     "writingQuality": 2.0,
     "filename": "home_office.png",
@@ -284,6 +288,7 @@
     "category": "Misc",
     "expense": 70,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingMultiplier": 1.0,
     "writingQuality": 2.0,
     "filename": "editor.png",
@@ -313,6 +318,7 @@
     "category": "Misc",
     "expense": 100,
     "effect": 1.25,
+    "description": "Inspiration",
     "writingQuality": 2.5,
     "filename": "home_library.png",
     "filefolder": "items",

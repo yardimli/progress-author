@@ -65,7 +65,7 @@ class Job extends Task {
     
     getXpGain() {
         let baseGain = super.getXpGain();
-        // Modified: If not writing a book, work percentage is always 100%
+        // If not writing a book, work percentage is always 100%
         const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
         return baseGain * gameData.workMultiplier * gameData.workXpMultiplier * workPercentage;
     }
@@ -86,7 +86,6 @@ class Skill extends Task {
         return 1 + this.baseData.writingQuality * this.level;
     }
     
-    // Modified: Append writing quality multiplier to the description
     getEffectDescription() {
         let description = this.baseData.description;
         let effectText = "x" + String(this.getEffect().toFixed(2)) + " " + description;
@@ -116,26 +115,31 @@ class Item {
         return this.baseData.effect;
     }
     
-    // Dynamically appends all 3 multipliers to the description if they have an effect (> 1)
+    //  Dynamically appends all 3 multipliers to the description with proper fallbacks
     getEffectDescription() {
-        let description = this.baseData.description;
-        if (itemCategories["Properties"].includes(this.name)) description = "Inspiration";
-        
         let effectTexts = [];
+        
+        // Use property-specific label or fallback to the data's description
+        let label = this.baseData.description;
+        if (itemCategories["Properties"] && itemCategories["Properties"].includes(this.name)) {
+            label = "Inspiration";
+        }
         
         // 1. Base Effect (Inspiration, Skill XP, etc.)
         if (this.baseData.effect && this.baseData.effect !== 1) {
-            effectTexts.push("x" + this.baseData.effect.toFixed(1) + " " + description);
+            // Added: Fallback to "Effect" if description is completely missing to prevent "undefined"
+            let displayText = label || "Effect";
+            effectTexts.push("x" + this.baseData.effect.toFixed(2) + " " + displayText);
         }
         
         // 2. Writing Speed Multiplier
         if (this.baseData.writingMultiplier && this.baseData.writingMultiplier !== 1) {
-            effectTexts.push("x" + this.baseData.writingMultiplier.toFixed(1) + " Writing Speed");
+            effectTexts.push("x" + this.baseData.writingMultiplier.toFixed(2) + " Writing Speed");
         }
         
         // 3. Writing Quality Multiplier
         if (this.baseData.writingQuality && this.baseData.writingQuality !== 1) {
-            effectTexts.push("x" + this.baseData.writingQuality.toFixed(1) + " Writing Quality");
+            effectTexts.push("x" + this.baseData.writingQuality.toFixed(2) + " Writing Quality");
         }
         
         // Return "No effect" if all multipliers are exactly 1

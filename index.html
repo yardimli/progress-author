@@ -165,22 +165,17 @@
 			
 			<!-- Column 2: Skills -->
 			<div class="panel-column" id="skills">
-				<!-- Modified: Removed skillsLockedOverlay -->
 				<div id="skillTable"></div>
 			</div>
 			
 			<!-- Column 3: Shop -->
 			<div class="panel-column" id="shop">
-				<!-- Modified: Removed shopLockedOverlay -->
 				<div id="itemTable"></div>
 			</div>
 			
 			<!-- Column 4: Writing -->
 			<div class="panel-column" id="writing">
 				<div class="category-header">Writing</div>
-				<!-- Modified: Removed writingLockedOverlay and writingSpeedOverlay -->
-				
-				<!-- Modified: Removed 'hidden' class so the slider is visible by default -->
 				<div id="workWritingSliderContainer" class="slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
 					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
 					<input type="range" id="workWritingSlider" min="0" max="100" value="0" oninput="updateWorkWritingBalance(this.value)" class="slider work-writing-slider">
