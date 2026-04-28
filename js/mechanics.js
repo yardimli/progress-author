@@ -15,7 +15,9 @@ function areRequirementsMet (entity) {
 				}
 				break;
 			case 'shop':
+				// Check properties, transportation, and misc items
 				const hasItem = (gameData.currentProperty && gameData.currentProperty.name === req.name) ||
+					(gameData.currentTransportation && gameData.currentTransportation.name === req.name) ||
 					(gameData.currentMisc && gameData.currentMisc.some(item => item.name === req.name));
 				if (!hasItem) {
 					return false;
@@ -117,11 +119,13 @@ function isRequirementMet(req) {
 		}
 		case 'item':
 			return (gameData.currentProperty && gameData.currentProperty.name === req.name) ||
+				(gameData.currentTransportation && gameData.currentTransportation.name === req.name) ||
 				(gameData.currentMisc && gameData.currentMisc.some(item => item.name === req.name));
 		case 'itemCategory': {
 			const itemsInCategory = itemCategories[req.category] || [];
 			return itemsInCategory.every(itemName =>
 				(gameData.currentProperty && gameData.currentProperty.name === itemName) ||
+				(gameData.currentTransportation && gameData.currentTransportation.name === itemName) ||
 				(gameData.currentMisc && gameData.currentMisc.some(item => item.name === itemName))
 			);
 		}
@@ -153,8 +157,9 @@ function checkRebirthPrompts () {
 function goBankrupt () {
 	gameData.coins = 0;
 	gameData.currentProperty = gameData.itemData['Homeless'];
+	gameData.currentTransportation = gameData.itemData['Walking']; // Reset transportation
 	gameData.currentMisc = [];
-	logEvent('Ran out of money and went bankrupt! Lost all housing and equipment.');
+	logEvent('Ran out of money and went bankrupt! Lost all housing, transportation, and equipment.');
 }
 
 function setTimeWarping () {
@@ -171,6 +176,15 @@ function setProperty (propertyName) {
 	if (gameData.currentProperty !== property) {
 		gameData.currentProperty = property;
 		logEvent(`Moved into ${property.name}.`);
+	}
+}
+
+// Added transportation setter
+function setTransportation (transportationName) {
+	const transport = gameData.itemData[transportationName];
+	if (gameData.currentTransportation !== transport) {
+		gameData.currentTransportation = transport;
+		logEvent(`Changed transportation to ${transport.name}.`);
 	}
 }
 
@@ -234,6 +248,9 @@ function getRawWritingSpeed () {
 	let itemWritingMultiplier = 1;
 	if (gameData.currentProperty && gameData.currentProperty.baseData.writingMultiplier) {
 		itemWritingMultiplier *= gameData.currentProperty.baseData.writingMultiplier;
+	}
+	if (gameData.currentTransportation && gameData.currentTransportation.baseData.writingMultiplier) {
+		itemWritingMultiplier *= gameData.currentTransportation.baseData.writingMultiplier;
 	}
 	for (const misc of gameData.currentMisc) {
 		if (misc.baseData.writingMultiplier) {
@@ -339,7 +356,6 @@ function getBookLength () {
 	return (50 + (plottingLvl * 2)) * 250;
 }
 
-// Extracted helper function for calculating just the writing quality multiplier product.
 function getWritingQualityMultiplier () {
 	let expMultiplier = 1;
 	const lifeExp = getLifeExperiences();
@@ -377,6 +393,9 @@ function getWritingQualityMultiplier () {
 	if (gameData.currentProperty && gameData.currentProperty.baseData.writingQuality) {
 		itemQualityMultiplier *= gameData.currentProperty.baseData.writingQuality;
 	}
+	if (gameData.currentTransportation && gameData.currentTransportation.baseData.writingQuality) {
+		itemQualityMultiplier *= gameData.currentTransportation.baseData.writingQuality;
+	}
 	for (const misc of gameData.currentMisc) {
 		if (misc.baseData.writingQuality) {
 			itemQualityMultiplier *= misc.baseData.writingQuality;
@@ -406,7 +425,6 @@ function getBookQuality () {
 		baseSkillQuality = 0.3;
 	}
 	
-	// Re-uses the newly extracted multiplier helper function
 	return baseSkillQuality * getWritingQualityMultiplier();
 }
 
@@ -521,7 +539,6 @@ function finishBook () {
 	const qualityMultiplier = getQualityMultiplier();
 	const compMultiplier = getCompositionMultiplier();
 	
-	// Calculate the massive raw quality, then run it through the 100% cap curve
 	const rawQuality = baseQuality * qualityMultiplier * compMultiplier;
 	const quality = getCurvedQuality(rawQuality);
 	
@@ -610,6 +627,7 @@ function rebirthReset () {
 	gameData.currentJob = gameData.taskData['Gig Worker'];
 	gameData.currentSkill = gameData.taskData['Focus'];
 	gameData.currentProperty = gameData.itemData['Homeless'];
+	gameData.currentTransportation = gameData.itemData['Walking']; // Reset transportation
 	gameData.currentMisc = [];
 	
 	gameData.currentBook = null;
@@ -625,7 +643,6 @@ function rebirthReset () {
 		task.xp = 0;
 	}
 	
-	// Reset the new unlocks tracker
 	gameData.unlocks = {};
 }
 
@@ -649,4 +666,20 @@ function isAlive () {
 		gameData.loggedDeath = false;
 	}
 	return condition;
+}
+
+function getExpense() {
+	let expense = 0;
+	expense += gameData.currentProperty.getExpense();
+	if (gameData.currentTransportation) {
+		expense += gameData.currentTransportation.getExpense();
+	}
+	for (let misc of gameData.currentMisc) {
+		expense += misc.getExpense();
+	}
+	return expense;
+}
+
+function getNet() {
+	return Math.abs(getIncome() - getExpense());
 }

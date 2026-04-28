@@ -36,7 +36,10 @@ function createAllRows (categoryType, containerId) {
 		
 		const contentDiv = categoryDiv.querySelector('.category-content');
 		
-		if (isJob || (isItem && categoryName === 'Properties')) {
+		// Treat Transportation like Properties (Grid layout)
+		const isPropertyOrTransport = (isItem && (categoryName === 'Properties' || categoryName === 'Transportation'));
+		
+		if (isJob || isPropertyOrTransport) {
 			contentDiv.classList.add('grid');
 		} else {
 			contentDiv.classList.add('list');
@@ -47,7 +50,7 @@ function createAllRows (categoryType, containerId) {
 			let templateId;
 			if (isJob) templateId = 'jobCardTemplate';
 			else if (isSkill) templateId = 'skillRowTemplate';
-			else if (isItem && categoryName === 'Properties') templateId = 'propertyCardTemplate';
+			else if (isPropertyOrTransport) templateId = 'propertyCardTemplate';
 			else templateId = 'miscRowTemplate';
 			
 			const template = document.getElementById(templateId);
@@ -99,9 +102,12 @@ function createAllRows (categoryType, containerId) {
 					}
 				};
 			} else if (isItem) {
+				// Handle new Transportation category
 				element.onclick = categoryName === 'Properties'
 					? function () { setProperty(name); }
-					: function () { setMisc(name); };
+					: categoryName === 'Transportation'
+						? function () { setTransportation(name); }
+						: function () { setMisc(name); };
 			}
 			
 			contentDiv.appendChild(element);
@@ -109,7 +115,7 @@ function createAllRows (categoryType, containerId) {
 		
 		const lockedPlaceholder = document.createElement('div');
 		lockedPlaceholder.id = 'locked-' + categoryName.replace(/\s+/g, '-');
-		if (isJob || (isItem && categoryName === 'Properties')) {
+		if (isJob || isPropertyOrTransport) {
 			lockedPlaceholder.className = 'ui-card locked-card hiddenTask';
 			lockedPlaceholder.innerHTML = `
         <div class="locked-icon">🔒</div>

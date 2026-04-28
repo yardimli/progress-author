@@ -71,6 +71,14 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	} else if (type === 'item') {
 		if (itemCategories['Properties'] && itemCategories['Properties'].includes(name)) {
 			categoryText = 'Shop - Property';
+		} else if (itemCategories['Transportation'] && itemCategories['Transportation'].includes(name)) {
+			categoryText = 'Shop - Transportation';
+		} else if (itemCategories['Home Improvements'] && itemCategories['Home Improvements'].includes(name)) {
+			categoryText = 'Shop - Home Improvement';
+		} else if (itemCategories['Writing Equipment'] && itemCategories['Writing Equipment'].includes(name)) {
+			categoryText = 'Shop - Writing Equipment';
+		} else if (itemCategories['Work Equipment'] && itemCategories['Work Equipment'].includes(name)) {
+			categoryText = 'Shop - Work Equipment';
 		} else {
 			categoryText = 'Shop - Misc Item';
 		}

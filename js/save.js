@@ -23,6 +23,7 @@ function assignMethods() {
 	gameData.currentJob = gameData.taskData[gameData.currentJob?.name] || gameData.taskData["Gig Worker"];
 	gameData.currentSkill = gameData.taskData[gameData.currentSkill?.name] || gameData.taskData["Focus"];
 	gameData.currentProperty = gameData.itemData[gameData.currentProperty?.name] || gameData.itemData["Homeless"];
+	gameData.currentTransportation = gameData.itemData[gameData.currentTransportation?.name] || gameData.itemData["Walking"]; // Added
 	
 	let newArray = [];
 	for (let misc of gameData.currentMisc) {

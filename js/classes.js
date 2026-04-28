@@ -111,11 +111,12 @@ class Item {
     }
     
     getEffect() {
-        if (gameData.currentProperty != this && !gameData.currentMisc.includes(this)) return 1;
+        // Properties and Transportation are mutually exclusive within their own categories
+        if (gameData.currentProperty != this && gameData.currentTransportation != this && !gameData.currentMisc.includes(this)) return 1;
         return this.baseData.effect;
     }
     
-    //  Dynamically appends all 3 multipliers to the description with proper fallbacks
+    // Dynamically appends all 3 multipliers to the description with proper fallbacks
     getEffectDescription() {
         let effectTexts = [];
         
@@ -123,6 +124,8 @@ class Item {
         let label = this.baseData.description;
         if (itemCategories["Properties"] && itemCategories["Properties"].includes(this.name)) {
             label = "Inspiration";
+        } else if (itemCategories["Transportation"] && itemCategories["Transportation"].includes(this.name)) {
+            label = label || "Job XP"; // Default label for transportation
         }
         
         // 1. Base Effect (Inspiration, Skill XP, etc.)

@@ -166,6 +166,11 @@ function getInspiration() {
 		itemMultiplier *= gameData.currentProperty.getEffect();
 	}
 	
+	// Apply current transportation effect if it provides Inspiration
+	if (gameData.currentTransportation && gameData.currentTransportation.baseData.description === "Inspiration") {
+		itemMultiplier *= gameData.currentTransportation.getEffect();
+	}
+	
 	// Iterate through all owned misc items to dynamically apply Inspiration effects
 	for (let misc of gameData.currentMisc) {
 		if (misc.baseData.description === "Inspiration") {

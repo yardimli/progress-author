@@ -122,7 +122,8 @@ function updateItemRows () {
 		const row = document.getElementById('row ' + item.name);
 		if (!row) continue;
 		
-		const isActive = (gameData.currentProperty === item || gameData.currentMisc.includes(item));
+		// Check active status for properties, transportation, and misc items
+		const isActive = (gameData.currentProperty === item || gameData.currentTransportation === item || gameData.currentMisc.includes(item));
 		if (isActive && !row.classList.contains('active')) {
 			row.classList.add('active');
 		} else if (!isActive && row.classList.contains('active')) {
@@ -341,10 +342,12 @@ function updateHeaderUI () {
 	const job = gameData.currentJob;
 	const skill = gameData.currentSkill;
 	const property = gameData.currentProperty;
+	const transport = gameData.currentTransportation; // Added
 	
 	updateHeaderVal('header-val-job', job ? `${job.name} (Lvl ${job.level}, $${format(job.getIncome())}/d)` : 'None');
 	updateHeaderVal('header-val-skill', skill ? `${skill.name} (Lvl ${skill.level})` : 'None');
 	updateHeaderVal('header-val-property', property ? property.name : 'None');
+	updateHeaderVal('header-val-transportation', transport ? transport.name : 'None'); // Added
 	
 	// Band 3: Core Stats
 	updateHeaderVal('header-val-balance', `$${format(gameData.coins)}`);
