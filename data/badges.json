@@ -4,7 +4,7 @@
     "description": "Publish your very first book. A monumental first step on a long journey.",
     "filename": "badge_first_draft.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a single fountain pen nib with a drop of ink falling from it. Clean geometric shapes, cozy aesthetic, soft palette of warm grey and gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a single fountain pen nib with a drop of ink falling from it, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, soft palette of warm grey and gold, gentle flat shading, no realism. The circle background is pastel cream, and the overall image background is pastel peach.",
     "effect": {
       "type": "writingQuality",
       "value": 1.05,
@@ -19,7 +19,7 @@
     "description": "Publish 10 books. The words are flowing and your library is growing.",
     "filename": "badge_prolific.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a tall, leaning stack of colorful simplified books. Clean geometric shapes, cozy aesthetic, warm palette of muted primary colors, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a tall, leaning stack of colorful simplified books, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, warm palette of muted primary colors, gentle flat shading, no realism. The circle background is pastel yellow, and the overall image background is pastel butter yellow.",
     "effect": {
       "type": "royalties",
       "value": 1.1,
@@ -34,7 +34,7 @@
     "description": "Reach level 10 in three different Menial Work jobs. You know the value of hard work.",
     "filename": "badge_hustler.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple rolled-up sleeve with a determined fist. Clean geometric shapes, cozy aesthetic, muted palette of warm ochre and soft brown, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple rolled-up sleeve with a determined fist, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, muted palette of warm ochre and soft brown, gentle flat shading, no realism. The circle background is pastel beige, and the overall image background is pastel tan.",
     "effect": {
       "type": "jobIncome",
       "value": 1.1,
@@ -49,7 +49,7 @@
     "description": "Reach level 10 in three different Creative Industry jobs. You're making a name for yourself.",
     "filename": "badge_creative_spark.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple glowing lightbulb with a small pencil tip at its base. Clean geometric shapes, cozy aesthetic, soft palette of warm gold and cream, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple glowing lightbulb with a small pencil tip at its base, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, soft palette of warm gold and cream, gentle flat shading, no realism. The circle background is pastel cream, and the overall image background is pastel apricot.",
     "effect": {
       "type": "creativeXp",
       "value": 1.1,
@@ -64,7 +64,7 @@
     "description": "Reach level 10 in three different Literary Elite jobs. You walk in the halls of power.",
     "filename": "badge_literary_insider.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple golden key with a book shape for its head. Clean geometric shapes, cozy aesthetic, palette of deep navy and soft gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple golden key with a book shape for its head, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of deep navy and soft gold, gentle flat shading, no realism. The circle background is pastel periwinkle, and the overall image background is pastel sky blue.",
     "effect": {
       "type": "literaryXp",
       "value": 1.1,
@@ -79,7 +79,7 @@
     "description": "Reach level 100 in the Focus skill. Distractions are a thing of the past.",
     "filename": "badge_focused_mind.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple human head silhouette with calm, concentric circles radiating from the center. Clean geometric shapes, cozy aesthetic, soft palette of muted blue and white, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple human head silhouette with calm, concentric circles radiating from the center, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, soft palette of muted blue and white, gentle flat shading, no realism. The circle background is pastel powder blue, and the overall image background is pastel ice blue.",
     "effect": {
       "type": "skillXp",
       "value": 1.05,
@@ -94,7 +94,7 @@
     "description": "Reach level 100 in the Typing Speed skill. Your fingers fly across the keyboard.",
     "filename": "badge_speed_demon.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple hand with motion lines trailing from the fingertips over a keyboard shape. Clean geometric shapes, cozy aesthetic, palette of electric blue and soft grey, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple hand with motion lines trailing from the fingertips over a keyboard shape, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of electric blue and soft grey, gentle flat shading, no realism. The circle background is pastel cornflower blue, and the overall image background is pastel cloud blue.",
     "effect": {
       "type": "writingSpeed",
       "value": 1.05,
@@ -109,7 +109,7 @@
     "description": "Reach level 100 in the Grammar & Prose skill. Every sentence is a work of art.",
     "filename": "badge_wordsmith.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple quill pen elegantly writing a glowing, stylized signature. Clean geometric shapes, cozy aesthetic, palette of deep charcoal and soft gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple quill pen elegantly writing a glowing, stylized signature, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of deep charcoal and soft gold, gentle flat shading, no realism. The circle background is pastel champagne, and the overall image background is pastel ivory.",
     "effect": {
       "type": "writingQuality",
       "value": 1.1,
@@ -124,7 +124,7 @@
     "description": "Purchase the Large House. A home to call your own.",
     "filename": "badge_landlord.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple house key hanging from a small house-shaped keychain. Clean geometric shapes, cozy aesthetic, warm palette of bronze and soft brown, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple house key hanging from a small house-shaped keychain, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, warm palette of bronze and soft brown, gentle flat shading, no realism. The circle background is pastel sand, and the overall image background is pastel taupe.",
     "effect": {
       "type": "expense",
       "value": 0.95,
@@ -139,7 +139,7 @@
     "description": "Own both the Pro Writing Software and a Home Office. You have the ultimate writer's setup.",
     "filename": "badge_tech_savvy.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple laptop with a small gear icon and a checkmark on its screen. Clean geometric shapes, cozy aesthetic, palette of slate blue and cream, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple laptop with a small gear icon and a checkmark on its screen, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of slate blue and cream, gentle flat shading, no realism. The circle background is pastel slate blue, and the overall image background is pastel dove grey.",
     "effect": {
       "type": "writingSpeed",
       "value": 1.1,
@@ -155,7 +155,7 @@
     "description": "Experience your first rebirth. The cycle begins anew, but with wisdom.",
     "filename": "badge_reborn.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple phoenix silhouette with glowing feathers, rising from a small pile of ash. Clean geometric shapes, cozy aesthetic, warm palette of orange, gold, and cream, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple phoenix silhouette with glowing feathers, rising from a small pile of ash, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, warm palette of orange, gold, and cream, gentle flat shading, no realism. The circle background is pastel peach, and the overall image background is pastel coral.",
     "effect": {
       "type": "allXp",
       "value": 1.1,
@@ -170,7 +170,7 @@
     "description": "Reach 100 years of age. A lifetime of stories to tell.",
     "filename": "badge_centenarian.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple hourglass with the sand nearly all in the bottom, beside a small sapling growing. Clean geometric shapes, cozy aesthetic, palette of soft sand and muted green, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple hourglass with the sand nearly all in the bottom, beside a small sapling growing, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of soft sand and muted green, gentle flat shading, no realism. The circle background is pastel mint green, and the overall image background is pastel sage.",
     "effect": {
       "type": "lifespan",
       "value": 10,
@@ -185,7 +185,7 @@
     "description": "Have over $1,000,000 in your bank account at one time.",
     "filename": "badge_millionaire.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple thick stack of banknotes held together by a golden money clip. Clean geometric shapes, cozy aesthetic, palette of muted green and soft gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple thick stack of banknotes held together by a golden money clip, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of muted green and soft gold, gentle flat shading, no realism. The circle background is pastel mint, and the overall image background is pastel seafoam green.",
     "effect": {
       "type": "jobIncome",
       "value": 1.05,
@@ -200,7 +200,7 @@
     "description": "Reach 100 Fame. Your name is known in literary circles.",
     "filename": "badge_famous.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple golden star with smaller stars orbiting it. Clean geometric shapes, cozy aesthetic, palette of bright gold and deep blue, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple golden star with smaller stars orbiting it, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of bright gold and deep blue, gentle flat shading, no realism. The circle background is pastel buttercream yellow, and the overall image background is pastel lavender blue.",
     "effect": {
       "type": "fameGain",
       "value": 1.1,
@@ -215,7 +215,7 @@
     "description": "Publish a book with a quality of 95% or higher. A true work of genius.",
     "filename": "badge_masterpiece.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple open book with a glowing golden crown hovering above its pages. Clean geometric shapes, cozy aesthetic, palette of ivory, gold, and soft red, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple open book with a glowing golden crown hovering above its pages, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of ivory, gold, and soft red, gentle flat shading, no realism. The circle background is pastel ivory, and the overall image background is pastel rose.",
     "effect": {
       "type": "royalties",
       "value": 1.05,
@@ -230,7 +230,7 @@
     "description": "Own every single Miscellaneous item at the same time.",
     "filename": "badge_collector.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple treasure chest, slightly open, with a soft golden glow emanating from within. Clean geometric shapes, cozy aesthetic, warm palette of wood brown and gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple treasure chest, slightly open, with a soft golden glow emanating from within, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, warm palette of wood brown and gold, gentle flat shading, no realism. The circle background is pastel honey beige, and the overall image background is pastel caramel.",
     "effect": {
       "type": "expense",
       "value": 0.9,
@@ -245,7 +245,7 @@
     "description": "Reach level 10 in at least one job from each of the three work categories.",
     "filename": "badge_jack_of_all_trades.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of three simple, overlapping tools: a wrench, a paintbrush, and a fountain pen. Clean geometric shapes, cozy aesthetic, palette of muted primary colors, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of three simple, overlapping tools: a wrench, a paintbrush, and a fountain pen, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of muted primary colors, gentle flat shading, no realism. The circle background is pastel lilac, and the overall image background is pastel lavender.",
     "effect": {
       "type": "allXp",
       "value": 1.05,
@@ -262,7 +262,7 @@
     "description": "Reach level 50 in any single job. You've mastered your trade.",
     "filename": "badge_dedicated.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple golden medal hanging from a red, white, and blue ribbon. Clean geometric shapes, cozy aesthetic, warm color palette, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple golden medal hanging from a red, white, and blue ribbon, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, warm color palette, gentle flat shading, no realism. The circle background is pastel blush pink, and the overall image background is pastel rose pink.",
     "effect": {
       "type": "jobXp",
       "value": 1.05,
@@ -277,7 +277,7 @@
     "description": "Reach level 50 in four different skills. Your mind is a finely-honed tool.",
     "filename": "badge_scholar.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple graduation cap with a golden tassel. Clean geometric shapes, cozy aesthetic, palette of deep blue and soft gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple graduation cap with a golden tassel, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of deep blue and soft gold, gentle flat shading, no realism. The circle background is pastel baby blue, and the overall image background is pastel periwinkle.",
     "effect": {
       "type": "skillXp",
       "value": 1.05,
@@ -292,7 +292,7 @@
     "description": "Become a Legend. Your story will be told for ages to come.",
     "filename": "badge_legendary.png",
     "filefolder": "badges",
-    "imageprompt": "A flat, minimalist vector illustration of a simple book whose pages are turning into a glowing galaxy of stars. Clean geometric shapes, cozy aesthetic, palette of deep indigo and sparkling gold, gentle flat shading, no realism.",
+    "imageprompt": "A flat, minimalist vector illustration of a simple book whose pages are turning into a glowing galaxy of stars, centered inside a plain circle. Clean geometric shapes, cozy aesthetic, palette of deep indigo and sparkling gold, gentle flat shading, no realism. The circle background is pastel lavender, and the overall image background is pastel mauve.",
     "effect": {
       "type": "fameGain",
       "value": 1.25,

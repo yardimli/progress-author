@@ -4,27 +4,27 @@
     "multiplier": 0.1,
     "filename": "hardship.png",
     "filefolder": "experiences",
-    "imageprompt": "A simple dark cloud with raindrops falling over a small cobblestone path, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft muted colors."
+    "imageprompt": "A badge featuring a simple dark cloud with raindrops falling over a small cobblestone path, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft muted colors. The badge is contained inside a plain circle with a pastel light blue background. The image background outside the circle is a matching pastel light blue color. Both backgrounds should be the same pastel light blue shade."
   },
   "Observation": {
     "name": "Observation",
     "multiplier": 0.1,
     "filename": "observation.png",
     "filefolder": "experiences",
-    "imageprompt": "A simple eye shape viewed through a round magnifying glass, flat minimalist vector illustration, clean cozy aesthetic, simplified geometric shapes, soft warm colors."
+    "imageprompt": "A badge featuring a simple eye shape viewed through a round magnifying glass, flat minimalist vector illustration, clean cozy aesthetic, simplified geometric shapes, soft warm colors. The badge is contained inside a plain circle with a pastel peach background. The image background outside the circle is a matching pastel peach color. Both backgrounds should be the same pastel peach shade."
   },
   "Escapism": {
     "name": "Escapism",
     "multiplier": 0.1,
     "filename": "escapism.png",
     "filefolder": "experiences",
-    "imageprompt": "A rounded thought bubble containing a tiny castle and small dragon, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft pastel colors."
+    "imageprompt": "A badge featuring a rounded thought bubble containing a tiny castle and small dragon, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft pastel colors. The badge is contained inside a plain circle with a pastel lavender background. The image background outside the circle is a matching pastel lavender color. Both backgrounds should be the same pastel lavender shade."
   },
   "Social": {
     "name": "Social",
     "multiplier": 0.1,
     "filename": "social.png",
     "filefolder": "experiences",
-    "imageprompt": "Two simple rounded figures sitting across from each other with coffee cups on a small table, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft warm colors."
+    "imageprompt": "A badge featuring two simple rounded figures sitting across from each other with coffee cups on a small table, flat minimalist vector illustration, clean cozy aesthetic, simplified shapes, soft warm colors. The badge is contained inside a plain circle with a pastel yellow background. The image background outside the circle is a matching pastel yellow color. Both backgrounds should be the same pastel yellow shade."
   }
 }

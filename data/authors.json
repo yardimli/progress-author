@@ -13,20 +13,6 @@
     },
     "biography": "Beatrice was born knowing how to work a room. At 20, she is already embedded in the city's arts scene ... attending gallery openings, rubbing shoulders with poets and playwrights, and cultivating a network most aspiring writers spend decades trying to build.<br><br>She has written several short stories, each one brimming with wit, color, and a flair for the dramatic that reflects her larger-than-life personality. People who read them tend to remember them.<br><br>What Beatrice has not yet done is sit down alone, away from the energy of a crowd, and write something that costs her something. Her brilliance is real, but it has not yet been tested by the long, solitary grind that turning genuine talent into a published body of work will require."
   },
-  "author2": {
-    "name": "Arthur Pendelton",
-    "gender": "male",
-    "filename": "arthur_pendelton.png",
-    "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a weary young man in his early 20s standing up straight and facing forward, arms crossed over his chest. He has a long, angular face with a strong jaw, tired blue eyes with faint shadows beneath, fair skin with a hint of stubble, and short sandy-brown hair that looks slightly unkempt. Tall, lean, broad-shouldered build. He wears a high-visibility yellow work vest over a faded grey hoodie and dark work trousers. A small notebook peeks from the vest pocket. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of warm charcoal, soft rust, and cream, gentle flat shading, no realism.",
-    "multipliers": {
-      "hardship": 1.5,
-      "observation": 1.2,
-      "escapism": 0.8,
-      "social": 1.0
-    },
-    "biography": "Arthur is 20 years old and has spent most of his life working grueling shifts in the city's industrial district just to keep his younger siblings fed.<br><br>His hands are calloused, and his worldview is shaped entirely by the harsh, unspoken realities of poverty and working-class survival. He fills cheap notebooks with raw observations of the people around him ... the foremen, the overnight shift workers, the quietly desperate.<br><br>He has never set foot in a literary salon or finished anything longer than a short story, but the material he carries inside him is immense. What he lacks in polish and exposure, he more than makes up for in grit and authenticity."
-  },
   "author3": {
     "name": "Rosemary Lis",
     "gender": "female",
@@ -54,89 +40,5 @@
       "social": 1.2
     },
     "biography": "James grew up surrounded by towering bookshelves and dinner table debates about literature, philosophy, and the nature of storytelling. Now 20, he has already read more canonical works than most English graduates and possesses a razor-sharp eye for narrative craft.<br><br>He has attended lectures, mingled with published authors at his parents' gatherings, and filled journals with beautifully structured short stories ... none of which he has ever shared publicly.<br><br>His greatest blind spot is the world beyond his privilege. He writes about struggle with elegance but without true understanding. The jump from promising amateur to real author will demand experiences that no bookshelf can provide."
-  },
-  "author5": {
-    "name": "Margaret Sterling",
-    "gender": "female",
-    "filename": "margaret_sterling.png",
-    "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a warm young woman in her early 20s standing up straight and facing forward, arms crossed loosely over her chest. She has a round, friendly face with warm brown skin, kind dark brown eyes, full cheeks, and thick dark curly hair gathered into a messy bun on top of her head with a few loose strands framing her face. Soft, approachable build. She wears an oversized soft ochre hoodie over dark jeans. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of ochre, cream, and soft brown, gentle flat shading, no realism.",
-    "multipliers": {
-      "hardship": 1.2,
-      "observation": 1.2,
-      "escapism": 0.8,
-      "social": 1.5
-    },
-    "biography": "Margaret has spent most of her young life showing up for other people. By 20, she has organized food drives, run youth programs in underfunded neighborhoods, and sat with strangers through their worst moments ... always listening, always remembering.<br><br>The short stories she writes in her limited spare time are intensely human, full of characters who feel immediately real and deeply specific. Her empathy is her greatest literary gift.<br><br>She has yet to write anything long-form and struggles to prioritize her own creative ambitions over the needs of those around her. Learning to carve out space for her own voice ... and to trust that it is worth the world's attention ... is the challenge that stands between her and the author she is capable of becoming."
-  },
-  "author6": {
-    "name": "Elias Thorne",
-    "gender": "male",
-    "filename": "elias_thorne.png",
-    "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a disheveled young man in his early 20s standing up straight and facing forward, arms crossed over his chest. He has a thin, pale face with sharp cheekbones, wary deep-set dark brown eyes with faint shadows beneath, and messy shoulder-length dark hair that falls into his eyes. Lanky, slight build with a slightly slouched posture made straight. He wears a plain worn navy t-shirt and loose grey joggers. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of deep blue, warm amber, and cream, gentle flat shading, no realism.",
-    "multipliers": {
-      "hardship": 1.2,
-      "observation": 1.0,
-      "escapism": 1.5,
-      "social": 0.5
-    },
-    "biography": "Elias has been retreating into imaginary worlds since he was old enough to hold a pencil. A turbulent and fractured childhood gave him little reason to engage with the real world, and by 20, he has fully committed to living inside his own head.<br><br>He writes compulsively ... strange, vivid short stories full of invented mythology and labyrinthine internal logic that bear little resemblance to anything else out there. The problem is, almost no one has ever read them.<br><br>Elias struggles deeply with people, deadlines, and anything that pulls him out of his creative isolation. Turning his raw imaginative power into something publishable will require him to learn how to let the outside world back in."
-  },
-  "author7": {
-    "name": "Evelyn Tower",
-    "gender": "female",
-    "filename": "evelyn_tower.png",
-    "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of an elegant young woman in her early 20s standing up straight and facing forward, arms crossed gracefully over her chest. She has a long oval face with porcelain-fair skin, cool blue eyes with a reserved calm expression, subtle pink lips, and sleek honey-blonde hair pulled back into a low chignon. Small gold stud earrings. Tall, slender, poised build. She wears a soft ivory cashmere turtleneck tucked into a high-waisted navy pleated skirt. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of navy, ivory, and soft gold, gentle flat shading, no realism.",
-    "multipliers": {
-      "hardship": 0.5,
-      "observation": 1.5,
-      "escapism": 1.0,
-      "social": 1.2
-    },
-    "biography": "Evelyn has been surrounded by literature, art, and intellectual excellence for as long as she can remember. At 20, she has attended the kind of private salons and cultural events that most aspiring writers only read about, and she has absorbed it all with a cool, perceptive eye.<br><br>Her short fiction is polished and precise, demonstrating a level of craft that belies her age. She understands structure, voice, and the mechanics of storytelling in an almost academic sense.<br><br>What she has yet to discover is genuine emotional urgency. Her writing is technically assured but emotionally cautious ... the product of a life that has been comfortable and curated. The path to becoming a real author will ask her to venture far outside everything she has known."
-  },
-  "author8": {
-    "name": "William Vance",
-    "gender": "male",
-    "filename": "william_vance.png",
-    "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a friendly young man in his early 20s standing up straight and facing forward, arms crossed casually over his chest with an easy smile. He has a warm square face with medium-brown skin, bright dark brown eyes with smile lines, a neatly trimmed short beard, and short black hair in a clean fade haircut. Medium, athletic build. He wears a simple cream crewneck sweatshirt over a collared shirt with the collar peeking out, paired with dark chinos. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of amber, cream, and soft brown, gentle flat shading, no realism.",
-    "multipliers": {
-      "hardship": 1.0,
-      "observation": 1.2,
-      "escapism": 1.0,
-      "social": 1.5
-    },
-    "biography": "William has never met a stranger. At 20, he moves effortlessly through different social circles ... students, artists, tradespeople, academics ... and has an almost supernatural ability to get people to open up and share their stories.<br><br>He has scribbled down dozens of short story ideas inspired by people he has met, conversations overheard, and lives glimpsed from the outside. His instincts for character and dialogue are genuinely impressive for someone his age.<br><br>The challenge for William is depth. He is brilliant at starting things and gathering material, but finishing a long, demanding piece of writing ... and sitting alone long enough to do it ... is something he has never quite managed yet."
-  },
-  "author9": {
-    "name": "Clara Hughes",
-    "gender": "female",
-    "filename": "clara_hughes.png",
-    "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a determined young Black woman in her early 20s standing up straight and facing forward, arms crossed firmly over her chest. She has a heart-shaped face with deep brown skin, sharp dark eyes with a serious, steady gaze, full lips set in a resolute expression, and dark braided hair. Slim, wiry build with a stubborn posture. She wears a thin jacket in muted slate blue over a plain grey t-shirt with a V neckline and dark jeans. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of slate blue, cream, and soft grey, gentle flat shading, no realism.",
-    "multipliers": {
-      "hardship": 1.5,
-      "observation": 1.0,
-      "escapism": 1.2,
-      "social": 0.8
-    },
-    "biography": "Clara left a broken home at sixteen and has been fending for herself ever since. Now 20, she works multiple part-time jobs and writes in whatever fragments of time she can steal ... on lunch breaks, on late-night buses, on the floor of her barely furnished apartment.<br><br>Her short stories are fierce and unflinching, drawn directly from a life spent navigating systems that were never designed to help her. She writes to survive as much as to create, and that urgency bleeds into every sentence.<br><br>What she lacks in literary connections and formal training, she compensates for with sheer determination. She has not published anything yet, but she carries the conviction that she will ... because giving up has never been an option she could afford."
-  },
-  "author10": {
-    "name": "Thomas Blackwood",
-    "gender": "male",
-    "filename": "thomas_blackwood.png",
-    "filefolder": "authors",
-    "imageprompt": "A flat, minimalist vector illustration of a focused young man in his early 20s standing up straight and facing forward, arms crossed tightly over his chest. He has a long narrow face with pale skin, intense hooded dark grey eyes with a watchful expression, thin lips, and jet-black hair styled in a slicked-back undercut. Tall, lean, sharp build. He wears a plain black fitted turtleneck tucked into charcoal trousers. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, muted palette of deep charcoal, soft gold, and warm grey, gentle flat shading, no realism.",
-    "multipliers": {
-      "hardship": 0.8,
-      "observation": 1.5,
-      "escapism": 1.2,
-      "social": 1.0
-    },
-    "biography": "Thomas sees everything. At 20, he has developed a near-obsessive habit of documenting the world around him ... the nervous tics of strangers on the subway, the small lies people tell in public, the way a neighborhood changes block by block.<br><br>He has spent the past two years trying to channel all of it into fiction, producing a series of dark, tightly observed short stories that his few readers describe as unsettling in the best possible way.<br><br>His ambition is to write something longer, something that exposes the hidden machinery of the city he obsesses over. He has the eye and the imagination. What he needs now is the courage and the discipline to go the distance."
   }
 }

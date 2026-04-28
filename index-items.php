@@ -1,15 +1,14 @@
 <?php
 	// index-items.php
-	// Main interface for editing item data.
+	// Main interface for editing game data JSON files.
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>JSON Item Order & Value Editor</title>
+	<title>JSON Data Editor</title>
 	<style>
-      /* --- MODIFIED & NEW STYLES --- */
       html, body {
           height: 100%;
           margin: 0;
@@ -45,13 +44,12 @@
           display: block;
           margin-bottom: 5px;
       }
-      #folderSelect, #imageSearch { /* Style both inputs */
+      /* NEW: Style for the JSON file selector */
+      #jsonFileSelect, #folderSelect, #imageSearch {
           width: 100%;
           padding: 5px;
           box-sizing: border-box;
-      }
-      #imageSearch {
-          margin-top: 10px;
+          margin-bottom: 10px;
       }
       .sidebar-scrollable-content {
           overflow-y: auto;
@@ -115,6 +113,12 @@
       #saveButton {
           background-color: #28a745;
           min-width: 100px;
+          padding: 8px 16px;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: bold;
       }
       #saveButton:hover {
           background-color: #218838;
@@ -150,8 +154,8 @@
           align-items: center;
       }
       .card-image {
-          width: 80px;
-          height: 80px;
+          width: 140px;
+          height: 140px;
           object-fit: cover;
           border-radius: 8px;
           background-color: #eee;
@@ -184,7 +188,7 @@
           color: #222;
       }
       .card-input {
-          width: 100px;
+          width: 120px;
           padding: 4px;
           border: 1px solid #ccc;
           border-radius: 4px;
@@ -196,15 +200,26 @@
           border-color: #007bff;
           box-shadow: 0 0 0 2px rgba(0,123,255,.25);
       }
-      .prompt-text {
-          font-size: 0.75rem;
-          color: #777;
-          background: #f9f9f9;
-          padding: 5px;
+      /* NEW: Textarea styling for prompts and descriptions */
+      .card-textarea {
+          width: 100%;
+          padding: 6px;
+          border: 1px solid #ccc;
           border-radius: 4px;
-          max-height: 60px;
-          overflow-y: auto;
-          margin-top: 5px;
+          font-size: 0.85rem;
+          resize: vertical;
+          min-height: 60px;
+          font-family: inherit;
+          box-sizing: border-box;
+      }
+      .card-textarea.json-editor {
+          font-family: monospace;
+          background-color: #f8f9fa;
+      }
+      .card-textarea:focus {
+          outline: none;
+          border-color: #007bff;
+          box-shadow: 0 0 0 2px rgba(0,123,255,.25);
       }
       .card-actions {
           display: flex;
@@ -215,13 +230,19 @@
       }
       .btn-move {
           background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 6px;
           flex: 1;
           margin: 0 5px;
+          cursor: pointer;
+          font-weight: bold;
       }
       .btn-move:hover {
           background-color: #0056b3;
       }
-      button:disabled {
+      .btn-move:disabled {
           background-color: #ccc;
           cursor: not-allowed;
       }
@@ -232,6 +253,18 @@
 <!-- Sidebar for image assets -->
 <div class="sidebar">
 	<div class="sidebar-fixed-top">
+		<!-- NEW: Dropdown to select which JSON file to edit -->
+		<label for="jsonFileSelect">Select JSON File:</label>
+		<select id="jsonFileSelect">
+			<option value="authors.json">authors.json</option>
+			<option value="badges.json">badges.json</option>
+			<option value="items.json" selected>items.json</option>
+			<option value="jobs.json">jobs.json</option>
+			<option value="lifeExperiences.json">lifeExperiences.json</option>
+			<option value="potions.json">potions.json</option>
+			<option value="skills.json">skills.json</option>
+		</select>
+		
 		<label for="folderSelect">Image Folder:</label>
 		<select id="folderSelect">
 			<?php
@@ -248,7 +281,7 @@
 					}
 					return $directories;
 				}
-
+				
 				$asset_root = 'image-assets';
 				if (is_dir($asset_root)) {
 					$folders = get_directories($asset_root);
@@ -264,8 +297,7 @@
 				}
 			?>
 		</select>
-		<!-- NEW: Search input box -->
-		<label for="imageSearch" style="margin-top: 10px;">Search All Assets:</label>
+		<label for="imageSearch">Search All Assets:</label>
 		<input type="search" id="imageSearch" placeholder="e.g., 'house', 'potion'">
 	</div>
 	<div id="sidebarImages" class="sidebar-scrollable-content">
@@ -277,37 +309,72 @@
 <div class="container">
 	<div class="container-content">
 		<div class="main-header">
-			<h1>JSON Item Order & Value Editor</h1>
+			<h1 id="editorTitle">JSON Data Editor</h1>
 			<div class="save-controls">
 				<span id="saveStatus"></span>
 				<button id="saveButton" onclick="saveItems()">Save Changes</button>
 			</div>
 		</div>
-
+		
 		<div id="cardsContainer"></div>
 	</div>
 </div>
 
 <script>
 	let itemsData = [];
-
+	let currentFile = 'items.json'; // Track currently selected file
+	
 	// --- UTILITY FUNCTIONS ---
+	// MODIFIED: Ensure nested objects are created if they don't exist
 	function setNestedValue(obj, path, value) {
 		const keys = path.split('.');
 		let current = obj;
 		for (let i = 0; i < keys.length - 1; i++) {
+			if (current[keys[i]] === undefined) {
+				current[keys[i]] = {};
+			}
 			current = current[keys[i]];
 		}
 		current[keys[keys.length - 1]] = value;
 	};
-
+	
+	// NEW: Helper to create standard inputs
+	function createInput(index, key, label, value, type="text", step="any") {
+		const valStr = value !== undefined ? value : '';
+		return `<div class="card-body-row"><strong>${label}:</strong><input class="card-input" type="${type}" step="${step}" data-index="${index}" data-key="${key}" value="${valStr}" oninput="updateItem(event)"></div>`;
+	};
+	
+	// NEW: Helper to create textareas (for prompts, descriptions, JSON requirements)
+	function createTextarea(index, key, label, value, isJson=false) {
+		const valStr = value !== undefined ? value : '';
+		const jsonClass = isJson ? 'json-editor' : '';
+		const jsonAttr = isJson ? 'data-isjson="true"' : '';
+		return `<div style="display:flex; flex-direction:column; gap:5px; margin-top:5px;"><strong>${label}:</strong><textarea class="card-textarea ${jsonClass}" data-index="${index}" data-key="${key}" ${jsonAttr} oninput="updateItem(event)">${valStr}</textarea></div>`;
+	};
+	
 	// --- DATA HANDLING AND LOADING ---
 	document.addEventListener('DOMContentLoaded', () => {
+		const fileSelect = document.getElementById('jsonFileSelect');
+		currentFile = fileSelect.value;
+		
+		// Event listener for changing JSON files
+		fileSelect.addEventListener('change', (e) => {
+			currentFile = e.target.value;
+			document.getElementById('editorTitle').textContent = `Editing ${currentFile}`;
+			loadJsonData(currentFile);
+		});
+		
+		document.getElementById('editorTitle').textContent = `Editing ${currentFile}`;
+		loadJsonData(currentFile);
+	});
+	
+	// NEW: Function to load specific JSON data
+	function loadJsonData(filename) {
 		const saveStatus = document.getElementById('saveStatus');
-		saveStatus.textContent = 'Loading data/items.json...';
+		saveStatus.textContent = `Loading data/${filename}...`;
 		saveStatus.style.color = '#666';
-
-		fetch('data/items.json?t=' + new Date().getTime())
+		
+		fetch(`data/${filename}?t=` + new Date().getTime())
 			.then(response => {
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
@@ -325,8 +392,8 @@
 				saveStatus.textContent = "Auto-load failed.";
 				saveStatus.style.color = "#d9534f";
 			});
-	});
-
+	};
+	
 	function processJsonData(parsedObj) {
 		itemsData = Object.keys(parsedObj).map(key => ({
 			key: key,
@@ -334,113 +401,177 @@
 		}));
 		renderCards();
 	};
-
+	
 	// --- RENDERING AND UI ---
+	// MODIFIED: dynamically generate card templates based on the current JSON schema
 	function renderCards() {
 		const container = document.getElementById('cardsContainer');
 		container.innerHTML = '';
-
+		
 		itemsData.forEach((item, index) => {
 			const d = item.data;
 			const card = document.createElement('div');
 			card.className = 'card';
 			card.dataset.index = index;
-
-			const coinReqIndex = d.requirements?.findIndex(r => r.type === 'coins');
-			const coinReq = coinReqIndex > -1 ? d.requirements[coinReqIndex] : null;
-
-			const expenseHTML = `<div class="card-body-row"><strong>Expense:</strong><input class="card-input" type="number" step="1" data-index="${index}" data-key="expense" value="${d.expense}" oninput="updateItem(event)"></div>`;
-			const effectHTML = `<div class="card-body-row"><strong>Effect:</strong><input class="card-input" type="number" step="0.01" data-index="${index}" data-key="effect" value="${d.effect}" oninput="updateItem(event)"></div>`;
-			const wmHTML = d.writingMultiplier !== undefined ? `<div class="card-body-row"><strong>Writing Multiplier:</strong><input class="card-input" type="number" step="0.01" data-index="${index}" data-key="writingMultiplier" value="${d.writingMultiplier}" oninput="updateItem(event)"></div>` : '';
-			const wqHTML = d.writingQuality !== undefined ? `<div class="card-body-row"><strong>Writing Quality:</strong><input class="card-input" type="number" step="0.01" data-index="${index}" data-key="writingQuality" value="${d.writingQuality}" oninput="updateItem(event)"></div>` : '';
-			const coinsHTML = coinReq ? `<div class="card-body-row"><strong>Coins:</strong><input class="card-input" type="number" step="1" data-index="${index}" data-key="requirements.${coinReqIndex}.value" value="${coinReq.value}" oninput="updateItem(event)"></div>` : `<div class="card-body-row"><strong>Coins:</strong><span>None</span></div>`;
-
-			const imagePath = d.filename_pixelart ? `pixelart-images/${d.filename_pixelart}` : `img/items/${d.filename}`;
+			
+			// Determine image path based on filefolder attribute
+			const folder = d.filefolder ? d.filefolder : currentFile.replace('.json', '');
+			const imagePath = d.filename_pixelart ? `pixelart-images/${d.filename_pixelart}` : `img/${folder}/${d.filename}`;
 			const imageStyle = d.filename_pixelart ? 'style="height: auto; object-fit: initial;"' : '';
-
+			
+			let bodyHTML = '';
+			
+			// Common fields
+			bodyHTML += createInput(index, 'name', 'Name', d.name);
+			
+			// Switch to build the rest of the card based on the current file
+			switch (currentFile) {
+				case 'authors.json':
+					bodyHTML += createInput(index, 'gender', 'Gender', d.gender);
+					bodyHTML += createInput(index, 'multipliers.hardship', 'Hardship Mult', d.multipliers?.hardship, 'number');
+					bodyHTML += createInput(index, 'multipliers.observation', 'Observation Mult', d.multipliers?.observation, 'number');
+					bodyHTML += createInput(index, 'multipliers.escapism', 'Escapism Mult', d.multipliers?.escapism, 'number');
+					bodyHTML += createInput(index, 'multipliers.social', 'Social Mult', d.multipliers?.social, 'number');
+					bodyHTML += createTextarea(index, 'biography', 'Biography', d.biography);
+					break;
+				case 'badges.json':
+					bodyHTML += createTextarea(index, 'description', 'Description', d.description);
+					bodyHTML += createInput(index, 'effect.type', 'Effect Type', d.effect?.type);
+					bodyHTML += createInput(index, 'effect.value', 'Effect Value', d.effect?.value, 'number');
+					bodyHTML += createInput(index, 'effect.text', 'Effect Text', d.effect?.text);
+					break;
+				case 'items.json':
+					bodyHTML += createInput(index, 'category', 'Category', d.category);
+					bodyHTML += createInput(index, 'expense', 'Expense', d.expense, 'number');
+					bodyHTML += createInput(index, 'effect', 'Effect', d.effect, 'number');
+					bodyHTML += createInput(index, 'writingMultiplier', 'Writing Mult', d.writingMultiplier, 'number');
+					bodyHTML += createInput(index, 'writingQuality', 'Writing Quality', d.writingQuality, 'number');
+					bodyHTML += createTextarea(index, 'description', 'Description', d.description);
+					break;
+				case 'jobs.json':
+					bodyHTML += createInput(index, 'category', 'Category', d.category);
+					bodyHTML += createInput(index, 'maxXp', 'Max XP', d.maxXp, 'number');
+					bodyHTML += createInput(index, 'income', 'Income', d.income, 'number');
+					bodyHTML += createInput(index, 'hardship', 'Hardship', d.hardship, 'number');
+					bodyHTML += createInput(index, 'observation', 'Observation', d.observation, 'number');
+					bodyHTML += createInput(index, 'escapism', 'Escapism', d.escapism, 'number');
+					bodyHTML += createInput(index, 'social', 'Social', d.social, 'number');
+					break;
+				case 'lifeExperiences.json':
+					bodyHTML += createInput(index, 'multiplier', 'Multiplier', d.multiplier, 'number');
+					break;
+				case 'potions.json':
+					bodyHTML += createInput(index, 'effect', 'Effect', d.effect, 'number');
+					bodyHTML += createInput(index, 'type', 'Type', d.type);
+					break;
+				case 'skills.json':
+					bodyHTML += createInput(index, 'category', 'Category', d.category);
+					bodyHTML += createInput(index, 'maxXp', 'Max XP', d.maxXp, 'number');
+					bodyHTML += createInput(index, 'effect', 'Effect', d.effect, 'number');
+					bodyHTML += createInput(index, 'writingQuality', 'Writing Quality', d.writingQuality, 'number');
+					bodyHTML += createTextarea(index, 'description', 'Description', d.description);
+					break;
+			}
+			
+			// Add requirements JSON editor for files that support requirements
+			if (d.requirements !== undefined) {
+				bodyHTML += createTextarea(index, 'requirements', 'Requirements (JSON)', JSON.stringify(d.requirements, null, 2), true);
+			}
+			
+			// Add image prompt editor for all files
+			bodyHTML += createTextarea(index, 'imageprompt', 'Image Prompt', d.imageprompt || '');
+			
 			card.innerHTML = `
                 <div class="card-header">
                     <img class="card-image" src="${imagePath}" alt="${d.name}" ${imageStyle} onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
-                    <div>
-                        <h3 class="card-title">${d.name}</h3>
-                        <p class="card-category">${d.category}</p>
+                    <div style="flex-grow: 1;">
+                        <h3 class="card-title">${d.name || item.key}</h3>
+                        <p class="card-category">${d.category || currentFile}</p>
                     </div>
                 </div>
                 <div class="card-body">
-                    ${expenseHTML}
-                    ${effectHTML}
-                    ${wmHTML}
-                    ${wqHTML}
-                    ${coinsHTML}
-                    ${d.description ? `<div class="card-body-row"><strong>Description:</strong> <span>${d.description}</span></div>` : ''}
-                    <div><strong>Prompt:</strong><div class="prompt-text">${d.imageprompt}</div></div>
+                    ${bodyHTML}
                 </div>
                 <div class="card-actions">
                     <button class="btn-move" onclick="moveUp(${index})" ${index === 0 ? 'disabled' : ''}>⬆ Move Up</button>
                     <button class="btn-move" onclick="moveDown(${index})" ${index === itemsData.length - 1 ? 'disabled' : ''}>⬇ Move Down</button>
                 </div>
             `;
-
+			
 			card.addEventListener('dragover', handleDragOver);
 			card.addEventListener('dragleave', handleDragLeave);
 			card.addEventListener('drop', handleDrop);
-
+			
 			container.appendChild(card);
 		});
 	};
-
+	
 	// --- ACTIONS AND UPDATES ---
+	// MODIFIED: Handle JSON parsing for requirement fields
 	function updateItem(event) {
 		const input = event.target;
 		const index = parseInt(input.dataset.index, 10);
 		const key = input.dataset.key;
-		const value = parseFloat(input.value);
-
-		if (!isNaN(value)) {
-			setNestedValue(itemsData[index].data, key, value);
+		const isJson = input.dataset.isjson === 'true';
+		let value = input.value;
+		
+		if (input.type === 'number') {
+			value = parseFloat(value);
+			if (isNaN(value)) return; // Ignore invalid numbers
+		} else if (isJson) {
+			try {
+				value = JSON.parse(value);
+				input.style.borderColor = '#ccc'; // Reset error state
+			} catch (e) {
+				input.style.borderColor = '#d9534f'; // Indicate invalid JSON
+				return; // Do not save invalid JSON
+			}
 		}
+		
+		setNestedValue(itemsData[index].data, key, value);
 	};
-
+	
 	function moveUp(index) {
 		if (index > 0) {
 			[itemsData[index - 1], itemsData[index]] = [itemsData[index], itemsData[index - 1]];
 			renderCards();
 		}
 	};
-
+	
 	function moveDown(index) {
 		if (index < itemsData.length - 1) {
 			[itemsData[index], itemsData[index + 1]] = [itemsData[index + 1], itemsData[index]];
 			renderCards();
 		}
 	};
-
+	
+	// MODIFIED: Pass currentFile as a parameter to save-items.php
 	async function saveItems() {
 		const saveButton = document.getElementById('saveButton');
 		const saveStatus = document.getElementById('saveStatus');
-
+		
 		const outputObj = itemsData.reduce((acc, item) => {
 			acc[item.key] = item.data;
 			return acc;
 		}, {});
-
+		
 		const jsonData = JSON.stringify(outputObj, null, 2);
-
+		
 		saveButton.disabled = true;
 		saveStatus.textContent = 'Saving...';
 		saveStatus.style.color = '#007bff';
-
+		
 		try {
-			const response = await fetch('save-items.php', {
+			const response = await fetch(`save-items.php?file=${encodeURIComponent(currentFile)}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: jsonData,
 			});
-
+			
 			const result = await response.json();
-
+			
 			if (result.success) {
 				saveStatus.textContent = 'Saved successfully ✓';
 				saveStatus.style.color = '#28a745';
@@ -458,29 +589,23 @@
 			}, 4000);
 		}
 	};
-
+	
 	// --- Sidebar and Drag & Drop Logic ---
 	const folderSelect = document.getElementById('folderSelect');
 	const sidebarImagesContainer = document.getElementById('sidebarImages');
-	// NEW: Get search input and set up debounce timer.
 	const imageSearchInput = document.getElementById('imageSearch');
 	let searchTimeout;
-
+	
 	folderSelect.addEventListener('change', handleFolderSelect);
 	imageSearchInput.addEventListener('input', handleImageSearch);
-
-	// NEW: Central function to render images in the sidebar.
-	/**
-	 * Renders a list of image objects into the sidebar.
-	 * @param {Array<Object>} images - Array of {path, filename}.
-	 */
+	
 	function renderSidebarImages(images) {
 		sidebarImagesContainer.innerHTML = '';
 		if (!images || images.length === 0) {
 			sidebarImagesContainer.innerHTML = 'No images found.';
 			return;
 		}
-
+		
 		images.forEach(image => {
 			const card = document.createElement('div');
 			card.className = 'sidebar-image-card';
@@ -492,16 +617,12 @@
 		});
 		addDragListenersToSidebar();
 	};
-
-	// MODIFIED: This function now just handles the event and clears the search.
+	
 	function handleFolderSelect() {
-		imageSearchInput.value = ''; // Clear search when a folder is selected.
+		imageSearchInput.value = '';
 		loadSidebarImagesFromFolder();
 	};
-
-	/**
-	 * Fetches and displays images for the selected folder.
-	 */
+	
 	function loadSidebarImagesFromFolder() {
 		const folder = folderSelect.value;
 		if (!folder) {
@@ -509,12 +630,11 @@
 			return;
 		}
 		sidebarImagesContainer.innerHTML = 'Loading...';
-
+		
 		fetch(`get-images.php?folder=${encodeURIComponent(folder)}`)
 			.then(response => response.json())
 			.then(data => {
 				if (data.success) {
-					// Format the data for the renderer.
 					const formattedImages = data.images.map(filename => ({
 						path: `${folder}/${filename}`,
 						filename: filename
@@ -529,34 +649,30 @@
 				console.error('Error:', error);
 			});
 	};
-
-	// NEW: Debounced search handler.
+	
 	function handleImageSearch(e) {
 		clearTimeout(searchTimeout);
 		const query = e.target.value.trim();
-
+		
 		if (query === '') {
-			// If search is cleared, revert to folder view.
 			handleFolderSelect();
 			return;
 		}
-
+		
 		if (query.length < 2) {
 			sidebarImagesContainer.innerHTML = '<i>Enter 2+ characters to search...</i>';
 			return;
 		}
-
-		// Debounce the search to avoid excessive requests.
+		
 		searchTimeout = setTimeout(() => {
 			performSearch(query);
 		}, 300);
 	};
-
-	// NEW: Function to execute the search via fetch.
+	
 	function performSearch(query) {
-		folderSelect.value = ''; // Deselect folder to indicate search is active.
+		folderSelect.value = '';
 		sidebarImagesContainer.innerHTML = 'Searching...';
-
+		
 		fetch(`search-images.php?q=${encodeURIComponent(query)}`)
 			.then(response => response.json())
 			.then(data => {
@@ -571,14 +687,14 @@
 				console.error('Search Error:', error);
 			});
 	};
-
+	
 	function addDragListenersToSidebar() {
 		const images = sidebarImagesContainer.querySelectorAll('img');
 		images.forEach(img => {
 			img.addEventListener('dragstart', handleDragStart);
 		});
 	};
-
+	
 	function handleDragStart(e) {
 		e.dataTransfer.setData('application/json', JSON.stringify({
 			filename: e.target.dataset.filename,
@@ -586,45 +702,45 @@
 		}));
 		e.dataTransfer.effectAllowed = 'copy';
 	};
-
+	
 	function handleDragOver(e) {
 		e.preventDefault();
 		e.currentTarget.classList.add('drag-over');
 	};
-
+	
 	function handleDragLeave(e) {
 		e.currentTarget.classList.remove('drag-over');
 	};
-
+	
 	function handleDrop(e) {
 		e.preventDefault();
 		e.currentTarget.classList.remove('drag-over');
-
+		
 		const cardIndex = parseInt(e.currentTarget.dataset.index, 10);
 		if (isNaN(cardIndex)) return;
-
+		
 		try {
 			const imageData = JSON.parse(e.dataTransfer.getData('application/json'));
-
+			
 			itemsData[cardIndex].data.filename_pixelart = imageData.filename;
-
+			
 			const cardImage = e.currentTarget.querySelector('.card-image');
 			if (cardImage) {
 				cardImage.src = imageData.fullpath;
 				cardImage.style.height = 'auto';
 				cardImage.style.objectFit = 'initial';
 			}
-
+			
 			copyImageToServer(imageData.fullpath);
 		} catch (error) {
 			console.error("Failed to process drop data:", error);
 		}
 	};
-
+	
 	function copyImageToServer(sourcePath) {
 		const formData = new FormData();
 		formData.append('source', sourcePath);
-
+		
 		fetch('copy-image.php', {
 			method: 'POST',
 			body: formData
