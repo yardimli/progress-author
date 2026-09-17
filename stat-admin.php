@@ -8,7 +8,9 @@ ini_set('session.use_strict_mode', '1');
 session_name('author_stats_admin');
 session_set_cookie_params(['httponly' => true, 'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off', 'samesite' => 'Strict']);
 session_start();
-if (isset($_SESSION['lastActive']) && time() - $_SESSION['lastActive'] > 1800) unset($_SESSION['authenticated']);
+if (isset($_SESSION['lastActive']) && time() - $_SESSION['lastActive'] > 1800) {
+    unset($_SESSION['authenticated'], $_SESSION['lastActive']);
+}
 $_SESSION['csrf'] ??= bin2hex(random_bytes(24));
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($passwordOK && hash_equals(STATS_ADMIN_USER, (string) ($_POST['username'] ?? ''))) {
                 session_regenerate_id(true);
                 $_SESSION['authenticated'] = true;
+                // Refresh before redirecting, or the next request can expire this new login.
+                $_SESSION['lastActive'] = time();
                 $_SESSION['csrf'] = bin2hex(random_bytes(24));
                 stats_store(function (&$data) { unset($data['loginAttempts']); });
                 header('Location: stat-admin.php'); exit;
