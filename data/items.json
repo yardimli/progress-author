@@ -6,7 +6,7 @@
     "effect": 1.6,
     "writingMultiplier": 1,
     "writingQuality": 1,
-    "filename": "homeless.png",
+    "filename": "homeless.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a quiet urban street corner with simplified shapes. A small sleeping bag and a stack of cardboard boxes rest against a plain wall beneath a single streetlamp. A paper cup and a worn notebook sit nearby. Clean lines, muted cozy color palette of soft greys and warm blues, no realistic detail, just simple geometric forms conveying the humble beginnings of a writer.",
     "requirements": []
@@ -17,7 +17,7 @@
     "expense": 0,
     "effect": 1,
     "description": "Job XP",
-    "filename": "walking.png",
+    "filename": "walking.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a pair of worn but comfortable sneakers on a simple sidewalk. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": []
@@ -29,7 +29,7 @@
     "effect": 3.2,
     "writingMultiplier": 1.2,
     "writingQuality": 1.05,
-    "filename": "rented_room.png",
+    "filename": "rented_room.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small rented room rendered with simplified shapes. A basic desk holds a stack of papers and a small lamp, a single window shows a soft blue night sky, and a narrow bed sits against the wall. Clean lines, cozy aesthetic, muted palette of warm beiges and soft blues, no realism, just simple geometric forms creating a humble writer's space.",
     "requirements": [
@@ -45,7 +45,7 @@
     "expense": 2,
     "effect": 1.1,
     "description": "Job XP",
-    "filename": "bicycle.png",
+    "filename": "bicycle.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a simple classic bicycle leaning against a plain wall. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -61,7 +61,7 @@
     "expense": 6,
     "effect": 1.15,
     "description": "Inspiration",
-    "filename": "mini_fridge.png",
+    "filename": "mini_fridge.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small, sleek mini fridge stocked with a few colorful drinks. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -79,7 +79,7 @@
     "description": "Job XP",
     "writingMultiplier": 1,
     "writingQuality": 1,
-    "filename": "bus_pass.png",
+    "filename": "bus_pass.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a simple transit bus pass card with a tiny lanyard. Clean lines, cozy aesthetic, soft palette of blues and yellows, no realism, just simplified geometric shapes.",
     "requirements": [
@@ -95,7 +95,7 @@
     "expense": 10,
     "effect": 1.2,
     "description": "Inspiration",
-    "filename": "ambient_lighting.png",
+    "filename": "ambient_lighting.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a desk illuminated by soft, colorful LED strip lights and a warm desk lamp. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -111,7 +111,7 @@
     "expense": 10,
     "effect": 1.5,
     "description": "Job XP",
-    "filename": "scooter.png",
+    "filename": "scooter.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a sleek electric scooter parked on a city street. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -127,7 +127,7 @@
     "expense": 15,
     "effect": 1.15,
     "description": "Skill XP",
-    "filename": "standing_desk_converter.png",
+    "filename": "standing_desk_converter.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of an adjustable standing desk converter placed on top of a standard desk. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -145,7 +145,7 @@
     "description": "Inspiration",
     "writingMultiplier": 1.1,
     "writingQuality": 1,
-    "filename": "coffee_machine.png",
+    "filename": "coffee_machine.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a modern coffee machine with a steaming mug beneath it. Clean lines, cozy aesthetic, muted palette of soft greys and warm browns, no realism.",
     "requirements": [
@@ -161,7 +161,7 @@
     "expense": 25,
     "effect": 2,
     "description": "Job XP",
-    "filename": "used_car.png",
+    "filename": "used_car.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a slightly worn but reliable compact car. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -178,7 +178,7 @@
     "effect": 1.25,
     "description": "Inspiration",
     "writingMultiplier": 1.3,
-    "filename": "used_laptop.png",
+    "filename": "used_laptop.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small open laptop with a few colorful stickers on its lid, rendered in simple geometric shapes. The screen shows a blank document with a tiny blinking cursor. A coiled charging cable curls beside it. Clean lines, cozy aesthetic, muted palette of soft greys with pops of warm color, no realism, just simplified shapes conveying a writer's trusty budget tool.",
     "requirements": [
@@ -195,7 +195,7 @@
     "effect": 1.2,
     "description": "Skill XP",
     "writingMultiplier": 1.15,
-    "filename": "noise_canceling_headphones.png",
+    "filename": "noise_canceling_headphones.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of sleek over-ear headphones resting on a desk. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -213,7 +213,7 @@
     "description": "Inspiration",
     "writingMultiplier": 1.2,
     "writingQuality": 1.1,
-    "filename": "ergonomic_chair.png",
+    "filename": "ergonomic_chair.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a modern ergonomic office chair with a rounded mesh back and simple armrests, shown in soft geometric shapes. Placed in a tidy corner with a small plant nearby. Clean lines, cozy aesthetic, muted palette of soft greys and warm accents, no realism, just simplified shapes representing comfort and productivity for a focused writer.",
     "requirements": [
@@ -230,7 +230,7 @@
     "effect": 1.1,
     "description": "Typing Speed experience",
     "writingMultiplier": 1.1,
-    "filename": "mechanical_keyboard.png",
+    "filename": "mechanical_keyboard.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of the first row of keys QWERTY mechanical keyboard with distinct, chunky keys. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -247,7 +247,7 @@
     "effect": 1.25,
     "description": "Inspiration",
     "writingMultiplier": 1.4,
-    "filename": "dual_monitors.png",
+    "filename": "dual_monitors.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of two sleek computer monitors side-by-side on a desk. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -265,7 +265,7 @@
     "description": "Inspiration",
     "writingMultiplier": 1,
     "writingQuality": 1.6,
-    "filename": "style_guide.png",
+    "filename": "style_guide.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a thick style guide book with colorful tabs sticking out of its pages, beside a small steaming coffee mug. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, warm palette of soft blues, creams, and a pop of red, no realism, just simplified shapes conveying a writer's dedication to craft.",
     "requirements": [
@@ -283,7 +283,7 @@
     "description": "Inspiration",
     "writingMultiplier": 1,
     "writingQuality": 1.8,
-    "filename": "pro_writing_software.png",
+    "filename": "pro_writing_software.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a laptop showing a stylized writing software interface with a simple corkboard of note cards and a sidebar of chapters. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, palette of soft blues, whites, and warm accent colors, no realism, just simplified shapes conveying a modern writer's creative toolkit.",
     "requirements": [
@@ -299,7 +299,7 @@
     "expense": 10,
     "effect": 1.2,
     "description": "Job XP",
-    "filename": "premium_briefcase.png",
+    "filename": "premium_briefcase.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a high-quality leather briefcase. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -309,49 +309,15 @@
       }
     ]
   },
-  "Networking Wardrobe": {
-    "name": "Networking Wardrobe",
-    "category": "Work Equipment",
-    "expense": 35,
-    "effect": 1.5,
-    "description": "Job pay",
-    "filename": "networking_wardrobe.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a sharp, tailored suit hanging neatly. Clean lines, cozy aesthetic, soft palette, no realism.",
-    "requirements": [
-      {
-        "type": "coins",
-        "value": 60000
-      }
-    ]
-  },
   "New Car": {
     "name": "New Car",
     "category": "Transportation",
     "expense": 60,
     "effect": 3,
     "description": "Job XP",
-    "filename": "new_car.png",
+    "filename": "new_car.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a shiny, modern sedan. Clean lines, cozy aesthetic, soft palette, no realism.",
-    "requirements": [
-      {
-        "type": "coins",
-        "value": 800000
-      }
-    ]
-  },
-  "Smart Assistant": {
-    "name": "Smart Assistant",
-    "category": "Home Improvements",
-    "expense": 30,
-    "effect": 1.88,
-    "description": "Typing Speed experience",
-    "writingMultiplier": 1,
-    "writingQuality": 1,
-    "filename": "smart_assistant.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a small cylindrical smart speaker with a glowing ring on top. Clean lines, cozy aesthetic, palette of deep charcoal and soft cyan, no realism.",
     "requirements": [
       {
         "type": "coins",
@@ -367,47 +333,13 @@
     "description": "Skill XP",
     "writingMultiplier": 1,
     "writingQuality": 1,
-    "filename": "planner.png",
+    "filename": "planner.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of an open daily planner notebook with a simple pen resting on it. Clean lines, cozy aesthetic, warm palette of soft greens and creams, no realism.",
     "requirements": [
       {
         "type": "coins",
         "value": 65000
-      }
-    ]
-  },
-  "Business Smartphone": {
-    "name": "Business Smartphone",
-    "category": "Work Equipment",
-    "expense": 45,
-    "effect": 1.3,
-    "description": "All experience",
-    "filename": "business_smartphone.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a modern smartphone displaying a calendar and email icons. Clean lines, cozy aesthetic, soft palette, no realism.",
-    "requirements": [
-      {
-        "type": "coins",
-        "value": 120000
-      }
-    ]
-  },
-  "Industry Magazine": {
-    "name": "Industry Magazine",
-    "category": "Work Equipment",
-    "expense": 16,
-    "effect": 1.88,
-    "description": "Creative Industry experience",
-    "writingMultiplier": 1,
-    "writingQuality": 1,
-    "filename": "industry_magazine.png",
-    "filefolder": "items",
-    "imageprompt": "A flat, minimalist vector illustration of a glossy magazine with a stylized cover layout of machines. Clean lines, cozy aesthetic, vibrant palette of soft reds and whites, no realism.",
-    "requirements": [
-      {
-        "type": "coins",
-        "value": 400000
       }
     ]
   },
@@ -418,7 +350,7 @@
     "effect": 1.25,
     "description": "Inspiration",
     "writingQuality": 1.2,
-    "filename": "library_card.png",
+    "filename": "library_card.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a simple public library card with a small barcode and rounded corners. The card rests on a plain surface next to a tiny receipt. Clean lines, cozy aesthetic, soft palette of blues and whites with a warm accent, no realism, just simplified geometric shapes representing the humble foundation of a writer's learning journey.",
     "requirements": []
@@ -431,7 +363,7 @@
     "description": "Inspiration",
     "writingMultiplier": 1.5,
     "writingQuality": 2,
-    "filename": "home_office.png",
+    "filename": "home_office.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a tidy home office with a simple desk, a monitor, a small lamp, and a potted plant, all rendered in geometric shapes. A small bookshelf and a framed picture hang on the wall. Clean lines, cozy aesthetic, warm palette of soft woods, creams, and gentle greens, no realism, just simplified shapes depicting a focused writer's workspace.",
     "requirements": [
@@ -449,7 +381,7 @@
     "description": "Writing Craft experience",
     "writingMultiplier": 1,
     "writingQuality": 1,
-    "filename": "masterclass_subscription.png",
+    "filename": "masterclass_subscription.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a tablet displaying a stylized video play button and a graduation cap icon. Clean lines, cozy aesthetic, warm palette of soft purples and golds, no realism.",
     "requirements": [
@@ -467,7 +399,7 @@
     "description": "Inspiration",
     "writingMultiplier": 1,
     "writingQuality": 2,
-    "filename": "editor.png",
+    "filename": "editor.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a friendly editor character sitting at a simple desk, rendered with rounded geometric shapes. A monitor displays tidy lines of text, a manuscript page with a red pen rests on the desk, and a small bookshelf sits in the background. Clean lines, cozy aesthetic, warm palette of soft neutrals and gentle reds, no realism, just simplified shapes representing the publishing craft.",
     "requirements": [
@@ -485,7 +417,7 @@
     "description": "Skill XP",
     "writingMultiplier": 1,
     "writingQuality": 1,
-    "filename": "focus_supplements.png",
+    "filename": "focus_supplements.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a small stylized vitamin bottle with a couple of rounded capsules beside it. Clean lines, cozy aesthetic, muted palette of soft oranges and whites, no realism.",
     "requirements": [
@@ -502,7 +434,7 @@
     "effect": 1.25,
     "description": "Inspiration",
     "writingQuality": 2.5,
-    "filename": "home_library.png",
+    "filename": "home_library.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a cozy home library with tall bookshelves filled with colorful simplified book spines. A rounded armchair sits beside a small side table with a lamp, and a rolling ladder leans against the shelves. Clean lines, cozy aesthetic, warm palette of deep browns, soft golds, and rich reds, no realism, just simplified shapes representing a celebrated writer's sanctuary.",
     "requirements": [
@@ -520,7 +452,7 @@
     "description": "Skill XP",
     "writingMultiplier": 1,
     "writingQuality": 1,
-    "filename": "networking_membership.png",
+    "filename": "networking_membership.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of an exclusive membership card called \"The Circle\" with a small subtle star emblem. Clean lines, cozy aesthetic, elegant palette of deep navy and soft gold, no realism.",
     "requirements": [
@@ -537,7 +469,7 @@
     "effect": 6.4,
     "writingMultiplier": 1.4,
     "writingQuality": 1.1,
-    "filename": "studio_apartment.png",
+    "filename": "studio_apartment.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a tidy studio apartment using simple geometric shapes. A laptop sits open on a clean white desk by a large window showing a simplified city skyline. A small bookshelf, a potted plant, and a coffee mug complete the scene. Cozy aesthetic with warm amber and soft grey tones, clean lines, no realistic detail, conveying a hopeful emerging writer's home.",
     "requirements": [
@@ -554,7 +486,7 @@
     "effect": 12.8,
     "writingMultiplier": 1.7,
     "writingQuality": 1.15,
-    "filename": "suburban_house.png",
+    "filename": "suburban_house.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house using simple geometric shapes. Small rectangular windows glow with warm yellow light, a single tree, a neat green lawn, and a paved path to the front door. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
     "requirements": [
@@ -571,7 +503,7 @@
     "effect": 25.6,
     "writingMultiplier": 2.1,
     "writingQuality": 1.2,
-    "filename": "large_house.png",
+    "filename": "large_house.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a spacious two-story modern house using simple geometric shapes. Large rectangular windows glow with warm yellow light, a stone path curves through tidy landscaping, and a pair of trees frame the home. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
     "requirements": [
@@ -588,7 +520,7 @@
     "effect": 51.2,
     "writingMultiplier": 2.6,
     "writingQuality": 1.25,
-    "filename": "city_penthouse.png",
+    "filename": "city_penthouse.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a sleek city penthouse with simplified geometric shapes. Floor-to-ceiling windows reveal a stylized skyline of rectangular buildings at dusk, with a small writing desk and a modern chair inside. A potted plant and a wraparound terrace add warmth. Clean lines, cozy aesthetic, palette of deep navy, soft gold, and warm whites, no realism, just simple shapes evoking upscale urban living.",
     "requirements": [
@@ -605,7 +537,7 @@
     "effect": 102.4,
     "writingMultiplier": 3.2,
     "writingQuality": 1.3,
-    "filename": "private_villa.png",
+    "filename": "private_villa.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a bright coastal villa using simple shapes. A white cubic home sits on a hill above a turquoise sea, with a rectangular infinity pool, rounded olive trees, and a small glass studio. A soft sun hangs in a pastel sky. Clean lines, cozy Mediterranean palette of whites, turquoise, and warm sand tones, no realism, just friendly geometric forms depicting a celebrated author's retreat.",
     "requirements": [
@@ -622,7 +554,7 @@
     "effect": 204.8,
     "writingMultiplier": 4,
     "writingQuality": 1.4,
-    "filename": "mansion_estate.png",
+    "filename": "mansion_estate.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a grand mansion estate using simplified geometric shapes. A wide symmetrical house with warm glowing windows sits behind simple iron gates, with rounded topiary bushes, a curved driveway, and a small reflecting pond. A soft twilight sky frames the scene. Clean lines, cozy palette of deep blues, warm golds, and soft greens, no realism, just stylized shapes conveying legendary author status.",
     "requirements": [
@@ -638,7 +570,7 @@
     "expense": 200,
     "effect": 5,
     "description": "Job XP",
-    "filename": "private_driver.png",
+    "filename": "private_driver.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a sleek black luxury car with a chauffeur standing beside it. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -654,7 +586,7 @@
     "expense": 400,
     "effect": 7.5,
     "description": "Job XP",
-    "filename": "first_class_flights.png",
+    "filename": "first_class_flights.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a luxurious first-class airplane seat with a window showing clouds. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [
@@ -670,7 +602,7 @@
     "expense": 1000,
     "effect": 10,
     "description": "Job XP",
-    "filename": "private_jet.png",
+    "filename": "private_jet.jpg",
     "filefolder": "items",
     "imageprompt": "A flat, minimalist vector illustration of a sleek private jet soaring through a pastel sky. Clean lines, cozy aesthetic, soft palette, no realism.",
     "requirements": [

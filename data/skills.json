@@ -6,7 +6,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Skill ex.",
-    "filename": "focus.png",
+    "filename": "focus.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simple laptop on a desk with a soft glow emanating from its screen, depicted as concentric rounded shapes. A tiny coffee cup and a single sticky note sit beside it. Cozy muted blues and warm off-white tones with simplified geometric shapes, clean outlines, and no realistic detail.",
     "requirements": []
@@ -18,7 +18,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Job ex.",
-    "filename": "time_management.png",
+    "filename": "time_management.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a smartphone displaying a simple grid calendar with rounded colored blocks, resting beside a tiny stack of papers on a clean desk. Soft teal and charcoal tones, simplified geometric shapes, clean linework, and a cozy aesthetic with no realistic detail.",
     "requirements": [
@@ -32,7 +32,7 @@
     "effect": -0.01,
     "writingQuality": 0.01,
     "description": "Expenses",
-    "filename": "frugality.png",
+    "filename": "frugality.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a small piggy bank beside a simple noodle cup and a basic mug on a tidy desk. A tiny budget sheet with simplified lines hangs on the wall. Muted grey and soft green tones, rounded geometric shapes, clean outlines, and a cozy aesthetic.",
     "requirements": [
@@ -46,7 +46,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Inspiration",
-    "filename": "meditation.png",
+    "filename": "meditation.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure sitting cross-legged on a small rounded mat, with a glowing orb-shaped lamp nearby. Soft amber and indigo tones, rounded geometric shapes, clean linework, and a cozy, calming aesthetic with no realistic detail.",
     "requirements": [
@@ -61,7 +61,7 @@
     "effect": 0.01,
     "writingQuality": 0.0,
     "description": "Writing Speed",
-    "filename": "typing_speed.png",
+    "filename": "typing_speed.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simple keyboard with a few motion lines trailing off the keys, and a small monitor above showing a rising bar graph. Soft electric blue and white tones, rounded geometric shapes, clean outlines, and a cozy minimalist aesthetic.",
     "requirements": [
@@ -76,7 +76,7 @@
     "effect": 0.01,
     "writingQuality": 0.02,
     "description": "Creative Industry experience",
-    "filename": "grammar_and_prose.png",
+    "filename": "grammar_and_prose.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of an open laptop showing simple lines of text with a few highlighted marks, beside a small book and a rounded coffee cup. Soft navy and ivory tones, simplified geometric shapes, clean linework, and a cozy aesthetic.",
     "requirements": [
@@ -90,7 +90,7 @@
     "effect": 0.01,
     "writingQuality": 0.02,
     "description": "Literary Elite experience",
-    "filename": "plotting.png",
+    "filename": "plotting.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simple corkboard covered with small colored rectangular cards connected by thin lines, with a tiny laptop beneath it. Soft coral, teal, and off-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
     "requirements": [
@@ -105,7 +105,7 @@
     "effect": 0.01,
     "writingQuality": 0.02,
     "description": "Typing Speed",
-    "filename": "character_dev.png",
+    "filename": "character_dev.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a monitor displaying a simple character silhouette next to a small chart, with tiny portrait cards pinned to a wall nearby. Soft amber and steel blue tones, simplified geometric shapes, clean linework, and a cozy minimalist aesthetic.",
     "requirements": [
@@ -120,7 +120,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Later retirement age",
-    "filename": "healthy_lifestyle.png",
+    "filename": "healthy_lifestyle.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure jogging past a few rounded trees, with a small smoothie bottle and rolled yoga mat in the foreground. Soft green and daylight-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
     "requirements": [
@@ -134,7 +134,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Gamespeed",
-    "filename": "flow_state.png",
+    "filename": "flow_state.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure at a glowing laptop, with soft concentric rings and flowing wave shapes radiating outward. Soft indigo and cyan tones, rounded geometric shapes, clean linework, and a cozy, dreamlike minimalist aesthetic.",
     "requirements": [
@@ -148,7 +148,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Later retirement age",
-    "filename": "longevity_secrets.png",
+    "filename": "longevity_secrets.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified DNA double helix formed from rounded dots and curves, with a small stack of books beneath it. Soft navy and warm gold tones, simplified geometric shapes, clean outlines, and a cozy minimalist aesthetic.",
     "requirements": [
@@ -162,7 +162,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "All experience",
-    "filename": "brand_management.png",
+    "filename": "brand_management.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of three small screens — a laptop, a phone, and a tablet — each displaying the same simplified logo shape. Soft charcoal and warm gold tones, rounded geometric shapes, clean linework, and a cozy aesthetic with no realistic detail.",
     "requirements": [
@@ -177,7 +177,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Fame gain",
-    "filename": "networking.png",
+    "filename": "networking.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a few simplified figures standing together holding small rounded drink glasses, with tiny string lights arcing above them. Soft amber and teal tones, simplified geometric shapes, clean outlines, and a cozy, welcoming aesthetic.",
     "requirements": [
@@ -192,7 +192,7 @@
     "effect": -0.01,
     "writingQuality": 0.01,
     "description": "Expenses",
-    "filename": "public_speaking.png",
+    "filename": "public_speaking.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure standing on a small round stage under a soft spotlight, with a few rounded audience silhouettes in the foreground. Soft charcoal and electric blue tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic.",
     "requirements": [
@@ -207,7 +207,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "All experience",
-    "filename": "personal_brand.png",
+    "filename": "personal_brand.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure silhouette displayed on a large rounded billboard, with tiny star shapes and heart icons floating around it. Soft gold and midnight blue tones, simplified geometric shapes, clean outlines, and a cozy aesthetic.",
     "requirements": [
@@ -222,7 +222,7 @@
     "effect": 0.01,
     "writingQuality": 0.01,
     "description": "Fame gain",
-    "filename": "media_tours.png",
+    "filename": "media_tours.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure seated at a small rounded interview desk with a tiny book propped up, a boom microphone and small camera nearby. Warm studio gold and soft white tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic.",
     "requirements": [
@@ -237,7 +237,7 @@
     "effect": 0.002,
     "writingQuality": 0.01,
     "description": "Job pay",
-    "filename": "royalty_negotiation.png",
+    "filename": "royalty_negotiation.jpg",
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of two simplified figures seated across a small rounded table, a tiny contract and pen between them, with a simple skyline shape in the background. Soft grey and warm gold tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
     "requirements": [

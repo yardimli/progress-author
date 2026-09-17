@@ -3,7 +3,7 @@
     "name": "Acceleration Potion",
     "effect": 4.0,
     "type": "acceleration",
-    "filename": "acceleration_potion.png",
+    "filename": "acceleration_potion.jpg",
     "filefolder": "potions",
     "imageprompt": "A bright orange potion in a rounded flask with a small lightning bolt symbol, flat minimalist vector illustration style, clean cozy aesthetic using simplified shapes rather than realism, warm color palette, gentle shading."
   }

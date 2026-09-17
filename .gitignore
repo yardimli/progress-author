@@ -7,3 +7,5 @@
 /images
 /image-assets
 *.backup1
+/ps_actions
+/original_img

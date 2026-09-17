@@ -2,7 +2,7 @@
   "author1": {
     "name": "Beatrice Hansen",
     "gender": "female",
-    "filename": "beatrice_hansen.png",
+    "filename": "beatrice_hansen.jpg",
     "filefolder": "authors",
     "imageprompt": "A flat, minimalist vector illustration of a glamorous young woman in her early 20s standing up straight and facing forward, arms crossed confidently over her chest. She has a heart-shaped face with high cheekbones, warm olive skin, bright hazel eyes with a subtle smirk, and glossy auburn hair styled in loose waves that fall past her shoulders. She wears a fitted plum cocktail dress with a sweetheart neckline and bold gold geometric statement earrings. Slim, poised build. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, warm palette of soft gold, cream, and deep plum, gentle flat shading, no realism.",
     "multipliers": {
@@ -16,7 +16,7 @@
   "author3": {
     "name": "Rosemary Lis",
     "gender": "female",
-    "filename": "rosemary_lis.png",
+    "filename": "rosemary_lis.jpg",
     "filefolder": "authors",
     "imageprompt": "A flat, minimalist vector illustration of a quiet young woman in her early 20s standing up straight and facing forward, arms crossed gently over her chest. She has a soft round face with pale skin, thoughtful green eyes behind oversized tortoiseshell glasses, light freckles across her nose, and dark chestnut hair pulled back into a low loose ponytail. Petite, slender build. She wears a fit cream linen button-up shirt and muted olive high-waisted trousers. Plain cream background, no scenery. Clean geometric shapes, cozy aesthetic, soft palette of muted green, cream, and warm grey, gentle flat shading, no realism.",
     "multipliers": {
@@ -30,7 +30,7 @@
   "author4": {
     "name": "James Markman",
     "gender": "male",
-    "filename": "james_markman.png",
+    "filename": "james_markman.jpg",
     "filefolder": "authors",
     "imageprompt": "A flat, minimalist vector illustration of a composed young man in his early 20s standing up straight and facing forward, arms crossed neatly over his chest. He has a clean-shaven oval face with fair skin, calm grey-blue eyes behind round wire-framed glasses, and neatly combed dark brown hair with a side part. Slim, tall, refined build with good posture. He wears a crisp dusty-blue Oxford shirt tucked into tailored charcoal trousers with a thin brown belt. Plain cream background, no scenery. Clean simplified shapes, cozy aesthetic, soft palette of dusty blue, cream, and warm grey, gentle flat shading, no realism.",
     "multipliers": {

@@ -1,0 +1,14 @@
+track data for a chart for the player, the detail of the chart should be monthly. it should track total income, expense, royalties, words written, books published, inspiration, book quality. when clicking on the author show a modal with four tabs,
+first tab is profile with a bigger picture of the author and all their achievements, badges, books and other info summarized. under it show the options from the settings modal.
+the second tab is the chart from age 20 to 70, with the unlived parts shown as dashed projection lines.
+third tab is achievements it should at the top show badged earned, and beneath it show the books published along with their info including income quality etc.
+fourth tab should show the logs,
+remove the logs and badges from the header. remove the standalone settings modal and the settings button on the authors photo.
+
+
+i want to remove the usage of requirements.json by moving it into items.json, jobs.json and skills.json
+each record will have zero or more requirements.
+for each requirement use 3 parameters
+type: job, skill, or shop
+name: the name like "Rented Room"
+value: for type shop value is either 0 or 1, for type job value is the level required, for type skill value is the level required.

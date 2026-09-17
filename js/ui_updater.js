@@ -150,7 +150,7 @@ function updateItemRows () {
 
 function getAuthorImageFilename (authorData) {
 	const age = daysToYears(gameData.days);
-	const baseFilename = authorData.filename.replace('.png', '');
+	const baseFilename = authorData.filename.replace('.jpg', '');
 	
 	let ageSuffix = '';
 	if (age >= 60) {
