@@ -68,6 +68,30 @@ test('later levels take longer and extreme boosts have diminishing returns', () 
     g.gameData.workWritingBalance = 0;
     assert.equal(g.getWritingSpeed(), 0);
 });
+test('jobs and skills have cheaper early levels and smoothly rising late costs', () => {
+    const g = game();
+    for (const task of [g.gameData.currentJob, g.gameData.currentSkill]) {
+        const oldCost = level => Math.round(task.baseData.maxXp * (level + 1) * Math.pow(1.01, level) * (1 + level / 100));
+        let previous = 0, earlyTotal = 0, oldEarlyTotal = 0;
+        for (let level = 0; level <= 200; level++) {
+            task.level = level;
+            const cost = task.getMaxXp();
+            assert.ok(cost > previous, `cost must rise at level ${level}`);
+            if (level < 20) { earlyTotal += cost; oldEarlyTotal += oldCost(level); }
+            if (level === 10) assert.ok(cost < oldCost(level) * 0.4);
+            if (level === 20) assert.ok(cost < oldCost(level) * 0.56);
+            if (level >= 40) assert.equal(cost, oldCost(level));
+            previous = cost;
+        }
+        assert.ok(earlyTotal < oldEarlyTotal * 0.5, 'reaching level 20 takes under half the previous XP');
+        task.level = 5;
+        task.xp = task.getMaxXp() + 3;
+        task.getXpGain = () => 0;
+        task.increaseXp();
+        assert.equal(task.level, 6);
+        assert.equal(task.xp, 3, 'saved surplus XP is retained');
+    }
+});
 test('royalty migration preserves legacy income and only runs once', () => {
     const g = game();
     g.gameData.completedBooks = [{ id: 'book1', quality: 0, royalties: 0.1 }];
@@ -113,7 +137,7 @@ test('animation reuses cached nodes and skips unchanged DOM writes', () => {
     for (let i = 0; i < 100; i++) g.updateProgressUI();
     assert.equal(queries, initialQueries);
     assert.equal(writes, initialWrites);
-    g.gameData.currentJob.xp = 25;
+    g.gameData.currentJob.xp = g.gameData.currentJob.getMaxXp() / 2;
     g.updateProgressUI();
     assert.equal(nodes['row Gig Worker'].style.transform, 'scaleX(0.5)');
     g.gameData.currentJob.level = 1;

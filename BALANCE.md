@@ -4,7 +4,12 @@ The calendar now advances one day per real second (previously four). Job pay and
 expenses retain their daily values, so both accumulate four times more slowly.
 Acceleration multiplies that pace by x6.0 for 10 real minutes. It is immediately available on localhost and loopback hosts. Elsewhere it is discovered after 600 seconds of active, visible play; modal pauses and background time do not count. Playtime is saved across reloads and rebirths, and cleared by hard reset. Legacy saves begin tracking from this update.
 
-XP requirements retain the original curve, multiplied by `1 + level / 100`.
+XP requirements use the original curve multiplied by `1 + level / 100`, then
+an early-level factor of `0.3 + 0.7 × (min(level, 40) / 40)^1.5` for both jobs
+and skills. Costs are about 61% lower at level 10 and 45% lower at level 20.
+The discount tapers smoothly to zero at level 40, retaining the existing
+late-game costs. Saved levels and earned XP are kept; excess XP carries into
+the cheaper levels on the next active update.
 Combined XP bonuses above 4× use a square-root curve. Writing bonuses above
 80 words/day grow with diminishing returns and top out at 600 words/day.
 Scene clicks add a quarter-day of writing instead of three days; holding still
