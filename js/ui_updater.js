@@ -323,21 +323,13 @@ function updatePotionsUI () {
 
 function updateBand (bandClass, newHTML) {
 	const bandContent = document.querySelector(`.${bandClass} .info-band-content`);
-	const band = bandContent.parentElement;
 	
-	const fullHTML = `<span class="marquee-item">${newHTML}</span><span class="marquee-item">${newHTML}</span>`;
+	const fullHTML = `<span class="marquee-item">${newHTML}</span><span class="marquee-item duplicate" aria-hidden="true">${newHTML}</span>`;
 	
 	if (bandContent.innerHTML !== fullHTML) {
 		bandContent.innerHTML = fullHTML;
 		
-		setTimeout(() => {
-			const item = bandContent.querySelector('.marquee-item');
-			if (item && item.offsetWidth > band.offsetWidth) {
-				band.classList.add('scrolling');
-			} else {
-				band.classList.remove('scrolling');
-			}
-		}, 50);
+		setTimeout(() => checkBandScrolling(bandClass), 50);
 	}
 }
 
@@ -353,6 +345,11 @@ function updateHeaderVal (className, newText) {
 function checkBandScrolling (bandClass) {
 	const band = document.querySelector(`.${bandClass}`);
 	if (!band) return;
+	// Touch players control their own scroll position; skip marquee measurements.
+	if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) {
+		band.classList.remove('scrolling');
+		return;
+	}
 	
 	const item = band.querySelector('.marquee-item');
 	if (item && item.offsetWidth > band.offsetWidth) {

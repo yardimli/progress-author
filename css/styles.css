@@ -1528,6 +1528,9 @@ button:focus {
 @media (max-width: 768px) {
     .mobile-nav {
         display: flex;
+        box-sizing: border-box;
+        height: calc(60px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     .top-panel-new {
@@ -1537,7 +1540,8 @@ button:focus {
         padding-top: 120px;
     }
     .scroll-container {
-        height: calc(100vh - 120px - 60px);
+        height: calc(100vh - 180px - env(safe-area-inset-bottom, 0px));
+        height: calc(100dvh - 180px - env(safe-area-inset-bottom, 0px));
     }
 
     .four-column-layout {
@@ -1546,6 +1550,9 @@ button:focus {
 
     .panel-column {
         display: none !important;
+        min-height: 0;
+        padding-bottom: 24px;
+        scroll-padding-bottom: 24px;
     }
 
     .panel-column.active-mobile {

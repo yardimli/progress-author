@@ -227,6 +227,26 @@ body .modal .row-value { color: var(--journal-muted); }
 #mobileBadgeModal { z-index: 2025; }
 
 /* Settings share the journal's tabbed, scrollable body. */
+@media (max-width: 768px), (pointer: coarse) {
+    .info-bands-container { min-width: 0; }
+    .info-band {
+        overflow-x: auto;
+        overflow-y: hidden;
+        touch-action: pan-x;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+    }
+    .info-band::-webkit-scrollbar { display: none; }
+    .info-band .info-band-content {
+        display: block;
+        width: max-content;
+        animation: none;
+        transform: none;
+    }
+    .info-band .marquee-item { padding-right: 8px; }
+    .info-band .marquee-item.duplicate { display: none; }
+}
+
 #authorProfileModal .modal-content-large { height: 88dvh; }
 #authorProfileModal #profileTab-chart.active { min-height: 260px; }
 #authorProfileModal .career-chart-frame { min-height: 120px; }
