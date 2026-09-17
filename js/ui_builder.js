@@ -118,13 +118,13 @@ function createAllRows (categoryType, containerId) {
 		if (isJob || isPropertyOrTransport) {
 			lockedPlaceholder.className = 'ui-card locked-card hiddenTask';
 			lockedPlaceholder.innerHTML = `
-        <div class="locked-icon">🔒</div>
+        <div class="locked-icon" role="img" aria-label="Unexplored"><span class="ink-lock"></span></div>
         <div class="locked-text"></div>
       `;
 		} else {
 			lockedPlaceholder.className = 'ui-row locked-row hiddenTask';
 			lockedPlaceholder.innerHTML = `
-        <div class="locked-icon">🔒</div>
+        <div class="locked-icon" role="img" aria-label="Unexplored"><span class="ink-lock"></span></div>
         <div class="row-info">
           <div class="locked-text"></div>
         </div>
@@ -137,6 +137,8 @@ function createAllRows (categoryType, containerId) {
 		if (isItem && categoryName === 'Properties') {
 			const freeItemsDiv = document.createElement('div');
 			freeItemsDiv.className = 'category-section';
+			freeItemsDiv.id = 'bonusItemsSection';
+			freeItemsDiv.hidden = !isAccelerationAvailable();
 			
 			const headerHTML = `
         <div class="category-header" style="margin-top: 25px;">Bonus Items</div>
@@ -150,6 +152,7 @@ function createAllRows (categoryType, containerId) {
 					const row = document.createElement('div');
 					row.className = 'ui-row';
 					row.style.cursor = 'default';
+					row.id = `potion-${potion.type}`;
 					
 					const imgSrc = `img/${potion.filefolder}256/${potion.filename.replace('.png', '.jpg')}`;
 					

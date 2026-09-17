@@ -14,6 +14,7 @@ function updatePauseState () {
 		}
 	}
 	isPaused = anyOpen;
+	if (anyOpen) isHoldingSceneButton = false;
 }
 
 // Queue functions for modals
@@ -45,6 +46,51 @@ function closeTutorialModal () {
 	updatePauseState();
 }
 
+// Describe the same effect categories consumed by formulas.js and mechanics.js.
+function getCardBenefits(name, type, data) {
+	const career = [];
+	const writing = [];
+	if (type === 'job') {
+		career.push('Earn daily pay while working; job levels increase your pay.');
+		writing.push('Each job level adds life experience that improves book quality, with different strengths for each genre.');
+		if (name === 'Full-Time Author') writing.push('While selected, multiplies your raw writing speed by 5 before diminishing returns.');
+	} else if (type === 'item' || type === 'skill') {
+		const effect = data.category === 'Properties' ? 'Inspiration' : data.description;
+		const activeEffect = type === 'skill' || data.effect !== 1;
+		if (activeEffect) {
+			switch (effect) {
+				case 'Job XP': case 'Job ex.': career.push('Gain job levels faster, increasing pay and progressing toward career unlocks.'); break;
+				case 'Creative Industry experience': career.push('Level Creative Industry jobs faster.'); break;
+				case 'Literary Elite experience': career.push('Level Literary Elite jobs faster.'); break;
+				case 'Skill XP': case 'Skill ex.':
+					career.push('Learn career-supporting skills faster.'); writing.push('Learn writing skills faster.'); break;
+				case 'All experience':
+					career.push('Gain job and skill levels faster.'); writing.push('Learn writing skills faster.'); break;
+				case 'Inspiration':
+					career.push('Inspiration speeds up job and skill learning.'); writing.push('Inspiration increases writing speed.'); break;
+				case 'Typing Speed': case 'Typing Speed experience': writing.push('Level the Typing Speed skill faster to improve writing speed.'); break;
+				case 'Writing Craft experience': writing.push('Learn Writing Craft skills faster to develop your manuscripts.'); break;
+				case 'Writing Speed': writing.push('Increase writing speed to finish manuscripts sooner.'); break;
+				case 'Expenses': career.push('Reduce daily upkeep, leaving more income to save.'); break;
+				case 'Job pay': career.push('Increase pay from your active job.'); break;
+				case 'Fame gain': writing.push('Earn more Fame when starting a new lifetime; Fame improves royalties on future books.'); break;
+				case 'Later retirement age': career.push('Extend your working lifetime.'); writing.push('Have more in-game years to finish books.'); break;
+				case 'Gamespeed': career.push('With Flow enabled, work and learning advance faster, along with aging and upkeep.'); writing.push('With Flow enabled, manuscripts advance faster in real time.'); break;
+			}
+		}
+		if (name === 'Walking') career.push('Your free starting commute keeps job learning at its normal rate.');
+		if (name === 'Focus') writing.push('Also increases writing speed directly.');
+		if (name === 'Plotting') writing.push('Raises the word-count limit for your manuscripts.');
+		if (name === 'Royalty Negotiation') writing.push('Increases royalties from books published after training.');
+		if ((type === 'skill' && data.writingQuality > 0) || (type === 'item' && data.writingQuality > 1)) writing.push('Improves book quality, helping new books earn more royalties.');
+		if (type === 'item' && data.writingMultiplier > 1) writing.push('Increases writing speed to finish manuscripts sooner.');
+	} else if (type === 'potion') {
+		career.push('Speeds up work and learning, along with aging and upkeep.');
+		writing.push('Speeds up manuscript progress for the duration of the potion.');
+	}
+	return { career, writing };
+}
+
 function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	const name = imgElement.getAttribute('data-name');
 	const type = imgElement.getAttribute('data-type');
@@ -58,7 +104,22 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	const modalContent = modal.querySelector('.modal-content');
 	
 	modalImg.src = imgElement.src;
+	modalImg.alt = name;
 	modalTitle.textContent = name;
+	const stats = document.getElementById('modalStats');
+	const task = gameData.taskData[name];
+	const item = gameData.itemData[name];
+	let statRows = [];
+	if ((type === 'job' || type === 'skill') && task) {
+		statRows = [['Level', task.level], ['Next level', `${format(task.xp, 0)} / ${format(task.getMaxXp(), 0)} XP`]];
+		statRows.push(type === 'job' ? ['Daily pay', `$${format(task.getIncome())}`] : ['Mastery', task.getEffectDescription()]);
+	} else if (type === 'item' && item) {
+		statRows = [['Daily upkeep', `$${format(item.getExpense())}`], ['Benefit', item.getEffectDescription()]];
+	} else if (type === 'potion' && potionsBaseData[name]) {
+		statRows = [['Bonus', `×${potionsBaseData[name].effect.toFixed(1)}`], ['Duration', '10 minutes']];
+	}
+	stats.innerHTML = statRows.map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join('');
+	stats.hidden = statRows.length === 0;
 	
 	let categoryText = '';
 	let actionWord = '';
@@ -108,16 +169,20 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	}
 	
 	let descriptionText = tooltips[name] || '';
+	const benefits = getCardBenefits(name, type, (task || item)?.baseData || potionsBaseData[name] || {});
+	for (const [area, sentences] of Object.entries(benefits)) {
+		if (sentences.length) descriptionText += `<p class="card-benefit"><b>${area === 'career' ? 'Career' : 'Writing'}:</b> ${sentences.join(' ')}</p>`;
+	}
 	if (isBadge && badgeBaseData && badgeBaseData[name.toLowerCase().replace(/ /g, '_')]) {
 		const badge = badgeBaseData[name.toLowerCase().replace(/ /g, '_')];
 		descriptionText = badge.description;
-		descriptionText += `<br><br><b style="color:#4CAF50;">Effect: ${badge.effect.text}</b>`;
+		descriptionText += `<br><br><b style="color:var(--journal-positive);">Effect: ${badge.effect.text}</b>`;
 	}
 	if (type === 'job') {
 		const task = gameData.taskData[name];
 		if (task) {
-			descriptionText += `<br><br><b style="color:#888;">Writing Experience Bonuses</b><br>
-            <span style="font-size: 0.9em; color: #aaa;">
+			descriptionText += `<br><br><b style="color:var(--journal-muted);">Writing Experience Bonuses</b><br>
+            <span style="font-size: 0.9em; color: var(--journal-muted);">
             Hardship: +${task.hardship},
             Observation: +${task.observation},
             Escapism: +${task.escapism},
@@ -169,11 +234,11 @@ function showBadgeModal(badgeId) {
 		effectEl.innerHTML = `<b>Effect:</b> ${badge.effect.text}`;
 		effectEl.style.display = 'block';
 		statusEl.textContent = 'Status: Unlocked';
-		statusEl.style.color = '#4CAF50';
+		statusEl.style.color = 'var(--journal-positive)';
 	} else {
 		effectEl.style.display = 'none';
 		statusEl.textContent = 'Status: Locked';
-		statusEl.style.color = '#f44336';
+		statusEl.style.color = 'var(--journal-danger)';
 	}
 	
 	modal.style.display = 'flex';
@@ -199,64 +264,44 @@ function closeMobileBadgeModal() {
 }
 
 
+var selectedAuthorIndex = 0;
+
 function showAuthorSelection () {
-	const screen = document.getElementById('authorSelectionScreen');
-	const grid = document.getElementById('authorSelectionGrid');
-	grid.innerHTML = '';
-	
-	for (const key in authorsBaseData) {
-		const author = authorsBaseData[key];
-		const mults = author.multipliers;
-		
-		const card = document.createElement('div');
-		card.className = 'ui-card';
-		card.style.cursor = 'default';
-		
-		const img = document.createElement('img');
-		img.className = 'card-image';
-		img.style.cursor = 'pointer';
-		const filefolder = author.filefolder + '256';
-		const filename = author.filename.replace('.png', '.jpg');
-		img.src = `img/${filefolder}/${filename}`;
-		img.onclick = () => showAuthorBio(key);
-		
-		const name = document.createElement('div');
-		name.className = 'card-title';
-		name.style.fontSize = '1.1em';
-		name.style.marginTop = '5px';
-		name.textContent = author.name;
-		
-		const stats = document.createElement('div');
-		stats.style.fontSize = '0.9em';
-		stats.style.color = '#888';
-		stats.style.textAlign = 'left';
-		stats.style.marginTop = '10px';
-		stats.style.marginBottom = '15px';
-		stats.style.lineHeight = '1.5';
-		stats.style.width = '100%';
-		stats.innerHTML = `
-      <b>Hardship:</b> x${mults.hardship.toFixed(1)}<br>
-      <b>Observation:</b> x${mults.observation.toFixed(1)}<br>
-      <b>Escapism:</b> x${mults.escapism.toFixed(1)}<br>
-      <b>Social:</b> x${mults.social.toFixed(1)}
-    `;
-		
-		const selectBtn = document.createElement('button');
-		selectBtn.className = 'btn';
-		selectBtn.style.marginTop = 'auto';
-		selectBtn.style.width = '100%';
-		selectBtn.textContent = 'Select';
-		selectBtn.onclick = () => selectAuthor(key);
-		
-		card.appendChild(img);
-		card.appendChild(name);
-		card.appendChild(stats);
-		card.appendChild(selectBtn);
-		grid.appendChild(card);
-	}
-	
-	screen.style.display = 'flex';
-	updatePauseState();
+    selectedAuthorIndex = 0;
+    renderAuthorChoice();
+    document.getElementById('authorSelectionScreen').style.display = 'flex';
+    updatePauseState();
+}
+
+function cycleAuthor(direction) {
+    const count = Object.keys(authorsBaseData).length;
+    selectedAuthorIndex = (selectedAuthorIndex + direction + count) % count;
+    renderAuthorChoice();
+}
+
+function renderAuthorChoice() {
+    const keys = Object.keys(authorsBaseData);
+    const key = keys[selectedAuthorIndex];
+    const author = authorsBaseData[key];
+    const grid = document.getElementById('authorSelectionGrid');
+    grid.innerHTML = `
+        <article class="author-choice">
+            <div class="author-choice-portrait">
+                <img src="img/${author.filefolder}256/${author.filename.replace('.png', '.jpg')}" alt="${author.name}">
+                <span class="portrait-caption">An unwritten life · Age 20</span>
+            </div>
+            <div class="author-choice-story">
+                <span class="journal-kicker">Your protagonist · ${selectedAuthorIndex + 1} / ${keys.length}</span>
+                <h2>${author.name}</h2>
+                <p>${author.biography.split('<br>')[0]}</p>
+                <div class="author-traits">${Object.entries(author.multipliers).map(([name, value]) => `<div><span>${name}</span><strong>×${value.toFixed(1)}</strong></div>`).join('')}</div>
+                <button class="btn author-bio-button">Read their story</button>
+                <button class="btn journey-primary author-select-button">Begin as ${author.name.split(' ')[0]}</button>
+            </div>
+        </article>`;
+    grid.querySelector('.author-bio-button').onclick = () => showAuthorBio(key);
+    grid.querySelector('.author-select-button').onclick = () => selectAuthor(key);
+    document.getElementById('authorChoicePosition').textContent = `${selectedAuthorIndex + 1} / ${keys.length}`;
 }
 
 function selectAuthor (authorId) {
@@ -305,6 +350,8 @@ function updateIntroSlide () {
 	const filefolder = slide.filefolder + '256';
 	const filename = slide.filename.replace('.png', '.jpg');
 	imgEl.src = `img/${filefolder}/${filename}`;
+	imgEl.alt = slide.title;
+	document.getElementById('introChapter').textContent = `Chapter ${currentIntroSlide + 1} / ${slideKeys.length}`;
 	
 	const prevBtn = document.getElementById('introPrevBtn');
 	const nextBtn = document.getElementById('introNextBtn');
@@ -405,8 +452,8 @@ function showBookFinishedModal (bookId, quality, royalty) {
 	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
 	
 	statsBox.innerHTML = `
-		<div style="margin-bottom: 8px; font-size: 1.1em;"><b>Final Quality:</b> <span style="color: #4CAF50;">${quality.toFixed(1)}%</span></div>
-		<div style="font-size: 1.1em;"><b>Royalties Earned:</b> <span style="color: #219ebc;">+$${format(royalty)}/day</span></div>
+		<div style="margin-bottom: 8px; font-size: 1.1em;"><b>Final Quality:</b> <span style="color: var(--journal-positive);">${quality.toFixed(1)}%</span></div>
+		<div style="font-size: 1.1em;"><b>Royalties Earned:</b> <span style="color: var(--chart-royalties);">+$${format(royalty)}/day</span></div>
 	`;
 	
 	modal.style.display = 'flex';
@@ -487,8 +534,10 @@ function showAuthorProfileModal () {
 	profileImg.src = `img/${filefolder}/${filename}`;
 	
 	document.getElementById('profileAuthorName').textContent = author.name;
+	document.getElementById('profileCareerStats').innerHTML = `<div><span>Age</span><strong>${daysToYears(gameData.days)}</strong></div><div><span>Books</span><strong>${gameData.booksPublished}</strong></div><div><span>Royalties / day</span><strong>$${format(gameData.royalties)}</strong></div><div><span>Badges</span><strong>${gameData.earnedBadges.length}</strong></div>`;
 	document.getElementById('profileAuthorBio').innerHTML = author.biography;
 	document.getElementById('profileGameVersion').textContent = 'v' + GAME_VERSION;
+	syncThemeControl();
 	
 	// --- Populate Achievements Tab ---
 	const achievementsGrid = document.getElementById('profileAchievementsGrid');
@@ -545,10 +594,8 @@ function closeAuthorProfileModal () {
 }
 
 function renderAuthorChart () {
-	// A small delay to ensure the canvas is visible and has its final dimensions
-	setTimeout(() => {
-		drawAuthorChart('authorChart', gameData.monthlyChartData);
-	}, 100);
+	observeAuthorChart();
+	requestAuthorChartDraw();
 }
 
 

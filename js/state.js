@@ -40,10 +40,14 @@ var gameData = {
 	
 	// The 'unlocks' object now tracks all unlockable entities.
 	unlocks: {},
+	activePlaySeconds: 0,
+	nextCardUnlockAt: 0,
+	accelerationUnlocked: false,
 	
 	wordsWritten: 0,
 	booksPublished: 0,
 	royalties: 0,
+	royaltyBalanceVersion: 0,
 	loggedDeath: false,
 	
 	currentAuthor: null,
@@ -82,7 +86,8 @@ var tempData = {
 
 // Constants
 const baseLifespan = 365 * 70;
-const baseGameSpeed = 4;
+// One game day per second gives the opening career room to breathe.
+const baseGameSpeed = 1;
 const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 
 // Variables for requestAnimationFrame loop

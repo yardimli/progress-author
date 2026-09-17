@@ -51,7 +51,7 @@
     "requirements": [
       {
         "type": "coins",
-        "value": 10000
+        "value": 13000
       }
     ]
   },
@@ -167,7 +167,7 @@
     "requirements": [
       {
         "type": "coins",
-        "value": 150000
+        "value": 175000
       }
     ]
   },
@@ -475,7 +475,7 @@
     "requirements": [
       {
         "type": "coins",
-        "value": 50000
+        "value": 60000
       }
     ]
   },
@@ -592,7 +592,7 @@
     "requirements": [
       {
         "type": "coins",
-        "value": 15000000
+        "value": 18000000
       }
     ]
   },
@@ -608,7 +608,7 @@
     "requirements": [
       {
         "type": "coins",
-        "value": 50000000
+        "value": 60000000
       }
     ]
   }

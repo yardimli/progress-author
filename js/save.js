@@ -1,4 +1,5 @@
 // LocalStorage, import/export, data assignment
+let isResettingSave = false;
 
 function assignMethods() {
 	for (let key in gameData.taskData) {
@@ -49,6 +50,8 @@ function replaceSaveDict(dict, saveDict) {
 }
 
 function saveGameData() {
+	// Reset must also win over queued idle saves and the pagehide flush.
+	if (isResettingSave) return;
 	localStorage.setItem("authorsJourneySave", JSON.stringify(gameData));
 }
 
@@ -119,9 +122,23 @@ function loadGameData() {
 	}
 	
 	assignMethods();
+	// Reloading is not a month boundary; start tracking from the restored date.
+	tempData.monthlyTracker.lastDayChecked = gameData.days;
+	// Top up existing books once; preserve any legacy/repeat-publication income.
+	if (gameData.royaltyBalanceVersion !== 1) {
+		for (const book of gameData.completedBooks) {
+			const previous = book.royalties || 0;
+			book.royalties = Math.max(previous, getBookRoyalty(book.quality || 0));
+			gameData.royalties += book.royalties - previous;
+		}
+		gameData.royaltyBalanceVersion = 1;
+	}
 }
 
 function resetGameData() {
+	isResettingSave = true;
+	isPaused = true;
+	isInitialized = false;
 	localStorage.removeItem("authorsJourneySave");
 	location.reload();
 }

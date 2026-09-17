@@ -7,24 +7,19 @@ function updateLogic () {
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
-    checkBadgeUnlocks();
-    checkRebirthPrompts();
     trackMonthlyData();
 }
 
 function gameLoop (currentTime) {
     deltaTime = (currentTime - lastTime) / 1000;
     
-    // Limit frame rate to ~60 FPS to reduce CPU load
-    // Returning here without updating lastTime ensures deltaTime accumulates correctly
-    if (deltaTime < 0.016) {
+    lastTime = currentTime;
+    // Background tabs suspend rAF. Resume without a giant simulation/UI burst.
+    deltaTime = Math.min(Math.max(deltaTime, 0), 0.1);
+    if (document.hidden) {
         requestAnimationFrame(gameLoop);
         return;
     }
-    
-    lastTime = currentTime;
-    
-    if (deltaTime > 86400) deltaTime = 86400;
     
     // Process popup queue immediately if not paused
     if (!isPaused && popupQueue.length > 0) {
@@ -40,6 +35,8 @@ function gameLoop (currentTime) {
     
     // Only update game logic if not paused
     if (!isPaused) {
+        if (isInitialized && isAlive()) window.AuthorStats?.addPlayTime(deltaTime);
+        gameData.activePlaySeconds += deltaTime;
         // Update potion timers (real-time)
         if (gameData.potions.inspiration > 0) {
             gameData.potions.inspiration -= deltaTime;
@@ -59,15 +56,18 @@ function gameLoop (currentTime) {
         updateLogic();
         
         textUpdateTimer += deltaTime;
-        if (textUpdateTimer >= 0.2) {
-            textUpdateTimer -= 0.2;
+        if (textUpdateTimer >= 0.25) {
+            textUpdateTimer %= 0.25;
+            checkBadgeUnlocks();
+            checkRebirthPrompts();
             updateUI();
         }
+        updateProgressUI();
     }
     
     saveTimer += deltaTime;
     if (saveTimer >= 3) {
-        saveGameData();
+        scheduleGameSave();
         saveTimer -= 3;
     }
     
@@ -135,19 +135,19 @@ async function init () {
             badgesRes
         ] = await Promise.all([
             fetch('data/jobs.json?' + gameData.version),
-            fetch('data/skills.json?' + gameData.version),
-            fetch('data/items.json?' + gameData.version),
+            fetch('data/skills.json?balance=2&v=' + gameData.version),
+            fetch('data/items.json?balance=2&v=' + gameData.version),
             fetch('data/headerRowColors.json?' + gameData.version),
-            fetch('data/tooltips.json?' + gameData.version),
+            fetch('data/tooltips.json?balance=3&v=' + gameData.version),
             fetch('data/authors.json?' + gameData.version),
             fetch('data/books.json?' + gameData.version),
-            fetch('data/potions.json?' + gameData.version),
+            fetch('data/potions.json?balance=2&v=' + gameData.version),
             fetch('data/lifeExperiences.json?' + gameData.version),
             fetch('data/genres.json?' + gameData.version),
             fetch('data/sceneTypes.json?' + gameData.version),
             fetch('data/genreIdeals.json?' + gameData.version),
             fetch('data/booksFirstPage.json?' + gameData.version),
-            fetch('data/introSlides.json?' + gameData.version),
+            fetch('data/introSlides.json?art=journal-1&v=' + gameData.version),
             fetch('data/badges.json?' + gameData.version)
         ]);
         
@@ -227,3 +227,19 @@ function continueInit () {
 }
 
 window.onload = init;
+
+// Serialize saves outside animation work; flush when leaving the page.
+let pendingGameSave = false;
+function scheduleGameSave() {
+    if (isResettingSave || pendingGameSave) return;
+    pendingGameSave = true;
+    const persist = () => {
+        pendingGameSave = false;
+        saveGameData();
+    };
+    if (window.requestIdleCallback) window.requestIdleCallback(persist, { timeout: 1000 });
+    else setTimeout(persist, 0);
+}
+window.addEventListener('pagehide', () => {
+    if (isInitialized) saveGameData();
+});

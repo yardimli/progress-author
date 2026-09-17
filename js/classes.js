@@ -14,7 +14,7 @@ class Task {
     }
     
     getMaxXp() {
-        return Math.round(this.baseData.maxXp * (this.level + 1) * Math.pow(1.01, this.level));
+        return Math.round(this.baseData.maxXp * (this.level + 1) * Math.pow(1.01, this.level) * (1 + this.level / 100));
     }
     
     getXpLeft() {
@@ -26,7 +26,7 @@ class Task {
     }
     
     getXpGain() {
-        return applyMultipliers(10, this.xpMultipliers);
+        return 10 * softenMultiplier(applyMultipliers(10, this.xpMultipliers) / 10);
     }
     
     increaseXp() {

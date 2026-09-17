@@ -29,8 +29,7 @@ function updateWorkWritingBalance (value) {
 }
 
 function setLightDarkMode () {
-	const body = document.getElementById('body');
-	body.classList.contains('dark') ? body.classList.remove('dark') : body.classList.add('dark');
+    setGameTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
 }
 
 function logEvent (message) {

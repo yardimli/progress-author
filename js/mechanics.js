@@ -1,5 +1,45 @@
 // Writing process, rebirth, death
 
+function isLocalGameHost(hostname = window.location?.hostname || '') {
+	return /^(localhost|.*\.localhost|127(?:\.\d{1,3}){3}|\[?::1\]?)$/i.test(hostname);
+}
+
+function isAccelerationAvailable() {
+	return isLocalGameHost() || (gameData.accelerationUnlocked && gameData.activePlaySeconds >= 600);
+}
+
+function getAccelerationMultiplier() {
+	return potionsBaseData?.['Acceleration Potion']?.effect ?? 6;
+}
+
+// A single discovery budget across jobs, skills, equipment and the bonus potion.
+// Starting cards are available immediately; already discovered cards stay known.
+function discoverNextCard() {
+	const groups = [[jobBaseData, 'job'], [skillBaseData, 'skill'], [itemBaseData, 'item']];
+	for (const [data] of groups) {
+		for (const entity of Object.values(data || {})) {
+			if (!entity.requirements?.length) gameData.unlocks[entity.name] = true;
+		}
+	}
+	if (!isInitialized || isPaused || popupQueue.length || gameData.activePlaySeconds < gameData.nextCardUnlockAt) return null;
+	let discovery = null;
+	if (!isLocalGameHost() && !gameData.accelerationUnlocked && gameData.activePlaySeconds >= 600) {
+		gameData.accelerationUnlocked = true;
+		discovery = { name: 'Acceleration Potion', type: 'potion' };
+	} else {
+		for (const [data, type] of groups) {
+			const entity = Object.values(data || {}).find(entity => !gameData.unlocks[entity.name] && areRequirementsMet(entity));
+			if (entity) {
+				gameData.unlocks[entity.name] = true;
+				discovery = { name: entity.name, type };
+				break;
+			}
+		}
+	}
+	if (discovery) gameData.nextCardUnlockAt = gameData.activePlaySeconds + 10;
+	return discovery;
+}
+
 // This helper function now checks for item ownership via the 'shop' type.
 function areRequirementsMet (entity) {
 	if (!entity.requirements || entity.requirements.length === 0) {
@@ -204,6 +244,7 @@ function setMisc (miscName) {
 }
 
 function drinkPotion (type) {
+	if (type === 'acceleration' && !isAccelerationAvailable()) return;
 	if (gameData.potions[type] <= 0) {
 		gameData.potions[type] = 600;
 		if (type === 'inspiration') {
@@ -264,7 +305,8 @@ function getRawWritingSpeed () {
 }
 
 function getWritingSpeed () {
-	return Math.min(1000, getRawWritingSpeed());
+	const rawSpeed = getRawWritingSpeed();
+	return Math.min(600, 40 * softenMultiplier(rawSpeed / 40, 2));
 }
 
 function getQualityMultiplier () {
@@ -495,12 +537,13 @@ function writeProgress (sceneType, timeInSeconds) {
 }
 
 function handleSceneClick (sceneType) {
+	if (isPaused || !isAlive()) return;
 	currentAutoSceneType = sceneType;
 	nextSceneType = sceneType;
 	
 	if (gameData.currentBook) {
 		const speedPerDay = getWritingSpeed();
-		const words = speedPerDay * 3;
+		const words = speedPerDay * 0.25;
 		
 		if (words > 0) {
 			gameData.wordsWritten += words;
@@ -542,14 +585,7 @@ function finishBook () {
 	const rawQuality = baseQuality * qualityMultiplier * compMultiplier;
 	const quality = getCurvedQuality(rawQuality);
 	
-	const fame = gameData.fame;
-	const sales = (quality / 100) * (fame + 10) * 5;
-	let royalty = sales * 0.1;
-	royalty *= getBadgeMultiplier("royalties");
-	
-	if (royalty < 0.10) {
-		royalty = 0.10;
-	}
+	const royalty = getBookRoyalty(quality);
 	
 	gameData.royalties += royalty;
 	gameData.booksPublished += 1;
@@ -644,6 +680,7 @@ function rebirthReset () {
 	}
 	
 	gameData.unlocks = {};
+	gameData.nextCardUnlockAt = gameData.activePlaySeconds + 10;
 }
 
 function getLifespan () {

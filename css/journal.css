@@ -1,0 +1,245 @@
+/* Shared tokens also drive canvas colors; theme.js follows the device by default. */
+:root {
+    --journal-paper: #f2e5be; --journal-ink: #302b24; --journal-muted: #6d5b40;
+    --journal-glow: #fff7df80; --journal-border: #b39a6a;
+    --journal-button: #e3d5b5; --journal-hover: #d4bd8b;
+    --journal-positive: #355d47; --journal-danger: #9a493b;
+    --chart-paper: #ebdfb9; --chart-grid: #bdab8870;
+    --chart-income: #3d684e; --chart-expense: #a55043;
+    --chart-royalties: #497a80; --chart-words: #987123;
+}
+/* Soft yellow paper across the game, with warmer edges between sheets. */
+body:not(.dark) { background-color: #e9ddb7; color: #382f23; }
+body:not(.dark) .fixed-header-wrapper { background-color: #e9ddb7; }
+body:not(.dark) :is(.panel, .category-header, .mobile-nav) { background-color: #f8efcf; border-color: #cdbc91; }
+body:not(.dark) .top-panel-new { background-color: #ecdfb7; }
+body:not(.dark) :is(.ui-card, .ui-row) { background-color: #fcf4da; border-color: #d9c99f; }
+body:not(.dark) :is(.ui-card, .ui-row):hover { background-color: #f1e4ba; border-color: #bca674; }
+body:not(.dark) :is(.ui-card, .ui-row).active { background-color: #e9edcf; border-color: #698459; }
+body:not(.dark) :is(.locked-card, .locked-row, .locked-card:hover, .locked-row:hover, .top-log-container) { background-color: #ede2c1; border-color: #d6c59a; }
+body:not(.dark) :is(.btn, .item-button) { background-color: #f5e8bd; color: #443823; border-color: #c6af7c; }
+body:not(.dark) :is(.btn, .item-button):hover { background-color: #ead7a2; }
+body:not(.dark) .mobile-nav-btn.active { background-color: #e5d29e; color: #382f23; }
+body:not(.dark) :is(input, select, textarea) { background-color: #fff6da; color: #382f23; border-color: #c6af7c; }
+body.dark {
+    --journal-paper: #202c29; --journal-ink: #eee2c8; --journal-muted: #c0b394;
+    --journal-glow: #61756318; --journal-border: #806e4e;
+    --journal-button: #33453e; --journal-hover: #475d4e;
+    --journal-positive: #a6c698; --journal-danger: #e6a08b;
+    --chart-paper: #1b2523; --chart-grid: #a2947050;
+    --chart-income: #a6c698; --chart-expense: #e6a08b;
+    --chart-royalties: #8ec3c5; --chart-words: #dfbc70;
+}
+/* Ink, aged paper and brass: the same tactile world as the illustrated cards. */
+body .modal {
+    background: rgba(15, 19, 19, .84);
+    backdrop-filter: blur(5px);
+}
+body .modal .modal-content {
+    color: var(--journal-ink);
+    background: radial-gradient(ellipse at top left, var(--journal-glow), transparent 65%), repeating-linear-gradient(0deg, #89704b08 0 1px, transparent 1px 4px), var(--journal-paper);
+    border: 1px solid var(--journal-border);
+    border-radius: 3px;
+    box-shadow: 0 0 0 5px #242b29, 0 0 0 6px #89734e, 0 24px 100px #0009;
+    max-height: 88dvh;
+}
+body .modal .btn {
+    border: 1px solid #9b835a;
+    border-radius: 2px;
+    background: var(--journal-button);
+    color: var(--journal-ink);
+    box-shadow: inset 0 0 0 2px #f8edd540, 0 2px 0 #8f7855;
+    padding: 10px 18px;
+}
+body .modal .btn:hover {
+    background: var(--journal-hover);
+}
+body .modal button:focus-visible { outline: 3px solid #8b592b; outline-offset: 4px; }
+#authorSelectionScreen .journey-primary, #introModal #introNextBtn {
+    color: #f5e9cd !important; background: #304d47 !important; border-color: #233f38 !important;
+}
+.journal-kicker { display: block; color: var(--journal-muted); font-size: 11px; font-weight: bold; letter-spacing: .18em; text-transform: uppercase; }
+#authorSelectionScreen .modal-content { width: min(900px, 92vw) !important; max-width: 900px !important; height: auto; padding: 28px 34px; overflow-y: auto; }
+#authorSelectionScreen > .modal-content > .journal-kicker { text-align: center; }
+#authorSelectionScreen h1 { font-size: clamp(25px, 3vw, 38px); margin: 6px 0; font-weight: normal; }
+#authorSelectionScreen .modal-subtitle-center { color: var(--journal-muted); margin: 0 0 24px; }
+#authorSelectionGrid { display: block; }
+.author-choice { display: grid; grid-template-columns: minmax(180px, .85fr) 1.15fr; gap: 30px; }
+.author-choice-portrait { align-self: start; padding: 7px; border: 1px solid #8b7755; background: #292d29; box-shadow: 5px 6px 0 #a18b6340; }
+.author-choice-portrait img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.portrait-caption { display: block; color: #c9b98f; font-style: italic; font-size: 12px; padding: 9px 3px 3px; text-align: center; }
+.author-choice-story h2 { font-size: 30px; font-weight: normal; margin: 5px 0 12px; line-height: 1.2; }
+.author-choice-story p { color: var(--journal-muted); font-size: 14px; line-height: 1.65; }
+.author-traits { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #ae96704d; margin: 18px 0; }
+.author-traits > div { display: flex; justify-content: space-between; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #ae96703d; }
+.author-traits span { text-transform: capitalize; color: var(--journal-muted); font-size: 12px; }
+.author-traits strong { color: var(--journal-positive); }
+.author-choice-story .btn { margin: 0 8px 10px 0; }
+.author-navigation { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #ae9670; margin-top: 24px; padding-top: 16px; }
+#authorChoicePosition { color: var(--journal-muted); font-size: 13px; }
+#introModal .modal-content { max-width: 930px; padding: 30px; gap: 32px; overflow-y: auto; }
+#introModal .book-modal-left { width: 36%; align-self: center; }
+#introModal .book-modal-left img { border: 6px solid #303630; border-radius: 1px; box-shadow: 0 0 0 1px #927747, 7px 8px 0 #a18b6330; box-sizing: border-box; }
+#introModal .book-modal-right { min-width: 0; max-height: none; }
+#introModal h2 { font-size: 30px; font-weight: normal; line-height: 1.2; margin-top: 10px; }
+#introModal .tutorial-text, #authorBioModal .bio-text { color: var(--journal-muted); }
+#introModal .intro-modal-footer { border-color: #ac9671; margin-top: 10px; }
+#authorProfileModal .modal-content-large { width: min(980px, 94vw) !important; max-width: 980px !important; }
+.journal-heading { padding: 20px 30px 12px; background: #273d37; border-bottom: 3px double #b99c65; }
+.journal-heading .journal-kicker { color: #baa779; }
+.journal-heading h2 { margin: 3px 0 0; font-weight: normal; font-size: 28px; color: #f1e4c8; }
+#authorProfileModal .profile-modal-tabs { padding: 14px 24px 0; gap: 6px; border-color: #aa9068; }
+#authorProfileModal .tab-btn { color: var(--journal-muted); background: var(--journal-button); border: 1px solid #ac9063; border-radius: 2px 2px 0 0; font-size: 14px; }
+#authorProfileModal .tab-btn.active { color: #fff0ca; background: #3c5549; border-color: #3c5549; }
+#authorProfileModal .profile-modal-body { padding: 24px 30px; }
+#profileTab-profile .profile-author-image { border-radius: 0; border: 6px solid #303630; box-shadow: 0 0 0 1px #9b8054; width: 190px; height: 190px; }
+#profileAuthorName { font-size: 20px; max-width: 220px; }
+#profileAuthorBio { color: var(--journal-muted); font-size: 14px; line-height: 1.7; }
+#authorProfileModal h3 { color: var(--journal-muted); font-size: 16px; }
+.profile-settings-section { border-top: 1px solid #ad9468; margin-top: 20px; padding-top: 14px; }
+
+#authorProfileModal .profile-modal-footer { border-color: #ad9468; background: var(--journal-button); padding: 12px 30px; }
+#authorProfileModal .badge-wrapper { background: #c9b58f33; border: 1px solid #ae91624d; padding: 8px; }
+#authorProfileModal .log-entry { padding: 12px 0; border-bottom: 1px dashed #ac967180; }
+.locked-card .locked-icon, .locked-row .locked-icon { display: flex; justify-content: center; align-items: center; width: 58px; height: 58px; flex-shrink: 0; background: radial-gradient(ellipse, #5c6054, #252e2b); border: 1px solid #aa946e; box-shadow: inset 0 0 0 3px #202b27; border-radius: 2px; }
+.ink-lock { position: relative; display: block; width: 24px; height: 23px; margin-top: 12px; background: repeating-linear-gradient(135deg, #beaa7c 0 2px, #a89164 2px 3px); border: 2px solid #d3c299; box-shadow: 2px 2px #15231f; }
+.ink-lock::before { content: ''; position: absolute; width: 14px; height: 16px; left: 3px; top: -18px; border: 3px solid #c4b18a; border-bottom: 0; border-radius: 10px 10px 0 0; }
+.ink-lock::after { content: ''; position: absolute; left: 10px; top: 7px; width: 5px; height: 10px; background: #28352d; border-radius: 50% 50% 0 0; }
+.locked-text { color: var(--journal-muted); }
+.progressFill, #writingProgressBar, .potion-fill { width: 100%; transform: scaleX(0); transform-origin: left center; transition: none; }
+.potion-timer { height: 30px; position: relative; overflow: hidden; background: #d8d1bc; border-radius: 3px; }
+.potion-fill { height: 100%; background: #799267; }
+.potion-time { position: absolute; inset: 0; display: grid; place-items: center; color: #26342b; font-weight: bold; }
+.active .progressFill, #writingProgressBar, .potion-fill { will-change: transform; }
+.dark #authorSelectionScreen .modal-content { background-color: var(--journal-paper); }
+@media (max-width: 650px) {
+    #authorSelectionScreen .modal-content { padding: 20px; }
+    .author-choice { grid-template-columns: 1fr; gap: 20px; }
+    .author-choice-portrait { width: 165px; justify-self: center; }
+    .author-choice-story h2 { font-size: 26px; }
+    .author-navigation .btn { padding: 9px; font-size: 12px; }
+    #introModal .modal-content { flex-direction: column; padding: 22px; gap: 20px; }
+    #introModal .book-modal-left { display: block; width: 130px; }
+    #introModal h2 { font-size: 25px; }
+    #authorProfileModal .profile-modal-tabs { padding: 10px 10px 0; gap: 3px; }
+    #authorProfileModal .tab-btn { flex: 1; padding: 9px 4px; font-size: 12px; }
+    #authorProfileModal .profile-modal-body { padding: 20px; }
+    .journal-heading { padding: 15px 20px; }
+}
+
+/* All dialogs share the journal treatment, including rarer career events. */
+body .modal .modal-content {
+    width: min(600px, calc(100vw - 32px)); overflow-y: auto; padding: 28px;
+    scrollbar-color: var(--journal-border) var(--journal-paper);
+}
+body .modal .modal-content.book-modal-content { width: min(850px, calc(100vw - 32px)); max-width: 850px; }
+body .modal :is(h1, h2, h3, h4, .modal-title) { color: var(--journal-ink); }
+body .modal :is(.modal-description, .tutorial-text, .bio-text, .book-modal-info, .book-modal-subtitle, .modal-subtitle-center) { color: var(--journal-muted); }
+body .modal .modal-category-text { color: var(--journal-muted); font-size: 11px; letter-spacing: .16em; }
+body .modal .modal-title { font-size: 28px; line-height: 1.2; font-weight: normal; }
+body .modal .modal-main-image { border: 5px solid #293b32; outline: 1px solid var(--journal-border); border-radius: 1px; box-shadow: 5px 6px 0 #0002; }
+body .modal .modal-max-level { color: var(--journal-positive); border-top: 1px solid var(--journal-border); padding-top: 14px; }
+body .modal .unlock-message { color: var(--journal-positive); background: transparent; border: 1px solid var(--journal-border); padding: 10px; font-size: 13px; }
+body .modal .modal-new-unlock { border-color: var(--journal-border); animation: none; }
+body .modal :is(input, select) { background: var(--journal-button); color: var(--journal-ink); border: 1px solid var(--journal-border); padding: 9px; border-radius: 2px; box-sizing: border-box; max-width: 100%; }
+body .modal .btn-danger { background: var(--journal-danger) !important; color: var(--journal-paper) !important; border-color: var(--journal-danger) !important; }
+body .modal .word-app-container { background: var(--chart-paper); color: var(--journal-ink); border: 1px solid var(--journal-border); border-radius: 1px; box-shadow: none; }
+body .modal .book-modal-left img { border-radius: 1px; outline: 1px solid var(--journal-border); }
+body .modal .book-modal-right { min-width: 0; }
+body .modal .btn:focus-visible, body .modal select:focus-visible { outline: 2px solid var(--journal-positive); outline-offset: 3px; }
+#infoModal .discovery-dialog { width: min(760px, calc(100vw - 32px)); max-width: 760px; display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 28px; align-items: start; }
+#infoModal .modal-image-container { grid-column: 1; grid-row: 1 / span 6; align-self: center; }
+#infoModal .discovery-dialog > :not(.modal-image-container) { grid-column: 2; }
+#infoModal :is(.modal-title, .modal-category-text) { text-align: left; }
+#infoModal .modal-title { margin: 0 0 16px; }
+#infoModal .modal-main-image { width: 180px; height: 180px; margin: 0; }
+#infoModal .modal-description { line-height: 1.7; }
+.discovery-stats { margin-bottom: 16px; border-block: 1px solid var(--journal-border); }
+.discovery-stats > div { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; font-size: 13px; }
+.discovery-stats span { color: var(--journal-muted); flex-shrink: 0; }
+.discovery-stats strong { color: var(--journal-positive); text-align: right; }
+#badgeDetailsModal .badge-dialog { width: min(440px, calc(100vw - 32px)); text-align: center; }
+#badgeDetailsModal .journal-kicker { margin-bottom: 24px; }
+#badgeDetailsModal .modal-main-image { width: 144px; height: 144px; }
+#badgeModalEffect { padding: 12px; background: var(--chart-paper); border: 1px solid var(--journal-border); }
+#badgeModalStatus { text-transform: uppercase; letter-spacing: .12em; }
+body .modal :is(.badge-name-mobile, .row-title) { color: var(--journal-ink); }
+body .modal .locked-badge .badge-name-mobile { color: var(--journal-muted); }
+body .modal .ui-row { background: var(--chart-paper); border-color: var(--journal-border); color: var(--journal-ink); }
+body .modal .row-value { color: var(--journal-muted); }
+#authorProfileModal .modal-content-large { padding: 0; overflow: hidden; }
+#authorProfileModal .journal-heading h2 { color: #f1e4c8; }
+#authorProfileModal .profile-modal-body { min-height: 0; display: flex; flex-direction: column; }
+#authorProfileModal .profile-modal-tab-content.active { flex: 1; min-width: 0; }
+#authorProfileModal #profileTab-chart.active { display: flex; flex-direction: column; min-height: 300px; }
+.chart-heading h3 { margin: 4px 0 12px; font-size: 22px !important; font-weight: normal; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 12px; color: var(--journal-muted); margin-bottom: 12px; }
+.chart-legend span::before { content: ''; display: inline-block; width: 18px; border-top: 3px solid; margin-right: 6px; vertical-align: middle; }
+.legend-income::before { color: var(--chart-income); }
+.legend-expense::before { color: var(--chart-expense); border-top-style: dashed !important; }
+.legend-royalties::before { color: var(--chart-royalties); border-top-style: dotted !important; }
+.legend-words::before { color: var(--chart-words); border-top-style: dashed !important; }
+.career-chart-frame { position: relative; width: 100%; flex: 1; min-height: 200px; border: 1px solid var(--journal-border); box-sizing: border-box; }
+#authorChart { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.chart-summary { margin: 10px 0 0; font-size: 12px; color: var(--journal-muted); line-height: 1.5; }
+.stat-icon { display: inline-block; width: 24px; height: 24px; flex: 0 0 24px; vertical-align: middle; background-image: url('../img/ui/header-sprites.png'); background-repeat: no-repeat; background-size: 500% 400%; margin-right: 3px; }
+.icon-author { background-position: 0% 0.000000%; }
+.icon-age { background-position: 25% 0.000000%; }
+.icon-job { background-position: 50% 0.000000%; }
+.icon-skill { background-position: 75% 0.000000%; }
+.icon-home { background-position: 100% 0.000000%; }
+.icon-transport { background-position: 0% 33.333333%; }
+.icon-balance { background-position: 25% 33.333333%; }
+.icon-income { background-position: 50% 33.333333%; }
+.icon-royalties { background-position: 75% 33.333333%; }
+.icon-expense { background-position: 100% 33.333333%; }
+.icon-inspiration { background-position: 0% 66.666667%; }
+.icon-badges { background-position: 25% 66.666667%; }
+.icon-books { background-position: 50% 66.666667%; }
+.icon-writing { background-position: 75% 66.666667%; }
+.icon-work { background-position: 100% 66.666667%; }
+.icon-study { background-position: 0% 100.000000%; }
+.icon-quality { background-position: 25% 100.000000%; }
+.icon-log { background-position: 50% 100.000000%; }
+.icon-flow { background-position: 75% 100.000000%; }
+.icon-potion { background-position: 100% 100.000000%; }
+
+@media (max-width: 650px) {
+    body .modal .modal-content { padding: 22px; }
+    #infoModal .discovery-dialog { grid-template-columns: 1fr; gap: 12px; }
+    #infoModal .modal-image-container { grid-column: 1; grid-row: auto; order: -1; }
+    #infoModal .discovery-dialog > :not(.modal-image-container) { grid-column: 1; }
+    #infoModal .modal-main-image { width: 120px; height: 120px; }
+    #infoModal :is(.modal-title, .modal-category-text) { text-align: center; }
+    #infoModal .modal-title { margin-bottom: 0; }
+    body .modal .book-modal-left { width: 130px; align-self: center; }
+    body .modal .book-modal-right { max-height: none; }
+    #authorProfileModal .modal-content-large { padding: 0; }
+    #authorProfileModal .profile-modal-body { padding: 16px; }
+    .chart-heading h3 { font-size: 18px !important; }
+    .chart-legend { gap: 6px 12px; }
+}
+
+/* Detail overlays must remain above the journal that opens them. */
+#authorProfileModal { z-index: 2010; }
+#bookModal, #bookFinishedModal, #infoModal { z-index: 2020; }
+#badgeDetailsModal { z-index: 2030; }
+#mobileBadgeModal { z-index: 2025; }
+
+/* Settings share the journal's tabbed, scrollable body. */
+#authorProfileModal .modal-content-large { height: 88dvh; }
+#authorProfileModal #profileTab-chart.active { min-height: 260px; }
+#authorProfileModal .career-chart-frame { min-height: 120px; }
+#authorProfileModal .profile-modal-tabs { flex-wrap: wrap; }
+#authorProfileModal .profile-settings-section { margin: 0 0 12px; padding: 0; border: 0; text-align: left; }
+#authorProfileModal .profile-settings-section h3 { margin: 0 0 8px; padding: 0; border: 0; font-size: 14px; }
+#authorProfileModal .profile-settings-section ul { flex-direction: column; align-items: stretch; gap: 20px; margin: 20px 0 0; }
+#authorProfileModal .profile-settings-section li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; }
+#authorProfileModal .profile-settings-section .btn { padding: 6px 10px; font-size: 12px; }
+#authorProfileModal .profile-settings-section .settings-form { min-width: 0; flex: 1; }
+#authorProfileModal .profile-settings-section .import-export-box { width: 150px; margin: 0; padding: 6px; }
+#authorProfileModal .profile-settings-section select { padding: 6px; font-size: 12px; }
+@media (max-width: 650px) {
+    #authorProfileModal .profile-modal-footer { padding: 12px 16px; }
+    #authorProfileModal .profile-settings-section ul { gap: 8px; }
+}

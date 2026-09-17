@@ -36,7 +36,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a small piggy bank beside a simple noodle cup and a basic mug on a tidy desk. A tiny budget sheet with simplified lines hangs on the wall. Muted grey and soft green tones, rounded geometric shapes, clean outlines, and a cozy aesthetic.",
     "requirements": [
-      { "type": "skill", "name": "Focus", "value": 10 }
+      { "type": "skill", "name": "Focus", "value": 15 }
     ]
   },
   "Meditation": {
@@ -94,7 +94,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simple corkboard covered with small colored rectangular cards connected by thin lines, with a tiny laptop beneath it. Soft coral, teal, and off-white tones, rounded geometric shapes, clean outlines, and a cozy aesthetic with no realistic detail.",
     "requirements": [
-      { "type": "skill", "name": "Focus", "value": 200 },
+      { "type": "skill", "name": "Focus", "value": 220 },
       { "type": "skill", "name": "Meditation", "value": 200 }
     ]
   },
@@ -181,7 +181,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a few simplified figures standing together holding small rounded drink glasses, with tiny string lights arcing above them. Soft amber and teal tones, simplified geometric shapes, clean outlines, and a cozy, welcoming aesthetic.",
     "requirements": [
-      { "type": "job", "name": "Head of Publishing", "value": 100 },
+      { "type": "job", "name": "Head of Publishing", "value": 110 },
       { "type": "fame", "value": 1 }
     ]
   },
@@ -196,7 +196,7 @@
     "filefolder": "skills",
     "imageprompt": "A flat, minimalist vector illustration of a simplified figure standing on a small round stage under a soft spotlight, with a few rounded audience silhouettes in the foreground. Soft charcoal and electric blue tones, rounded geometric shapes, clean linework, and a cozy minimalist aesthetic.",
     "requirements": [
-      { "type": "job", "name": "Head of Publishing", "value": 100 },
+      { "type": "job", "name": "Head of Publishing", "value": 120 },
       { "type": "fame", "value": 1 }
     ]
   },

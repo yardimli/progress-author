@@ -1,7 +1,7 @@
 {
   "Acceleration Potion": {
     "name": "Acceleration Potion",
-    "effect": 4.0,
+    "effect": 6.0,
     "type": "acceleration",
     "filename": "acceleration_potion.jpg",
     "filefolder": "potions",

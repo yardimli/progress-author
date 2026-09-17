@@ -6,8 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css?v=1.4">
 	<link rel="stylesheet" type="text/css" href="css/dark.css?v=1.4">
 	<title>Author's Journey</title>
+	<link rel="icon" type="image/svg+xml" href="img/ui/favicon.svg">
+	<link rel="stylesheet" href="css/journal.css?v=5">
 </head>
 <body id="body">
+<script src="js/theme.js?v=1"></script>
 
 <!-- Fixed Header Wrapper -->
 <div class="fixed-header-wrapper">
@@ -21,12 +24,12 @@
 				<div class="info-band band-1">
 					<div class="info-band-content">
 						<span class="marquee-item">
-							<span class="stat-item">👤 <span class="header-val-author">...</span></span>
-							<span class="stat-item">🎂 Age: <span class="header-val-age">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-author" role="img" aria-label="Author" title="Author"></span> <span class="header-val-author">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-age" role="img" aria-label="Age" title="Age"></span> Age: <span class="header-val-age">...</span></span>
 						</span>
 						<span class="marquee-item duplicate" aria-hidden="true">
-							<span class="stat-item">👤 <span class="header-val-author">...</span></span>
-							<span class="stat-item">🎂 Age: <span class="header-val-age">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-author" role="img" aria-label="Author" title="Author"></span> <span class="header-val-author">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-age" role="img" aria-label="Age" title="Age"></span> Age: <span class="header-val-age">...</span></span>
 						</span>
 					</div>
 				</div>
@@ -34,16 +37,16 @@
 				<div class="info-band band-2">
 					<div class="info-band-content">
 						<span class="marquee-item">
-							<span class="stat-item">🛠️ <span class="header-val-job">...</span></span>
-							<span class="stat-item">🧠 <span class="header-val-skill">...</span></span>
-							<span class="stat-item">🏠 <span class="header-val-property">...</span></span>
-							<span class="stat-item">🚗 <span class="header-val-transportation">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-job" role="img" aria-label="Current job" title="Current job"></span> <span class="header-val-job">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-skill" role="img" aria-label="Current skill" title="Current skill"></span> <span class="header-val-skill">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-home" role="img" aria-label="Home" title="Home"></span> <span class="header-val-property">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-transport" role="img" aria-label="Transport" title="Transport"></span> <span class="header-val-transportation">...</span></span>
 						</span>
 						<span class="marquee-item duplicate" aria-hidden="true">
-							<span class="stat-item">🛠️ <span class="header-val-job">...</span></span>
-							<span class="stat-item">🧠 <span class="header-val-skill">...</span></span>
-							<span class="stat-item">🏠 <span class="header-val-property">...</span></span>
-							<span class="stat-item">🚗 <span class="header-val-transportation">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-job" role="img" aria-label="Current job" title="Current job"></span> <span class="header-val-job">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-skill" role="img" aria-label="Current skill" title="Current skill"></span> <span class="header-val-skill">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-home" role="img" aria-label="Home" title="Home"></span> <span class="header-val-property">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-transport" role="img" aria-label="Transport" title="Transport"></span> <span class="header-val-transportation">...</span></span>
 						</span>
 					</div>
 				</div>
@@ -51,30 +54,30 @@
 				<div class="info-band band-3">
 					<div class="info-band-content">
 						<span class="marquee-item">
-							<span class="stat-item" style="min-width:180px;">💰 <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
-							<span class="stat-item">📈 Work: <span class="header-val-work-income">...</span></span>
-							<span class="stat-item">👑 Royalties: <span class="header-val-royalties">...</span></span>
-							<span class="stat-item">📉 <span class="header-val-expense">...</span></span>
-							<span class="stat-item">💡 <span class="header-val-inspiration">...</span></span>
-							<span class="stat-item">🏆 <span class="header-val-badges">...</span></span>
-							<span class="stat-item">📚 <span class="header-val-books">...</span></span>
-							<span class="stat-item">✍️ <span class="header-val-progress">...</span></span>
-							<span class="stat-item">💼 Work Multi: <span class="header-val-work-multi">...</span>x</span>
-							<span class="stat-item">🧠 Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
-							<span class="stat-item">✨ Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
+							<span class="stat-item" style="min-width:180px;"><span class="stat-icon icon-balance" role="img" aria-label="Balance" title="Balance"></span> <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-income" role="img" aria-label="Work income" title="Work income"></span> Work: <span class="header-val-work-income">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-royalties" role="img" aria-label="Royalties" title="Royalties"></span> Royalties: <span class="header-val-royalties">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-expense" role="img" aria-label="Expenses" title="Expenses"></span> <span class="header-val-expense">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-inspiration" role="img" aria-label="Inspiration" title="Inspiration"></span> <span class="header-val-inspiration">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-badges" role="img" aria-label="Badges" title="Badges"></span> <span class="header-val-badges">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-books" role="img" aria-label="Books published" title="Books published"></span> <span class="header-val-books">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-writing" role="img" aria-label="Writing progress" title="Writing progress"></span> <span class="header-val-progress">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-work" role="img" aria-label="Work multiplier" title="Work multiplier"></span> Work Multi: <span class="header-val-work-multi">...</span>x</span>
+							<span class="stat-item"><span class="stat-icon icon-study" role="img" aria-label="Skill multiplier" title="Skill multiplier"></span> Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
+							<span class="stat-item"><span class="stat-icon icon-quality" role="img" aria-label="Quality multiplier" title="Quality multiplier"></span> Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
 						</span>
 						<span class="marquee-item duplicate" aria-hidden="true">
-							<span class="stat-item" style="min-width:180px;">💰 <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
-							<span class="stat-item">📈 Work: <span class="header-val-work-income">...</span></span>
-							<span class="stat-item">👑 Royalties: <span class="header-val-royalties">...</span></span>
-							<span class="stat-item">📉 <span class="header-val-expense">...</span></span>
-							<span class="stat-item">💡 <span class="header-val-inspiration">...</span></span>
-							<span class="stat-item">🏆 <span class="header-val-badges">...</span></span>
-							<span class="stat-item">📚 <span class="header-val-books">...</span></span>
-							<span class="stat-item">✍️ <span class="header-val-progress">...</span></span>
-							<span class="stat-item">💼 Work Multi: <span class="header-val-work-multi">...</span>x</span>
-							<span class="stat-item">🧠 Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
-							<span class="stat-item">✨ Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
+							<span class="stat-item" style="min-width:180px;"><span class="stat-icon icon-balance" role="img" aria-label="Balance" title="Balance"></span> <span class="header-val-balance">...</span> <span class="header-val-net">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-income" role="img" aria-label="Work income" title="Work income"></span> Work: <span class="header-val-work-income">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-royalties" role="img" aria-label="Royalties" title="Royalties"></span> Royalties: <span class="header-val-royalties">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-expense" role="img" aria-label="Expenses" title="Expenses"></span> <span class="header-val-expense">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-inspiration" role="img" aria-label="Inspiration" title="Inspiration"></span> <span class="header-val-inspiration">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-badges" role="img" aria-label="Badges" title="Badges"></span> <span class="header-val-badges">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-books" role="img" aria-label="Books published" title="Books published"></span> <span class="header-val-books">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-writing" role="img" aria-label="Writing progress" title="Writing progress"></span> <span class="header-val-progress">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-work" role="img" aria-label="Work multiplier" title="Work multiplier"></span> Work Multi: <span class="header-val-work-multi">...</span>x</span>
+							<span class="stat-item"><span class="stat-icon icon-study" role="img" aria-label="Skill multiplier" title="Skill multiplier"></span> Skill Multi: <span class="header-val-skill-multi">...</span>x</span>
+							<span class="stat-item"><span class="stat-icon icon-quality" role="img" aria-label="Quality multiplier" title="Quality multiplier"></span> Quality Multi: <span class="header-val-quality-multi">...</span>x</span>
 						</span>
 					</div>
 				</div>
@@ -82,10 +85,10 @@
 				<div class="info-band band-4">
 					<div class="info-band-content">
 						<span class="marquee-item">
-							<span class="stat-item">📜 <span class="header-val-logs">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-log" role="img" aria-label="Recent events" title="Recent events"></span> <span class="header-val-logs">...</span></span>
 						</span>
 						<span class="marquee-item duplicate" aria-hidden="true">
-							<span class="stat-item">📜 <span class="header-val-logs">...</span></span>
+							<span class="stat-item"><span class="stat-icon icon-log" role="img" aria-label="Recent events" title="Recent events"></span> <span class="header-val-logs">...</span></span>
 						</span>
 					</div>
 				</div>
@@ -223,7 +226,7 @@
 						<div class="book-stats-container">
 							<div><b>Progress:</b> <span id="writingProgressDisplay">0.0%</span></div>
 							<div class="progress-bar writing-progress-bar-container">
-								<div id="writingProgressBar" class="writing-progress-bar-fill" style="width: 0%;"></div>
+								<div id="writingProgressBar" class="writing-progress-bar-fill"></div>
 							</div>
 							<div class="writing-stat-text"><b>Speed:</b> <span id="writingSpeedDisplayTab">0</span> words/day</div>
 							<div class="writing-stat-text-sm"><b>Quality:</b> <span id="bookQualityDisplayTab">0</span>%<span id="bookQualityMultiplierDisplay"></span><span id="compMultiplierDisplay"></span></div>
@@ -248,13 +251,15 @@
 	</div>
 </div>
 
-<div id="authorProfileModal" class="modal modal-overlay-profile" style="display: none;">
+<div id="authorProfileModal" class="modal modal-overlay-profile" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-large">
+		<header class="journal-heading"><span class="journal-kicker">Author’s Journey</span><h2>The author’s journal</h2></header>
 		<div class="profile-modal-tabs">
-			<button class="tab-btn active" onclick="switchProfileTab('profile', this)">Profile</button>
-			<button class="tab-btn" onclick="switchProfileTab('chart', this)">Chart</button>
-			<button class="tab-btn" onclick="switchProfileTab('achievements', this)">Achievements</button>
-			<button class="tab-btn" onclick="switchProfileTab('logs', this)">Logs</button>
+			<button class="tab-btn active" onclick="switchProfileTab('profile', this)">Character</button>
+			<button class="tab-btn" onclick="switchProfileTab('chart', this)">Career</button>
+			<button class="tab-btn" onclick="switchProfileTab('achievements', this)">Legacy</button>
+			<button class="tab-btn" onclick="switchProfileTab('logs', this)">Chronicle</button>
+			<button class="tab-btn" onclick="switchProfileTab('settings', this)">Settings</button>
 		</div>
 		
 		<div class="profile-modal-body">
@@ -266,38 +271,19 @@
 						<h2 id="profileAuthorName" style="margin: 0;"></h2>
 					</div>
 					<div class="profile-right">
-						<h3>Biography</h3>
+						<span class="journal-kicker">The story so far</span><div id="profileCareerStats" class="author-traits"></div><h3>Origins</h3>
 						<p id="profileAuthorBio" class="bio-text"></p>
 					</div>
 				</div>
-				<div class="profile-settings-section">
-					<h3>Settings</h3>
-					<ul>
-						<li>
-							Game Version: <span id="profileGameVersion" class="version-display"></span>
-						</li>
-						<li>
-							<button class="btn" onClick="importGameData()">Import</button>
-							<button class="btn" onClick="exportGameData()">Export</button>
-							<form class="settings-form" style="display: inline-block;">
-								<input id="importExportBox" type="text" class="import-export-box" />
-							</form>
-						</li>
-						<li>
-							<button class="btn" onClick="setLightDarkMode()">Toggle Dark Mode</button>
-						</li>
-						<li>
-							<button class="btn btn-danger" onClick="resetGameData()">Hard Reset Game</button>
-						</li>
-					</ul>
-				</div>
+
 			</div>
 			
 			<!-- Chart Tab -->
 			<div id="profileTab-chart" class="profile-modal-tab-content">
-				<div style="position: relative; height: 60vh; width: 100%;">
-					<canvas id="authorChart" style="height: 60vh; width: 100%;"></canvas>
-				</div>
+                <div class="chart-heading"><span class="journal-kicker">Your career, month by month</span><h3>The shape of a writing life</h3></div>
+                <div class="chart-legend" aria-label="Chart legend"><span class="legend-income">Income</span><span class="legend-expense">Expenses</span><span class="legend-royalties">Royalties</span><span class="legend-words">Words written</span></div>
+                <div class="career-chart-frame"><canvas id="authorChart" role="img" aria-label="Monthly career history" aria-describedby="chartSummary"></canvas></div>
+                <p id="chartSummary" class="chart-summary" aria-live="polite"></p>
 			</div>
 			
 			<!-- Achievements Tab -->
@@ -312,27 +298,50 @@
 			<div id="profileTab-logs" class="profile-modal-tab-content">
 				<div id="profileLogContainer" class="profile-log-container"></div>
 			</div>
+			<div id="profileTab-settings" class="profile-modal-tab-content">
+				<section class="profile-settings-section" aria-labelledby="journalSettingsTitle"><h3 id="journalSettingsTitle">Journal &amp; game settings</h3>
+					<ul>
+						<li>
+							Game Version: <span id="profileGameVersion" class="version-display"></span>
+						</li>
+						<li>
+							<button class="btn" onClick="importGameData()">Import</button>
+							<button class="btn" onClick="exportGameData()">Export</button>
+							<form class="settings-form" style="display: inline-block;">
+								<input id="importExportBox" aria-label="Save data for import or export" type="text" class="import-export-box" />
+							</form>
+						</li>
+						<li>
+							<label for="themePreference">Journal lighting</label>
+							<select id="themePreference" onchange="setGameTheme(this.value)"><option value="system">Follow device</option><option value="light">Light parchment</option><option value="dark">Midnight ink</option></select>
+						</li>
+						<li>
+							<button class="btn btn-danger" onClick="resetGameData()">Hard Reset Game</button>
+						</li>
+					</ul>
+				</section>
+			</div>
 		</div>
 		
 		<div class="profile-modal-footer">
-			<button class="btn" onclick="closeAuthorProfileModal()">Close</button>
+			<button class="btn" onclick="closeAuthorProfileModal()">Return to your journey</button>
 		</div>
 	</div>
 </div>
 
 <!-- Author Selection Screen -->
-<div id="authorSelectionScreen" class="modal modal-overlay-high" style="display: none;">
+<div id="authorSelectionScreen" class="modal modal-overlay-high" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-large">
-		<h1 class="modal-header-center">Choose Your Author</h1>
-		<p class="modal-subtitle-center">Select the protagonist for your journey. Click an image to read their biography.</p>
+		<span class="journal-kicker">Author’s Journey · A new chapter</span><h1 class="modal-header-center">Every life has a story.</h1>
+		<p class="modal-subtitle-center">Choose the voice that will leave a mark on the world.</p>
 		<div id="authorSelectionGrid" class="author-grid">
 			<!-- Populated dynamically by JS -->
-		</div>
+		</div><nav class="author-navigation" aria-label="Choose an author"><button class="btn" onclick="cycleAuthor(-1)">← Previous author</button><span id="authorChoicePosition" aria-live="polite"></span><button class="btn" onclick="cycleAuthor(1)">Next author →</button></nav>
 	</div>
 </div>
 
 <!-- Author Bio Modal -->
-<div id="authorBioModal" class="modal modal-overlay-higher" style="display: none;">
+<div aria-labelledby="bioModalName" id="authorBioModal" class="modal modal-overlay-higher" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-medium">
 		<h2 id="bioModalName" class="modal-title-nomargin"></h2>
 		<p id="bioModalText" class="bio-text"></p>
@@ -341,14 +350,14 @@
 </div>
 
 <!-- Intro Modal -->
-<div id="introModal" class="modal modal-overlay-intro" style="display: none;">
+<div aria-labelledby="introModalTitle" id="introModal" class="modal modal-overlay-intro" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content book-modal-content">
 		<div class="book-modal-left">
 			<img id="introModalImage" src="" alt="Intro Image">
 		</div>
 		<div class="book-modal-right">
 			<div class="intro-modal-body">
-				<h2 id="introModalTitle" class="modal-title-nomargin">Welcome</h2>
+				<span id="introChapter" class="journal-kicker"></span><h2 id="introModalTitle" class="modal-title-nomargin">Welcome</h2>
 				<div id="introModalText" class="tutorial-text" style="margin-top: 15px;"></div>
 			</div>
 			<div class="intro-modal-footer">
@@ -360,14 +369,15 @@
 </div>
 
 <!-- Info Modal Container -->
-<div id="infoModal" class="modal modal-overlay-info" style="display: none;">
-	<div class="modal-content">
+<div aria-labelledby="modalTitle" id="infoModal" class="modal modal-overlay-info" role="dialog" aria-modal="true" style="display: none;">
+	<div class="modal-content discovery-dialog">
 		<div id="modalCategory" class="modal-category-text"></div>
 		<div id="modalUnlockMessage" class="unlock-message" style="display: none;"></div>
 		<div class="modal-image-container">
 			<img id="modalImage" src="" alt="" class="modal-main-image">
 		</div>
 		<div id="modalTitle" class="modal-title"></div>
+		<div id="modalStats" class="discovery-stats"></div>
 		<div id="modalDescription" class="modal-description"></div>
 		<div id="modalMaxLevel" class="modal-max-level" style="display: none;"></div>
 		<button class="btn btn-full-width-mt15" onclick="closeInfoModal()">Close</button>
@@ -375,7 +385,7 @@
 </div>
 
 <!-- Tutorial Modal -->
-<div id="tutorialModal" class="modal modal-overlay-tutorial" style="display: none;">
+<div aria-labelledby="tutorialModalTitle" id="tutorialModal" class="modal modal-overlay-tutorial" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-small">
 		<h2 id="tutorialModalTitle" class="modal-header-center"></h2>
 		<p id="tutorialModalText" class="tutorial-text"></p>
@@ -386,7 +396,7 @@
 </div>
 
 <!-- Book Modal Container -->
-<div id="bookModal" class="modal modal-overlay-book" style="display: none;">
+<div aria-labelledby="bookModalTitle" id="bookModal" class="modal modal-overlay-book" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content book-modal-content">
 		<div class="book-modal-left">
 			<img id="bookModalImage" src="" alt="Book Cover">
@@ -404,13 +414,13 @@
 </div>
 
 <!-- Book Finished Modal Container -->
-<div id="bookFinishedModal" class="modal modal-overlay-book" style="display: none;">
+<div aria-labelledby="bookFinishedModalTitle" id="bookFinishedModal" class="modal modal-overlay-book" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content book-modal-content">
 		<div class="book-modal-left">
 			<img id="bookFinishedModalImage" src="" alt="Book Cover">
 		</div>
 		<div class="book-modal-right">
-			<h2 class="modal-title-nomargin" style="color: #4CAF50; margin-bottom: 5px;">Book Published!</h2>
+			<h2 class="modal-title-nomargin" style="color: var(--journal-positive); margin-bottom: 5px;">Book Published!</h2>
 			<h2 id="bookFinishedModalTitle" class="book-modal-title" style="margin-top: 10px;">Title</h2>
 			<h4 id="bookFinishedModalSubtitle" class="book-modal-subtitle">Subtitle</h4>
 			<p id="bookFinishedModalInfo" class="book-modal-info"></p>
@@ -425,7 +435,7 @@
 </div>
 
 <!-- Version Mismatch Modal -->
-<div id="versionModal" class="modal modal-overlay-version" style="display: none;">
+<div id="versionModal" class="modal modal-overlay-version" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-xs">
 		<h2 class="modal-title-nomargin">Game Updated!</h2>
 		<p>The game has evolved to a new version. To ensure everything works correctly, your save will auto-reset to the beginning.</p>
@@ -434,13 +444,13 @@
 </div>
 
 <!-- Rebirth and Retirement Modals -->
-<div id="rebirthOneModal" class="modal modal-overlay-tutorial" style="display: none;">
+<div id="rebirthOneModal" class="modal modal-overlay-tutorial" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-standard">
 		<h2 class="modal-header-center">The Golden Pen Awakens</h2>
 		<p class="tutorial-text">
 			On your 65th birthday, the strange pen you found long ago begins to glow. You realize it offers a chance to start over, wiser and more experienced.
 		</p>
-		<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+		<p class="tutorial-text" style="font-size: 0.9em; color: var(--journal-muted);">
 			By clicking the pen, you can retire and restart your career, losing all levels and money. However, you will gain <b>experience multipliers</b> for all jobs and skills, allowing you to progress much faster in your next life.
 		</p>
 		<div class="modal-footer-center">
@@ -450,13 +460,13 @@
 	</div>
 </div>
 
-<div id="rebirthTwoModal" class="modal modal-overlay-tutorial" style="display: none;">
+<div id="rebirthTwoModal" class="modal modal-overlay-tutorial" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-standard">
 		<h2 class="modal-header-center">A Legendary Opportunity</h2>
 		<p class="tutorial-text">
 			At the grand age of 200, the Golden Pen hums with immense power. It offers you a path to true immortality, a chance to become a legend.
 		</p>
-		<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+		<p class="tutorial-text" style="font-size: 0.9em; color: var(--journal-muted);">
 			If you accept, all levels, money, and even your max level bonuses will be reset. You will be reborn as a fresh slate. However, you will unlock new skills and gain <b><span id="fameGainDisplayModal"></span> Fame</b>, which will heavily impact all future lives and book sales.
 		</p>
 		<div class="modal-footer-center">
@@ -466,20 +476,20 @@
 	</div>
 </div>
 
-<div id="retirementModal" class="modal modal-overlay-version" style="display: none;">
+<div id="retirementModal" class="modal modal-overlay-version" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-standard">
 		<h2 class="modal-header-center">Retirement</h2>
 		<p class="tutorial-text">You have reached your retirement age. It is time to put down your pen and reflect on your legacy. Choose how you wish to proceed.</p>
 		
-		<div id="retirementRebirthOne" style="display: none; margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
-			<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+		<div id="retirementRebirthOne" style="display: none; margin-top: 20px; border-top: 1px solid var(--journal-border); padding-top: 20px;">
+			<p class="tutorial-text" style="font-size: 0.9em; color: var(--journal-muted);">
 				Restart your career, losing all levels and money but gaining <b>experience multipliers</b> for all jobs and skills based on your max level this life.
 			</p>
 			<button class="btn btn-full-width" onclick="rebirthOne()">Start a New Chapter</button>
 		</div>
 		
-		<div id="retirementRebirthTwo" style="display: none; margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
-			<p class="tutorial-text" style="font-size: 0.9em; color: #888;">
+		<div id="retirementRebirthTwo" style="display: none; margin-top: 20px; border-top: 1px solid var(--journal-border); padding-top: 20px;">
+			<p class="tutorial-text" style="font-size: 0.9em; color: var(--journal-muted);">
 				Reset everything, including max level bonuses, to gain <b><span id="fameGainDisplayRetirement"></span> Fame</b> and unlock new skills.
 			</p>
 			<button class="btn btn-full-width" onclick="rebirthTwo()">Become a Legend</button>
@@ -487,20 +497,21 @@
 	</div>
 </div>
 
-<div id="badgeDetailsModal" class="modal modal-overlay-badge" style="display: none;">
-	<div class="modal-content modal-content-xs">
+<div aria-labelledby="badgeModalTitle" id="badgeDetailsModal" class="modal modal-overlay-badge" role="dialog" aria-modal="true" style="display: none;">
+	<div class="modal-content badge-dialog">
+		<span class="journal-kicker">The hall of distinction</span>
 		<div class="modal-image-container">
-			<img id="badgeModalImage" src="" alt="Badge" class="modal-main-image" style="width: 128px; height: 128px; border-radius: 50%;">
+			<img id="badgeModalImage" src="" alt="Badge" class="modal-main-image" >
 		</div>
 		<h2 id="badgeModalTitle" class="modal-title" style="margin-bottom: 5px;"></h2>
 		<p id="badgeModalDescription" class="modal-description" style="font-size: 1em;"></p>
-		<p id="badgeModalEffect" class="modal-description" style="font-size: 1em; color: #4CAF50;"></p>
+		<p id="badgeModalEffect" class="modal-description" style="font-size: 1em; color: var(--journal-positive);"></p>
 		<p id="badgeModalStatus" class="modal-description" style="font-size: 0.9em; font-weight: bold;"></p>
 		<button class="btn btn-full-width-mt15" onclick="closeBadgeModal()">Close</button>
 	</div>
 </div>
 
-<div id="mobileBadgeModal" class="modal modal-overlay-badge" style="display: none;">
+<div id="mobileBadgeModal" class="modal modal-overlay-badge" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-medium">
 		<h2 class="modal-header-center">My Badges</h2>
 		<div id="mobileBadgeGrid" class="mobile-badge-grid">
@@ -510,7 +521,7 @@
 	</div>
 </div>
 
-<div id="debugLevelModal" class="modal modal-overlay-high" style="display: none;">
+<div aria-labelledby="debugModalTitle" id="debugLevelModal" class="modal modal-overlay-high" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-xs">
 		<h2 id="debugModalTitle" class="modal-title-nomargin">Set Level</h2>
 		<p>Enter new level for <span id="debugTaskName" style="font-weight: bold;"></span>:</p>
@@ -544,6 +555,7 @@
 			"js/ui.js",
 			"js/save.js",
 			"js/mechanics.js",
+			"js/stats.js",
 			"js/main.js"
 		];
 		

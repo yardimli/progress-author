@@ -1,3 +1,58 @@
+// Task and potion bars animate each frame; writing renders at most once a second.
+const taskProgressElements = new Map();
+let writingProgressElement;
+let lastWritingRenderTime = -Infinity;
+const potionProgressElements = new Map();
+function getTaskProgressElement(task) {
+    let element = taskProgressElements.get(task.name);
+    if (!element || !element.isConnected) {
+        element = document.getElementById('row ' + task.name)?.querySelector('.progressFill');
+        if (element) taskProgressElements.set(task.name, element);
+    }
+    return element;
+}
+function setProgressScale(element, fraction) {
+    if (!element) return;
+    const transform = `scaleX(${Math.max(0, Math.min(1, fraction))})`;
+    if (element.style.transform !== transform) element.style.transform = transform;
+}
+function updateProgressUI() {
+    for (const task of [gameData.currentJob, gameData.currentSkill]) {
+        if (task) setProgressScale(getTaskProgressElement(task), task.xp / task.getMaxXp());
+    }
+    updateWritingUI();
+    for (const type of ['inspiration', 'acceleration']) {
+        if (gameData.potions[type] <= 0) continue;
+        let element = potionProgressElements.get(type);
+        if (!element?.isConnected) {
+            element = document.querySelector(`#action-${type} .potion-fill`);
+            if (element) potionProgressElements.set(type, element);
+        }
+        setProgressScale(element, gameData.potions[type] / 600);
+    }
+}
+
+function updateWritingUI(now = performance.now()) {
+    if (now - lastWritingRenderTime < 1000) return;
+    lastWritingRenderTime = now;
+    const fraction = gameData.currentBook ? Math.min(1, gameData.wordsWritten / getBookLength()) : 0;
+    writingProgressElement ||= document.getElementById('writingProgressBar');
+    setProgressScale(writingProgressElement, fraction);
+    const quality = getCurvedQuality(getBookQuality()).toFixed(2);
+    const values = {
+        'header-val-progress': gameData.currentBook ? `${(fraction * 100).toFixed(1)}%` : 'Idle',
+        writingProgressDisplay: `${(fraction * 100).toFixed(1)}%`,
+        writingSpeedDisplayTab: format(getWritingSpeed()),
+        bookQualityDisplayTab: quality,
+        expectedQualityDisplay: quality
+    };
+    for (const [id, value] of Object.entries(values)) {
+        const element = document.getElementById(id);
+        if (element && element.textContent !== value) element.textContent = value;
+    }
+    renderTypewriter();
+}
+
 // Dynamic UI updates for the game loop
 
 function updateRequiredRows (baseData, categoryType) {
@@ -14,18 +69,12 @@ function updateRequiredRows (baseData, categoryType) {
 			if (!element) continue;
 			
 			const entity = baseData[entityName];
-			const isUnlocked = areRequirementsMet(entity);
+			const isUnlocked = !!gameData.unlocks[entityName];
 			
 			if (isUnlocked) {
 				if (element.classList.contains('hiddenTask')) {
 					element.classList.remove('hiddenTask');
-					// If it's the first time this is unlocked since the game started, show a popup.
-					if (!gameData.unlocks[entityName] && isInitialized) {
-						const imgEl = element.querySelector('.card-image, .row-image');
-						if (imgEl) queueInfoModal(imgEl, true);
-					}
 				}
-				gameData.unlocks[entityName] = true; // Mark as unlocked for future checks.
 			} else {
 				if (!element.classList.contains('hiddenTask')) element.classList.add('hiddenTask');
 				
@@ -50,6 +99,10 @@ function updateRequiredRows (baseData, categoryType) {
 						}
 					}
 					categoryReqText = reqStrings.join('<br>');
+					if (areRequirementsMet(entity)) {
+						const remaining = Math.ceil(Math.max(0, gameData.nextCardUnlockAt - gameData.activePlaySeconds));
+						categoryReqText = remaining ? `Ready · next discovery in ${remaining}s of play` : 'Ready · awaiting next discovery';
+					}
 					nextEntityFound = true;
 				}
 			}
@@ -81,14 +134,8 @@ function updateTaskRows () {
 			}
 		}
 		
-		const progressFill = row.querySelector('.progressFill');
-		if (progressFill) {
-			const newWidth = (task.xp / task.getMaxXp() * 100) + '%';
-			if (progressFill.style.width !== newWidth) {
-				progressFill.style.width = newWidth;
-			}
-		}
-		
+		setProgressScale(getTaskProgressElement(task), task.xp / task.getMaxXp());
+
 		const isActive = (task === gameData.currentJob || task === gameData.currentSkill);
 		if (isActive && !row.classList.contains('active')) {
 			row.classList.add('active');
@@ -248,6 +295,8 @@ function updateBookHistory () {
 }
 
 function updatePotionsUI () {
+	const bonusSection = document.getElementById('bonusItemsSection');
+	if (bonusSection) bonusSection.hidden = !isAccelerationAvailable();
 	const types = ['inspiration', 'acceleration'];
 	types.forEach(type => {
 		const actionContainer = document.getElementById(`action-${type}`);
@@ -257,14 +306,13 @@ function updatePotionsUI () {
 		if (timeLeft > 0) {
 			const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
 			const seconds = Math.floor(timeLeft % 60).toString().padStart(2, '0');
-			const percentage = (timeLeft / 600) * 100;
-			
-			actionContainer.innerHTML = `
-        <div class="progress-bar" style="width: 100%; height: 30px; background-color: #ddd; border-radius: 4px; position: relative; overflow: hidden;">
-          <div style="height: 100%; background-color: #4CAF50; width: ${percentage}%;"></div>
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); font-size: 14px;">${minutes}:${seconds}</div>
-        </div>
-      `;
+            if (!actionContainer.querySelector('.potion-fill')) {
+                actionContainer.innerHTML = '<div class="potion-timer"><div class="potion-fill"></div><span class="potion-time"></span></div>';
+            }
+            const label = actionContainer.querySelector('.potion-time');
+            const timeText = `${minutes}:${seconds}`;
+            if (label.textContent !== timeText) label.textContent = timeText;
+
 		} else {
 			if (!actionContainer.querySelector('button')) {
 				actionContainer.innerHTML = `<button class="btn" onclick="drinkPotion('${type}')">Drink</button>`;
@@ -379,14 +427,13 @@ function updateHeaderUI () {
 	updateHeaderVal('header-val-inspiration', `${getInspiration().toFixed(1)}x`);
 	updateHeaderVal('header-val-badges', gameData.earnedBadges ? gameData.earnedBadges.length : 0);
 	updateHeaderVal('header-val-books', gameData.booksPublished);
-	updateHeaderVal('header-val-progress', gameData.currentBook ? `${((gameData.wordsWritten / getBookLength()) * 100).toFixed(1)}%` : 'Idle');
 	
 	// Calculate exact multiplier without Math.round from applyMultipliers
 	let jobRawMulti = 1;
 	if (gameData.currentJob && gameData.currentJob.xpMultipliers) {
 		gameData.currentJob.xpMultipliers.forEach(fn => jobRawMulti *= fn());
 	}
-	const workMulti = gameData.currentJob ? (jobRawMulti * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
+	const workMulti = gameData.currentJob ? (softenMultiplier(jobRawMulti) * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
 	updateHeaderVal('header-val-work-multi', workMulti.toFixed(2));
 	
 	// Calculate exact multiplier without Math.round from applyMultipliers
@@ -394,7 +441,7 @@ function updateHeaderUI () {
 	if (gameData.currentSkill && gameData.currentSkill.xpMultipliers) {
 		gameData.currentSkill.xpMultipliers.forEach(fn => skillRawMulti *= fn());
 	}
-	const skillMulti = gameData.currentSkill ? (skillRawMulti * gameData.skillMultiplier * gameData.skillXpMultiplier) : 1;
+	const skillMulti = gameData.currentSkill ? (softenMultiplier(skillRawMulti) * gameData.skillMultiplier * gameData.skillXpMultiplier) : 1;
 	updateHeaderVal('header-val-skill-multi', skillMulti.toFixed(2));
 	
 	const qualityMulti = typeof getWritingQualityMultiplier === 'function' ? getWritingQualityMultiplier() : 1;
@@ -418,12 +465,6 @@ function updateText () {
 	updateIfChanged('timeWarpingDisplay', gameData.taskData['Flow State'].getEffect().toFixed(2));
 	updateIfChanged('timeWarpingButton', gameData.timeWarpingEnabled ? 'Disable flow' : 'Enable flow');
 	
-	const writingSpeed = getWritingSpeed();
-	
-	updateIfChanged('writingSpeedDisplayTab', format(writingSpeed));
-	
-	updateIfChanged('bookQualityDisplayTab', getCurvedQuality(getBookQuality()).toFixed(2));
-	updateIfChanged('expectedQualityDisplay', getCurvedQuality(getBookQuality()).toFixed(2));
 	
 	const writingTimeAlert = document.getElementById('writingTimeAlert');
 	if (writingTimeAlert) {
@@ -481,12 +522,6 @@ function updateText () {
 		slider.value = gameData.workWritingBalance;
 	}
 	
-	const writingProgress = Math.min(100, (gameData.wordsWritten / getBookLength()) * 100);
-	const writingProgressBar = document.getElementById('writingProgressBar');
-	if (writingProgressBar && writingProgressBar.style.width !== writingProgress + '%') {
-		writingProgressBar.style.width = writingProgress + '%';
-	}
-	updateIfChanged('writingProgressDisplay', writingProgress.toFixed(1) + '%');
 	
 	const versionDisplay = document.getElementById('gameVersionDisplay');
 	if (versionDisplay && versionDisplay.textContent !== 'v' + GAME_VERSION) {
@@ -668,19 +703,34 @@ function updateTypewriter (deltaTime) {
 		}
 	}
 	
+}
+
+function renderTypewriter() {
 	const displayEl = document.getElementById('liveWritingText');
-	if (displayEl) {
-		displayEl.innerHTML = '<span id="liveWritingTextInner">' + typewriterText + '</span><span class="blinking-cursor">|</span>';
-		displayEl.scrollLeft = displayEl.scrollWidth;
-		
-		const innerSpan = document.getElementById('liveWritingTextInner');
-		if (innerSpan && innerSpan.offsetWidth > displayEl.clientWidth * 0.75 && !isClearingLine) {
-			isWaitingToClearLine = true;
-		}
-	}
+    if (displayEl) {
+        let innerSpan = document.getElementById('liveWritingTextInner');
+        if (!innerSpan) {
+            displayEl.innerHTML = '<span id="liveWritingTextInner"></span><span class="blinking-cursor">|</span>';
+            innerSpan = document.getElementById('liveWritingTextInner');
+        }
+        if (innerSpan.textContent !== typewriterText) {
+            innerSpan.textContent = typewriterText;
+            // Measure only on the once-per-second writing render.
+            if (innerSpan.offsetWidth > displayEl.clientWidth * 0.75 && !isClearingLine) {
+                isWaitingToClearLine = true;
+            }
+            displayEl.scrollLeft = displayEl.scrollWidth;
+        }
+    }
 }
 
 function updateUI () {
+	const discovery = discoverNextCard();
+	if (discovery) {
+		const row = document.getElementById(discovery.type === 'potion' ? 'potion-acceleration' : 'row ' + discovery.name);
+		const img = row?.querySelector('.card-image, .row-image');
+		if (img) queueInfoModal(img, true);
+	}
 	updateHeaderUI();
 	updateTaskRows();
 	updateItemRows();
@@ -693,4 +743,5 @@ function updateUI () {
 	updateBookHistory();
 	updatePotionsUI();
 	updateCompositionUI();
+	updateProgressUI();
 }

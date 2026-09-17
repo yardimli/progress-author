@@ -197,6 +197,18 @@ function applySpeed(value) {
 	return value * getGameSpeed() * deltaTime;
 }
 
+// Preserve early upgrades, with diminishing returns on stacked late-game boosts.
+function softenMultiplier(value, threshold = 4) {
+	return value <= threshold ? value : threshold * Math.sqrt(value / threshold);
+}
+
+function getBookRoyalty(quality) {
+	const readership = 1 + Math.log10(1 + Math.max(0, gameData.fame));
+	const negotiation = getBindedTaskEffect('Royalty Negotiation')();
+	return (12 + 0.6 * Math.max(0, Math.min(100, quality))) * readership *
+		softenMultiplier(negotiation * getBadgeMultiplier('royalties'));
+}
+
 function getFameGain() {
 	let networking = gameData.taskData["Networking"] ? gameData.taskData["Networking"].getEffect() : 1;
 	let mediaTours = gameData.taskData["Media Tours"] ? gameData.taskData["Media Tours"].getEffect() : 1;
@@ -207,7 +219,7 @@ function getFameGain() {
 function getGameSpeed() {
 	let flowState = gameData.taskData["Flow State"];
 	let flowStateSpeed = gameData.timeWarpingEnabled && flowState ? flowState.getEffect() : 1;
-	let potionMultiplier = gameData.potions.acceleration > 0 ? 2.0 : 1.0;
+	let potionMultiplier = gameData.potions.acceleration > 0 && isAccelerationAvailable() ? getAccelerationMultiplier() : 1;
 	return baseGameSpeed * +isAlive() * flowStateSpeed * potionMultiplier;
 }
 
