@@ -124,6 +124,9 @@ function trackMonthlyData () {
 
 async function init () {
     try {
+        // Independent of the version stored in a player's older save.
+        const dataRevision = Date.now();
+        const fetchData = name => fetch(`data/${name}.json?v=${dataRevision}`, { cache: 'no-store' });
         const[
             jobsRes, skillsRes, itemsRes,
             colorsRes, tooltipsRes,
@@ -134,21 +137,21 @@ async function init () {
             introSlidesRes,
             badgesRes
         ] = await Promise.all([
-            fetch('data/jobs.json?' + gameData.version),
-            fetch('data/skills.json?balance=2&v=' + gameData.version),
-            fetch('data/items.json?balance=2&v=' + gameData.version),
-            fetch('data/headerRowColors.json?' + gameData.version),
-            fetch('data/tooltips.json?balance=3&v=' + gameData.version),
-            fetch('data/authors.json?' + gameData.version),
-            fetch('data/books.json?' + gameData.version),
-            fetch('data/potions.json?balance=2&v=' + gameData.version),
-            fetch('data/lifeExperiences.json?' + gameData.version),
-            fetch('data/genres.json?' + gameData.version),
-            fetch('data/sceneTypes.json?' + gameData.version),
-            fetch('data/genreIdeals.json?' + gameData.version),
-            fetch('data/booksFirstPage.json?' + gameData.version),
-            fetch('data/introSlides.json?art=journal-1&v=' + gameData.version),
-            fetch('data/badges.json?' + gameData.version)
+            fetchData('jobs'),
+            fetchData('skills'),
+            fetchData('items'),
+            fetchData('headerRowColors'),
+            fetchData('tooltips'),
+            fetchData('authors'),
+            fetchData('books'),
+            fetchData('potions'),
+            fetchData('lifeExperiences'),
+            fetchData('genres'),
+            fetchData('sceneTypes'),
+            fetchData('genreIdeals'),
+            fetchData('booksFirstPage'),
+            fetchData('introSlides'),
+            fetchData('badges')
         ]);
         
         jobBaseData = await jobsRes.json();

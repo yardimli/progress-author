@@ -1,7 +1,14 @@
-<FilesMatch "index\.html">
-    FileETag None
-    Header unset ETag
-    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-    Header set Pragma "no-cache"
-    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+# Never reuse the app entry point or private PHP pages from HTTP cache.
+<FilesMatch "\.(html?|php)$">
+    Header onsuccess unset Cache-Control
+    Header always set Cache-Control "no-store"
+    Header always set Expires "0"
+</FilesMatch>
+
+# Check static files with the server on every reuse. Unchanged assets can
+# return 304 instead of downloading the illustrations again.
+<FilesMatch "\.(css|js|json|svg|png|jpe?g|webp|gif|ico|woff2?)$">
+    Header onsuccess unset Cache-Control
+    Header always set Cache-Control "no-cache, must-revalidate"
+    Header always set Expires "0"
 </FilesMatch>
