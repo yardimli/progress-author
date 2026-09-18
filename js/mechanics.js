@@ -77,6 +77,13 @@ function areRequirementsMet (entity) {
 					return false;
 				}
 				break;
+			case 'books':
+				if (gameData.booksPublished < req.value) return false;
+				break;
+			case 'retirements':
+				if (gameData.rebirthOneCount + gameData.rebirthTwoCount < req.value) return false;
+				break;
+			default: return false;
 		}
 	}
 	return true;
@@ -84,6 +91,7 @@ function areRequirementsMet (entity) {
 
 function applyExpenses () {
 	const coins = applySpeed(getExpense());
+	if (BALANCE.writing.salesEnabled) recordCareerUpkeep(coins, applySpeed(1));
 	recordJournalMoney('upkeep', Math.min(coins, Math.max(0, gameData.coins)));
 	gameData.coins -= coins;
 	tempData.monthlyTracker.expense += coins;
@@ -198,8 +206,8 @@ function goBankrupt () {
 	gameData.coins = 0;
 	gameData.currentProperty = gameData.itemData['Homeless'];
 	gameData.currentTransportation = gameData.itemData['Walking']; // Reset transportation
-	gameData.currentMisc = [];
-	logEvent('Ran out of money and went bankrupt! Lost all housing, transportation, and equipment.');
+    gameData.currentMisc = BALANCE.writing.salesEnabled ? gameData.currentMisc.filter(item => item.getExpense() === 0) : [];
+    logEvent(BALANCE.writing.salesEnabled ? 'Savings ran out. Returned to free housing and transport and stopped paid upkeep. Purchased tools and the manuscript are retained; an unpaid editor waits for funds.' : 'Ran out of money and went bankrupt! Lost all housing, transportation, and equipment.');
 }
 
 function setTimeWarping () {
@@ -241,6 +249,7 @@ function setMisc (miscName) {
 			}
 		}
 	} else {
+		if (misc.baseData.slot) gameData.currentMisc = gameData.currentMisc.filter(item => item.baseData.slot !== misc.baseData.slot);
 		gameData.currentMisc.push(misc);
 		logEvent(`Started using ${misc.name}.`);
 	}
@@ -250,12 +259,6 @@ function drinkPotion (type) {
 	if (type === 'acceleration' && !isAccelerationAvailable()) return;
 	if (gameData.potions[type] <= 0) {
 		gameData.potions[type] = 600;
-		if (type === 'inspiration') {
-			if (gameData.coins < 20000) {
-				gameData.coins = 20000;
-				logEvent('Not enough coins to drink Inspiration Potion. Coins increased to $20,000.');
-			}
-		}
 		logEvent(`Drank ${type === 'inspiration' ? 'Inspiration' : 'Acceleration'} Potion!`);
 	}
 }
@@ -269,13 +272,14 @@ function doCurrentTask (task) {
 }
 
 function increaseCoins () {
-	const coins = applySpeed(getIncome());
-	const royalties = applySpeed(gameData.royalties);
+	const royalties = BALANCE.writing.salesEnabled ? collectBookSales(gameData.days, gameData.days + applySpeed(1)) : applySpeed(gameData.royalties);
+	const coins = BALANCE.writing.salesEnabled ? applySpeed(gameData.currentJob.getIncome() * getWorkFraction()) + royalties : applySpeed(getIncome());
+	if (BALANCE.writing.salesEnabled) recordCareerIncome(coins - royalties, applySpeed(1));
 	recordJournalMoney('work', coins - royalties);
 	recordJournalMoney('royalties', royalties);
 	gameData.coins += coins;
 	tempData.monthlyTracker.income += coins;
-	tempData.monthlyTracker.royalties += applySpeed(gameData.royalties);
+	tempData.monthlyTracker.royalties += royalties;
 }
 
 function increaseDays () {
@@ -285,7 +289,7 @@ function increaseDays () {
 }
 
 function getRawWritingSpeed () {
-	const baseSpeed = 100;
+	const baseSpeed = BALANCE.writing.baseSpeed;
 	const typingSpeed = gameData.taskData['Typing Speed'] ? gameData.taskData['Typing Speed'].getEffect() : 1;
 	const focus = gameData.taskData['Focus'] ? gameData.taskData['Focus'].getEffect() : 1;
 	const inspiration = getInspiration();
@@ -312,8 +316,9 @@ function getRawWritingSpeed () {
 }
 
 function getWritingSpeed () {
+	if (BALANCE.writing.salesEnabled && gameData.manuscript?.awaitingEditor) return 0;
 	const rawSpeed = getRawWritingSpeed();
-	return Math.min(600, 40 * softenMultiplier(rawSpeed / 40, 2));
+	return Math.min(BALANCE.writing.maxSpeed, BALANCE.writing.speedScale * softenMultiplier(rawSpeed / BALANCE.writing.speedScale, BALANCE.writing.speedSoftCap));
 }
 
 function getQualityMultiplier () {
@@ -539,8 +544,9 @@ function getCompositionMultiplier () {
 	return multiplier;
 }
 
-function writeProgress (sceneType, timeInSeconds) {
+function writeProgress (sceneType, timeInSeconds, simulatedWords = null) {
 	if (!gameData.currentBook) return;
+	if (BALANCE.writing.salesEnabled && gameData.manuscript?.awaitingEditor) { finishBook(); return; }
 	
 	let speedPerSecond = getWritingSpeed();
 	
@@ -548,7 +554,7 @@ function writeProgress (sceneType, timeInSeconds) {
 		speedPerSecond *= 2;
 	}
 	
-	const words = speedPerSecond * getGameSpeed() * timeInSeconds;
+	const words = simulatedWords ?? speedPerSecond * getGameSpeed() * timeInSeconds;
 	
 	if (words <= 0) return;
 	
@@ -613,6 +619,7 @@ function handleSceneHoldEnd () {
 }
 
 function finishBook () {
+	if (BALANCE.writing.salesEnabled && (!gameData.currentBook || !settleBookEditor())) return;
 	const baseQuality = getBookQuality();
 	const qualityMultiplier = getQualityMultiplier();
 	const compMultiplier = getCompositionMultiplier();
@@ -629,7 +636,7 @@ function finishBook () {
 	tempData.monthlyTracker.qualityCount++;
 	
 	const bookTitle = getBookTitle();
-	logEvent(`Published Book #${gameData.booksPublished}: "${escapeGameText(bookTitle)}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
+	logEvent(`Published Book #${gameData.booksPublished}: "${escapeGameText(bookTitle)}"! Quality: ${quality.toFixed(1)}%. ${BALANCE.writing.salesEnabled ? 'Sales start at' : 'Earned'} $${format(royalty)}/day${BALANCE.writing.salesEnabled ? ', declining over two game years.' : ' in royalties.'}`);
 	
 	const bookAge = daysToYears(gameData.days);
 	const bookDay = getDay();
@@ -647,8 +654,9 @@ function finishBook () {
 		});
 	}
 	
+	if (BALANCE.writing.salesEnabled) attachBookSales(gameData.completedBooks[gameData.completedBooks.length - 1], quality);
 	addGameNotification({ type: 'book', name: bookTitle, bookId: gameData.currentBook, quality, royalty, words: getBookLength() });
-	if ([5, 15].includes(gameData.booksPublished)) addGameNotification({ type: 'summary', name: 'A stronger publishing contract', message: `${gameData.booksPublished} publications earned a ${gameData.booksPublished === 5 ? '15' : '30'}% contract bonus on royalties from future books.` });
+	if (!BALANCE.writing.salesEnabled && [5, 15].includes(gameData.booksPublished)) addGameNotification({ type: 'summary', name: 'A stronger publishing contract', message: `${gameData.booksPublished} publications earned a ${gameData.booksPublished === 5 ? '15' : '30'}% contract bonus on royalties from future books.` });
 	
 	gameData.currentBook = null;
 	gameData.wordsWritten = 0;
@@ -696,6 +704,10 @@ function rebirthReset () {
 	gameData.wordsWritten = 0;
 	gameData.booksPublished = 0;
 	gameData.royalties = 0;
+	gameData.readership = 0;
+	gameData.careerFinance = [];
+	gameData.writingIndependent = false;
+	gameData.automation = { promote: false, train: false, lastDay: null };
 	gameData.logHistory = [];
 	gameData.journalFinance = [];
 	gameData.monthlyChartData = [];
@@ -710,6 +722,7 @@ function rebirthReset () {
 	gameData.ownedItems = [];
 	gameData.manuscript = null;
 	gameData.queueRemaining = 0;
+	gameData.queueMode = 'finite';
 	
 	gameData.rebirthOnePrompted = false;
 	gameData.rebirthTwoPrompted = false;

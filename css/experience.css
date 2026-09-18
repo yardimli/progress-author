@@ -83,6 +83,16 @@ body.dark .row-value, body.dark .row-expense, body .locked-row .locked-text, bod
 .badge-icon:hover { transform: none; }
 .manuscript-preview { margin: 10px 0; }
 summary { cursor: pointer; padding: 10px 0; }
+#trainingPlanControls label { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+#trainingPlanControls select, #trainingPlanControls input {
+    max-width: 100%; min-width: 0; box-sizing: border-box; min-height: 44px;
+    background: var(--journal-button); color: var(--journal-ink); border: 1px solid var(--journal-border);
+    font: inherit; font-size: 16px; padding: 8px;
+}
+#trainingPlanControls select { cursor: pointer; }
+#trainingPlanControls input { width: 110px; }
+#trainingPlanControls .btn { min-height: 44px; margin: 4px; }
+#trainingTargets li { margin-bottom: 10px; overflow-wrap: anywhere; }
 #gameTooltip { position: fixed; z-index: 9999; max-width: min(340px, calc(100vw - 16px)); padding: 12px 16px; background: var(--journal-paper); color: var(--journal-ink); border: 2px solid var(--journal-border); border-radius: 4px; font-size: 16px; box-shadow: 0 4px 20px #0005; pointer-events: none; }
 button:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--journal-positive); outline-offset: 3px; }
 @media (max-width: 650px) {

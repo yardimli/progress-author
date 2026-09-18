@@ -14,14 +14,16 @@ class Task {
     }
     
     getMaxXp() {
+        const curve = BALANCE.career;
+        if (curve.xpCurve === 'knight') return Math.max(1, Math.round(this.baseData.maxXp * (this.level + 1) * Math.pow(curve.xpGrowth, this.level)));
         // Beyond 100, grow steadily instead of compounding into unreachable requirements.
-        if (this.level > 100) {
-            const anchor = this.baseData.maxXp * 101 * Math.pow(1.01, 100) * 2;
-            return Math.max(1, Math.round(anchor * Math.pow((this.level + 1) / 101, 1.2)));
+        if (this.level > curve.lateLevel) {
+            const anchor = this.baseData.maxXp * (curve.lateLevel + 1) * Math.pow(curve.xpGrowth, curve.lateLevel) * 2;
+            return Math.max(1, Math.round(anchor * Math.pow((this.level + 1) / (curve.lateLevel + 1), curve.latePower)));
         }
         // Cheap early levels taper smoothly into the full late-game curve at 40.
-        const earlyLevelDiscount = 0.3 + 0.7 * Math.pow(Math.min(this.level, 40) / 40, 1.5);
-        return Math.max(1, Math.round(this.baseData.maxXp * (this.level + 1) * Math.pow(1.01, this.level) * (1 + this.level / 100) * earlyLevelDiscount));
+        const earlyLevelDiscount = curve.earlyDiscount + (1 - curve.earlyDiscount) * Math.pow(Math.min(this.level, curve.earlyDiscountEnd) / curve.earlyDiscountEnd, curve.earlyDiscountPower);
+        return Math.max(1, Math.round(this.baseData.maxXp * (this.level + 1) * Math.pow(curve.xpGrowth, this.level) * (1 + this.level / curve.lateLevel) * earlyLevelDiscount));
     }
     
     getXpLeft() {
@@ -29,11 +31,13 @@ class Task {
     }
     
     getMaxLevelMultiplier() {
-        return 1 + this.maxLevel / 20;
+        return 1 + this.maxLevel / BALANCE.career.inheritanceDivisor;
     }
     
     getXpGain() {
-        return 10 * softenMultiplier(applyMultipliers(10, this.xpMultipliers) / 10);
+        const base = BALANCE.career.baseXp;
+        const multiplier = applyMultipliers(base, this.xpMultipliers) / base;
+        return base * (BALANCE.career.xpSoftCap === null ? multiplier : softenMultiplier(multiplier, BALANCE.career.xpSoftCap));
     }
     
     increaseXp() {
@@ -67,13 +71,13 @@ class Job extends Task {
     
     getIncome() {
         let income = applyMultipliers(this.baseData.income, this.incomeMultipliers);
-        return income * gameData.workMultiplier;
+        return income * gameData.workMultiplier * BALANCE.career.salaryScale;
     }
     
     getXpGain() {
         let baseGain = super.getXpGain();
         // If not writing a book, work percentage is always 100%
-        const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
+        const workPercentage = getWorkFraction();
         return baseGain * gameData.workMultiplier * gameData.workXpMultiplier * workPercentage;
     }
 }
@@ -106,7 +110,8 @@ class Skill extends Task {
     
     getXpGain() {
         let baseGain = super.getXpGain();
-        return baseGain * gameData.skillMultiplier * gameData.skillXpMultiplier;
+        const careerCraft = this.baseData.category === 'Writing Craft' ? getCareerCraftBonus() : 1;
+        return baseGain * gameData.skillMultiplier * gameData.skillXpMultiplier * careerCraft;
     }
 }
 
@@ -154,6 +159,8 @@ class Item {
         
         // Return "No effect" if all multipliers are exactly 1
         if (effectTexts.length === 0) {
+            if (BALANCE.writing.salesEnabled && this.name === 'Walking') return 'Free commute';
+            if (BALANCE.writing.salesEnabled && this.name === 'Homeless') return 'No housing upkeep';
             return "No effect";
         }
         
@@ -161,6 +168,6 @@ class Item {
     }
     
     getExpense() {
-        return applyMultipliers(this.baseData.expense, this.expenseMultipliers);
+        return applyMultipliers(this.baseData.expense, this.expenseMultipliers) * BALANCE.career.upkeepScale;
     }
 }

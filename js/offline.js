@@ -22,9 +22,12 @@ function advanceAwayProgress(now = Date.now()) {
                 step = Math.min(step, Math.max(0.00001, (getBookLength() - gameData.wordsWritten) / (getWritingSpeed() * speed)));
             }
             deltaTime = step;
+            if (BALANCE.writing.salesEnabled) advanceWritingEconomy(step);
+            else {
             updateLogic();
             if (gameData.currentBook && currentAutoSceneType) writeProgress(currentAutoSceneType, step);
             for (const key of Object.keys(gameData.potions)) gameData.potions[key] = Math.max(0, gameData.potions[key] - step);
+            }
             checkBadgeUnlocks();
             let discovery;
             while ((discovery = discoverNextCard())) addGameNotification(discovery);
@@ -38,7 +41,7 @@ function advanceAwayProgress(now = Date.now()) {
 // Web Locks serialize whole game sessions across tabs, including offline rewards.
 async function startOwnedGame() {
     if (!navigator.locks) { await init(); return; }
-    await navigator.locks.request('authorsJourneySave-owner', { ifAvailable: true }, async lock => {
+    await navigator.locks.request(gameSaveKey() + '-owner', { ifAvailable: true }, async lock => {
         if (!lock) {
             document.body.innerHTML = '<main style="padding:3rem;max-width:40rem;margin:auto"><h1>Your journey is open in another tab</h1><p>Use that tab, or close it and reload here. This prevents conflicting saves and duplicate offline rewards.</p><button onclick="location.reload()">Try again</button></main>';
             return;

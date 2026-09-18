@@ -1,0 +1,12 @@
+{
+  "status": "Provisional ordinary-speed first-life targets for playtesting, not approved release balance",
+  "scope": "Fresh authors, free editing, no acceleration. No lifetime-count or retirement targets are set here.",
+  "targets": [
+    { "metric": "firstPromotionSeconds", "strategies": ["job-only", "mixed"], "min": 60, "max": 240, "reason": "An early career choice within one to four real minutes." },
+    { "metric": "firstBookSeconds", "strategies": ["mixed", "writing-heavy"], "min": 90, "max": 300, "reason": "A first publication within roughly two to five minutes when writing starts immediately." },
+    { "metric": "sustainableHomeSeconds", "strategies": ["job-only", "mixed"], "min": 420, "max": 1500, "reason": "A modest paid home retained for a game year within seven to twenty-five real minutes." }
+  ],
+  "independence": "Not required in the first life. Report both first qualification and duration sustained; later-life pacing remains deferred.",
+  "editing": "Paid editing should be an optional investment. Measure extra receipts, readership, costs and delays before setting a return target.",
+  "limitedCatalogue": "Stopping after three early books must eventually produce zero current sales; saved cash is retained."
+}

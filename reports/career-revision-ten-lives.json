@@ -1,0 +1,2896 @@
+{
+  "model": "Career and writing candidate: readership, finite sales and configurable editing",
+  "policy": "Five-second decisions; highest base-wage progression except the explicitly labelled current-wage control; lowest-level eligible skill; upgrades under 65% of current gross income, reserving pending editing fees; balanced prose in the first genre; editor policy paid-wait; no potion. Transition switches to 80% writing at 600 real seconds.",
+  "limitations": "Heuristic policies, not optimal play. Preview uses the production rolling-year operating-income test; the legacy profile retains year buckets. Sustainable housing means a paid home retained for 365 game days without bankruptcy, not guaranteed future affordability. Cash totals use actual journal events, including editor charges. No acceleration; retirement design unchanged. One-time tools are excluded from the operating-income milestone but included in cash accounting.",
+  "runs": [
+    {
+      "strategy": "transition",
+      "author": "author1",
+      "seed": 12345,
+      "careerPolicy": "creative",
+      "profile": "career",
+      "editor": "paid-wait",
+      "approach": "balanced",
+      "transitionSeconds": 600,
+      "bookLimit": null,
+      "skillPolicy": "balanced",
+      "accelerated": false,
+      "firstReached": {
+        "item: Rented Room": {
+          "life": 1,
+          "seconds": 31.33333333333329
+        },
+        "item: Planner": {
+          "life": 1,
+          "seconds": 46.333333333333385
+        },
+        "skill: Time Management": {
+          "life": 1,
+          "seconds": 51.33333333333342
+        },
+        "job: Food Service": {
+          "life": 1,
+          "seconds": 98.66666666666634
+        },
+        "item: Used Laptop": {
+          "life": 1,
+          "seconds": 119.99999999999937
+        },
+        "skill: Typing Speed": {
+          "life": 1,
+          "seconds": 150.33333333333323
+        },
+        "item: Bus Pass": {
+          "life": 1,
+          "seconds": 190.33333333333437
+        },
+        "job: Delivery Driver": {
+          "life": 1,
+          "seconds": 276.6666666666684
+        },
+        "item: Studio": {
+          "life": 1,
+          "seconds": 303.33333333333354
+        },
+        "job: Intern": {
+          "life": 1,
+          "seconds": 319.33333333333263
+        },
+        "item: Premium Briefcase": {
+          "life": 1,
+          "seconds": 473.9999999999905
+        },
+        "skill: Frugality": {
+          "life": 1,
+          "seconds": 581.3333333333295
+        },
+        "milestone: First book": {
+          "life": 1,
+          "seconds": 653.721829657761
+        },
+        "skill: Grammar & Prose": {
+          "life": 1,
+          "seconds": 1245.3333333333296
+        },
+        "item: Style Guide": {
+          "life": 1,
+          "seconds": 1303.999999999983
+        },
+        "job: Blogger": {
+          "life": 1,
+          "seconds": 1570.6666666665888
+        },
+        "skill: Meditation": {
+          "life": 1,
+          "seconds": 3225.3333333336823
+        },
+        "item: Suburban": {
+          "life": 1,
+          "seconds": 3275.333333333705
+        },
+        "item: Used Car": {
+          "life": 1,
+          "seconds": 3635.3333333338683
+        },
+        "skill: Character Dev.": {
+          "life": 1,
+          "seconds": 3940.333333334007
+        },
+        "skill: Brand Management": {
+          "life": 2,
+          "seconds": 1255.9999999999932
+        },
+        "job: Content Creator": {
+          "life": 2,
+          "seconds": 1980.9999999998292
+        },
+        "skill: Networking": {
+          "life": 2,
+          "seconds": 2314.9999999999345
+        },
+        "item: Pro Writing Software": {
+          "life": 2,
+          "seconds": 3530.0000000004866
+        },
+        "item: Home Office": {
+          "life": 2,
+          "seconds": 5113.333333333155
+        },
+        "milestone: Writing independence": {
+          "life": 2,
+          "seconds": 5640.333333332677
+        },
+        "job: Copy Editor": {
+          "life": 3,
+          "seconds": 2034.6666666664848
+        },
+        "skill: Public Speaking": {
+          "life": 3,
+          "seconds": 2125.3333333331834
+        },
+        "job: Staff Writer": {
+          "life": 3,
+          "seconds": 4895.33333333335
+        },
+        "skill: Personal Brand": {
+          "life": 4,
+          "seconds": 2214.9999999998886
+        },
+        "job: C.W. Student": {
+          "life": 4,
+          "seconds": 3130.0000000002983
+        },
+        "skill: Plotting": {
+          "life": 4,
+          "seconds": 3390.0000000004143
+        },
+        "job: Senior Editor": {
+          "life": 4,
+          "seconds": 4873.333333333369
+        },
+        "item: City Penthouse": {
+          "life": 5,
+          "seconds": 1917.3333333331784
+        },
+        "item: Masterclass Subscription": {
+          "life": 5,
+          "seconds": 2100.3333333331725
+        },
+        "job: Ghostwriter": {
+          "life": 5,
+          "seconds": 3275.3333333337014
+        },
+        "skill: Media Tours": {
+          "life": 6,
+          "seconds": 2184.999999999878
+        },
+        "item: Home Library": {
+          "life": 7,
+          "seconds": 2454.333333333327
+        },
+        "job: Commissioned Author": {
+          "life": 7,
+          "seconds": 5304.666666666312
+        },
+        "skill: Royalty Negotiation": {
+          "life": 9,
+          "seconds": 2974.666666666898
+        },
+        "item: Mansion Estate": {
+          "life": 9,
+          "seconds": 3369.6666666670744
+        }
+      },
+      "lives": [
+        {
+          "life": 1,
+          "elapsedSeconds": 6083.33333333227,
+          "gameDays": 18250,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 653.721829657761,
+            "firstPromotionSeconds": 98.66666666666634,
+            "firstPaidHomeSeconds": 287.33333333333445,
+            "sustainableHomeSeconds": 408.9999999999942,
+            "writingMajoritySeconds": 4349.66666666718,
+            "writingIndependenceSeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 98.66666666666634,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 276.6666666666684,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 319.33333333333263,
+              "job": "Intern"
+            },
+            {
+              "seconds": 1570.6666666665888,
+              "job": "Blogger"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 31.33333333333329,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 51.33333333333342,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 98.66666666666634,
+              "name": "Food Service",
+              "type": "job"
+            },
+            {
+              "seconds": 119.99999999999937,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 150.33333333333323,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 190.33333333333437,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 276.6666666666684,
+              "name": "Delivery Driver",
+              "type": "job"
+            },
+            {
+              "seconds": 303.33333333333354,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 319.33333333333263,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 473.9999999999905,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 581.3333333333295,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 1245.3333333333296,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 1303.999999999983,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 1570.6666666665888,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 3225.3333333336823,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 3275.333333333705,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 3635.3333333338683,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 3940.333333334007,
+              "name": "Character Dev.",
+              "type": "skill"
+            }
+          ],
+          "books": 22,
+          "readership": 4417,
+          "coins": 2146234.4793374115,
+          "wages": 4057476.2000004197,
+          "royalties": 2284724.2793374173,
+          "upkeep": 4041205.999999997,
+          "purchases": 2500,
+          "editing": 152260,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 0,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 195176.1616817337,
+            "work": 110324.59999999935,
+            "editing": 20410,
+            "benchmark": 551623,
+            "net": 174766.1616817337,
+            "upkeep": 171550,
+            "qualified": false
+          },
+          "receiptsReconcileError": -4.2887404561042786e-7,
+          "job": "Blogger",
+          "dailyJobPayAtFullWork": 1529,
+          "dailyRoyalties": 550.1492501074791,
+          "dailyUpkeep": 470,
+          "equipped": [
+            "Rented Room",
+            "Bus Pass",
+            "Library Card",
+            "Planner",
+            "Used Laptop",
+            "Style Guide"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 3,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 19,
+            "Blogger": 16,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 37,
+            "Time Management": 37,
+            "Frugality": 37,
+            "Meditation": 37,
+            "Typing Speed": 36,
+            "Grammar & Prose": 37,
+            "Plotting": 0,
+            "Character Dev.": 37,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 0,
+            "Networking": 0,
+            "Public Speaking": 0,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 2,
+          "elapsedSeconds": 6326.66666666539,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 646.9156606064527,
+            "firstPromotionSeconds": 46.333333333333385,
+            "firstPaidHomeSeconds": 82.66666666666657,
+            "sustainableHomeSeconds": 204.33333333333476,
+            "writingMajoritySeconds": 2866.333333333518,
+            "writingIndependenceSeconds": 5640.333333332677
+          },
+          "promotions": [
+            {
+              "seconds": 46.333333333333385,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 72.00000000000006,
+              "job": "Intern"
+            },
+            {
+              "seconds": 335.3333333333317,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 1980.9999999998292,
+              "job": "Content Creator"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 10.333333333333334,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 41.33333333333335,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Food Service",
+              "type": "job"
+            },
+            {
+              "seconds": 72.00000000000006,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 119.99999999999937,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 130.33333333333266,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 175.33333333333394,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 266.00000000000233,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 266.00000000000233,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 282.0000000000014,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 335.3333333333317,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 516.3333333333221,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 596.3333333333312,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 651.3333333333372,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 791.3333333333532,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 1255.9999999999932,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 1980.9999999998292,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 2314.9999999999345,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 3530.0000000004866,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 5113.333333333155,
+              "name": "Home Office",
+              "type": "item"
+            }
+          ],
+          "books": 40,
+          "readership": 32048,
+          "coins": 15006148.863433775,
+          "wages": 10690762.800001033,
+          "royalties": 28010389.063433725,
+          "upkeep": 21779717.999999996,
+          "purchases": 52500,
+          "editing": 1862785,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 1669,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 3269295.7617726447,
+            "work": 314686.7999999979,
+            "editing": 289075,
+            "benchmark": 1573434,
+            "net": 2980220.7617726447,
+            "upkeep": 2167110,
+            "qualified": true
+          },
+          "receiptsReconcileError": -9.909272193908691e-7,
+          "job": "Content Creator",
+          "dailyJobPayAtFullWork": 4314,
+          "dailyRoyalties": 10753.895766977015,
+          "dailyUpkeep": 5930,
+          "equipped": [
+            "Suburban",
+            "Bus Pass",
+            "Library Card",
+            "Planner",
+            "Style Guide",
+            "Pro Writing Software",
+            "Premium Briefcase"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 5,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 26,
+            "Blogger": 24,
+            "Content Creator": 19,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 84,
+            "Time Management": 84,
+            "Frugality": 84,
+            "Meditation": 83,
+            "Typing Speed": 86,
+            "Grammar & Prose": 83,
+            "Plotting": 0,
+            "Character Dev.": 85,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 84,
+            "Networking": 83,
+            "Public Speaking": 0,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 3,
+          "elapsedSeconds": 6326.666666665395,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 630.8533237525164,
+            "firstPromotionSeconds": 46.333333333333385,
+            "firstPaidHomeSeconds": 46.333333333333385,
+            "sustainableHomeSeconds": 168.0000000000004,
+            "writingMajoritySeconds": 2015.333333333156,
+            "writingIndependenceSeconds": 3834.0000000006203
+          },
+          "promotions": [
+            {
+              "seconds": 46.333333333333385,
+              "job": "Intern"
+            },
+            {
+              "seconds": 125.33333333333263,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 611.3333333333329,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 2034.6666666664848,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 4895.33333333335,
+              "job": "Staff Writer"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 41.33333333333335,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Food Service",
+              "type": "job"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 72.00000000000006,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 98.66666666666634,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 125.33333333333263,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 135.3333333333328,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 145.3333333333331,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 155.33333333333337,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 185.33333333333422,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 329.9999999999987,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 329.9999999999987,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 351.3333333333308,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 420.6666666666602,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 611.3333333333329,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 1021.3333333333792,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 1693.3333333332284,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1693.3333333332284,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 2034.6666666664848,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 2125.3333333331834,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 2830.3333333335017,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 4895.33333333335,
+              "name": "Staff Writer",
+              "type": "job"
+            }
+          ],
+          "books": 94,
+          "readership": 1330033,
+          "coins": 1162080537.8446221,
+          "wages": 58857749.79936778,
+          "royalties": 1425447004.0452385,
+          "upkeep": 225628266.00000036,
+          "purchases": 52500,
+          "editing": 96543450,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 7461,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 264913760.69932383,
+            "work": 3501325.999999988,
+            "editing": 17512825,
+            "benchmark": 17506630,
+            "net": 247400935.69932383,
+            "upkeep": 14109197,
+            "qualified": true
+          },
+          "receiptsReconcileError": 0.00001621246337890625,
+          "job": "Staff Writer",
+          "dailyJobPayAtFullWork": 48728,
+          "dailyRoyalties": 668412.3312159401,
+          "dailyUpkeep": 38602,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Planner",
+            "Style Guide",
+            "Pro Writing Software",
+            "Premium Briefcase",
+            "Home Office"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 16,
+            "Blogger": 27,
+            "Content Creator": 17,
+            "Copy Editor": 21,
+            "Staff Writer": 11,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 180,
+            "Time Management": 180,
+            "Frugality": 181,
+            "Meditation": 180,
+            "Typing Speed": 179,
+            "Grammar & Prose": 181,
+            "Plotting": 0,
+            "Character Dev.": 180,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 180,
+            "Networking": 180,
+            "Public Speaking": 180,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 4,
+          "elapsedSeconds": 6326.6666666653955,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 622.3206117448456,
+            "firstPromotionSeconds": 25.999999999999975,
+            "firstPaidHomeSeconds": 25.999999999999975,
+            "sustainableHomeSeconds": 147.6666666666665,
+            "writingMajoritySeconds": 2481.333333333342,
+            "writingIndependenceSeconds": 3581.0000000004998
+          },
+          "promotions": [
+            {
+              "seconds": 25.999999999999975,
+              "job": "Intern"
+            },
+            {
+              "seconds": 61.33333333333349,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 287.33333333333445,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 1090.333333333364,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 1970.3333333331639,
+              "job": "Staff Writer"
+            },
+            {
+              "seconds": 4873.333333333369,
+              "job": "Senior Editor"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 61.33333333333349,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 72.00000000000006,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 77.33333333333331,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 82.66666666666657,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 93.33333333333309,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 130.33333333333266,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 155.33333333333337,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 205.3333333333348,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 287.33333333333445,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 292.6666666666675,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 345.9999999999978,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 921.3333333333674,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 1090.333333333364,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 1404.9999999999588,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1404.9999999999588,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 1730.3333333332184,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1970.3333333331639,
+              "name": "Staff Writer",
+              "type": "job"
+            },
+            {
+              "seconds": 2069.9999999998226,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 2214.9999999998886,
+              "name": "Personal Brand",
+              "type": "skill"
+            },
+            {
+              "seconds": 3130.0000000002983,
+              "name": "C.W. Student",
+              "type": "job"
+            },
+            {
+              "seconds": 3390.0000000004143,
+              "name": "Plotting",
+              "type": "skill"
+            },
+            {
+              "seconds": 4873.333333333369,
+              "name": "Senior Editor",
+              "type": "job"
+            }
+          ],
+          "books": 129,
+          "readership": 13707789,
+          "coins": 12922402091.511683,
+          "wages": 314708965.07520825,
+          "royalties": 13987713331.154089,
+          "upkeep": 373775174.71761024,
+          "purchases": 52500,
+          "editing": 1006192530,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 8197,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 2624437329.907007,
+            "work": 19940456.00000013,
+            "editing": 233202935,
+            "benchmark": 99702280,
+            "net": 2391234394.907007,
+            "upkeep": 12957975.71760886,
+            "qualified": true
+          },
+          "receiptsReconcileError": -0.0000057220458984375,
+          "job": "Senior Editor",
+          "dailyJobPayAtFullWork": 275629,
+          "dailyRoyalties": 9146436.358382743,
+          "dailyUpkeep": 35440,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Planner",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software",
+            "Home Office"
+          ],
+          "levels": {
+            "Gig Worker": 7,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 11,
+            "Blogger": 18,
+            "Content Creator": 19,
+            "Copy Editor": 14,
+            "Staff Writer": 51,
+            "Senior Editor": 20,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 329,
+            "Time Management": 324,
+            "Frugality": 329,
+            "Meditation": 324,
+            "Typing Speed": 371,
+            "Grammar & Prose": 328,
+            "Plotting": 324,
+            "Character Dev.": 326,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 326,
+            "Networking": 331,
+            "Public Speaking": 328,
+            "Personal Brand": 324,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 5,
+          "elapsedSeconds": 6326.666666665403,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 617.9055976219609,
+            "firstPromotionSeconds": 5.333333333333332,
+            "firstPaidHomeSeconds": 15.333333333333343,
+            "sustainableHomeSeconds": 136.99999999999952,
+            "writingMajoritySeconds": 4669.333333333561,
+            "writingIndependenceSeconds": 5638.99999999936
+          },
+          "promotions": [
+            {
+              "seconds": 5.333333333333332,
+              "job": "Intern"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 185.33333333333422,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 641.3333333333362,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 1160.000000000015,
+              "job": "Staff Writer"
+            },
+            {
+              "seconds": 1927.9999999998424,
+              "job": "Senior Editor"
+            },
+            {
+              "seconds": 3275.3333333337014,
+              "job": "Ghostwriter"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 20.66666666666666,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 51.33333333333342,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 72.00000000000006,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 98.66666666666634,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 98.66666666666634,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 103.9999999999996,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 185.33333333333422,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 245.33333333333593,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 282.0000000000014,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 641.3333333333362,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 871.3333333333619,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 1160.000000000015,
+              "name": "Staff Writer",
+              "type": "job"
+            },
+            {
+              "seconds": 1245.3333333333296,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1245.3333333333296,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 1453.3333333332828,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1575.999999999922,
+              "name": "C.W. Student",
+              "type": "job"
+            },
+            {
+              "seconds": 1655.999999999904,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 1751.999999999883,
+              "name": "Plotting",
+              "type": "skill"
+            },
+            {
+              "seconds": 1842.666666666529,
+              "name": "Personal Brand",
+              "type": "skill"
+            },
+            {
+              "seconds": 1917.3333333331784,
+              "name": "City Penthouse",
+              "type": "item"
+            },
+            {
+              "seconds": 1927.9999999998424,
+              "name": "Senior Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 2100.3333333331725,
+              "name": "Masterclass Subscription",
+              "type": "item"
+            },
+            {
+              "seconds": 3275.3333333337014,
+              "name": "Ghostwriter",
+              "type": "job"
+            }
+          ],
+          "books": 134,
+          "readership": 19209040,
+          "coins": 22529774099.790882,
+          "wages": 5889786573.356166,
+          "royalties": 20665909247.703674,
+          "upkeep": 2615281531.2689223,
+          "purchases": 52500,
+          "editing": 1410587690,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 2063,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 3609294436.2270823,
+            "work": 271810853.0000013,
+            "editing": 252973375,
+            "benchmark": 1359054265,
+            "net": 3356321061.2270823,
+            "upkeep": 98898614,
+            "qualified": true
+          },
+          "receiptsReconcileError": -0.00003814697265625,
+          "job": "Ghostwriter",
+          "dailyJobPayAtFullWork": 3733036,
+          "dailyRoyalties": 9860226.169311956,
+          "dailyUpkeep": 270810,
+          "equipped": [
+            "City Penthouse",
+            "Used Car",
+            "Planner",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software",
+            "Home Office",
+            "Masterclass Subscription"
+          ],
+          "levels": {
+            "Gig Worker": 3,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 10,
+            "Blogger": 16,
+            "Content Creator": 22,
+            "Copy Editor": 10,
+            "Staff Writer": 28,
+            "Senior Editor": 56,
+            "Ghostwriter": 103,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 866,
+            "Time Management": 865,
+            "Frugality": 864,
+            "Meditation": 865,
+            "Typing Speed": 882,
+            "Grammar & Prose": 867,
+            "Plotting": 867,
+            "Character Dev.": 866,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 864,
+            "Networking": 865,
+            "Public Speaking": 865,
+            "Personal Brand": 865,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 6,
+          "elapsedSeconds": 6326.666666665395,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 608.2575372731004,
+            "firstPromotionSeconds": 5.333333333333332,
+            "firstPaidHomeSeconds": 15.333333333333343,
+            "sustainableHomeSeconds": 136.99999999999952,
+            "writingMajoritySeconds": 4402.000000000463,
+            "writingIndependenceSeconds": 5346.999999999612
+          },
+          "promotions": [
+            {
+              "seconds": 5.333333333333332,
+              "job": "Intern"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 93.33333333333309,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 255.3333333333362,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 447.33333333332536,
+              "job": "Staff Writer"
+            },
+            {
+              "seconds": 991.3333333333759,
+              "job": "Senior Editor"
+            },
+            {
+              "seconds": 1943.6666666665067,
+              "job": "Ghostwriter"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 20.66666666666666,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 31.33333333333329,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 41.33333333333335,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 51.33333333333342,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 66.6666666666668,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 93.33333333333309,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 93.33333333333309,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 175.33333333333394,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 210.33333333333493,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 255.3333333333362,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 447.33333333332536,
+              "name": "Staff Writer",
+              "type": "job"
+            },
+            {
+              "seconds": 601.3333333333318,
+              "name": "City Penthouse",
+              "type": "item"
+            },
+            {
+              "seconds": 671.3333333333394,
+              "name": "C.W. Student",
+              "type": "job"
+            },
+            {
+              "seconds": 711.333333333344,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 761.3333333333494,
+              "name": "Plotting",
+              "type": "skill"
+            },
+            {
+              "seconds": 896.3333333333647,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 896.3333333333647,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 991.3333333333759,
+              "name": "Senior Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 1117.3333333333583,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1170.6666666666795,
+              "name": "Masterclass Subscription",
+              "type": "item"
+            },
+            {
+              "seconds": 1330.666666666644,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 1564.9999999999254,
+              "name": "Personal Brand",
+              "type": "skill"
+            },
+            {
+              "seconds": 1943.6666666665067,
+              "name": "Ghostwriter",
+              "type": "job"
+            },
+            {
+              "seconds": 2184.999999999878,
+              "name": "Media Tours",
+              "type": "skill"
+            }
+          ],
+          "books": 142,
+          "readership": 32766650,
+          "coins": 38665647885.42578,
+          "wages": 8950944150.899807,
+          "royalties": 35872384760.70252,
+          "upkeep": 3750260706.1764674,
+          "purchases": 52500,
+          "editing": 2407367820,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 2939,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 6202874234.977927,
+            "work": 280958567.1999999,
+            "editing": 297035280,
+            "benchmark": 1404792836,
+            "net": 5905838954.977927,
+            "upkeep": 101225815,
+            "qualified": true
+          },
+          "receiptsReconcileError": -0.0000762939453125,
+          "job": "Ghostwriter",
+          "dailyJobPayAtFullWork": 4062765,
+          "dailyRoyalties": 15217598.818953916,
+          "dailyUpkeep": 277331,
+          "equipped": [
+            "City Penthouse",
+            "Used Car",
+            "Planner",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software",
+            "Home Office",
+            "Masterclass Subscription"
+          ],
+          "levels": {
+            "Gig Worker": 3,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 10,
+            "Blogger": 10,
+            "Content Creator": 14,
+            "Copy Editor": 13,
+            "Staff Writer": 24,
+            "Senior Editor": 54,
+            "Ghostwriter": 215,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 742,
+            "Time Management": 746,
+            "Frugality": 744,
+            "Meditation": 745,
+            "Typing Speed": 867,
+            "Grammar & Prose": 758,
+            "Plotting": 759,
+            "Character Dev.": 758,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 740,
+            "Networking": 746,
+            "Public Speaking": 741,
+            "Personal Brand": 748,
+            "Media Tours": 737,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 7,
+          "elapsedSeconds": 6326.666666665396,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 608.2575372731004,
+            "firstPromotionSeconds": 5.333333333333332,
+            "firstPaidHomeSeconds": 15.333333333333343,
+            "sustainableHomeSeconds": 136.99999999999952,
+            "writingMajoritySeconds": 4511.000000000357,
+            "writingIndependenceSeconds": 6097.333333332268
+          },
+          "promotions": [
+            {
+              "seconds": 5.333333333333332,
+              "job": "Intern"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 93.33333333333309,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 255.3333333333362,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 447.33333333332536,
+              "job": "Staff Writer"
+            },
+            {
+              "seconds": 1016.3333333333776,
+              "job": "Senior Editor"
+            },
+            {
+              "seconds": 1830.9999999998608,
+              "job": "Ghostwriter"
+            },
+            {
+              "seconds": 5304.666666666312,
+              "job": "Commissioned Author"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 20.66666666666666,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 31.33333333333329,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 41.33333333333335,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 51.33333333333342,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 66.6666666666668,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 93.33333333333309,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 93.33333333333309,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 175.33333333333394,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 210.33333333333493,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 255.3333333333362,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 447.33333333332536,
+              "name": "Staff Writer",
+              "type": "job"
+            },
+            {
+              "seconds": 601.3333333333318,
+              "name": "City Penthouse",
+              "type": "item"
+            },
+            {
+              "seconds": 671.3333333333394,
+              "name": "C.W. Student",
+              "type": "job"
+            },
+            {
+              "seconds": 726.3333333333452,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 756.3333333333486,
+              "name": "Plotting",
+              "type": "skill"
+            },
+            {
+              "seconds": 911.333333333366,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 911.333333333366,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 1016.3333333333776,
+              "name": "Senior Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 1101.33333333336,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1186.6666666666742,
+              "name": "Masterclass Subscription",
+              "type": "item"
+            },
+            {
+              "seconds": 1303.718610214387,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 1484.9999999999386,
+              "name": "Personal Brand",
+              "type": "skill"
+            },
+            {
+              "seconds": 1830.9999999998608,
+              "name": "Ghostwriter",
+              "type": "job"
+            },
+            {
+              "seconds": 2094.3333333331666,
+              "name": "Media Tours",
+              "type": "skill"
+            },
+            {
+              "seconds": 2454.333333333327,
+              "name": "Home Library",
+              "type": "item"
+            },
+            {
+              "seconds": 5304.666666666312,
+              "name": "Commissioned Author",
+              "type": "job"
+            }
+          ],
+          "books": 145,
+          "readership": 39914718,
+          "coins": 42443373115.507385,
+          "wages": 16610721407.372644,
+          "royalties": 43162009366.22283,
+          "upkeep": 14396392103.087698,
+          "purchases": 52500,
+          "editing": 2932913055,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 688,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 8186328686.791692,
+            "work": 979823517.4000026,
+            "editing": 525660525,
+            "benchmark": 4899117587,
+            "net": 7660668161.791692,
+            "upkeep": 1242117791,
+            "qualified": true
+          },
+          "receiptsReconcileError": -0.00038909912109375,
+          "job": "Commissioned Author",
+          "dailyJobPayAtFullWork": 13499591,
+          "dailyRoyalties": 20634434.01407427,
+          "dailyUpkeep": 3402043,
+          "equipped": [
+            "City Penthouse",
+            "Used Car",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software",
+            "Home Office",
+            "Masterclass Subscription",
+            "Home Library"
+          ],
+          "levels": {
+            "Gig Worker": 3,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 10,
+            "Blogger": 10,
+            "Content Creator": 14,
+            "Copy Editor": 13,
+            "Staff Writer": 25,
+            "Senior Editor": 49,
+            "Ghostwriter": 320,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 58,
+            "Focus": 1045,
+            "Time Management": 1045,
+            "Frugality": 1045,
+            "Meditation": 1046,
+            "Typing Speed": 1060,
+            "Grammar & Prose": 1049,
+            "Plotting": 1050,
+            "Character Dev.": 1049,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 1045,
+            "Networking": 1045,
+            "Public Speaking": 1045,
+            "Personal Brand": 1045,
+            "Media Tours": 1046,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 8,
+          "elapsedSeconds": 6326.666666665382,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 607.9999999999992,
+            "firstPromotionSeconds": 5.333333333333332,
+            "firstPaidHomeSeconds": 15.333333333333343,
+            "sustainableHomeSeconds": 136.99999999999952,
+            "writingMajoritySeconds": 5474.333333332817,
+            "writingIndependenceSeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 5.333333333333332,
+              "job": "Intern"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 190.33333333333437,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 351.3333333333308,
+              "job": "Staff Writer"
+            },
+            {
+              "seconds": 1011.3333333333779,
+              "job": "Senior Editor"
+            },
+            {
+              "seconds": 1767.666666666543,
+              "job": "Ghostwriter"
+            },
+            {
+              "seconds": 4548.000000000321,
+              "job": "Commissioned Author"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 20.66666666666666,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 31.33333333333329,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 41.33333333333335,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 51.33333333333342,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 61.33333333333349,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 165.33333333333366,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 190.33333333333437,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 200.33333333333465,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 351.3333333333308,
+              "name": "Staff Writer",
+              "type": "job"
+            },
+            {
+              "seconds": 516.3333333333221,
+              "name": "City Penthouse",
+              "type": "item"
+            },
+            {
+              "seconds": 566.3333333333278,
+              "name": "C.W. Student",
+              "type": "job"
+            },
+            {
+              "seconds": 646.3333333333369,
+              "name": "Plotting",
+              "type": "skill"
+            },
+            {
+              "seconds": 716.333333333345,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 921.3333333333682,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 921.3333333333682,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 1011.3333333333779,
+              "name": "Senior Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 1042.6666666667081,
+              "name": "Masterclass Subscription",
+              "type": "item"
+            },
+            {
+              "seconds": 1111.888888888915,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1314.3333333333126,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 1511.6666666666008,
+              "name": "Personal Brand",
+              "type": "skill"
+            },
+            {
+              "seconds": 1767.666666666543,
+              "name": "Ghostwriter",
+              "type": "job"
+            },
+            {
+              "seconds": 2109.999999999841,
+              "name": "Media Tours",
+              "type": "skill"
+            },
+            {
+              "seconds": 2354.9999999999495,
+              "name": "Home Library",
+              "type": "item"
+            },
+            {
+              "seconds": 4548.000000000321,
+              "name": "Commissioned Author",
+              "type": "job"
+            }
+          ],
+          "books": 141,
+          "readership": 30685008,
+          "coins": 37943487707.776535,
+          "wages": 22992839349.533165,
+          "royalties": 33092264797.57716,
+          "upkeep": 15887255654.333426,
+          "purchases": 52500,
+          "editing": 2254308285,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 0,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 6029651979.595546,
+            "work": 1157760837.1999974,
+            "editing": 404108145,
+            "benchmark": 5788804186,
+            "net": 5625543834.595546,
+            "upkeep": 1236148796,
+            "qualified": false
+          },
+          "receiptsReconcileError": -0.00035858154296875,
+          "job": "Commissioned Author",
+          "dailyJobPayAtFullWork": 15887444,
+          "dailyRoyalties": 15852243.425351456,
+          "dailyUpkeep": 3385668,
+          "equipped": [
+            "City Penthouse",
+            "Used Car",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software",
+            "Home Office",
+            "Masterclass Subscription",
+            "Home Library"
+          ],
+          "levels": {
+            "Gig Worker": 3,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 10,
+            "Blogger": 10,
+            "Content Creator": 10,
+            "Copy Editor": 11,
+            "Staff Writer": 29,
+            "Senior Editor": 46,
+            "Ghostwriter": 331,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 149,
+            "Focus": 1078,
+            "Time Management": 1077,
+            "Frugality": 1078,
+            "Meditation": 1077,
+            "Typing Speed": 1091,
+            "Grammar & Prose": 1082,
+            "Plotting": 1081,
+            "Character Dev.": 1083,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 1078,
+            "Networking": 1077,
+            "Public Speaking": 1076,
+            "Personal Brand": 1077,
+            "Media Tours": 1077,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 9,
+          "elapsedSeconds": 6326.666666665389,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 607.9999999999992,
+            "firstPromotionSeconds": 5.333333333333332,
+            "firstPaidHomeSeconds": 15.333333333333343,
+            "sustainableHomeSeconds": 136.99999999999952,
+            "writingMajoritySeconds": 4444.000000000421,
+            "writingIndependenceSeconds": 5439.666666666187
+          },
+          "promotions": [
+            {
+              "seconds": 5.333333333333332,
+              "job": "Intern"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 185.33333333333422,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 351.3333333333308,
+              "job": "Staff Writer"
+            },
+            {
+              "seconds": 891.3333333333643,
+              "job": "Senior Editor"
+            },
+            {
+              "seconds": 1751.3333333332153,
+              "job": "Ghostwriter"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 20.66666666666666,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 31.33333333333329,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 41.33333333333335,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 51.33333333333342,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 61.33333333333349,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 175.33333333333394,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 185.33333333333422,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 200.33333333333465,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 351.3333333333308,
+              "name": "Staff Writer",
+              "type": "job"
+            },
+            {
+              "seconds": 511.3333333333217,
+              "name": "City Penthouse",
+              "type": "item"
+            },
+            {
+              "seconds": 551.3333333333261,
+              "name": "C.W. Student",
+              "type": "job"
+            },
+            {
+              "seconds": 646.3333333333369,
+              "name": "Plotting",
+              "type": "skill"
+            },
+            {
+              "seconds": 706.3333333333435,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 891.3333333333643,
+              "name": "Senior Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 916.3333333333674,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 916.3333333333674,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 946.3333333333708,
+              "name": "Masterclass Subscription",
+              "type": "item"
+            },
+            {
+              "seconds": 1149.111111111129,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1378.333333333299,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 1564.6666667665909,
+              "name": "Personal Brand",
+              "type": "skill"
+            },
+            {
+              "seconds": 1751.3333333332153,
+              "name": "Ghostwriter",
+              "type": "job"
+            },
+            {
+              "seconds": 2189.666666666545,
+              "name": "Media Tours",
+              "type": "skill"
+            },
+            {
+              "seconds": 2324.666666666606,
+              "name": "Home Library",
+              "type": "item"
+            },
+            {
+              "seconds": 2974.666666666898,
+              "name": "Royalty Negotiation",
+              "type": "skill"
+            },
+            {
+              "seconds": 3369.6666666670744,
+              "name": "Mansion Estate",
+              "type": "item"
+            }
+          ],
+          "books": 144,
+          "readership": 37385692,
+          "coins": 79129569006.68468,
+          "wages": 24459334916.532753,
+          "royalties": 104363608045.4852,
+          "upkeep": 46946350720.33355,
+          "purchases": 52500,
+          "editing": 2746970735,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 2661,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 18939298871.59608,
+            "work": 889814549.1999966,
+            "editing": 492354120,
+            "benchmark": 4449072746,
+            "net": 18446944751.59608,
+            "upkeep": 7130373915,
+            "qualified": true
+          },
+          "receiptsReconcileError": 0.0002899169921875,
+          "job": "Ghostwriter",
+          "dailyJobPayAtFullWork": 12248539,
+          "dailyRoyalties": 53464724.80421254,
+          "dailyUpkeep": 19535271,
+          "equipped": [
+            "Mansion Estate",
+            "Used Car",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software",
+            "Home Office",
+            "Masterclass Subscription",
+            "Home Library"
+          ],
+          "levels": {
+            "Gig Worker": 3,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 10,
+            "Blogger": 10,
+            "Content Creator": 10,
+            "Copy Editor": 11,
+            "Staff Writer": 25,
+            "Senior Editor": 41,
+            "Ghostwriter": 390,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 884,
+            "Time Management": 880,
+            "Frugality": 886,
+            "Meditation": 881,
+            "Typing Speed": 892,
+            "Grammar & Prose": 891,
+            "Plotting": 894,
+            "Character Dev.": 891,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 882,
+            "Networking": 886,
+            "Public Speaking": 880,
+            "Personal Brand": 885,
+            "Media Tours": 881,
+            "Royalty Negotiation": 864
+          }
+        },
+        {
+          "life": 10,
+          "elapsedSeconds": 6326.666666665386,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 607.9999999999992,
+            "firstPromotionSeconds": 5.333333333333332,
+            "firstPaidHomeSeconds": 15.333333333333343,
+            "sustainableHomeSeconds": 136.99999999999952,
+            "writingMajoritySeconds": 5344.666666666276,
+            "writingIndependenceSeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 5.333333333333332,
+              "job": "Intern"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "job": "Content Creator"
+            },
+            {
+              "seconds": 185.33333333333422,
+              "job": "Copy Editor"
+            },
+            {
+              "seconds": 351.3333333333308,
+              "job": "Staff Writer"
+            },
+            {
+              "seconds": 811.3333333333554,
+              "job": "Senior Editor"
+            },
+            {
+              "seconds": 1756.9999999998788,
+              "job": "Ghostwriter"
+            },
+            {
+              "seconds": 4543.00000000033,
+              "job": "Commissioned Author"
+            }
+          ],
+          "discoveries": [
+            {
+              "seconds": 5.333333333333332,
+              "name": "Intern",
+              "type": "job"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Time Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Frugality",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Typing Speed",
+              "type": "skill"
+            },
+            {
+              "seconds": 5.333333333333332,
+              "name": "Used Laptop",
+              "type": "item"
+            },
+            {
+              "seconds": 15.333333333333343,
+              "name": "Rented Room",
+              "type": "item"
+            },
+            {
+              "seconds": 20.66666666666666,
+              "name": "Planner",
+              "type": "item"
+            },
+            {
+              "seconds": 25.999999999999975,
+              "name": "Grammar & Prose",
+              "type": "skill"
+            },
+            {
+              "seconds": 31.33333333333329,
+              "name": "Style Guide",
+              "type": "item"
+            },
+            {
+              "seconds": 36.333333333333314,
+              "name": "Blogger",
+              "type": "job"
+            },
+            {
+              "seconds": 41.33333333333335,
+              "name": "Meditation",
+              "type": "skill"
+            },
+            {
+              "seconds": 46.333333333333385,
+              "name": "Bus Pass",
+              "type": "item"
+            },
+            {
+              "seconds": 51.33333333333342,
+              "name": "Character Dev.",
+              "type": "skill"
+            },
+            {
+              "seconds": 61.33333333333349,
+              "name": "Studio",
+              "type": "item"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "name": "Content Creator",
+              "type": "job"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "name": "Premium Briefcase",
+              "type": "item"
+            },
+            {
+              "seconds": 175.33333333333394,
+              "name": "Suburban",
+              "type": "item"
+            },
+            {
+              "seconds": 185.33333333333422,
+              "name": "Copy Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 200.33333333333465,
+              "name": "Used Car",
+              "type": "item"
+            },
+            {
+              "seconds": 351.3333333333308,
+              "name": "Staff Writer",
+              "type": "job"
+            },
+            {
+              "seconds": 511.3333333333217,
+              "name": "City Penthouse",
+              "type": "item"
+            },
+            {
+              "seconds": 551.3333333333261,
+              "name": "C.W. Student",
+              "type": "job"
+            },
+            {
+              "seconds": 646.3333333333369,
+              "name": "Plotting",
+              "type": "skill"
+            },
+            {
+              "seconds": 721.3333333333452,
+              "name": "Brand Management",
+              "type": "skill"
+            },
+            {
+              "seconds": 811.3333333333554,
+              "name": "Senior Editor",
+              "type": "job"
+            },
+            {
+              "seconds": 896.3333333333649,
+              "name": "Masterclass Subscription",
+              "type": "item"
+            },
+            {
+              "seconds": 921.3333333333679,
+              "name": "Networking",
+              "type": "skill"
+            },
+            {
+              "seconds": 921.3333333333679,
+              "name": "Pro Writing Software",
+              "type": "item"
+            },
+            {
+              "seconds": 1122.6666666666904,
+              "name": "Public Speaking",
+              "type": "skill"
+            },
+            {
+              "seconds": 1314.666666666646,
+              "name": "Home Office",
+              "type": "item"
+            },
+            {
+              "seconds": 1527.6666666665976,
+              "name": "Personal Brand",
+              "type": "skill"
+            },
+            {
+              "seconds": 1756.9999999998788,
+              "name": "Ghostwriter",
+              "type": "job"
+            },
+            {
+              "seconds": 2134.9999999998527,
+              "name": "Media Tours",
+              "type": "skill"
+            },
+            {
+              "seconds": 2319.999999999936,
+              "name": "Home Library",
+              "type": "item"
+            },
+            {
+              "seconds": 2970.000000000229,
+              "name": "Royalty Negotiation",
+              "type": "skill"
+            },
+            {
+              "seconds": 3260.0000000003583,
+              "name": "Mansion Estate",
+              "type": "item"
+            },
+            {
+              "seconds": 4543.00000000033,
+              "name": "Commissioned Author",
+              "type": "job"
+            }
+          ],
+          "books": 141,
+          "readership": 30685058,
+          "coins": 112311796282.83842,
+          "wages": 68959466531.1971,
+          "royalties": 98547548463.97432,
+          "upkeep": 52940855807.33337,
+          "purchases": 52500,
+          "editing": 2254310405,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 0,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 18999710600.071613,
+            "work": 4456551790.399993,
+            "editing": 404108750,
+            "benchmark": 22282758952,
+            "net": 18595601850.071613,
+            "upkeep": 6850180373,
+            "qualified": false
+          },
+          "receiptsReconcileError": 0.0003814697265625,
+          "job": "Commissioned Author",
+          "dailyJobPayAtFullWork": 61518364,
+          "dailyRoyalties": 65331242.632745445,
+          "dailyUpkeep": 18752523,
+          "equipped": [
+            "Mansion Estate",
+            "Used Car",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software",
+            "Home Office",
+            "Masterclass Subscription",
+            "Home Library"
+          ],
+          "levels": {
+            "Gig Worker": 3,
+            "Food Service": 0,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 10,
+            "Blogger": 10,
+            "Content Creator": 10,
+            "Copy Editor": 11,
+            "Staff Writer": 21,
+            "Senior Editor": 45,
+            "Ghostwriter": 343,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 261,
+            "Focus": 1145,
+            "Time Management": 1146,
+            "Frugality": 1142,
+            "Meditation": 1142,
+            "Typing Speed": 1204,
+            "Grammar & Prose": 1144,
+            "Plotting": 1144,
+            "Character Dev.": 1144,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 1142,
+            "Networking": 1143,
+            "Public Speaking": 1141,
+            "Personal Brand": 1141,
+            "Media Tours": 1142,
+            "Royalty Negotiation": 1143
+          }
+        }
+      ]
+    }
+  ]
+}

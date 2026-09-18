@@ -1,5 +1,11 @@
 # Player-feedback update — September 2026
 
+## Isolated career candidate
+
+The preview now includes [readership, finite sales and optional editing](reports/WRITING-PREVIEW.md). Its retirement redesign is deferred. Earlier career-only measurements remain historical references; use `writing-sales-candidate.json` for the first combined-economy measurements.
+
+The normal-game values below are unchanged. On localhost only, add `?balance=career` to open the candidate. Its save, version acknowledgement and tab lock are separate; analytics are disabled. It combines new salary/upkeep ladders, 18 upgrades, Knight-style XP/inheritance and the writing model linked above. These remain candidate values, not a release balance.
+
 ## Pace and progression
 
 Normal time advances three game days per real second: about 101 minutes for an unextended lifetime from age 20 to 70. Acceleration remains exactly ×6 for ten real minutes. Localhost/loopback unlocks it immediately; other hosts require 600 seconds of active visible play. Away time does not unlock it or count toward active-play analytics.
@@ -28,7 +34,7 @@ Players choose a title, protagonist, theme, ending and approach. Story choices s
 - Commercial: ×1.2 raw speed, ×0.85 quality, ×1.15 royalties.
 - Careful revision: ×0.8 raw speed, ×1.35 quality.
 - At halfway: keep, revise (+15% length, +25% raw quality), or cut (−10% length, −10% raw quality). No pause or forced popup.
-- Queue up to ten further books in the same genre and approach. Automatic books keep their drafts unless the player intervenes. Every publication is recorded, including repeat templates.
+- Queue a fixed number of further books, or choose “until I stop,” in the same genre and approach. Choose “no more books” to stop after the current manuscript. Automatic books keep their drafts unless the player intervenes. Every publication is recorded, including repeat templates. Continuous queues persist across reloads, work offline, wait at zero writing allocation, and reset at retirement.
 
 Speed bonuses precede the existing soft cap, so their final effect can be smaller at high speeds. Equipment and skill quality stacks each use `1 + log2(multiplier)` to reduce early saturation.
 
@@ -52,3 +58,7 @@ Run `node --test tests/*.test.cjs` and `php tests/stats-test.php`.
 
 Browser checks cover desktop, 390×844 mobile, 640×360 reflow, both themes, keyboard activation, resource/achievement dialogs and duplicate-tab protection. The narrow desktop check approximates the content area at 200% zoom on a 1280×720 display; actual browser zoom and a full assistive-technology audit remain follow-ups.
 
+
+## Current isolated career revision
+
+See [CAREER-REVISION.md](reports/CAREER-REVISION.md) for actual Knight/control salary and XP tables, the 18-item ladder, all-author two-life comparisons and a ten-life measurement. The preview uses canonical `data/items.json`; ordinary games use `data/items-legacy.json`. This is staged work, not a normal-game economy release. Retirement rules remain unchanged.

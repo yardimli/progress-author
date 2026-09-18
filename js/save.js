@@ -1,11 +1,13 @@
 // LocalStorage, import/export, data assignment
 let isResettingSave = false;
+function gameSaveKey() { return typeof IS_CAREER_PREVIEW !== 'undefined' && IS_CAREER_PREVIEW ? 'authorsJourneyCareerPreview' : 'authorsJourneySave'; }
+function acknowledgedVersionKey() { return gameSaveKey() === 'authorsJourneySave' ? 'authorsJourneyAcknowledgedVersion' : 'authorsJourneyCareerPreviewAcknowledgedVersion'; }
 
 function offerVersionRestart() {
-	const saved = localStorage.getItem('authorsJourneySave');
-	const acknowledged = localStorage.getItem('authorsJourneyAcknowledgedVersion');
+	const saved = localStorage.getItem(gameSaveKey());
+	const acknowledged = localStorage.getItem(acknowledgedVersionKey());
 	if (!saved) {
-		localStorage.setItem('authorsJourneyAcknowledgedVersion', GAME_VERSION);
+		localStorage.setItem(acknowledgedVersionKey(), GAME_VERSION);
 		return false;
 	}
 	if (acknowledged === GAME_VERSION) return false;
@@ -17,7 +19,7 @@ function offerVersionRestart() {
 }
 
 function chooseVersionRestart(restart) {
-	localStorage.setItem('authorsJourneyAcknowledgedVersion', GAME_VERSION);
+	localStorage.setItem(acknowledgedVersionKey(), GAME_VERSION);
 	if (restart) { resetGameData(); return; }
 	document.getElementById('versionModal').style.display = 'none';
 	isPaused = false;
@@ -75,14 +77,14 @@ function replaceSaveDict(dict, saveDict) {
 function saveGameData() {
 	// Reset must also win over queued idle saves and the pagehide flush.
 	if (isResettingSave) return;
-	localStorage.setItem("authorsJourneySave", JSON.stringify(gameData));
+	localStorage.setItem(gameSaveKey(), JSON.stringify(gameData));
 }
 
 function loadGameData() {
 	let gameDataSave;
 	
 	try {
-		gameDataSave = JSON.parse(localStorage.getItem("authorsJourneySave"));
+		gameDataSave = JSON.parse(localStorage.getItem(gameSaveKey()));
 	} catch (error) {
 		console.error("Corrupted save data detected, resetting game.", error);
 		resetGameData();
@@ -96,6 +98,13 @@ function loadGameData() {
 		}
 		
 		// Compatible older saves migrate after the player chooses to keep playing.
+		if (BALANCE.writing.salesEnabled) gameDataSave.bookSalesVersion ??= 0;
+		if (typeof activeBalanceProfile !== 'undefined' && activeBalanceProfile && gameDataSave.balanceProfile !== activeBalanceProfile.id) {
+			// Backup must succeed before conversion. Never overwrite the normal game.
+			const backupKey = gameSaveKey() + '-before-' + activeBalanceProfile.id;
+			if (!localStorage.getItem(backupKey)) localStorage.setItem(backupKey, JSON.stringify(gameDataSave));
+			migrateCareerSave(gameDataSave);
+		}
 		gameDataSave.version = GAME_VERSION;
 		
 		if (!gameDataSave.purchaseVersion) {
@@ -152,7 +161,8 @@ function loadGameData() {
 	// Reloading is not a month boundary; start tracking from the restored date.
 	tempData.monthlyTracker.lastDayChecked = gameData.days;
 	// Top up existing books once; preserve any legacy/repeat-publication income.
-	if (gameData.royaltyBalanceVersion !== 1) {
+	if (BALANCE.writing.salesEnabled) migrateBookSales();
+	else if (gameData.royaltyBalanceVersion !== 1) {
 		for (const book of gameData.completedBooks) {
 			const previous = book.royalties || 0;
 			book.royalties = Math.max(previous, getBookRoyalty(book.quality || 0));
@@ -166,7 +176,7 @@ function resetGameData() {
 	isResettingSave = true;
 	isPaused = true;
 	isInitialized = false;
-	localStorage.removeItem("authorsJourneySave");
+	localStorage.removeItem(gameSaveKey());
 	location.reload();
 }
 

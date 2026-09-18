@@ -1,0 +1,644 @@
+{
+  "id": "career-preview-1",
+  "writing": {
+    "salesEnabled": true,
+    "salesDays": 730,
+    "audienceGrowth": 0.08,
+    "readerScale": 500,
+    "editorBase": 500,
+    "editorReaderFee": 5,
+    "editorQuality": 1.25,
+    "xpScale": 0.4,
+    "baseSpeed": 100,
+    "speedScale": 40,
+    "speedSoftCap": 2,
+    "maxSpeed": 600,
+    "royaltyBase": 12,
+    "royaltyQuality": 0.6,
+    "qualityScale": 100,
+    "royaltyQualityScale": 50,
+    "royaltySoftCap": 4,
+    "audienceBase": 30,
+    "audienceQuality": 2,
+    "audienceQualityFloor": 0.35,
+    "audienceFitFloor": 0.75,
+    "fitBase": 1.1,
+    "fitRange": 1.9
+  },
+  "career": {
+    "inheritanceDivisor": 10,
+    "xpSoftCap": null,
+    "jobXpScale": 1,
+    "skillXpScale": 1,
+    "xpCurve": "knight",
+    "creativePay": true,
+    "strictAllocation": true,
+    "salaryScale": 1,
+    "upkeepScale": 1,
+    "baseXp": 10,
+    "xpGrowth": 1.01,
+    "craftExperiencePerLevel": 0.001,
+    "craftExperienceCap": 0.25
+  },
+  "salaries": {
+    "Gig Worker": 40,
+    "Food Service": 96,
+    "Delivery Driver": 240,
+    "Warehouse Worker": 560,
+    "Office Temp": 1280,
+    "Personal Assistant": 2880,
+    "Intern": 160,
+    "Blogger": 480,
+    "Content Creator": 960,
+    "Copy Editor": 2400,
+    "Staff Writer": 8000,
+    "Senior Editor": 24000,
+    "Ghostwriter": 120000,
+    "Full-Time Author": 400000,
+    "C.W. Student": 3200,
+    "Junior Agent": 8000,
+    "Senior Agent": 60000,
+    "Publisher": 400000,
+    "Literary Titan": 2000000,
+    "Head of Publishing": 8000000
+  },
+  "careerRetirements": {
+    "Ghostwriter": 3,
+    "Commissioned Author": 6,
+    "Publisher": 5,
+    "Literary Titan": 8,
+    "Head of Publishing": 12
+  },
+  "replacements": {
+    "Large House": "Suburban",
+    "Private Villa": "City Penthouse",
+    "Bicycle": "Bus Pass",
+    "Scooter": "Bus Pass",
+    "New Car": "Used Car",
+    "Private Driver": "Used Car",
+    "First Class Flights": "Used Car",
+    "Private Jet": "Used Car",
+    "Mini Fridge": "Rented Room",
+    "Ambient Lighting": "Rented Room",
+    "Coffee Machine": "Rented Room",
+    "Ergonomic Chair": "Rented Room",
+    "Standing Desk Converter": "Planner",
+    "Noise-Canceling Headphones": "Planner",
+    "Focus Supplements": "Home Library",
+    "Mechanical Keyboard": "Used Laptop",
+    "Dual Monitors": "Pro Writing Software",
+    "Networking Membership": "Home Library",
+    "Editor": "Style Guide"
+  },
+  "jobs": {
+    "Gig Worker": {
+      "maxXp": 50,
+      "requirements": []
+    },
+    "Food Service": {
+      "maxXp": 100,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Gig Worker",
+          "value": 10
+        }
+      ]
+    },
+    "Delivery Driver": {
+      "maxXp": 200,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Food Service",
+          "value": 10
+        }
+      ]
+    },
+    "Warehouse Worker": {
+      "maxXp": 400,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Delivery Driver",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 10
+        }
+      ]
+    },
+    "Office Temp": {
+      "maxXp": 800,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Warehouse Worker",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 30
+        }
+      ]
+    },
+    "Personal Assistant": {
+      "maxXp": 1600,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Office Temp",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Frugality",
+          "value": 50
+        }
+      ]
+    },
+    "Intern": {
+      "maxXp": 100,
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 10
+        }
+      ]
+    },
+    "Blogger": {
+      "maxXp": 600,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Intern",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Typing Speed",
+          "value": 20
+        }
+      ]
+    },
+    "Content Creator": {
+      "maxXp": 4000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Blogger",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Grammar & Prose",
+          "value": 40
+        }
+      ]
+    },
+    "Copy Editor": {
+      "maxXp": 25000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Content Creator",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Typing Speed",
+          "value": 100
+        }
+      ]
+    },
+    "Staff Writer": {
+      "maxXp": 150000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Copy Editor",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Grammar & Prose",
+          "value": 150
+        }
+      ]
+    },
+    "Senior Editor": {
+      "maxXp": 1000000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Staff Writer",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Typing Speed",
+          "value": 300
+        }
+      ]
+    },
+    "Ghostwriter": {
+      "maxXp": 7500000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Senior Editor",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Plotting",
+          "value": 500
+        }
+      ]
+    },
+    "Commissioned Author": {
+      "maxXp": 40000000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Ghostwriter",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Plotting",
+          "value": 1000
+        },
+        {
+          "type": "skill",
+          "name": "Grammar & Prose",
+          "value": 1000
+        }
+      ]
+    },
+    "C.W. Student": {
+      "maxXp": 10000,
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 200
+        },
+        {
+          "type": "skill",
+          "name": "Meditation",
+          "value": 200
+        }
+      ]
+    },
+    "Junior Agent": {
+      "maxXp": 100000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "C.W. Student",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Plotting",
+          "value": 400
+        }
+      ]
+    },
+    "Senior Agent": {
+      "maxXp": 1000000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Junior Agent",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Plotting",
+          "value": 700
+        }
+      ]
+    },
+    "Publisher": {
+      "maxXp": 10000000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Senior Agent",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Plotting",
+          "value": 1000
+        }
+      ]
+    },
+    "Literary Titan": {
+      "maxXp": 100000000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Publisher",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Plotting",
+          "value": 1500
+        }
+      ]
+    },
+    "Head of Publishing": {
+      "maxXp": 1000000000,
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Literary Titan",
+          "value": 10
+        },
+        {
+          "type": "skill",
+          "name": "Plotting",
+          "value": 2000
+        }
+      ]
+    }
+  },
+  "skills": {
+    "Focus": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "skillXp",
+      "requirements": []
+    },
+    "Time Management": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "jobXp",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 5
+        }
+      ]
+    },
+    "Frugality": {
+      "maxXp": 100,
+      "effect": -0.01,
+      "writingQuality": 0.01,
+      "effectType": "expenses",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 15
+        }
+      ]
+    },
+    "Meditation": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "inspiration",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 30
+        },
+        {
+          "type": "skill",
+          "name": "Time Management",
+          "value": 20
+        }
+      ]
+    },
+    "Typing Speed": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0,
+      "effectType": "writingSpeed",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 7
+        }
+      ]
+    },
+    "Grammar & Prose": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.02,
+      "effectType": "creativeXp",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 20
+        }
+      ]
+    },
+    "Plotting": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.02,
+      "effectType": "literaryXp",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 220
+        },
+        {
+          "type": "skill",
+          "name": "Meditation",
+          "value": 200
+        }
+      ]
+    },
+    "Character Dev.": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.02,
+      "effectType": "typingXp",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 30
+        },
+        {
+          "type": "skill",
+          "name": "Typing Speed",
+          "value": 30
+        }
+      ]
+    },
+    "Healthy Lifestyle": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "lifespan",
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Junior Agent",
+          "value": 10
+        }
+      ]
+    },
+    "Flow State": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "gameSpeed",
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Senior Agent",
+          "value": 10
+        }
+      ]
+    },
+    "Longevity Secrets": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "lifespan",
+      "requirements": [
+        {
+          "type": "job",
+          "name": "Head of Publishing",
+          "value": 1000
+        }
+      ]
+    },
+    "Brand Management": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "allXp",
+      "requirements": [
+        {
+          "type": "books",
+          "value": 5
+        },
+        {
+          "type": "retirements",
+          "value": 1
+        }
+      ]
+    },
+    "Networking": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "fame",
+      "requirements": [
+        {
+          "type": "books",
+          "value": 10
+        },
+        {
+          "type": "retirements",
+          "value": 1
+        }
+      ]
+    },
+    "Public Speaking": {
+      "maxXp": 100,
+      "effect": -0.01,
+      "writingQuality": 0.01,
+      "effectType": "expenses",
+      "requirements": [
+        {
+          "type": "books",
+          "value": 15
+        },
+        {
+          "type": "retirements",
+          "value": 2
+        }
+      ]
+    },
+    "Personal Brand": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "allXp",
+      "requirements": [
+        {
+          "type": "books",
+          "value": 25
+        },
+        {
+          "type": "retirements",
+          "value": 3
+        }
+      ]
+    },
+    "Media Tours": {
+      "maxXp": 100,
+      "effect": 0.01,
+      "writingQuality": 0.01,
+      "effectType": "fame",
+      "requirements": [
+        {
+          "type": "books",
+          "value": 40
+        },
+        {
+          "type": "retirements",
+          "value": 5
+        }
+      ]
+    },
+    "Royalty Negotiation": {
+      "maxXp": 100,
+      "effect": 0.002,
+      "writingQuality": 0.01,
+      "effectType": "jobPay",
+      "requirements": [
+        {
+          "type": "books",
+          "value": 60
+        },
+        {
+          "type": "retirements",
+          "value": 8
+        }
+      ]
+    }
+  },
+  "catalogue": [
+    "Homeless",
+    "Rented Room",
+    "Studio",
+    "Suburban",
+    "City Penthouse",
+    "Mansion Estate",
+    "Walking",
+    "Bus Pass",
+    "Used Car",
+    "Planner",
+    "Home Library",
+    "Premium Briefcase",
+    "Library Card",
+    "Masterclass Subscription",
+    "Used Laptop",
+    "Pro Writing Software",
+    "Home Office",
+    "Style Guide"
+  ]
+}

@@ -48,10 +48,11 @@ function getCardBenefits(name, type, data) {
 	const writing = [];
 	if (type === 'job') {
 		career.push('Earn daily pay while working; job levels increase your pay.');
-		writing.push('Each job level adds life experience that improves book quality, with different strengths for each genre.');
+        writing.push('Each job level adds life experience that improves book quality, with different strengths for each genre.');
+        if (BALANCE.career.craftExperiencePerLevel && data.category === 'Creative Industry') writing.push(`Learned Creative Industry levels also improve Writing Craft training, up to +${Math.round(BALANCE.career.craftExperienceCap * 100)}%. This benefit stays when you change jobs; selecting an untrained role grants nothing.`);
 		if (name === 'Full-Time Author') writing.push('While selected, multiplies your raw writing speed by 5 before diminishing returns.');
 	} else if (type === 'item' || type === 'skill') {
-		const effect = data.category === 'Properties' ? 'Inspiration' : data.description;
+		const effect = data.effectType && typeof EFFECT_LABELS !== 'undefined' ? EFFECT_LABELS[data.effectType] : data.category === 'Properties' ? 'Inspiration' : data.description;
 		const activeEffect = type === 'skill' || data.effect !== 1;
 		if (activeEffect) {
 			switch (effect) {
@@ -109,8 +110,16 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	if ((type === 'job' || type === 'skill') && task) {
 		statRows = [['Level', task.level], ['Next level', `${format(task.xp, 0)} / ${format(task.getMaxXp(), 0)} XP`]];
 		statRows.push(type === 'job' ? ['Daily pay', `$${format(task.getIncome())}`] : ['Mastery', task.getEffectDescription()]);
-	} else if (type === 'item' && item) {
-		statRows = [['Upfront price', getPurchasePrice(name) ? `$${format(getPurchasePrice(name))}` : 'Owned / free'], ['Daily upkeep', `$${format(item.getExpense())}`], ['Benefit', item.getEffectDescription()]];
+    } else if (type === 'item' && item) {
+        statRows = [['Upfront price', item.baseData.costModel === 'upkeep' ? 'No purchase price' : getPurchasePrice(name) ? `$${format(getPurchasePrice(name))}` : 'Purchased'], ['Daily upkeep', `$${format(item.getExpense())}`], ['Benefit', item.getEffectDescription()]];
+        if (BALANCE.writing.salesEnabled) {
+            const state = getUpgradeState(name), budget = getUpgradeBudget(name);
+            statRows.unshift(['Access', state.unlocked ? 'Unlocked' : 'Locked'], ['Ownership', item.baseData.costModel === 'upkeep' ? 'No purchase required' : state.owned ? 'Purchased' : 'Not purchased'], ['Equipment', state.active ? 'Equipped' : 'Not equipped']);
+            statRows.push(['Replaces', budget.replacing || (budget.removing ? 'Stops this item' : 'No other item')],
+                ['Total upkeep after choice', `$${format(budget.upkeep)}/day`],
+                ['Net income after choice', `${budget.net < 0 ? '−' : '+'}$${format(Math.abs(budget.net))}/day`],
+                ['Cash after purchase', `$${format(budget.cashAfter)}`]);
+        }
 	} else if (type === 'potion' && potionsBaseData[name]) {
 		statRows = [['Bonus', `×${potionsBaseData[name].effect.toFixed(1)}`], ['Duration', '10 minutes']];
 	}
@@ -164,7 +173,11 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 		modalContent.classList.remove('modal-new-unlock');
 	}
 	
-	let descriptionText = tooltips[name] || '';
+	let descriptionText = item?.baseData.effectType ? item.getEffectDescription() : tooltips[name] || '';
+	if (item?.baseData.slot) descriptionText += `<p>Replaces the active ${item.baseData.slot} tier. Only the equipped tier supplies benefits and upkeep.</p>`;
+    if (item?.baseData.costModel === 'upkeep') descriptionText += '<p>No purchase price. Ongoing upkeep applies while equipped; savings can fund temporary use.</p>';
+    if (item && BALANCE.writing.salesEnabled) descriptionText += '<p>Unlocking grants access; purchasing a tool keeps it available for this lifetime. Only equipped items apply effects or upkeep. Budget figures use current income and declining book sales will change them. Insolvency stops paid upkeep but retains purchased tools and your manuscript.</p>';
+	if (name === 'Typing Speed' && BALANCE.career.creativePay) descriptionText += '<p>Also increases wages in Creative Industry jobs.</p>';
 	const benefits = getCardBenefits(name, type, (task || item)?.baseData || potionsBaseData[name] || {});
 	for (const [area, sentences] of Object.entries(benefits)) {
 		if (sentences.length) descriptionText += `<p class="card-benefit"><b>${area === 'career' ? 'Career' : 'Writing'}:</b> ${sentences.join(' ')}</p>`;
@@ -191,7 +204,7 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	if ((type === 'job' || type === 'skill') && gameData.rebirthOneCount > 0) {
 		const task = gameData.taskData[name];
 		if (task) {
-			const multi = 1 + (task.maxLevel / 20);
+			const multi = task.getMaxLevelMultiplier();
 			const formattedMulti = parseFloat(multi.toFixed(2));
 			modalMax.textContent = `Max level in past lives: ${task.maxLevel} and this gave you a x${formattedMulti} multiplier`;
 			modalMax.style.display = 'block';
@@ -419,6 +432,7 @@ function showBookModal (bookId, record = null) {
 	updatePauseState();
 	
 	const plan = record?.story || (bookId === gameData.currentBook ? gameData.manuscript : null);
+	if (BALANCE.writing.salesEnabled && record?.sales) modalInfo.innerHTML += `<br>Book age: ${format(Math.max(0, gameData.days - record.sales.startDay), 0)} game days · ${bookSalesRate(record) ? '$' + format(bookSalesRate(record)) + '/day' : 'Sales ended'}<br>Received: $${format(record.lifetimeReceipts || 0)}${record.legacyReceiptsUnknown ? ' since update' : ''}`;
 	const firstPageText = plan ? `Your story outline\n\n${plan.protagonist || 'A writer'} pursues ${plan.theme || 'a new beginning'}, leading to a ${plan.ending || 'hopeful'} ending.\n\nApproach: ${plan.approach || 'balanced'}. Editorial decision: ${plan.edit || 'keep the original draft'}.` : ((booksFirstPageBaseData && booksFirstPageBaseData[bookId]) ? booksFirstPageBaseData[bookId] : 'Chapter 1\n\nThe beginning of a new journey...');
 	if (plan) {
 		if (typingTimeout) clearTimeout(typingTimeout);
@@ -454,7 +468,7 @@ function showBookFinishedModal (bookId, quality, royalty, publication = null) {
 	
 	statsBox.innerHTML = `
 		<div style="margin-bottom: 8px; font-size: 1.1em;"><b>Final Quality:</b> <span style="color: var(--journal-positive);">${quality.toFixed(1)}%</span></div>
-		<div style="font-size: 1.1em;"><b>Royalties Earned:</b> <span style="color: var(--chart-royalties);">+$${format(royalty)}/day</span></div>
+		<div style="font-size: 1.1em;"><b>${BALANCE.writing.salesEnabled ? 'Launch income' : 'Royalties Earned'}:</b> <span style="color: var(--chart-royalties);">+$${format(royalty)}/day</span>${BALANCE.writing.salesEnabled ? '<p>Sales decline to zero over two game years. The book remains in your library.</p>' : ''}</div>
 	`;
 	
 	modal.style.display = 'flex';
@@ -575,7 +589,7 @@ function showAuthorProfileModal () {
                 <img src="img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}" class="row-image" style="width: 50px; height: 75px; object-fit: cover; border-radius: 4px;">
                 <div class="row-info">
                     <div class="row-title">${escapeGameText(bookRecord.title || bookData.title)}</div>
-                    <div class="row-value">Quality: ${bookRecord.quality.toFixed(1)}% | Royalties: $${format(bookRecord.royalties)}/day</div>
+                    <div class="row-value">Quality: ${bookRecord.quality.toFixed(1)}% | Royalties: $${format(BALANCE.writing.salesEnabled ? bookSalesRate(bookRecord) : bookRecord.royalties)}/day${BALANCE.writing.salesEnabled ? ' | Received: $' + format(bookRecord.lifetimeReceipts || 0) : ''}</div>
                 </div>`;
 			achievementsBooks.appendChild(div);
 			if (bookRecord.story) {

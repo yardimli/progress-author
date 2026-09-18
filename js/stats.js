@@ -1,5 +1,6 @@
 // Anonymous browser identity plus per-tab visits; no IP or game save is sent.
 (() => {
+    if (typeof IS_CAREER_PREVIEW !== 'undefined' && IS_CAREER_PREVIEW) return;
     const prefix = 'authorJourneyStats.';
     const validId = value => /^[a-f0-9-]{36}$/.test(value || '');
     const uuid = () => crypto.randomUUID ? crypto.randomUUID() : '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));

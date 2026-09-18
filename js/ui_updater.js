@@ -95,6 +95,10 @@ function updateRequiredRows (baseData, categoryType) {
 								reqStrings.push(`Age ${format(req.value, 0)}`);
 							} else if (req.type === 'shop') {
 								reqStrings.push(`Own ${req.name}`);
+							} else if (req.type === 'books') {
+								reqStrings.push(`${req.value} published books`);
+							} else if (req.type === 'retirements') {
+								reqStrings.push(`${req.value} retirements`);
 							}
 						}
 					}
@@ -172,7 +176,7 @@ function updateItemRows () {
 		const priceElement = row.querySelector('.purchase-price');
 		if (priceElement) {
 			const price = getPurchasePrice(item.name);
-			const text = price ? `Buy: $${format(price)} + upkeep` : 'Purchased';
+            const text = BALANCE.writing.salesEnabled ? `${getUpgradeState(item.name).label} · ${item.baseData.costModel === 'upkeep' ? 'upkeep only' : price ? 'Buy: $' + format(price) : 'no purchase due'}` : item.baseData.costModel === 'upkeep' ? `No purchase · $${format(item.getExpense())}/day` : price ? `Buy: $${format(price)}${item.getExpense() ? ' + upkeep' : ''}` : 'Purchased';
 			if (priceElement.textContent !== text) priceElement.textContent = text;
 		}
 		const isActive = (gameData.currentProperty === item || gameData.currentTransportation === item || gameData.currentMisc.includes(item));
@@ -260,7 +264,18 @@ function updateBookHistory () {
 	const container = document.getElementById('bookHistoryContainer');
 	if (!container) return;
 	
-	if (container.dataset.count == gameData.completedBooks.length) return;
+	if (container.dataset.count == gameData.completedBooks.length) {
+		if (BALANCE.writing.salesEnabled && (!container.lastSalesRefresh || performance.now() - container.lastSalesRefresh >= 1000)) {
+			container.lastSalesRefresh = performance.now();
+			for (const node of container.querySelectorAll('[data-book-sales]')) {
+				const book = gameData.completedBooks[Number(node.dataset.bookSales)];
+				const rate = bookSalesRate(book);
+				const text = `${rate > 0 ? '$' + format(rate) + '/day' : 'Sales ended'} · $${format(book.lifetimeReceipts || 0)} received${book.legacyReceiptsUnknown ? ' since update' : ''}`;
+				if (node.textContent !== text) node.textContent = text;
+			}
+		}
+		return;
+	}
 	container.dataset.count = gameData.completedBooks.length;
 	
 	container.innerHTML = '';
@@ -268,11 +283,21 @@ function updateBookHistory () {
 		const bookRecord = gameData.completedBooks[i];
 		const bookId = bookRecord.id;
 		const bookData = booksBaseData[bookId];
-		if (!bookData) continue;
+		if (!bookData) {
+			if (BALANCE.writing.salesEnabled && bookRecord.sales) {
+				const legacy = document.createElement('div');
+				legacy.className = 'ui-row';
+				const title = document.createElement('span'); title.textContent = bookRecord.title || 'Legacy publication';
+				const income = document.createElement('span'); income.dataset.bookSales = i;
+				income.textContent = `$${format(bookSalesRate(bookRecord))}/day · $${format(bookRecord.lifetimeReceipts || 0)} received since update`;
+				legacy.append(title, income); container.appendChild(legacy);
+			}
+			continue;
+		}
 		
 		const age = bookRecord.age || '?';
 		const day = String(bookRecord.day || 0).padStart(3, '0');
-		const royalties = bookRecord.royalties || 0;
+		const royalties = BALANCE.writing.salesEnabled ? bookSalesRate(bookRecord) : bookRecord.royalties || 0;
 		const yearlyRoyalties = royalties * 365;
 		
 		const qualityText = bookRecord.quality ? ` | Quality: ${bookRecord.quality.toFixed(1)}%` : '';
@@ -295,6 +320,11 @@ function updateBookHistory () {
         <span style="font-size: 0.85em; color: var(--journal-muted);">+$${format(yearlyRoyalties)}/yr</span>
       </div>
     `;
+		if (BALANCE.writing.salesEnabled) {
+			const sales = div.querySelector('.row-expense');
+			sales.dataset.bookSales = i;
+			sales.textContent = `${royalties > 0 ? '$' + format(royalties) + '/day' : 'Sales ended'} · $${format(bookRecord.lifetimeReceipts || 0)} received${bookRecord.legacyReceiptsUnknown ? ' since update' : ''}`;
+		}
 		container.appendChild(div);
 	}
 }
@@ -418,7 +448,7 @@ function updateHeaderUI () {
 	});
 	
 	// Split income into work and royalties for the header display
-	const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
+	const workPercentage = getWorkFraction();
 	const workIncomeDaily = gameData.currentJob ? gameData.currentJob.getIncome() * workPercentage : 0;
 	const royaltiesDaily = gameData.royalties || 0;
 	
@@ -435,7 +465,7 @@ function updateHeaderUI () {
 	if (gameData.currentJob && gameData.currentJob.xpMultipliers) {
 		gameData.currentJob.xpMultipliers.forEach(fn => jobRawMulti *= fn());
 	}
-	const workMulti = gameData.currentJob ? (softenMultiplier(jobRawMulti) * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
+	const workMulti = gameData.currentJob ? ((BALANCE.career.xpSoftCap === null ? jobRawMulti : softenMultiplier(jobRawMulti, BALANCE.career.xpSoftCap)) * gameData.workMultiplier * gameData.workXpMultiplier) : 1;
 	updateHeaderVal('header-val-work-multi', workMulti.toFixed(2));
 	
 	// Calculate exact multiplier without Math.round from applyMultipliers
@@ -443,7 +473,7 @@ function updateHeaderUI () {
 	if (gameData.currentSkill && gameData.currentSkill.xpMultipliers) {
 		gameData.currentSkill.xpMultipliers.forEach(fn => skillRawMulti *= fn());
 	}
-	const skillMulti = gameData.currentSkill ? (softenMultiplier(skillRawMulti) * gameData.skillMultiplier * gameData.skillXpMultiplier) : 1;
+	const skillMulti = gameData.currentSkill ? ((BALANCE.career.xpSoftCap === null ? skillRawMulti : softenMultiplier(skillRawMulti, BALANCE.career.xpSoftCap)) * gameData.skillMultiplier * gameData.skillXpMultiplier) : 1;
 	updateHeaderVal('header-val-skill-multi', skillMulti.toFixed(2));
 	
 	const qualityMulti = typeof getWritingQualityMultiplier === 'function' ? getWritingQualityMultiplier() : 1;

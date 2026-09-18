@@ -7,10 +7,27 @@ var isDebugMode = /^(localhost|.*\.localhost|127(?:\.\d{1,3}){3}|\[?::1\]?)$/i.t
     /(?:^|[?&])debug=1(?:&|$)/.test(window.location?.search || '');
 
 // Define the current game version
-const GAME_VERSION = "1.1.0";
+const IS_CAREER_PREVIEW = /^(localhost|.*\.localhost|127(?:\.\d{1,3}){3}|\[?::1\]?)$/i.test(window.location?.hostname || '') &&
+    /(?:^|[?&])balance=career(?:&|$)/.test(window.location?.search || '');
+const GAME_VERSION = IS_CAREER_PREVIEW ? 'career-preview-1' : "1.1.0";
+
+// Live baseline. Per-job pay and per-item upkeep remain in data/jobs.json and
+// data/items.json; these shared controls are deliberately not part of a save.
+// The simulator overrides this object in its isolated context, never live saves.
+const BALANCE = {
+	career: { salaryScale: 1, upkeepScale: 1, baseXp: 10, inheritanceDivisor: 20,
+		xpSoftCap: 4, jobXpScale: 0.4, skillXpScale: 0.4,
+		earlyDiscount: 0.3, earlyDiscountEnd: 40, earlyDiscountPower: 1.5,
+		xpGrowth: 1.01, lateLevel: 100, latePower: 1.2 },
+	writing: { xpScale: 0.4, baseSpeed: 100, speedScale: 40, speedSoftCap: 2,
+		maxSpeed: 600, royaltyBase: 12, royaltyQuality: 0.6,
+		catalogueDivisor: 5 },
+	purchases: { unlockFraction: 0.2, upkeepDays: 60 }
+};
 
 var gameData = {
 	version: GAME_VERSION,
+	balanceProfile: 'current',
 	taskData: {},
 	itemData: {},
 	coins: 0,
@@ -31,9 +48,9 @@ var gameData = {
 	skillMultiplier: 1,
 	writingMultiplier: 1,
 	
-	workXpMultiplier: 0.4,
-	skillXpMultiplier: 0.4,
-	writingXpMultiplier: 0.4,
+	workXpMultiplier: BALANCE.career.jobXpScale,
+	skillXpMultiplier: BALANCE.career.skillXpScale,
+	writingXpMultiplier: BALANCE.writing.xpScale,
 	
 	potions: {
 		inspiration: 0,
@@ -49,6 +66,11 @@ var gameData = {
 	wordsWritten: 0,
 	booksPublished: 0,
 	royalties: 0,
+	readership: 0,
+	careerFinance: [],
+	writingIndependent: false,
+	automation: { promote: false, train: false, lastDay: null },
+	bookSalesVersion: 0,
 	royaltyBalanceVersion: 0,
 	loggedDeath: false,
 	
@@ -66,6 +88,7 @@ var gameData = {
 	manuscript: null,
 	draftPlan: null,
 	queueRemaining: 0,
+	queueMode: 'finite',
 	queueGenre: null,
 	
 	introSeen: false,

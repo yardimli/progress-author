@@ -1,0 +1,228 @@
+{
+  "model": "Career and writing candidate: readership, finite sales and configurable editing",
+  "policy": "Five-second decisions; highest base-wage progression except the explicitly labelled current-wage control; lowest-level eligible skill; upgrades under 65% of current gross income, reserving pending editing fees; balanced prose in the first genre; editor policy paid-wait; no potion. Transition switches to 80% writing at 600 real seconds.",
+  "limitations": "Heuristic policies, not optimal play. Preview uses the production rolling-year operating-income test; the legacy profile retains year buckets. Sustainable housing means a paid home retained for 365 game days without bankruptcy, not guaranteed future affordability. Cash totals use actual journal events, including editor charges. No acceleration; retirement design unchanged. One-time tools are excluded from the operating-income milestone but included in cash accounting.",
+  "runs": [
+    {
+      "strategy": "mixed",
+      "author": "author1",
+      "seed": 12345,
+      "careerPolicy": "creative",
+      "profile": "career",
+      "editor": "paid-wait",
+      "approach": "balanced",
+      "transitionSeconds": 600,
+      "bookLimit": null,
+      "lives": [
+        {
+          "life": 1,
+          "elapsedSeconds": 6083.333333332273,
+          "gameDays": 18250,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 208.93785446122033,
+            "firstPromotionSeconds": 160.3333333333335,
+            "firstPaidHomeSeconds": 215.33333333333505,
+            "sustainableHomeSeconds": 336.99999999999824,
+            "writingMajoritySeconds": null,
+            "writingIndependenceSeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 160.3333333333335,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 372.6666666666629,
+              "job": "Intern"
+            },
+            {
+              "seconds": 1709.3333333332241,
+              "job": "Blogger"
+            }
+          ],
+          "books": 14,
+          "readership": 2018,
+          "coins": 7094439.29085369,
+          "wages": 12418744.80000023,
+          "royalties": 809974.4908534897,
+          "upkeep": 6086140.000000001,
+          "purchases": 2500,
+          "editing": 45640,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 0,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 868.0746203856297,
+            "work": 370943.99999999756,
+            "editing": 0,
+            "benchmark": 618240,
+            "net": 868.0746203856297,
+            "upkeep": 163088,
+            "qualified": false
+          },
+          "receiptsReconcileError": -2.8870999813079834e-8,
+          "job": "Blogger",
+          "dailyJobPayAtFullWork": 1698,
+          "dailyRoyalties": 0,
+          "dailyUpkeep": 446,
+          "equipped": [
+            "Rented Room",
+            "Bus Pass",
+            "Library Card",
+            "Used Laptop",
+            "Planner",
+            "Style Guide"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 9,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 25,
+            "Blogger": 29,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 37,
+            "Time Management": 36,
+            "Frugality": 37,
+            "Meditation": 36,
+            "Typing Speed": 36,
+            "Grammar & Prose": 36,
+            "Plotting": 0,
+            "Character Dev.": 37,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 0,
+            "Networking": 0,
+            "Public Speaking": 0,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 2,
+          "elapsedSeconds": 6326.666666665386,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 146.2279808843358,
+            "firstPromotionSeconds": 72.00000000000006,
+            "firstPaidHomeSeconds": 87.99999999999983,
+            "sustainableHomeSeconds": 209.66666666666836,
+            "writingMajoritySeconds": 6295.999999998748,
+            "writingIndependenceSeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 72.00000000000006,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 87.99999999999983,
+              "job": "Intern"
+            },
+            {
+              "seconds": 361.9999999999969,
+              "job": "Blogger"
+            },
+            {
+              "seconds": 2013.3333333331545,
+              "job": "Content Creator"
+            }
+          ],
+          "books": 31,
+          "readership": 15042,
+          "coins": 21963291.614255764,
+          "wages": 33688902.10445035,
+          "royalties": 12424860.5098068,
+          "upkeep": 23363171.00000001,
+          "purchases": 52500,
+          "editing": 734800,
+          "bankruptcies": 0,
+          "editorWaitSeconds": 0,
+          "independentGameDays": 0,
+          "rollingYear": {
+            "observed": 365,
+            "sales": 851861.1457207013,
+            "work": 1056615.0000000019,
+            "editing": 0,
+            "benchmark": 1761025,
+            "net": 851861.1457207013,
+            "upkeep": 812204,
+            "qualified": false
+          },
+          "receiptsReconcileError": -0.0000013820827007293701,
+          "job": "Content Creator",
+          "dailyJobPayAtFullWork": 4841,
+          "dailyRoyalties": 1183.7390287087028,
+          "dailyUpkeep": 2224,
+          "equipped": [
+            "Studio",
+            "Bus Pass",
+            "Library Card",
+            "Planner",
+            "Style Guide",
+            "Pro Writing Software",
+            "Premium Briefcase"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 3,
+            "Delivery Driver": 0,
+            "Warehouse Worker": 0,
+            "Office Temp": 0,
+            "Personal Assistant": 0,
+            "Intern": 22,
+            "Blogger": 41,
+            "Content Creator": 36,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 87,
+            "Time Management": 86,
+            "Frugality": 87,
+            "Meditation": 86,
+            "Typing Speed": 87,
+            "Grammar & Prose": 87,
+            "Plotting": 0,
+            "Character Dev.": 88,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 87,
+            "Networking": 86,
+            "Public Speaking": 0,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Exploratory trial with Rented Room upkeep 60/day and unlock 3000; superseded by the 90/day, 4500-unlock final candidate in career-revision-matrix.json. Do not use for final pacing comparisons."
+}

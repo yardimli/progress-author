@@ -12,7 +12,7 @@ function game() {
     for (const file of ['state', 'classes', 'utils', 'formulas', 'mechanics', 'notifications', 'journal', 'save', 'offline', 'writing-plan', 'main']) {
         vm.runInContext(fs.readFileSync(path.join(root, 'js', file + '.js'), 'utf8'), context);
     }
-    for (const [name, file] of [['jobBaseData', 'jobs'], ['skillBaseData', 'skills'], ['itemBaseData', 'items']]) {
+    for (const [name, file] of [['jobBaseData', 'jobs'], ['skillBaseData', 'skills'], ['itemBaseData', 'items-legacy']]) {
         context[name] = JSON.parse(fs.readFileSync(path.join(root, 'data', file + '.json')));
     }
     context.potionsBaseData = JSON.parse(fs.readFileSync(path.join(root, 'data/potions.json')));
@@ -273,7 +273,7 @@ test('debug level editing requires explicit local opt-in', () => {
 });
 test('no non-starting cards share an identical set of unlock requirements', () => {
     const seen = new Map();
-    for (const file of ['jobs', 'skills', 'items']) {
+    for (const file of ['jobs', 'skills', 'items-legacy']) {
         const data = JSON.parse(fs.readFileSync(path.join(root, 'data', file + '.json')));
         for (const entity of Object.values(data)) {
             if (!entity.requirements?.length) continue;

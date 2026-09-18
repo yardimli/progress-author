@@ -3,6 +3,7 @@
 // Renamed from update() to updateLogic() and removed updateUI()
 // This allows logic to run every frame while UI updates periodically
 function updateLogic () {
+    if (BALANCE.writing.salesEnabled) runCareerAutomation();
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
@@ -39,6 +40,10 @@ function gameLoop (currentTime) {
     if (!isPaused) {
         if (isInitialized && isAlive()) window.AuthorStats?.addPlayTime(deltaTime);
         gameData.activePlaySeconds += deltaTime;
+        if (BALANCE.writing.salesEnabled) {
+            advanceWritingEconomy(deltaTime);
+            updateTypewriter(deltaTime);
+        } else {
         // Update potion timers (real-time)
         if (gameData.potions.inspiration > 0) {
             gameData.potions.inspiration -= deltaTime;
@@ -56,6 +61,7 @@ function gameLoop (currentTime) {
         updateTypewriter(deltaTime);
         
         updateLogic();
+        }
         
         textUpdateTimer += deltaTime;
         if (textUpdateTimer >= 0.25) {
@@ -141,7 +147,7 @@ async function init () {
         ] = await Promise.all([
             fetchData('jobs'),
             fetchData('skills'),
-            fetchData('items'),
+            fetchData(IS_CAREER_PREVIEW ? 'items' : 'items-legacy'),
             fetchData('headerRowColors'),
             fetchData('tooltips'),
             fetchData('authors'),
@@ -159,6 +165,14 @@ async function init () {
         jobBaseData = await jobsRes.json();
         skillBaseData = await skillsRes.json();
         itemBaseData = await itemsRes.json();
+        if (IS_CAREER_PREVIEW) {
+            const profile = await fetchData('career-profile');
+            applyCareerProfile(await profile.json());
+            const notice = document.createElement('p');
+            notice.textContent = 'Career and writing preview · Separate save · Readership, two-year book sales and optional editing are being balanced.';
+            notice.className = 'career-preview-notice';
+            document.getElementById('writing').prepend(notice);
+        }
         
         // Build categories dynamically from base data
         jobCategories = buildCategories(jobBaseData);
@@ -178,6 +192,7 @@ async function init () {
         booksFirstPageBaseData = await booksFirstPageRes.json();
         introSlidesBaseData = await introSlidesRes.json();
         badgeBaseData = await badgesRes.json();
+        applyCareerPresentation();
         
         createAllRows(jobCategories, 'jobTable');
         createAllRows(skillCategories, 'skillTable');

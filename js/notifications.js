@@ -50,7 +50,7 @@ function renderNotifications() {
         title.textContent = `${entry.type === 'book' ? 'Published' : entry.type === 'badge' ? 'Achievement' : entry.type === 'summary' ? 'Journal' : 'Unlocked'} · ${entry.name}`;
         const detail = document.createElement('p');
         const item = gameData.itemData[entry.name];
-        detail.textContent = entry.message || (entry.type === 'book' ? `${entry.quality.toFixed(1)}% quality · +$${format(entry.royalty)}/day in royalties` :
+        detail.textContent = entry.message || (entry.type === 'book' ? `${entry.quality.toFixed(1)}% quality · +$${format(entry.royalty)}/day ${BALANCE.writing.salesEnabled ? 'at launch, declining over two years' : 'in royalties'}` :
             item ? `${item.getEffectDescription()} · $${format(getPurchasePrice(item.name))} upfront · $${format(item.getExpense())}/day upkeep` : 'Ready when you are. View the details or choose your next step.');
         row.append(title, detail);
         const button = (label, action) => {

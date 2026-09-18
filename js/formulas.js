@@ -2,7 +2,8 @@
 
 function getCurvedQuality(rawQuality) {
 	// Asymptotic curve: Compresses an infinitely growing number into a 0 - 100% scale
-	return 100 * (1 - (100 / (rawQuality + 100)));
+    const scale = BALANCE.writing.qualityScale || 100;
+    return 100 * (1 - (scale / (rawQuality + scale)));
 }
 
 // Get combined multiplier for a specific badge effect type
@@ -37,6 +38,29 @@ function getBindedItemEffect(itemName) {
 }
 
 // Helper to dynamically apply multipliers based on JSON descriptions
+function getEffectType(data) {
+    if (data.effectType) return data.effectType;
+    if (data.category === 'Properties') return 'inspiration';
+    return ({ 'All experience': 'allXp', 'Job pay': 'jobPay', 'Job ex.': 'jobXp', 'Job XP': 'jobXp',
+        'Skill ex.': 'skillXp', 'Skill XP': 'skillXp', 'Creative Industry experience': 'creativeXp',
+        'Typing Speed': 'typingXp', 'Typing Speed experience': 'typingXp',
+        'Writing Craft experience': 'craftXp', 'Literary Elite experience': 'literaryXp',
+        Expenses: 'expenses', Inspiration: 'inspiration', 'Writing Speed': 'writingSpeed'
+    })[data.description];
+}
+
+function getWorkFraction() {
+    if (!BALANCE.career.strictAllocation && !gameData.currentBook) return 1;
+    return (100 - Math.max(0, Math.min(100, Number(gameData.workWritingBalance) || 0))) / 100;
+}
+
+// Learned experience transfers between careers and craft, even after switching jobs.
+function getCareerCraftBonus() {
+    if (!BALANCE.career.craftExperiencePerLevel) return 1;
+    const levels = (jobCategories['Creative Industry'] || []).reduce((sum, name) => sum + (gameData.taskData[name]?.level || 0), 0);
+    return 1 + Math.min(BALANCE.career.craftExperienceCap, levels * BALANCE.career.craftExperiencePerLevel);
+}
+
 function createDynamicMultiplier(validDescriptions) {
 	let matchingSkills = [];
 	let matchingItems = [];
@@ -44,14 +68,14 @@ function createDynamicMultiplier(validDescriptions) {
 	// Find all matching skills and items once during setup
 	for (const taskName in gameData.taskData) {
 		const task = gameData.taskData[taskName];
-		if (task instanceof Skill && validDescriptions.includes(task.baseData.description)) {
+		if (task instanceof Skill && validDescriptions.includes(getEffectType(task.baseData))) {
 			matchingSkills.push(task);
 		}
 	}
 	
 	for (const itemName in gameData.itemData) {
 		const item = gameData.itemData[itemName];
-		if (validDescriptions.includes(item.baseData.description)) {
+		if (validDescriptions.includes(getEffectType(item.baseData))) {
 			matchingItems.push(item);
 		}
 	}
@@ -71,15 +95,15 @@ function createDynamicMultiplier(validDescriptions) {
 
 function addMultipliers() {
 	// Pre-create the dynamic multiplier functions so we don't recreate them for every task
-	const allXpMulti = createDynamicMultiplier(["All experience"]);
-	const jobIncomeMulti = createDynamicMultiplier(["Job pay"]);
-	const jobXpMulti = createDynamicMultiplier(["Job ex.", "Job XP"]);
-	const skillXpMulti = createDynamicMultiplier(["Skill ex.", "Skill XP"]);
-	const creativeXpMulti = createDynamicMultiplier(["Creative Industry experience"]);
-	const typingSpeedMulti = createDynamicMultiplier(["Typing Speed", "Typing Speed experience"]);
-	const writingCraftMulti = createDynamicMultiplier(["Writing Craft experience"]);
-	const literaryXpMulti = createDynamicMultiplier(["Literary Elite experience"]);
-	const expenseMulti = createDynamicMultiplier(["Expenses"]);
+	const allXpMulti = createDynamicMultiplier(['allXp']);
+	const jobIncomeMulti = createDynamicMultiplier(['jobPay']);
+	const jobXpMulti = createDynamicMultiplier(['jobXp']);
+	const skillXpMulti = createDynamicMultiplier(['skillXp']);
+	const creativeXpMulti = createDynamicMultiplier(['creativeXp']);
+	const typingSpeedMulti = createDynamicMultiplier(['typingXp']);
+	const writingCraftMulti = createDynamicMultiplier(['craftXp']);
+	const literaryXpMulti = createDynamicMultiplier(['literaryXp']);
+	const expenseMulti = createDynamicMultiplier(['expenses']);
 	
 	for (let taskName in gameData.taskData) {
 		let task = gameData.taskData[taskName];
@@ -107,6 +131,7 @@ function addMultipliers() {
 		}
 		
 		if (jobCategories["Creative Industry"].includes(task.name)) {
+			if (BALANCE.career.creativePay) task.incomeMultipliers.push(getBindedTaskEffect('Typing Speed'));
 			task.xpMultipliers.push(creativeXpMulti);
 			task.xpMultipliers.push(() => getBadgeMultiplier("creativeXp"));
 		} else if (task.name === "Typing Speed") {
@@ -167,13 +192,13 @@ function getInspiration() {
 	}
 	
 	// Apply current transportation effect if it provides Inspiration
-	if (gameData.currentTransportation && gameData.currentTransportation.baseData.description === "Inspiration") {
+	if (gameData.currentTransportation && getEffectType(gameData.currentTransportation.baseData) === 'inspiration') {
 		itemMultiplier *= gameData.currentTransportation.getEffect();
 	}
 	
 	// Iterate through all owned misc items to dynamically apply Inspiration effects
 	for (let misc of gameData.currentMisc) {
-		if (misc.baseData.description === "Inspiration") {
+		if (getEffectType(misc.baseData) === 'inspiration') {
 			itemMultiplier *= misc.getEffect();
 		}
 	}
@@ -203,12 +228,17 @@ function softenMultiplier(value, threshold = 4) {
 }
 
 function getBookRoyalty(quality) {
+	if (BALANCE.writing.salesEnabled) {
+		const score = Math.max(0, Math.min(100, quality));
+        return (BALANCE.writing.royaltyBase + BALANCE.writing.royaltyQuality * score * Math.sqrt(score / BALANCE.writing.royaltyQualityScale)) * (1 + gameData.readership / BALANCE.writing.readerScale) *
+            softenMultiplier(getBindedTaskEffect('Royalty Negotiation')() * getBadgeMultiplier('royalties'), BALANCE.writing.royaltySoftCap);
+	}
 	const readership = 1 + Math.log10(1 + Math.max(0, gameData.fame));
 	const negotiation = getBindedTaskEffect('Royalty Negotiation')();
 	const score = Math.max(0, Math.min(100, quality));
 	const contract = gameData.booksPublished >= 15 ? 1.3 : gameData.booksPublished >= 5 ? 1.15 : 1;
-	const catalogue = Math.sqrt(1 + gameData.booksPublished / 5);
-	return (12 + 0.6 * score * Math.sqrt(score / 50)) * readership * contract / catalogue *
+	const catalogue = Math.sqrt(1 + gameData.booksPublished / BALANCE.writing.catalogueDivisor);
+	return (BALANCE.writing.royaltyBase + BALANCE.writing.royaltyQuality * score * Math.sqrt(score / 50)) * readership * contract / catalogue *
 		softenMultiplier(negotiation * getBadgeMultiplier('royalties'));
 }
 
@@ -220,6 +250,7 @@ function getFameGain() {
 }
 
 function getGameSpeed() {
+	if (BALANCE.writing.salesEnabled && salesStepSpeed !== null) return salesStepSpeed;
 	let flowState = gameData.taskData["Flow State"];
 	let flowStateSpeed = gameData.timeWarpingEnabled && flowState ? flowState.getEffect() : 1;
 	let potionMultiplier = gameData.potions.acceleration > 0 && isAccelerationAvailable() ? getAccelerationMultiplier() : 1;
@@ -229,7 +260,7 @@ function getGameSpeed() {
 function getIncome() {
 	let income = 0;
 	// Apply work percentage to active job income if not writing a book, work percentage is always 100%
-	const workPercentage = (gameData.currentBook) ? (100 - gameData.workWritingBalance) / 100 : 1;
+	const workPercentage = getWorkFraction();
 	income += gameData.currentJob.getIncome() * workPercentage;
 	income += gameData.royalties;
 	return income;

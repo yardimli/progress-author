@@ -1,0 +1,931 @@
+{
+  "model": "Career candidate; writing income still uses the baseline model",
+  "policy": "Five-second decisions; highest base-wage progression except the explicitly labelled current-wage control; lowest-level eligible skill; sustainable affordable equipment; balanced prose in the first genre; no potion. Transition switches to 80% writing at 600 real seconds.",
+  "limitations": "Heuristic policies, not optimal play. Uses away-style production update order with at most one-second steps and publication/year/retirement boundaries. Majority is measured over complete game-year buckets, not a rolling window. Stops after 120 real minutes per life if not retired; only retired lives inherit. Readership and declining sales are not implemented yet.",
+  "runs": [
+    {
+      "strategy": "mixed",
+      "author": "author1",
+      "seed": 12345,
+      "careerPolicy": "progression",
+      "profile": "career",
+      "lives": [
+        {
+          "life": 1,
+          "elapsedSeconds": 6083.333333333335,
+          "gameDays": 18250,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 210.1839809204295,
+            "firstPromotionSeconds": 160.66666666666669,
+            "firstPaidHomeSeconds": 819.4179032362971,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 160.66666666666669,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 457.00000000000017,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 980.3333333333331,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 3473.6666666666665,
+              "job": "Office Temp"
+            }
+          ],
+          "books": 16,
+          "coins": 13923899.320480127,
+          "wages": 21330681.237093415,
+          "royalties": 4066218.249370174,
+          "upkeep": 11476498.9659846,
+          "purchases": 2500,
+          "job": "Office Temp",
+          "dailyJobPayAtFullWork": 3492,
+          "dailyRoyalties": 692.9377790785846,
+          "dailyUpkeep": 1042,
+          "equipped": [
+            "Studio",
+            "Bus Pass",
+            "Library Card",
+            "Used Laptop",
+            "Planner",
+            "Style Guide"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 21,
+            "Office Temp": 22,
+            "Personal Assistant": 0,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 40,
+            "Time Management": 39,
+            "Frugality": 40,
+            "Meditation": 39,
+            "Typing Speed": 39,
+            "Grammar & Prose": 40,
+            "Plotting": 0,
+            "Character Dev.": 40,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 0,
+            "Networking": 0,
+            "Public Speaking": 0,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 2,
+          "elapsedSeconds": 6326.666666666671,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 168.51355499026658,
+            "firstPromotionSeconds": 75,
+            "firstPaidHomeSeconds": 241.51355499026658,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 75,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 211.51355499026658,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 404.0000000000002,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 695.3333333333336,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 2160.3333333333335,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 34,
+          "coins": 55055475.588346906,
+          "wages": 70550470.21403006,
+          "royalties": 17471593.423323344,
+          "upkeep": 32930823.84900895,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 8888,
+          "dailyRoyalties": 2089.905632571479,
+          "dailyUpkeep": 2215,
+          "equipped": [
+            "Studio",
+            "Bus Pass",
+            "Library Card",
+            "Planner",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 13,
+            "Office Temp": 35,
+            "Personal Assistant": 46,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 92,
+            "Time Management": 91,
+            "Frugality": 92,
+            "Meditation": 92,
+            "Typing Speed": 91,
+            "Grammar & Prose": 92,
+            "Plotting": 0,
+            "Character Dev.": 92,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 92,
+            "Networking": 92,
+            "Public Speaking": 0,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 3,
+          "elapsedSeconds": 6326.666666666669,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 156.34385381448024,
+            "firstPromotionSeconds": 70,
+            "firstPaidHomeSeconds": 231.34385381448024,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 70,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 201.34385381448024,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 383.0000000000002,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 513.6666666666667,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 845.0000000000001,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 72,
+          "coins": 73155145.21338536,
+          "wages": 98829947.37545022,
+          "royalties": 31782103.657031514,
+          "upkeep": 57425993.843336254,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 10746,
+          "dailyRoyalties": 3870.0667808703424,
+          "dailyUpkeep": 4100,
+          "equipped": [
+            "Suburban",
+            "Bus Pass",
+            "Library Card",
+            "Planner",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 19,
+            "Personal Assistant": 169,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 189,
+            "Time Management": 188,
+            "Frugality": 190,
+            "Meditation": 189,
+            "Typing Speed": 194,
+            "Grammar & Prose": 190,
+            "Plotting": 0,
+            "Character Dev.": 190,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 189,
+            "Networking": 189,
+            "Public Speaking": 188,
+            "Personal Brand": 0,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 4,
+          "elapsedSeconds": 6326.666666666663,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 137.75742144034848,
+            "firstPromotionSeconds": 65,
+            "firstPaidHomeSeconds": 190.75742144034848,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 65,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 185.75742144034848,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 311.9843710052947,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 407.00000000000017,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 487.66666666666686,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 116,
+          "coins": 90032164.15104164,
+          "wages": 115778802.7195044,
+          "royalties": 48552494.860184744,
+          "upkeep": 74271242.81089681,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 12083,
+          "dailyRoyalties": 5420.99185335117,
+          "dailyUpkeep": 7358,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Planner",
+            "Style Guide",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 10,
+            "Personal Assistant": 428,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 329,
+            "Time Management": 322,
+            "Frugality": 324,
+            "Meditation": 325,
+            "Typing Speed": 352,
+            "Grammar & Prose": 327,
+            "Plotting": 322,
+            "Character Dev.": 328,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 327,
+            "Networking": 325,
+            "Public Speaking": 326,
+            "Personal Brand": 322,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 5,
+          "elapsedSeconds": 6326.666666666669,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 130.08855009654442,
+            "firstPromotionSeconds": 65,
+            "firstPaidHomeSeconds": 176.08855009654442,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 65,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 171.08855009654442,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 281.33333333333326,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 367.9999999999999,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 437.9999999999999,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 131,
+          "coins": 94529530.3675639,
+          "wages": 125710539.5080667,
+          "royalties": 56798984.622747645,
+          "upkeep": 87954708.05078693,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 12857,
+          "dailyRoyalties": 5873.026377701205,
+          "dailyUpkeep": 6587,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Style Guide",
+            "Planner",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 10,
+            "Personal Assistant": 732,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 680,
+            "Time Management": 678,
+            "Frugality": 680,
+            "Meditation": 679,
+            "Typing Speed": 695,
+            "Grammar & Prose": 679,
+            "Plotting": 678,
+            "Character Dev.": 681,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 680,
+            "Networking": 678,
+            "Public Speaking": 678,
+            "Personal Brand": 678,
+            "Media Tours": 0,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 6,
+          "elapsedSeconds": 6326.666666666667,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 110.65482253133686,
+            "firstPromotionSeconds": 65,
+            "firstPaidHomeSeconds": 150.6666666666666,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 65,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 150.6666666666666,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 240.71482214944453,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 307.08830674192797,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 362.08830674192797,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 135,
+          "coins": 97030754.22586721,
+          "wages": 130857254.52199754,
+          "royalties": 61735483.647609524,
+          "upkeep": 95535436.58737011,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 12892,
+          "dailyRoyalties": 6021.153877655792,
+          "dailyUpkeep": 6808,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Style Guide",
+            "Planner",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 10,
+            "Personal Assistant": 750,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 546,
+            "Time Management": 547,
+            "Frugality": 548,
+            "Meditation": 549,
+            "Typing Speed": 614,
+            "Grammar & Prose": 550,
+            "Plotting": 549,
+            "Character Dev.": 548,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 548,
+            "Networking": 549,
+            "Public Speaking": 546,
+            "Personal Brand": 552,
+            "Media Tours": 545,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 7,
+          "elapsedSeconds": 6326.666666666674,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 110.65482253133686,
+            "firstPromotionSeconds": 65,
+            "firstPaidHomeSeconds": 150.6666666666666,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 65,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 150.6666666666666,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 240.71482214944453,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 307.08830674192797,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 362.08830674192797,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 139,
+          "coins": 101371623.41839729,
+          "wages": 132023527.02890813,
+          "royalties": 63259324.1207127,
+          "upkeep": 93885992.4736587,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 13069,
+          "dailyRoyalties": 6130.167753320997,
+          "dailyUpkeep": 6424,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Style Guide",
+            "Planner",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 10,
+            "Personal Assistant": 848,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 799,
+            "Time Management": 797,
+            "Frugality": 798,
+            "Meditation": 797,
+            "Typing Speed": 803,
+            "Grammar & Prose": 798,
+            "Plotting": 797,
+            "Character Dev.": 799,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 798,
+            "Networking": 798,
+            "Public Speaking": 797,
+            "Personal Brand": 797,
+            "Media Tours": 798,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 8,
+          "elapsedSeconds": 6326.666666666671,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 107.6076694758579,
+            "firstPromotionSeconds": 60,
+            "firstPaidHomeSeconds": 145.66666666666663,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 60,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 145.66666666666663,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 231.39313473607925,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 292.72535995044495,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 347.72535995044495,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 141,
+          "coins": 102834591.22456278,
+          "wages": 133163997.10332137,
+          "royalties": 64680712.68670701,
+          "upkeep": 94984949.98735066,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 13111,
+          "dailyRoyalties": 6189.69321760716,
+          "dailyUpkeep": 6389,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Style Guide",
+            "Planner",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 10,
+            "Personal Assistant": 873,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 827,
+            "Time Management": 826,
+            "Frugality": 828,
+            "Meditation": 828,
+            "Typing Speed": 835,
+            "Grammar & Prose": 828,
+            "Plotting": 827,
+            "Character Dev.": 827,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 827,
+            "Networking": 827,
+            "Public Speaking": 826,
+            "Personal Brand": 827,
+            "Media Tours": 828,
+            "Royalty Negotiation": 0
+          }
+        },
+        {
+          "life": 9,
+          "elapsedSeconds": 6326.666666666666,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 107.95360461308069,
+            "firstPromotionSeconds": 65,
+            "firstPaidHomeSeconds": 146.6666666666667,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 65,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 146.6666666666667,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 232.58527619860428,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 294.0106458440927,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 349.0106458440927,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 139,
+          "coins": 190339967.47282976,
+          "wages": 210639513.26084104,
+          "royalties": 75156264.63612129,
+          "upkeep": 95430297.46722983,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 28703,
+          "dailyRoyalties": 8781.97117268756,
+          "dailyUpkeep": 6628,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Style Guide",
+            "Planner",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 10,
+            "Personal Assistant": 835,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 655,
+            "Time Management": 655,
+            "Frugality": 655,
+            "Meditation": 656,
+            "Typing Speed": 675,
+            "Grammar & Prose": 651,
+            "Plotting": 658,
+            "Character Dev.": 654,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 653,
+            "Networking": 652,
+            "Public Speaking": 650,
+            "Personal Brand": 651,
+            "Media Tours": 651,
+            "Royalty Negotiation": 600
+          }
+        },
+        {
+          "life": 10,
+          "elapsedSeconds": 6326.666666666667,
+          "gameDays": 18980,
+          "retired": true,
+          "milestones": {
+            "firstBookSeconds": 107.95360461308069,
+            "firstPromotionSeconds": 65,
+            "firstPaidHomeSeconds": 146.6666666666667,
+            "writingMajoritySeconds": null
+          },
+          "promotions": [
+            {
+              "seconds": 65,
+              "job": "Food Service"
+            },
+            {
+              "seconds": 146.6666666666667,
+              "job": "Delivery Driver"
+            },
+            {
+              "seconds": 232.58527619860428,
+              "job": "Warehouse Worker"
+            },
+            {
+              "seconds": 294.0106458440927,
+              "job": "Office Temp"
+            },
+            {
+              "seconds": 349.0106458440927,
+              "job": "Personal Assistant"
+            }
+          ],
+          "books": 141,
+          "coins": 237939812.92946804,
+          "wages": 248569622.8057962,
+          "royalties": 84358156.9947293,
+          "upkeep": 94963690.49490473,
+          "purchases": 52500,
+          "job": "Personal Assistant",
+          "dailyJobPayAtFullWork": 34539,
+          "dailyRoyalties": 10055.550522814658,
+          "dailyUpkeep": 6401,
+          "equipped": [
+            "Suburban",
+            "Used Car",
+            "Library Card",
+            "Style Guide",
+            "Planner",
+            "Premium Briefcase",
+            "Pro Writing Software"
+          ],
+          "levels": {
+            "Gig Worker": 10,
+            "Food Service": 10,
+            "Delivery Driver": 10,
+            "Warehouse Worker": 10,
+            "Office Temp": 10,
+            "Personal Assistant": 874,
+            "Intern": 0,
+            "Blogger": 0,
+            "Content Creator": 0,
+            "Copy Editor": 0,
+            "Staff Writer": 0,
+            "Senior Editor": 0,
+            "Ghostwriter": 0,
+            "C.W. Student": 0,
+            "Junior Agent": 0,
+            "Senior Agent": 0,
+            "Publisher": 0,
+            "Literary Titan": 0,
+            "Head of Publishing": 0,
+            "Commissioned Author": 0,
+            "Focus": 818,
+            "Time Management": 817,
+            "Frugality": 818,
+            "Meditation": 819,
+            "Typing Speed": 845,
+            "Grammar & Prose": 818,
+            "Plotting": 818,
+            "Character Dev.": 818,
+            "Healthy Lifestyle": 0,
+            "Flow State": 0,
+            "Longevity Secrets": 0,
+            "Brand Management": 819,
+            "Networking": 819,
+            "Public Speaking": 817,
+            "Personal Brand": 819,
+            "Media Tours": 819,
+            "Royalty Negotiation": 817
+          }
+        }
+      ]
+    }
+  ]
+}
