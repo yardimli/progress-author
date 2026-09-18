@@ -1,11 +1,19 @@
 let isCatchingUp = false;
 let offlinePaused = false;
 
+function formatAwayDuration(seconds) {
+    const total = Math.floor(Math.max(0, seconds) + 1e-6);
+    if (total < 1) return 'less than 1s';
+    const hours = Math.floor(total / 3600);
+    return `${hours ? hours + 'h ' : ''}${Math.floor(total / 60) % 60}m ${total % 60}s`;
+}
+
 function advanceAwayProgress(now = Date.now()) {
     const previous = gameData.lastProgressAt;
     gameData.lastProgressAt = now;
     if (!previous || !gameData.offlineEligible || !gameData.introSeen || !gameData.currentAuthor || offlinePaused) return;
-    const elapsed = Math.min(8 * 3600, Math.max(0, (now - previous) / 1000));
+    const awaySeconds = Math.max(0, (now - previous) / 1000);
+    const elapsed = Math.min(8 * 3600, awaySeconds);
     if (elapsed < 1) return;
     const initial = { coins: gameData.coins, books: gameData.booksPublished, days: gameData.days };
     const oldDelta = deltaTime;
@@ -34,7 +42,7 @@ function advanceAwayProgress(now = Date.now()) {
             remaining -= step; played += step;
         }
     } finally { isCatchingUp = false; deltaTime = oldDelta; }
-    if (played >= 1) addGameNotification({ type: 'summary', name: 'While you were away', message: `${Math.floor(played / 60)}m ${Math.floor(played % 60)}s simulated · $${format(gameData.coins - initial.coins)} balance change · ${gameData.booksPublished - initial.books} books published. ${gameData.days >= getLifespan() ? 'Your author is ready to retire.' : ''} Away progress is limited to 8 hours per return.` });
+    if (played > 0) addGameNotification({ type: 'summary', name: 'While you were away', awaySeconds, simulatedSeconds: played, message: `Away for ${formatAwayDuration(awaySeconds)} · ${formatAwayDuration(played)} simulated · $${format(gameData.coins - initial.coins)} balance change · ${gameData.booksPublished - initial.books} books published. ${gameData.days >= getLifespan() ? 'Progress stopped at retirement.' : ''} Away progress is limited to 8 hours per return.` });
     saveGameData();
 }
 

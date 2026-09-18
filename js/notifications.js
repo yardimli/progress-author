@@ -1,7 +1,8 @@
 // Durable, passive notifications. Rendering never opens a dialog or moves focus.
 function addGameNotification(entry) {
     gameData.notifications ||= [];
-    if (entry.type !== 'book' && gameData.notifications.some(n => n.type === entry.type && n.name === entry.name && !n.read)) return;
+    const awaySummary = entry.type === 'summary' && entry.name === 'While you were away';
+    if (entry.type !== 'book' && !awaySummary && gameData.notifications.some(n => n.type === entry.type && n.name === entry.name && !n.read)) return;
     gameData.notifications.unshift({ ...entry, read: false, age: gameData.days });
     gameData.notifications = gameData.notifications.slice(0, 150);
     if (typeof isCatchingUp === 'undefined' || !isCatchingUp) updateNotificationBadge();

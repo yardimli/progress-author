@@ -35,6 +35,7 @@ Version 2.0.0 now enables the career/authorship balance in the normal game. Earl
 - [ ] Later: retirement/legacy redesign and audience inheritance, when the user resumes that work.
 
 ## Interruptions and reliability
+- [x] Keep separate summaries for separate returns, so an unread one-second away notification cannot suppress a later absence. Show actual away duration separately from simulated time, including retirement limits.
 - [x] Pulse the inbox for unread messages, automatically mark displayed messages read on opening and persist the change; keep refresh and Return to game in a fixed dialog footer. Respect reduced-motion preferences.
 - [x] 1. Persistent inbox for unlocks, badges and publications, with direct actions.
 - [x] 2. Background/offline simulation, summary, retirement boundary and separate active-play analytics.
