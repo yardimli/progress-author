@@ -1,4 +1,8 @@
 /* A quiet header and a single, readable workspace on every screen. */
+/* Use the same mouse affordance for native controls and custom click targets. */
+:is(button, [role="button"], [onclick], select, input[type="checkbox"], input[type="radio"], input[type="range"], summary, #authorImageContainer):not(:disabled):not([aria-disabled="true"]) { cursor: pointer; }
+:is(button, select, input):disabled, [aria-disabled="true"] { cursor: not-allowed; }
+.badge-wrapper .badge-icon { cursor: pointer; }
 .four-column-layout { display: block; }
 .panel-column { display: none !important; min-height: 0; padding: 0 24px 36px; }
 /* Keep the scrollport unpadded at the top so sticky headings meet the main header. */

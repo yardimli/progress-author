@@ -78,6 +78,7 @@ var gameData = {
 	// Data for author profile modal
 	monthlyChartData: [], // Stores monthly data points for the chart
 	journalFinance: [],
+	journalFinanceVersion: 2,
 	journalShowIncome: true,
 	journalShowExpenses: true,
 	logHistory: [] // Stores all log messages

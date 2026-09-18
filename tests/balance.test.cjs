@@ -465,14 +465,18 @@ test('journal records actual income, upkeep and purchases with persistent indepe
     g.gameData.unlocks['Used Laptop'] = true;
     g.setMisc('Used Laptop');
     g.increaseCoins(); g.applyExpenses();
-    const entry = g.gameData.journalFinance[0];
+    const entry = g.gameData.journalFinance.find(row => row.kind === 'annual');
     assert.equal(entry.work, 120);
     assert.equal(entry.royalties, 15);
     assert.equal(entry.upkeep, 9);
-    assert.equal(entry.purchases['Used Laptop'], 5000);
+    assert.equal(entry.purchases, 5000);
+    const purchase = g.gameData.journalFinance.find(row => row.kind === 'purchase');
+    assert.equal(purchase.amount, 5000);
+    assert.equal(purchase.balance, 1000);
     assert.equal(g.gameData.coins, 6000 + entry.work + entry.royalties - entry.upkeep - 5000);
     g.gameData.logHistory = ['<b>[Age 20.000 days]</b>Career began.'];
-    assert.equal(g.getJournalEntries().length, 3);
+    assert.equal(g.getJournalEntries().length, 2, 'only the purchase and career event appear during the year');
+    assert.match(g.getJournalEntries().find(row => row.type === 'expenses').html, /Balance remaining/);
     g.scheduleGameSave = () => {};
     g.setJournalFilter('income', false);
     assert.equal(g.getJournalEntries().filter(e => e.type === 'income').length, 0);
@@ -482,11 +486,50 @@ test('journal records actual income, upkeep and purchases with persistent indepe
     const saved = JSON.stringify(g.gameData); g.localStorage.getItem = () => saved;
     g.loadGameData();
     assert.equal(g.gameData.journalShowIncome, false);
-    assert.equal(g.gameData.journalFinance[0].work, 240);
+    assert.equal(g.gameData.journalFinance.find(row => row.kind === 'annual').work, 240);
+    g.gameData.days = 365 * 21;
+    g.finalizeJournalYears();
     g.setJournalFilter('income', true); g.setJournalFilter('expenses', false);
     assert.equal(g.getJournalEntries().filter(e => e.type === 'income').length, 1);
     assert.equal(g.getJournalEntries().filter(e => e.type === 'expenses').length, 0);
     assert.equal(g.getJournalEntries().filter(e => e.type === 'event').length, 1);
+    const completed = JSON.stringify(g.getJournalEntries());
     g.gameData.days += 31; g.increaseCoins();
-    assert.equal(g.gameData.journalFinance.length, 2, 'a new game month creates a new bucket');
+    assert.equal(JSON.stringify(g.getJournalEntries()), completed, 'current-year activity does not change published summaries');
+    assert.equal(g.gameData.journalFinance.length, 3, 'next year has a separate hidden accumulator');
+});
+
+test('year-end journal splits accelerated time and publishes summaries only once', () => {
+    const g = game();
+    g.gameData.days = 365 * 21 - 1;
+    g.deltaTime = 1; // Three game days, spanning the year boundary.
+    g.increaseCoins(); g.increaseDays();
+    const closed = g.gameData.journalFinance.find(row => row.year === 20);
+    const pending = g.gameData.journalFinance.find(row => row.year === 21);
+    assert.equal(closed.work, 40);
+    assert.equal(pending.work, 80);
+    assert.equal(closed.closed, true);
+    assert.equal(pending.closed, false);
+    assert.equal(g.getJournalEntries().length, 1);
+    const snapshot = JSON.stringify(g.getJournalEntries());
+    g.finalizeJournalYears();
+    assert.equal(JSON.stringify(g.getJournalEntries()), snapshot);
+});
+
+test('legacy monthly journal totals migrate into completed and pending years', () => {
+    const g = game();
+    g.gameData.days = 365 * 21 + 50;
+    g.gameData.journalFinance = [
+        { month: 252, work: 30, royalties: 5, upkeep: 2, purchases: {} },
+        { month: 251, work: 100, royalties: 10, upkeep: 20, purchases: { Laptop: 50 } },
+        { month: 250, work: 200, royalties: 20, upkeep: 40, purchases: {} }
+    ];
+    g.migrateJournalFinance();
+    const complete = g.gameData.journalFinance.find(row => row.year === 20);
+    assert.equal(complete.work, 300);
+    assert.equal(complete.purchases, 50);
+    assert.equal(complete.closed, true);
+    assert.equal(g.getJournalEntries().length, 2);
+    g.migrateJournalFinance();
+    assert.equal(g.gameData.journalFinance.length, 2);
 });

@@ -111,6 +111,7 @@ function loadGameData() {
 		replaceSaveDict(gameData.itemData, gameDataSave.itemData);
 		
 		gameData = gameDataSave;
+		migrateJournalFinance();
 		
 		if (!gameData.potions) {
 			gameData.potions = { inspiration: 0, acceleration: 0 };

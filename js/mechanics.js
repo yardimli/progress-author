@@ -281,6 +281,7 @@ function increaseCoins () {
 function increaseDays () {
 	const increase = applySpeed(1);
 	gameData.days += increase;
+	finalizeJournalYears();
 }
 
 function getRawWritingSpeed () {
