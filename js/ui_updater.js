@@ -1,4 +1,4 @@
-// Task and potion bars animate each frame; writing renders at most once a second.
+// Task/potion bars and typewriter animate; writing progress and stats render once a second.
 const taskProgressElements = new Map();
 let writingProgressElement;
 let lastWritingRenderTime = -Infinity;
@@ -38,9 +38,9 @@ function updateWritingUI(now = performance.now()) {
     const fraction = gameData.currentBook ? Math.min(1, gameData.wordsWritten / getBookLength()) : 0;
     writingProgressElement ||= document.getElementById('writingProgressBar');
     setProgressScale(writingProgressElement, fraction);
-    const quality = getCurvedQuality(getBookQuality()).toFixed(2);
+    const quality = (typeof getProjectedBookQuality === 'function' ? getProjectedBookQuality() : getCurvedQuality(getBookQuality())).toFixed(2);
+    updateHeaderVal('header-val-progress', gameData.currentBook ? `${(fraction * 100).toFixed(1)}%` : 'Idle');
     const values = {
-        'header-val-progress': gameData.currentBook ? `${(fraction * 100).toFixed(1)}%` : 'Idle',
         writingProgressDisplay: `${(fraction * 100).toFixed(1)}%`,
         writingSpeedDisplayTab: format(getWritingSpeed()),
         bookQualityDisplayTab: quality,
@@ -50,7 +50,7 @@ function updateWritingUI(now = performance.now()) {
         const element = document.getElementById(id);
         if (element && element.textContent !== value) element.textContent = value;
     }
-    renderTypewriter();
+    if (typeof updateExperienceUI === 'function') updateExperienceUI();
 }
 
 // Dynamic UI updates for the game loop
@@ -100,8 +100,7 @@ function updateRequiredRows (baseData, categoryType) {
 					}
 					categoryReqText = reqStrings.join('<br>');
 					if (areRequirementsMet(entity)) {
-						const remaining = Math.ceil(Math.max(0, gameData.nextCardUnlockAt - gameData.activePlaySeconds));
-						categoryReqText = remaining ? `Ready · next discovery in ${remaining}s of play` : 'Ready · awaiting next discovery';
+						categoryReqText = 'Ready to discover';
 					}
 					nextEntityFound = true;
 				}
@@ -170,6 +169,12 @@ function updateItemRows () {
 		if (!row) continue;
 		
 		// Check active status for properties, transportation, and misc items
+		const priceElement = row.querySelector('.purchase-price');
+		if (priceElement) {
+			const price = getPurchasePrice(item.name);
+			const text = price ? `Buy: $${format(price)} + upkeep` : 'Owned / no purchase cost';
+			if (priceElement.textContent !== text) priceElement.textContent = text;
+		}
 		const isActive = (gameData.currentProperty === item || gameData.currentTransportation === item || gameData.currentMisc.includes(item));
 		if (isActive && !row.classList.contains('active')) {
 			row.classList.add('active');
@@ -237,8 +242,8 @@ function updateAuthorAndBookUI () {
 		if (bookImg && bookImg.src !== imgSrc && !bookImg.src.includes(imgSrc)) {
 			bookImg.src = imgSrc;
 		}
-		if (bookTitle && bookTitle.textContent !== book.title) {
-			bookTitle.textContent = book.title;
+		if (bookTitle && bookTitle.textContent !== getBookTitle()) {
+			bookTitle.textContent = getBookTitle();
 		}
 		if (bookGenre && bookGenre.textContent !== book.genre) {
 			bookGenre.textContent = book.genre;
@@ -277,17 +282,17 @@ function updateBookHistory () {
 		div.style.marginBottom = '10px';
 		div.style.cursor = 'pointer';
 		div.onclick = function () {
-			showBookModal(bookId);
+			showBookModal(bookId, bookRecord);
 		};
 		div.innerHTML = `
       <img src="img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}" class="row-image" style="width: 60px; height: 90px; object-fit: cover; border-radius: 4px;">
       <div class="row-info">
-        <div class="row-title">${bookData.title}</div>
+        <div class="row-title">${escapeGameText(bookRecord.title || bookData.title)}</div>
         <div class="row-value">Published: Age ${age}.${day} days${qualityText}</div>
       </div>
       <div class="row-expense" style="text-align: right;">
-        <span style="color: #4CAF50; font-weight: bold;">+$${format(royalties)}/day</span><br>
-        <span style="font-size: 0.85em; color: #888;">+$${format(yearlyRoyalties)}/yr</span>
+        <span style="color: var(--journal-positive); font-weight: bold;">+$${format(royalties)}/day</span><br>
+        <span style="font-size: 0.85em; color: var(--journal-muted);">+$${format(yearlyRoyalties)}/yr</span>
       </div>
     `;
 		container.appendChild(div);
@@ -399,7 +404,7 @@ function updateHeaderUI () {
 	
 	const dailyNet = getIncome() - getExpense();
 	const netFormatted = (dailyNet >= 0 ? '+' : '-') + '$' + format(Math.abs(dailyNet)) + '/d';
-	const netColor = dailyNet >= 0 ? '#4CAF50' : '#f44336';
+	const netColor = dailyNet >= 0 ? 'var(--journal-positive)' : 'var(--journal-danger)';
 	
 	const netElements = document.querySelectorAll('.header-val-net');
 	netElements.forEach(el => {
@@ -699,7 +704,8 @@ function updateTypewriter (deltaTime) {
 			liveTypingDelay = 1;
 		}
 	}
-	
+	// Prose follows the character clock; progress and counters keep their 1s budget.
+	renderTypewriter();
 }
 
 function renderTypewriter() {
@@ -712,7 +718,7 @@ function renderTypewriter() {
         }
         if (innerSpan.textContent !== typewriterText) {
             innerSpan.textContent = typewriterText;
-            // Measure only on the once-per-second writing render.
+            // Only changed characters trigger a DOM write and line-width check.
             if (innerSpan.offsetWidth > displayEl.clientWidth * 0.75 && !isClearingLine) {
                 isWaitingToClearLine = true;
             }
@@ -722,8 +728,9 @@ function renderTypewriter() {
 }
 
 function updateUI () {
-	const discovery = discoverNextCard();
-	if (discovery) {
+	updateNotificationBadge();
+	let discovery;
+	while ((discovery = discoverNextCard())) {
 		const row = document.getElementById(discovery.type === 'potion' ? 'potion-acceleration' : 'row ' + discovery.name);
 		const img = row?.querySelector('.card-image, .row-image');
 		if (img) queueInfoModal(img, true);

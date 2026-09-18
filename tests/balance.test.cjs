@@ -7,9 +7,9 @@ const path = require('node:path');
 const root = path.join(__dirname, '..');
 function game() {
     const context = vm.createContext({ performance, console, window: { location: { hostname: 'localhost' }, addEventListener() {} },
-        document: { getElementById: () => null }, requestAnimationFrame() {},
+        document: { getElementById: () => null, querySelectorAll: () => [] }, requestAnimationFrame() {},
         localStorage: { getItem: () => null, setItem() {} } });
-    for (const file of ['state', 'classes', 'utils', 'formulas', 'mechanics', 'save', 'main']) {
+    for (const file of ['state', 'classes', 'utils', 'formulas', 'mechanics', 'notifications', 'save', 'offline', 'writing-plan', 'main']) {
         vm.runInContext(fs.readFileSync(path.join(root, 'js', file + '.js'), 'utf8'), context);
     }
     for (const [name, file] of [['jobBaseData', 'jobs'], ['skillBaseData', 'skills'], ['itemBaseData', 'items']]) {
@@ -53,8 +53,8 @@ test('XP and income are independent of frame rate', () => {
     assert.equal(a.currentJob.level, b.currentJob.level);
     assert.ok(Math.abs(a.currentJob.xp - b.currentJob.xp) < 1e-6);
     assert.ok(Math.abs(a.coins - b.coins) < 1e-6);
-    assert.ok(Math.abs(a.days - (365 * 20 + 60)) < 1e-6);
-    assert.ok(Math.abs(a.coins - 2400) < 1e-6);
+    assert.ok(Math.abs(a.days - (365 * 20 + 180)) < 1e-6);
+    assert.ok(Math.abs(a.coins - 7200) < 1e-6);
 });
 test('later levels take longer and extreme boosts have diminishing returns', () => {
     const g = game(), job = g.gameData.currentJob;
@@ -80,7 +80,8 @@ test('jobs and skills have cheaper early levels and smoothly rising late costs',
             if (level < 20) { earlyTotal += cost; oldEarlyTotal += oldCost(level); }
             if (level === 10) assert.ok(cost < oldCost(level) * 0.4);
             if (level === 20) assert.ok(cost < oldCost(level) * 0.56);
-            if (level >= 40) assert.equal(cost, oldCost(level));
+            if (level >= 40 && level <= 100) assert.equal(cost, oldCost(level));
+            if (level > 100) assert.ok(cost < oldCost(level));
             previous = cost;
         }
         assert.ok(earlyTotal < oldEarlyTotal * 0.5, 'reaching level 20 takes under half the previous XP');
@@ -181,27 +182,83 @@ test('production potion gates activation and discovery until 600 active seconds'
     assert.equal(g.discoverNextCard().name, 'Acceleration Potion');
     assert.equal(g.isAccelerationAvailable(), true);
     g.drinkPotion('acceleration');
-    assert.equal(g.getGameSpeed(), 6);
+    assert.equal(g.getGameSpeed(), 18);
     assert.equal(g.discoverNextCard(), null);
     for (const host of ['localhost', '127.0.0.1', '[::1]', 'test.localhost']) assert.ok(g.isLocalGameHost(host));
     for (const host of ['localhost.example.com', 'example.com', '192.168.1.10']) assert.equal(g.isLocalGameHost(host), false);
 });
-test('new discoveries are separated across categories, including after level jumps', () => {
+test('eligible discoveries no longer wait for a countdown or unread popup', () => {
     const g = game();
     g.jobBaseData = { Intern: g.jobBaseData.Intern };
     g.skillBaseData = { Frugality: g.skillBaseData.Frugality };
     g.itemBaseData = {};
     g.isInitialized = true;
     g.gameData.taskData.Focus.level = 30;
+    g.gameData.nextCardUnlockAt = 999999;
+    g.popupQueue.push({ type: 'info' });
     assert.equal(g.discoverNextCard().name, 'Intern');
-    assert.equal(g.discoverNextCard(), null);
-    g.gameData.activePlaySeconds = 9.99;
-    assert.equal(g.discoverNextCard(), null);
-    g.gameData.activePlaySeconds = 10;
     assert.equal(g.discoverNextCard().name, 'Frugality');
     assert.equal(g.discoverNextCard(), null);
     assert.equal(g.gameData.unlocks.Intern, true);
     assert.equal(g.gameData.unlocks.Frugality, true);
+});
+test('notifications persist as plain data without pausing or queuing a modal', () => {
+    const g = game();
+    g.addGameNotification({ type: 'skill', name: 'Focus' });
+    g.addGameNotification({ type: 'skill', name: 'Focus' });
+    assert.equal(g.gameData.notifications.length, 1);
+    assert.equal(g.isPaused, false);
+    assert.equal(g.popupQueue.length, 0);
+    const save = JSON.stringify(g.gameData);
+    g.localStorage.getItem = () => save;
+    g.loadGameData();
+    assert.equal(g.gameData.notifications[0].name, 'Focus');
+    assert.equal(g.gameData.notifications[0].read, false);
+});
+test('restoring a book resumes its selected scene and can finish the manuscript', () => {
+    const g = game();
+    g.booksBaseData = { example: { title: 'Example', genre: 'Romance', wordCount: 100 } };
+    g.sceneTypesBaseData = { Romance: { Dialogue: ['Hello'], Action: ['Go'] } };
+    g.gameData.currentBook = 'example';
+    g.gameData.wordsWritten = 99;
+    g.gameData.currentBookComposition = { Dialogue: 80, Action: 19 };
+    g.gameData.activeScene = 'Action';
+    const save = JSON.stringify(g.gameData);
+    g.currentAutoSceneType = null;
+    g.localStorage.getItem = () => save;
+    g.loadGameData();
+    assert.equal(g.currentAutoSceneType, 'Action');
+    assert.equal(g.gameData.wordsWritten, 99);
+    g.document.getElementById = id => id === 'liveWritingText' ? { innerHTML: '' } : null;
+    g.getWritingSpeed = () => 10;
+    g.writeProgress(g.currentAutoSceneType, 1);
+    assert.equal(g.gameData.currentBook, null);
+    assert.equal(g.gameData.booksPublished, 1);
+    assert.equal(g.gameData.notifications[0].type, 'book');
+    assert.equal(g.isPaused, false);
+});
+test('legacy books recover a scene, invalid progress and missing books safely', () => {
+    const g = game();
+    g.booksBaseData = { example: { genre: 'Romance', wordCount: 100 } };
+    g.sceneTypesBaseData = { Romance: { Dialogue: [], Action: [] } };
+    g.gameData.currentBook = 'example';
+    g.gameData.wordsWritten = NaN;
+    g.gameData.currentBookComposition = { Dialogue: 30, Action: -1, Removed: 10 };
+    g.restoreWritingSession();
+    assert.equal(g.currentAutoSceneType, 'Dialogue');
+    assert.equal(g.gameData.wordsWritten, 0);
+    assert.equal(Object.keys(g.gameData.currentBookComposition).length, 1);
+    g.gameData.currentBook = 'removed';
+    g.restoreWritingSession();
+    assert.equal(g.gameData.currentBook, null);
+    assert.equal(g.currentAutoSceneType, null);
+});
+test('debug level editing requires explicit local opt-in', () => {
+    for (const [hostname, search, expected] of [['localhost', '', false], ['localhost', '?debug=1', true], ['game.example', '?debug=1', false]]) {
+        const context = vm.createContext({ performance, window: { location: { hostname, search } } });
+        vm.runInContext(fs.readFileSync(path.join(root, 'js/state.js'), 'utf8'), context);
+        assert.equal(context.isDebugMode, expected);
+    }
 });
 test('no non-starting cards share an identical set of unlock requirements', () => {
     const seen = new Map();
@@ -233,7 +290,7 @@ test('active play clock is unscaled and survives a save reload', () => {
     g.lastTime = 0;
     for (let time = 100; time <= 60000; time += 100) g.gameLoop(time);
     assert.ok(Math.abs(g.gameData.activePlaySeconds - 60) < 1e-6);
-    assert.ok(Math.abs(g.gameData.days - (365 * 20 + 360)) < 1e-6);
+    assert.ok(Math.abs(g.gameData.days - (365 * 20 + 1080)) < 1e-6);
     g.gameData.nextCardUnlockAt = 67;
     const saved = JSON.stringify(g.gameData);
     g.localStorage.getItem = () => saved;
@@ -247,4 +304,144 @@ test('writing bar has a full-width base for its transform animation', () => {
     assert.ok(!/width:\s*0/.test(tag));
     const css = fs.readFileSync(path.join(root, 'css/journal.css'), 'utf8');
     assert.match(css, /#writingProgressBar,\s*\.potion-fill\s*\{\s*width:\s*100%/);
+});
+
+function awayGame() {
+    const g = game();
+    g.gameData.currentAuthor = 'test'; g.gameData.introSeen = true;
+    g.gameData.offlineEligible = true; g.gameData.lastProgressAt = 1000000;
+    g.isInitialized = true;
+    g.authorsBaseData = {}; g.sceneTypesBaseData = { Romance: { Dialogue: ['Example'] } };
+    g.booksBaseData = { example: { title: 'Example', genre: 'Romance', wordCount: 100 } };
+    return g;
+}
+
+test('pacing milestones and inherited experience remain attainable', t => {
+    const simulate = inherited => {
+        const g = game();
+        g.jobCategories = g.buildCategories(g.jobBaseData);
+        g.skillCategories = g.buildCategories(g.skillBaseData);
+        g.itemCategories = g.buildCategories(g.itemBaseData);
+        g.setCustomEffects(); g.addMultipliers();
+        g.gameData.currentJob.maxLevel = inherited.jobEnd || 0;
+        g.gameData.currentSkill.maxLevel = inherited.skillEnd || 0;
+        g.deltaTime = .1;
+        const result = {};
+        for (let tick = 1; tick <= 60000; tick++) {
+            g.updateLogic();
+            for (const [name, task] of [['job', g.gameData.currentJob], ['skill', g.gameData.currentSkill]]) {
+                for (const level of [10, 20, 100]) if (task.level >= level && !result[name + level]) result[name + level] = Math.round(tick / 10);
+            }
+            if (result.job100 && result.skill100) break;
+        }
+        result.jobEnd = g.gameData.currentJob.level;
+        result.skillEnd = g.gameData.currentSkill.level;
+        return result;
+    };
+    const first = simulate({}), next = simulate(first);
+    t.diagnostic(JSON.stringify({ firstLife: first, nextLife: next }));
+    assert.ok(first.job10 < 120 && first.skill10 < 180);
+    assert.ok(first.job20 < 600 && first.skill20 < 600);
+    assert.ok(next.job20 < first.job20 && next.skill20 < first.skill20);
+    assert.ok(next.jobEnd > first.jobEnd && next.skillEnd > first.skillEnd);
+});
+
+test('new short manuscripts, editorial plans, purchases and queues survive reload', () => {
+    const g = awayGame();
+    g.booksBaseData.example.wordCount = 80000;
+    g.gameData.currentBook = 'example';
+    assert.equal(g.getBookLength(), 80000, 'existing manuscripts retain their length');
+    assert.equal(g.getNewManuscriptLength(), 12000);
+    g.gameData.booksPublished = 1; assert.equal(g.getNewManuscriptLength(), 18000);
+    g.gameData.booksPublished = 2; assert.equal(g.getNewManuscriptLength(), 24000);
+    g.gameData.manuscript = { title: 'My story', approach: 'crafted', targetWords: 12000, edit: 'revise' };
+    g.gameData.ownedItems = ['Used Laptop']; g.gameData.queueRemaining = 3; g.gameData.queueGenre = 'Romance';
+    const saved = JSON.stringify(g.gameData); g.localStorage.getItem = () => saved;
+    g.loadGameData();
+    assert.equal(g.getBookLength(), 13800);
+    assert.equal(g.getBookTitle(), 'My story');
+    assert.equal(g.getPurchasePrice('Used Laptop'), 0);
+    assert.equal(g.gameData.queueRemaining, 3);
+    assert.equal(g.gameData.queueGenre, 'Romance');
+});
+test('away progress expires potions, preserves active analytics, and cannot be claimed twice', () => {
+    const g = awayGame();
+    g.gameData.potions.acceleration = 2;
+    const before = g.gameData.days;
+    g.advanceAwayProgress(1010000);
+    assert.equal(g.gameData.days - before, 60);
+    assert.equal(g.gameData.potions.acceleration, 0);
+    assert.equal(g.gameData.activePlaySeconds, 0);
+    const coins = g.gameData.coins;
+    g.advanceAwayProgress(1010000);
+    assert.equal(g.gameData.coins, coins);
+    assert.equal(g.gameData.notifications.filter(n => n.name === 'While you were away').length, 1);
+});
+test('away progress stops at retirement and handles bankruptcy', () => {
+    const g = awayGame();
+    g.gameData.days = g.getLifespan() - 2;
+    g.advanceAwayProgress(1100000);
+    assert.equal(g.gameData.days, g.getLifespan());
+    const h = awayGame();
+    h.gameData.currentProperty = h.gameData.itemData['Mansion Estate'];
+    h.gameData.coins = 1;
+    h.advanceAwayProgress(1002000);
+    assert.equal(h.gameData.currentProperty.name, 'Homeless');
+    assert.ok(h.gameData.coins >= 0);
+});
+test('offline book queue finishes exactly the requested number without dialogs', () => {
+    const g = awayGame();
+    g.gameData.currentBook = 'example'; g.gameData.selectedGenre = 'Romance';
+    g.gameData.queueGenre = 'Romance'; g.gameData.queueRemaining = 2;
+    g.currentAutoSceneType = 'Dialogue';
+    g.getWritingSpeed = () => 100;
+    g.advanceAwayProgress(1005000);
+    assert.equal(g.gameData.booksPublished, 3);
+    assert.equal(g.gameData.completedBooks.length, 3);
+    assert.equal(g.gameData.queueRemaining, 0);
+    assert.equal(g.gameData.currentBook, null);
+    assert.equal(g.isPaused, false);
+});
+test('upgrades cost money once, maintain upkeep and refuse unaffordable purchases', () => {
+    const g = game();
+    g.gameData.unlocks['Used Laptop'] = true;
+    g.gameData.coins = 0;
+    g.setMisc('Used Laptop');
+    assert.equal(g.gameData.currentMisc.length, 0);
+    g.gameData.coins = 6000;
+    assert.equal(g.getPurchasePrice('Used Laptop'), 5000);
+    g.setMisc('Used Laptop');
+    assert.equal(g.gameData.coins, 1000);
+    assert.equal(g.getPurchasePrice('Used Laptop'), 0);
+    g.setMisc('Used Laptop'); g.setMisc('Used Laptop');
+    assert.equal(g.gameData.coins, 1000);
+    assert.equal(g.getExpense(), 3);
+});
+test('editorial tradeoffs change length and quality; quality matters to royalties', () => {
+    const g = awayGame();
+    g.gameData.currentBook = 'example'; g.gameData.wordsWritten = 50;
+    g.updateExperienceUI = () => {};
+    g.gameData.manuscript = { approach: 'crafted' };
+    g.chooseEditorial('revise');
+    assert.equal(g.getBookLength(), 115);
+    assert.equal(g.getManuscriptQualityBonus(), 1.35 * 1.25);
+    assert.ok(g.getBookRoyalty(80) > g.getBookRoyalty(50) * 1.5);
+    const first = g.getBookRoyalty(50);
+    g.gameData.booksPublished = 100;
+    assert.ok(g.getBookRoyalty(50) < first);
+});
+
+test('story choices change normalized scene targets and reward matching them', () => {
+    const g = awayGame();
+    g.genreIdealsBaseData = { Romance: { Dialogue: .5, Drama: .5 } };
+    g.sceneTypesBaseData.Romance = { Dialogue: [], Drama: [] };
+    g.gameData.currentBook = 'example';
+    g.gameData.manuscript = { protagonist: 'two rivals', theme: 'ambition', ending: 'hopeful' };
+    const ideals = g.getManuscriptIdeals('Romance');
+    assert.ok(ideals.Drama > ideals.Dialogue);
+    assert.ok(Math.abs(Object.values(ideals).reduce((a, b) => a + b, 0) - 1) < 1e-9);
+    g.gameData.currentBookComposition = { ...ideals };
+    assert.equal(g.getCompositionMultiplier(), 3);
+    g.gameData.currentBookComposition = { Dialogue: 1 };
+    assert.ok(g.getCompositionMultiplier() < 3);
 });

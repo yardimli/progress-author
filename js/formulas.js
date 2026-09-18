@@ -205,7 +205,10 @@ function softenMultiplier(value, threshold = 4) {
 function getBookRoyalty(quality) {
 	const readership = 1 + Math.log10(1 + Math.max(0, gameData.fame));
 	const negotiation = getBindedTaskEffect('Royalty Negotiation')();
-	return (12 + 0.6 * Math.max(0, Math.min(100, quality))) * readership *
+	const score = Math.max(0, Math.min(100, quality));
+	const contract = gameData.booksPublished >= 15 ? 1.3 : gameData.booksPublished >= 5 ? 1.15 : 1;
+	const catalogue = Math.sqrt(1 + gameData.booksPublished / 5);
+	return (12 + 0.6 * score * Math.sqrt(score / 50)) * readership * contract / catalogue *
 		softenMultiplier(negotiation * getBadgeMultiplier('royalties'));
 }
 

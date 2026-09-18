@@ -3,10 +3,10 @@
 // Renamed from update() to updateLogic() and removed updateUI()
 // This allows logic to run every frame while UI updates periodically
 function updateLogic () {
-    increaseDays();
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     applyExpenses();
+    increaseDays();
     trackMonthlyData();
 }
 
@@ -20,6 +20,8 @@ function gameLoop (currentTime) {
         requestAnimationFrame(gameLoop);
         return;
     }
+    gameData.lastProgressAt = Date.now();
+    gameData.offlineEligible = !isPaused;
     
     // Process popup queue immediately if not paused
     if (!isPaused && popupQueue.length > 0) {
@@ -208,9 +210,12 @@ async function init () {
 function continueInit () {
     populateGenres();
     buildSceneButtons();
+    initExperienceUI();
     
     setCustomEffects();
     addMultipliers();
+    isInitialized = true;
+    advanceAwayProgress();
     
     updateLogic();
     updateUI();
@@ -229,7 +234,7 @@ function continueInit () {
     }
 }
 
-window.onload = init;
+window.onload = () => startOwnedGame();
 
 // Serialize saves outside animation work; flush when leaving the page.
 let pendingGameSave = false;

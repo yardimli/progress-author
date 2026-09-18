@@ -4,7 +4,7 @@ let typingTimeout = null;
 
 // Helper to update the global pause state based on open modals
 function updatePauseState () {
-	const modals =['infoModal', 'bookModal', 'introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'bookFinishedModal', 'badgeDetailsModal', 'mobileBadgeModal', 'authorProfileModal', 'debugLevelModal'];
+	const modals =['introModal', 'authorSelectionScreen', 'authorBioModal', 'tutorialModal', 'versionModal', 'rebirthOneModal', 'rebirthTwoModal', 'retirementModal', 'debugLevelModal'];
 	let anyOpen = false;
 	for (const id of modals) {
 		const m = document.getElementById(id);
@@ -23,11 +23,7 @@ function queueTutorialModal (title, text) {
 }
 
 function queueInfoModal (imgEl, isNewUnlock = false, isBadge = false) {
-	if (isBadge) {
-		popupQueue.push({ type: 'badge', imgEl: imgEl, isNewUnlock: isNewUnlock });
-	} else {
-		popupQueue.push({ type: 'info', imgEl: imgEl, isNewUnlock: isNewUnlock });
-	}
+	addGameNotification({ type: isBadge ? 'badge' : imgEl.getAttribute('data-type'), name: imgEl.getAttribute('data-name') });
 }
 
 
@@ -114,7 +110,7 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 		statRows = [['Level', task.level], ['Next level', `${format(task.xp, 0)} / ${format(task.getMaxXp(), 0)} XP`]];
 		statRows.push(type === 'job' ? ['Daily pay', `$${format(task.getIncome())}`] : ['Mastery', task.getEffectDescription()]);
 	} else if (type === 'item' && item) {
-		statRows = [['Daily upkeep', `$${format(item.getExpense())}`], ['Benefit', item.getEffectDescription()]];
+		statRows = [['Upfront price', getPurchasePrice(name) ? `$${format(getPurchasePrice(name))}` : 'Owned / free'], ['Daily upkeep', `$${format(item.getExpense())}`], ['Benefit', item.getEffectDescription()]];
 	} else if (type === 'potion' && potionsBaseData[name]) {
 		statRows = [['Bonus', `×${potionsBaseData[name].effect.toFixed(1)}`], ['Duration', '10 minutes']];
 	}
@@ -236,7 +232,8 @@ function showBadgeModal(badgeId) {
 		statusEl.textContent = 'Status: Unlocked';
 		statusEl.style.color = 'var(--journal-positive)';
 	} else {
-		effectEl.style.display = 'none';
+		effectEl.textContent = `When earned: ${badge.effect.text}`;
+		effectEl.style.display = 'block';
 		statusEl.textContent = 'Status: Locked';
 		statusEl.style.color = 'var(--journal-danger)';
 	}
@@ -400,7 +397,7 @@ function closeIntroModal () {
 	updatePauseState();
 }
 
-function showBookModal (bookId) {
+function showBookModal (bookId, record = null) {
 	const book = booksBaseData[bookId];
 	if (!book) return;
 	
@@ -414,15 +411,19 @@ function showBookModal (bookId) {
 	const filename = book.filename.replace('.png', '.jpg');
 	modalImg.src = `img/${filefolder}/${filename}`;
 	
-	modalTitle.textContent = book.title;
+	modalTitle.textContent = record?.title || getBookTitle(bookId);
 	modalSubtitle.textContent = book.subtitle;
-	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
+	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(record?.words || (bookId === gameData.currentBook ? getBookLength() : book.wordCount), 0)}<br><i>Illustrative manuscript preview</i>`;
 	
 	modal.style.display = 'flex';
 	updatePauseState();
 	
-	const firstPageText = (booksFirstPageBaseData && booksFirstPageBaseData[bookId]) ? booksFirstPageBaseData[bookId] : 'Chapter 1\n\nThe beginning of a new journey...';
-	startTypingEffect(firstPageText, 'bookModalFirstPage');
+	const plan = record?.story || (bookId === gameData.currentBook ? gameData.manuscript : null);
+	const firstPageText = plan ? `Your story outline\n\n${plan.protagonist || 'A writer'} pursues ${plan.theme || 'a new beginning'}, leading to a ${plan.ending || 'hopeful'} ending.\n\nApproach: ${plan.approach || 'balanced'}. Editorial decision: ${plan.edit || 'keep the original draft'}.` : ((booksFirstPageBaseData && booksFirstPageBaseData[bookId]) ? booksFirstPageBaseData[bookId] : 'Chapter 1\n\nThe beginning of a new journey...');
+	if (plan) {
+		if (typingTimeout) clearTimeout(typingTimeout);
+		document.getElementById('bookModalFirstPage').textContent = firstPageText;
+	} else startTypingEffect(firstPageText, 'bookModalFirstPage');
 }
 
 function closeBookModal () {
@@ -432,7 +433,7 @@ function closeBookModal () {
 	updatePauseState();
 }
 
-function showBookFinishedModal (bookId, quality, royalty) {
+function showBookFinishedModal (bookId, quality, royalty, publication = null) {
 	const book = booksBaseData[bookId];
 	if (!book) return;
 	
@@ -447,9 +448,9 @@ function showBookFinishedModal (bookId, quality, royalty) {
 	const filename = book.filename.replace('.png', '.jpg');
 	modalImg.src = `img/${filefolder}/${filename}`;
 	
-	modalTitle.textContent = book.title;
+	modalTitle.textContent = publication?.name || book.title;
 	modalSubtitle.textContent = book.subtitle;
-	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(book.wordCount, 0)}<br><i>"${book.hook}"</i>`;
+	modalInfo.innerHTML = `<b>Genre:</b> ${book.genre} | <b>Words:</b> ${format(publication?.words || book.wordCount, 0)}`;
 	
 	statsBox.innerHTML = `
 		<div style="margin-bottom: 8px; font-size: 1.1em;"><b>Final Quality:</b> <span style="color: var(--journal-positive);">${quality.toFixed(1)}%</span></div>
@@ -553,6 +554,11 @@ function showAuthorProfileModal () {
             <div class="badge-name-mobile">${badge.name}</div>
         `;
 		achievementsGrid.appendChild(wrapper);
+		const progress = document.createElement('p'); progress.className = 'achievement-progress';
+		progress.textContent = `${isEarned ? 'Earned' : badge.requirements.map(describeBadgeProgress).join(' · ')} · ${badge.effect.text}`;
+		wrapper.append(progress);
+		wrapper.tabIndex = 0;
+		wrapper.onkeydown = event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showBadgeModal(badgeId); } };
 	}
 	
 	const achievementsBooks = document.getElementById('profileAchievementsBooks');
@@ -568,10 +574,16 @@ function showAuthorProfileModal () {
 			div.innerHTML = `
                 <img src="img/${bookData.filefolder}256/${bookData.filename.replace('.png', '.jpg')}" class="row-image" style="width: 50px; height: 75px; object-fit: cover; border-radius: 4px;">
                 <div class="row-info">
-                    <div class="row-title">${bookData.title}</div>
+                    <div class="row-title">${escapeGameText(bookRecord.title || bookData.title)}</div>
                     <div class="row-value">Quality: ${bookRecord.quality.toFixed(1)}% | Royalties: $${format(bookRecord.royalties)}/day</div>
                 </div>`;
 			achievementsBooks.appendChild(div);
+			if (bookRecord.story) {
+				const story = document.createElement('p');
+				const plan = bookRecord.story;
+				story.textContent = `${plan.protagonist || 'A writer'} · ${plan.theme || 'a new beginning'} · ${plan.ending || 'hopeful'} ending · ${plan.approach || 'balanced'} approach · ${plan.edit || 'original draft'}`;
+				div.querySelector('.row-info').append(story);
+			}
 		}
 	} else {
 		achievementsBooks.innerHTML = '<p>No books published yet.</p>';
@@ -659,6 +671,7 @@ function startTypingEffect (fullText, elementId) {
 let currentDebugTask = null;
 
 function showDebugModal (taskName) {
+	if (!isDebugMode) return;
 	currentDebugTask = taskName;
 	const modal = document.getElementById('debugLevelModal');
 	const taskNameSpan = document.getElementById('debugTaskName');
@@ -682,10 +695,11 @@ function closeDebugModal () {
 }
 
 function applyDebugLevel () {
+	if (!isDebugMode) return;
 	const input = document.getElementById('debugLevelInput');
 	if (input && currentDebugTask) {
 		const newLevel = parseInt(input.value, 10);
-		if (!isNaN(newLevel) && newLevel >= 0) {
+		if (Number.isSafeInteger(newLevel) && newLevel >= 0 && newLevel <= 10000) {
 			const task = gameData.taskData[currentDebugTask];
 			if (task) {
 				task.level = newLevel;

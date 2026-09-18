@@ -21,7 +21,7 @@ function discoverNextCard() {
 			if (!entity.requirements?.length) gameData.unlocks[entity.name] = true;
 		}
 	}
-	if (!isInitialized || isPaused || popupQueue.length || gameData.activePlaySeconds < gameData.nextCardUnlockAt) return null;
+	if (!isInitialized || isPaused) return null;
 	let discovery = null;
 	if (!isLocalGameHost() && !gameData.accelerationUnlocked && gameData.activePlaySeconds >= 600) {
 		gameData.accelerationUnlocked = true;
@@ -36,7 +36,6 @@ function discoverNextCard() {
 			}
 		}
 	}
-	if (discovery) gameData.nextCardUnlockAt = gameData.activePlaySeconds + 10;
 	return discovery;
 }
 
@@ -212,6 +211,7 @@ function setTask (taskName) {
 }
 
 function setProperty (propertyName) {
+	if (!buyUpgrade(propertyName)) return;
 	const property = gameData.itemData[propertyName];
 	if (gameData.currentProperty !== property) {
 		gameData.currentProperty = property;
@@ -221,6 +221,7 @@ function setProperty (propertyName) {
 
 // Added transportation setter
 function setTransportation (transportationName) {
+	if (!buyUpgrade(transportationName)) return;
 	const transport = gameData.itemData[transportationName];
 	if (gameData.currentTransportation !== transport) {
 		gameData.currentTransportation = transport;
@@ -230,6 +231,7 @@ function setTransportation (transportationName) {
 
 function setMisc (miscName) {
 	const misc = gameData.itemData[miscName];
+	if (!gameData.currentMisc.includes(misc) && !buyUpgrade(miscName)) return;
 	if (gameData.currentMisc.includes(misc)) {
 		for (let i = 0; i < gameData.currentMisc.length; i++) {
 			if (gameData.currentMisc[i] === misc) {
@@ -301,7 +303,7 @@ function getRawWritingSpeed () {
 	
 	const badgeMultiplier = getBadgeMultiplier("writingSpeed");
 	
-	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier * badgeMultiplier;
+	return baseSpeed * typingSpeed * focus * inspiration * fullTimeBonus * writingPercentage * gameData.writingMultiplier * gameData.writingXpMultiplier * itemWritingMultiplier * badgeMultiplier * currentApproach().speed;
 }
 
 function getWritingSpeed () {
@@ -317,9 +319,34 @@ function getQualityMultiplier () {
 	return 1;
 }
 
+function restoreWritingSession() {
+	if (typeof booksBaseData === 'undefined') return;
+	if (!gameData.currentBook || !booksBaseData[gameData.currentBook]) {
+		gameData.currentBook = null;
+		gameData.wordsWritten = 0;
+		gameData.currentBookComposition = {};
+		gameData.activeScene = null;
+		currentAutoSceneType = null;
+		return;
+	}
+	const book = booksBaseData[gameData.currentBook];
+	gameData.selectedGenre = book.genre;
+	const scenes = Object.keys(sceneTypesBaseData?.[book.genre] || {});
+	const composition = gameData.currentBookComposition || {};
+	gameData.currentBookComposition = Object.fromEntries(Object.entries(composition).filter(([scene, words]) => scenes.includes(scene) && Number.isFinite(words) && words >= 0));
+	const previousScene = Object.keys(gameData.currentBookComposition).sort((a, b) => composition[b] - composition[a])[0];
+	const scene = scenes.includes(gameData.activeScene) ? gameData.activeScene : previousScene || scenes[0] || 'Action';
+	gameData.activeScene = currentAutoSceneType = nextSceneType = scene;
+	gameData.wordsWritten = Number.isFinite(gameData.wordsWritten) ? Math.max(0, Math.min(gameData.wordsWritten, getBookLength())) : 0;
+	isHoldingSceneButton = false;
+}
+
 function startWritingBook () {
 	if (!gameData.selectedGenre) return;
+	planNewManuscript();
 	pickNextBook(gameData.selectedGenre);
+	gameData.manuscript.targetWords = getNewManuscriptLength();
+	if (gameData.workWritingBalance === 0) gameData.workWritingBalance = 30;
 	buildSceneButtons();
 	
 	let currentGenre = gameData.selectedGenre;
@@ -331,6 +358,7 @@ function startWritingBook () {
 		defaultScene = Object.keys(sceneTypesBaseData[currentGenre])[0] || "Action";
 	}
 	currentAutoSceneType = defaultScene;
+	gameData.activeScene = defaultScene;
 	nextSceneType = defaultScene;
 	
 	updateUI();
@@ -392,7 +420,7 @@ function getLifeExperiences () {
 
 function getBookLength () {
 	if (gameData.currentBook && booksBaseData && booksBaseData[gameData.currentBook]) {
-		return booksBaseData[gameData.currentBook].wordCount;
+		return Math.round((gameData.manuscript?.targetWords || booksBaseData[gameData.currentBook].wordCount) * getManuscriptLengthBonus());
 	}
 	const plottingLvl = gameData.taskData['Plotting'] ? gameData.taskData['Plotting'].level : 0;
 	return (50 + (plottingLvl * 2)) * 250;
@@ -454,7 +482,7 @@ function getWritingQualityMultiplier () {
 	
 	const badgeMultiplier = getBadgeMultiplier("writingQuality");
 	
-	return expMultiplier * itemQualityMultiplier * skillQualityMultiplier * badgeMultiplier;
+	return expMultiplier * (1 + Math.log2(Math.max(1, itemQualityMultiplier))) * (1 + Math.log2(Math.max(1, skillQualityMultiplier))) * badgeMultiplier;
 }
 
 function getBookQuality () {
@@ -480,7 +508,7 @@ function getCompositionMultiplier () {
 		currentGenre = gameData.selectedGenre;
 	}
 	
-	const ideals = genreIdealsBaseData ? genreIdealsBaseData[currentGenre] : null;
+	const ideals = getManuscriptIdeals(currentGenre);
 	if (!ideals) return 1;
 	
 	let totalWords = 0;
@@ -539,6 +567,7 @@ function writeProgress (sceneType, timeInSeconds) {
 function handleSceneClick (sceneType) {
 	if (isPaused || !isAlive()) return;
 	currentAutoSceneType = sceneType;
+	gameData.activeScene = sceneType;
 	nextSceneType = sceneType;
 	
 	if (gameData.currentBook) {
@@ -570,6 +599,7 @@ function handleSceneClick (sceneType) {
 function handleSceneHoldStart (sceneType) {
 	isHoldingSceneButton = true;
 	currentAutoSceneType = sceneType;
+	gameData.activeScene = sceneType;
 	nextSceneType = sceneType;
 }
 
@@ -582,10 +612,10 @@ function finishBook () {
 	const qualityMultiplier = getQualityMultiplier();
 	const compMultiplier = getCompositionMultiplier();
 	
-	const rawQuality = baseQuality * qualityMultiplier * compMultiplier;
+	const rawQuality = baseQuality * qualityMultiplier * compMultiplier * getManuscriptQualityBonus();
 	const quality = getCurvedQuality(rawQuality);
 	
-	const royalty = getBookRoyalty(quality);
+	const royalty = getBookRoyalty(quality) * currentApproach().royalty;
 	
 	gameData.royalties += royalty;
 	gameData.booksPublished += 1;
@@ -593,16 +623,18 @@ function finishBook () {
 	tempData.monthlyTracker.qualitySum += quality;
 	tempData.monthlyTracker.qualityCount++;
 	
-	const bookTitle = booksBaseData[gameData.currentBook] ? booksBaseData[gameData.currentBook].title : 'Unknown Book';
-	logEvent(`Published Book #${gameData.booksPublished}: "${bookTitle}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
+	const bookTitle = getBookTitle();
+	logEvent(`Published Book #${gameData.booksPublished}: "${escapeGameText(bookTitle)}"! Quality: ${quality.toFixed(1)}%. Earned $${format(royalty)}/day in royalties.`);
 	
 	const bookAge = daysToYears(gameData.days);
 	const bookDay = getDay();
 	
-	const alreadyCompleted = gameData.completedBooks.some(b => b.id === gameData.currentBook);
-	if (!alreadyCompleted) {
+	{
 		gameData.completedBooks.push({
 			id: gameData.currentBook,
+			title: bookTitle,
+			words: getBookLength(),
+			story: gameData.manuscript ? { ...gameData.manuscript } : null,
 			age: bookAge,
 			day: bookDay,
 			royalties: royalty,
@@ -610,9 +642,8 @@ function finishBook () {
 		});
 	}
 	
-	if (typeof showBookFinishedModal === 'function') {
-		showBookFinishedModal(gameData.currentBook, quality, royalty);
-	}
+	addGameNotification({ type: 'book', name: bookTitle, bookId: gameData.currentBook, quality, royalty, words: getBookLength() });
+	if ([5, 15].includes(gameData.booksPublished)) addGameNotification({ type: 'summary', name: 'A stronger publishing contract', message: `${gameData.booksPublished} publications earned a ${gameData.booksPublished === 5 ? '15' : '30'}% contract bonus on royalties from future books.` });
 	
 	gameData.currentBook = null;
 	gameData.wordsWritten = 0;
@@ -622,10 +653,12 @@ function finishBook () {
 	typewriterIndex = 0;
 	isHoldingSceneButton = false;
 	currentAutoSceneType = null;
+	gameData.activeScene = null;
 	isWaitingToClearLine = false;
 	isClearingLine = false;
 	currentTypingSceneType = null;
-	document.getElementById('liveWritingText').innerHTML = '<span class="blinking-cursor">|</span>';
+	if (typeof isCatchingUp === 'undefined' || !isCatchingUp) document.getElementById('liveWritingText').innerHTML = '<span class="blinking-cursor">|</span>';
+	startQueuedBook();
 }
 
 function rebirthOne () {
@@ -668,6 +701,9 @@ function rebirthReset () {
 	
 	gameData.currentBook = null;
 	gameData.completedBooks = [];
+	gameData.ownedItems = [];
+	gameData.manuscript = null;
+	gameData.queueRemaining = 0;
 	
 	gameData.rebirthOnePrompted = false;
 	gameData.rebirthTwoPrompted = false;
@@ -694,7 +730,7 @@ function isAlive () {
 	const condition = gameData.days < getLifespan();
 	if (!condition) {
 		gameData.days = getLifespan();
-		showRetirementModal();
+		if (typeof isCatchingUp === 'undefined' || !isCatchingUp) showRetirementModal();
 		if (!gameData.loggedDeath) {
 			logEvent("You have reached your retirement age. It's time to retire.");
 			gameData.loggedDeath = true;

@@ -8,6 +8,7 @@
 	<title>Author's Journey</title>
 	<link rel="icon" type="image/svg+xml" href="img/ui/favicon.svg">
 	<link rel="stylesheet" href="css/journal.css?v=7">
+	<link rel="stylesheet" href="css/experience.css">
 </head>
 <body id="body">
 <script src="js/theme.js?v=2"></script>
@@ -18,8 +19,14 @@
 		<div id="topPanel" class="panel top-panel-new">
 			<div id="authorImageContainer" class="author-image-container-new">
 				<img id="authorImage" src="" alt="Author" class="author-image">
+				<button id="notificationButton" class="btn" onclick="event.stopPropagation(); openNotifications()">Inbox <span id="notificationCount" aria-live="polite">0</span></button>
 			</div>
-			<div class="info-bands-container">
+			<div class="compact-header">
+				<div class="compact-stats"><span>Funds <strong class="header-val-balance">—</strong> <span class="header-val-net"></span></span><span>Age <strong class="header-val-age">20</strong></span><span>Book <strong class="header-val-progress">Idle</strong></span></div>
+				<div class="active-context"><span class="header-val-job"></span> · <span class="header-val-skill"></span></div>
+				<div class="header-actions"><button class="btn" onclick="openResourceDetails()">Stats &amp; breakdowns</button><button class="btn" onclick="openAchievements()">Achievements</button><button class="btn" onclick="openJournal()">Journal</button></div>
+			</div>
+			<div class="info-bands-container" id="resourceBands">
 				<!-- Band 1: Author Info -->
 					<div class="info-band band-1" tabindex="0" aria-label="Author and age">
 					<div class="info-band-content">
@@ -167,21 +174,26 @@
 			
 			<!-- Column 1: Work -->
 			<div class="panel-column active-mobile" id="jobs">
+				<p class="journey-goal"></p>
 				<div id="jobTable"></div>
 			</div>
 			
 			<!-- Column 2: Skills -->
 			<div class="panel-column" id="skills">
+				<p class="journey-goal"></p>
 				<div id="skillTable"></div>
 			</div>
 			
 			<!-- Column 3: Shop -->
 			<div class="panel-column" id="shop">
+				<p class="journey-goal"></p>
 				<div id="itemTable"></div>
 			</div>
 			
 			<!-- Column 4: Writing -->
 			<div class="panel-column" id="writing">
+				<p class="journey-goal"></p>
+				<section class="writing-dashboard" aria-label="Writing stats"><h2>Your writing desk</h2><div id="writingMetrics"></div><details><summary>What shapes this book?</summary><p id="writingBreakdown"></p></details></section>
 				<div class="category-header">Writing</div>
 				<div id="workWritingSliderContainer" class="slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
 					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
@@ -195,6 +207,8 @@
 				
 				<div id="bookSelectionContainer" class="ui-row" style="padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
 					<h3 style="margin-top: 0;">Start a New Book</h3>
+					<div class="story-plan"><label>Your title (optional)<input id="manuscriptTitle" maxlength="80" placeholder="Name your book"></label><label>Protagonist<select id="storyCharacter"><option>an outsider</option><option>a reluctant mentor</option><option>two rivals</option></select></label><label>Central theme<select id="storyTheme"><option>belonging</option><option>ambition</option><option>justice</option></select></label><label>Ending<select id="storyEnding"><option>hopeful</option><option>bittersweet</option><option>unresolved</option></select></label><label>Approach<select id="writingApproach"><option value="balanced">Balanced</option><option value="commercial">Commercial: 20% faster, 15% less quality, 15% more royalties</option><option value="crafted">Careful revision: 20% slower, 35% more quality</option></select></label></div>
+					<p class="story-plan-help">Your protagonist, theme and ending change the ideal scene mix. Scene tooltips show your manuscript’s targets. Match them for better quality, or trade quality for a faster publication. Your first three books are shorter works: up to 12,000, 18,000 and 24,000 words.</p>
 					<div style="margin-bottom: 15px; text-align: center;">
 						<b>Select Genre:</b>
 						<div id="genreButtonsContainer" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px;">
@@ -208,15 +222,17 @@
 				</div>
 				
 				<div id="manualWritingContainer" style="display: none; flex-direction: column; margin-bottom: 20px; cursor: default;">
+					<section id="editorialChoice" hidden><h3>Your editor has a suggestion</h3><p>Halfway through: keep the draft moving, expand it for a stronger book, or cut it for earlier publication.</p><button class="btn" onclick="chooseEditorial('keep')">Keep the draft</button><button class="btn" onclick="chooseEditorial('revise')">Revise: 15% longer, +25% quality</button><button class="btn" onclick="chooseEditorial('cut')">Cut: 10% shorter, −10% quality</button></section>
 					<div class="category-header" style="margin-top: 0; width: 100%;">Write Scene</div>
 					<div id="sceneButtonsContainer" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; width: 100%;">
 						<!-- Buttons injected here -->
 					</div>
 					
-					<div class="word-app-container" style="margin-bottom: 15px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden; padding: 10px;" id="liveWritingText">
+				</div>
+					<section class="manuscript-preview" aria-labelledby="manuscriptPreviewTitle"><h3 id="manuscriptPreviewTitle">Manuscript preview</h3><p>Illustrative text, not an editor.</p><p id="storyPreview"></p><div class="word-app-container" style="margin-bottom: 15px; width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden; padding: 10px;" id="liveWritingText">
 						<span class="blinking-cursor">|</span>
 					</div>
-				</div>
+					</section>
 				
 				<div class="ui-row book-status-row" id="bookStatusRow" style="display: none;">
 					<img id="currentBookImage" src="" alt="Book Cover" class="row-image book-cover-image" onclick="showBookModal(gameData.currentBook)">
@@ -242,6 +258,7 @@
 				</div>
 				
 				<div class="category-header">Published Books</div>
+				<label class="queue-setting">After this book, automatically write <select id="bookQueue" onchange="setBookQueue(this.value)"><option value="0">no more books</option><option value="1">1 more book</option><option value="3">3 more books</option><option value="5">5 more books</option><option value="10">10 more books</option></select> in this genre and approach. Queued books keep their drafts unless you intervene.</label>
 				<div id="bookHistoryContainer" class="category-content list">
 					<!-- Books dynamically added here -->
 				</div>
@@ -251,14 +268,24 @@
 	</div>
 </div>
 
+<div id="resourceModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="resourceTitle" style="display:none;"><div class="modal-content"><h2 id="resourceTitle">Your progress, explained</h2><p>Work pays for your living costs. Training improves your craft. Books earn royalties and build your legacy.</p><div id="resourceContent"></div><button class="btn" onclick="document.getElementById('resourceModal').style.display='none'">Back to game</button></div></div>
+<div id="notificationsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="notificationsTitle" style="display:none;">
+	<div class="modal-content notification-dialog">
+		<span class="journal-kicker">Your journey continues</span><h2 id="notificationsTitle">Notifications</h2>
+		<p>New discoveries wait here. Refresh to see arrivals while you read.</p>
+		<button class="btn" onclick="renderNotifications()">Refresh / mark read</button>
+		<button id="closeNotificationsButton" class="btn" onclick="closeNotifications()">Back to game</button>
+		<div id="notificationList"></div>
+	</div>
+</div>
 <div id="authorProfileModal" class="modal modal-overlay-profile" role="dialog" aria-modal="true" style="display: none;">
 	<div class="modal-content modal-content-large">
 		<header class="journal-heading"><span class="journal-kicker">Author’s Journey</span><h2>The author’s journal</h2></header>
 		<div class="profile-modal-tabs">
 			<button class="tab-btn active" onclick="switchProfileTab('profile', this)">Character</button>
 			<button class="tab-btn" onclick="switchProfileTab('chart', this)">Career</button>
-			<button class="tab-btn" onclick="switchProfileTab('achievements', this)">Legacy</button>
-			<button class="tab-btn" onclick="switchProfileTab('logs', this)">Chronicle</button>
+			<button class="tab-btn" onclick="switchProfileTab('achievements', this)">Achievements</button>
+			<button id="journalTabButton" class="tab-btn" onclick="switchProfileTab('logs', this)">Journal</button>
 			<button class="tab-btn" onclick="switchProfileTab('settings', this)">Settings</button>
 		</div>
 		
@@ -288,7 +315,7 @@
 			
 			<!-- Achievements Tab -->
 			<div id="profileTab-achievements" class="profile-modal-tab-content">
-				<h3>Badges Earned</h3>
+				<h3>Achievements &amp; next milestones</h3>
 				<div id="profileAchievementsGrid" class="profile-achievements-grid"></div>
 				<h3>Published Books</h3>
 				<div id="profileAchievementsBooks" class="category-content list"></div>
@@ -534,9 +561,9 @@
 </div>
 
 <div class="mobile-nav" id="mobileNav">
-	<button class="mobile-nav-btn active" onclick="switchMobileTab('jobs', this)">Work</button>
+	<button class="mobile-nav-btn active" onclick="switchMobileTab('jobs', this)">Career</button>
 	<button class="mobile-nav-btn" onclick="switchMobileTab('skills', this)">Skills</button>
-	<button class="mobile-nav-btn" onclick="switchMobileTab('shop', this)">Shop</button>
+	<button class="mobile-nav-btn" onclick="switchMobileTab('shop', this)">Upgrades</button>
 	<button class="mobile-nav-btn" onclick="switchMobileTab('writing', this)">Writing</button>
 </div>
 
@@ -551,11 +578,15 @@
 			"js/chart.js",
 			"js/ui_builder.js",
 			"js/ui_updater.js",
+			"js/notifications.js",
 			"js/ui_modals.js",
 			"js/ui.js",
 			"js/save.js",
 			"js/mechanics.js",
 			"js/stats.js",
+			"js/offline.js",
+			"js/experience.js",
+			"js/writing-plan.js",
 			"js/main.js"
 		];
 		

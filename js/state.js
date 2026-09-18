@@ -2,7 +2,9 @@
 var isPaused = false;
 var isInitialized = false;
 var popupQueue = [];
-var isDebugMode = true;
+// Explicit local opt-in; public games never expose the level editor.
+var isDebugMode = /^(localhost|.*\.localhost|127(?:\.\d{1,3}){3}|\[?::1\]?)$/i.test(window.location?.hostname || '') &&
+    /(?:^|[?&])debug=1(?:&|$)/.test(window.location?.search || '');
 
 // Define the current game version
 const GAME_VERSION = "1.0.5";
@@ -55,6 +57,16 @@ var gameData = {
 	completedBooks: [],
 	currentBookComposition: {},
 	selectedGenre: null,
+	activeScene: null,
+	notifications: [],
+	lastProgressAt: null,
+	offlineEligible: false,
+	ownedItems: [],
+	purchaseVersion: 1,
+	manuscript: null,
+	draftPlan: null,
+	queueRemaining: 0,
+	queueGenre: null,
 	
 	introSeen: false,
 	
@@ -86,8 +98,8 @@ var tempData = {
 
 // Constants
 const baseLifespan = 365 * 70;
-// One game day per second gives the opening career room to breathe.
-const baseGameSpeed = 1;
+// Three game days per second: about 101 minutes for a baseline lifetime.
+const baseGameSpeed = 3;
 const units = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc"];
 
 // Variables for requestAnimationFrame loop

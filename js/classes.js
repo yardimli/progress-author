@@ -14,6 +14,11 @@ class Task {
     }
     
     getMaxXp() {
+        // Beyond 100, grow steadily instead of compounding into unreachable requirements.
+        if (this.level > 100) {
+            const anchor = this.baseData.maxXp * 101 * Math.pow(1.01, 100) * 2;
+            return Math.max(1, Math.round(anchor * Math.pow((this.level + 1) / 101, 1.2)));
+        }
         // Cheap early levels taper smoothly into the full late-game curve at 40.
         const earlyLevelDiscount = 0.3 + 0.7 * Math.pow(Math.min(this.level, 40) / 40, 1.5);
         return Math.max(1, Math.round(this.baseData.maxXp * (this.level + 1) * Math.pow(1.01, this.level) * (1 + this.level / 100) * earlyLevelDiscount));

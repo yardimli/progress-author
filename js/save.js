@@ -81,6 +81,14 @@ function loadGameData() {
 			return;
 		}
 		
+		if (!gameDataSave.purchaseVersion) {
+			gameDataSave.ownedItems = [...new Set([
+				...Object.keys(gameDataSave.unlocks || {}).filter(name => itemBaseData[name]),
+				gameDataSave.currentProperty?.name, gameDataSave.currentTransportation?.name,
+				...(gameDataSave.currentMisc || []).map(item => item.name)
+			].filter(Boolean))];
+			gameDataSave.purchaseVersion = 1;
+		}
 		replaceSaveDict(gameData, gameDataSave);
 		replaceSaveDict(gameData.taskData, gameDataSave.taskData);
 		replaceSaveDict(gameData.itemData, gameDataSave.itemData);
@@ -122,6 +130,7 @@ function loadGameData() {
 	}
 	
 	assignMethods();
+	restoreWritingSession();
 	// Reloading is not a month boundary; start tracking from the restored date.
 	tempData.monthlyTracker.lastDayChecked = gameData.days;
 	// Top up existing books once; preserve any legacy/repeat-publication income.

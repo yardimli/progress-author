@@ -58,10 +58,27 @@ function createAllRows (categoryType, containerId) {
 			const element = rowClone.firstElementChild;
 			
 			element.id = 'row ' + name;
+			element.tabIndex = 0;
+			element.setAttribute('role', 'button');
+			element.onkeydown = event => {
+				if (event.target === element && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); element.click(); }
+			};
 			element.querySelector('.name').textContent = name;
+			const status = document.createElement('span');
+			status.className = 'selection-status';
+			status.textContent = isJob ? 'Working' : isSkill ? 'Training' : 'Equipped';
+			element.appendChild(status);
+			if (isItem) {
+				const price = document.createElement('div'); price.className = 'purchase-price';
+				(element.querySelector('.card-overlay, .row-info') || element).appendChild(price);
+			}
 			
 			const infoIcon = element.querySelector('.card-info-icon');
 			if (infoIcon) {
+				infoIcon.tabIndex = 0;
+				infoIcon.setAttribute('role', 'button');
+				infoIcon.setAttribute('aria-label', `About ${name}`);
+				infoIcon.onkeydown = event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); infoIcon.click(); } };
 				infoIcon.onclick = function (event) {
 					event.stopPropagation(); // Prevent the card's main click event
 					const imgElement = element.querySelector('.card-image');
@@ -256,6 +273,7 @@ function buildSceneButtons() {
 		let btn = document.createElement('button');
 		btn.className = 'btn scene-btn';
 		btn.dataset.scene = sceneType;
+		btn.title = `${sceneType}: aim for ${Math.round((getManuscriptIdeals(currentGenre)?.[sceneType] || 0) * 100)}% of this manuscript. Your story choices shape these targets. Click to choose the next scene; hold for a temporary writing boost.`;
 		
 		let contentWrapper = document.createElement('span');
 		contentWrapper.style.position = 'relative';
