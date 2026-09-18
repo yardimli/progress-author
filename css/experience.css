@@ -60,6 +60,11 @@ body.dark .row-value, body.dark .row-expense, body .locked-row .locked-text, bod
 .queue-setting { line-height: 2; margin-bottom: 16px; }
 .purchase-price { color: var(--journal-ink); font-size: 14px; font-weight: bold; }
 .achievement-progress { font-size: 14px; color: var(--journal-muted); }
+.journal-filters { display: flex; flex-wrap: wrap; gap: 20px; border: 1px solid var(--journal-border); padding: 12px; }
+.journal-filters label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+.journal-finance-note { color: var(--journal-muted); font-size: 14px; line-height: 1.5; }
+.journal-income b { color: var(--journal-positive); }
+.journal-expenses b { color: var(--journal-danger); }
 .writing-dashboard h2 { margin: 0 0 12px; }
 #writingMetrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 #writingMetrics > div { background: var(--journal-button); padding: 14px; border: 1px solid var(--journal-border); }

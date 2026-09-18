@@ -7,7 +7,7 @@ var isDebugMode = /^(localhost|.*\.localhost|127(?:\.\d{1,3}){3}|\[?::1\]?)$/i.t
     /(?:^|[?&])debug=1(?:&|$)/.test(window.location?.search || '');
 
 // Define the current game version
-const GAME_VERSION = "1.0.5";
+const GAME_VERSION = "1.1.0";
 
 var gameData = {
 	version: GAME_VERSION,
@@ -77,6 +77,9 @@ var gameData = {
 	
 	// Data for author profile modal
 	monthlyChartData: [], // Stores monthly data points for the chart
+	journalFinance: [],
+	journalShowIncome: true,
+	journalShowExpenses: true,
 	logHistory: [] // Stores all log messages
 };
 

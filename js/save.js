@@ -1,6 +1,29 @@
 // LocalStorage, import/export, data assignment
 let isResettingSave = false;
 
+function offerVersionRestart() {
+	const saved = localStorage.getItem('authorsJourneySave');
+	const acknowledged = localStorage.getItem('authorsJourneyAcknowledgedVersion');
+	if (!saved) {
+		localStorage.setItem('authorsJourneyAcknowledgedVersion', GAME_VERSION);
+		return false;
+	}
+	if (acknowledged === GAME_VERSION) return false;
+	document.getElementById('updateVersionLabel').textContent = `Version ${GAME_VERSION}`;
+	document.getElementById('versionModal').style.display = 'flex';
+	isPaused = true;
+	document.getElementById('keepCurrentGameButton').focus();
+	return true;
+}
+
+function chooseVersionRestart(restart) {
+	localStorage.setItem('authorsJourneyAcknowledgedVersion', GAME_VERSION);
+	if (restart) { resetGameData(); return; }
+	document.getElementById('versionModal').style.display = 'none';
+	isPaused = false;
+	finishLoadingGame();
+}
+
 function assignMethods() {
 	for (let key in gameData.taskData) {
 		let task = gameData.taskData[key];
@@ -72,14 +95,8 @@ function loadGameData() {
 			return;
 		}
 		
-		if (gameDataSave.version !== GAME_VERSION) {
-			let versionModal = document.getElementById('versionModal');
-			if (versionModal) {
-				versionModal.style.display = 'flex';
-			}
-			isPaused = true;
-			return;
-		}
+		// Compatible older saves migrate after the player chooses to keep playing.
+		gameDataSave.version = GAME_VERSION;
 		
 		if (!gameDataSave.purchaseVersion) {
 			gameDataSave.ownedItems = [...new Set([

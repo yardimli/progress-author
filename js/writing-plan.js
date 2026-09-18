@@ -80,6 +80,7 @@ function buyUpgrade(name) {
         return false;
     }
     gameData.coins -= price;
+    recordJournalMoney('purchase', price, name);
     gameData.ownedItems ||= [];
     if (!gameData.ownedItems.includes(name)) gameData.ownedItems.push(name);
     return true;

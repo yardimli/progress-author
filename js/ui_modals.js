@@ -590,8 +590,7 @@ function showAuthorProfileModal () {
 	}
 	
 	// --- Populate Logs Tab ---
-	const logContainer = document.getElementById('profileLogContainer');
-	logContainer.innerHTML = gameData.logHistory.map(log => `<div class="log-entry">${log}</div>`).join('');
+	renderJournal(true);
 	
 	// --- Show Modal ---
 	modal.style.display = 'flex';

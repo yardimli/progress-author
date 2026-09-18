@@ -323,6 +323,8 @@
 			
 			<!-- Logs Tab -->
 			<div id="profileTab-logs" class="profile-modal-tab-content">
+				<fieldset class="journal-filters"><legend>Show in journal</legend><label><input id="journalShowIncome" type="checkbox" checked onchange="setJournalFilter('income', this.checked)"> Income</label><label><input id="journalShowExpenses" type="checkbox" checked onchange="setJournalFilter('expenses', this.checked)"> Expenses</label></fieldset>
+				<p class="journal-finance-note">Income and expenses are grouped by game month, including purchases. The current month updates as you play. Hiding entries does not stop recording them.</p>
 				<div id="profileLogContainer" class="profile-log-container"></div>
 			</div>
 			<div id="profileTab-settings" class="profile-modal-tab-content">
@@ -461,12 +463,15 @@
 	</div>
 </div>
 
-<!-- Version Mismatch Modal -->
-<div id="versionModal" class="modal modal-overlay-version" role="dialog" aria-modal="true" style="display: none;">
+<!-- One-time update choice for existing saves -->
+<div id="versionModal" class="modal modal-overlay-version" role="dialog" aria-modal="true" aria-labelledby="updateTitle" style="display: none;">
 	<div class="modal-content modal-content-xs">
-		<h2 class="modal-title-nomargin">Game Updated!</h2>
-		<p>The game has evolved to a new version. To ensure everything works correctly, your save will auto-reset to the beginning.</p>
-		<button class="btn btn-danger btn-full-width-mt15" onclick="resetGameData()">Reset Game</button>
+		<h2 id="updateTitle" class="modal-title-nomargin">A new chapter awaits</h2>
+		<p id="updateVersionLabel"></p>
+		<p>The game has been updated with new writing choices, progression balance and journal features. Would you like to start a fresh journey or keep your current progress?</p>
+		<p>Restarting erases your current game progress. Keeping your save preserves your journey.</p>
+		<button id="keepCurrentGameButton" class="btn btn-full-width-mt15" onclick="chooseVersionRestart(false)">Keep my progress</button>
+		<button class="btn btn-danger btn-full-width-mt15" onclick="chooseVersionRestart(true)">Restart the game</button>
 	</div>
 </div>
 
@@ -579,6 +584,7 @@
 			"js/ui_builder.js",
 			"js/ui_updater.js",
 			"js/notifications.js",
+			"js/journal.js",
 			"js/ui_modals.js",
 			"js/ui.js",
 			"js/save.js",

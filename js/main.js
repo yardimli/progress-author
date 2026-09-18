@@ -193,18 +193,19 @@ async function init () {
         gameData.currentProperty = gameData.itemData.Homeless;
         gameData.currentMisc =[];
         
-        loadGameData();
-        
-        if (!gameData.currentAuthor) {
-            showAuthorSelection();
-            return;
-        }
-        
-        continueInit();
+        if (offerVersionRestart()) return;
+        finishLoadingGame();
     } catch (error) {
         console.error('Failed to load game data:', error);
         alert('Failed to load game data. Ensure you are running this on a local web server to allow fetch API to work.');
     }
+}
+
+function finishLoadingGame() {
+    loadGameData();
+    if (isResettingSave) return;
+    if (!gameData.currentAuthor) { showAuthorSelection(); return; }
+    continueInit();
 }
 
 function continueInit () {

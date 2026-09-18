@@ -172,7 +172,7 @@ function updateItemRows () {
 		const priceElement = row.querySelector('.purchase-price');
 		if (priceElement) {
 			const price = getPurchasePrice(item.name);
-			const text = price ? `Buy: $${format(price)} + upkeep` : 'Owned / no purchase cost';
+			const text = price ? `Buy: $${format(price)} + upkeep` : 'Purchased';
 			if (priceElement.textContent !== text) priceElement.textContent = text;
 		}
 		const isActive = (gameData.currentProperty === item || gameData.currentTransportation === item || gameData.currentMisc.includes(item));
@@ -728,6 +728,7 @@ function renderTypewriter() {
 }
 
 function updateUI () {
+	renderJournal();
 	updateNotificationBadge();
 	let discovery;
 	while ((discovery = discoverNextCard())) {

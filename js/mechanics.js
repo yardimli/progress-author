@@ -84,6 +84,7 @@ function areRequirementsMet (entity) {
 
 function applyExpenses () {
 	const coins = applySpeed(getExpense());
+	recordJournalMoney('upkeep', Math.min(coins, Math.max(0, gameData.coins)));
 	gameData.coins -= coins;
 	tempData.monthlyTracker.expense += coins;
 	if (gameData.coins < 0) {
@@ -269,6 +270,9 @@ function doCurrentTask (task) {
 
 function increaseCoins () {
 	const coins = applySpeed(getIncome());
+	const royalties = applySpeed(gameData.royalties);
+	recordJournalMoney('work', coins - royalties);
+	recordJournalMoney('royalties', royalties);
 	gameData.coins += coins;
 	tempData.monthlyTracker.income += coins;
 	tempData.monthlyTracker.royalties += applySpeed(gameData.royalties);
@@ -692,6 +696,7 @@ function rebirthReset () {
 	gameData.booksPublished = 0;
 	gameData.royalties = 0;
 	gameData.logHistory = [];
+	gameData.journalFinance = [];
 	gameData.monthlyChartData = [];
 	gameData.currentJob = gameData.taskData['Gig Worker'];
 	gameData.currentSkill = gameData.taskData['Focus'];

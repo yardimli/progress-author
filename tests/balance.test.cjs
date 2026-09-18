@@ -9,7 +9,7 @@ function game() {
     const context = vm.createContext({ performance, console, window: { location: { hostname: 'localhost' }, addEventListener() {} },
         document: { getElementById: () => null, querySelectorAll: () => [] }, requestAnimationFrame() {},
         localStorage: { getItem: () => null, setItem() {} } });
-    for (const file of ['state', 'classes', 'utils', 'formulas', 'mechanics', 'notifications', 'save', 'offline', 'writing-plan', 'main']) {
+    for (const file of ['state', 'classes', 'utils', 'formulas', 'mechanics', 'notifications', 'journal', 'save', 'offline', 'writing-plan', 'main']) {
         vm.runInContext(fs.readFileSync(path.join(root, 'js', file + '.js'), 'utf8'), context);
     }
     for (const [name, file] of [['jobBaseData', 'jobs'], ['skillBaseData', 'skills'], ['itemBaseData', 'items']]) {
@@ -102,6 +102,17 @@ test('royalty migration preserves legacy income and only runs once', () => {
     assert.equal(g.gameData.royalties, 17);
     g.loadGameData();
     assert.equal(g.gameData.royalties, 17);
+});
+
+test('keeping an older version migrates the save without resetting progress', () => {
+    const g = game();
+    const saved = JSON.parse(JSON.stringify(g.gameData));
+    saved.version = '1.0.5'; saved.coins = 12345;
+    g.localStorage.getItem = () => JSON.stringify(saved);
+    g.loadGameData();
+    assert.equal(g.gameData.version, '1.1.0');
+    assert.equal(g.gameData.coins, 12345);
+    assert.equal(g.gameData.currentJob.name, 'Gig Worker');
 });
 test('background resume clamps elapsed time and paused scenes cannot add words', () => {
     const g = game();
@@ -444,4 +455,38 @@ test('story choices change normalized scene targets and reward matching them', (
     assert.equal(g.getCompositionMultiplier(), 3);
     g.gameData.currentBookComposition = { Dialogue: 1 };
     assert.ok(g.getCompositionMultiplier() < 3);
+});
+
+test('journal records actual income, upkeep and purchases with persistent independent filters', () => {
+    const g = game();
+    g.deltaTime = 1;
+    g.gameData.royalties = 5;
+    g.gameData.coins = 6000;
+    g.gameData.unlocks['Used Laptop'] = true;
+    g.setMisc('Used Laptop');
+    g.increaseCoins(); g.applyExpenses();
+    const entry = g.gameData.journalFinance[0];
+    assert.equal(entry.work, 120);
+    assert.equal(entry.royalties, 15);
+    assert.equal(entry.upkeep, 9);
+    assert.equal(entry.purchases['Used Laptop'], 5000);
+    assert.equal(g.gameData.coins, 6000 + entry.work + entry.royalties - entry.upkeep - 5000);
+    g.gameData.logHistory = ['<b>[Age 20.000 days]</b>Career began.'];
+    assert.equal(g.getJournalEntries().length, 3);
+    g.scheduleGameSave = () => {};
+    g.setJournalFilter('income', false);
+    assert.equal(g.getJournalEntries().filter(e => e.type === 'income').length, 0);
+    assert.equal(g.getJournalEntries().filter(e => e.type === 'expenses').length, 1);
+    g.increaseCoins();
+    assert.equal(entry.work, 240, 'hidden income continues recording');
+    const saved = JSON.stringify(g.gameData); g.localStorage.getItem = () => saved;
+    g.loadGameData();
+    assert.equal(g.gameData.journalShowIncome, false);
+    assert.equal(g.gameData.journalFinance[0].work, 240);
+    g.setJournalFilter('income', true); g.setJournalFilter('expenses', false);
+    assert.equal(g.getJournalEntries().filter(e => e.type === 'income').length, 1);
+    assert.equal(g.getJournalEntries().filter(e => e.type === 'expenses').length, 0);
+    assert.equal(g.getJournalEntries().filter(e => e.type === 'event').length, 1);
+    g.gameData.days += 31; g.increaseCoins();
+    assert.equal(g.gameData.journalFinance.length, 2, 'a new game month creates a new bucket');
 });
