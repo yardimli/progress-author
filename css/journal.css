@@ -229,10 +229,22 @@ body .modal .row-value { color: var(--journal-muted); }
 /* Settings share the journal's tabbed, scrollable body. */
 .author-image-container-new { position: relative; }
 #notificationButton { position: absolute; bottom: 0; left: 0; width: 100%; padding: 4px; font-size: 13px; }
-#notificationButton.has-unread { box-shadow: inset 0 0 0 2px #a47626; font-weight: bold; }
+#notificationButton.has-unread { box-shadow: inset 0 0 0 2px #a47626; font-weight: bold; animation: inbox-unread 1.8s ease-in-out infinite; }
+@keyframes inbox-unread {
+    0%, 100% { box-shadow: inset 0 0 0 2px #a47626; }
+    50% { box-shadow: inset 0 0 0 3px #e8bd62, 0 0 10px #e8bd6280; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #notificationButton.has-unread { animation: none; }
+}
 #notificationCount { display: inline-block; min-width: 1.3em; border-radius: 1em; background: #365746; color: #fff1c9; }
 #notificationsModal { z-index: 2015; }
-body .modal .notification-dialog { width: min(650px, 94vw); overflow-y: auto; padding: 24px; }
+body .modal .notification-dialog { width: min(650px, 94vw); display: flex; flex-direction: column; overflow: hidden; padding: 0; }
+.notification-heading { flex: 0 0 auto; padding: 20px 24px 0; }
+.notification-heading h2 { margin: 8px 0; }
+.notification-heading p { color: var(--journal-muted); }
+#notificationList { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 24px; }
+.notification-footer { flex: 0 0 auto; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; padding: 16px 24px; padding-bottom: max(16px, env(safe-area-inset-bottom)); border-top: 1px solid var(--journal-border); background: var(--journal-paper); }
 .notification-entry { padding: 16px 0; border-bottom: 1px solid var(--journal-border); }
 .notification-entry h3 { margin: 0 0 8px; font-size: 18px; }
 .notification-entry p { color: var(--journal-muted); font-size: 15px; }

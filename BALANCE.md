@@ -1,10 +1,12 @@
 # Player-feedback update — September 2026
 
-## Isolated career candidate
+## Version 2.0.0 — default career and authorship balance
 
-The preview now includes [readership, finite sales and optional editing](reports/WRITING-PREVIEW.md). Its retirement redesign is deferred. Earlier career-only measurements remain historical references; use `writing-sales-candidate.json` for the first combined-economy measurements.
+The normal game now loads `data/career-profile.json` and the 18-card `data/items.json` catalogue. It includes Knight-style career XP, separate work/writing allocation, current-life readership, two-year declining book sales, optional per-book editing, continuous writing, career/training automation and the sustained-income milestone. The latest measured tradeoffs are in [the revision report](reports/CAREER-REVISION.md). Retirement redesign remains deferred.
 
-The normal-game values below are unchanged. On localhost only, add `?balance=career` to open the candidate. Its save, version acknowledgement and tab lock are separate; analytics are disabled. It combines new salary/upkeep ladders, 18 upgrades, Knight-style XP/inheritance and the writing model linked above. These remain candidate values, not a release balance.
+Existing saves receive a one-time update choice and a backup before conversion. Removed equipment maps to replacement tiers without cash refunds; legacy book income receives a one-year declining transition. Money, task progress, manuscripts and queues carry over. The localhost `?balance=career` URL still uses a separate test save with the same rules and disabled analytics. No remote deployment is implied by this source rollout.
+
+The sections below record earlier balance revisions and measurements, including the superseded 1.x baseline. Use the release profile and latest revision report for current values. `data/items-legacy.json` and the simulator's `current` profile are historical fixtures, not normal startup configuration.
 
 ## Pace and progression
 

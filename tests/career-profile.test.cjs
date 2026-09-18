@@ -127,7 +127,7 @@ test('imported legacy items migrate idempotently with backup, replacement access
     assert.equal(g.gameData.currentProperty.name, 'Suburban');
     assert.deepEqual(Array.from(g.gameData.currentMisc, i => i.name), ['Home Library', 'Style Guide']);
     assert.equal(g.gameData.coins, 12345);
-    assert.equal(g.localStorage.getItem(g.gameSaveKey() + '-before-career-preview-1'), original);
+    assert.equal(g.localStorage.getItem(g.gameSaveKey() + '-before-career-authorship-1'), original);
     assert.equal(g.localStorage.getItem('authorsJourneySave'), 'normal game untouched');
     g.saveGameData();
     const once = g.localStorage.getItem(g.gameSaveKey());

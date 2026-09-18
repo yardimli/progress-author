@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/dark.css?v=1.5">
 	<title>Author's Journey</title>
 	<link rel="icon" type="image/svg+xml" href="img/ui/favicon.svg">
-	<link rel="stylesheet" href="css/journal.css?v=7">
+	<link rel="stylesheet" href="css/journal.css?v=8">
 	<link rel="stylesheet" href="css/experience.css">
 </head>
 <body id="body">
@@ -273,11 +273,15 @@
 <div id="resourceModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="resourceTitle" style="display:none;"><div class="modal-content"><h2 id="resourceTitle">Your progress, explained</h2><p>Work pays for your living costs. Training improves your craft. Books earn royalties and build your legacy.</p><div id="resourceContent"></div><button class="btn" onclick="document.getElementById('resourceModal').style.display='none'">Back to game</button></div></div>
 <div id="notificationsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="notificationsTitle" style="display:none;">
 	<div class="modal-content notification-dialog">
-		<span class="journal-kicker">Your journey continues</span><h2 id="notificationsTitle">Notifications</h2>
-		<p>New discoveries wait here. Refresh to see arrivals while you read.</p>
-		<button class="btn" onclick="renderNotifications()">Refresh / mark read</button>
-		<button id="closeNotificationsButton" class="btn" onclick="closeNotifications()">Back to game</button>
+		<header class="notification-heading">
+			<span class="journal-kicker">Your journey continues</span><h2 id="notificationsTitle">Inbox</h2>
+			<p>Opening your inbox marks its messages as read. Refresh to see new arrivals while you read.</p>
+		</header>
 		<div id="notificationList"></div>
+		<footer class="notification-footer">
+			<button class="btn" onclick="renderNotifications()">Refresh inbox</button>
+			<button id="closeNotificationsButton" class="btn" onclick="closeNotifications()">Return to game</button>
+		</footer>
 	</div>
 </div>
 <div id="authorProfileModal" class="modal modal-overlay-profile" role="dialog" aria-modal="true" style="display: none;">
@@ -470,8 +474,9 @@
 	<div class="modal-content modal-content-xs">
 		<h2 id="updateTitle" class="modal-title-nomargin">A new chapter awaits</h2>
 		<p id="updateVersionLabel"></p>
-		<p>The game has been updated with new writing choices, progression balance and journal features. Would you like to start a fresh journey or keep your current progress?</p>
-		<p>Restarting erases your current game progress. Keeping your save preserves your journey.</p>
+		<p>Careers now fund your path into authorship, with new skill progression, 18 upgrades, readership and optional paid editing. New books earn declining sales for two game years. Continuous writing and optional career and training automation are available.</p>
+		<p>Keep your progress to convert older upgrades into their replacement tiers, without cash refunds. Existing book income becomes a declining one-year sales tail. Your save is backed up before conversion. Money, experience and your current manuscript carry over, but income and upkeep will change.</p>
+		<p>Would you like to continue your journey or restart with the new balance? Restarting erases your current game progress.</p>
 		<button id="keepCurrentGameButton" class="btn btn-full-width-mt15" onclick="chooseVersionRestart(false)">Keep my progress</button>
 		<button class="btn btn-danger btn-full-width-mt15" onclick="chooseVersionRestart(true)">Restart the game</button>
 	</div>

@@ -9,10 +9,10 @@ var isDebugMode = /^(localhost|.*\.localhost|127(?:\.\d{1,3}){3}|\[?::1\]?)$/i.t
 // Define the current game version
 const IS_CAREER_PREVIEW = /^(localhost|.*\.localhost|127(?:\.\d{1,3}){3}|\[?::1\]?)$/i.test(window.location?.hostname || '') &&
     /(?:^|[?&])balance=career(?:&|$)/.test(window.location?.search || '');
-const GAME_VERSION = IS_CAREER_PREVIEW ? 'career-preview-1' : "1.1.0";
+const GAME_VERSION = '2.0.0';
 
-// Live baseline. Per-job pay and per-item upkeep remain in data/jobs.json and
-// data/items.json; these shared controls are deliberately not part of a save.
+// Legacy baseline for historical simulations. Startup always applies
+// data/career-profile.json; balance controls are deliberately not part of a save.
 // The simulator overrides this object in its isolated context, never live saves.
 const BALANCE = {
 	career: { salaryScale: 1, upkeepScale: 1, baseXp: 10, inheritanceDivisor: 20,

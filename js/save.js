@@ -100,7 +100,7 @@ function loadGameData() {
 		// Compatible older saves migrate after the player chooses to keep playing.
 		if (BALANCE.writing.salesEnabled) gameDataSave.bookSalesVersion ??= 0;
 		if (typeof activeBalanceProfile !== 'undefined' && activeBalanceProfile && gameDataSave.balanceProfile !== activeBalanceProfile.id) {
-			// Backup must succeed before conversion. Never overwrite the normal game.
+			// Backup must succeed before conversion, in this save slot only.
 			const backupKey = gameSaveKey() + '-before-' + activeBalanceProfile.id;
 			if (!localStorage.getItem(backupKey)) localStorage.setItem(backupKey, JSON.stringify(gameDataSave));
 			migrateCareerSave(gameDataSave);

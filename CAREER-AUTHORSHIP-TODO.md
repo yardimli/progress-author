@@ -19,7 +19,7 @@ Implementation in progress. This supersedes the direction in GAMEPLAY-REBALANCE-
 - [x] Eighteen upgrade cards, exclusive replacement tiers, explicit cost/effect types, and migrated legacy equipment/job data with a backup.
 - [x] Browser smoke check of preview startup, reload, upgrade catalogue, tool details and writing controls; 61 automated tests pass.
 
-The candidate is not the default game. Readership, declining sales and paid editing now run in the preview; final balance, broader author milestones and release validation remain open. Basic opt-in career/training automation and the sustained-income milestone are implemented below. Source: `data/career-profile.json`; [writing implementation report](reports/WRITING-PREVIEW.md).
+Released locally as version 2.0.0: the normal game now loads the career/authorship profile and 18 upgrades. Readership, declining sales, paid editing, opt-in career/training automation and the sustained-income milestone are enabled by default. The localhost preview remains a separate testing save. Broader author milestones and further balance playtesting remain open. Source: `data/career-profile.json`; [writing implementation report](reports/WRITING-PREVIEW.md).
 
 ### Current scope — retirement work deferred
 
@@ -66,7 +66,7 @@ Files: `data/jobs.json`, `data/skills.json`, `js/classes.js`, `js/formulas.js`, 
 
 ## 3. Reduce 37 upgrade cards to 18
 
-Implemented in the preview: retain 18 cards, turn Editor into a per-book service, and retire 18 redundant cards. `data/items.json` is the canonical reduced catalogue; `data/items-legacy.json` preserves the normal-game catalogue until release. The roles below describe the current candidate; removed multipliers are not all transferred to replacements.
+Implemented in the default game: retain 18 cards, turn Editor into a per-book service, and retire 18 redundant cards. `data/items.json` is the canonical reduced catalogue; `data/items-legacy.json` is retained only for historical simulations and migration fixtures. Removed multipliers are not all transferred to replacements.
 
 | Group | Keep | Intended role |
 | --- | --- | --- |
@@ -159,9 +159,17 @@ Files: `index.html`, `css/`, `js/ui_builder.js`, `js/ui_updater.js`, `js/ui_moda
 
 ### Sections 1–3 revision status
 
-Completed boxes above refer to the isolated career preview, not a production rollout or proof of optimal balance. Current salary/XP changes, 18-item prices and measured tradeoffs are documented in [the revision report](reports/CAREER-REVISION.md). Retirement targets/persistence redesign and retirement UI remain deferred by user request.
+The measured preview was promoted to the default game in version 2.0.0 on 2026-09-18. This is not proof of optimal balance. Current salary/XP changes, 18-item prices and measured tradeoffs are documented in [the revision report](reports/CAREER-REVISION.md). Retirement targets/persistence redesign and retirement UI remain deferred by user request.
 
-- [x] Preserve the old item dataset for ordinary saves; canonical preview catalogue has 18 retained assets and explicit effect/cost models.
+- [x] Preserve the old item dataset for historical fixtures; default catalogue has 18 retained assets and explicit effect/cost models.
 - [x] Audit all removed item references: legacy tooltip entries intentionally remain, Landlord is mapped to Suburban, and former Editor ownership maps to Style Guide access.
 - [x] Verify desktop and narrow-screen controls, target add/remove, upgrade budget details and no browser console errors.
-- [ ] Finish light/dark/device playtesting and refine late audience growth, employment benchmarks and progression variance before release.
+- [ ] Continue broader light/dark/device playtesting and refine late audience growth, employment benchmarks and progression variance after rollout.
+
+### Version 2.0.0 rollout
+
+- [x] Load the career/authorship rules and 18-item catalogue on the ordinary URL and public hosts.
+- [x] Explain the conversion in the one-time version notice; preserve separate preview saves.
+- [x] Back up existing saves before converting equipment and legacy royalties; preserve unfinished manuscripts, queues, money and levels; verify migration is idempotent.
+- [x] Verify ordinary startup and main-save migration with production code; retain retirement redesign as deferred work.
+- [x] All 88 tests pass; data audit confirms 20 jobs, 17 skills and 18 upgrades with no errors. Normal URL browser check confirms version choice, keeping progress and reload without a repeated prompt or console errors. Existing save reached its retirement boundary; no retirement was triggered by the verification.

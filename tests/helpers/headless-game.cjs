@@ -18,14 +18,14 @@ function createGame({ seed = 12345, author = 'author1', balance = {}, profile = 
     for (const name of ['state', 'balance-profile', 'book-sales', 'career-planning', 'classes', 'utils', 'formulas', 'mechanics', 'notifications', 'journal', 'save', 'offline', 'writing-plan', 'main']) {
         vm.runInContext(fs.readFileSync(path.join(root, 'js', name + '.js'), 'utf8'), context, { filename: name + '.js' });
     }
-    for (const [variable, file] of Object.entries({ jobBaseData: 'jobs', skillBaseData: 'skills', itemBaseData: profile === 'career' ? 'items' : 'items-legacy',
+    for (const [variable, file] of Object.entries({ jobBaseData: 'jobs', skillBaseData: 'skills', itemBaseData: profile === 'current' ? 'items-legacy' : 'items',
         authorsBaseData: 'authors', booksBaseData: 'books', potionsBaseData: 'potions', lifeExperiencesBaseData: 'lifeExperiences',
         genresBaseData: 'genres', sceneTypesBaseData: 'sceneTypes', genreIdealsBaseData: 'genreIdeals', badgeBaseData: 'badges' })) {
         context[variable] = JSON.parse(fs.readFileSync(path.join(root, 'data', file + '.json'), 'utf8'));
     }
     if (!context.authorsBaseData[author]) throw new Error('Unknown author: ' + author);
-    if (!['current', 'career'].includes(profile)) throw new Error('Unknown profile: ' + profile);
-    if (profile === 'career') context.applyCareerProfile(JSON.parse(fs.readFileSync(path.join(root, 'data/career-profile.json'), 'utf8')));
+    if (!['current', 'career', 'release'].includes(profile)) throw new Error('Unknown profile: ' + profile);
+    if (profile !== 'current') context.applyCareerProfile(JSON.parse(fs.readFileSync(path.join(root, 'data/career-profile.json'), 'utf8')));
     context.applyCareerPresentation();
     context.balanceOverrides = balance;
     context.authorId = author;

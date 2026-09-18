@@ -1,5 +1,4 @@
-// Opt-in candidate profile. Production data stays unchanged until the writing
-// economy and migration are ready to ship together.
+// Released career and authorship profile, applied before loading any save.
 var activeBalanceProfile = null;
 const EFFECT_LABELS = {
     inspiration: 'Inspiration', jobXp: 'Job XP', skillXp: 'Skill XP', allXp: 'All experience',
@@ -80,6 +79,6 @@ function migrateCareerSave(saved) {
     saved.skillXpMultiplier = BALANCE.career.skillXpScale;
     saved.balanceProfile = activeBalanceProfile.id;
     saved.notifications ||= [];
-    saved.notifications.unshift({ type: 'summary', name: 'Career preview migration', read: false, age: saved.days,
+    saved.notifications.unshift({ type: 'summary', name: 'Career and authorship update', read: false, age: saved.days,
         message: 'Older upgrades were exchanged for their replacement tiers, without cash refunds. Former Editor ownership grants Style Guide access; hiring an editor is now an optional service paid per manuscript. Careers and upkeep have changed. Your original save is backed up separately.' });
 }

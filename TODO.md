@@ -4,13 +4,13 @@
 
 The completed items below describe earlier work, not a finished economy. Detailed file changes, item decisions and verification are in [the current implementation checklist](CAREER-AUTHORSHIP-TODO.md).
 
-- [ ] Establish balance configuration, simulation and transition targets.
-- [ ] Rebuild Knight-style careers, skills, XP and upkeep while retaining the work/writing slider.
-- [ ] Reduce 37 upgrade cards to 18 and move Editor into an optional per-book service.
-- [ ] Add readership and declining sales so ongoing successful writing becomes the main income.
-- [ ] Add indefinite writing and opt-in career/training automation.
-- [ ] Update forecasts, library, milestones, help and static financial accounting.
-- [ ] Migrate saves and verify early careers, established authors and online/offline progression before release.
+- [x] Establish balance configuration, simulation and transition targets.
+- [x] Rebuild Knight-style careers, skills, XP and upkeep while retaining the work/writing slider.
+- [x] Reduce 37 upgrade cards to 18 and move Editor into an optional per-book service.
+- [x] Add readership and declining sales so ongoing successful writing becomes the main income.
+- [x] Add indefinite writing and opt-in career/training automation.
+- [x] Update forecasts, library, sustained-income milestone, help and static financial accounting; broader milestones remain follow-up work.
+- [x] Migrate saves and verify early careers, established authors and online/offline progression before release.
 - [ ] Require many retirements for endgame completion; measure career/upgrade/author milestones by lifetime and validate inheritance without first-life completion.
 
 Completed foundation for this revision:
@@ -22,17 +22,20 @@ Completed foundation for this revision:
 - [x] Add candidate save migration with backups and no normal-save writes; browser smoke checks and 61 tests pass.
 - [x] Simulate ten lives with ordinary and creative career policies; detailed outcomes are in `reports/CAREER-PREVIEW.md`.
 
-Candidate values are not enabled in the normal game. Retirement redesign is deferred at the user's request; existing rules remain in place.
+Version 2.0.0 now enables the career/authorship balance in the normal game. Earlier preview entries below document its development. Retirement redesign is deferred at the user's request; existing rules remain in place.
 
 - [x] Preview readership and finite two-year book sales, independent of job selection.
 - [x] Optional per-book editor with a locked fee, once-only expense entry, queued preset and free-release fallback.
 - [x] Shared preview online/offline progression, bounded legacy sales migration and lifetime receipt display.
 - [x] Add sales/editing regression coverage and initial four-strategy measurements; see `reports/WRITING-PREVIEW.md`.
 - [x] All 71 automated tests pass after the writing-sales and editing batch; preview controls verified in the browser.
-- [ ] Finish combined balance tuning, budget forecasts, author milestones, career automation and release verification.
+- [x] Ship the measured career/authorship rules, budget forecasts, sustained-income milestone and opt-in career/training automation as the default game.
+- [x] Add version 2.0.0 migration notice, save backups and normal-startup/main-save regression coverage, including active manuscripts and repeat loads.
+- [ ] Continue balance tuning, broader author milestones and device playtesting after rollout.
 - [ ] Later: retirement/legacy redesign and audience inheritance, when the user resumes that work.
 
 ## Interruptions and reliability
+- [x] Pulse the inbox for unread messages, automatically mark displayed messages read on opening and persist the change; keep refresh and Return to game in a fixed dialog footer. Respect reduced-motion preferences.
 - [x] 1. Persistent inbox for unlocks, badges and publications, with direct actions.
 - [x] 2. Background/offline simulation, summary, retirement boundary and separate active-play analytics.
 - [x] 10. Remove discovery countdowns; eligible discoveries enter the inbox immediately.

@@ -37,6 +37,7 @@ function closeNotifications() {
 }
 
 function renderNotifications() {
+    const hadUnread = (gameData.notifications || []).some(entry => !entry.read);
     const list = document.getElementById('notificationList');
     list.replaceChildren();
     if (!gameData.notifications?.length) {
@@ -89,4 +90,5 @@ function renderNotifications() {
         list.append(row);
     }
     updateNotificationBadge();
+    if (hadUnread) scheduleGameSave();
 }

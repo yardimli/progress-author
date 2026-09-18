@@ -147,7 +147,7 @@ async function init () {
         ] = await Promise.all([
             fetchData('jobs'),
             fetchData('skills'),
-            fetchData(IS_CAREER_PREVIEW ? 'items' : 'items-legacy'),
+            fetchData('items'),
             fetchData('headerRowColors'),
             fetchData('tooltips'),
             fetchData('authors'),
@@ -165,11 +165,11 @@ async function init () {
         jobBaseData = await jobsRes.json();
         skillBaseData = await skillsRes.json();
         itemBaseData = await itemsRes.json();
+        const profile = await fetchData('career-profile');
+        applyCareerProfile(await profile.json());
         if (IS_CAREER_PREVIEW) {
-            const profile = await fetchData('career-profile');
-            applyCareerProfile(await profile.json());
             const notice = document.createElement('p');
-            notice.textContent = 'Career and writing preview · Separate save · Readership, two-year book sales and optional editing are being balanced.';
+            notice.textContent = 'Balance testing · Separate save · Uses the same career and writing rules as the main game.';
             notice.className = 'career-preview-notice';
             document.getElementById('writing').prepend(notice);
         }

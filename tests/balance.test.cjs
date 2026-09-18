@@ -110,7 +110,7 @@ test('keeping an older version migrates the save without resetting progress', ()
     saved.version = '1.0.5'; saved.coins = 12345;
     g.localStorage.getItem = () => JSON.stringify(saved);
     g.loadGameData();
-    assert.equal(g.gameData.version, '1.1.0');
+    assert.equal(g.gameData.version, '2.0.0');
     assert.equal(g.gameData.coins, 12345);
     assert.equal(g.gameData.currentJob.name, 'Gig Worker');
 });
