@@ -33,15 +33,23 @@ function applyCareerProfile(profile) {
 
 function applyCareerPresentation() {
     if (!activeBalanceProfile) return;
+    for (const badge of Object.values(badgeBaseData || {})) {
+        for (const req of badge.requirements || []) {
+            if (req.type === 'item') req.name = activeBalanceProfile.replacements[req.name] || req.name;
+        }
+        for (const [oldName, newName] of Object.entries(activeBalanceProfile.replacements)) {
+            if (badge.description) badge.description = badge.description.split(oldName).join(newName);
+        }
+    }
     if (badgeBaseData?.landlord) {
-        badgeBaseData.landlord.requirements = [{ type: 'item', name: 'Suburban' }];
-        badgeBaseData.landlord.description = 'Equip the Suburban home. A home to call your own.';
+        badgeBaseData.landlord.requirements = [{ type: 'item', name: 'Staffed Writing Retreat' }];
+        badgeBaseData.landlord.description = 'Settle into a Staffed Writing Retreat, with space and support for your stories.';
     }
 }
 
 function migrateCareerSave(saved) {
     if (!activeBalanceProfile || saved.balanceProfile === activeBalanceProfile.id) return;
-    const transportRenameOnly = ['career-authorship-1', 'career-authorship-2'].includes(saved.balanceProfile);
+    const rebrandOnly = /^career-authorship-/.test(saved.balanceProfile || '');
     const replacements = activeBalanceProfile.replacements;
     const mapped = name => replacements[name] || name;
     const oldItems = saved.itemData || {};
@@ -63,7 +71,7 @@ function migrateCareerSave(saved) {
     for (const name of [...owned, ...Object.keys(saved.unlocks).filter(name => saved.unlocks[name])]) {
         if (itemBaseData[mapped(name)]) saved.unlocks[mapped(name)] = true;
     }
-    for (const oldName of Object.keys(replacements)) delete saved.unlocks[oldName];
+    for (const oldName of Object.keys(replacements)) if (!itemBaseData[oldName]) delete saved.unlocks[oldName];
     for (const field of ['currentProperty', 'currentTransportation']) {
         if (saved[field]) saved[field] = { name: mapped(saved[field].name) };
     }
@@ -80,7 +88,7 @@ function migrateCareerSave(saved) {
     saved.skillXpMultiplier = BALANCE.career.skillXpScale;
     saved.balanceProfile = activeBalanceProfile.id;
     saved.notifications ||= [];
-    for (const entry of saved.notifications) if (entry.type === 'item' && entry.name === 'Car') entry.name = 'Bus Pass';
+    for (const entry of saved.notifications) if (entry.type === 'item') entry.name = mapped(entry.name);
     saved.notifications.unshift({ type: 'summary', name: 'Career and authorship update', read: false, age: saved.days,
-        message: transportRenameOnly ? 'The $400/day transport tier is Bus Pass again, with its original bus artwork. Prices and bonuses are unchanged. Your ownership and equipped transport have carried over.' : 'Older upgrades were exchanged for their replacement tiers, without cash refunds. Former Editor ownership grants Style Guide access; hiring an editor is now an optional service paid per manuscript. Careers and upkeep have changed. Your original save is backed up separately.' });
+        message: rebrandOnly ? 'Your upgrades have new names, descriptions and artwork: from study coaching and chauffeur service to a private jet and literary institutions. All prices, bonuses and unlock requirements are unchanged. Ownership and equipped upgrades have carried over.' : 'Older upgrades were exchanged for their replacement tiers, without cash refunds. Former Editor ownership grants Professional Manuscript Assessment access; hiring an editor is now an optional service paid per manuscript. Careers and upkeep have changed. Your original save is backed up separately.' });
 }

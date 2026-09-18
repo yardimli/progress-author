@@ -174,6 +174,7 @@ function showModal (imgElement, isNewUnlock = false, isBadge = false) {
 	}
 	
 	let descriptionText = item?.baseData.effectType ? item.getEffectDescription() : tooltips[name] || '';
+	if (item?.baseData.flavorText) descriptionText = `<p>${escapeGameText(item.baseData.flavorText)}</p>${descriptionText}`;
 	if (item?.baseData.slot) descriptionText += `<p>Replaces the active ${item.baseData.slot} tier. Only the equipped tier supplies benefits and upkeep.</p>`;
     if (item?.baseData.costModel === 'upkeep') descriptionText += '<p>No purchase price. Ongoing upkeep applies while equipped; savings can fund temporary use.</p>';
     if (item && BALANCE.writing.salesEnabled) descriptionText += '<p>Unlocking grants access; purchasing a tool keeps it available for this lifetime. Only equipped items apply effects or upkeep. Budget figures use current income and declining book sales will change them. Insolvency stops paid upkeep but retains purchased tools and your manuscript.</p>';

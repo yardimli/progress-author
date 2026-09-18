@@ -15,17 +15,17 @@ test('Car ownership and equipment migrate back to Bus Pass without changing mone
     saved.unlocks['Car'] = true;
     g.localStorage.setItem(g.gameSaveKey(), JSON.stringify(saved));
     g.loadGameData();
-    assert.equal(g.gameData.currentTransportation.name, 'Bus Pass');
+    assert.equal(g.gameData.currentTransportation.name, 'Chauffeur Service');
     assert.equal(g.gameData.currentTransportation.baseData.expense, 400);
-    assert.equal(g.gameData.currentTransportation.baseData.filename, 'bus_pass.jpg');
+    assert.equal(g.gameData.currentTransportation.baseData.filename, 'private_driver.jpg');
     assert.equal(g.gameData.coins, 54321);
-    assert.ok(g.gameData.ownedItems.includes('Bus Pass'));
-    assert.ok(g.gameData.ownedItems.includes('Used Car'));
+    assert.ok(g.gameData.ownedItems.includes('Chauffeur Service'));
+    assert.ok(g.gameData.ownedItems.includes('Private Jet'));
     assert.ok(!g.gameData.ownedItems.includes('Car'));
-    assert.equal(g.gameData.unlocks['Bus Pass'], true);
+    assert.equal(g.gameData.unlocks['Chauffeur Service'], true);
     assert.equal(g.gameData.unlocks['Car'], undefined);
     g.saveGameData(); g.loadGameData();
-    assert.equal(g.gameData.currentTransportation.name, 'Bus Pass');
+    assert.equal(g.gameData.currentTransportation.name, 'Chauffeur Service');
 });
 
 test('normal production startup loads the released catalogue and balance without a query flag', async () => {
@@ -49,7 +49,7 @@ test('normal production startup loads the released catalogue and balance without
     assert.ok(!requests.includes('data/items-legacy.json'));
     assert.equal(Object.keys(g.itemBaseData).length, 18);
     assert.equal(vm.runInContext('BALANCE.writing.salesEnabled', g), true);
-    assert.equal(g.gameData.balanceProfile, 'career-authorship-3');
+    assert.equal(g.gameData.balanceProfile, 'career-authorship-4');
 });
 
 test('main-save rollout preserves a manuscript and progress, discards queues and migrates only once', () => {
@@ -73,18 +73,18 @@ test('main-save rollout preserves a manuscript and progress, discards queues and
     assert.equal(g.gameData.version, '2.0.0');
     assert.equal(g.gameData.coins, 12345);
     assert.equal(g.gameData.taskData.Focus.level, 21);
-    assert.equal(g.gameData.currentProperty.name, 'Suburban');
-    assert.ok(g.gameData.ownedItems.includes('Style Guide'));
+    assert.equal(g.gameData.currentProperty.name, 'Staffed Writing Retreat');
+    assert.ok(g.gameData.ownedItems.includes('Professional Manuscript Assessment'));
     assert.equal(g.gameData.currentBook, old.gameData.currentBook);
     assert.equal(g.gameData.wordsWritten, 123);
     assert.equal(g.gameData.queueMode, undefined);
     assert.equal(g.gameData.completedBooks[0].sales.duration, 365);
     assert.equal(g.gameData.royalties, 8);
-    assert.equal(g.localStorage.getItem('authorsJourneySave-before-career-authorship-3'), original);
+    assert.equal(g.localStorage.getItem('authorsJourneySave-before-career-authorship-4'), original);
     g.saveGameData();
     const migrated = g.localStorage.getItem(g.gameSaveKey());
     g.loadGameData(); g.saveGameData();
     assert.equal(g.localStorage.getItem(g.gameSaveKey()), migrated);
     assert.equal(g.localStorage.getItem('authorsJourneyCareerPreview'), 'separate preview');
-    assert.equal(g.localStorage.getItem('authorsJourneySave-before-career-authorship-3'), original);
+    assert.equal(g.localStorage.getItem('authorsJourneySave-before-career-authorship-4'), original);
 });

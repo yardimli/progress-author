@@ -47,8 +47,8 @@ test('promotion training finds craft prerequisites and skips retirement-gated ta
 });
 test('bankruptcy stops upkeep while keeping purchased free tools, training and manuscript', () => {
     const g = createGame({ profile: 'career' });
-    g.gameData.coins = 100000; g.gameData.unlocks['Used Laptop'] = g.gameData.unlocks.Planner = true;
-    g.setMisc('Used Laptop'); g.setMisc('Planner'); g.gameData.taskData['Typing Speed'].level = 17;
+    g.gameData.coins = 100000; g.gameData.unlocks['Used Laptop'] = g.gameData.unlocks['Study Coaching'] = true;
+    g.setMisc('Used Laptop'); g.setMisc('Study Coaching'); g.gameData.taskData['Typing Speed'].level = 17;
     g.gameData.currentBook = 'draft'; g.gameData.manuscript = { editor: 'paid', editorFee: 500, awaitingEditor: true };
     g.goBankrupt();
     assert.deepEqual(Array.from(g.gameData.currentMisc, item => item.name), ['Used Laptop']);
@@ -59,9 +59,9 @@ test('bankruptcy stops upkeep while keeping purchased free tools, training and m
 });
 test('upgrade budget replaces upkeep rather than stacking tiers and never changes live equipment', () => {
     const g = createGame({ profile: 'career' });
-    g.gameData.coins = 1e10; g.gameData.unlocks.Planner = true; g.setMisc('Planner');
+    g.gameData.coins = 1e10; g.gameData.unlocks['Study Coaching'] = true; g.setMisc('Study Coaching');
     const before = g.getExpense(), coins = g.gameData.coins;
-    const budget = g.getUpgradeBudget('Home Library');
-    assert.equal(budget.upkeep, before - g.gameData.itemData.Planner.getExpense() + g.gameData.itemData['Home Library'].getExpense());
-    assert.equal(budget.replacing, 'Planner'); assert.equal(g.getExpense(), before); assert.equal(g.gameData.coins, coins);
+    const budget = g.getUpgradeBudget('Global Research Institute');
+    assert.equal(budget.upkeep, before - g.gameData.itemData['Study Coaching'].getExpense() + g.gameData.itemData['Global Research Institute'].getExpense());
+    assert.equal(budget.replacing, 'Study Coaching'); assert.equal(g.getExpense(), before); assert.equal(g.gameData.coins, coins);
 });

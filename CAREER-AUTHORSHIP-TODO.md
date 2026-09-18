@@ -168,6 +168,8 @@ The measured preview was promoted to the default game in version 2.0.0 on 2026-0
 
 ### Version 2.0.0 rollout
 
+Upgrade presentation refresh: the approved modern services/institutions replace former item names without changing prices, effects or access requirements. Career profile revision 4 migrates old names and achievement requirements. Twelve existing images are reused; six new images match the photographic style and are cropped to 256×256. The exact mapping, original numerical definitions and art-generation prompt are in `output/imagegen/`.
+
 Automatic skill training and its planning controls have also been removed by user request. Both job and skill selection are manual; saved automation settings are cleared on load. Historical simulation policy helpers remain available only for balance measurements.
 
 Writing queues have since been removed by user request. Each manuscript must be started by the player. Saved queues are discarded without losing the active manuscript; online/offline publication never starts another book. The simulation explicitly starts manuscripts as a simulated player action at policy steps, not through game queue logic. Earlier continuous-writing measurements describe the previous design.

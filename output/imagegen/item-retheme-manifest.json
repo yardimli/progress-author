@@ -1,0 +1,491 @@
+[
+  {
+    "oldName": "Homeless",
+    "name": "Homeless",
+    "filename": "homeless.jpg",
+    "description": "A humble beginning. Find shelter and build a writing life from what you have.",
+    "original": {
+      "name": "Homeless",
+      "category": "Properties",
+      "expense": 0,
+      "effect": 1,
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "homeless.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a quiet urban street corner with simplified shapes. A small sleeping bag and a stack of cardboard boxes rest against a plain wall beneath a single streetlamp. A paper cup and a worn notebook sit nearby. Clean lines, muted cozy color palette of soft greys and warm blues, no realistic detail, just simple geometric forms conveying the humble beginnings of a writer.",
+      "requirements": [],
+      "effectType": "inspiration",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Rented Room",
+    "name": "Budget Hotel Room",
+    "filename": "rented_room.jpg",
+    "description": "A simple room, a bed and a quiet desk give you space to gather inspiration.",
+    "original": {
+      "name": "Rented Room",
+      "category": "Properties",
+      "expense": 90,
+      "effect": 1.4,
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "rented_room.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a small rented room rendered with simplified shapes. A basic desk holds a stack of papers and a small lamp, a single window shows a soft blue night sky, and a narrow bed sits against the wall. Clean lines, cozy aesthetic, muted palette of warm beiges and soft blues, no realism, just simple geometric forms creating a humble writer's space.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 4500
+        }
+      ],
+      "effectType": "inspiration",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Studio",
+    "name": "Serviced Writer’s Apartment",
+    "filename": "studio_apartment.jpg",
+    "description": "Housekeeping and a comfortable workspace leave more attention for your stories.",
+    "original": {
+      "name": "Studio",
+      "category": "Properties",
+      "expense": 800,
+      "effect": 2,
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "studio_apartment.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a tidy studio apartment using simple geometric shapes. A laptop sits open on a clean white desk by a large window showing a simplified city skyline. A small bookshelf, a potted plant, and a coffee mug complete the scene. Cozy aesthetic with warm amber and soft grey tones, clean lines, no realistic detail, conveying a hopeful emerging writer's home.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 80000
+        }
+      ],
+      "effectType": "inspiration",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Suburban",
+    "name": "Staffed Writing Retreat",
+    "filename": "private_villa.jpg",
+    "description": "A peaceful retreat with daily needs handled helps you find fresh inspiration.",
+    "original": {
+      "name": "Suburban",
+      "category": "Properties",
+      "expense": 6000,
+      "effect": 3.5,
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "suburban_house.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a cozy suburban house using simple geometric shapes. Small rectangular windows glow with warm yellow light, a single tree, a neat green lawn, and a paved path to the front door. Cozy aesthetic, clean lines, palette of earthy browns, soft greens, and golden accents, no realism, just simplified shapes conveying a successful author's comfortable residence.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 600000
+        }
+      ],
+      "effectType": "inspiration",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "City Penthouse",
+    "name": "International Writers’ Residency",
+    "filename": "mansion_estate.jpg",
+    "description": "Host visiting authors and exchange ideas in a dedicated residential writing programme.",
+    "original": {
+      "name": "City Penthouse",
+      "category": "Properties",
+      "expense": 200000,
+      "effect": 12,
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "city_penthouse.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a sleek city penthouse with simplified geometric shapes. Floor-to-ceiling windows reveal a stylized skyline of rectangular buildings at dusk, with a small writing desk and a modern chair inside. A potted plant and a wraparound terrace add warmth. Clean lines, cozy aesthetic, palette of deep navy, soft gold, and warm whites, no realism, just simple shapes evoking upscale urban living.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 20000000
+        },
+        {
+          "type": "retirements",
+          "value": 4
+        }
+      ],
+      "effectType": "inspiration",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Mansion Estate",
+    "name": "Global Arts Foundation",
+    "filename": "global_arts_foundation.jpg",
+    "description": "Support cultural centres, residencies and creative projects around the world, surrounding your work with new inspiration.",
+    "original": {
+      "name": "Mansion Estate",
+      "category": "Properties",
+      "expense": 40000000,
+      "effect": 60,
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "mansion_estate.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a grand mansion estate using simplified geometric shapes. A wide symmetrical house with warm glowing windows sits behind simple iron gates, with rounded topiary bushes, a curved driveway, and a small reflecting pond. A soft twilight sky frames the scene. Clean lines, cozy palette of deep blues, warm golds, and soft greens, no realism, just stylized shapes conveying legendary author status.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 4000000000
+        },
+        {
+          "type": "retirements",
+          "value": 8
+        }
+      ],
+      "effectType": "inspiration",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Walking",
+    "name": "Walking",
+    "filename": "walking.jpg",
+    "description": "Walk to work at no cost. A dependable starting point for your career.",
+    "original": {
+      "name": "Walking",
+      "category": "Transportation",
+      "expense": 0,
+      "effect": 1,
+      "description": "Job XP",
+      "filename": "walking.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a pair of worn but comfortable sneakers on a simple sidewalk. Clean lines, cozy aesthetic, soft palette, no realism.",
+      "requirements": [],
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "effectType": "jobXp",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Bus Pass",
+    "name": "Chauffeur Service",
+    "filename": "private_driver.jpg",
+    "description": "A daily driver handles commuting so you can put more attention into learning your job.",
+    "original": {
+      "name": "Bus Pass",
+      "category": "Transportation",
+      "expense": 400,
+      "effect": 1.5,
+      "description": "Job XP",
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "bus_pass.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a simple transit bus pass card with a tiny lanyard. Clean lines, cozy aesthetic, soft palette of blues and yellows, no realism, just simplified geometric shapes.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 40000
+        }
+      ],
+      "effectType": "jobXp",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Used Car",
+    "name": "Private Jet",
+    "filename": "private_jet.jpg",
+    "description": "Dedicated air travel gets you to professional opportunities efficiently, accelerating career experience.",
+    "original": {
+      "name": "Used Car",
+      "category": "Transportation",
+      "expense": 8000,
+      "effect": 3,
+      "description": "Job XP",
+      "filename": "used_car.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a slightly worn but reliable compact car. Clean lines, cozy aesthetic, soft palette, no realism.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 800000
+        }
+      ],
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "effectType": "jobXp",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Planner",
+    "name": "Study Coaching",
+    "filename": "study_coaching.jpg",
+    "description": "Regular guided study sessions help you learn career and writing skills faster.",
+    "original": {
+      "name": "Planner",
+      "category": "Work Equipment",
+      "expense": 80,
+      "effect": 1.5,
+      "description": "Skill XP",
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "planner.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of an open daily planner notebook with a simple pen resting on it. Clean lines, cozy aesthetic, warm palette of soft greens and creams, no realism.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 8000
+        }
+      ],
+      "effectType": "skillXp",
+      "costModel": "upkeep",
+      "slot": "learning",
+      "tier": 1
+    }
+  },
+  {
+    "oldName": "Home Library",
+    "name": "Global Research Institute",
+    "filename": "global_research_institute.jpg",
+    "description": "Maintain research teams and extensive archives that support faster learning across your career and writing skills.",
+    "original": {
+      "name": "Home Library",
+      "category": "Misc",
+      "expense": 8000000,
+      "effect": 2,
+      "description": "Inspiration",
+      "writingQuality": 1,
+      "filename": "home_library.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a cozy home library with tall bookshelves filled with colorful simplified book spines. A rounded armchair sits beside a small side table with a lamp, and a rolling ladder leans against the shelves. Clean lines, cozy aesthetic, warm palette of deep browns, soft golds, and rich reds, no realism, just simplified shapes representing a celebrated writer's sanctuary.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 800000000
+        },
+        {
+          "type": "retirements",
+          "value": 6
+        }
+      ],
+      "writingMultiplier": 1,
+      "effectType": "skillXp",
+      "costModel": "upkeep",
+      "slot": "learning",
+      "tier": 2
+    }
+  },
+  {
+    "oldName": "Premium Briefcase",
+    "name": "Executive Career Coach",
+    "filename": "executive_career_coach.jpg",
+    "description": "A dedicated mentor helps you learn from professional challenges and gain job experience faster.",
+    "original": {
+      "name": "Premium Briefcase",
+      "category": "Work Equipment",
+      "expense": 1600,
+      "effect": 2,
+      "description": "Job XP",
+      "filename": "premium_briefcase.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a high-quality leather briefcase. Clean lines, cozy aesthetic, soft palette, no realism.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 160000
+        }
+      ],
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "effectType": "jobXp",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Library Card",
+    "name": "Research Database Access",
+    "filename": "research_database_access.jpg",
+    "description": "Search scholarly archives and reference collections to develop your writing craft faster.",
+    "original": {
+      "name": "Library Card",
+      "category": "Misc",
+      "expense": 8,
+      "effect": 1.3,
+      "description": "Inspiration",
+      "writingQuality": 1,
+      "filename": "library_card.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a simple public library card with a small barcode and rounded corners. The card rests on a plain surface next to a tiny receipt. Clean lines, cozy aesthetic, soft palette of blues and whites with a warm accent, no realism, just simplified geometric shapes representing the humble foundation of a writer's learning journey.",
+      "requirements": [],
+      "writingMultiplier": 1,
+      "effectType": "craftXp",
+      "costModel": "upkeep",
+      "slot": "craft",
+      "tier": 1
+    }
+  },
+  {
+    "oldName": "Masterclass Subscription",
+    "name": "Private Writing Academy",
+    "filename": "masterclass_subscription.jpg",
+    "description": "Specialist faculty and intensive workshops accelerate your training in writing craft.",
+    "original": {
+      "name": "Masterclass Subscription",
+      "category": "Misc",
+      "expense": 400000,
+      "effect": 3,
+      "description": "Writing Craft experience",
+      "writingMultiplier": 1,
+      "writingQuality": 1,
+      "filename": "masterclass_subscription.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a tablet displaying a stylized video play button and a graduation cap icon. Clean lines, cozy aesthetic, warm palette of soft purples and golds, no realism.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 40000000
+        },
+        {
+          "type": "retirements",
+          "value": 4
+        }
+      ],
+      "effectType": "craftXp",
+      "costModel": "upkeep",
+      "slot": "craft",
+      "tier": 2
+    }
+  },
+  {
+    "oldName": "Used Laptop",
+    "name": "Used Laptop",
+    "filename": "used_laptop.jpg",
+    "description": "A dependable second-hand laptop helps you practise typing and produce manuscripts faster.",
+    "original": {
+      "name": "Used Laptop",
+      "category": "Writing Equipment",
+      "expense": 0,
+      "effect": 1.5,
+      "description": "Inspiration",
+      "writingMultiplier": 1.3,
+      "filename": "used_laptop.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a small open laptop with a few colorful stickers on its lid, rendered in simple geometric shapes. The screen shows a blank document with a tiny blinking cursor. A coiled charging cable curls beside it. Clean lines, cozy aesthetic, muted palette of soft greys with pops of warm color, no realism, just simplified shapes conveying a writer's trusty budget tool.",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 6
+        }
+      ],
+      "writingQuality": 1,
+      "effectType": "typingXp",
+      "costModel": "purchase",
+      "purchasePrice": 500,
+      "slot": "tools",
+      "tier": 1
+    }
+  },
+  {
+    "oldName": "Pro Writing Software",
+    "name": "Custom Writing Workstation",
+    "filename": "dual_monitors.jpg",
+    "description": "A bespoke computer and writing workflow improve typing practice and manuscript production.",
+    "original": {
+      "name": "Pro Writing Software",
+      "category": "Writing Equipment",
+      "expense": 0,
+      "effect": 2,
+      "description": "Inspiration",
+      "writingMultiplier": 1.8,
+      "writingQuality": 1,
+      "filename": "pro_writing_software.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a laptop showing a stylized writing software interface with a simple corkboard of note cards and a sidebar of chapters. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, palette of soft blues, whites, and warm accent colors, no realism, just simplified shapes conveying a modern writer's creative toolkit.",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Focus",
+          "value": 50
+        },
+        {
+          "type": "books",
+          "value": 10
+        }
+      ],
+      "effectType": "typingXp",
+      "costModel": "purchase",
+      "purchasePrice": 50000,
+      "slot": "tools",
+      "tier": 2
+    }
+  },
+  {
+    "oldName": "Home Office",
+    "name": "Writing Production Team",
+    "filename": "writing_production_team.jpg",
+    "description": "Researchers and production assistants handle supporting work so your manuscript develops faster.",
+    "original": {
+      "name": "Home Office",
+      "category": "Misc",
+      "expense": 60000,
+      "effect": 1,
+      "description": "Inspiration",
+      "writingMultiplier": 2,
+      "writingQuality": 1,
+      "filename": "home_office.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a tidy home office with a simple desk, a monitor, a small lamp, and a potted plant, all rendered in geometric shapes. A small bookshelf and a framed picture hang on the wall. Clean lines, cozy aesthetic, warm palette of soft woods, creams, and gentle greens, no realism, just simplified shapes depicting a focused writer's workspace.",
+      "requirements": [
+        {
+          "type": "coins",
+          "value": 6000000
+        },
+        {
+          "type": "books",
+          "value": 20
+        }
+      ],
+      "effectType": "inspiration",
+      "costModel": "upkeep"
+    }
+  },
+  {
+    "oldName": "Style Guide",
+    "name": "Professional Manuscript Assessment",
+    "filename": "editor.jpg",
+    "description": "A professional critique gives you lasting guidance for improving the quality of your writing this lifetime.",
+    "original": {
+      "name": "Style Guide",
+      "category": "Writing Equipment",
+      "expense": 0,
+      "effect": 1,
+      "description": "Inspiration",
+      "writingMultiplier": 1,
+      "writingQuality": 1.3,
+      "filename": "style_guide.jpg",
+      "filefolder": "items",
+      "imageprompt": "A flat, minimalist vector illustration of a thick style guide book with colorful tabs sticking out of its pages, beside a small steaming coffee mug. Rendered in clean geometric shapes with rounded corners. Clean lines, cozy aesthetic, warm palette of soft blues, creams, and a pop of red, no realism, just simplified shapes conveying a writer's dedication to craft.",
+      "requirements": [
+        {
+          "type": "skill",
+          "name": "Grammar & Prose",
+          "value": 10
+        }
+      ],
+      "effectType": "inspiration",
+      "costModel": "purchase",
+      "purchasePrice": 2000
+    }
+  }
+]

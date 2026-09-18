@@ -21,7 +21,7 @@ test('candidate has 18 valid upgrades and all prerequisites refer to retained en
             signatures.add(signature);
         }
     }
-    assert.equal(g.badgeBaseData.landlord.requirements[0].name, 'Suburban');
+    assert.equal(g.badgeBaseData.landlord.requirements[0].name, 'Staffed Writing Retreat');
 });
 
 test('allocation reduces wages and job training even while no book is active, never independent training', () => {
@@ -40,17 +40,17 @@ test('allocation reduces wages and job training even while no book is active, ne
 test('replacement equipment charges once and only active tiers contribute expense and effects', () => {
     const g = candidate();
     g.gameData.coins = 1e9;
-    for (const name of ['Planner', 'Home Library', 'Used Laptop', 'Pro Writing Software']) g.gameData.unlocks[name] = true;
+    for (const name of ['Study Coaching', 'Global Research Institute', 'Used Laptop', 'Custom Writing Workstation']) g.gameData.unlocks[name] = true;
     const before = g.gameData.coins;
-    g.setMisc('Planner');
+    g.setMisc('Study Coaching');
     assert.equal(g.gameData.coins, before);
-    g.setMisc('Home Library');
-    assert.deepEqual(Array.from(g.gameData.currentMisc, i => i.name), ['Home Library']);
-    assert.equal(g.gameData.itemData.Planner.getEffect(), 1);
-    assert.equal(g.gameData.itemData['Home Library'].getEffect(), 2);
+    g.setMisc('Global Research Institute');
+    assert.deepEqual(Array.from(g.gameData.currentMisc, i => i.name), ['Global Research Institute']);
+    assert.equal(g.gameData.itemData['Study Coaching'].getEffect(), 1);
+    assert.equal(g.gameData.itemData['Global Research Institute'].getEffect(), 2);
     g.setMisc('Used Laptop');
     assert.equal(g.gameData.coins, before - 500);
-    g.setMisc('Pro Writing Software');
+    g.setMisc('Custom Writing Workstation');
     assert.equal(g.gameData.coins, before - 50500);
     assert.ok(!g.gameData.currentMisc.some(i => i.name === 'Used Laptop'));
     g.setMisc('Used Laptop');
@@ -60,11 +60,11 @@ test('replacement equipment charges once and only active tiers contribute expens
 
 test('upkeep must be funded before equipping; insolvency preserves manuscript and purchased tools', () => {
     const g = candidate();
-    g.gameData.unlocks['Rented Room'] = true;
-    g.setProperty('Rented Room');
+    g.gameData.unlocks['Budget Hotel Room'] = true;
+    g.setProperty('Budget Hotel Room');
     assert.equal(g.gameData.currentProperty.name, 'Homeless');
     g.gameData.coins = 120;
-    g.setProperty('Rented Room');
+    g.setProperty('Budget Hotel Room');
     assert.equal(g.gameData.coins, 120);
     g.gameData.currentBook = 'unfinished';
     g.gameData.wordsWritten = 50;
@@ -100,7 +100,7 @@ test('endgame eligibility requires many retirements even with first-life extreme
     g.gameData.booksPublished = 100000;
     const endgame = g.jobBaseData['Head of Publishing'];
     assert.equal(g.areRequirementsMet(endgame), false);
-    assert.equal(g.areRequirementsMet(g.itemBaseData['Mansion Estate']), false);
+    assert.equal(g.areRequirementsMet(g.itemBaseData['Global Arts Foundation']), false);
     g.gameData.rebirthOneCount = 11;
     assert.equal(g.areRequirementsMet(endgame), false);
     g.gameData.rebirthTwoCount = 1;
@@ -124,10 +124,10 @@ test('imported legacy items migrate idempotently with backup, replacement access
     g.loadGameData();
     assert.equal(g.gameData.currentJob.name, 'Commissioned Author');
     assert.equal(g.gameData.currentJob.level, 42);
-    assert.equal(g.gameData.currentProperty.name, 'Suburban');
-    assert.deepEqual(Array.from(g.gameData.currentMisc, i => i.name), ['Home Library', 'Style Guide']);
+    assert.equal(g.gameData.currentProperty.name, 'Staffed Writing Retreat');
+    assert.deepEqual(Array.from(g.gameData.currentMisc, i => i.name), ['Global Research Institute', 'Professional Manuscript Assessment']);
     assert.equal(g.gameData.coins, 12345);
-    assert.equal(g.localStorage.getItem(g.gameSaveKey() + '-before-career-authorship-3'), original);
+    assert.equal(g.localStorage.getItem(g.gameSaveKey() + '-before-career-authorship-4'), original);
     assert.equal(g.localStorage.getItem('authorsJourneySave'), 'normal game untouched');
     g.saveGameData();
     const once = g.localStorage.getItem(g.gameSaveKey());
