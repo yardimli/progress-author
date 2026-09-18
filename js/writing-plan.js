@@ -36,7 +36,7 @@ function planNewManuscript() {
         theme: value('storyTheme', plan.theme || 'belonging'),
         ending: value('storyEnding', plan.ending || 'hopeful'),
         approach: value('writingApproach', plan.approach || 'balanced'), edit: null,
-        editor: value('bookEditor', plan.editor || 'none'), editorFallback: value('editorFallback', plan.editorFallback || 'pause')
+        editor: value('bookEditor', plan.editor || 'none')
     };
     gameData.draftPlan = { ...gameData.manuscript, title: '' };
     if (BALANCE.writing.salesEnabled) prepareBookService(gameData.manuscript);
@@ -53,30 +53,6 @@ function getBookTitle(id = gameData.currentBook) {
 function getNewManuscriptLength() {
     const fullLength = booksBaseData[gameData.currentBook]?.wordCount || 12000;
     return Math.min(fullLength, gameData.booksPublished < 3 ? 12000 + gameData.booksPublished * 6000 : fullLength);
-}
-function startQueuedBook() {
-    if (gameData.currentBook || (gameData.queueMode !== 'continuous' && !gameData.queueRemaining) || gameData.days >= getLifespan()) return;
-    const genre = gameData.queueGenre || gameData.selectedGenre;
-    if (!genre || !Object.values(booksBaseData || {}).some(book => book.genre === genre) || !Object.keys(sceneTypesBaseData?.[genre] || {}).length) {
-        gameData.queueMode = 'finite';
-        gameData.queueRemaining = 0;
-        addGameNotification({ type: 'summary', name: 'Writing queue stopped', message: 'Choose an available genre and start a manuscript to continue.' });
-        return;
-    }
-    if (gameData.queueMode !== 'continuous') gameData.queueRemaining--;
-    gameData.selectedGenre = genre;
-    pickNextBook(gameData.selectedGenre);
-    gameData.manuscript = { ...(gameData.draftPlan || {}), title: '', edit: null };
-    if (BALANCE.writing.salesEnabled) prepareBookService(gameData.manuscript);
-    gameData.manuscript.targetWords = getNewManuscriptLength();
-    const scenes = Object.keys(sceneTypesBaseData[gameData.selectedGenre] || {});
-    gameData.activeScene = currentAutoSceneType = nextSceneType = scenes[0] || 'Action';
-    if (!isCatchingUp) buildSceneButtons();
-}
-function setBookQueue(value) {
-    gameData.queueMode = value === 'continuous' ? 'continuous' : 'finite';
-    gameData.queueRemaining = Math.max(0, Math.min(10, parseInt(value, 10) || 0));
-    gameData.queueGenre = gameData.selectedGenre;
 }
 function getPurchasePrice(name) {
     const data = itemBaseData[name];

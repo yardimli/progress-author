@@ -168,6 +168,10 @@ The measured preview was promoted to the default game in version 2.0.0 on 2026-0
 
 ### Version 2.0.0 rollout
 
+Writing queues have since been removed by user request. Each manuscript must be started by the player. Saved queues are discarded without losing the active manuscript; online/offline publication never starts another book. The simulation explicitly starts manuscripts as a simulated player action at policy steps, not through game queue logic. Earlier continuous-writing measurements describe the previous design.
+
+Post-rollout simplification: automatic job promotion has been removed (training automation remains). Insufficient editing funds now publish without paid editing and add a journal entry; the old wait/free selector and waiting controls are removed. Older checklist entries describing those controls are historical. Goals can be hidden per panel until the next lifetime; writing desk and budget can collapse, and desk stats are more compact.
+
 - [x] Load the career/authorship rules and 18-item catalogue on the ordinary URL and public hosts.
 - [x] Explain the conversion in the one-time version notice; preserve separate preview saves.
 - [x] Back up existing saves before converting equipment and legacy royalties; preserve unfinished manuscripts, queues, money and levels; verify migration is idempotent.

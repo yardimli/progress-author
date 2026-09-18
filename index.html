@@ -8,7 +8,7 @@
 	<title>Author's Journey</title>
 	<link rel="icon" type="image/svg+xml" href="img/ui/favicon.svg">
 	<link rel="stylesheet" href="css/journal.css?v=8">
-	<link rel="stylesheet" href="css/experience.css">
+	<link rel="stylesheet" href="css/experience.css?v=2">
 </head>
 <body id="body">
 <script src="js/theme.js?v=2"></script>
@@ -193,7 +193,7 @@
 			<!-- Column 4: Writing -->
 			<div class="panel-column" id="writing">
 				<p class="journey-goal"></p>
-				<section class="writing-dashboard" aria-label="Writing stats"><h2>Your writing desk</h2><div id="writingMetrics"></div><details><summary>What shapes this book?</summary><p id="writingBreakdown"></p></details></section>
+				<details class="writing-dashboard desk-dashboard" open><summary>Your writing desk</summary><div id="writingMetrics"></div><details><summary>What shapes this book?</summary><p id="writingBreakdown"></p></details></details>
 				<div class="category-header">Writing</div>
 				<div id="workWritingSliderContainer" class="slider-container" style="justify-content: center; margin-top: 10px; margin-bottom: 20px;">
 					<span class="work-percentage-label">Work: <span id="workPercentage">100</span>%</span>
@@ -201,12 +201,11 @@
 					<span class="writing-percentage-label">Writing: <span id="writingPercentage">0</span>%</span>
 				</div>
 				
-				<section id="careerBudgetPanel" class="writing-dashboard" hidden><h3>Your daily budget</h3><p id="careerBudgetText"></p><p id="careerRunwayText"></p><p id="writingLivelihoodText"></p></section><div id="writingTimeAlert" style="display: none; color: #f44336; text-align: center; margin-bottom: 15px; font-weight: bold;">
+				<details id="careerBudgetPanel" class="writing-dashboard" open hidden><summary>Your daily budget</summary><p id="careerBudgetText"></p><p id="careerRunwayText"></p><p id="writingLivelihoodText"></p></details><div id="writingTimeAlert" style="display: none; color: #f44336; text-align: center; margin-bottom: 15px; font-weight: bold;">
 					Please allocate time to writing using the slider above to start writing!
 				</div>
 				
-				<section id="bookServiceSettings" hidden><label>Editing for future manuscripts <select id="bookEditor"><option value="none">Self-edit · free</option><option value="paid">Hire editor · +25% raw quality</option></select></label> <label>If funds are short <select id="editorFallback"><option value="pause">Wait for funds</option><option value="free">Publish without paid editing</option></select></label><p id="bookEditorQuote"></p><p>Fee is locked when a manuscript starts and charged once at publication. Applies to new manuscripts and their queue.</p></section>
-				<section id="awaitingBookEditor" hidden><p>Your manuscript is finished and waiting for editing funds. Work and book sales continue.</p><button class="btn" onclick="finishBook()">Pay editor and publish</button><button class="btn" onclick="publishWithoutEditor()">Publish without editor</button></section>
+				<section id="bookServiceSettings" hidden><label>Editing for future manuscripts <select id="bookEditor"><option value="none">Self-edit · free</option><option value="paid">Hire editor · +25% raw quality</option></select></label><p id="bookEditorQuote"></p><p id="editorFeeHelp">Fee is locked when a manuscript starts and charged once at publication. If you cannot afford it, the book publishes without paid editing. Applies when you start a new manuscript.</p></section>
 				<div id="bookSelectionContainer" class="ui-row" style="padding: 15px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
 					<h3 style="margin-top: 0;">Start a New Book</h3>
 					<div class="story-plan"><label>Your title (optional)<input id="manuscriptTitle" maxlength="80" placeholder="Name your book"></label><label>Protagonist<select id="storyCharacter"><option>an outsider</option><option>a reluctant mentor</option><option>two rivals</option></select></label><label>Central theme<select id="storyTheme"><option>belonging</option><option>ambition</option><option>justice</option></select></label><label>Ending<select id="storyEnding"><option>hopeful</option><option>bittersweet</option><option>unresolved</option></select></label><label>Approach<select id="writingApproach"><option value="balanced">Balanced</option><option value="commercial">Commercial: 20% faster, 15% less quality, 15% more royalties</option><option value="crafted">Careful revision: 20% slower, 35% more quality</option></select></label></div>
@@ -260,7 +259,6 @@
 				</div>
 				
 				<div class="category-header">Published Books</div>
-				<label class="queue-setting">After this book, automatically write <select id="bookQueue" onchange="setBookQueue(this.value)"><option value="0">no more books</option><option value="1">1 more book</option><option value="3">3 more books</option><option value="5">5 more books</option><option value="10">10 more books</option><option value="continuous">until I stop</option></select> in this genre and approach. Choose “no more books” to stop after the current manuscript. At 0% writing the manuscript waits; queued books keep their drafts unless you intervene.</label>
 				<div id="bookHistoryContainer" class="category-content list">
 					<!-- Books dynamically added here -->
 				</div>
@@ -474,7 +472,7 @@
 	<div class="modal-content modal-content-xs">
 		<h2 id="updateTitle" class="modal-title-nomargin">A new chapter awaits</h2>
 		<p id="updateVersionLabel"></p>
-		<p>Careers now fund your path into authorship, with new skill progression, 18 upgrades, readership and optional paid editing. New books earn declining sales for two game years. Continuous writing and optional career and training automation are available.</p>
+		<p>Careers now fund your path into authorship, with new skill progression, 18 upgrades, readership and optional paid editing. New books earn declining sales for two game years. Start each manuscript yourself and shape it with scene choices. Optional training automation is available.</p>
 		<p>Keep your progress to convert older upgrades into their replacement tiers, without cash refunds. Existing book income becomes a declining one-year sales tail. Your save is backed up before conversion. Money, experience and your current manuscript carry over, but income and upkeep will change.</p>
 		<p>Would you like to continue your journey or restart with the new balance? Restarting erases your current game progress.</p>
 		<button id="keepCurrentGameButton" class="btn btn-full-width-mt15" onclick="chooseVersionRestart(false)">Keep my progress</button>

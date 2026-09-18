@@ -13,7 +13,7 @@ function game() {
 }
 function start(g, editor = 'none', fallback = 'pause') {
     g.gameData.draftPlan = { approach: 'balanced', editor, editorFallback: fallback };
-    g.setBookQueue('1'); g.startQueuedBook();
+    g.startWritingBook();
 }
 test('sales integrate to a finite total and stop exactly at the end of the contract', () => {
     const g = game(), book = { sales: { startDay: 10, duration: 730, launchRate: 100 } };
@@ -52,14 +52,10 @@ test('online and away simulation agree across publication and a year boundary', 
     away.advanceAwayProgress(1010000);
     assert.equal(away.gameData.coins, coins);
 });
-test('editor waits without blocking work, uses a locked quote and charges exactly once', () => {
+test('affordable editor uses a locked quote and charges exactly once', () => {
     const g = game(); start(g, 'paid');
     const fee = g.gameData.manuscript.editorFee;
     g.gameData.wordsWritten = g.getBookLength();
-    g.finishBook();
-    assert.equal(g.gameData.manuscript.awaitingEditor, true);
-    assert.equal(g.gameData.booksPublished, 0);
-    assert.equal(g.getWritingSpeed(), 0);
     g.gameData.readership = 10000;
     g.saveGameData(); g.loadGameData();
     assert.equal(g.gameData.manuscript.editorFee, fee);
@@ -69,6 +65,7 @@ test('editor waits without blocking work, uses a locked quote and charges exactl
     assert.equal(g.gameData.coins, 0);
     assert.equal(g.gameData.journalFinance.filter(row => row.kind === 'purchase').length, 1);
     assert.equal(g.gameData.completedBooks[0].story.editorPaid, true);
+    assert.equal(g.gameData.hasUsedEditor, true);
 });
 test('unaffordable editing can fall back to a free release without charges', () => {
     const g = game(); start(g, 'paid', 'free'); g.finishBook();
@@ -76,14 +73,26 @@ test('unaffordable editing can fall back to a free release without charges', () 
     assert.equal(g.gameData.coins, 0);
     assert.equal(g.gameData.completedBooks[0].story.editor, 'none');
 });
-test('waiting editor eventually gets paid from work and explicit free publication is available', () => {
-    const g = game(); start(g, 'paid'); g.gameData.wordsWritten = g.getBookLength(); g.finishBook();
-    g.advanceWritingEconomy(10);
+test('unaffordable editing logs once, removes its bonus and resumes old waiting saves', () => {
+    const g = game(); start(g, 'paid');
+    const messages = []; g.logEvent = message => messages.push(message);
+    const editedQuality = g.getManuscriptQualityBonus();
+    g.gameData.manuscript.awaitingEditor = true;
+    g.gameData.wordsWritten = g.getBookLength();
+    g.saveGameData(); g.loadGameData();
+    g.setCustomEffects(); g.addMultipliers();
+    g.advanceWritingEconomy(1);
     assert.equal(g.gameData.booksPublished, 1);
-    const h = game(); start(h, 'paid'); h.finishBook(); h.publishWithoutEditor();
-    assert.equal(h.gameData.booksPublished, 1);
-    assert.equal(h.gameData.coins, 0);
+    assert.equal(g.gameData.completedBooks[0].story.editor, 'none');
+    assert.equal(g.gameData.completedBooks[0].story.editorPaid, false);
+    assert.equal(g.gameData.hasUsedEditor, false);
+    assert.equal(messages.filter(message => message.includes('Could not afford editing')).length, 1);
+    assert.equal(g.gameData.journalFinance.filter(row => row.kind === 'purchase').length, 0);
+    g.finishBook(); assert.equal(messages.filter(message => message.includes('Could not afford editing')).length, 1);
+    g.gameData.manuscript = g.gameData.completedBooks[0].story;
+    assert.equal(g.getManuscriptQualityBonus(), editedQuality / 1.25);
 });
+
 test('legacy royalty conversion preserves initial income, bounds its tail and does not repeat', () => {
     const g = game();
     g.gameData.bookSalesVersion = 0;
@@ -123,10 +132,10 @@ test('legacy preview saves missing the new version field migrate instead of rece
     assert.equal(g.gameData.royalties, 0);
 });
 
-test('continuous paid editing prepares a new quote for each book and preserves its preset on reload', () => {
+test('manually started books get separate editing quotes and preserve the active quote on reload', () => {
     const g = game(); g.gameData.coins = 1000000;
-    start(g, 'paid'); g.setBookQueue('continuous');
-    for (let i = 0; i < 3; i++) g.finishBook();
+    for (let i = 0; i < 3; i++) { start(g, 'paid'); g.finishBook(); }
+    start(g, 'paid');
     assert.equal(g.gameData.booksPublished, 3);
     assert.equal(g.gameData.journalFinance.filter(row => row.kind === 'purchase').length, 3);
     assert.equal(g.gameData.manuscript.editorPaid, false);
@@ -134,5 +143,5 @@ test('continuous paid editing prepares a new quote for each book and preserves i
     const quote = g.gameData.manuscript.editorFee;
     g.saveGameData(); g.loadGameData();
     assert.equal(g.gameData.manuscript.editorFee, quote);
-    assert.equal(g.gameData.queueMode, 'continuous');
+    assert.equal(g.gameData.queueMode, undefined);
 });

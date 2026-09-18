@@ -20,7 +20,7 @@ function openJournal() {
 
 function initExperienceUI() {
     if (BALANCE.writing.salesEnabled) {
-        for (const [panel, key, label] of [['jobs', 'promote', 'Automatically take better-paying unlocked jobs in this branch'], ['skills', 'train', 'Automatically choose training using the plan below']]) {
+        for (const [panel, key, label] of [['skills', 'train', 'Automatically choose training using the plan below']]) {
             const control = document.createElement('label');
             const input = document.createElement('input');
             input.type = 'checkbox'; input.checked = gameData.automation[key];
@@ -29,7 +29,7 @@ function initExperienceUI() {
             document.getElementById(panel).querySelector('.journey-goal').after(control);
         }
         buildTrainingControls();
-        for (const [id, field, fallback] of [['bookEditor', 'editor', 'none'], ['editorFallback', 'editorFallback', 'pause']]) {
+        for (const [id, field, fallback] of [['bookEditor', 'editor', 'none']]) {
             const input = document.getElementById(id);
             input.value = gameData.draftPlan?.[field] || fallback;
             input.onchange = () => { gameData.draftPlan ||= {}; gameData.draftPlan[field] = input.value; };
@@ -37,15 +37,18 @@ function initExperienceUI() {
     }
     document.getElementById('resourceContent').append(document.getElementById('resourceBands'));
     for (const panel of document.querySelectorAll('.panel-column')) {
-        if (panel.id === 'writing') continue;
-        const button = document.createElement('button'); button.className = 'btn future-toggle';
-        button.textContent = 'Show future categories'; button.setAttribute('aria-expanded', 'false');
-        button.onclick = () => {
-            const show = panel.classList.toggle('show-future');
-            button.textContent = show ? 'Hide future categories' : 'Show future categories';
-            button.setAttribute('aria-expanded', String(show));
+        const goal = panel.querySelector('.journey-goal');
+        const text = document.createElement('span');
+        const hide = document.createElement('button');
+        hide.className = 'btn journey-goal-hide'; hide.textContent = 'Hide';
+        hide.setAttribute('aria-label', 'Hide this journey goal until your next lifetime');
+        hide.onclick = () => {
+            gameData.hiddenJourneyGoals ||= {};
+            gameData.hiddenJourneyGoals[panel.id] = true;
+            goal.hidden = true; scheduleGameSave();
         };
-        panel.querySelector('.journey-goal').after(button);
+        goal.replaceChildren(text, hide);
+        goal.hidden = !!gameData.hiddenJourneyGoals?.[panel.id];
     }
     installGameTooltips();
 }
@@ -99,24 +102,22 @@ function updateExperienceUI() {
     const plan = gameData.manuscript;
     const service = document.getElementById('bookServiceSettings');
     if (service) service.hidden = !BALANCE.writing.salesEnabled;
-    const waiting = document.getElementById('awaitingBookEditor');
-    if (waiting) waiting.hidden = !BALANCE.writing.salesEnabled || !plan?.awaitingEditor;
+    const feeHelp = document.getElementById('editorFeeHelp');
+    if (feeHelp) feeHelp.hidden = !!gameData.hasUsedEditor || (gameData.completedBooks || []).some(book => book.story?.editorPaid);
     if (BALANCE.writing.salesEnabled) setExperienceText('bookEditorQuote', `Next manuscript: $${format(editingQuote())} for paid editing.${gameData.currentBook && plan?.editor === 'paid' ? ` Current manuscript's locked fee: $${format(plan.editorFee)}.` : ''}`);
     const editorial = document.getElementById('editorialChoice');
     if (editorial) editorial.hidden = !gameData.currentBook || !!plan?.edit || gameData.wordsWritten < getBookLength() * .5;
-    const queue = document.getElementById('bookQueue');
-    if (queue && document.activeElement !== queue) {
-        const value = gameData.queueMode === 'continuous' ? 'continuous' : String(gameData.queueRemaining || 0);
-        if (![...queue.options].some(option => option.value === value)) queue.add(new Option(`${value} more books`, value));
-        queue.value = value;
-    }
     if (plan) setExperienceText('storyPreview', `${getBookTitle()}: ${plan.protagonist || 'a writer'} pursues ${plan.theme || 'a new beginning'}, heading toward a ${plan.ending || 'hopeful'} ending. ${plan.edit === 'revise' ? 'Your revision adds space for the consequences to unfold.' : plan.edit === 'cut' ? 'Your edit cuts away detours and moves directly to the ending.' : 'The shape of this story is yours to choose.'}`);
     const book = gameData.currentBook;
     const goal = gameData.booksPublished === 0 ? (book ? 'Your first milestone: finish this manuscript. Give writing time with the slider; publication starts a daily royalty income.' : 'Your first milestone: publish a book. Open Writing, choose a genre and allocate writing time. Work funds your living costs; Skills improve your craft.') :
         gameData.booksPublished < 5 ? `Build your backlist: ${gameData.booksPublished}/5 books. Five publications unlock a better royalty contract.` :
         `Build your legacy: ${gameData.booksPublished} books published. Train your craft, improve your next book, and carry experience into your next lifetime.`;
     const displayGoal = BALANCE.writing.salesEnabled ? 'Work funds your living costs. Publish stronger books to grow your readership; each release earns declining sales for two game years. Build an audience that can support your writing.' : goal;
-    for (const el of document.querySelectorAll('.journey-goal')) if (el.textContent !== displayGoal) el.textContent = displayGoal;
+    for (const el of document.querySelectorAll('.journey-goal')) {
+        el.hidden = !!gameData.hiddenJourneyGoals?.[el.parentElement.id];
+        const text = el.querySelector('span');
+        if (text && text.textContent !== displayGoal) text.textContent = displayGoal;
+    }
     const speed = book ? getWritingSpeed() * getGameSpeed() : 0;
     const remaining = book && speed > 0 ? Math.ceil(Math.max(0, getBookLength() - gameData.wordsWritten) / speed) : null;
     const quality = book ? getProjectedBookQuality() : 0;

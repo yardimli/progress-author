@@ -70,6 +70,8 @@ var gameData = {
 	careerFinance: [],
 	writingIndependent: false,
 	automation: { promote: false, train: false, lastDay: null },
+	hiddenJourneyGoals: {},
+	hasUsedEditor: false,
 	bookSalesVersion: 0,
 	royaltyBalanceVersion: 0,
 	loggedDeath: false,
@@ -87,9 +89,6 @@ var gameData = {
 	purchaseVersion: 1,
 	manuscript: null,
 	draftPlan: null,
-	queueRemaining: 0,
-	queueMode: 'finite',
-	queueGenre: null,
 	
 	introSeen: false,
 	

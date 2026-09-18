@@ -123,13 +123,8 @@ function runCareerAutomation() {
     if (gameData.automation.lastDay === day) return;
     gameData.automation.lastDay = day;
     checkWritingLivelihood();
-    if (gameData.automation.promote) {
-        const current = gameData.currentJob;
-        const candidates = (jobCategories[current.baseData.category] || []).map(name => gameData.taskData[name])
-            .filter(task => task && gameData.unlocks[task.name] && areRequirementsMet(task.baseData) && task.baseData.income > current.baseData.income && task.getIncome() > current.getIncome())
-            .sort((a, b) => b.getIncome() - a.getIncome());
-        if (candidates.length) gameData.currentJob = candidates[0];
-    }
+    // Old saves may retain this flag; employment is now always chosen manually.
+    gameData.automation.promote = false;
     if (gameData.automation.train) {
         const next = nextTrainingTask();
         if (next) gameData.currentSkill = next;

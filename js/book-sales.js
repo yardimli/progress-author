@@ -68,15 +68,16 @@ function settleBookEditor() {
     const plan = gameData.manuscript;
     if (!plan || plan.editor !== 'paid' || plan.editorPaid) return true;
     if (gameData.coins < plan.editorFee) {
-        if (plan.editorFallback === 'free') { plan.editor = 'none'; plan.awaitingEditor = false; return true; }
-        plan.awaitingEditor = true;
-        addGameNotification({ type: 'summary', name: 'Manuscript awaiting editing', message: `Your completed manuscript needs $${format(plan.editorFee)} for its editor. Other progress continues. Publish without editing or save enough to pay.` });
-        return false;
+        logEvent(`Could not afford editing for ${escapeGameText(getBookTitle())}: fee $${format(plan.editorFee)}, available $${format(gameData.coins)}. Published without paid editing; no fee charged.`);
+        plan.editor = 'none';
+        plan.awaitingEditor = false;
+        return true;
     }
     gameData.coins -= plan.editorFee;
     careerFinanceRow(Math.floor(gameData.days)).editing += plan.editorFee;
     recordJournalMoney('purchase', plan.editorFee, 'Editing: ' + getBookTitle());
     plan.editorPaid = true;
+    gameData.hasUsedEditor = true;
     plan.awaitingEditor = false;
     return true;
 }

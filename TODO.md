@@ -42,6 +42,10 @@ Version 2.0.0 now enables the career/authorship balance in the normal game. Earl
 - [x] 20. Restore unfinished books; explicit local debug opt-in.
 
 ## Clarity and navigation
+- [x] Remove writing queues and automatic next-book starts. Clear obsolete queue settings on load while preserving the current manuscript; publication now waits for a new player-started book, including after offline progress. Earlier queue checklist entries are historical.
+- [x] Remove automatic job promotion and future-category toggles; show category headers without an extra control.
+- [x] Add per-panel journey-goal dismissal saved until retirement/reset, compact writing-stat cards, and collapsible writing desk/budget sections.
+- [x] Hide editing-fee help after the first paid-edited publication. Remove the insufficient-funds choice: publish without paid editing or its bonus, charge nothing and record the missed fee in the journal. Old waiting manuscripts resume with the same rule.
 - [x] 4. Explain work → craft → publish → legacy and the next milestone.
 - [x] 5. Four desktop/mobile screens with active-task context.
 - [x] 6. Compact header; secondary resources in Stats & breakdowns.

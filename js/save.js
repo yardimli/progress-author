@@ -120,6 +120,9 @@ function loadGameData() {
 		replaceSaveDict(gameData.itemData, gameDataSave.itemData);
 		
 		gameData = gameDataSave;
+		// A manuscript survives migration; automatic future-book queues do not.
+		for (const key of ['queueMode', 'queueRemaining', 'queueGenre']) delete gameData[key];
+		gameData.hasUsedEditor ||= (gameData.completedBooks || []).some(book => book.story?.editorPaid);
 		migrateJournalFinance();
 		
 		if (!gameData.potions) {

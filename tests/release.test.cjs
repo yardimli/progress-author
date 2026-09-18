@@ -29,7 +29,7 @@ test('normal production startup loads the released catalogue and balance without
     assert.equal(g.gameData.balanceProfile, 'career-authorship-1');
 });
 
-test('main-save rollout preserves a manuscript, queue and progress and migrates only once', () => {
+test('main-save rollout preserves a manuscript and progress, discards queues and migrates only once', () => {
     const old = createGame();
     old.gameData.version = '1.1.0';
     old.gameData.currentProperty = old.gameData.itemData['Large House'];
@@ -37,7 +37,8 @@ test('main-save rollout preserves a manuscript, queue and progress and migrates 
     old.gameData.taskData.Focus.level = 21;
     old.gameData.coins = 12345;
     old.gameData.selectedGenre = 'Romance';
-    old.setBookQueue('continuous'); old.startQueuedBook();
+    old.startWritingBook();
+    old.gameData.queueMode = 'continuous'; old.gameData.queueRemaining = 10;
     old.gameData.wordsWritten = 123;
     old.gameData.completedBooks = [{ id: 'older', quality: 30, royalties: 8 }];
     old.gameData.royalties = 8;
@@ -53,7 +54,7 @@ test('main-save rollout preserves a manuscript, queue and progress and migrates 
     assert.ok(g.gameData.ownedItems.includes('Style Guide'));
     assert.equal(g.gameData.currentBook, old.gameData.currentBook);
     assert.equal(g.gameData.wordsWritten, 123);
-    assert.equal(g.gameData.queueMode, 'continuous');
+    assert.equal(g.gameData.queueMode, undefined);
     assert.equal(g.gameData.completedBooks[0].sales.duration, 365);
     assert.equal(g.gameData.royalties, 8);
     assert.equal(g.localStorage.getItem('authorsJourneySave-before-career-authorship-1'), original);

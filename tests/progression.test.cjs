@@ -4,75 +4,58 @@ const vm = require('node:vm');
 const { createGame } = require('./helpers/headless-game.cjs');
 const { simulate } = require('../scripts/simulate-progression.cjs');
 
-function queueGame() {
-    const g = createGame();
+function manuscriptGame() {
+    const g = createGame({ profile: 'release' });
     g.booksBaseData = { example: { title: 'A story', genre: 'Romance', wordCount: 100 } };
     g.sceneTypesBaseData = { Romance: { Dialogue: {} } };
     g.gameData.selectedGenre = 'Romance';
     g.gameData.workWritingBalance = 100;
     g.gameData.draftPlan = { approach: 'crafted', theme: 'justice' };
-    g.setBookQueue('continuous');
-    g.startQueuedBook();
+    g.startWritingBook();
     return g;
 }
 
-test('continuous writing crosses the old ten-book limit and can stop after its current draft', () => {
-    const g = queueGame();
+test('publication stops until the player starts another manuscript', () => {
+    const g = manuscriptGame();
+    g.finishBook();
     for (let i = 0; i < 12; i++) g.finishBook();
-    assert.equal(g.gameData.booksPublished, 12);
+    assert.equal(g.gameData.booksPublished, 1);
+    assert.equal(g.gameData.currentBook, null);
+    g.startWritingBook();
     assert.equal(g.gameData.currentBook, 'example');
     assert.equal(g.gameData.manuscript.approach, 'crafted');
     assert.equal(g.gameData.manuscript.theme, 'justice');
-    assert.equal(g.gameData.queueRemaining, 0);
-    g.setBookQueue('0');
+});
+
+test('legacy queue migration retains the active draft but removes future-book settings', () => {
+    const g = manuscriptGame();
+    g.gameData.queueMode = 'continuous'; g.gameData.queueRemaining = 10; g.gameData.queueGenre = 'Romance';
+    g.gameData.wordsWritten = 25;
+    g.saveGameData(); g.loadGameData();
+    assert.equal(g.gameData.wordsWritten, 25);
     assert.equal(g.gameData.currentBook, 'example');
-    g.finishBook();
-    assert.equal(g.gameData.currentBook, null);
+    for (const key of ['queueMode', 'queueRemaining', 'queueGenre']) assert.equal(g.gameData[key], undefined);
+    g.saveGameData(); g.loadGameData();
+    assert.equal(g.gameData.queueMode, undefined);
 });
 
-test('continuous queue saves as plain data, waits at zero allocation and stops at retirement', () => {
-    const g = queueGame();
-    g.saveGameData();
-    const saved = JSON.parse(g.localStorage.getItem('authorsJourneySave'));
-    assert.equal(saved.queueMode, 'continuous');
-    g.loadGameData();
-    assert.equal(g.gameData.queueMode, 'continuous');
-    g.gameData.workWritingBalance = 0;
-    g.writeProgress('Dialogue', 60);
-    assert.equal(g.gameData.wordsWritten, 0);
-    assert.equal(g.gameData.booksPublished, 0);
-    g.gameData.days = g.getLifespan();
-    g.finishBook();
-    assert.equal(g.gameData.currentBook, null);
-    g.rebirthReset();
-    assert.equal(g.gameData.queueMode, 'finite');
+test('manual start refuses an active draft, missing genre or retirement', () => {
+    const g = manuscriptGame(), current = g.gameData.manuscript;
+    g.startWritingBook(); assert.equal(g.gameData.manuscript, current);
+    g.finishBook(); g.gameData.selectedGenre = 'missing';
+    g.startWritingBook(); assert.equal(g.gameData.currentBook, null);
+    g.gameData.selectedGenre = 'Romance'; g.gameData.days = g.getLifespan();
+    g.startWritingBook(); assert.equal(g.gameData.currentBook, null);
 });
 
-test('missing queue genre stops once with a non-blocking notice and preserves an active draft', () => {
-    const g = queueGame();
-    const current = g.gameData.manuscript;
-    g.startQueuedBook();
-    assert.equal(g.gameData.manuscript, current);
-    g.gameData.queueGenre = 'missing';
-    g.finishBook();
+test('offline progress finishes the active manuscript without starting another or duplicating catch-up', () => {
+    const g = manuscriptGame();
+    g.gameData.lastProgressAt = 1000000; g.gameData.offlineEligible = true;
+    g.advanceAwayProgress(1060060);
+    assert.equal(g.gameData.booksPublished, 1);
     assert.equal(g.gameData.currentBook, null);
-    assert.equal(g.gameData.queueMode, 'finite');
-    assert.equal(g.gameData.notifications.filter(n => n.name === 'Writing queue stopped').length, 1);
-    g.startQueuedBook();
-    assert.equal(g.gameData.notifications.filter(n => n.name === 'Writing queue stopped').length, 1);
-    assert.equal(g.isPaused, false);
-});
-
-test('continuous writing completes offline without granting duplicate catch-up', () => {
-    const g = queueGame();
-    g.gameData.lastProgressAt = 1000000;
-    g.gameData.offlineEligible = true;
-    g.advanceAwayProgress(1000060 + 60000);
-    assert.ok(g.gameData.booksPublished > 10);
-    const books = g.gameData.booksPublished;
-    g.advanceAwayProgress(1000060 + 60000);
-    assert.equal(g.gameData.booksPublished, books);
-    assert.equal(g.gameData.queueMode, 'continuous');
+    g.advanceAwayProgress(1060060);
+    assert.equal(g.gameData.booksPublished, 1);
 });
 
 test('balance overrides affect production formulas without leaking to another game', () => {

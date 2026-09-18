@@ -352,7 +352,8 @@ function restoreWritingSession() {
 }
 
 function startWritingBook () {
-	if (!gameData.selectedGenre) return;
+	if (gameData.currentBook || !isAlive() || !gameData.selectedGenre) return;
+	if (!Object.values(booksBaseData || {}).some(book => book.genre === gameData.selectedGenre) || !Object.keys(sceneTypesBaseData?.[gameData.selectedGenre] || {}).length) return;
 	planNewManuscript();
 	pickNextBook(gameData.selectedGenre);
 	gameData.manuscript.targetWords = getNewManuscriptLength();
@@ -671,7 +672,6 @@ function finishBook () {
 	isClearingLine = false;
 	currentTypingSceneType = null;
 	if (typeof isCatchingUp === 'undefined' || !isCatchingUp) document.getElementById('liveWritingText').innerHTML = '<span class="blinking-cursor">|</span>';
-	startQueuedBook();
 }
 
 function rebirthOne () {
@@ -708,6 +708,7 @@ function rebirthReset () {
 	gameData.careerFinance = [];
 	gameData.writingIndependent = false;
 	gameData.automation = { promote: false, train: false, lastDay: null };
+	gameData.hiddenJourneyGoals = {};
 	gameData.logHistory = [];
 	gameData.journalFinance = [];
 	gameData.monthlyChartData = [];
@@ -721,8 +722,6 @@ function rebirthReset () {
 	gameData.completedBooks = [];
 	gameData.ownedItems = [];
 	gameData.manuscript = null;
-	gameData.queueRemaining = 0;
-	gameData.queueMode = 'finite';
 	
 	gameData.rebirthOnePrompted = false;
 	gameData.rebirthTwoPrompted = false;

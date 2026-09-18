@@ -38,7 +38,7 @@ test('independence needs a full observed year and beats employment after editing
     assert.equal(g.gameData.notifications.filter(n => n.name === 'Full-Time Author').length, 1);
     g.gameData.careerFinance.shift(); assert.equal(g.writingLivelihood().qualified, false);
 });
-test('automation is opt-in, respects gates and branch, and preserves allocation', () => {
+test('legacy job automation cannot change employment or allocation', () => {
     const g = createGame({ profile: 'career' });
     const current = g.gameData.currentJob, food = g.gameData.taskData['Food Service'];
     food.baseData.requirements = []; g.gameData.unlocks[food.name] = true;
@@ -48,9 +48,9 @@ test('automation is opt-in, respects gates and branch, and preserves allocation'
     food.baseData.requirements = [{ type: 'books', value: 99 }];
     g.runCareerAutomation(); assert.equal(g.gameData.currentJob, current);
     food.baseData.requirements = []; g.gameData.days++;
-    g.runCareerAutomation(); assert.equal(g.gameData.currentJob, food);
+    g.runCareerAutomation(); assert.equal(g.gameData.currentJob, current);
     assert.equal(g.gameData.workWritingBalance, 65);
-    g.saveGameData(); g.loadGameData(); assert.equal(g.gameData.automation.promote, true);
+    g.saveGameData(); g.loadGameData(); assert.equal(g.gameData.automation.promote, false);
 });
 test('training stays in the selected category and reset clears lifetime accounting', () => {
     const g = createGame({ profile: 'career' });
@@ -61,4 +61,16 @@ test('training stays in the selected category and reset clears lifetime accounti
     g.careerFinanceRow(Math.floor(g.gameData.days)); g.gameData.writingIndependent = true;
     g.rebirthReset(); assert.equal(g.gameData.careerFinance.length, 0);
     assert.equal(g.gameData.writingIndependent, false); assert.equal(g.gameData.automation.train, false);
+});
+
+test('hidden journey goals survive reload and return for a new lifetime', () => {
+    const g = createGame({ profile: 'release' });
+    g.gameData.hiddenJourneyGoals = { jobs: true, writing: true };
+    g.gameData.hasUsedEditor = true;
+    g.saveGameData(); g.loadGameData();
+    assert.equal(g.gameData.hiddenJourneyGoals.jobs, true);
+    assert.equal(g.gameData.hiddenJourneyGoals.writing, true);
+    g.rebirthReset();
+    assert.equal(Object.keys(g.gameData.hiddenJourneyGoals).length, 0);
+    assert.equal(g.gameData.hasUsedEditor, true);
 });

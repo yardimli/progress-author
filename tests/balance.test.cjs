@@ -357,7 +357,7 @@ test('pacing milestones and inherited experience remain attainable', t => {
     assert.ok(next.jobEnd > first.jobEnd && next.skillEnd > first.skillEnd);
 });
 
-test('new short manuscripts, editorial plans, purchases and queues survive reload', () => {
+test('manuscripts and purchases survive reload while old queues are discarded', () => {
     const g = awayGame();
     g.booksBaseData.example.wordCount = 80000;
     g.gameData.currentBook = 'example';
@@ -372,8 +372,8 @@ test('new short manuscripts, editorial plans, purchases and queues survive reloa
     assert.equal(g.getBookLength(), 13800);
     assert.equal(g.getBookTitle(), 'My story');
     assert.equal(g.getPurchasePrice('Used Laptop'), 0);
-    assert.equal(g.gameData.queueRemaining, 3);
-    assert.equal(g.gameData.queueGenre, 'Romance');
+    assert.equal(g.gameData.queueRemaining, undefined);
+    assert.equal(g.gameData.queueGenre, undefined);
 });
 test('away progress expires potions, preserves active analytics, and cannot be claimed twice', () => {
     const g = awayGame();
@@ -400,16 +400,16 @@ test('away progress stops at retirement and handles bankruptcy', () => {
     assert.equal(h.gameData.currentProperty.name, 'Homeless');
     assert.ok(h.gameData.coins >= 0);
 });
-test('offline book queue finishes exactly the requested number without dialogs', () => {
+test('offline progress finishes only the active manuscript despite obsolete queue fields', () => {
     const g = awayGame();
     g.gameData.currentBook = 'example'; g.gameData.selectedGenre = 'Romance';
     g.gameData.queueGenre = 'Romance'; g.gameData.queueRemaining = 2;
     g.currentAutoSceneType = 'Dialogue';
     g.getWritingSpeed = () => 100;
     g.advanceAwayProgress(1005000);
-    assert.equal(g.gameData.booksPublished, 3);
-    assert.equal(g.gameData.completedBooks.length, 3);
-    assert.equal(g.gameData.queueRemaining, 0);
+    assert.equal(g.gameData.booksPublished, 1);
+    assert.equal(g.gameData.completedBooks.length, 1);
+
     assert.equal(g.gameData.currentBook, null);
     assert.equal(g.isPaused, false);
 });

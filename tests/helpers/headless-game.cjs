@@ -53,6 +53,7 @@ function createGame({ seed = 12345, author = 'author1', balance = {}, profile = 
         isInitialized = true;
         isCatchingUp = true;
         buildSceneButtons = () => {};
+        updateUI = () => {};
         showRetirementModal = () => {};
         queueInfoModal = () => {};
         logEvent = () => {};

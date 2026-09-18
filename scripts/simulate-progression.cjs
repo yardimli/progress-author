@@ -65,8 +65,8 @@ function simulate({ strategy = 'mixed', author = 'author1', lives = 2, secondsPe
                 g.gameData.workWritingBalance = allocation;
                 if (allocation > 0 && !g.gameData.currentBook && (bookLimit === null || g.gameData.booksPublished < bookLimit)) {
                     g.gameData.selectedGenre = Object.keys(g.sceneTypesBaseData)[0];
-                    g.setBookQueue(bookLimit === null ? 'continuous' : String(Math.min(10, bookLimit - g.gameData.booksPublished)));
-                    g.startQueuedBook();
+                    // Simulated player action at the next policy step, never a live-game queue.
+                    g.startWritingBook();
                 }
                 // A reproducible policy, not an optimal player: buy each affordable
                 // support; replace home/transport only with a stronger tier. Reserve

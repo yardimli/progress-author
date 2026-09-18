@@ -18,7 +18,7 @@ test('dashboard shows published income and clears completed manuscript stats in 
         g.booksBaseData = { example: { title: 'First book', genre: 'Romance', wordCount: 100 } };
         g.sceneTypesBaseData = { Romance: { Dialogue: {} } };
         g.gameData.selectedGenre = 'Romance'; g.gameData.workWritingBalance = 50;
-        g.setBookQueue('1'); g.startQueuedBook(); g.updateExperienceUI();
+        g.startWritingBook(); g.updateExperienceUI();
         assert.equal(visible()['Published book income'], `$${g.format(0)} / game day`);
         assert.ok(visible()['Projected quality']);
         g.finishBook(); g.updateExperienceUI();
@@ -27,7 +27,7 @@ test('dashboard shows published income and clears completed manuscript stats in 
         assert.equal(details.hidden, true); assert.equal(breakdown.textContent, '');
         assert.equal(visible()['Published book income'], `$${g.format(g.gameData.royalties)} / game day`);
         assert.ok(g.gameData.royalties > 0);
-        g.setBookQueue('continuous'); g.startQueuedBook(); g.finishBook(); g.updateExperienceUI();
+        g.startWritingBook(); g.finishBook(); g.startWritingBook(); g.updateExperienceUI();
         assert.equal(visible().Manuscript, 'Writing');
         assert.ok(visible()['Writing speed']); assert.equal(details.hidden, false);
     }

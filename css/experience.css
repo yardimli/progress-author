@@ -29,10 +29,10 @@
 #resourceBands .marquee-item { padding: 0; }
 #resourceBands .duplicate { display: none; }
 .journey-goal { background: var(--journal-button); color: var(--journal-ink); border-left: 4px solid var(--journal-positive); padding: 16px; font-size: 16px; margin: 0 0 16px; }
-.future-toggle { align-self: flex-start; margin-bottom: 16px; }
+.journey-goal-hide { float: right; margin-left: 12px; padding: 4px 10px; }
+.journey-goal[hidden] { display: none; }
 .category-header, .dark .category-header, .row-title, .dark .row-title { color: var(--journal-ink); }
 .category-description, .dark .category-description { color: var(--journal-muted); font-size: 15px; }
-.panel-column:not(.show-future) .distant-category { display: none; }
 .category-content.grid, .category-content.list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
 .ui-card { width: 100%; aspect-ratio: auto; min-height: 124px; }
 #jobs .ui-card, #shop .ui-card { align-items: stretch; justify-content: flex-start; }
@@ -57,11 +57,10 @@ body.dark .row-value, body.dark .row-expense, body .locked-row .locked-text, bod
 .writing-dashboard { margin-bottom: 20px; }
 .story-plan { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; width: 100%; margin-bottom: 20px; }
 .story-plan label { display: flex; flex-direction: column; gap: 6px; font-size: 16px; }
-.story-plan input, .story-plan select, .queue-setting select { padding: 10px; font: inherit; border: 1px solid var(--journal-border); background: var(--journal-paper); color: var(--journal-ink); min-width: 0; }
+.story-plan input, .story-plan select { padding: 10px; font: inherit; border: 1px solid var(--journal-border); background: var(--journal-paper); color: var(--journal-ink); min-width: 0; }
 .story-plan label:last-child { grid-column: 1 / -1; }
 #editorialChoice { background: var(--journal-button); padding: 20px; margin-bottom: 20px; color: var(--journal-ink); }
 #editorialChoice .btn { margin: 5px; }
-.queue-setting { line-height: 2; margin-bottom: 16px; }
 .purchase-price { color: var(--journal-ink); font-size: 14px; font-weight: bold; }
 .achievement-progress { font-size: 14px; color: var(--journal-muted); }
 .journal-filters { display: flex; flex-wrap: wrap; gap: 20px; border: 1px solid var(--journal-border); padding: 12px; }
@@ -70,11 +69,13 @@ body.dark .row-value, body.dark .row-expense, body .locked-row .locked-text, bod
 .journal-income b { color: var(--journal-positive); }
 .journal-expenses b { color: var(--journal-danger); }
 .writing-dashboard h2 { margin: 0 0 12px; }
-#writingMetrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-#writingMetrics > div { background: var(--journal-button); padding: 14px; border: 1px solid var(--journal-border); }
+#writingMetrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 6px; }
+#writingMetrics > div { background: var(--journal-button); padding: 7px 10px; border: 1px solid var(--journal-border); }
+.writing-dashboard > summary { font-size: 20px; font-weight: bold; margin-bottom: 10px; color: var(--journal-ink); }
+.desk-dashboard > details { margin-top: 8px; }
 #writingMetrics span, #writingMetrics strong { display: block; }
 #writingMetrics span { font-size: 14px; color: var(--journal-muted); }
-#writingMetrics strong { font-size: 18px; color: var(--journal-ink); }
+#writingMetrics strong { font-size: 16px; color: var(--journal-ink); }
 #writingBreakdown { font-size: 16px; line-height: 1.7; }
 #lifeExperiencesSection { display: block !important; }
 #bookSelectionContainer:hover, #bookStatusRow:hover, .life-experiences-container:hover { transform: none; background-color: inherit; border-color: var(--journal-border); }
