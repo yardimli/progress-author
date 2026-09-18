@@ -20,15 +20,6 @@ function openJournal() {
 
 function initExperienceUI() {
     if (BALANCE.writing.salesEnabled) {
-        for (const [panel, key, label] of [['skills', 'train', 'Automatically choose training using the plan below']]) {
-            const control = document.createElement('label');
-            const input = document.createElement('input');
-            input.type = 'checkbox'; input.checked = gameData.automation[key];
-            input.onchange = () => { gameData.automation[key] = input.checked; gameData.automation.lastDay = null; scheduleGameSave(); };
-            control.append(input, document.createTextNode(label + ' (checked once per game day).'));
-            document.getElementById(panel).querySelector('.journey-goal').after(control);
-        }
-        buildTrainingControls();
         for (const [id, field, fallback] of [['bookEditor', 'editor', 'none']]) {
             const input = document.getElementById(id);
             input.value = gameData.draftPlan?.[field] || fallback;
@@ -51,39 +42,6 @@ function initExperienceUI() {
         goal.hidden = !!gameData.hiddenJourneyGoals?.[panel.id];
     }
     installGameTooltips();
-}
-
-function buildTrainingControls() {
-    const section = document.createElement('section');
-    section.className = 'writing-dashboard'; section.id = 'trainingPlanControls';
-    section.innerHTML = '<h3>Training plan</h3><label>Priority <select id="trainingMode"><option value="category">Lowest level in selected category</option><option value="promotion">Skills for the next job in this branch</option><option value="targets">My ordered skill targets</option></select></label><div id="trainingTargetControls"><label>Skill <select id="trainingTargetSkill"></select></label> <label>Target level <input id="trainingTargetLevel" type="number" min="1" max="100000" value="20"></label> <button class="btn" id="addTrainingTarget">Add / update target</button><ol id="trainingTargets"></ol></div><p>Automatic training must be enabled above. Locked targets train their available skill prerequisites first. Unavailable targets are skipped. When no target can advance, your selected skill continues training. This never switches your job or time allocation.</p>';
-    document.getElementById('skills').querySelector('input[type="checkbox"]').parentElement.after(section);
-    const mode = document.getElementById('trainingMode');
-    mode.value = gameData.automation.trainingMode || 'category';
-    const targetControls = document.getElementById('trainingTargetControls');
-    targetControls.hidden = mode.value !== 'targets';
-    mode.onchange = () => { gameData.automation.trainingMode = mode.value; gameData.automation.lastDay = null; targetControls.hidden = mode.value !== 'targets'; scheduleGameSave(); };
-    const choices = document.getElementById('trainingTargetSkill');
-    for (const name of Object.keys(skillBaseData)) choices.add(new Option(name, name));
-    document.getElementById('addTrainingTarget').onclick = () => {
-        if (addTrainingTarget(choices.value, document.getElementById('trainingTargetLevel').value)) { renderTrainingTargets(); scheduleGameSave(); }
-    };
-    renderTrainingTargets();
-}
-function renderTrainingTargets() {
-    const list = document.getElementById('trainingTargets'); list.replaceChildren();
-    for (const [index, target] of (gameData.automation.targets || []).entries()) {
-        const row = document.createElement('li'); row.append(document.createTextNode(`${target.skill} → level ${target.level} `));
-        for (const [label, action] of [['Move up', () => {
-            if (index > 0) [gameData.automation.targets[index - 1], gameData.automation.targets[index]] = [gameData.automation.targets[index], gameData.automation.targets[index - 1]];
-        }], ['Remove', () => gameData.automation.targets.splice(index, 1)]]) {
-            const button = document.createElement('button'); button.className = 'btn'; button.textContent = label;
-            button.setAttribute('aria-label', `${label} ${target.skill}`); button.disabled = label === 'Move up' && index === 0;
-            button.onclick = () => { action(); gameData.automation.lastDay = null; renderTrainingTargets(); scheduleGameSave(); };
-            row.append(button);
-        }
-        list.append(row);
-    }
 }
 
 var lastBudgetRefresh = -Infinity;

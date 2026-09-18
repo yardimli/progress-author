@@ -1,5 +1,5 @@
 {
-  "id": "career-authorship-1",
+  "id": "career-authorship-3",
   "writing": {
     "salesEnabled": true,
     "salesDays": 730,
@@ -72,6 +72,7 @@
   "replacements": {
     "Large House": "Suburban",
     "Private Villa": "City Penthouse",
+    "Car": "Bus Pass",
     "Bicycle": "Bus Pass",
     "Scooter": "Bus Pass",
     "New Car": "Used Car",

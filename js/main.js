@@ -3,7 +3,7 @@
 // Renamed from update() to updateLogic() and removed updateUI()
 // This allows logic to run every frame while UI updates periodically
 function updateLogic () {
-    if (BALANCE.writing.salesEnabled) runCareerAutomation();
+    if (BALANCE.writing.salesEnabled) checkCareerMilestones();
     doCurrentTask(gameData.currentJob);
     doCurrentTask(gameData.currentSkill);
     applyExpenses();

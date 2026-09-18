@@ -120,6 +120,8 @@ function loadGameData() {
 		replaceSaveDict(gameData.itemData, gameDataSave.itemData);
 		
 		gameData = gameDataSave;
+		// Careers and skills are selected manually, including in older saves.
+		gameData.automation = { promote: false, train: false, lastDay: null };
 		// A manuscript survives migration; automatic future-book queues do not.
 		for (const key of ['queueMode', 'queueRemaining', 'queueGenre']) delete gameData[key];
 		gameData.hasUsedEditor ||= (gameData.completedBooks || []).some(book => book.story?.editorPaid);

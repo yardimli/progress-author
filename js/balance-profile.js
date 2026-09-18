@@ -41,6 +41,7 @@ function applyCareerPresentation() {
 
 function migrateCareerSave(saved) {
     if (!activeBalanceProfile || saved.balanceProfile === activeBalanceProfile.id) return;
+    const transportRenameOnly = ['career-authorship-1', 'career-authorship-2'].includes(saved.balanceProfile);
     const replacements = activeBalanceProfile.replacements;
     const mapped = name => replacements[name] || name;
     const oldItems = saved.itemData || {};
@@ -79,6 +80,7 @@ function migrateCareerSave(saved) {
     saved.skillXpMultiplier = BALANCE.career.skillXpScale;
     saved.balanceProfile = activeBalanceProfile.id;
     saved.notifications ||= [];
+    for (const entry of saved.notifications) if (entry.type === 'item' && entry.name === 'Car') entry.name = 'Bus Pass';
     saved.notifications.unshift({ type: 'summary', name: 'Career and authorship update', read: false, age: saved.days,
-        message: 'Older upgrades were exchanged for their replacement tiers, without cash refunds. Former Editor ownership grants Style Guide access; hiring an editor is now an optional service paid per manuscript. Careers and upkeep have changed. Your original save is backed up separately.' });
+        message: transportRenameOnly ? 'The $400/day transport tier is Bus Pass again, with its original bus artwork. Prices and bonuses are unchanged. Your ownership and equipped transport have carried over.' : 'Older upgrades were exchanged for their replacement tiers, without cash refunds. Former Editor ownership grants Style Guide access; hiring an editor is now an optional service paid per manuscript. Careers and upkeep have changed. Your original save is backed up separately.' });
 }

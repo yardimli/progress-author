@@ -43,21 +43,21 @@ test('legacy job automation cannot change employment or allocation', () => {
     const current = g.gameData.currentJob, food = g.gameData.taskData['Food Service'];
     food.baseData.requirements = []; g.gameData.unlocks[food.name] = true;
     g.gameData.workWritingBalance = 65;
-    g.runCareerAutomation(); assert.equal(g.gameData.currentJob, current);
+    g.checkCareerMilestones(); assert.equal(g.gameData.currentJob, current);
     g.gameData.automation.promote = true; g.gameData.automation.lastDay = null;
     food.baseData.requirements = [{ type: 'books', value: 99 }];
-    g.runCareerAutomation(); assert.equal(g.gameData.currentJob, current);
+    g.checkCareerMilestones(); assert.equal(g.gameData.currentJob, current);
     food.baseData.requirements = []; g.gameData.days++;
-    g.runCareerAutomation(); assert.equal(g.gameData.currentJob, current);
+    g.checkCareerMilestones(); assert.equal(g.gameData.currentJob, current);
     assert.equal(g.gameData.workWritingBalance, 65);
     g.saveGameData(); g.loadGameData(); assert.equal(g.gameData.automation.promote, false);
 });
-test('training stays in the selected category and reset clears lifetime accounting', () => {
+test('saved automatic training cannot switch the selected skill and reset clears accounting', () => {
     const g = createGame({ profile: 'career' });
     const focus = g.gameData.taskData.Focus, other = g.gameData.taskData[ g.skillCategories[focus.baseData.category].find(name => name !== focus.name) ];
     focus.level = 20; other.baseData.requirements = []; g.gameData.unlocks[other.name] = true;
-    g.gameData.automation.train = true; g.runCareerAutomation();
-    assert.equal(g.gameData.currentSkill, other);
+    g.gameData.automation.train = true; g.checkCareerMilestones();
+    assert.equal(g.gameData.currentSkill, focus);
     g.careerFinanceRow(Math.floor(g.gameData.days)); g.gameData.writingIndependent = true;
     g.rebirthReset(); assert.equal(g.gameData.careerFinance.length, 0);
     assert.equal(g.gameData.writingIndependent, false); assert.equal(g.gameData.automation.train, false);

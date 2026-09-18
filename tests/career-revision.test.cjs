@@ -21,7 +21,7 @@ test('craft transfer comes from earned creative levels, is bounded, and survives
     g.gameData.taskData.Intern.level = 100000;
     assert.equal(craft.getXpGain(), base * 1.25);
 });
-test('priority targets train prerequisites, respect order and persist without changing allocation', () => {
+test('historical target recommendations never switch live training and are discarded on load', () => {
     const g = createGame({ profile: 'career' });
     g.gameData.unlocks.Focus = true;
     g.gameData.automation = { train: true, trainingMode: 'targets', lastDay: null };
@@ -29,11 +29,11 @@ test('priority targets train prerequisites, respect order and persist without ch
     g.gameData.workWritingBalance = 70;
     assert.equal(g.nextTrainingTask().name, 'Focus');
     g.gameData.taskData.Focus.level = 7; g.gameData.unlocks['Typing Speed'] = true;
-    g.runCareerAutomation(); assert.equal(g.gameData.currentSkill.name, 'Typing Speed');
+    g.checkCareerMilestones(); assert.equal(g.gameData.currentSkill.name, 'Focus');
     g.gameData.taskData['Typing Speed'].level = 20;
     assert.equal(g.nextTrainingTask().name, 'Focus');
     g.saveGameData(); g.loadGameData();
-    assert.equal(g.gameData.automation.targets.length, 2); assert.equal(g.gameData.workWritingBalance, 70);
+    assert.equal(g.gameData.automation.targets, undefined); assert.equal(g.gameData.workWritingBalance, 70);
     assert.equal(g.addTrainingTarget('Missing', 1), false); assert.equal(g.addTrainingTarget('Focus', Infinity), false);
 });
 test('promotion training finds craft prerequisites and skips retirement-gated targets', () => {

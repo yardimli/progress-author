@@ -42,6 +42,8 @@ Version 2.0.0 now enables the career/authorship balance in the normal game. Earl
 - [x] 20. Restore unfinished books; explicit local debug opt-in.
 
 ## Clarity and navigation
+- [x] Restore the $400/day Bus Pass tier and original bus artwork after the temporary Car rename. Migrate Car ownership, unlocks and equipment back to Bus Pass; all pricing and bonuses remain unchanged.
+- [x] Remove automatic training and its plan/target controls. Clear saved automation preferences on load; online/offline progress trains only the player's selected skill. Job selection is also manual.
 - [x] Remove writing queues and automatic next-book starts. Clear obsolete queue settings on load while preserving the current manuscript; publication now waits for a new player-started book, including after offline progress. Earlier queue checklist entries are historical.
 - [x] Remove automatic job promotion and future-category toggles; show category headers without an extra control.
 - [x] Add per-panel journey-goal dismissal saved until retirement/reset, compact writing-stat cards, and collapsible writing desk/budget sections.

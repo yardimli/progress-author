@@ -69,6 +69,8 @@ function careerBudget() {
     }
     return { wages, sales, upkeep, reserved, available, net: wages + sales - upkeep, runway };
 }
+// Recommendation helpers retained for historical headless balance policies only.
+// Live gameplay never applies their suggested skill.
 function addTrainingTarget(skill, level) {
     level = Math.floor(Number(level));
     if (!skillBaseData[skill] || !Number.isFinite(level) || level < 1 || level > 100000) return false;
@@ -117,16 +119,13 @@ function nextTrainingTask() {
         .sort((a, b) => a.level - b.level);
     return candidates[0]?.level < gameData.currentSkill.level ? candidates[0] : null;
 }
-function runCareerAutomation() {
+function checkCareerMilestones() {
     if (!BALANCE.writing.salesEnabled) return;
     const day = Math.floor(gameData.days);
     if (gameData.automation.lastDay === day) return;
     gameData.automation.lastDay = day;
     checkWritingLivelihood();
-    // Old saves may retain this flag; employment is now always chosen manually.
+    // Neither old saved preferences nor simulation settings may switch live tasks.
     gameData.automation.promote = false;
-    if (gameData.automation.train) {
-        const next = nextTrainingTask();
-        if (next) gameData.currentSkill = next;
-    }
+    gameData.automation.train = false;
 }
