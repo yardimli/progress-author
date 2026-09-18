@@ -96,3 +96,5 @@ Candidate values are not enabled in the normal game. Retirement redesign is defe
 - [x] Audit prerequisite cycles, duplicate unlock signatures, assets, removed-item replacements and achievement references.
 - [x] Measure all three authors across four allocations and two lives, plus controls and ten consecutive actual lives under unchanged retirement rules.
 - [ ] Final playtesting of late audience growth and career/author income transitions; retirement redesign and default-game rollout remain deferred.
+
+- [x] Replace misleading new-book royalty projections in the writing dashboard with actual published-book income; hide and clear manuscript-only stats when idle, retaining publication/readership totals. Verify first publication and continuous queues in both economies.

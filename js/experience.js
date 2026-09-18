@@ -93,7 +93,7 @@ function updateExperienceUI() {
         lastBudgetAllocation = gameData.workWritingBalance;
         const budget = careerBudget(), history = writingLivelihood();
         setExperienceText('careerBudgetText', `Per game day: work $${format(budget.wages)} + book sales $${format(budget.sales)} − upkeep $${format(budget.upkeep)} = ${budget.net < 0 ? '−' : '+'}$${format(Math.abs(budget.net))}. Editing reserved: $${format(budget.reserved)}. Available savings: $${format(budget.available)}.`);
-        setExperienceText('careerRunwayText', `Estimated savings runway: ${budget.runway === null ? 'current wages cover upkeep' : budget.runway === 0 ? 'editing fee exceeds savings' : format(budget.runway, 1) + ' game days'}. Includes declining existing sales; assumes no future releases, purchases or changes to work and upkeep. Manuscript finish estimate is above.`);
+        setExperienceText('careerRunwayText', `Estimated savings runway: ${budget.runway === null ? 'current wages cover upkeep' : budget.runway === 0 ? 'editing fee exceeds savings' : format(budget.runway, 1) + ' game days'}. Includes declining existing sales; assumes no future releases, purchases or changes to work and upkeep. ${gameData.currentBook ? 'Manuscript finish estimate is above.' : 'No manuscript is in progress.'}`);
         setExperienceText('writingLivelihoodText', `${gameData.writingIndependent ? 'Full-Time Author milestone earned. ' : ''}Last 365 completed game days (${format(Math.min(365, history.observed), 0)} observed): books $${format(history.sales)}, editing-adjusted books $${format(history.net)}, wages $${format(history.work)}, upkeep $${format(history.upkeep)}. Earn independence when a full year of editing-adjusted book income covers upkeep and exceeds actual wages and available full-time employment.`);
     }
     const plan = gameData.manuscript;
@@ -117,30 +117,37 @@ function updateExperienceUI() {
         `Build your legacy: ${gameData.booksPublished} books published. Train your craft, improve your next book, and carry experience into your next lifetime.`;
     const displayGoal = BALANCE.writing.salesEnabled ? 'Work funds your living costs. Publish stronger books to grow your readership; each release earns declining sales for two game years. Build an audience that can support your writing.' : goal;
     for (const el of document.querySelectorAll('.journey-goal')) if (el.textContent !== displayGoal) el.textContent = displayGoal;
-    const speed = getWritingSpeed() * getGameSpeed();
+    const speed = book ? getWritingSpeed() * getGameSpeed() : 0;
     const remaining = book && speed > 0 ? Math.ceil(Math.max(0, getBookLength() - gameData.wordsWritten) / speed) : null;
-    const quality = getProjectedBookQuality();
+    const quality = book ? getProjectedBookQuality() : 0;
     const values = [
-        ['Writing speed', `${format(speed, 1)} words / real second`],
-        ['Time to finish', remaining === null ? 'Allocate writing time' : `${Math.floor(remaining / 60)}m ${remaining % 60}s`],
-        ['Projected quality', `${quality.toFixed(1)}%`],
-        [BALANCE.writing.salesEnabled ? 'Estimated launch income' : 'New book royalties', `$${format(getBookRoyalty(quality) * currentApproach().royalty)} / game day`],
-        ['Genre fit', `${Math.round(Math.max(0, Math.min(1, (getCompositionMultiplier() - 1.1) / 1.9)) * 100)}%`],
+        ['Manuscript', !book ? 'No active manuscript' : plan?.awaitingEditor ? 'Awaiting editing' : speed > 0 ? 'Writing' : 'Writing paused'],
+        ['Writing speed', book ? `${format(speed, 1)} words / real second` : '', !book],
+        ['Time to finish', !book ? '' : plan?.awaitingEditor ? 'Draft complete · awaiting editing' : remaining === null ? 'Allocate writing time' : `${Math.floor(remaining / 60)}m ${remaining % 60}s`, !book],
+        ['Projected quality', book ? `${quality.toFixed(1)}%` : '', !book],
+        ['Published book income', `$${format(gameData.royalties)} / game day`],
+        ['Genre fit', book ? `${Math.round(Math.max(0, Math.min(1, (getCompositionMultiplier() - 1.1) / 1.9)) * 100)}%` : '', !book],
         ['Publications', String(gameData.booksPublished)]
     ];
-    if (BALANCE.writing.salesEnabled) values.push(['Readership', format(gameData.readership, 0)], ['Current book sales', `$${format(gameData.royalties)} / day`]);
+    if (BALANCE.writing.salesEnabled) values.push(['Readership', format(gameData.readership, 0)]);
     const metrics = document.getElementById('writingMetrics');
     if (metrics) {
         for (let i = metrics.children.length; i < values.length; i++) {
             const cell = document.createElement('div'); cell.append(document.createElement('span'), document.createElement('strong')); metrics.append(cell);
         }
-        values.forEach(([label, value], i) => {
+        values.forEach(([label, value, hidden = false], i) => {
             const cell = metrics.children[i];
+            if (cell.hidden !== hidden) cell.hidden = hidden;
             if (cell.firstChild.textContent !== label) cell.firstChild.textContent = label;
             if (cell.lastChild.textContent !== value) cell.lastChild.textContent = value;
         });
     }
-    setExperienceText('writingBreakdown', `Typing skill ×${gameData.taskData['Typing Speed'].getEffect().toFixed(2)} · Focus ×${gameData.taskData.Focus.getEffect().toFixed(2)} · Inspiration ×${getInspiration().toFixed(2)} · Craft & life experience ×${getWritingQualityMultiplier().toFixed(2)} · Composition ×${getCompositionMultiplier().toFixed(2)}. Quality is projected for this manuscript, including its current scene mix. Choose scenes to approach your genre's preferred mix. Each scene button shows its target in the tooltip.`);
+    const breakdown = document.getElementById('writingBreakdown');
+    if (breakdown) {
+        const details = breakdown.closest('details');
+        if (details) details.hidden = !book;
+    }
+    setExperienceText('writingBreakdown', book ? `Typing skill ×${gameData.taskData['Typing Speed'].getEffect().toFixed(2)} · Focus ×${gameData.taskData.Focus.getEffect().toFixed(2)} · Inspiration ×${getInspiration().toFixed(2)} · Craft & life experience ×${getWritingQualityMultiplier().toFixed(2)} · Composition ×${getCompositionMultiplier().toFixed(2)}. Quality is projected for this manuscript, including its current scene mix. Choose scenes to approach your genre's preferred mix. Each scene button shows its target in the tooltip. Published book income only includes released books; this manuscript earns nothing until publication.` : '');
     for (const panel of document.querySelectorAll('.panel-column')) {
         let nextShown = false;
         for (const section of panel.querySelectorAll('.category-section')) {
